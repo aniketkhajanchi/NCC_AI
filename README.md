@@ -1,8 +1,6 @@
 # privateGPT
 Ask questions to your documents without an internet connection, using the power of LLMs. 100% private, no data leaves your execution environment at any point. You can ingest documents and ask questions without an internet connection!
 
-> :ear: **Need help applying PrivateGPT to your specific use case?** [Let us know more about it](https://forms.gle/4cSDmH13RZBHV9at7) and we'll try to help! We are refining PrivateGPT through your feedback.
-
 <img width="902" alt="demo" src="https://user-images.githubusercontent.com/721666/236942256-985801c9-25b9-48ef-80be-3acbb4575164.png">
 
 Built with [LangChain](https://github.com/hwchase17/langchain), [LlamaIndex](https://www.llamaindex.ai/), [GPT4All](https://github.com/nomic-ai/gpt4all), [LlamaCpp](https://github.com/ggerganov/llama.cpp), [Chroma](https://www.trychroma.com/) and [SentenceTransformers](https://www.sbert.net/).
@@ -11,19 +9,13 @@ Built with [LangChain](https://github.com/hwchase17/langchain), [LlamaIndex](htt
 In order to set your environment up to run the code here, first install all requirements:
 
 ```shell
-pip3 install -r requirements.txt
+pipenv install -r requirements.txt
 ```
 
-*Alternative requirements installation with poetry*
-1. Install [poetry](https://python-poetry.org/docs/#installation)
-
-2. Run this commands
+As the Vector DB is huge in size, it has to be referenced in git lfs.
 ```shell
-cd privateGPT
-poetry install
-poetry shell
+git lfs install
 ```
-
 Then, download the LLM model and place it in a directory of your choice:
 - LLM: default to [ggml-gpt4all-j-v1.3-groovy.bin](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin). If you prefer a different GPT4All-J compatible model, just download it and reference it in your `.env` file.
 
@@ -44,9 +36,6 @@ TARGET_SOURCE_CHUNKS: The amount of chunks (sources) that will be used to answer
 ```
 
 Note: because of the way `langchain` loads the `SentenceTransformers` embeddings, the first time you run the script it will require internet connection to download the embeddings model itself.
-
-## Test dataset
-This repo uses a [state of the union transcript](https://github.com/imartinez/privateGPT/blob/main/source_documents/state_of_the_union.txt) as an example.
 
 ## Instructions for ingesting your own dataset
 
@@ -69,10 +58,14 @@ The supported extensions are:
    - `.ppt` : PowerPoint Document,
    - `.txt`: Text file (UTF-8),
 
-Run the following command to ingest all the data.
+Run the following command to access the python shell
+```shell
+pipenv shell
+```
+Run the following command to ingest all the data. (Run this offline)
 
 ```shell
-python ingest.py
+pipenv run python ingest.py
 ```
 
 Output should look like this:
@@ -98,7 +91,7 @@ Note: during the ingest process no data leaves your local environment. You could
 In order to ask a question, run a command like:
 
 ```shell
-python privateGPT.py
+pipenv run python privateGPT.py
 ```
 
 And wait for the script to require your input.

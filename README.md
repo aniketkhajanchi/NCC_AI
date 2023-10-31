@@ -17,7 +17,7 @@ As the Vector DB is huge in size, it has to be referenced in git lfs.
 git lfs install
 ```
 Then, download the LLM model and place it in a directory of your choice:
-- LLM: default to [ggml-gpt4all-j-v1.3-groovy.bin](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin). If you prefer a different GPT4All-J compatible model, just download it and reference it in your `.env` file.
+- LLM: [ggml-gpt4all-j-v1.3-groovy.bin](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin) or [llama-2-7b-chat.ggmlv3.q4_0](https://huggingface.co/localmodels/Llama-2-7B-Chat-ggml/blob/main/llama-2-7b-chat.ggmlv3.q4_0.bin). Just download the model and reference it in your `.env` file.
 
 Copy the `example.env` template into `.env`
 ```shell

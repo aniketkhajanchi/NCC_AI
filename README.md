@@ -136,6 +136,11 @@ To install a C++ compiler on Windows 10/11, follow these steps:
 3. Download the MinGW installer from the [MinGW website](https://sourceforge.net/projects/mingw/).
 4. Run the installer and select the `gcc` component.
 
+## For Build Wheels Error
+* Install VS Build Tools
+* While Installing select C++ Desktop Environment
+* Restart VS Code IDE
+
 ## Mac Running Intel
 When running a Mac with Intel hardware (not M1), you may run into _clang: error: the clang compiler does not support '-march=native'_ during pip install.
 

@@ -6,7 +6,8 @@ models/
 
 # Local Chroma db
 .chroma/
-# db/
+db/
+source_documents/
 persist_directory/chroma.sqlite
 
 # Byte-compiled / optimized / DLL files

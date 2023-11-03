@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="System redundancy and scalability" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9YZ-09018-UG00-PCZZA-d1e8012" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>System redundancy and scalability</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9YZ-09018-UG00-PCZZA-d1e8012">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">System redundancy and scalability</h1>
+<div class="body conbody">
+        <p class="p">NCC is designed to be a cloud-native solution with system redundancy and scalability
+            throughout, providing very high levels of system reliability. Some pod types are fully
+            horizontally scalable, while others currently support more limited scalability or a
+            fixed number of instances.</p>
+
+        <div class="section"><h2 class="title sectiontitle">Horizontally scalable pods</h2>
+            
+            <p class="p">The number of these pod instances varies and are appropriate for the current offered
+                load level. All instances are active, providing high levels of system reliability.
+                Failure of individual instances does not impact the ability to continue servicing
+                traffic on the system. Kubernetes is configured to automatically spin up new
+                instances upon failure of others.</p>
+
+            <div class="p">NCC SS7 contains these pods in scalable mode: <ul class="ul">
+                    <li class="li">ss7api</li>
+
+                    <li class="li">ss7dh</li>
+
+                    <li class="li">ss7sim, and</li>
+
+                    <li class="li">ss7ussd.</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="section" id="id9YZ-09018-UG00-PCZZA-d1e8012__section_nz2_vx1_nlb"><h2 class="title sectiontitle">Fixed number of pods</h2>
+            
+            <p class="p">For a few pod types, system redundancy is achieved with a fixed number of pod
+                instances. For example, there are always three etcd pods. While the load on etcd is
+                low, even during high levels of system traffic, there are three etcd instances for
+                redundancy purposes. Some pods such as etcd or zookeeper use the RAFT algorithm for
+                determining the controlling pod instance, and this requires at least three deployed
+                pod instances.</p>
+
+            <div class="p">NCC SS7 contains these single pods: <ul class="ul">
+                    <li class="li">ss7em</li>
+
+                    <li class="li">ss7fep (4 pods per side)</li>
+
+                    <li class="li">ss7bep (at max 4 BEP per FEP, depending upon dimensioning)</li>
+
+                    <li class="li">ss7cli, and</li>
+
+                    <li class="li">ss7cmdbadmin.</li>
+
+                </ul>
+</div>
+
+        </div>
+
+        <div class="section" id="id9YZ-09018-UG00-PCZZA-d1e8012__section_mrj_vv1_nlb"><h2 class="title sectiontitle">1+1 redundant pods</h2>
+            
+            <p class="p">NCC has two pod types, IOHD and centralmanagement, which are deployed as 1+1
+                redundant. These run in active/standby mode. When the active pod fails, the standby
+                pod quickly takes over as the new active pod. As Kubernetes spins up a new instance
+                to replace the failed one, that new instance becomes the standby pod.</p>
+
+            <div class="p">NCC SS7 contains these pods in active-standby modes (1+1): <ul class="ul">
+                    <li class="li">ss7psmf</li>
+
+                    <li class="li">ss7sdp</li>
+
+                    <li class="li">ss7soap, and</li>
+
+                    <li class="li">ss7consumer.</li>
+
+                </ul>
+</div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

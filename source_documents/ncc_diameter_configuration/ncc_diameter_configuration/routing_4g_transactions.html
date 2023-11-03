@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Routing outbound 4G transactions through Drouter" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="routing_4g_transactions" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Routing outbound 4G transactions through Drouter</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="routing_4g_transactions">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Routing outbound 4G transactions through Drouter</h1>
+<div class="body conbody">
+        <div class="section" id="routing_4g_transactions__section_esf_dj5_wmb">
+            <p class="p">For all incoming messages to OCS through Drouter, Drouter info (FQDN) to
+                corresponding session is saved to database if the <strong class="ph b">Store Diameter Router
+                    Identity</strong> is checked. Once OCS is set to send a Diameter outbound message
+                (RAR, ASR, SNR), list of all active routes is fetched based on realm based routes
+                configured (see <a class="xref" href="realm_based_route.html">Realm based routes</a> for provisioning details). If
+                a matching route to Drouter info saved in session is found, then in this case, is
+                the primary route and alternate routes are all active routes having same priority as
+                that of the primary route.</p>
+
+            <p class="p">There can be one or more alternate route for a primary route towards Drouter.</p>
+
+            <p class="p">See <a class="xref" href="outbound_config.html">Connectivity preferences</a> for parameter details.</p>
+
+        </div>
+
+        <div class="section" id="routing_4g_transactions__section_bll_q1q_1nb"><h2 class="title sectiontitle">Primary (last used Drouter) route is down</h2>
+            
+            <p class="p">If the primary route is down, then its availability is checked in database for the
+                Drouter information available in session. If found, then alternate Drouter routes
+                are the ones with same priority as that of the primary one. In this case, the
+                Diameter message (RAR,ASR,SNR) are sent only to alternate Drouters and not primary
+                one.</p>
+
+        </div>
+
+        <div class="section" id="routing_4g_transactions__section_jbf_p1q_1nb"><h2 class="title sectiontitle">No route available to Drouters (primary and alternate)</h2>
+            
+            <p class="p">If the feature flag <strong class="ph b">Store Diameter Router Identity</strong> is set and all routes
+                towards Drouters are down, then OCS sends Diameter outbound messages using the
+                default logic. If p-gateway is directly connected, then it is selected as the peer
+                to send messages. Otherwise, it searches for most eligible route (route that is
+                active and has the highest priority, route with priority 2 is selected over route
+                with priority 3).</p>
+
+        </div>
+
+        <div class="section" id="routing_4g_transactions__section_cn1_41q_1nb"><h2 class="title sectiontitle">Order of selection of alternate routes</h2>
+            
+            <p class="p">The alternate route towards Drouters are of the same priority as of the primary route
+                (Drouter FQDN saved in session). In this case, the order in which the alternate
+                routes are picked to send RAR/ASR/SNR is random order.</p>
+
+            <p class="p">For example, if there are two alternate routes other than primary one, then the order
+                is as follows:</p>
+
+            <ol class="ol" id="routing_4g_transactions__ol_ekf_xk5_wmb">
+                <li class="li">Drouter1(dr1.realm1) priority : 3 (primary)</li>
+
+                <li class="li">Drouter2(dr2.realm2) priority : 3 (alternate)</li>
+
+                <li class="li">Drouter3(dr3.realm3) priority : 3 (alternate)</li>
+
+            </ol>
+
+            <p class="p">On receiving RAA/ASA/SNA failure/timeout from Drouter1, next Drouter route selected
+                to send diameter message can be either Drouter2 or Drouter3.</p>
+
+            <p class="p">The order of selection of routes for sending diameter messages to Drouter is
+                evaluated once while sending it for the first time and it remains same during the
+                complete retry process.</p>
+
+        </div>
+
+        <div class="section" id="routing_4g_transactions__section_f53_l1q_1nb"><h2 class="title sectiontitle">Retry when feature is OFF</h2>
+            
+            <div class="sectiondiv">
+                <p class="p">If the <strong class="ph b">Store Diameter Router Identity</strong> in retry configuration entity is not
+                    set, then OCS retries diameter outbound message using default logic. If
+                    p-gateway is directly connected, then it is selected as the peer to send
+                    message. Otherwise, it searches for most eligible route (route that is active
+                    and has the highest priority, route with priority 2 is selected over route with
+                    priority 3). The number of times the Diameter message can be retried is
+                    determined by the Retry Configuration entity.</p>
+
+            </div>
+            <div class="sectiondiv"><strong class="ph b">Example</strong><p class="p">Consider that the <strong class="ph b">Store Diameter Router Identity</strong> is
+                    set to <var class="keyword varname">True</var>, RAR Retry Count = 3, No Retry Error Code List =
+                        <var class="keyword varname">DIAMETER_UNKNOWN_SESSION_ID</var>. Two DRouters are connected
+                    to OCS with same priority and active. Drouter1(<var class="keyword varname">dr1.realm1</var>)
+                    priority : 3, Drouter2 (<var class="keyword varname">dr2.realm2</var>) priority: 3, GY, CCR-I
+                    from Drouter1 and <var class="keyword varname">dr1.realm1</var> are saved to session in
+                    database.</p>
+<p class="p">In failure/timeout case, the following order is followed to
+                    retry and select the route for sending diameter messages to Drouter:</p>
+<ol class="ol" id="routing_4g_transactions__ol_bgb_fq5_wmb">
+                    <li class="li">Diameter RAR is sent to Drouter1, RAA with
+                            <var class="keyword varname">DIAMETER_UNABLE_DELIVER</var> result code</li>
+
+                    <li class="li">Diameter RAR is sent to Drouter2, RAA with
+                            <var class="keyword varname">DIAMETER_UNABLE_DELIVER</var> result code</li>
+
+                    <li class="li">Diameter RAR is sent to Drouter1 RAA with
+                            <var class="keyword varname">DIAMETER_UNABLE_DELIVER</var> result code</li>
+
+                    <li class="li">Diameter RAR is sent to Drouter2 again, RAA with
+                            <var class="keyword varname">DIAMETER_UNABLE_DELIVER</var> result code.</li>
+
+                </ol>
+</div>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Diameter/HTTP Configuration Guide • P556766-DN1000054969-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

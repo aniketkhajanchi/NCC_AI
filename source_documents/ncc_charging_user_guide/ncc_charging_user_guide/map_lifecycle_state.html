@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Map lifecycle state to a policy counter ID" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e27949" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Map lifecycle state to a policy counter ID</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e27949">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Map lifecycle state to a policy counter ID </h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">When subscribers opt for offers such as Fixed Wireless Access (FWA), the new OCS device is put into a temporary lifecycle state. This is done to prevent the data sessions until all the network elements are configured. Once the network elements are correctly configured, the device transition to an active lifecycle state that allows the data transfer. The HLAPI initializes the device lifecycle's initial state when device is created using the <span class="ph uicontrol">AddRTRProfile</span> task and consequently changes the lifecycle state using the <span class="ph uicontrol">UpdateRTRProfile</span> task. The Policy Counter (PC) status is stored through a <var class="keyword varname">Send SNR</var> action for a policy counter so that the value is returned in a subsequent SLR-I received from the PCRF.</p>
+
+<p class="p">This feature is only applicable to the device entity lifecycle. </p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Assumptions</h2><ul class="ul">
+<li class="li">
+<p class="p">The lifecycle of the device cannot be changed or removed without removing the device. Therefore, it is not necessary to define a specific PC status when a device entity lifecycle is removed.</p>
+
+</li>
+
+<li class="li">
+<p class="p">When a device is created, as a first step, the lifecycle state always changes from <em class="ph i">Start</em> to <em class="ph i">Pre-active</em> with timer = 0 configuration. The further lifecycle states are changed according to the SIM state in the <kbd class="ph userinput">AddRTRProfile</kbd> task.</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Configuration</h2>
+<p class="p">This feature does not contain the Policy Counter Definition. For example, consider that
+                    <var class="keyword varname">PLC1</var>, <var class="keyword varname">PLC2</var>, and <var class="keyword varname">PLC3</var>
+                are existing policy counters whose definition is in a counter or charging service.
+                To configure this feature, you can enter <var class="keyword varname">PLC4</var> for <em class="ph i">Policy
+                    Counter Name</em> in the Lifecycle entity with a value for policy counter status.
+                See <a class="xref" href="#id9yz-09126-ug01-pczza-sp1-d1e27949__examplepc">Example</a> for
+                lifecycle related details. </p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">AddRTRProfile task</h2>
+<p class="p">When a device is created using the <span class="ph uicontrol">AddRTRProfile</span> task, the device lifecycle state is set to <em class="ph i">Pre-Active</em> since timer=0 transition is configured in the Start state. The <kbd class="ph userinput">Send S N R Action</kbd> is executed and PCID=LFS and PCS=0 is stored with lifecycle state <em class="ph i">Pre-Active</em> in database.</p>
+
+<p class="p">See <a class="xref" href="#id9yz-09126-ug01-pczza-sp1-d1e27949__lifecyclestates">Lifecycle states</a> for
+                sample lifecycle states. </p>
+
+<p class="p">In the AddRTRProfile task, the lifecycle states change based on the values passed in the SIM state. </p>
+<ol class="ol">
+<li class="li">
+<p class="p"> If the SIM state is not passed or the value is empty, then the current lifecycle state is retained as <em class="ph i">Pre-active </em> state.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the SIM state is passed as <em class="ph i">Pre-Active</em>, same as its current state, then the lifecycle state is retained as <em class="ph i">Pre-Active </em>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the SIM state is passed as <em class="ph i">Suspend</em>, then the device lifecycle state is changed to <em class="ph i">Suspend</em> state. A <em class="ph i">Send S N R Action</em> is executed and <em class="ph i">Policy Counter Name (PCID) = LFS</em> and <em class="ph i">Policy Counter Status (PCS) = 2 </em> is stored with the lifecycle state as <em class="ph i">Suspend</em> in the database.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the SIM state is passed as <em class="ph i">Suspend2</em>, and there is no transition defined between <em class="ph i">Pre-Active</em> and <em class="ph i">Suspend2</em>, then the lifecycle state is retained as <em class="ph i">Pre-active</em> state and an error message in the HLAPI response is returned.</p>
+
+</li>
+
+</ol>
+
+<p class="p">If SLR arrives for this device, SLA is returned with PCID=LFS and PCS=&lt;Memorized Policy Counter Status&gt;.</p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">UpdateRTRProfile task</h2>
+<p class="p">In the UpdateRTRProfile task, the lifecycle states change based on the values passed in the SIM state: </p>
+<ol class="ol">
+<li class="li">
+<p class="p">If the SIM state is not passed or the value is empty, then the current lifecycle state is retained.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the SIM state is same as the current lifecycle state, then the current lifecycle state is retained.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the SIM state is passed and the value is a valid state of the device lifecycle, and the value is different from the current state, then the device lifecycle is changed to the SIM state and <kbd class="ph userinput">Send S N R Action</kbd> is executed.</p>
+<ul class="ul">
+<li class="li">
+<p class="p">If a new PCS is same as the current PCS in the device lifecycle, the PCS is not stored again, and irrespective of whether there is an ongoing Sy session or not, SNR is not sent.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If a new PCS is different from the current PCS in the device lifecycle, then the new PCS is stored in the database and the SNR is sent based on the following scenarios:</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                                        <tr class="row">
+                                            <th class="entry cellrowborder" style="vertical-align:top;" id="d133508e250">
+                                                <p class="p">If...</p>
+
+                                           </th>
+
+                                            <th class="entry cellrowborder" style="vertical-align:top;" id="d133508e256">
+                                                <p class="p">Then...</p>
+
+                                           </th>
+
+                                        </tr>
+
+                                    </thead>
+<tbody class="tbody">
+                                        <tr class="row">
+                                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d133508e250 ">There is an ongoing Sy session for the device</td>
+
+                                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d133508e256 ">SNR is sent with the <em class="ph i">PCID = LFS</em> and
+                                                  <em class="ph i">PCS = &lt;memorized Policy Counter
+                                                  Status&gt;</em>. The PCID and PCS is stored in the
+                                                device information.</td>
+
+                                        </tr>
+
+                                        <tr class="row">
+                                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d133508e250 ">There is no ongoing Sy session for the device</td>
+
+                                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d133508e256 ">Device does not send SNR message. The PCID and
+                                                PCS is stored in the device information.</td>
+
+                                        </tr>
+
+                                    </tbody>
+</table>
+
+</li>
+
+</ul>
+
+</li>
+
+</ol>
+
+</div>
+
+<div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e27949__examplepc"><h2 class="title sectiontitle">Example</h2>
+<p class="p">Consider that a device named <var class="keyword varname">FWA_Device</var> with Fixed Wireless Access (FWA) subscription is added using the AddRTRProfile task. The lifecycle is defined with states <var class="keyword varname">Start</var>, <var class="keyword varname">Pre-active</var>, <var class="keyword varname">Active</var>, <var class="keyword varname">Suspend</var>, and <var class="keyword varname">Suspend2</var>.</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-f-guiexample_1_default.png" />
+            </div>
+
+<p class="p">The initial device lifecycle state is set to <em class="ph i">Pre-active</em> with timer = 0 configuration. A <var class="keyword varname">Send SNR</var> is executed and <em class="ph i">Policy Counter Name (PCID) = LFS</em> and <em class="ph i">Policy Counter State = 0</em> is committed to memory with lifecycle state as <em class="ph i">Pre-active</em> in the database.</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-f-guiexample_2_default.png" height="158" width="498" />
+            </div>
+
+<p class="p">After all the network elements are configured correctly, the device lifecycle state is changed from <em class="ph i">Pre-active</em> to <em class="ph i">Active</em> state.</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-f-guiexample_3_default.png" height="119" width="395" />
+            </div>
+</div>
+
+    <div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e27949__lifecyclestates"><h2 class="title sectiontitle">Lifecycle states</h2>
+<p class="p">Following figure shows the different states configured in the lifecycle. Note that the same policy counter name (LFS) is used for all the states.</p>
+
+<p class="p">
+<span class="ph uicontrol">Start state &gt; Pre-active event</span>
+</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-f-guiexample_2_default.png" height="158" width="498" />
+            </div>
+
+<p class="p">
+<span class="ph uicontrol">Pre-active state &gt; Active event</span>
+</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-lc_preactive_active_default.png" height="149" width="494" />
+            </div>
+
+<p class="p">
+<span class="ph uicontrol">Pre-active state &gt; Suspend event</span>
+</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-lc_active_suspend_default.png" height="118" width="494" />
+            </div>
+
+<p class="p">
+<span class="ph uicontrol">Active state &gt; Pre-active event</span>
+</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-lc_active_preactive_default.png" height="148" width="495" />
+            </div>
+
+<p class="p">
+<span class="ph uicontrol">Active state &gt; Suspend event</span>
+</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-lc_active_suspend_default.png" height="118" width="494" />
+            </div>
+
+<p class="p">
+<span class="ph uicontrol">Suspend state &gt; Pre-active event</span>
+</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-lc_suspend_preactive_default.png" height="148" width="495" />
+            </div>
+
+<p class="p">
+<span class="ph uicontrol">Suspend state &gt; Active event</span>
+</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-lc_suspend_active_default.png" height="104" width="494" />
+            </div>
+
+<p class="p">
+<span class="ph uicontrol">Suspend state &gt; Suspend2 event</span>
+</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-lc_suspend_suspend2_default.png" height="114" width="494" />
+            </div>
+
+<p class="p">
+<span class="ph uicontrol">Suspend2 state &gt; Suspend event</span>
+</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-f-guiexample_7_default.png" height="153" width="494" />
+            </div>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

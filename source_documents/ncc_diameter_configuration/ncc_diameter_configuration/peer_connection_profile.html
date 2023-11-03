@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Profiles" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="peer_connection_profile" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Profiles</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="peer_connection_profile">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Profiles</h1>
+<div class="body conbody">
+        <div class="section" id="peer_connection_profile__section_e5l_zpn_4xb">
+            <div class="p">To configure a profile, login to SM GUI and navigate to
+                    <span class="ph uicontrol">Connectivity</span> →  ☰ →  <span class="ph uicontrol">DIAMETER
+                    PEERS</span> →  <span class="ph uicontrol">Diameter Peers</span>. Select
+                    <strong class="ph b">PROFILES</strong> toggle, and click <strong class="ph b">+</strong> to select one of the following
+                profiles to be created:<ul class="ul" id="peer_connection_profile__ul_epg_5hw_pxb">
+                    <li class="li">Peer Connection Profile</li>
+
+                    <li class="li">Ingress Throttling Profile</li>
+
+                    <li class="li">Egress Throttling Profile</li>
+
+                </ul>
+</div>
+
+            <div class="sectiondiv"><strong class="ph b">Peer Connection Profile</strong><p class="p">A peer connection profile specifies the
+                    values to be used for:</p>
+<ul class="ul" id="peer_connection_profile__ul_ewg_w5p_1nb">
+                    <li class="li">
+                        <p class="p">Timers</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Capabilities exchange</p>
+
+                    </li>
+
+                </ul>
+<p class="p">One of the peer connection profiles is set as NCC system default profile and
+                    is used when peer-level values are not provided.</p>
+<p class="p">The applications for both
+                    authorization and accounting applications are as follows:</p>
+<ul class="ul" id="peer_connection_profile__ul_fwg_w5p_1nb">
+                    <li class="li">Wx</li>
+
+                    <li class="li">Sy</li>
+
+                    <li class="li">SWx</li>
+
+                    <li class="li">Sh</li>
+
+                    <li class="li">Sd</li>
+
+                    <li class="li">S9</li>
+
+                    <li class="li">S6b</li>
+
+                    <li class="li">Rx</li>
+
+                    <li class="li">Ro</li>
+
+                    <li class="li">Gy</li>
+
+                    <li class="li">CreditControl</li>
+
+                    <li class="li">NASREQ</li>
+
+                    <li class="li">ICCSy</li>
+
+                    <li class="li">Gxx</li>
+
+                    <li class="li">Gx</li>
+
+                    <li class="li">Cx</li>
+
+                    <li class="li">Dx</li>
+
+                    <li class="li">BaseAccounting</li>
+
+                    <li class="li">Rq</li>
+
+                    <li class="li">E2E4</li>
+
+                    <li class="li">Prop</li>
+
+                    <li class="li">S6a</li>
+
+                    <li class="li">S6d</li>
+
+                    <li class="li">S13</li>
+
+                    <li class="li">S13prime</li>
+
+                </ul>
+To configure a Peer Connection Profile, enter the parameter details as shown in
+                the following table:<table cellpadding="4" cellspacing="0" summary="" id="peer_connection_profile__table_j25_1vp_1nb" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Peer Connection Profile parameters</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d31018e182">
+                                    <p class="p">Parameter</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d31018e188">
+                                    <p class="p">Description</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d31018e194">
+                                    <p class="p">Optional or Mandatory</p>
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e182 ">Profile Name</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e188 ">Specify the profile name.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e194 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e182 ">Description</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e188 ">Specify a description of the peer connection profile.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e194 ">Optional </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d31018e182 d31018e188 d31018e194 "><strong class="ph b">Profile
+                                    Details</strong></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e182 ">Origin Host</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e188 ">Specify the name or IP address of the origin host. The host
+                                    name must not contain the “/” character. </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e194 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e182 ">Origin Realm</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e188 ">Specify the name or IP address of the origin realm. </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e194 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e182 ">Origin State ID</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e188 ">Specify the origin state ID to be used for establishing a
+                                    connection with the peer.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e194 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e182 ">Vendor ID</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e188 ">Specify the vendor ID for the profile. </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e194 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e182 ">Product Name</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e188 ">Specify the product name that NCC advertises to external
+                                    clients, such as an AF server.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e194 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d31018e182 d31018e188 d31018e194 "><strong class="ph b">Authorization and
+                                        Accounting</strong></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e182 ">Authorization Applications</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e188 ">
+                                    <p class="p">List one or more authorization application types to reach a
+                                        specified host or realm. Choose one or more application
+                                        types from the drop down.</p>
+
+                                    <p class="p">By default, all applications are valid for a route. Leave the
+                                        field blank to enable all applications.</p>
+
+                                    <p class="p">Click the <strong class="ph b">+<strong class="ph b">AUTHORIZATION IDS</strong></strong> button and enter
+                                        the <em class="ph i">Vendor Id</em> and <em class="ph i">Application</em>.</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e194 ">Mandatory </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e182 ">Accounting Applications </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e188 ">
+                                    <p class="p">List one or more accounting application types to reach a
+                                        specified host or realm. Choose one or more application
+                                        types from the drop down.</p>
+
+                                    <p class="p">By default, all applications are valid for a route. Leave the
+                                        field blank to enable all applications. </p>
+
+                                    <p class="p">Click the <strong class="ph b">+ACCOUNT IDS</strong> button and enter the <em class="ph i">Vendor
+                                            Id</em> and <em class="ph i">Application</em>.</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e194 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e182 ">Custom AVP</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e188 ">
+                                    <p class="p">Click <span class="ph uicontrol">Custom AVP</span> button to add one or
+                                        more AVP type and name associations.</p>
+
+                                    <p class="p">Specify a <span class="ph uicontrol">Attribute Name</span> for the AVP
+                                        entity.</p>
+
+                                    <p class="p">Select the <span class="ph uicontrol">Type</span> of the AVP from the
+                                        drop-down list and provide the applicable
+                                            <span class="ph uicontrol">Value</span>.</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e194 ">Optional</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+            <div class="sectiondiv"><strong class="ph b">Ingress Throttling Profile</strong><p class="p">To configure a Ingress Throttling
+                    Profile, enter the parameter details as shown in the following table:</p>
+<table cellpadding="4" cellspacing="0" summary="" id="peer_connection_profile__table_vbw_43w_pxb" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Ingress Throttling Profile parameters</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d31018e424">
+                                    <p class="p">Parameter</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d31018e430">
+                                    <p class="p">Description</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d31018e436">
+                                    <p class="p">Optional or Mandatory</p>
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e424 ">Name</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e430 ">Specify the profile name.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e436 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e424 ">Description</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e430 ">Specify a description of the ingress throttling
+                                    profile.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e436 ">Optional </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d31018e424 d31018e430 d31018e436 "><strong class="ph b">Message
+                                        Filters</strong><p class="p">Click <span class="ph uicontrol">+Message Filter</span>
+                                        to add a new message filter.</p>
+</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e424 ">Name</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e430 ">Name of the message filter.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e436 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e424 ">Max reqs per interval</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e430 ">Specify the maximum requests per interval.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e436 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e424 ">Interval Size</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e430 ">Specify the interval size.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e436 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e424 ">Conditions</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e430 ">Click <strong class="ph b">+</strong> button to add a condition. Select a context,
+                                    attribute and a value for the attribute, and click
+                                        <span class="ph uicontrol">ADD</span>.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e436 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e424 ">Actions</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e430 ">Click <strong class="ph b">+</strong> button to add a action. Select a context,
+                                    attribute and a value for the attribute, and click
+                                        <span class="ph uicontrol">ADD</span>.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e436 ">Optional</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+            <div class="sectiondiv"><strong class="ph b">Egress Throttling Profile</strong><p class="p">To configure a Egress Throttling Profile,
+                    enter the parameter details as shown in the following table:</p>
+<table cellpadding="4" cellspacing="0" summary="" id="peer_connection_profile__table_mfk_pjw_pxb" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Egress Throttling Profile parameters</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d31018e580">
+                                    <p class="p">Parameter</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d31018e586">
+                                    <p class="p">Description</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d31018e592">
+                                    <p class="p">Optional or Mandatory</p>
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e580 ">Name</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e586 ">Specify the profile name.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e592 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e580 ">Description</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e586 ">Specify a description of the egress throttling
+                                    profile.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e592 ">Optional </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d31018e580 d31018e586 d31018e592 "><strong class="ph b">Message
+                                        Filters</strong><p class="p">Click <span class="ph uicontrol">+Message Filter</span>
+                                        to add a new message filter.</p>
+</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e580 ">Name</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e586 ">Name of the message filter.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e592 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e580 ">Max reqs per interval</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e586 ">Specify the maximum requests per interval.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e592 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e580 ">Interval Size</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e586 ">Specify the interval size.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e592 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e580 ">Conditions</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e586 ">Click <strong class="ph b">+</strong> button to add a condition. Select a context,
+                                    attribute and a value for the attribute, and click
+                                        <span class="ph uicontrol">ADD</span>.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e592 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e580 ">Actions</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e586 ">Click <strong class="ph b">+</strong> button to add a action. Select a context,
+                                    attribute and a value for the attribute, and click
+                                        <span class="ph uicontrol">ADD</span>.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d31018e592 ">Optional</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Diameter/HTTP Configuration Guide • P556766-DN1000054969-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

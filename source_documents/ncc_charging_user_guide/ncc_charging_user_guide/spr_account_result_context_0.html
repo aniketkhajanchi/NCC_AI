@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="SPR_ACCOUNT result context" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="spr_account_result_context_0" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>SPR_ACCOUNT result context</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="spr_account_result_context_0">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">SPR_ACCOUNT result context</h1>
+<div class="body conbody">
+        <div class="p">
+            <table cellpadding="4" cellspacing="0" summary="" id="spr_account_result_context_0__table_bfd_cfw_zsb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>SPR_ACCOUNT result context</span></caption><colgroup><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d150511e44">Attribute</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d150511e47">Trigger</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d150511e50">Description</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Account-End-Date</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">LIFECYCLE_PROFILE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">This attribute provides the end date of the account.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Add-Threshold_Profile-Group-Id</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_PRE_PROVISIONING </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">This attribute adds the TPG to Account Entity.<p class="p"><strong class="ph b">Definition
+                                        :</strong>
+                                    <code class="ph codeph">SPR_ACCOUNT.Add-Threshold_Profile-Group-Id="Value_STRING"</code>
+                                    - it adds the specific TPGs provided as argument which can be a
+                                    list.</p>
+<p class="p"><em class="ph i">Example:</em>
+                                </p>
+<p class="p"><code class="ph codeph">SPR_ACCOUNT.Add-Threshold_Profile-Group-Id=
+                                        "TPG1"</code> - It will add <em class="ph i">TPG1</em> to account
+                                    entity.</p>
+<p class="p"><code class="ph codeph">SPR_ACCOUNT.Add-Threshold_Profile-Group-Id=
+                                        "TPG1" and SPR_ACCOUNT.Add-Threshold_Profile-Group-Id=
+                                        "TPG2"</code> - If used as defined it will add two TPGs
+                                    with name <em class="ph i">TPG1</em> and <em class="ph i">TPG2</em> to the account
+                                        entity.</p>
+<div class="p"><code class="ph codeph">SPR_ACCOUNT.Add-Threshold_Profile-Group-Id
+                                        = VARIABLES.Get-Variable ( "ChCOSP_NewTPG"</code> )
+                                        and<code class="ph codeph"> SPR_ACCOUNT.Add-Threshold_Profile-Group-Id=
+                                        "TPG2" and SPR_ACCOUNT.Add-Threshold_Profile-Group-Id=
+                                        VARIABLES.Get-Variable ( "ChCOSP_NewTPG2" )</code> - it
+                                    will add 3 TPGs to the account. 1st and 3rd one will be
+                                    evaluated using rule variables in RSV and 2nd one is
+                                        <em class="ph i">TPG2</em>.<div class="note" id="spr_account_result_context_0__note_lyr_hcf_fxb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If multiple TPGs are
+                                        added then it should be either all success or failure. i.e.
+                                        atomic in nature.</div>
+<div class="note" id="spr_account_result_context_0__note_xpr_3cf_fxb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> We
+                                        should be able to add hard coded value of TPGs as well as
+                                        using rule variables as shown above in the last
+                                        example.</div>
+</div>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">adjust-Amount</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_PRE_PROVISIONING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">This action credits the account balance using the specified
+                                payment method. <p class="p">For Example:
+                                        <code class="ph codeph">SPR_ACCOUNT.Adjust-Amount(50, "SET")</code>.
+                                        <em class="ph i">SET</em>, <em class="ph i">DECR</em> and <em class="ph i">INCR</em> switches are
+                                    supported.</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Custom-Data-Add</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">
+                                <p class="p">LOAN_PRE_PROCESSING</p>
+
+                                <p class="p">LOAN_POST_PROCESSING</p>
+
+                                <p class="p">RATING_POST_PROCESSING</p>
+
+                                <p class="p">SUBSCRIBER_POST_PROVISIONING </p>
+
+                                <p class="p">SUBSCRIBER_PRE_PROVISIONING</p>
+
+                                <p class="p">LIFECYCLE_PROFILE</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">This action is used to attach the Custom data which is already
+                                defined in the system to device. If this Custom Data already exists
+                                in the device, then service updates the value of Custom Data in the
+                                device.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Custom-Data-Add-Immediate</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">
+                                <p class="p">LOAN_PRE_PROCESSING</p>
+
+                                <p class="p">LOAN_POST_PROCESSING</p>
+
+                                <p class="p">LIFECYCLE_PROFILE</p>
+
+                                <p class="p">RATING_POST_PROCESSING</p>
+
+                                <p class="p">SUBSCRIBER_POST_PROVISIONING </p>
+
+                                <p class="p">SUBSCRIBER_PRE_PROVISIONING</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">
+                                <p class="p">This action is used to attach the custom Data which is already
+                                    defined in the system to device. If this Custom Data already
+                                    exists in the device, then service updates the value of Custom
+                                    Data in the device.</p>
+
+                                <p class="p">The result of this action is immediately available for subsequent
+                                    rule processing.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Custom-Data-Update</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">
+                                <p class="p">LOAN_PRE_PROCESSING</p>
+
+                                <p class="p">LOAN_POST_PROCESSING</p>
+
+                                <p class="p">LIFECYCLE_PROFILE</p>
+
+                                <p class="p">RATING_POST_PROCESSING</p>
+
+                                <p class="p">SUBSCRIBER_POST_PROVISIONING </p>
+
+                                <p class="p">SUBSCRIBER_PRE_PROVISIONING</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">This action is used to update a custom data of a device.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Custom-Data-Remove</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">
+                                <p class="p">LOAN_PRE_PROCESSING</p>
+
+                                <p class="p">LOAN_POST_PROCESSING</p>
+
+                                <p class="p">LIFECYCLE_PROFILE</p>
+
+                                <p class="p">RATING_POST_PROCESSING</p>
+
+                                <p class="p">SUBSCRIBER_POST_PROVISIONING </p>
+
+                                <p class="p">SUBSCRIBER_PRE_PROVISIONING</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">This action is used to remove a custom data of a device.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Custom-Data-Remove-Immediate</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">
+                                <p class="p">LOAN_PRE_PROCESSING</p>
+
+                                <p class="p">LOAN_POST_PROCESSING</p>
+
+                                <p class="p">LIFECYCLE_PROFILE</p>
+
+                                <p class="p">RATING_POST_PROCESSING</p>
+
+                                <p class="p">SUBSCRIBER_POST_PROVISIONING </p>
+
+                                <p class="p">SUBSCRIBER_PRE_PROVISIONING</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">This action is used to remove a custom data of a device.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Entity-LifeCycle_Name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_PRE_PROVISIONING </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">This attribute provides the entity life cycle
+                                        name.<p class="p"><strong class="ph b">Definition
+                                        :</strong></p>
+<p class="p"><code class="ph codeph">SPR_ACCOUNT.Entity-LifeCycle_Name=
+                                        "Value_STRING"</code></p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Entity-LifeCycle_State</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_PRE_PROVISIONING </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">This attribute provides the entity life cycle state of the
+                                        account.<p class="p"><strong class="ph b">Definition
+                                        :</strong></p>
+<p class="p"><code class="ph codeph">SPR_ACCOUNT.Entity-LifeCycle_State="Value_STRING"
+                                    </code></p>
+<em class="ph i">Example:</em>
+                                <code class="ph codeph">SPR_ACCOUNT.Entity-LifeCycle_State= "VF_ACTIVE1"</code>
+                                <p class="p">If used as defined it will set the Entity Lifecycle state of
+                                    Account as <em class="ph i">VF_ACTIVE1</em></p>
+.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d150511e44 ">Expire-Custom-Data</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">LOAN_PRE_PROCESSING</td>
+
+                            <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d150511e50 ">This action triggers immediate expiration of a timed
+                                custom data.<p class="p">It takes custom data name as an
+                                    argument:</p>
+<p class="p">Expire-Custom-Data(&lt;custom_data_name&gt;)</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">LOAN_POST_PROCESSING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">RATING_POST_PROCESSING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_POST_PROVISIONING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Extend-Billing (timestamp)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_PRE_PROVISIONING </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">Operator can extend the validity of the account to a specific
+                                date and time. The value must be given as a timestamp (ten digit
+                                integer).</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Remove-Threshold_Profile-Group-Id</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_PRE_PROVISIONING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">This attribute removes the TPG from Account Entity.
+                                        <p class="p"><strong class="ph b">Definition 1
+                                        :</strong></p>
+<p class="p"><code class="ph codeph">SPR_ACCOUNT.Remove-Threshold_Profile-Group-Id
+                                        = "Value_STRING"</code> - it removes the specific TPGs
+                                    provided as argument which can be a list.</p>
+<em class="ph i">Example:</em>
+                                <code class="ph codeph">SPR_ACCOUNT.Remove-Threshold_Profile-Group-Id =
+                                    "Value_STRING"</code> - it will remove the specific TPG.
+                                    <code class="ph codeph">SPR_ACCOUNT.Remove-Threshold_Profile-Group-Id =
+                                    "ALL"</code> - it will remove all the
+                                        TPGs.<p class="p"><code class="ph codeph">SPR_ACCOUNT.Remove-Threshold_Profile-Group-Id=
+                                        "TPG1"</code> - it will remove <em class="ph i">TPG1</em> from account
+                                    entity.</p>
+<p class="p"><code class="ph codeph">SPR_ACCOUNT.Remove-Threshold_Profile-Group-Id=
+                                        "TPG1"</code> and
+                                        <code class="ph codeph">SPR_ACCOUNT.Remove-Threshold_Profile-Group-Id=
+                                        "TPG2"</code> - If used as defined it will remove two TPGs
+                                    with name <em class="ph i">TPG1</em> and <em class="ph i">TPG2</em> from the account
+                                    entity.</p>
+<p class="p"><code class="ph codeph">SPR_ACCOUNT.Remove-Threshold_Profile-Group-Id
+                                        = VARIABLES.Get-Variable ( "ChCOSP_NewTPG" )</code> and
+                                        <code class="ph codeph">SPR_ACCOUNT.Remove-Threshold_Profile-Group-Id =
+                                        "TPG2" and SPR_ACCOUNT.Remove-Threshold_Profile-Group-Id =
+                                        VARIABLES.Get-Variable ( "ChCOSP_NewTPG2" )</code> - it
+                                    will remove 3 TPGs from the account. 1st and 3rd one will be
+                                    evaluated using rule variables in RSV and 2nd one is
+                                    <em class="ph i">TPG2</em>.</p>
+<p class="p"><strong class="ph b">Definition 2 :</strong></p>
+
+                                <code class="ph codeph">SPR_ACCOUNT.Remove-Threshold_Profile-Group-Id =
+                                    "<strong class="ph b">,</strong>"</code> - it removes all the TPGs from account
+                                    entity.<div class="note" id="spr_account_result_context_0__note_ypg_zff_fxb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If multiple TPGs are removed
+                                    or all the TPGs are removed then it should be either all success
+                                    or failure i.e. atomic in nature.</div>
+<div class="note" id="spr_account_result_context_0__note_xxs_zff_fxb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> We should be able to remove hard coded
+                                    value of TPGs as well as using rule variables as shown above in
+                                    the last example.</div>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Periodic-LifeCycle_Name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_PRE_PROVISIONING </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">This attribute provides the period life cycle name.
+                                        <p class="p"><strong class="ph b">Definition
+                                        :</strong><code class="ph codeph">SPR_ACCOUNT.Periodic-LifeCycle_Name="Value_STRING"
+                                    </code></p>
+<em class="ph i">Example:</em>
+                                <code class="ph codeph">SPR_ACCOUNT.Periodic-LifeCycle_Name=
+                                    "Prepid_APLC_01"</code>
+                                <p class="p"> If used as defined it will set the Period Lifecycle of Account
+                                    to <em class="ph i">Prepid_APLC_01</em>.</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Remove-All-Custom-Data</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_PRE_PROVISIONING </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">This command deletes all custom data attached on the account.
+                                This command normally must be present before any other command that
+                                adds custom data.<p class="p">The command does not remove any <em class="ph i">Custom
+                                        Data</em> that may exist inside the incoming REST API
+                                    command.</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Remove-Remaining-Custom-Data</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_PRE_PROVISIONING </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 "> If this command is used (normally not in parallel to <em class="ph i">Remove
+                                    all Custom Data</em>), the Rule must delete all the custom data
+                                excluding those the commands
+                                    <var class="keyword varname">Custom-Data-Add-Immediate/Custom-Data-Add/Custom-Data-Update</var>
+                                added. <p class="p">The command does not remove any <em class="ph i">Custom Data</em> that
+                                    may exist inside the incoming REST API command.</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Periodic-LifeCycle_State</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_PRE_PROVISIONING </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">This attribute provides the periodic life cycle state of the
+                                        account.<p class="p"><strong class="ph b">Definition
+                                        :</strong><code class="ph codeph">SPR_ACCOUNT.Periodic-LifeCycle_State="Value_STRING"
+                                    </code></p>
+<em class="ph i">Example:</em>
+                                <code class="ph codeph">SPR_ACCOUNT.Periodic-LifeCycle_State= "SUSPENDED"</code>
+                                <p class="p">If used as defined it will set the Period Lifecycle state of
+                                    Account as <em class="ph i">SUSPENDED</em>.</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Overage-Limit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_PRE_PROVISIONING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">This attribute is used to set an overage limit to account.<div class="note" id="spr_account_result_context_0__note_hw4_hj1_5vb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Do not configure a negative value or a
+                                    value greater than <strong class="ph b">Max Overage Limit</strong> (ME application
+                                    preferences). If such values are configured, then Account is not
+                                    created and ACCOUNT_00006 error is returned.</div>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d150511e44 ">Restart-Custom-Data-expiryTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">LOAN_PRE_PROCESSING</td>
+
+                            <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d150511e50 ">This action is used to restart the expiry time of
+                                custom data. <p class="p">If the custom data is timed, then the timer stops
+                                    and custom data expiry time restarts based on the custom data
+                                    definition.</p>
+<p class="p">It takes custom data name as an
+                                    argument:</p>
+<p class="p">Restart-Custom-Data-expiryTime(&lt;custom_data_name&gt;)</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">LOAN_POST_PROCESSING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">RATING_POST_PROCESSING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_POST_PROVISIONING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Set-Account-Billing-Life-Cycle</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_PRE_PROVISIONING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">Operator can change the  period/billing LifeCycle of the
+                                account.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Set-Account-Life-Cycle</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_PRE_PROVISIONING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">Operator can change the entity LifeCycle of the account.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d150511e44 ">Set-Custom-Data-expiryTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">LOAN_PRE_PROCESSING</td>
+
+                            <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d150511e50 ">This action is used to convert a non-timed custom
+                                data to timed custom data for the target account or device. <p class="p">It
+                                    takes custom data name and expiry time as
+                                    arguments:</p>
+<p class="p">Set-Custom-Data-expiryTime(&lt;custom_data_name&gt;,
+                                    &lt;expiryTime&gt;) </p>
+<p class="p">Expiry time is optional. </p>
+<p class="p">If
+                                    expiry time is not provided, then custom data definition and the
+                                    calculated value of expiry time are
+                                    used.
+                                    </p>
+<p class="p">If expiry time is provided, then the expiry date is set
+                                    in msecs of the attached custom data. The new value of expiry
+                                    time results in recalculation of TEM. </p>
+<p class="p">If the expiration
+                                    time is in the past, then the custom data expires
+                                    immediately.</p>
+<p class="p">If the expiry time is set to
+                                        <var class="keyword varname">0</var>, then the custom data becomes
+                                    non-timed, and the current value of custom data remains
+                                    unchanged. </p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">LOAN_POST_PROCESSING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">RATING_POST_PROCESSING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_POST_PROVISIONING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Set-Overage-Limit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_PRE_PROVISIONING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">Operator can modify the overage limit of the account.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d150511e44 ">Stop-Custom-Data-expiryTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">LOAN_PRE_PROCESSING</td>
+
+                            <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d150511e50 ">This action is used to stop the expiry time of
+                                custom data. <p class="p">If the custom data is timed, then the timer stops
+                                    and custom data retains its current value. If this action is
+                                    configured, then the expiry time of custom data becomes null,
+                                    and TEM is removed.</p>
+<p class="p">This action is applicable only for
+                                    timed custom data.</p>
+<p class="p">It takes custom data name as an
+                                    argument:</p>
+<p class="p">Stop-Custom-Data-expiryTime(&lt;custom_data_name&gt;)
+                                </p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">LOAN_POST_PROCESSING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">RATING_POST_PROCESSING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_POST_PROVISIONING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e44 ">Extend-Validity</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e47 ">SUBSCRIBER_POST_PROVISIONING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d150511e50 ">This attribute allows to extend the validity of Device or
+                                Account. <p class="p">This attribute updates the validity of the Device or
+                                    Account only if the current validity is not NULL, and the new
+                                    value exceeds the current validity.</p>
+</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

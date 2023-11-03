@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Group final state handling" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="group_final_state_handling" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Group final state handling</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="group_final_state_handling">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Group final state handling</h1>
+<div class="body conbody">
+        <p class="p">When final state is configured in group entity lifecycle, group can be put to the final
+            state either by lifecycle transition or by <em class="ph i">delete/Group</em> API and
+                <em class="ph i">delete/Profile</em> API with <var class="keyword varname">groupGoToFinal</var> parameter as
+                <var class="keyword varname">true</var>. This also schedules a TEM for detach group and its child
+            devices with no call in progress regularly. The application preference <strong class="ph b">Group Device
+                Detach TEM Duration (seconds) </strong>defines the TEM duration, and <strong class="ph b">Number of Devices
+                to Detach </strong>defines the number of child devices that are to be detached during one
+            TEM duration. For child devices with call in progress on-call detach of Group in final
+            state (see <a class="xref" href="on_call_detach_of_group_in_final_state.html">On-call detachment of group in final state</a>) detaches the
+            child devices.</p>
+
+        <p class="p">After the configurable duration is reached, the group in final state is removed. In this
+            scenario, if application preference <strong class="ph b">Maximum Repeat Number for Group in Final State
+            </strong>is non-zero and there are still child devices under the group, the group stays in
+            final state for another duration. The process repeats until the value defined in
+                <strong class="ph b">Maximum Repeat Number for Group in Final State </strong>is reached; after that the
+            group is removed anyway.</p>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

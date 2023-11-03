@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Delta versioning" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="versioning_mapping_tables" />
+<link rel="stylesheet" type="text/css" href="../../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../web/css/common-extended.css" /><title>Delta versioning</title>
+<script src="../../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="versioning_mapping_tables">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Delta versioning </h1>
+<div class="body conbody">
+        <p class="p">The delta versioning scheme is applicable only on SM GUI. It contains the delta from one
+            user while work is in progress. Operators can start modifying a mapping table using one
+            version and apply to another (based on conflict management). NCC automatically resolves
+            the conflicts between different versions. </p>
+
+        <div class="section" id="versioning_mapping_tables__section_c5r_4cb_gqb"><h2 class="title sectiontitle">Limitations</h2>
+            
+            <ul class="ul" id="versioning_mapping_tables__ul_zh4_wcb_gqb">
+                <li class="li">The enhanced versioning scheme allows versioning of regular maps. Hence, there
+                    is no need for reference-based maps. However, the reference-based maps are still
+                    supported so that operators can update the rules in a phased manner. </li>
+
+                <li class="li">You can provision new versions of the regular maps and switchover is not
+                    disruptive.</li>
+
+                <li class="li">To update a regular map, operators can clone the latest active version to a new
+                    draft version, update its entries and publish the draft version.</li>
+
+                <li class="li">If there is a mapping table that existed prior to upgrade and was not published,
+                    it will be renamed. To publish it with new versioning scheme, it must be created
+                    again and then published.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="section" id="versioning_mapping_tables__Mappingtableconfig2"><h2 class="title sectiontitle">Configuration</h2>
+            
+            <p class="p">Log into new GUI, navigate to <span class="ph uicontrol">Charging</span> → ☰ →
+                    <span class="ph uicontrol">Catalog Assets</span> → <span class="ph uicontrol">Mapping Tables</span>.
+                To define a new mapping table, click <span class="ph uicontrol">TABLES</span>, and then <img class="image" id="versioning_mapping_tables__image_ejw_2lb_jqb" src="../../images/hybrid_gui/new_button.png" height="54" width="104" /> to add the basic details and profile configuration as described in the given
+                table:</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="versioning_mapping_tables__table_fjw_2lb_zqb" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e87">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e93">
+                                <p class="p">Description</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e99">
+                                <p class="p">Options</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e105">
+                                <p class="p">Mandatory/Optional</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e87 ">Name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e93 ">This parameter indicates a unique name of the map.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e99 ">String</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e105 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e87 ">Description</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e93 ">This parameter describes the mapping table.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e99 ">String</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e105 ">Optional</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e87 ">Version Name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e93 ">
+                                <p class="p">This parameter allows you to create multiple draft version
+                                    mapping tables with the same name and different versions.</p>
+
+                                <p class="p">The maximum number of characters allowed in this attribute is 50.
+                                    The ID field for versioned map includes a version-suffix
+                                    consisting of a field separator character || and version as an
+                                    user input. For example, map having id
+                                        <var class="keyword varname">test||v1</var>, which indicates the map name is
+                                        <var class="keyword varname">test</var> and version is
+                                    <var class="keyword varname">v1</var>.</p>
+
+                                <p class="p">The draft versions are tracked by name. When published to ME, the
+                                    draft changes are merged into the latest active version, and a
+                                    new major version is created. </p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e99 ">String and read-only after create</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e105 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d205507e87 d205507e93 d205507e99 d205507e105 "><span class="ph uicontrol">Key
+                                Columns</span></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e87 ">Column name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e93 ">
+                                <p class="p">This parameter indicates the name of the first <em class="ph i">Key</em> column.
+                                    This is the header row, which indicates meaning to each
+                                    field.</p>
+
+                                <p class="p">The first column in the example table
+                                        <a class="xref" href="versioning_mapping_tables.html#versioning_mapping_tables__complexmappingtable">ComplexMappingTable example</a> defines the key for the row. You can have up to 10 keys.</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e99 ">String</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e105 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e87 ">Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e93 ">This parameter indicates the type of the <em class="ph i">Key</em>
+                                column.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e99 ">String</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e105 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d205507e87 d205507e93 d205507e99 d205507e105 "><span class="ph uicontrol">Value
+                                Columns</span></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e87 ">Column name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e93 ">
+                                <p class="p">This parameter indicates the name of the first <em class="ph i">Value</em>
+                                    column. This is the header row which indicates your meaning to
+                                    each <em class="ph i">Value</em> field in the row.</p>
+
+                                <p class="p">In the example table <a class="xref" href="versioning_mapping_tables.html#versioning_mapping_tables__complexmappingtable">ComplexMappingTable example</a>, each row must consist of exactly m values, where m can be
+                                    between 1 and M, each value can contain up to 1024 characters,
+                                    with a maximum of 1 MB for an entire row of values.</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e99 ">String</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e105 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e87 ">Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e93 ">This parameter indicates the type of the <em class="ph i">Value</em>
+                                column.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e99 ">String</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e105 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d205507e87 d205507e93 d205507e99 d205507e105 ">Click <span class="ph uicontrol">+ROW</span> to
+                                add a new row.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d205507e87 d205507e93 d205507e99 d205507e105 "> Click <span class="ph uicontrol">IMPORT</span>
+                                to import mapping table from a file.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e87 ">Insert or update</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e93 ">If the imported .CSV file consists of new rows, then they are
+                                appended to the existing rows in the mapping table.<p class="p">If the rows in
+                                    the imported .CSV file already exist in the mapping table, and
+                                    their value is different, then the value of the existing mapping
+                                    table rows are updated to the corresponding row value in the
+                                    .CSV file.</p>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e99 ">checkbox</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e105 ">Optional</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e87 ">Delete rows with matching key</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e93 ">The mapping table rows that match with the rows in the imported
+                                .CSV file (that is, rows in the .CSV file already exist in the
+                                mapping table, and their key is same) are deleted from the mapping
+                                table.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e99 ">checkbox</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e105 ">Optional</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e87 ">Replace all data</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e93 ">Mapping table data is replaced with the data in the imported .CSV
+                                file.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e99 ">checkbox</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e105 ">Optional</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e87 ">IMPORT</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e93 ">Select one of the import actions, and click the
+                                    <span class="ph uicontrol">BROWSE</span> button to select the .CSV file.
+                                Click <span class="ph uicontrol">IMPORT</span> to import the selected
+                                files.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e99 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e105 ">Optional</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="versioning_mapping_tables__table_bhs_pw2_qwb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Publish version</span></caption><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e393">Parameter</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e396">Description</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e399">Value type</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e402">Mandatory/Optional</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e393 ">Publish type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e396 ">Use this field for conflict check during publishing. If there are
+                                conflicts, a list of conflicts is displayed and user can select a
+                                disposition on each of them to resolve. The supported values are as
+                                    follows:<ul class="ul" id="versioning_mapping_tables__ul_or2_xhf_qwb">
+                                    <li class="li"><strong class="ph b">Normal</strong>: Any conflicts are listed. You must provide a
+                                        disposition for each.</li>
+
+                                    <li class="li"><strong class="ph b">Ignore conflict</strong>: SM chooses a disposition for any
+                                        conflicts and does not prompt the user to resolve them.</li>
+
+                                </ul>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e399 ">Enum</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e402 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e393 ">Publish To</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e396 ">Operators can publish to All subscribers or Test devices.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e399 ">Enum</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e402 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e393 ">Validity Start</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e396 "><p class="p">This field appears only if <strong class="ph b">Activation Time</strong> =
+                                        <var class="keyword varname">Schedule Activation</var>.</p>
+The new version
+                                of the entity becomes active at the selected date-time.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e399 ">Date-time</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e402 ">Optional</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e393 ">Activation Time</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e396 ">The supported values are as follows:<ul class="ul" id="versioning_mapping_tables__ul_xzf_dv2_qwb">
+                                    <li class="li"><strong class="ph b">Activate Now</strong>: The charging logic is activated
+                                        immediately.</li>
+
+                                    <li class="li"><strong class="ph b">Schedule Activation</strong>: Schedule activation to a future
+                                        time.</li>
+
+                                </ul>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e399 ">Enum</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e402 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e393 ">Time zone for publish</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e396 ">
+                                <p class="p">This field appears only if <strong class="ph b">Activation Time</strong> =
+                                        <var class="keyword varname">Schedule Activation</var>.</p>
+
+                                <ul class="ul" id="versioning_mapping_tables__ul_xyf_dv2_qwb">
+                                    <li class="li">Always use UTC: The new version of the entity becomes active
+                                        for all accounts at the same UTC time.</li>
+
+                                    <li class="li">Based on account time zone: The new version of the entity
+                                        becomes active for each account at its respective timezone.
+                                        A time before 26 hours from last active version cannot be
+                                        selected.</li>
+
+                                </ul>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e399 ">Radio button</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e402 ">Mandatory</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <p class="p">NCC allows you to create references between the mapping tables. To create references,
+                click <span class="ph uicontrol">REFERENCES</span> in the <span class="ph uicontrol">Mapping Tables</span>
+                overview screen, and then click <img class="image" id="versioning_mapping_tables__image_tlt_yxw_gwb" src="../../images/hybrid_gui/new_button.png" height="54" width="104" />. </p>
+
+            <div class="p">Define the references between mapping tables as shown in the following image:<div class="fig fignone" id="versioning_mapping_tables__fig_ayl_zyw_gwb">
+                    <img class="image break" id="versioning_mapping_tables__image_b4r_dzw_gwb" height="144" src="../../images/mapping_table_references.png" width="576" />
+                </div>
+</div>
+
+            <div class="p">Enable <em class="ph i">View table references</em> to see the references between mapping tables. See
+                the following image:<div class="fig fignone" id="versioning_mapping_tables__fig_rjq_zzw_gwb">
+                    <img class="image break" id="versioning_mapping_tables__image_sd3_11x_gwb" height="144" src="../../images/view_table_references_mapping_table.PNG" width="576" />
+                </div>
+</div>
+
+            <div class="note"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Multiple versions of a given mapping table can be published to the ME at once. The
+                startTime field in the table is used to determine which table to use at a particular
+                point. The latest startTime less than the time of request processing is
+                chosen.</div>
+
+            <div class="p">The following example enables to create a map with the number of rows and columns:
+                The ComplexMappingTable example is for demonstration purposes only (also applicable
+                to legacy versioning):<table cellpadding="4" cellspacing="0" summary="" id="versioning_mapping_tables__complexmappingtable" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>ComplexMappingTable example</span></caption><colgroup><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e593">
+                                    <p class="p">(Key_1)</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e599">
+                                    <p class="p">(Key_2)</p>
+
+                                    <p class="p">...</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e608">
+                                    <p class="p">(Value 0)</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e614">
+                                    <p class="p">(Value 1)</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e620">
+                                    <p class="p">(Value 2)</p>
+
+                                    <p class="p">...</p>
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e593 ">&lt;KeyName&gt;</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e599 ">&lt;KeyName&gt;</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e608 ">&lt;value&gt;</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e614 ">&lt;value&gt;</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e620 ">&lt;value&gt;</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e593 ">&lt;KeyName&gt;</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e599 ">&lt;KeyName&gt;</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e608 ">&lt;value&gt;</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e614 ">&lt;value&gt;</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e620 ">&lt;value&gt;</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+
+            <div class="note"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                <ul class="ul" id="versioning_mapping_tables__ul_qjw_2lb_jqb">
+                    <li class="li">
+                        <p class="p">Comma(,) is allowed in only keys of map. To support comma character in
+                            the keys, the SM server uses backslash (\) as a special character.
+                            Therefore, backslash character in key values should not be used as it
+                            can lead to inconsistent behavior. If there is a coma based key value.
+                            For example, "key1,key2", SM server stores it as key1\\,key2 and GUI
+                            displays it as key1,key2.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">For the supported string, long, and double value types, the value(s) must
+                            be able to parse the value and type as required in the following Oracle
+                            documentation:</p>
+
+                        <p class="p">- <a class="xref" href="https://docs.oracle.com/javase/7/docs/api/java/lang/long.html" target="_blank" rel="noopener noreferrer">https://docs.oracle.com/javase/7/docs/api/java/lang/long.html</a>
+                        </p>
+
+                        <p class="p">- <a class="xref" href="https://docs.oracle.com/javase/7/docs/api/java/lang/double.html" target="_blank" rel="noopener noreferrer">https://docs.oracle.com/javase/7/docs/api/java/lang/double.html</a>
+                        </p>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="sectiondiv">
+                <p class="p"><strong class="ph b">Additional information</strong></p>
+
+                <ul class="ul" id="versioning_mapping_tables__ul_rjw_2lb_jqb">
+                    <li class="li">
+                        <p class="p">A map in the provisioned state cannot be updated or deleted.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Whenever a user provisions a complex map on an ME, the SM server sets its
+                            state on the SM GUI to <var class="keyword varname">IN_PROGRESS</var>, which means the
+                            provisioning of all entries in that map is ongoing. In that state, all
+                            operations like delete, update, retry, or provision are not allowed.
+                            However, if for some reason, a record gets locked in the
+                                <var class="keyword varname">IN_PROGRESS</var>, then the user can use the reset
+                            option (or REST API) present in distribution box of the SM GUI but the
+                            reset option should be only used when provisioning of that record is not
+                            ongoing. Otherwise, it can lead to data inconsistency.</p>
+
+                    </li>
+
+                    <li class="li"><p class="p">If any ME goes offline permanently, then undistribution on that ME does
+                            not work and the record gets locked in the
+                                <var class="keyword varname">DELETE_ATTEMPTED</var> state. To remove such ME from
+                            distribution list of already provisioned record, the reset button is
+                            used, which removes the MEs whose state is
+                                <var class="keyword varname">DELETE_ATTEMPTED</var> from the distribution list.
+                            However, this option does not make any correction in data inconsistency
+                            between an ME and SM server. The reset option should be used only when
+                            ME is not reachable and when provisioning operation for the same record
+                            is not ongoing.</p>
+
+                        
+                        <img class="image" id="versioning_mapping_tables__image_sjw_2lb_jqb" src="../../images/img9yz-09126-ug01-pczza-sp1-undistribution_mapping_tables_default.png" />
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="section" id="versioning_mapping_tables__section_ek3_wdb_gqb"><h2 class="title sectiontitle">APIs and SM options</h2>
+            
+            <table cellpadding="4" cellspacing="0" summary="" id="versioning_mapping_tables__table_dcr_qpb_gqb" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>APIs and SM GUI</span></caption><colgroup><col style="width:11.312217194570136%" /><col style="width:26.58371040723982%" /><col style="width:62.10407239819005%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e764">API</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e767">Description</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d205507e770">Equivalent option in SM GUI</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e764 ">Create API</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e767 ">Creates a mapping table definition.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e770 ">Navigate to <span class="ph uicontrol">Charging → ☰ → Mapping tables</span>
+                                and click <img class="image" id="versioning_mapping_tables__image_fkx_trb_gqb" src="../../images/hybrid_gui/new_button.png" height="27" width="52" />.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e764 ">Update API</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e767 ">Updates a given mapping table definition. It can be applied only
+                                to maps in DRAFT state.<div class="note" id="versioning_mapping_tables__note_utf_qw2_qwb"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This can only be
+                                    applied for DRAFT versions that have not been published yet. The
+                                        <strong class="ph b">refBasedMap</strong> parameter cannot be updated, that is,
+                                    reference-based table cannot be updated to become a regular
+                                    table or vice versa.</div>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e770 ">Go to the record you want to edit, and click <img class="image" id="versioning_mapping_tables__image_c2l_mlh_gqb" src="../../images/edit_button_default.png" />, make the necessary changes and save
+                                the record.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e764 ">List versions API</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e767 ">Lists all the versions of a given mapping table.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e770 ">
+                                <img class="image break" id="versioning_mapping_tables__image_xvg_qsb_gqb" src="../../images/hybrid_gui/list_version.png" height="375" width="396" />
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e764 ">Read API</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e767 ">Reads a version of a given mapping table.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e770 ">Hover over the record that you want to read, and click the
+                                Details icon<img class="image break" id="versioning_mapping_tables__image_lvn_dmh_gqb" src="../../images/hybrid_gui/read_api.gif" /></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e764 ">Delete API</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e767 ">Deletes a given DRAFT version of a mapping table.<div class="note" id="versioning_mapping_tables__note_vtf_qw2_qwb"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Operators can delete only the WITHDRAWN
+                                    and DRAFT versions that have not been published
+                                before.</div>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e770 ">Hover over the record that you want to delete, and click <img class="image break" id="versioning_mapping_tables__image_vrw_xmh_gqb" src="../../images/hybrid_gui/delete_record.gif" /></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e764 ">Delete Versions API</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e767 ">Deletes all the DRAFT and WITHDRWAN versions of a mapping table.
+                                Note that this operation fails even if there is atleast one
+                                published version.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e770 ">
+                                <img class="image break" id="versioning_mapping_tables__image_wfc_gtb_gqb" src="../../images/hybrid_gui/delete_version_api.png" height="202" width="368" />
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e764 ">Clone API</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e767 ">Clones a mapping table to a new draft version. The resulting
+                                mapping table is cloned with the same entities as in the selected
+                                record to clone with a name specified in the API. <div class="note" id="versioning_mapping_tables__note_wtf_qw2_qwb"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Operators can clone only the latest active
+                                    version. The active version is the version that is active or
+                                    scheduled and has the highest activation time of
+                                all.</div>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e770 ">
+                                <img class="image break" id="versioning_mapping_tables__image_grv_ttb_gqb" src="../../images/hybrid_gui/clone.png" height="232" width="468" />
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e764 ">Provision API</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e767 ">Distributes or undistributes the entries of a mapping table to or
+                                from MEs provided in the request. The mapping table and its entries
+                                are merged into the latest ACTIVE version, and a new ACTIVE version
+                                is created. If the start time is not provided in the request, then
+                                it is set to current time.<div class="note" id="versioning_mapping_tables__note_xtf_qw2_qwb"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The DRAFT
+                                    version cannot be a base of a published version, that is, it
+                                    cannot be published more than once. The start time must be
+                                    greater than start time of the latest active version.</div>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e770 ">
+                                <img class="image break" id="versioning_mapping_tables__image_nkr_1vb_gqb" src="../../images/hybrid_gui/publish_version_1.gif" height="126" width="319" />
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e764 ">Test-Provision API</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e767 ">Distributes the entries of mapping table in TEST_ACTIVE
+                                state.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e770 ">
+                                <img class="image break" id="versioning_mapping_tables__image_j4z_jvb_gqb" src="../../images/hybrid_gui/test_provision.gif" height="111" width="303" />
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e764 ">Publish API</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e767 ">Publishes a mapping table to all the MEs connected to the SM. It
+                                is similar to Provision API except that the user cannot choose the
+                                list of MEs.<p class="p">Operators can also schedule a version to be published
+                                    in future.</p>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e770 ">
+                                <img class="image break" id="versioning_mapping_tables__image_k22_qvb_gqb" src="../../images/hybrid_gui/publish_api.png" height="360" width="384" />
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e764 ">Withdraw API</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e767 ">Withdraws a mapping table from all MEs that it was published
+                                to.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e770 ">Go to the record that you want to withdraw from MEs, click <img class="image" id="versioning_mapping_tables__image_cln_h2w_gqb" src="../../images/hybrid_gui/manage_versions.png" /> and then <img class="image break" id="versioning_mapping_tables__image_evr_25h_gqb" src="../../images/hybrid_gui/withdraw.png" /></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e764 ">Unpublish API</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e767 ">Withdraws all versions of a mapping table from all MEs they were
+                                published to.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e770 ">
+                                <img class="image break" id="versioning_mapping_tables__image_mk4_tvb_gqb" src="../../images/hybrid_gui/unpublish.png" height="176" width="372" />
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e764 ">Test-Publish API</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e767 ">Publishes a mapping table to all MEs connected to the SM in
+                                TEST_ACTIVE state.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e770 ">
+                                <img class="image break" id="versioning_mapping_tables__image_qv4_wvb_gqb" src="../../images/hybrid_gui/test_provision.gif" height="95" width="258" />
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e764 ">Rollback API</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e767 ">Rolls back the changes done by a given draft from the latest
+                                active version and creates a new active version. If the latest
+                                active version has a future start time, then start time of the new
+                                version is set to &lt;latest start time&gt;+1 millisecond. Otherwise,
+                                the start time is set to the current time.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d205507e770 ">See <a class="xref" href="#versioning_mapping_tables__section_onb_hrg_gqb">Rollback operation (reverse merge)</a></td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <div class="section" id="versioning_mapping_tables__section_wtk_bpg_gqb"><h2 class="title sectiontitle">Merge operation</h2><p class="p">When operators publish
+                draft version using one of these APIs: Provision, Test-Provision, Publish,
+                Test-Publish, the changes made in draft version are merged into the latest active
+                version. The result of merge is published as a new version. The latest active
+                version is the version that is in ACTIVE or SCHEDULED state and has the highest
+                startTime. If there are no active versions while publishing the changes, the draft
+                gets published as it is, thus creating a new sequential version. In this case, merge
+                is not done.</p>
+<p class="p">When multiple users work on the same mapping table, it leads to
+                conflicts when they make changes to same entries. NCC resolves such conflicts
+                automatically. Following is the default behavior of conflict resolution for merge
+                operation for the entries created, updated, or deleted by draft:</p>
+<ul class="ul" id="versioning_mapping_tables__ul_hpr_2qg_gqb">
+                <li class="li"><strong class="ph b">Created</strong>: If the same entry exists in the latest version, it means that it
+                    has been created by a subsequent version. In this case, the new value gets
+                    updated and change information is added to the record history in the new
+                    version. If the entry is different, then it leads to merge conflict. See <a class="xref" href="#versioning_mapping_tables__section_jng_gyj_sqb">Conflict resolution</a> for
+                    more details.  </li>
+
+                <li class="li"><strong class="ph b">Updated</strong>: If an entry exists in the draft version, but does not exist in
+                    new version, then it leads to merge conflict and user can decide which entry to
+                    keep.</li>
+
+                <li class="li"><strong class="ph b">Deleted</strong>: If the draft history value is same as current value, then it
+                    gets deleted. Otherwise, it leads to conflict and user can decide whether to
+                    keep the record with current value or confirm deletion. </li>
+
+            </ul>
+The entries that were not created, updated, or deleted by the draft version are
+            kept per the latest version.</div>
+
+        <div class="section" id="versioning_mapping_tables__section_jng_gyj_sqb"><h2 class="title sectiontitle">Conflict resolution</h2>
+            
+            <p class="p">The user can request for a conflict check for the mapping table using GUI during
+                publishing. If there are conflicts, a list of conflicts displays on the GUI and user
+                can select a disposition on each of them to resolve.</p>
+
+            <p class="p">When publishing, the user has the following options:</p>
+
+            <ul class="ul" id="versioning_mapping_tables__ul_b4p_hnv_wqb1">
+                <li class="li"><strong class="ph b">Normal</strong>: The normal mode uses conflict resolution, in which any detected
+                    conflicts get presented on the GUI, and the user must provide a disposition for
+                    each.</li>
+
+                <li class="li"><strong class="ph b">Ignore conflicts</strong>: For the Ignore conflicts mode, the SM chooses a
+                    disposition for any conflicts and does not prompt the user to resolve them.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="section" id="versioning_mapping_tables__section_ivm_mlt_hqb"><h2 class="title sectiontitle">Publish operation - interaction between versioning
+                schemes active/test modes</h2><p class="p">You can publish a mapping table in 'test mode',
+                in which case it is only used for calls involving a device which has the
+                'testDevice' option set. The startTime field in the mapping table is also
+                considered. You can set startTime = current time to make the table active
+                immediately.</p>
+When you publish a draft in test-mode, it is merged into the latest
+            active version, and published as the next minor version.<p class="p">Multiple drafts can be
+                published in test-mode simultaneously. If you do this, however, you need to take an
+                extra step to disambiguate which table to use for test devices. This can be done by
+                adding custom data to the device indicating which table to
+                use.</p>
+<p class="p">The
+                custom data tag is 'testMappingTables' and the value is a list, with items separated
+                by | character.</p>
+<p class="p">Each item is formatted as &lt;mapname&gt;=&lt;version&gt;, for
+                example, mymap=1.2 to indicate that, in test mode, mymap version 1.2 is to be
+                used.</p>
+<div class="p">Consider the following example to understand how custom data can be used
+                when multiple drafts are published simultaneously in test-mode. Following are the
+                sequence of events:<ol class="ol" id="versioning_mapping_tables__ol_q2p_mlc_jqb">
+                    <li class="li">Two different users create their own draft versions: map1p1 and map1p2,
+                        based on clone of 1.0 active version.</li>
+
+                    <li class="li">The map1p1 publishes 1.1 test, then map1p2 publishes 1.2 test.</li>
+
+                    <li class="li">The map1p1 publishes to 2.0 active.</li>
+
+                    <li class="li">Another user creates a draft map1p3 based on 2.0.</li>
+
+                    <li class="li">The map1p2 publishes to 3.0 active which contains p1 and p2 changes, but not
+                        p3.</li>
+
+                    <li class="li">The map1p3 publishes to testing as 3.1. It is merged into active version so
+                        that published version contains all three projects though it was created
+                        based on 2.0.</li>
+
+                    <li class="li">The map1p3 publishes to 4.0 active, which contains all three projects.</li>
+
+                </ol>
+</div>
+</div>
+
+        <div class="section" id="versioning_mapping_tables__section_onb_hrg_gqb"><h2 class="title sectiontitle">Rollback operation (reverse
+                merge)</h2><p class="p">Operators can rollback a given draft from latest active version
+                using the Rollback API. The changes that were made by the draft are backed out from
+                the latest version, creating a new sequential version. </p>
+<p class="p">Following is the
+                default behavior of conflict resolution for rollback operation for the entries
+                created, updated, or deleted by draft:</p>
+<ul class="ul" id="versioning_mapping_tables__ul_jbn_dsg_gqb">
+                <li class="li"><strong class="ph b">Created</strong>: If the value in entry for latest version is same as in the
+                    draft, the entry gets deleted. If the value is different, it means that it has
+                    been updated by a subsequent version. In this case, the entry is kept.</li>
+
+                <li class="li"><strong class="ph b">Updated</strong>: If the value in entry for latest version is same as in the
+                    draft, revert the value back. If the value is different, it means it was updated
+                    by a subsequent version. In this case, the value is preserved per the latest
+                    version.</li>
+
+                <li class="li"><strong class="ph b">Deleted</strong>: If an entry exists in the latest version, no action is taken. If
+                    an entry does not exist, it is recreated with its original value.  </li>
+
+            </ul>
+The entries that were not created, updated, or deleted by the draft version are
+            kept per the latest version.<div class="p">
+                <img class="image break" id="versioning_mapping_tables__image_twg_z1h_gqb" src="../../images/hybrid_gui/rollback.gif" height="195" width="479" />
+            </div>
+</div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Bucket on reservation" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="section_ysr_m1l_r4b" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Bucket on reservation</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="section_ysr_m1l_r4b">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Bucket on reservation</h1>
+<div class="body">
+            
+            <p class="p">The upcoming thresholds are calculated based on the committed and reserved quantities
+                of AV and those thresholds are used along with the threshold or cap values
+                associated with a bucket or counter to determine the dynamic slice size. Find all
+                AVs corresponding to the bucket and execute the bucket threshold reservation to find
+                the bucket delta value.</p>
+
+            <p class="p">Find all AVs corresponding to the bucket and execute the bucket threshold reservation
+                to find the bucket delta value following the given steps:</p>
+
+            <ol class="ol" id="section_ysr_m1l_r4b__ol_rf1_41l_r4b">
+                <li class="li">
+                    <p class="p">To calculate this AV delta, examine each threshold profile group attached to
+                        AV. The thresholds are fetched from each threshold profile group and
+                        evaluated against the unused AV value. If the threshold value is less than
+                        the unused AV value, then add the difference between threshold value and
+                        current value of AV to the AV delta.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">All the <em class="ph i">Threshold Profile Type</em>, such as <var class="keyword varname">Absolute from
+                            Start</var>, <var class="keyword varname">Absolute from End</var>, and
+                            <var class="keyword varname">Percentage</var> are considered.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Both recurring and non-recurring thresholds are considered.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">While processing the thresholds, if the difference between the upcoming
+                        threshold and current usage value is negative, then zero value is assigned
+                        to delta and control is returned as no further processing is required. This
+                        becomes the case of minimum slice allocation.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">After calculating the AV delta, first find the minimum of these AV deltas and
+                        this minimum AV delta is compared with the bucket delta (calculated in point
+                        2) to find the minimum delta out of these two values.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Whichever delta value (AV delta or bucket delta) is minimum is then used with
+                        the counter delta value for slice reduction.</p>
+
+                </li>
+
+            </ol>
+
+            <p class="p">The AV initial value, current value, and unused value are fetched from carry-over
+                utility. If the <em class="ph i">Threshold</em> flag is set as <var class="keyword varname">True</var>, then it
+                includes the carry-over bucket values. Otherwise, if the <em class="ph i">Threshold</em> flag is
+                set as <var class="keyword varname">False</var>, then the carry-over buckets are not included while
+                returning these values.</p>
+
+            <p class="p"><strong class="ph b">For example:</strong></p>
+
+            <ol class="ol" id="section_ysr_m1l_r4b__ol_sf1_41l_r4b">
+                <li class="li">
+                    <p class="p">Consider a device <var class="keyword varname">D1</var> is attached to a subscription
+                            <var class="keyword varname">S1</var> and bundle <var class="keyword varname">BL</var>.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">The bundle <var class="keyword varname">B1</var> contains charging services
+                            <var class="keyword varname">CS1</var> and <var class="keyword varname">CS2</var>.
+                            <var class="keyword varname">CS2</var> contains a volume bucket B1 (200 bytes) and B2
+                        (200 bytes).</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">
+                        <var class="keyword varname">BL</var> contains threshold T1 at 50 with <var class="keyword varname">Absolute
+                            from start with stop</var> action. <var class="keyword varname">CS2</var> contains
+                        time bucket B3 (500 seconds).</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Aggregate volume bucket <var class="keyword varname">AV1</var> contains charging services
+                            <var class="keyword varname">CS1</var> and <var class="keyword varname">CS2</var> attached to the device
+                            <var class="keyword varname">D1</var>. AV contains balance of buckets
+                            <var class="keyword varname">B1</var> and <var class="keyword varname">B2</var> along with threshold
+                        (T2) action as continue at 20 with <samp class="ph systemoutput">Absolute from
+                            start</samp> action.</p>
+
+                    <p class="p">AV Initial = 400 bytes</p>
+
+                    <p class="p">AV Current = 400 bytes</p>
+
+                    <p class="p">AV Unused = 400 bytes</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">An initial reserve request arrives with RSU = 20 bytes from
+                            <var class="keyword varname">B1</var>. Then, execute threshold reservation for
+                            <var class="keyword varname">BL</var> as well as <var class="keyword varname">AV1</var>. The bucket
+                        delta for <var class="keyword varname">B1</var> is calculated as 50 and AV delta for AV is
+                        calculated as 20.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Minimum slice size = 10 bytes and allocation factor is 90%.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">The minimum delta between bucket delta and AV delta are selected. Therefore,
+                        minimum delta = 20. Since, there is no applicable counter, slice reduction
+                        uses the above delta to calculate dynamic slice. The dynamic RSU comes out
+                        to be 18 bytes and the reservation of 18 bytes is done from
+                            <var class="keyword varname">BL</var> and <var class="keyword varname">AV1</var> current value is also
+                        updated according to reserved value.</p>
+
+                </li>
+
+            </ol>
+
+        </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

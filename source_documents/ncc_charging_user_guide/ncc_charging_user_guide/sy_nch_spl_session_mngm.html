@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Sy/N28 session management" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="sy_nch_spl_session_mngm" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Sy/N28 session management</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="sy_nch_spl_session_mngm">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Sy/N28 session management</h1>
+<div class="body conbody">
+        <div class="p">Operators can configure to initiate the termination of Sy and N28 sessions toward the
+            network when any of the following conditions occur:<ul class="ul" id="sy_nch_spl_session_mngm__ul_wpb_gty_zpb">
+                <li class="li">A device is removed.</li>
+
+                <li class="li">A duplicate session is detected for the same device from the same PCRF/PCF.</li>
+
+                <li class="li">A configurable limit is reached for the maximum number of sessions allowed for a
+                    single device.</li>
+
+            </ul>
+</div>
+
+        <div class="section" id="sy_nch_spl_session_mngm__section_szq_rqb_bqb"><h2 class="title sectiontitle">Configuration</h2>
+            
+            <p class="p">To configure session management for Sy and N28 sessions, provide the values of
+                parameters in <strong class="ph b">Diameter Sy</strong> and <strong class="ph b">HTTP N28</strong> sections, respectively, in
+                    <strong class="ph b">Diameter/HTTP Configuration → Session management</strong> menu. For the parameter
+                descriptions, refer to the <em class="ph i">Diameter Configuration Guide</em>.</p>
+
+        </div>
+
+        <div class="section" id="sy_nch_spl_session_mngm__section_srw_mcb_bqb"><h2 class="title sectiontitle">Saving the ASR bit in database for Sy session</h2>
+            
+            <p class="p">In session management (see <a class="xref" href="#sy_nch_spl_session_mngm__section_szq_rqb_bqb">Configuration</a>), if the parameter <strong class="ph b">Enable Initiation of Sy Session
+                    Termination</strong> is enabled (selected) and if NCC receives an SLR-I which
+                includes the <strong class="ph b">Supported-Features</strong> AVP with the ASR bit set, then only ASR bit
+                is saved for that Sy session in the database. NCC will include the
+                    <strong class="ph b">Supported-Features</strong> AVP with the ASR bit set in the SLA-I response
+                returned to the PCRF. Before sending SNR-T for an Sy session, its ASR bit is
+                checked, and if it is ON, then only SNR-T is sent for duplicate Sy session.</p>
+
+            <p class="p">For N28 sessions, whenever applicable, the notify-terminate is generated only if the
+                parameter <strong class="ph b">Enable Initiation of Sy Session Termination</strong> is enabled
+                (selected).</p>
+
+        </div>
+
+        <div class="section" id="sy_nch_spl_session_mngm__section_h3y_rcb_bqb"><h2 class="title sectiontitle">Identification of duplicate session from same PCRF in Sy SLR-I call</h2>
+            
+            <p class="p">Sy session replacement works in any one of the following scenario:</p>
+
+            <ul class="ul" id="sy_nch_spl_session_mngm__ul_yd1_cdb_bqb">
+                <li class="li">If the <var class="keyword varname">Origin-Host</var> AVP value in the new SLR-I exactly matches
+                    with the stored <var class="keyword varname">Origin-Host</var> AVP for an existing Sy
+                    session.</li>
+
+                <li class="li">If one of the defined PCRF name (configured in <strong class="ph b">PCRF Name</strong> in Diameter Sy
+                    section of Session Management) is a sub-string of the
+                        <var class="keyword varname">Origin-Host</var> AVP value in the incoming SLR-I and existing
+                    sessions for the same device has <var class="keyword varname">Origin-Host</var> AVP value as a
+                    sub-string of PCRF name.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="section" id="sy_nch_spl_session_mngm__section_nnj_qcb_bqb"><h2 class="title sectiontitle">Identification of duplicate session from same PCF in N28 subscribe call</h2>
+            
+            <p class="p">The <var class="keyword varname">notifUri</var> of upcoming N28 subscribe request is matched to the
+                    <var class="keyword varname">notifUri</var> of existing N28 sessions. If it matches, then
+                replacement works.</p>
+
+        </div>
+
+        <div class="section" id="sy_nch_spl_session_mngm__section_rp3_kcb_bqb"><h2 class="title sectiontitle">Sy session replacement scenarios</h2>
+            
+            <p class="p"><strong class="ph b">Duplicate (same PCRF) Sy session handling during SLR-I processing </strong></p>
+
+            <p class="p">If a duplicate Sy session is found on the basis of the identification logic (as
+                explained in section <a class="xref" href="#sy_nch_spl_session_mngm__section_h3y_rcb_bqb">Identification of duplicate session from same PCRF in Sy SLR-I call</a>) then the ASR bit of the Sy session is checked. If the ASR bit
+                is <var class="keyword varname">ON</var> for that duplicate Sy session, then Sy session is replaced
+                and SNR-T is sent. Else, that Sy session is replaced with the upcoming Sy session
+                request without sending SNR-T based on identification logic explained in the section
+                    <a class="xref" href="#sy_nch_spl_session_mngm__section_h3y_rcb_bqb">Identification of duplicate session from same PCRF in Sy SLR-I call</a>.</p>
+
+            <p class="p"><strong class="ph b">Sy session handling during SLR-I processing when <var class="keyword varname">Maximum Sy Sessions Per
+                        Device</var> is reached</strong></p>
+
+            <p class="p">If <strong class="ph b">Maximum Sy Sessions Per Device</strong> is configured as non-zero (&gt;0), then
+                following things work:</p>
+
+            <ul class="ul" id="sy_nch_spl_session_mngm__ul_qbb_pfb_bqb">
+                <li class="li">If duplicate Sy session is found, then it is replaced.</li>
+
+                <li class="li">If duplicate Sy session is not found and <strong class="ph b">Maximum Sy Sessions Per Device</strong>
+                    has reached, then the least recently used (LRU) Sy session is identified to be
+                    replaced. If the ASR bit is ON for LRU session, then session is replaced and
+                    SNR-T is sent. Else, that Sy session is replaced with the upcoming Sy session
+                    request without sending SNR-T.</li>
+
+            </ul>
+
+            <p class="p">If <strong class="ph b">Enable Initiation of Sy Session Termination</strong> and <strong class="ph b">Maximum Sy Sessions Per
+                    Device</strong> are configured as non-zero (&gt;0), then the application preference
+                    <strong class="ph b">Max Sy Session Limit</strong> is not considered.</p>
+
+        </div>
+
+        <div class="section" id="sy_nch_spl_session_mngm__section_mc3_gcb_bqb"><h2 class="title sectiontitle">N28 session replacement scenarios</h2>
+            
+            <p class="p"><strong class="ph b">Duplicate (same PCF) N28 session handling during subscribe request processing
+                </strong></p>
+
+            <p class="p">If duplicate N28 session is found on the basis on the identification logic (explained
+                in section <a class="xref" href="#sy_nch_spl_session_mngm__section_nnj_qcb_bqb">Identification of duplicate session from same PCF in N28 subscribe call</a>), then <var class="keyword varname">Notify-Terminate</var> is sent without including a
+                    <strong class="ph b">termCause</strong> within the <strong class="ph b">subscriptionTerminationInfo</strong>.</p>
+
+            <p class="p">If <strong class="ph b">Enable Initiation of N28 session termination</strong> is set and <strong class="ph b">Support of
+                    Notify Terminate on Duplicate Session Replacement</strong> is set to
+                    <var class="keyword varname">N28_DISABLED</var>, and if duplicate sessions are identified, then
+                all duplicate sessions are removed without sending notify terminate request to
+                PCF.</p>
+
+            <p class="p"><strong class="ph b">N28 session handling during SLR-I processing when <var class="keyword varname">Maximum N28 Sessions
+                        Per Device</var> is reached</strong></p>
+
+            <p class="p">If <strong class="ph b">Maximum N28 Sessions Per Device</strong> is configured as non-zero (&gt;0), then:</p>
+
+            <ul class="ul" id="sy_nch_spl_session_mngm__ul_vc2_hgb_bqb">
+                <li class="li">If duplicate N28 session is found, then the duplicate N28 session is
+                    replaced.</li>
+
+                <li class="li">If duplicate N28 session is not found and <strong class="ph b">Maximum N28 Sessions Per Device</strong>
+                    has reached, then the LRU N28 session is identified to be replaced. The LRU
+                    session is replaced and Notify-Terminate sent without including <strong class="ph b">termCause</strong>
+                    within the <strong class="ph b">subscriptionTerminationInfo</strong>.</li>
+
+            </ul>
+
+            <p class="p">If <strong class="ph b">Enable Initiation of N28 Session Termination</strong> and <strong class="ph b">Maximum N28 Session Per
+                    Device</strong> are configured as non-zero (&gt;0), then the application preference
+                    <strong class="ph b">Max Sy Session Limit</strong> is not considered.</p>
+
+        </div>
+
+        <div class="section" id="sy_nch_spl_session_mngm__section_bcn_bcb_bqb"><h2 class="title sectiontitle">SNR-T/Notify-Terminate triggering event</h2>
+            
+            <p class="p">If session termination is enabled for Sy/N28 in session management (see <a class="xref" href="#sy_nch_spl_session_mngm__section_szq_rqb_bqb">Configuration</a>), then
+                following are the scenarios for SNR-T/Notify-Terminate are generated:</p>
+
+            <p class="p"><strong class="ph b">On (During) Call</strong></p>
+
+            <p class="p">Duplicate/max replacement for Sy/N28 session (as described above) is applicable for
+                (during) call.</p>
+
+            <p class="p"><strong class="ph b">Provisioning (deletion of Device)</strong></p>
+
+            <p class="p">When a device has a Sy/N28 session and if this feature is configured, then at
+                deletion of device, SNR-T/Notify-Terminate is sent in the following scenarios:</p>
+
+            <ul class="ul" id="sy_nch_spl_session_mngm__ul_mwp_mpb_bqb">
+                <li class="li">Delete API (/services/ServiceManager/device/delete/Device)</li>
+
+                <li class="li">Delete Entity Action In Device Life Cycle</li>
+
+                <li class="li">Delete Profile API (/services/ServiceManager/device/delete/Profile)</li>
+
+            </ul>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For Sy session, the ASR bit is checked. If it is configured then SNR-T is sent.
+                Else, the session is deleted.</div>
+
+            <p class="p">When device is deleted through Delete Profile API, the state of the device is marked
+                as final if final state is configured in device life cycle. Else the device is
+                marked as initial barred state. This state is saved in database. During delete profile
+                cleanup, any new call SLR-Initial/SLR-Intermediate/SNR is not processed as device is
+                initial barred state.</p>
+
+            <p class="p">The application preference <var class="keyword varname">Send SNR-T/N28 Notify Terminate</var> is used
+                to send SNR-T/Notify-Terminate in delete profile API. If this feature is configured
+                (session terminate is enabled in session management (see <a class="xref" href="#sy_nch_spl_session_mngm__section_szq_rqb_bqb">Configuration</a>)), then the
+                application preference is ignored.</p>
+
+        </div>
+
+        <div class="section" id="sy_nch_spl_session_mngm__section_dzr_h5b_bqb"><h2 class="title sectiontitle">Rule sample for message manipulation</h2>When
+            SNR-T or Notify-Terminate are triggered at the time of device deletion, PCRF/PCF will
+            trigger STR/Nchf_SpendingLimitControl_Unsubscribe request. If this is received after the
+            device is deleted on NCC, it will respond with 5030-DIAMETER_USER_UNKNOWN/404 NOT FOUND.
+            In case these codes need to be manipulated, the Message manipulation rule can be
+                    configured.<p class="p"><strong class="ph b">Diameter</strong></p>
+<div class="fig figborder" id="sy_nch_spl_session_mngm__fig_zv5_w5b_bqb">
+                <a href="../images/syn28msgmanipul.png" class="image"><img class="image break scalefit" id="sy_nch_spl_session_mngm__image_ly3_y5b_bqb" src="../images/syn28msgmanipul.png" /></a>
+            </div>
+<p class="p"><strong class="ph b">5G-HTTP</strong></p>
+<div class="fig figborder" id="sy_nch_spl_session_mngm__fig_rqf_z5b_bqb">
+                <a href="../images/syn28msgmanipul1.png" class="image"><img class="image break scalefit" id="sy_nch_spl_session_mngm__image_ggw_z5b_bqb" src="../images/syn28msgmanipul1.png" /></a>
+            </div>
+</div>
+
+        <div class="section" id="sy_nch_spl_session_mngm__section_ctv_rxb_bqb"><h2 class="title sectiontitle">ASR bit information</h2>
+            
+            <p class="p">ASR bit information is not available in getSession API response. As a result, not all
+                session parameters can pass through the following REST API:</p>
+
+            <p class="p">GET and POST methods of
+                    <var class="keyword varname">/services/ServiceManager/getRefData/ChargingSession</var>.</p>
+
+        </div>
+
+        <div class="section" id="sy_nch_spl_session_mngm__section_xzt_b5b_cqb"><h2 class="title sectiontitle">Relation between Maximum Sy Session Limit and Maximum Sy Sessions Per
+                Device/Maximum N28 Sessions Per Device:</h2>
+            
+            <p class="p"><strong class="ph b">Example 1:</strong></p>
+
+            <p class="p">Max Sy Session Limit = 5 </p>
+
+            <p class="p">Enable Initiation of Sy Session Termination = True</p>
+
+            <p class="p">Maximum Sy Sessions Per Device = 3</p>
+
+            <p class="p">Enable Initiation of N28 Session Termination = False</p>
+
+            <p class="p">Consider that device has 2 Sy sessions currently. Another N28 is initiated. Here, for
+                N28, since <strong class="ph b">Enable Initiation of N28 Session Termination</strong> is off, we fallback
+                to <strong class="ph b">Max Sy Session Limit</strong> which says maximum sessions allowed (Sy and N28
+                together) is 5. Since the upcoming N28 session is the 3rd session for the device
+                which is less than max allowed (=5), so, N28 is established successfully.</p>
+
+            <p class="p"><strong class="ph b">Example 2:</strong></p>
+
+            <p class="p">Enable Initiation of Sy session termination flag ON</p>
+
+            <p class="p">Max number of Sy sessions allowed per device = 0</p>
+
+            <p class="p">Enable Initiation of N28 session termination flag ON</p>
+
+            <p class="p">Max number of N28 sessions allowed per device = 5</p>
+
+            <p class="p">Max Sy session Limit=2</p>
+
+        </div>
+
+        <div class="section" id="sy_nch_spl_session_mngm__section_ry2_l5b_bqb"><h2 class="title sectiontitle">Notable information</h2>
+            
+            <ul class="ul" id="sy_nch_spl_session_mngm__ul_h4j_r5c_cqb">
+                <li class="li">If PCRF/PCF has not responded success to SNR-T/Notify-Terminate outbound request
+                    and retry interval configured in outbound configuration to a large time
+                    interval, and during that interval if multiple SNR-T/Notify-Terminate are
+                    triggered, then it may lead to increase of memory footprint. </li>
+
+                <li class="li">If a Device has 1 Sy and 1 N28 session established, and another Sy session, S2,
+                    is initiated: Since the limit for <strong class="ph b">Max number of Sy sessions allowed per
+                        device</strong> = 0, then fallback to <strong class="ph b">Max Sy session Limit</strong>=2. Since device
+                    already has 2 sessions (s1 and N28), S2 will not be allowed.</li>
+
+                <li class="li">If SNR throttling <strong class="ph b">Sy / N28 keep-alive notifications and message
+                        throttling</strong> is enabled, then this SNR-T/notify-terminate is processed
+                    through the Sy/N28 notification throttling client.</li>
+
+                <li class="li">SNR-T/Notify-Terminate is treated as a <strong class="ph b">real SNR</strong> (that is, not a
+                        <strong class="ph b">keep-alive</strong> SNR) by the Sy notification throttling clients. It is
+                    retransmitted on timeouts after the configured backoff intervals after the
+                    device and Sy records have been deleted.</li>
+
+                <li class="li">Receipt of the session termination transaction causes the Sy/N28 notification
+                    throttling client to drop any other SNR/N28 notifications for the same session
+                    from its queues. If there is an NR/N28 notification for the same session in the
+                        <em class="ph i">waiting for network response queue</em> SNR-T/ Notify-terminate is sent
+                    once the previous SNR/N28 notification is removed from the <em class="ph i">waiting for
+                        response</em> queue (either through timeout or receipt of an acknowledgment
+                    from the PCRF/PCF).</li>
+
+                <li class="li">After initiating the SNR, the system removes the Sy session from the database,
+                    that is, it does not wait for the PCRF to return an SNA before this clean-up
+                    occurs. NCC successfully processes the resulting SNAs received from the PCRF
+                    without generating any errors or alarms if the device records and/or Sy session
+                    information is no longer present/moved to barred state on the CHF (whether or
+                    not the SNR throttling feature is enabled).</li>
+
+                <li class="li">When SNR throttling is enabled, the Sy notification throttling clients can
+                    silently handle reaching the maximum number of retransmissions and the final
+                    timeout for these SNRs when the device and/or Sy session records no longer
+                    exist/moved to barred state. That is, NCC does not triggers another SNR after
+                    the maximum retries are sent because there is no device or Sy session available
+                    to record the failed SNR sending status information.</li>
+
+                <li class="li">Duplicate Sy session detection applies only during SLR-I processing and not when
+                    the PCRF host name table is updated. For example, if a new PCRF name is added to
+                    the PCRF table, it is included in the checks performed after the updated table
+                    has been read into memory and the next SLR-I is received for a subscriber which
+                    already has one or more active Sy sessions.</li>
+
+                <li class="li">Depending on the sequence of events involving the removal of a device, it is
+                    possible that the STR generated by the PCRF in response to SNR with the ASR bit
+                    set in the <var class="keyword varname">SN-Request-Type</var> AVP may not reach the CHF where
+                    the subscriber was removed. The subscriber may be removed if the Drouter
+                    receiving the STR is no longer configured to route the STR to the original CHF.
+                    This is because the device was removed and an index server update is sent to the
+                    Drouter. In such cases, if the Drouter cannot successfully locate the subscriber
+                    on another OCS, then a <strong class="ph b">5030 – DIAMETER_USER_UNKNOWN</strong> error is returned to
+                    the PCRF directly from the Drouter.</li>
+
+                <li class="li">If the result code for STA/Unsubscribe <var class="keyword varname">ack</var> is manipulated
+                    using Message Manipulation (when device is not found), the CDR and metrics
+                    correspond to the device not found. CDR and metrics do not correspond to the
+                    manipulated result code.</li>
+
+                <li class="li">If SLR-I is received from a PCRF, which is not configured in the PCRF table, and
+                    if the <var class="keyword varname">origin-host</var> AVP does not exactly match with any of the
+                    existing Sy sessions for the device, the request is processed and a new session
+                    for the same is created. If the <strong class="ph b">Max number of Sy sessions Per Device</strong> is
+                    reached, the LRU session for the device is terminated. If another SLR-I is
+                    received from the same PCRF with a different <var class="keyword varname">origin-host</var> AVP,
+                    it is not treated as duplicate as this PCRF name is not configured in PCRF
+                    table. Operators should ensure that such situations do not arise.</li>
+
+                <li class="li">Metric <var class="keyword varname">sessionlimit_count</var> is updated for max session limit
+                    and replacement of active session scenarios. The metric is incremented
+                    regardless of whether or not the N28 <var class="keyword varname">notify-terminate</var> message
+                    is sent to the network.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">CDR/EDR changes</h2>
+            
+            <p class="p">Refer to the following sections in the <cite class="cite">CDR/EDR Reference</cite>:</p>
+
+            <ul class="ul" id="sy_nch_spl_session_mngm__ul_htw_bxc_cqb">
+                <li class="li">For provisioning EDRs for session management: See section <cite class="cite">Session
+                        management configuration</cite>.</li>
+
+                <li class="li">CDR samples: See section <cite class="cite">Sample CDRs for Sy session</cite>.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="section" id="sy_nch_spl_session_mngm__section_ak2_324_bqb"><h2 class="title sectiontitle">Metrics changes</h2>
+            
+            <p class="p">Refer to the <cite class="cite">Metrics Spreadsheet</cite>.</p>
+</div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

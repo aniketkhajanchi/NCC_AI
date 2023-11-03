@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="task" />
+<meta name="DC.title" content="Installing CCTF with Istio enabled" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="installing_cctf_with_istio_enabled" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Installing CCTF with Istio enabled</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="installing_cctf_with_istio_enabled">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Installing CCTF with Istio enabled</h1>
+<div class="body taskbody">
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div>
+            <p class="p">This procedure describes how to install CCTF with Istio enabled.</p>
+
+        </div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol class="ol steps"><li class="li step stepexpand">
+        <span class="ph cmd">Get the CCTF Helm chart (part of the NCC delivery).</span>
+      </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Create a namespace <code class="ph codeph">cctf</code>:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>kubectl create namespace cctf</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Label the namespace for auto injection:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>kubectl label namespace cctf istio-injection=enabled</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Create an overrides file <code class="ph codeph">cctf-overrides.yaml</code>, with the given
+                    content:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>cat &lt;&lt;EOF &gt; cctf-overrides.yaml
+# If istio enabled, please also set cmdbmariadb.istio enabled and jenkins.istio.enabled to true
+istio:
+  # version of istio available in the environment, support 1.4 or &gt;=1.5
+  version: 1.9
+  enabled: true
+  cni:
+    enabled: true
+  mtls:
+    enabled: true
+  permissive: false
+  virtualservice:
+    hosts:
+    - 'espoo-cctf.com'
+  gateway:
+    # Name of the istio gateway.
+    name: cctf-gw
+    # Should this be enabled or not.
+    enabled: true
+    hosts:
+      - 'espoo-cctf.com'
+      - 'espoo-jenkins.com'
+ingress:
+  enabled: false
+ncd:
+  enabled: false
+cmdbmariadb:
+  global:
+    istioVersion: 1.9
+  istio:
+    enabled: true
+jenkins:
+  Master:
+    RunAsUser: 1000
+    FsGroup: 1000
+    Ingress:
+      enabled: false
+  rbac:
+    enabled: true
+  istio:
+    version: 1.9
+    enabled: true
+    mtls:
+      enabled: true
+    cni:
+      enabled: true
+    permissive: false
+    sharedHttpGateway:
+      name: cctf-gw
+    virtualservice:
+      hosts:
+      - 'espoo-jenkins.com'
+  Agent:
+    runAsNonRoot: true
+threeButtonsAPI:
+  enabled: false
+storageSize: "2Gi"
+EOF</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Install CCTF, with the values defined in the override file:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>helm install cctf-&lt;version&gt;.tgz --name cctf --namespace cctf -f cctf-overrides.yaml</code></pre>
+                </div>
+            </li>
+</ol>
+
+    </div>
+<div class="footer"><hr /><p>DevOps Guide • P556766-DN1000055058-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

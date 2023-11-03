@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="New recordEventResult for data sessions spanning BCR" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="new_recordeventresult_for_data_sessions_spanning_bcr" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>New recordEventResult for data sessions spanning BCR</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="new_recordeventresult_for_data_sessions_spanning_bcr">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">New recordEventResult for data sessions spanning BCR</h1>
+<div class="body conbody">
+        <div class="section" id="new_recordeventresult_for_data_sessions_spanning_bcr__section_iqx_dxl_p4b">
+            <p class="p">This feature enables to set a special BCR <strong class="ph b">recordEventResult</strong> value in CDRs
+                triggered by the final transaction received for an online flow or rating group from
+                the previous billing cycle of an account after the BCR date is reached.</p>
+
+            <p class="p">This new BCR <strong class="ph b">recordEventResult</strong> value should be included in CDRs associated
+                with online usage when the following conditions are met:</p>
+
+            <ul class="ul" id="new_recordeventresult_for_data_sessions_spanning_bcr__ul_ad3_wxl_p4b">
+                <li class="li">
+                    <p class="p">The CDR is triggered by an update or terminate or release transaction
+                        received for a data session (Gy or <em class="ph i">Nchf_ConvergedCharging</em>) after the
+                        BCR date of the funding account of the associated subscription.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">The quota previously allocated for one or more of the online flows in the
+                        update or terminate/release transaction was allocated <em class="ph i">prior</em> to the
+                        BCR date of the associated account, and</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">The BCR EDR of the associated account for the end of the previous billing
+                        cycle was not generated prior to the receipt of the network transaction.</p>
+
+                </li>
+
+            </ul>
+
+            <p class="p">In case, a <strong class="ph b">Tariff Time Change (TTC)</strong> parameter had been previously returned to
+                the network and both usage <em class="ph i">BEFORE</em> the TTC and <em class="ph i">AFTER</em> the TTC is
+                included in the transaction, then only the CDR generated with the <em class="ph i">BEFORE</em>
+                usage for the online flow (which means, with <strong class="ph b">quotaManagementIndicator</strong> =
+                    <var class="keyword varname">ONLINE_CHARGING</var> when the rating group is <strong class="ph b"><em class="ph i">not
+                </em></strong>configured for <em class="ph i">faked offline</em> treatment) should have its
+                    <strong class="ph b">recordEventResult</strong> set to the new <var class="keyword varname">BCR</var> value.</p>
+
+            <p class="p">Even, in cases where zero usage is included in the transaction, the resultant CDR
+                should still have its <strong class="ph b">recordEventResult</strong> set to the new <var class="keyword varname">BCR</var>
+                value (except for a CDR triggered by zero <em class="ph i">AFTER</em> usage reported in the
+                transaction).</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The value of <strong class="ph b">recordEventResult</strong> is set to <var class="keyword varname">15</var> in all above
+                cases.</div>
+
+        </div>
+
+    </div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_czy_2xl_p4b"><h2 class="title topictitle2" id="ariaid-title2">Configuring this functionality</h2>
+<div class="body conbody">
+            <p class="p">To enable this functionality, we need to enable the application preference <strong class="ph b">Report
+                    Session Spanned Across BCR in CDR</strong>.</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This feature is enabled only when the <a class="xref" href="inclusion_of_usage_form_previous_billing_cycle_in_bcr_edrs.html">Include usage from previous billing cycle in BCR EDRs</a> feature
+                is already enabled.</div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_fgj_hxl_p4b"><h2 class="title topictitle2" id="ariaid-title3">Additional information</h2>
+<div class="body conbody">
+            <p class="p">Consider the following points for this feature:</p>
+
+            <ul class="ul" id="concept_fgj_hxl_p4b__ul_f4k_tzl_p4b">
+                <li class="li">
+                    <p class="p">Following scenarios are considered when charging is done from an account:</p>
+
+                    <ul class="ul" id="concept_fgj_hxl_p4b__ul_drx_yzl_p4b">
+                        <li class="li">
+                            <p class="p"><strong class="ph b">Case 1: When any entity (such as, a bucket or counter) is reset
+                                    during BCR</strong></p>
+
+                            <p class="p">Reserve → BCR → Commit</p>
+
+                            <p class="p">In this case, <strong class="ph b">recordEventResult</strong> value is set to
+                                    <var class="keyword varname">15</var> in <em class="ph i">Commit</em> CDR.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p"><strong class="ph b">Case 2: When no entity is reset during BCR</strong></p>
+
+                            <p class="p">Reserve → BCR→ Commit</p>
+
+                            <p class="p">In this case, <strong class="ph b">recordEventResult</strong> value is set to
+                                    <var class="keyword varname">11</var>
+                                    (<code class="ph codeph">CALL_OK_RESERVE_FROM_ACCOUNT</code>).</p>
+
+                        </li>
+
+                    </ul>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">BOU bundle is not applicable for this feature because the BOU bundle doesnt
+                        reset or renew with the account lifecycle as the BOU bundle has its own
+                        lifecycle.</p>
+
+                    <p class="p">Therefore, a BOU bundle does not have previous values and the new value of
+                            <strong class="ph b">recordEventResult</strong> is not applicable for this.</p>
+
+                </li>
+
+            </ul>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

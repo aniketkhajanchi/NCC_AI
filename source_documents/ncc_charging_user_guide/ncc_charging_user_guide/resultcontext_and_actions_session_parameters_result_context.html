@@ -1,0 +1,1484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="SESSION_PARAMETERS result context" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="resultcontext_and_actions_session_parameters_result_context" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>SESSION_PARAMETERS result context</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="resultcontext_and_actions_session_parameters_result_context">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">SESSION_PARAMETERS result context</h1>
+<div class="body conbody">
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>SESSION_PARAMETERS result context</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+     <tr class="row">
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d137990e42">Attribute name</th>
+
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d137990e45">Trigger</th>
+
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d137990e48">Description</th>
+
+     </tr>
+
+    </thead>
+<tbody class="tbody">
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="18" style="vertical-align:top;" headers="d137990e42 ">Add-CustomField-In-Session</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="18" style="vertical-align:top;" headers="d137990e48 ">This action defines value for the following sets to be stored in
+       database.<p class="p"><span class="keyword cmdname">("Key_STRING", Value_BASE, CustomFieldLevel_ENUM,
+         SaveValueOfResource_ENUM)</span></p>
+where:<ul class="ul" id="resultcontext_and_actions_session_parameters_result_context__ul_stz_mr3_x4b">
+        <li class="li"><strong class="ph b">Key_STRING</strong> is the name of the parameter that is saved in the session.</li>
+
+        <li class="li"><strong class="ph b">Value_BASE</strong> is the value of the parameter that is saved in the session.</li>
+
+        <li class="li"><strong class="ph b">CustomFieldLevel_ENUM</strong> can have the values ROOT or RG.</li>
+
+        <li class="li"><strong class="ph b">SaveValueOfResource_ENUM</strong> can have the values FIRST or LAST. This variable
+         indicates the resource for which data is stored in the session. For example, if reservation
+         is done from two logics (charging services) and the value is configured as FIRST, then the
+         data of the first logic is stored in the CustomField of the logic.</li>
+
+       </ul>
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> <var class="keyword varname">SaveValueOfResources_ENUM</var> is applicable only for
+        RESOURCE_POST_PROCESSING trigger. If it is added to other triggers, then it is not
+        considered.</div>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_SESSION_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_SESSION_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_SESSION_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">RATING_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">RESOURCE_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="16" style="vertical-align:top;" headers="d137990e42 ">Call-Roaming-Status</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="16" style="vertical-align:top;" headers="d137990e48 ">This action is used to set the value of roaming status based on the
+       condition criteria.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">APPLICABILITY</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_CREDIT_REQUEST</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="16" style="vertical-align:top;" headers="d137990e42 ">Call-Sub-Type</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="16" style="vertical-align:top;" headers="d137990e48 ">Type of call value to be set in action.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">APPLICABILITY</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">UC_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="13" style="vertical-align:top;" headers="d137990e42 ">Called-Party</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="13" style="vertical-align:top;" headers="d137990e48 ">It is the first entry of
+       Service-Information/IMS-Information/Called-Party-Address.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">APPLICABILITY</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">UC_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="13" style="vertical-align:top;" headers="d137990e42 ">Called-Party-Country</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="13" style="vertical-align:top;" headers="d137990e48 ">A string that contains information about called party country
+       name.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">APPLICABILITY</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">UC_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="12" style="vertical-align:top;" headers="d137990e42 ">Called-Party-Type</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="12" style="vertical-align:top;" headers="d137990e48 ">Enum to recognize the Called-Party Type. <p class="p">email address </p>
+<p class="p">MSISDN
+        </p>
+<p class="p">IPv4 Address </p>
+<p class="p">IPv6 Address </p>
+<p class="p">Numeric Shortcode </p>
+<p class="p">Alphanumeric
+        Shortcode </p>
+<p class="p">Other </p>
+<p class="p">IMSI</p>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">APPLICABILITY</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="13" style="vertical-align:top;" headers="d137990e42 ">Calling-Party</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="13" style="vertical-align:top;" headers="d137990e48 ">It is the first entry of
+       Service-Information/IMS-Information/Calling-Party-Address.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">APPLICABILITY</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">UC_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="12" style="vertical-align:top;" headers="d137990e42 ">Calling-Party-Type</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="12" style="vertical-align:top;" headers="d137990e48 ">Enum to recognize the Calling-Party Type. <p class="p">email address </p>
+<p class="p">MSISDN
+        </p>
+<p class="p">IPv4 Address </p>
+<p class="p">IPv6 Address </p>
+<p class="p">Numeric Shortcode </p>
+<p class="p">Alphanumeric
+        Shortcode </p>
+<p class="p">Other </p>
+<p class="p">IMSI</p>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">APPLICABILITY</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="13" style="vertical-align:top;" headers="d137990e42 ">Connect-To-Number</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="13" style="vertical-align:top;" headers="d137990e48 ">
+       <p class="p">This function is called with successful results from rules and sends grouped AVP as below
+        :</p>
+
+       <p class="p"><code class="ph codeph">[ Service-Parameter-Info ] (440)</code></p>
+
+       <p class="p"><code class="ph codeph"> [ Service-Parameter-Type ](441)</code></p>
+
+       <p class="p">
+        <code class="ph codeph">[ Service-Parameter-Value ] (442)</code></p>
+
+       <p class="p">In CCA where the <em class="ph i">Service-Parameter-Type</em> is hard coded to 307 &amp;
+         <em class="ph i">Service-Parameter-Value</em> is obtained from any variable which is internally
+        called.</p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">APPLICABILITY</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">RATING_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e42 ">Ecom_Partial_Reject</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e48 ">This action allows to reject the CCA-I if sufficient credit is not available.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e42 ">Inbound-Roaming-Agreement </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_CREDIT_REQUEST<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e48 ">This action determines whether the roaming agreement for the incoming inbound-roamer
+       request is valid or not. If true, then the incoming inbound-roamer request is processed, and
+       SUCCESS message is returned after generating CDRs for it. If false or null, then the inbound
+       subscriber request is barred.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="12" style="vertical-align:top;" headers="d137990e42 ">Is-OnNet</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="12" style="vertical-align:top;" headers="d137990e48 ">Checks whether the called and calling party are onNet or Offnet and
+       respectively returns a Boolean value.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">APPLICABILITY</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="8" style="vertical-align:top;" headers="d137990e42 ">MCC</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="8" style="vertical-align:top;" headers="d137990e48 ">Mobile Country Code used to identify user location.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">APPLICABILITY</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_CREDIT_REQUEST</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="13" style="vertical-align:top;" headers="d137990e42 ">MCCMNC</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="13" style="vertical-align:top;" headers="d137990e48 ">Concatenated string of MCC and MNC.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">APPLICABILITY</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">DEVICE_NOT_FOUND</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_CREDIT_REQUEST</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="8" style="vertical-align:top;" headers="d137990e42 ">MNC</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="8" style="vertical-align:top;" headers="d137990e48 ">Mobile Network Code used to identify user location.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">APPLICABILITY</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_CREDIT_REQUEST</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e42 ">Persist-IMS-Session</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">RATING_POST_PROCESSING<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e48 ">
+       <p class="p">For IMS call (CCR-I or CCR-U message), when this action is set to <var class="keyword varname">true</var>,
+        even if the categories fail and need to be cleared, the IMS session still remains alive and
+        root level result code is set to 2001.</p>
+
+       <p class="p">The session is cleared either when CCR-T is received or by session audit logic.</p>
+
+     </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="9" style="vertical-align:top;" headers="d137990e42 ">RAT-TYPE</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="9" style="vertical-align:top;" headers="d137990e48 ">Enum used to identify the radio access technology that is serving the UE.
+       Valid values are: WLAN, UTRAN, GERAN, GAN, HSPA_EVOLUTION, EUTRAN, CDMA2000_1X, HRPD, UMB,
+       EHRPD, VIRTUAL, EUTRAN_NB_IoT, NR, NG_RAN</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">APPLICABILITY</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="11" style="vertical-align:top;" headers="d137990e42 ">Routing-Number</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="11" style="vertical-align:top;" headers="d137990e48 ">This action fetches the routing number.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_CREDIT_REQUEST</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="9" style="vertical-align:top;" headers="d137990e42 ">Reject-Call</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="9" style="vertical-align:top;" headers="d137990e48 ">This action is used to configure early rejection of the call. Usage:
+         <p class="p"><span class="keyword cmdname">SESSION_PARAMETERS.Reject-Call ( "ResultCode_LONG", "CommandResultCode_LONG"
+         )</span></p>
+<p class="p">where, <strong class="ph b">ResultCode_LONG</strong> is the diameter result code at rating group
+        level and <strong class="ph b">CommandResultCode_LONG</strong> is the diameter result code at root
+        level.</p>
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The data type for Reject-Call parameters have been changed from
+        ("ResultCode_STRING", "CommandResultCode_STRING") to (ResultCode_LONG,
+        CommandResultCode_LONG) in NCC release 21.3.</div>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_CREDIT_REQUEST</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">DEVICE_NOT_FOUND</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">RESOURCE_PRE_SORTING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_CREDIT_REQUEST</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d137990e42 ">Return-Result-Cause</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING</td>
+
+      <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d137990e48 ">This action is used to return with specific result cause and terminate the
+       call.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">UC_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="7" style="vertical-align:top;" headers="d137990e42 ">Return-Result-Code</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="7" style="vertical-align:top;" headers="d137990e48 ">Used to set the result code at the root level.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">UC_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">DEVICE_NOT_FOUND</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="7" style="vertical-align:top;" headers="d137990e42 ">Session-Virtual-Counters</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_SESSION_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="7" style="vertical-align:top;" headers="d137990e48 ">Used to get counter names from RuleSets when session is established.
+       Example: <code class="ph codeph">SESSION_PARAMETERS.Session-Virtual-Counters = [“C1”, “C2”]</code><p class="p">In
+        this example, the IMS session has two session virtual counters.</p>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="5" style="vertical-align:top;" headers="d137990e42 ">Surcharge-Time-Cap-Rate</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING</td>
+
+      <td class="entry cellrowborder" rowspan="5" style="vertical-align:top;" headers="d137990e48 ">Used to configure surcharge rate of type <var class="keyword varname">time</var> for split
+       charging. The input is of string type, which should be a rate name (of rate entity) and
+       should already be defined.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e42 ">Surcharge-Volume-Cap-Rate</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e48 ">Used to configure surcharge rate of type volume for split charging feature. The input
+       is of string type, which should be a rate name (of rate entity) and should already be
+       defined.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="5" style="vertical-align:top;" headers="d137990e42 ">Surcharge-Unit-Cap-Rate</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING</td>
+
+      <td class="entry cellrowborder" rowspan="5" style="vertical-align:top;" headers="d137990e48 ">Used to configure surcharge rate of type unit for split charging feature.
+       The input is of string type, which should be a rate name (of rate entity) and should already
+       be defined.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="7" style="vertical-align:top;" headers="d137990e42 ">SDP-Media-Component.SDP-Media-Name</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="7" style="vertical-align:top;" headers="d137990e48 ">
+       <em class="ph i">SDP-Media-Name</em> AVP contains information about Media type.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">APPLICABILITY</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e42 ">UC-Applicable</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_PRE_PROCESSING<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e48 ">This action indicates whether the UC checks are done or not. If the action in
+       SESSION_PAREMETERS.UC-Applicable=BooleanEnum_FALSE, then the UC checks are skipped.
+       Otherwise, they are applied in non-emergency scenarios.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e42 ">Offline-Rating-Group </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e45 ">GY_CREDIT_REQUEST<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d137990e48 ">This action takes multiple comma separated values.</td>
+
+     </tr>
+
+    </tbody>
+</table>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

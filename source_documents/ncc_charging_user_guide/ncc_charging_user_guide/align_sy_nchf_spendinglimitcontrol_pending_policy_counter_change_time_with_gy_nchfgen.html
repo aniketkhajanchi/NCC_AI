@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Alignment of Sy/Nchf_SpendingLimitControl PPC change time with GY/Nchf_ConvergedCharging TTC" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="align_sy_nchf_spendinglimitcontrol_pending_policy_counter_change_time_with_gy_nchf" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Alignment of Sy/Nchf_SpendingLimitControl PPC change time with GY/Nchf_ConvergedCharging TTC</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="align_sy_nchf_spendinglimitcontrol_pending_policy_counter_change_time_with_gy_nchf">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Alignment of Sy/Nchf_SpendingLimitControl PPC change time with GY/Nchf_ConvergedCharging
+        TTC</h1>
+<div class="body conbody">
+        <p class="p">This feature aligns Sy/Nchf_SpendingLimitControl pending policy counter (PPC) change time
+            with GY/Nchf_ConvergedCharging tariff time change (TTC). It also supports sending
+            pending policy counter status information over the N40 interface. There are separate
+            application preferences available to enable use of pending policy counter status over
+            N28 and Sy.</p>
+
+        <p class="p">When this feature is enabled for an interface (N28 or Sy), and if a policy counter status
+            changes for an upcoming BCR, when TTC is set for a device and returned to the network,
+            then an SNR/Nchf_ConvergedCharging_Notify is also sent with the pending policy counter
+            (PPC) status, indicating that the policy counter status change is expected at the BCR
+            along with <var class="keyword varname">Pending-Policy-Counter-Change-Time</var> AVP/PPC activationTime
+            (that is, at the same time as the TTC parameter is returned over Gy/N40). After the PPC
+            status is sent, if the policy counter status changes to the PPC status value sent
+            earlier when the BCR is reached, then no additional SNR is sent. When PPC status is
+            sent, then when the policy counter status changes at the BCR to the same value
+            previously sent in the PPC status, no new SNR is generated. Also, no PPC is sent if
+            there is no expected change of policy counter status for an upcoming BCR.</p>
+
+        <p class="p">After the PPC status is sent, then prior to reaching the BCR (T1), any subsequent SNRs or
+            Nchf_SpendingLimitControl_Notify transactions that include the policy counter ID, whose
+            future PPC has been sent, continue to include the PPC status for the policy counter.</p>
+
+        <p class="p">If after pending policy counter status has been sent and, prior to reaching the BCR, a
+            subsequent change occurs, causing the current status to change again so that the
+                <em class="ph i">new</em> policy counter status becomes equal to the expected value at the BCR,
+            then an SNR/Notify is sent with the new current status <em class="ph i">omitting</em> the pending
+            policy counter status information and the PPCI is cleared from the session.</p>
+
+        <p class="p">If the BCR date is changed for an account that is funding one of the device's
+            subscriptions and the next subscription event (T1) is associated with the account’s BCR
+            date or Add/Remove a new subscription, If pending policy counter information is stored
+            for any counter, it is cleared from the session, and a SNR and/or
+            Nchf_SpendingLimit_Notify is sent without including any PPC status for the counter. For
+            the BCR date change use case, SNR/Nchf_ConvergedCharging_Notify is triggered on the next
+            call transaction.</p>
+
+        <p class="p">The application preference <em class="ph i">PPCI Feature Supported</em> is configured to
+                <var class="keyword varname">true</var> by default. If this new feature is enabled, then it
+            overrides the application preference <em class="ph i">PPCI Feature Supported</em>.</p>
+
+        <p class="p">As Keep Alive feature must be enabled for this feature, if the retry interval time is
+            configured then there may be a scenario where SNR is retried after a certain interval
+            and PPCI time is over. However, this is a rare condition.</p>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

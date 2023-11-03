@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="NCC dimensioning tool" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9YZ-08923-CN08-PEZZA-d1e1912" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>NCC dimensioning tool</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9YZ-08923-CN08-PEZZA-d1e1912">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">NCC dimensioning tool</h1>
+<div class="body conbody">
+
+    <div class="section">
+      <p class="p">Information from the Dimensioning Tool needs to be updated in the input yaml files for the
+        number of pod instances and resources requirement.</p>
+
+      <p class="p">The NCC Dimensioning Tool calculates several parameters that need to be entered into the
+        CNF Input Generator Tool. The tool calculates the values of these parameters, based on input
+        parameters like transaction rate, device count and subscriber count.</p>
+
+      <p class="p">The NCC Dimensioning Tool also provides the following information which is important in
+        planning the deployment.</p>
+<ul class="ul">
+
+        <li class="li">NCC backup size: Backups should always be copied to remote location as well. This
+          parameter gives an indication of the required space in the system to hold the back-ups.
+          Default, we consider only one copy of back-up</li>
+
+        <li class="li">Write block size and IOPS: The environment into which NCC is to be deployed must be
+          capable of sustaining this number of IOPS with the specified block size, as a minimum</li>
+
+        <li class="li">Write storage IO rates: The environment into which NCC is to be deployed must be capable
+          of sustaining this storage IO rate, as a minimum</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Charging inputs into the NCC dimensioning tool</h2>
+      <p class="p">Below inputs are required to dimension the system</p>
+<ul class="ul">
+
+        <li class="li">Number of devices (subscribers)</li>
+
+        <li class="li">Number of sessions (total of all session types)</li>
+
+        <li class="li">Maximum RAM allowed per Aerospike pod instance<ul class="ul" id="id9YZ-08923-CN08-PEZZA-d1e1912__ul_d4x_lfk_z4b">
+            <li class="li">A cloud environment may specify, for example, that the largest allowable RAM is 112
+              GB. That limitation can be specified in the Dimensioning Tool, and the Dimensioning
+              Tool will calculate the number of required Aerospike pod instances based on that
+              limitation</li>
+
+          </ul>
+</li>
+
+        <li class="li">
+          <p class="p">Whether the deployment is IG or separate SM and ME</p>
+
+        </li>
+
+        <li class="li">Whether or not CDR/EDRs are enabled</li>
+
+        <li class="li">The CDR/EDR retention time, in hours</li>
+
+        <li class="li">Gy/N40 TPS </li>
+
+        <li class="li">Sy/N28 TPS </li>
+
+        <li class="li">SS7 CPS (if required)</li>
+
+        <li class="li">Numbers of: devices, users, accounts, groups, buckets, counters, subscriptions and
+          custom data</li>
+
+        <li class="li">Number of sessions</li>
+
+        <li class="li">The CDR/EDR retention time, in hours</li>
+
+        <li class="li">Provisioning TPS</li>
+
+        <li class="li">Notification TPS</li>
+
+        <li class="li">PLC Renewal Details</li>
+
+        <li class="li">Data Encryption</li>
+
+      </ul>
+
+      <p class="p">The Dimensioning Tool inputs are part of input sheet and depending on deployment type the
+        output will be shown in the respective output. Further, year wise configuration is available
+        in the respective output sheet.</p>
+
+    </div>
+
+    <div class="section" id="id9YZ-08923-CN08-PEZZA-d1e1912__section_hqy_1hk_z4b"><h2 class="title sectiontitle">Dimensioning considerations</h2>
+      
+      <p class="p">Below are the important considerations while doing NCC :</p>
+
+      <ul class="ul" id="id9YZ-08923-CN08-PEZZA-d1e1912__ul_iqy_1hk_z4b">
+        <li class="li">
+          <p class="p">BTEL and other CSF components like CKEY, CBUR, etc are part of the dimensioning
+            resource output.</p>
+
+        </li>
+
+        <li class="li">
+          <p class="p"> istio-side cars dimensioning are part of the main pods and included into the
+            dimensioning output. </p>
+
+        </li>
+
+        <li class="li">
+          <p class="p">Other istio service mesh dimensioning is not part of the dimensioning.</p>
+
+        </li>
+
+        <li class="li">
+          <p class="p">Kubernetes cluster dimensioning like Controller, deployer and Edge nodes are not part
+            of the dimensioning. For more information, contact NCC customer support to add them into
+            overall resource calculations.</p>
+
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Scaling</h2>
+      <p class="p">CNF NCC supports auto scaling provided by Kubernetes known as Horizontal Pod Autoscaling.
+        Below pods are part of Horizontal Pod Auto-Scaling</p>
+<ul class="ul">
+
+        <li class="li">
+          <p class="p">Charging</p>
+
+        </li>
+
+        <li class="li">
+          <p class="p">Notification </p>
+
+        </li>
+
+        <li class="li">
+          <p class="p">Provisioning </p>
+
+        </li>
+
+        <li class="li">
+          <p class="p">Service Manager</p>
+
+        </li>
+
+        <li class="li">
+          <p class="p">xdrproxy</p>
+
+        </li>
+
+      </ul>
+
+      <p class="p">You can configure the maximum and minimum for these pods based on the requirement and
+        overall dimensioning.</p>
+
+    </div>
+
+    <div class="section" id="id9YZ-08923-CN08-PEZZA-d1e1912__section_ov3_c3k_z4b"><h2 class="title sectiontitle"><span class="ph" id="id9YZ-08923-CN08-PEZZA-d1e1912___Toc62644318">In service upgrade</span></h2>
+      
+      <p class="p">NCC requires In Service Upgrade and for ISU operation to be completed successfully.
+        There is an expectation that enough resources exist in the system to allow for the creation,
+        initialization and execution of the new pod at a time when the old pod is still running and
+        consuming all of its resources. See the <cite class="cite">Installation and Upgrade Guide</cite> for more
+        information.</p>
+
+    </div>
+
+  </div>
+<div class="footer"><hr /><p>Performance Engineering Guidelines • P556766-DN1000055081-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

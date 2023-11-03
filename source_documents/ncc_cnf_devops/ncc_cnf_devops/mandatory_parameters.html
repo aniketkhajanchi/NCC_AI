@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Mandatory parameters" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="mandatory_parameters" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Mandatory parameters</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="mandatory_parameters">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Mandatory parameters</h1>
+<div class="body conbody">
+        <p class="p">The parameters mandatory for each test package are located in the
+                <code class="ph codeph">test_package_info</code> section in the <code class="ph codeph">parameters.yaml</code>
+            file. They provide the basic information on the test package. The following table
+            presents these mandatory data items, and whether the data item must be defined, that is,
+            Mandatory (M) or Optional (O).</p>
+
+        <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> All data items in the <code class="ph codeph">test_package_info</code> section must remain even if
+            having no value.</div>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="mandatory_parameters__table_w5g_cj4_znb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Mandatory CCTF parameters</span></caption><colgroup><col style="width:27.77777777777778%" /><col style="width:38.88888888888889%" /><col style="width:27.77777777777778%" /><col style="width:5.555555555555555%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d8322e59">Data item</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d8322e62">Description</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d8322e65">Example value</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d8322e68">M/O</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e59 "><code class="ph codeph">platform_name</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e62 ">The platform name of the product.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e65 "><code class="ph codeph">NCC </code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e68 ">O</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e59 "><code class="ph codeph">platform_ver</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e62 ">The version number of the platform.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e65 "><code class="ph codeph">1.0</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e68 ">O</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e59 "><code class="ph codeph">product_name</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e62 ">The name of the product to be verified by this test package.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e65 "><code class="ph codeph">NCMS</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e68 ">O</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e59 "><code class="ph codeph">product_ver</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e62 ">The version number of the product.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e65 "><code class="ph codeph">1.0</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e68 ">O</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e59 "><code class="ph codeph">runTime_OS_name</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e62 ">The operating system of the run time environment.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e65 "><code class="ph codeph">CentOS</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e68 ">O</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e59 "><code class="ph codeph">runTime_OS_ver</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e62 ">
+                            <p class="p">The operating system version number.</p>
+
+                            <p class="p"><strong class="ph b">Default value:</strong>
+                                <code class="ph codeph">7.8</code></p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e65 "><code class="ph codeph">7.8</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e68 ">O</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e59 "><code class="ph codeph">testPackage_name</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e62 ">
+                            <p class="p">The name of this test package.</p>
+
+                            <p class="p"><strong class="ph b">Default value:</strong>
+                                <code class="ph codeph">spstests</code></p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e65 "><code class="ph codeph">spstests</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e68 ">O</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e59 "><code class="ph codeph">testPackage_ver</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e62 ">The version of this test package.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e65 "><code class="ph codeph">1.0</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8322e68 ">O</td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+    </div>
+<div class="footer"><hr /><p>DevOps Guide • P556766-DN1000055058-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Sy Error Messages" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id815210a5-0fe3-4f9e-b7eb-ad9e26b30c43" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Sy Error Messages</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id815210a5-0fe3-4f9e-b7eb-ad9e26b30c43">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Sy Error Messages</h1>
+<div class="body conbody"><p class="p">This table describes the SY error messages that the NCC may generate.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>SY error messages</span></caption><colgroup><col style="width:16.666666666666664%" /><col style="width:21.428571428571427%" /><col style="width:30.952380952380953%" /><col style="width:30.952380952380953%" /></colgroup><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:top;" id="d3175e40">Number</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d3175e42">Message</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d3175e44">HTTP Error Code</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d3175e47">Description</th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e40 ">SY_COUNTER_00001</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e42 ">Spending-Limit-Request contains unknown policy counters.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e47 ">Counter ="{0}" asked by Device ="{1}" in Spending-Limit-Request is an unknown policy counter.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e40 ">SY_COUNTER_00002</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e42 ">Device has no available policy counter.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e47 ">Device ="{0}" does not have any policy counters.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e40 ">SY_COUNTER_00003</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e42 ">SL-Request-Type is not correct.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e47 ">SL-Request-Type in Spending-Limit-Request is incorrect. It should either be 0(SLR-Initial)or 1(SLR-Intermediate).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e40 ">SY_COUNTER_00004</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e42 ">Session ID doesn't exist.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e47 ">Session Id ="{0}" mentioned in Spending-Limit-Request does not exist.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e40 ">SY_COUNTER_00005</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e42 ">Session ID already exists.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e47 ">Session Id ="{0}" mentioned in Spending-Limit-Request(Initial) already exists.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e40 ">SY_COUNTER_00006</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e42 ">Session ID not present while sending SNR.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d3175e47 ">Session Id doesn`t exist for sending Spending-Status-Notification- Request.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="footer"><hr /><p>Error Messages • P556766-DN1000055003-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

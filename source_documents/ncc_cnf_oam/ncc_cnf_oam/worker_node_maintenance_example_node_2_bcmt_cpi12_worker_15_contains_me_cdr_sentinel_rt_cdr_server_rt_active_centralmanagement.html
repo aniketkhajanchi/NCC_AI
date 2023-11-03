@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Example NODE 2 -bcmt-cpi12-worker-15 - contains ME cdr sentinel, RT cdr-server, RT active centralmanagement" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="worker_node_maintenance_example_node_2_bcmt_cpi12_worker_15_contains_me_cdr_sentinel_rt_cdr_server_rt_active_centralmanagement" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Example NODE 2 -bcmt-cpi12-worker-15 - contains ME cdr sentinel, RT cdr-server, RT active centralmanagement</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="worker_node_maintenance_example_node_2_bcmt_cpi12_worker_15_contains_me_cdr_sentinel_rt_cdr_server_rt_active_centralmanagement">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Example NODE 2 -bcmt-cpi12-worker-15 - contains ME cdr sentinel, RT cdr-server, RT active
+    centralmanagement</h1>
+<div class="body conbody">
+    <div class="section" id="worker_node_maintenance_example_node_2_bcmt_cpi12_worker_15_contains_me_cdr_sentinel_rt_cdr_server_rt_active_centralmanagement__section_w3y_3b1_hpb"><h2 class="title sectiontitle">Check the pods on the current worker node</h2>
+      
+      <div class="p">
+        <pre class="pre codeblock"><code>[root@bcmt-cpi12-control-01 tmp]# kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=bcmt-cpi12-worker-15
+NAMESPACE      NAME                                                   READY   STATUS    RESTARTS   AGE     IP               NODE                   NOMINATED NODE   READINESS GATES
+istio-system   istio-cni-node-lggd6                                   2/2     Running   4          4d4h    172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+istio-system   istio-prometheus-cpro-node-exporter-xhncq              1/1     Running   0          4d4h    172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+kube-system    csi-cinder-nodeplugin-j692x                            2/2     Running   0          7d      172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+kube-system    kube-proxy-lrpsc                                       1/1     Running   0          7d      172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+kube-system    local-volume-provisioner-j7mjc                         1/1     Running   0          7d      192.168.48.192   bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+ncms           bcmt-ip-man-agent-6446f                                1/1     Running   0          7d      172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+ncms           bcmt-operator-m9xn4                                    1/1     Running   0          7d      172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+ncms           csi-cephfs-manila-nodeplugin-5kj2j                     2/2     Running   0          7d      172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+ncms           csi-manila-nodeplugin-9lzn9                            4/4     Running   0          7d      172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+ncms           csi-nodeplugin-nfsplugin-bf25r                         2/2     Running   0          7d      172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-me         ppme3-cdr-sentinel-2                                   2/2     Running   0          2d4h    192.168.48.209   bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-me         ppme3br-cbur-master-cbur-mycelery-59df7d44d5-rpxbc     3/3     Running   0          3d9h    192.168.48.195   bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-me         ppme3btel-me-fluentd-5cb5c456fd-lqfnz                  2/2     Running   0          29h     192.168.48.215   bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-me         ppme3btel-me-cpro-node-exporter-b8svh                  1/1     Running   0          29h     172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-me         ppme3sps-me-charging-c66d748d5-nb2vm                   2/2     Running   0          3d1h    192.168.48.204   bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-rt         pprt4-cdr-server-2                                     4/4     Running   0          45h     192.168.48.214   bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-rt         pprt4-dr-admintools-565549fbbc-5trrr                   2/2     Running   0          2d4h    192.168.48.210   bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-rt         pprt4-dr-cmdb-mariadb-0                                2/2     Running   0          2d4h    192.168.48.211   bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-rt         pprt4br-cbur-master-cbur-k8swatcher-7c4fb7d7fc-szbkb   2/2     Running   0          3d7h    192.168.48.198   bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+ 
+sps-rt         pprt4btel-rt-fluentd-56dccfcb44-v7gc9                  2/2     Running   0          29h     192.168.48.216   bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-rt         pprt4btel-rt-cpro-node-exporter-mkbng                  1/1     Running   0          29h     172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-rt         pprt4sps-rt-centralmanagement-0                        2/2     Running   0          2d23h   192.168.48.205   bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-sm         ppsm2btel-sm-fluentd-85bdc7b4ff-d5g9x                  2/2     Running   0          29h     192.168.48.217   bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-sm         ppsm2btel-sm-cpro-node-exporter-dc7xl                  1/1     Running   0          29h     172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-sm         ppsm2sps-sm-centralmanagement-0                        2/2     Running   9          3d1h    192.168.48.203   bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none</code></pre>
+      </div>
+
+    </div>
+
+    <div class="section" id="worker_node_maintenance_example_node_2_bcmt_cpi12_worker_15_contains_me_cdr_sentinel_rt_cdr_server_rt_active_centralmanagement__section_ojz_kb1_hpb"><h2 class="title sectiontitle">Drain the node and note the results</h2>
+      
+      <div class="p">
+        <pre class="pre codeblock"><code>[root@bcmt-cpi12-control-01 ~]# kubectl drain bcmt-cpi12-worker-15 --delete-local-data=true
+node/bcmt-cpi12-worker-15 cordoned
+evicting pod "ppsm2sps-sm-centralmanagement-0"
+evicting pod "ppme3-cdr-sentinel-2"
+evicting pod "ppme3br-cbur-master-cbur-mycelery-59df7d44d5-rpxbc"
+evicting pod "ppme3btel-me-fluentd-5cb5c456fd-lqfnz"
+evicting pod "ppme3sps-me-charging-c66d748d5-nb2vm"
+evicting pod "pprt4-cdr-server-2"
+evicting pod "pprt4-dr-admintools-565549fbbc-5trrr"
+evicting pod "pprt4-dr-cmdb-mariadb-0"
+evicting pod "pprt4br-cbur-master-cbur-k8swatcher-7c4fb7d7fc-szbkb"
+evicting pod "pprt4btel-rt-fluentd-56dccfcb44-v7gc9"
+evicting pod "pprt4sps-rt-centralmanagement-0"
+evicting pod "ppsm2btel-sm-fluentd-85bdc7b4ff-d5g9x"
+pod/ppsm2sps-sm-centralmanagement-0 evicted
+pod/pprt4sps-rt-centralmanagement-0 evicted
+pod/pprt4br-cbur-master-cbur-k8swatcher-7c4fb7d7fc-szbkb evicted
+pod/pprt4-dr-cmdb-mariadb-0 evicted
+pod/ppme3-cdr-sentinel-2 evicted
+pod/ppme3br-cbur-master-cbur-mycelery-59df7d44d5-rpxbc evicted
+pod/pprt4-cdr-server-2 evicted
+pod/ppme3sps-me-charging-c66d748d5-nb2vm evicted
+pod/pprt4btel-rt-fluentd-56dccfcb44-v7gc9 evicted
+pod/ppme3btel-me-fluentd-5cb5c456fd-lqfnz evicted
+pod/pprt4-dr-admintools-565549fbbc-5trrr evicted
+pod/ppsm2btel-sm-fluentd-85bdc7b4ff-d5g9x evicted
+node/bcmt-cpi12-worker-15 evicted
+[root@bcmt-cpi12-control-01 ~]# kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=bcmt-cpi12-worker-15
+NAMESPACE      NAME                                        READY   STATUS    RESTARTS   AGE    IP               NODE                   NOMINATED NODE   READINESS GATES
+istio-system   istio-cni-node-lggd6                        2/2     Running   4          4d4h   172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+istio-system   istio-prometheus-cpro-node-exporter-xhncq   1/1     Running   0          4d4h   172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+kube-system    csi-cinder-nodeplugin-j692x                 2/2     Running   0          7d1h   172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+kube-system    kube-proxy-lrpsc                            1/1     Running   0          7d1h   172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+kube-system    local-volume-provisioner-j7mjc              1/1     Running   0          7d1h   192.168.48.192   bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+ncms           bcmt-ip-man-agent-6446f                     1/1     Running   0          7d1h   172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+ncms           bcmt-operator-m9xn4                         1/1     Running   0          7d1h   172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+ncms           csi-cephfs-manila-nodeplugin-5kj2j          2/2     Running   0          7d1h   172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+ncms           csi-manila-nodeplugin-9lzn9                 4/4     Running   0          7d1h   172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+ncms           csi-nodeplugin-nfsplugin-bf25r              2/2     Running   0          7d1h   172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-me         ppme3btel-me-cpro-node-exporter-b8svh       1/1     Running   0          30h    172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-rt         pprt4btel-rt-cpro-node-exporter-mkbng       1/1     Running   0          30h    172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;
+sps-sm         ppsm2btel-sm-cpro-node-exporter-dc7xl       1/1     Running   0          30h    172.30.254.16    bcmt-cpi12-worker-15   &lt;none&gt;           &lt;none&gt;</code></pre>
+      </div>
+
+    </div>
+
+    <div class="section" id="worker_node_maintenance_example_node_2_bcmt_cpi12_worker_15_contains_me_cdr_sentinel_rt_cdr_server_rt_active_centralmanagement__section_vvh_mb1_hpb"><h2 class="title sectiontitle">Bring node back into operation</h2>
+      
+      <div class="p">
+        <pre class="pre codeblock"><code>kubectl uncordon bcmt-cpi12-worker-15</code></pre>
+      </div>
+
+    </div>
+
+    <div class="section" id="worker_node_maintenance_example_node_2_bcmt_cpi12_worker_15_contains_me_cdr_sentinel_rt_cdr_server_rt_active_centralmanagement__section_znd_w2h_hpb"><h2 class="title sectiontitle">Problems faced during drain</h2>
+      
+      <p class="p">This node contains ME cdr-sentinel pod. There is a loss of CDR for 4G and 5G calls on this
+        node also because of ME cdr-sentinel pod.</p>
+
+    </div>
+
+  </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

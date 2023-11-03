@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="task" />
+<meta name="DC.title" content="Flushing database" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="cdr_streams_flushing_database" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Flushing database</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="cdr_streams_flushing_database">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Flushing database</h1>
+<div class="body taskbody">
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div>
+            <p class="p">In some situations it may be necessary to empty the (Redis) database in a controlled
+                manner. You can do so by executing the FLUSH_DATA instance of CG Configuration Node
+                in the Configuration stream.</p>
+
+            <p class="p">For more information on flushing of data, see the <cite class="cite">Overview Guide</cite>.</p>
+
+        </div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">In Charging Gateway Function UI, navigate to your Configuration stream, then
+                    select the FLUSH_DATA instance of CG Configuration Node.</span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Open the node parameters for editing and edit the <code class="ph codeph">FlushMode</code>
+                    parameter. Make sure that the parameter has been set to value
+                        <code class="ph codeph">Immediate</code>. </span>
+                <div class="itemgroup info">Note that once the flushing is started, incoming traffic is stopped.</div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Click <strong class="ph b">Execute now</strong> to start the flushing process. </span>
+                <div class="itemgroup info">The alerts displayed for the node indicate how the flushing proceeds. Info
+                    message CG057 indicates that the flushing process has been completed.</div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">When the flushing is complete, edit the value of node parameter
+                        <code class="ph codeph">FlushMode</code> again. Select value <code class="ph codeph">None</code> and
+                    execute the FLUSH_DATA instance of CG Configuration Node again.</span>
+                <div class="itemgroup info">
+                    <p class="p">Executing the node with <code class="ph codeph">FlushMode</code> set to
+                            <code class="ph codeph">None</code> is required for the system to start accepting
+                        incoming traffic again.</p>
+
+                </div>
+            </li>
+</ol>
+
+        <div class="section result" id="cdr_streams_flushing_database__result_lg4_bz2_d4b"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Expected outcome</h2></div>
+            <p class="p">Info message CG056 indicates that the flushing process has ended.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

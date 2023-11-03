@@ -1,0 +1,2091 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Step-charge functionality" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-scf" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Step-charge functionality</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-scf">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Step-charge functionality </h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">A subscriber may have a tariff plan with a group bundle or individual bundle. When the bundle is consumed completely and the volume of bundle is zero, subscriber cannot make data calls. To provide more flexibility to subscribers, operators can define bucket steps so that the bucket value increments when the volume is zero. That is, the operators can define bundles with step configuration and bucket amount available in steps. When such bundles are subscribed, the bucket is initialized to the first step value and these steps are managed by an entity named as <span class="ph uicontrol">Charging Step</span>. The steps can be added, deleted, or modified using the SM GUI or REST API and the number of steps is reset at subscription reset or subscription renewal at the start of the next billing cycle when a bucket is reset to its first step value.</p>
+
+<p class="p">Note that the priority of main bundle is greater than the priority of step bundles. NCC uses the
+                bundles for calls based on the configuration made.</p>
+
+<p class="p">Operators can also define a fee for the steps. That is, during a call, when the step bundle is used, operators can charge fee for each step increment. If the account does not have sufficient amount for fee, then next charging service is selected for the call. The last step defined in the <span class="ph uicontrol">Charging Step</span> can be repeated until the plan is reset.</p>
+
+<p class="p">Currently, the step-up fee deduction and step count increment is done at the time of reservation.
+                You can change this behavior by setting the application preference,
+                    <span class="ph uicontrol">Step-up On Commit</span> flag to <var class="keyword varname">True</var>. Once
+                this flag is set to true, the Step-up fee deduction and step count increment is done
+                at the time of commit. See <a class="xref" href="#concept_azl_t1m_r4b__stepcommit">Example 6: Step up on commit (under commit scenario)</a>.</p>
+
+<p class="p">Notifications can also be sent before an x amount, which is the sum of all buckets in <em class="ph i">Pass
+                    0</em> is consumed. This x amount threshold is managed using the aggregate view
+                configured at group or device level. See <a class="xref" href="#notifstep">Step-charge threshold and notifications</a> for
+                more details.</p>
+
+</div>
+
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_vfx_tdm_r4b"><h2 class="title topictitle2" id="ariaid-title2">Step-charge customization</h2>
+<div class="body conbody">
+            <div class="section"><p class="p">If a bundle is configured with step-bucket and is subscribed to a Group or
+                    Device that has other subscription instances, then the following logic is
+                    followed when a call is triggered:</p>
+<ul class="ul" id="concept_vfx_tdm_r4b__ul_fn4_2ry_rmb">
+                    <li class="li">All the resources are consumed first that are configured in Pass 0 along
+                        with current step of step-bucket.</li>
+
+                    <li class="li">The step-bucket is moved to next step when no other resource is left in Pass
+                        0.</li>
+
+                </ul>
+For example, consider that a Device has 5 subscriptions attached where the
+                subscription 3 has a step-bucket with multiple steps. When a call is triggered, in
+                Pass 0, the resource is consumed from subscription 1, subscription 2, first step of
+                subscription 3 followed by subscription 4 and subscription 5. When no resource is
+                left in Pass 0, the step-bucket is moved to next step of subscription 3 for usage.
+                This default behavior of step-bucket usage is applicable to all passes. <p class="p">When a
+                    step is to be incremented in the charging step associated with a bucket, the
+                    bucket state must be checked if it is barred or final. When reset is performed,
+                    the value must be reset to the first step. </p>
+<p class="p">Operators can modify this
+                    default behavior and provide flexibility to consume all the steps of step-bucket
+                    before moving to the next resource. This is applicable even when some resource
+                    is available for usage. For example, in the above scenario, all the steps of
+                    subscription 3 are consumed followed by subscription 4 and then subscription 5.
+                    To enable this behavior, set the application preference <strong class="ph b">Use All Steps
+                        First</strong> to <var class="keyword varname">true</var>.</p>
+<p class="p"> Refer to section <em class="ph i">Managed
+                        Element application preferences</em> in the <em class="ph i">Global Configuration Guide</em>
+                    for details on <strong class="ph b">Use All Steps First</strong> application preference.</p>
+<p class="p">See
+                        <a class="xref" href="#concept_azl_t1m_r4b__section_t1v_fh5_smb">Example 7: Step up on commit (custom behavior)</a> and
+                        <a class="xref" href="#concept_azl_t1m_r4b__section_m1t_yl5_smb">Example 8: Step up on reservation (custom behavior)</a> for
+                    examples related to customized step-up behavior.</p>
+</div>
+
+            <div class="section" id="concept_vfx_tdm_r4b__section_dkr_vqy_rmb"><h3 class="title sectiontitle">Limitations of step-charge Send-SNR scenario</h3>
+                
+                <p class="p">The <em class="ph i">THRESHOLD_PROFILE.has-More-Steps</em> is a flag, which determines whether
+                    step-up is pending in a bucket or a bucket is accumulated by an AV (depending on
+                    which the threshold is attached to) using a <span class="ph uicontrol">Charging
+                    Step</span>. However, this flag cannot determine whether bucket step-up
+                    happened successfully or not.</p>
+
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> There is only one scenario wherein the bucket step fails even when charging
+                    steps are pending in the bucket. It is when there is some fees attached on the
+                    next step, which is to be deducted from the account balance and account does not
+                    have enough balance to pay for the fee of the next step. Therefore, in case of
+                        <span class="ph uicontrol">Charging Step</span> with the fee, this rule attribute does
+                    not check fee availability and only checks any pending steps in the bucket or
+                    bucket accumulated by an AV.</div>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="Stepchargescenario"><h2 class="title topictitle2" id="ariaid-title3">Step-charge scenario while handling Send-SNR action for AV</h2>
+<div class="body conbody">
+            <div class="section">
+                <p class="p">If the AV has a step-charge bucket and the steps of that bucket are outstanding,
+                    then the bucket balance is top-up in the next reservation. Therefore, the AV
+                    value also increases and to avoid sending an SNR on the AV value during commit,
+                    the rule attribute <var class="keyword varname">SY.SEND-SNR</var> is introduced in the
+                        <em class="ph i">THRESHOLD_PROFILE</em> with the following format:</p>
+
+                <p class="p">if</p>
+
+                <p class="p">
+                    <em class="ph i">THRESHOLD_PROFILE.has-More-Steps</em> = <var class="keyword varname">BooleanEnum.FALSE</var>
+                </p>
+
+                <p class="p">then</p>
+
+                <p class="p">
+                    <em class="ph i">SY.SEND-SNR</em> = <var class="keyword varname">C1,Low</var>
+                </p>
+
+                <div class="fig fignone" id="Stepchargescenario__fig_jbs_nwy_rmb">
+                    <img class="image break" id="Stepchargescenario__image_kbs_nwy_rmb" src="../images/img9yz-09126-ug01-pczza-sp1-step-charge_threshold_config_default.png" />
+                </div>
+
+                <p class="p">Refer to the example <a class="xref" href="snraction.html#concept_kyn_m2m_r4b__Stepchargeexample">Example 1: Sending an SNR during provisioning when AV balance is updated</a> for more
+                    information.</p>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title4" id="concept_gdw_ddm_r4b"><h2 class="title topictitle2" id="ariaid-title4">Step-bundle examples</h2>
+<div class="body conbody">
+            <div class="section" id="concept_gdw_ddm_r4b__stepcharge"><h3 class="title sectiontitle">Step-bundle without fee</h3>
+                
+                <p class="p">Consider that a device has group subscriptions and device subscriptions. The
+                    group subscriptions have high priority with high QoS, and the device
+                    subscriptions have low priority with low QoS. When all the group subscriptions
+                    exhaust, the device subscriptions with low QoS are consumed. Operators can
+                    manage the high and low QoS using the resource based policy counters. When the
+                    bundle with charging step configuration is initially subscribed to a group, the
+                    value of the first step is written into the initial value of the step charge
+                    bucket instance.</p>
+
+                <div class="p">The following figure shows an example of step charge function. Initially, only 1
+                    GB of Shared Monthly (SM) bundle is available to the user and when this 1 GB of
+                    SM is exhausted, it moves to next available resource. In the following example,
+                    shared bundle 1, shared bundle 2, shared bundle 3 is checked in the same order.
+                    When all the shared bundles are consumed and there is no amount available, then
+                    you can step-up to SM bundle. The top-up is performed incrementally. After
+                    top-up, the initial value of SM becomes 2 GB out of which 1 GB is available for
+                    use. <div class="fig fignone" id="concept_gdw_ddm_r4b__fig_e1p_fdm_r4b">
+                        <img class="image break" id="concept_gdw_ddm_r4b__image_nxz_xbm_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-step_charge_default.png" />
+                    </div>
+</div>
+
+                <p class="p">When a periodic subscription reset/renew happens, all the buckets are reset. If a
+                    bucket has a step charge defined, then the value of bucket is set to the value
+                    of first step.</p>
+
+                <p class="p">You can delete any step from existing <span class="ph uicontrol">Charging Step</span>
+                    configuration. For example, if step size is reduced from 3 to 2 during the call,
+                    all the instances linked to that step and currently are on step 3, continue and
+                    after exhaustion, no top-up is done.</p>
+
+            </div>
+
+            <div class="section" id="concept_gdw_ddm_r4b__bundle"><h3 class="title sectiontitle">Step-bundle with fee</h3>
+                
+                <p class="p">Consider that a bundle has 1 day periodic lifecycle. A <span class="ph uicontrol">Charging
+                        Step</span> of 1 step with 1 MB and bundle fee of 1 USD is defined.
+                    This step repeats until reset/renewal of bundle. The bundle fee for renewal is 1
+                    USD. The device subscribes to this bundle and 1 USD is deducted from the device
+                    account and the bucket has 1 MB. Here, 1 USD is the bundle fee and not the step
+                    fee.</p>
+
+                <p class="p">Following consumption is done:</p>
+
+                <ol class="ol" id="concept_gdw_ddm_r4b__ol_wzb_gdm_r4b">
+                    <li class="li">
+                        <p class="p">CCR-I, RSU 0.1 MB on 17.8.2019 -&gt; 0.1 MB is reserved and 0.9 MB is
+                            available</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CCR-U, USU 0.1 MB, RSU 1.5 MB on 17.8.2019 -&gt; Commit 0.1 MB, step-up
+                            is done, 1 USD is deducted from account and 1 MB is added to bucket,
+                            total bucket value is 1.9 MB, 1.5 MB is reserved from 1.9 MB and 0.4 MB
+                            is available</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CCR-U, USU 1.5 MB, RSU 0.2 MB on 17.8.2019 -&gt; Commit 1.5 MB, 0.2 MB is
+                            reserved and 0.2 MB is available </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CCR-T, USU 0.2 MB -&gt; Commit 0.2 MB, available is 0.2 MB</p>
+
+                    </li>
+
+                </ol>
+
+                <p class="p">The subscription is renewed and a renewal fee of 1 USD is deducted from the
+                    account and bucket has 1 MB available. </p>
+
+                <p class="p">Following consumption is done:</p>
+
+                <ol class="ol" id="concept_gdw_ddm_r4b__ol_xzb_gdm_r4b">
+                    <li class="li">
+                        <p class="p">CCR-I, RSU 0.1 MB on 18.8.2019 -&gt; 0.1 MB is reserved and 0.9 MB is
+                            available</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CCR-T, USU 0.1 MB on 18.8.2019 -&gt; 0.1 MB is reserved and 0.9 MB is
+                            available</p>
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+            <div class="section" id="concept_gdw_ddm_r4b__section_r5x_jdm_r4b"><h3 class="title sectiontitle">Configuring a charging step</h3>
+                
+                <p class="p">To configure a charging step, perform the following steps:</p>
+
+                <ol class="ol" id="concept_gdw_ddm_r4b__ol_s5x_jdm_r4b">
+                    <li class="li">
+                        <p class="p">Configure the <span class="ph uicontrol">Charging Step</span> entity. </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Attach the <span class="ph uicontrol">Charging Step</span> to a bucket in the
+                                <span class="ph uicontrol">Charging Services</span> entity.</p>
+
+                    </li>
+
+                </ol>
+
+                <p class="p">See <a class="xref" href="chargingstep.html">Tiered Allowances (Charging Step)</a> for parameter details.</p>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title5" id="concept_dw3_cv5_spb"><h2 class="title topictitle2" id="ariaid-title5">Overriding Step-charge fee and Step Size</h2>
+<div class="body conbody">
+            <div class="p">For enhancing the functionality of the step charging feature, the following
+                requirements are considered:<ul class="ul" id="concept_dw3_cv5_spb__ul_pks_sv5_spb">
+                    <li class="li">If a subscriber is calling from home location, a low <em class="ph i">step fee</em> can be
+                        applied for a step bucket. If the subscriber is calling from other roaming
+                        locations, a higher <em class="ph i">step fee</em> can be applied for the same step
+                        bucket.</li>
+
+                    <li class="li">The tax is fixed and does not vary based on location or zone. Hence, varying
+                        tax based on steps is not required. Taxation is not considered for rule
+                        based step size and step fee implementation.</li>
+
+                    <li class="li">Step one for step charging cannot be configured using the rule configuration
+                        for the zone. When the step bucket is selected, NCC considers the step size
+                        of the first step from the charging step static configuration.</li>
+
+                    <li class="li"><strong class="ph b">Addition of remaining step size of one zone to the other defined
+                            zone</strong>:<ul class="ul" id="concept_dw3_cv5_spb__ul_lcj_my5_spb">
+                            <li class="li"> Subscriber can use the remaining step size of one zone (home
+                                location) in another zone (roaming location) if available. It is
+                                available to the subscriber when the subscriber moves into the other
+                                zone (roaming location). In case subscriber has finished the
+                                available steps and step size for all zones, then the subscriber can
+                                start using the other step bucket or normal bucket, if
+                                applicable.</li>
+
+                            <li class="li">In case the subscriber reserves step fee in zone 1 (home location)
+                                and moves into zone 2 (roaming location), then due to the zone
+                                change, the network triggers NCC. NCC commits the reserved amount of
+                                zone 1 (home location). The new step fee for zone 2 (roaming
+                                location) is reserved, and the roaming location step size is
+                                allocated to the bucket. In this case, the subscriber can use the
+                                remaining step size of zone 1 (home location) in zone 2 (roaming
+                                location), starting from step 2, if available.</li>
+
+                            <li class="li">In case the subscriber reserves step fee in zone 2 (roaming
+                                location) and moves into zone 1 (home location) again during a call,
+                                then due to the zone change, the network triggers NCC. NCC commits
+                                the reserved amount of zone 2 (roaming location). The new step fee
+                                for zone 1 (home location) is reserved when the bucket is stepped in
+                                zone 1 (home location). In this case, the subscriber can use the
+                                remaining step size of zone 2 in zone 1. The remaining zone 1 step
+                                balance is added to the available balance.</li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="li"><strong class="ph b">Unlimited steps usage scenario using rule</strong>: The unlimited steps
+                        scenario can be used with the step charging rule. You can define the step
+                        size, and step fee for unlimited steps into tariff formula step override
+                        rules. When you define unlimited steps for a step bucket, the defined step
+                        size and step fee for that zone are applied to all upcoming steps.<ul class="ul" id="concept_dw3_cv5_spb__ul_frs_v1v_spb">
+                            <li class="li">Tariff formula rule configuration for Home<pre class="pre codeblock"><code>if
+
+CALL_COMMON.Call-Type = CallType_PS and
+CALL_COMMON.Call-Roaming-Status = RoamingDecision.HOME
+
+then
+
+RATING.Bucket-Selection = “Step_Bucket” and
+RATING.Bucket-Step-Override ( 2, 2, 20 )
+
+RATING.Bucket-Step-Override ( unlimited, 4, 40 )</code></pre></li>
+
+                            <li class="li">Tariff formula rule configuration for Roaming<pre class="pre codeblock"><code>if
+
+CALL_COMMON.Call-Type = CallType_PS and
+CALL_COMMON.Call-Roaming-Status = RoamingDecision.ROAMING
+
+then
+
+RATING.Bucket-Selection = “Step_Bucket” and
+RATING.Bucket-Step-Override ( 2, 5, 60 ) and
+
+RATING.Bucket-Step-Override ( unlimited, 7, 80 )</code></pre></li>
+
+                        </ul>
+</li>
+
+                    <li class="li"><strong class="ph b">Step Range definition using rule</strong> : A few products use the same step
+                        size and step fee are for certain steps. The step size and step fee for the
+                        other steps may change. In rule definition, it is possible to define same
+                        step fee and step size for a range of steps.<ul class="ul" id="concept_dw3_cv5_spb__ul_ihw_sxv_spb">
+                            <li class="li">Tariff formula rule configuration for Home<pre class="pre codeblock"><code>if
+
+CALL_COMMON.Call-Type = CallType_PS and
+CALL_COMMON.Call-Roaming-Status = RoamingDecision.HOME
+
+then
+
+RATING.Bucket-Selection = “Step_Bucket” and
+RATING.Bucket-Step-Override ( 2-10, 2, 20 ) and
+
+RATING.Bucket-Step-Override ( 11, 3, 30 ) and
+
+RATING.Bucket-Step-Override ( unlimited, 4, 40 )</code></pre></li>
+
+                            <li class="li">Tariff formula rule configuration for Roaming<pre class="pre codeblock"><code>if
+
+CALL_COMMON.Call-Type = CallType_PS and
+CALL_COMMON.Call-Roaming-Status = RoamingDecision.ROAMING
+
+then
+
+RATING.Bucket-Selection = “Step_Bucket” and
+RATING.Bucket-Step-Override ( 2-10, 5, 60 ) and
+
+RATING.Bucket-Step-Override ( 11, 6, 50 ) and
+
+RATING.Bucket-Step-Override ( unlimited, 7, 80 )</code></pre></li>
+
+                        </ul>
+</li>
+
+                    <li class="li"><strong class="ph b">Parallel usage of step bucket using rules</strong>: If  multiple devices use
+                        the same bundle with step bucket, then the NCC step charging logic can
+                        execute tariff formula charging step override rule configuration for
+                        multiple devices from the same step bucket.</li>
+
+                    <li class="li">When the subscriber has twin SIMs, and has one Gy session from zone 1 using
+                        the first SIM, and another Gy session from zone 2 using the second SIM. If
+                        the first commit pays the fee based on the current zone, then the second
+                        commit on the other Gy session should not pay the step fee unless the bucket
+                        is stepped.<div class="note notice" id="concept_dw3_cv5_spb__note_rl1_4vp_x5b"><div class="noticetitle"><img src="../../web/css/../images/notice.svg" title="notice-icon" class="noteicon" />Notice:</div> Twin SIM feature
+                            supports configuring a device identifier with ONLY two E164s and one
+                            IMSI. It is NOT recommended to use more than two E164s and more than one
+                            IMSI.</div></li>
+
+                    <li class="li">Rules for multiple zones can be configured within the tariff formula pass
+                        rules, with varying step size and step fee based on steps.<ul class="ul" id="concept_dw3_cv5_spb__ul_gvl_bdv_spb">
+                            <li class="li">Tariff formula rule configuration for Zone1<pre class="pre codeblock"><code>if
+CALL_COMMON.Call-Type = CallType_PS and
+CALL_COMMON.Call-Roaming-Status = RoamingDecision.Zone1
+then
+RATING.Bucket-Selection = “Step_Bucket” and
+RATING.Bucket-Step-Override ( 2, 2, 20 ) and
+RATING.Bucket-Step-Override ( 3, 3, 30 ) and
+RATING.Bucket-Step-Override ( unlimited, 4, 40 )</code></pre></li>
+
+                            <li class="li">Tariff formula rule configuration for Zone2<pre class="pre codeblock"><code>if
+
+CALL_COMMON.Call-Type = CallType_PS and
+CALL_COMMON.Call-Roaming-Status = RoamingDecision.Zone2
+
+then
+
+RATING.Bucket-Selection = “Step_Bucket” and
+RATING.Bucket-Step-Override ( 2, 5, 50 ) and
+
+RATING.Bucket-Step-Override ( 3, 6, 60 ) and
+
+RATING.Bucket-Step-Override ( unlimited, 7, 70 )</code></pre></li>
+
+                            <li class="li">Tariff formula rule configuration for Zone3<pre class="pre codeblock"><code>if
+
+CALL_COMMON.Call-Type = CallType_PS and
+CALL_COMMON.Call-Roaming-Status = RoamingDecision.Zone3
+
+then
+
+RATING.Bucket-Selection = “Step_Bucket” and
+RATING.Bucket-Step-Override ( 2, 8, 80 ) and
+
+RATING.Bucket-Step-Override ( 3, 9, 90 ) and
+
+RATING.Bucket-Step-Override ( unlimited, 10, 100 )</code></pre></li>
+
+                        </ul>
+</li>
+
+                    <li class="li"><strong class="ph b">Units of step size and step fee</strong> : NCC always considers the unit type
+                        defined in the charging step static configuration for the defined step size
+                        and step fee in the tariff formula rules. The step fee and step size in the
+                        tariff formula rule configuration accept only the positive numeric values.
+                        In case a charging step is not associated with a bucket, but the charging
+                        service rule formula is configured with the charging step definitions, then
+                        the NCC rating ignores the step override rule execution, and considers it as
+                        a normal bucket.</li>
+
+                </ul>
+The Bucket-Step-Override rule contains the following attributes.<ul class="ul" id="concept_dw3_cv5_spb__ul_mjf_bgf_tpb">
+                    <li class="li">Step-Number</li>
+
+                    <li class="li">Step-Fee</li>
+
+                    <li class="li">Step-Size</li>
+
+                </ul>
+<table cellpadding="4" cellspacing="0" summary="" id="concept_dw3_cv5_spb__table_rcq_hgf_tpb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Bucket-Step-Override rule attributes</span></caption><colgroup><col style="width:75pt" /><col style="width:75pt" /><col style="width:263.25pt" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e464">Attribute</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e467">Criteria</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e470">Description</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e464 ">Step-Number</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e467 ">Mandatory</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e470 ">It indicates the current step to be overridden for step fee
+                                    and step size.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e464 ">Step-Fee</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e467 ">Optional</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e470 ">It indicates the step fee to be applied for charging the
+                                    step override rule.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e464 ">Step-Size</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e467 ">Optional</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e470 ">It indicates the step size to be applied for charging the
+                                    step override rule.</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+The Step-Number attribute in the Bucket-Step-Override rule can be configured
+                as follows:<table cellpadding="4" cellspacing="0" summary="" id="concept_dw3_cv5_spb__table_slw_ckf_5pb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Configuring Step-Number attribute</span></caption><colgroup><col style="width:103.5pt" /><col style="width:339.75pt" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e531">Value type</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e534">Description</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e531 ">Specific Step Numbers. For example: 2, 3, and so on.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e534 ">If the Step-Number is specified as a number, then the defined
+                                    Step fee, and Step Size are applicable to the mentioned step
+                                    number.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e531 ">Step Number Range. For example 2 to 12.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e534 ">If Step-Number is defined in a number range , then the
+                                    defined Step fee, and Step Size are applicable to the mentioned
+                                    range of step numbers.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e531 ">Unlimited</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e534 ">If the Step-Number is defined as unlimited, then the defined
+                                    Step fee, and Step Size are applicable to all upcoming step
+                                    numbers.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e531 ">All</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e534 ">If the Step-Number is defined as <code class="ph codeph">All</code>, then
+                                    the Step fee, and Step Size are applicable to all the step
+                                    numbers defined in the charging step static configuration,
+                                    except the unlimited step.</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Step-Number cannot take the value as 1.</div>
+To override the step
+                fee, and step size for the step numbers, all the step numbers defined in the  bucket
+                step override rule should also be defined in the charging step static configuration.
+                If step number is not defined in charging step static configuration, then bucket
+                step override rule does not override the step fee, and step size for those
+                steps.</div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title6" id="notifstep"><h2 class="title topictitle2" id="ariaid-title6">Step-charge threshold and notifications</h2>
+<div class="body conbody">
+            <div class="section">
+                <p class="p">Operators can send notifications before the extension (step-up) using aggregate
+                    view threshold applied on group or device subscriptions, for example, before x
+                    MB is consumed. Notifications can also be sent after the successful extension
+                    (step-up).</p>
+
+            </div>
+
+            <div class="section" id="notifstep__section_jrx_xcm_r4b"><h3 class="title sectiontitle">Example: Notification sent before X MB consumption</h3>
+                
+                <p class="p">To send notification before X MB, for example, 10 MB is remaining in aggregate
+                    view, configure the following entities:</p>
+
+                <ul class="ul" id="notifstep__ul_krx_xcm_r4b">
+                    <li class="li">
+                        <p class="p">Create a charging service.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create a threshold profile group with following values:</p>
+
+                        <ul class="ul" id="notifstep__ul_lrx_xcm_r4b">
+                            <li class="li">
+                                <p class="p">
+                                    <span class="ph uicontrol">Threshold Value</span> = <var class="keyword varname">10
+                                        MB</var>
+                                </p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">
+                                    <span class="ph uicontrol">Threshold Profile Type</span> =
+                                        <var class="keyword varname">ABSOLUTE FROM END</var>
+                                </p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">
+                                    <span class="ph uicontrol">Reservation Threshold</span> =
+                                        <var class="keyword varname">False</var>
+                                </p>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create an aggregate view for group or device subscriptions and apply the
+                            threshold that is already created.</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">See <a class="xref" href="#concept_azl_t1m_r4b__stepup">Example 5: Step-up notification</a> for details on
+                    step-up notification.</p>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title7" id="concept_vyc_5bm_r4b"><h2 class="title topictitle2" id="ariaid-title7">Increment counters for step-charge functionality</h2>
+<div class="body conbody">
+            <div class="section" id="concept_vyc_5bm_r4b__section_p1n_gcm_r4b">
+                <p class="p">Currently, the logic to deduct step-fee from an account has been enhanced to
+                    consider the applicable cost counters. All applicable counters include global
+                    cost counters (device counters, group counters, or device-group counters) or
+                    subscription cost counters, which are updated with the step-fee as a part of
+                    call processing. The step-fee is considered as a normal spending limit.</p>
+
+                <p class="p">This enhancement in step-charge functionality considers the following points:</p>
+
+                <ul class="ul" id="concept_vyc_5bm_r4b__ul_q1n_gcm_r4b">
+                    <li class="li">
+                        <p class="p">This logic is applicable only when the <span class="ph uicontrol">Step-up On
+                                Commit</span> application preference flag is set as
+                                <var class="keyword varname">true</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">For global counters, both deductions from step-fee and main balance are
+                            counted.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">For subscription counters attached to step-bucket, only deduction from
+                            step-fee is counted.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Before the step-fee reservation, cap, threshold, slice reduction logic is
+                            evaluated on all applicable step-bucket counters.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The threshold and cap actions are executed at commit.</p>
+
+                    </li>
+
+                </ul>
+
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> AV logic is not fully supported for step counters.</div>
+
+            </div>
+
+            <div class="section" id="concept_vyc_5bm_r4b__section_sdj_3cm_r4b"><h3 class="title sectiontitle">Examples</h3>
+                
+                <p class="p">Consider the following examples to understand this functionality in a better
+                    way:</p>
+
+                <p class="p">
+                    <strong class="ph b">Preconditions:</strong> Consider the following counters:</p>
+
+                <ul class="ul" id="concept_vyc_5bm_r4b__ul_r1n_gcm_r4b">
+                    <li class="li">
+                        <p class="p">Global cost counter <var class="keyword varname">CC1</var>, which can be a device counter
+                            or group counter.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Global cost counter <var class="keyword varname">CC2</var>, which can be a device counter
+                            or group counter applicable to roaming zone. A threshold is configured
+                            to <samp class="ph systemoutput">Send-Notification</samp> action at 50% and
+                            another notification with <samp class="ph systemoutput">Reject</samp> action at
+                            100%.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Subscription cost counter <var class="keyword varname">CC3</var>, subscription volume
+                            counter <var class="keyword varname">VC1</var>, and step-bucket <var class="keyword varname">SB1</var>
+                            applicable for all conditions.</p>
+
+                    </li>
+
+                </ul>
+
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Example 1:</strong> A user makes a call in roaming with tariff rule as:</p>
+
+                    <ul class="ul" id="concept_vyc_5bm_r4b__ul_s1n_gcm_r4b">
+                        <li class="li">
+                            <p class="p">
+                                <em class="ph i">Bucket-Selection</em> = <var class="keyword varname">SB1</var>
+                            </p>
+
+                        </li>
+
+                    </ul>
+
+                    <p class="p">Therefore, the expected output for counter update, <var class="keyword varname">CC1</var> and
+                            <var class="keyword varname">CC2</var> is applicable and subscription counter is not
+                        specified in tariff rule.</p>
+
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Example 2:</strong> A user makes a call in local zone or home zone with tariff
+                        rule as:</p>
+
+                    <ul class="ul" id="concept_vyc_5bm_r4b__ul_t1n_gcm_r4b">
+                        <li class="li">
+                            <p class="p">
+                                <em class="ph i">Bucket-Selection</em> = <var class="keyword varname">SB1</var>
+                            </p>
+
+                        </li>
+
+                    </ul>
+
+                    <p class="p">Therefore, the expected output for counter update, <var class="keyword varname">CC1</var> and
+                            <var class="keyword varname">CC2</var> are not applicable and subscription counter is
+                        not specified in tariff rule.</p>
+
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Example 3:</strong> A user makes a call in roaming zone with tariff rule
+                        as:</p>
+
+                    <ul class="ul" id="concept_vyc_5bm_r4b__ul_u1n_gcm_r4b">
+                        <li class="li">
+                            <p class="p">
+                                <em class="ph i">Bucket-Selection</em> = <var class="keyword varname">SB1</var>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">
+                                <em class="ph i">Counter-Selection</em> = <var class="keyword varname">CC3</var>
+                            </p>
+
+                        </li>
+
+                    </ul>
+
+                    <p class="p">Therefore, the expected output for counter update, <var class="keyword varname">CC1</var>,
+                            <var class="keyword varname">CC2</var>, and <var class="keyword varname">CC3</var> are applicable.</p>
+
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Example 4:</strong> A user makes a call in roaming zone with tariff rule
+                        as:</p>
+
+                    <ul class="ul" id="concept_vyc_5bm_r4b__ul_v1n_gcm_r4b">
+                        <li class="li">
+                            <p class="p">
+                                <em class="ph i">Bucket-Selection</em> = <var class="keyword varname">SB1</var>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">
+                                <em class="ph i">Counter-Selection</em> = <var class="keyword varname">CC3</var>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">
+                                <em class="ph i">Counter-Selection</em> = <var class="keyword varname">VC1</var>
+                            </p>
+
+                        </li>
+
+                    </ul>
+
+                    <p class="p">Therefore, the expected output for counter update, <var class="keyword varname">VC1</var>,
+                            <var class="keyword varname">CC1</var>, <var class="keyword varname">CC2</var>, and
+                            <var class="keyword varname">CC3</var> are applicable.</p>
+
+                </div>
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title8" id="concept_d3w_nbm_r4b"><h2 class="title topictitle2" id="ariaid-title8">Additional information</h2>
+<div class="body conbody">
+            <div class="section" id="concept_d3w_nbm_r4b__section_p1z_nbm_r4b">
+                <p class="p">Following are some important points to note for this feature:</p>
+
+                <ul class="ul" id="concept_d3w_nbm_r4b__ul_q1z_nbm_r4b">
+                    <li class="li">
+                        <p class="p">Do not top-up a bucket with step-charge configuration. If a top-up is
+                            done, then the current step-size is increased.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The category order is not considered.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Carry-over works as per the configuration defined in the bucket
+                            entity.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The prorate or refund functionality works as per the configurations
+                            made.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">It is recommended not to delete the charging step when it has any active
+                            reference with the bucket. </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Operators cannot reduce the steps from 1 to 0.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Subscription customization (template) is not supported.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The fee defined for the step can be same or different based on your
+                            requirement.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Modification to the first step value in <span class="ph uicontrol">Charging
+                                Step</span> does not impact the attached bucket initial value.
+                            To keep the data in synchronization, perform an update on the charging
+                            service to modify the bucket initial value as well.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">For step-up notification, ensure that only one threshold is embedded
+                            within a threshold profile. For generic threshold configurations,
+                            separate threshold profiles or threshold profile groups can be used.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">It is recommended to configure a reference to bucket with
+                                <span class="ph uicontrol">Charging Step</span> only in Pass 0.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">For step-up notification, add a condition of
+                                <kbd class="ph userinput">THRESHOLD_PROFILE.Bucket-Current-Step &gt; 1</kbd>
+                            before <samp class="ph systemoutput">Send-Notification</samp> action. This
+                            ensures that the step-up notification is not sent during reservation
+                            from step 1 and is sent for all other steps.</p>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title9" id="concept_azl_t1m_r4b"><h2 class="title topictitle2" id="ariaid-title9">Examples</h2>
+<div class="body conbody">
+            <p class="p">Consider the following examples for better understanding of this feature:</p>
+
+            <div class="section" id="concept_azl_t1m_r4b__new"><h3 class="title sectiontitle">Example 1: Device subscription to a step bundle</h3>
+                
+                <p class="p">In this example, a step bundle is created, which is subscribed by a device. </p>
+
+                <p class="p">Perform the following steps to create a step bundle using the SM GUI.</p>
+
+                <ol class="ol" id="concept_azl_t1m_r4b__ol_hkp_fhf_tmb">
+                    <li class="li">Create a charging step using the <span class="ph uicontrol">Charging Step</span> entity
+                        as shown in the following figure. <img class="image" id="concept_azl_t1m_r4b__image_ikp_fhf_tmb" src="../images/img9yz-09126-ug01-pczza-sp1-step_charge1_default.png" />
+                    </li>
+
+                    <li class="li">Create a charging service with bucket and link the charging step to it. Once
+                        you select the <span class="ph uicontrol">Charging Step</span> while bucket creation,
+                        the <span class="ph uicontrol">Initial Value</span> field on the GUI is grayed out.
+                        This means, the value of charging step is taken as the bucket initial value.
+                            <img class="image" id="concept_azl_t1m_r4b__image_jkp_fhf_tmb" src="../images/img9yz-09126-ug01-pczza-sp1-step_charge2_default.png" height="200" width="661" />
+                    </li>
+
+                    <li class="li">Create a step bundle and associate the charging service created in previous
+                        step. <img class="image" id="concept_azl_t1m_r4b__image_kkp_fhf_tmb" src="../images/img9yz-09126-ug01-pczza-sp1-step_charge3_default.png" height="232" width="663" />
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create an account to be associated with the device.</p>
+
+                    </li>
+
+                    <li class="li">Create a device and add the step bundle as subscription. <img class="image" id="concept_azl_t1m_r4b__image_lkp_fhf_tmb" src="../images/img9yz-09126-ug01-pczza-sp1-step_charge4_default.png" height="188" width="634" />
+                        <p class="p">The device overview shows the bundle subscribed along with the initial
+                            value which is the step 1 value defined in the charging step. <a href="../images/img9yz-09126-ug01-pczza-sp1-step_charge5_default.png" class="image"><img class="image scalefit" id="concept_azl_t1m_r4b__image_mkp_fhf_tmb" src="../images/img9yz-09126-ug01-pczza-sp1-step_charge5_default.png" height="168" width="693" /></a>
+                        </p>
+</li>
+
+                </ol>
+
+            </div>
+
+            <div class="section" id="concept_azl_t1m_r4b__section_fdy_gbm_r4b"><h3 class="title sectiontitle">Example 2: Consumption from multiple steps of a step bucket (OK case)</h3>
+                
+                <p class="p">A device has only device subscriptions as shown in the following figure:</p>
+
+                <div class="fig fignone" id="concept_azl_t1m_r4b__fig_wgc_3hf_tmb">
+                    <img class="image break" id="concept_azl_t1m_r4b__image_xgc_3hf_tmb" src="../images/img9yz-09126-ug01-pczza-sp1-step_device_default.png" />
+                </div>
+
+                <p class="p">As shown in the preceding figure, the charging services are configured as
+                    follows:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_ygc_3hf_tmb">
+                    <li class="li">
+                        <p class="p">CS1 (Bucket1) = 100 Byte</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS2 (Bucket2) = 100 Byte (3 steps are configured as 100, 100, 100)</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS3 (Bucket3) = 100 Byte</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">
+                    <span class="ph uicontrol">First RSU is 200 bytes</span>
+                </p>
+
+                <p class="p">The reservation is done in the following manner:</p>
+
+                <div class="fig fignone" id="concept_azl_t1m_r4b__fig_zgc_3hf_tmb">
+                    <pre class="pre codeblock"><code>Bucket 1             -100
+Bucket 2(Step-1)     -100
+Bucket 3             -0</code></pre>
+                </div>
+
+                <p class="p">The bucket values are as follows:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_ahc_3hf_tmb">
+                    <li class="li">
+                        <p class="p">CS1 (Bucket 1) = 0</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS2 (Step-1) = 0</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS3 (Bucket 3) = 100</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">
+                    <span class="ph uicontrol">Second RSU is 300 bytes</span>
+                </p>
+
+                <p class="p">The reservation is done in the following manner:</p>
+
+                <div class="fig fignone" id="concept_azl_t1m_r4b__fig_bhc_3hf_tmb">
+                    <pre class="pre codeblock"><code>Bucket 3             -100
+Bucket 2(Step-2)     -100
+Bucket 2(Step-3)     -100</code></pre>
+                </div>
+
+                <p class="p">The bucket values are as follows:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_chc_3hf_tmb">
+                    <li class="li">
+                        <p class="p">CS1 (Bucket 1) = 0</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS2 (Step-2, Step-3) = 0</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS3 (Bucket 3) = 0</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">In the same request, consumption can be done from multiple steps of a Step Bucket
+                    if in between there was no consumption from any other bucket. In the current
+                    case, first 100 bytes were consumed from Bucket 3 and then 200 bytes from
+                    Bucket2.</p>
+
+                <p class="p">In this case, the <em class="ph i">RATING RESULT</em> is <var class="keyword varname">OK</var>.</p>
+
+            </div>
+
+            <div class="section" id="concept_azl_t1m_r4b__section_nwl_2bm_r4b"><h3 class="title sectiontitle">Example 3: Consumption from multiple steps of a step bucket (POK
+                    case)</h3>
+                
+                <p class="p">A device has both device and group subscriptions as shown in the following
+                    figure. Subscription Index is set as DEVICE_FIRST.</p>
+
+                <div class="fig fignone" id="concept_azl_t1m_r4b__fig_xcd_4hf_tmb">
+                    <img class="image break" id="concept_azl_t1m_r4b__image_ycd_4hf_tmb" src="../images/img9yz-09126-ug01-pczza-sp1-step_device_group_pok_default.png" />
+                </div>
+
+                <p class="p">Device subscription has three subscriptions as follows:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_zcd_4hf_tmb">
+                    <li class="li">
+                        <p class="p">CS1 (Bucket1) = 100 Byte</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS2 (Step Bucket2) = 100 Byte (3 steps configured as 100, 100, 100)</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS3 (Bucket3) = 100 Byte</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">Group subscription has three subscriptions as follows:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_add_4hf_tmb">
+                    <li class="li">
+                        <p class="p">CS4 (Bucket4) = 100 Byte</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS5 (Step Bucket5) = 100 Byte (3 steps configured as 100, 100, 100)</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS6 (Bucket6) = 100 Byte</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">
+                    <span class="ph uicontrol">RSU is 400 bytes</span>
+                </p>
+
+                <p class="p">The reservation is done in the following manner:</p>
+
+                <div class="fig fignone" id="concept_azl_t1m_r4b__fig_bdd_4hf_tmb">
+                    <pre class="pre codeblock"><code>Bucket 1             -100
+Bucket 2(Step-1)     -100
+Bucket 3             -100</code></pre>
+                </div>
+
+                <p class="p">Only 300 bytes are reserved from buckets.</p>
+
+                <p class="p">The bucket values are as follows:</p>
+
+                <p class="p">Device subscription:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_cdd_4hf_tmb">
+                    <li class="li">
+                        <p class="p">CS1 (Bucket1) = 0</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS2 (Step-1) = 0, Step-2 = 100, Step-3 = 100</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS3 (Bucket3) = 0</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">Group subscription:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_ddd_4hf_tmb">
+                    <li class="li">
+                        <p class="p">CS4 (Bucket4) = 100</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS5 (Step Bucket5) = 100 (3 steps configured as 100, 100, 100)</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS6 (Bucket6) = 100</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">In this case, the <kbd class="ph userinput">RATING RESULT</kbd> is
+                    <var class="keyword varname">POK</var>.</p>
+
+                <p class="p">In the same request, consumption cannot be done from multiple steps of a Step
+                    Bucket if in between some bytes were consumed from any other bucket.</p>
+
+            </div>
+
+            <div class="section" id="concept_azl_t1m_r4b__section_xcy_cbm_r4b"><h3 class="title sectiontitle">Example 4: Mix match device subscription</h3>
+                
+                <p class="p">This example shows that the step charge does not work for mix match cases. In
+                    this example, let us consider that a device has a mix-match subscription. For
+                    mix-match Device-Group subscription, the category order is CS1 is 1, CS2 is 2,
+                    CS3 is 3, CS4 is 4, CS5 is 5, and CS6 is 6.</p>
+
+                <p class="p">The following figure shows the mix-match device subscription:</p>
+
+                <div class="fig fignone" id="concept_azl_t1m_r4b__fig_fhg_qhf_tmb">
+                    <img class="image break" id="concept_azl_t1m_r4b__image_ghg_qhf_tmb" src="../images/img9yz-09126-ug01-pczza-sp1-step_device_group_default.png" />
+                </div>
+
+                <p class="p">First device subscription has two subscriptions as follows:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_hhg_qhf_tmb">
+                    <li class="li">
+                        <p class="p">CS1 (Bucket1) = 100 Byte</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS2 (Step Bucket2) = 100 Byte (3 steps configured as 100, 100, 100)</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">Second group subscription has two subscriptions as follows:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_ihg_qhf_tmb">
+                    <li class="li">
+                        <p class="p">CS3 (Bucket4) = 100 Byte</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS4 (Step Bucket5) = 100 Byte (3 steps configured as 100, 100, 100)</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">Third device subscription has two subscriptions as follows:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_jhg_qhf_tmb">
+                    <li class="li">
+                        <p class="p">CS5 (Bucket1) = 100 Byte</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS6 (Step Bucket2) = 100 Byte (3 steps configured as 100, 100, 100)</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">
+                    <span class="ph uicontrol">RSU is 300 bytes</span>
+                </p>
+
+                <p class="p">The reservation is done in the following manner:</p>
+
+                <div class="fig fignone" id="concept_azl_t1m_r4b__fig_khg_qhf_tmb">
+                    <pre class="pre codeblock"><code>Bucket 1             -100
+Bucket 2(Step-1)     -100
+Bucket 3             -100</code></pre>
+                </div>
+
+                <p class="p">Step charging does not work in this case. After reservation of 200 bytes from
+                    device subscription, the next reservation happens from the group subscription
+                    instead of device subscription bucket2 step-2 or device subscription
+                    bucket5.</p>
+
+                <p class="p">The bucket values are as follows:</p>
+
+                <p class="p">First Device subscription:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_lhg_qhf_tmb">
+                    <li class="li">
+                        <p class="p">CS1 (Bucket 1) = 0</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS2 (Step-1) = 0, Step-2 = 100, Step-3 = 100</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">Second Group subscription:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_mhg_qhf_tmb">
+                    <li class="li">
+                        <p class="p">CS3 (Bucket 1) = 0</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS4 (Step Bucket 5) = 100 (3 steps configured as 100, 100, 100)</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">Third Device subscription:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_nhg_qhf_tmb">
+                    <li class="li">
+                        <p class="p">CS5 (Bucket 1) = 100</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">CS6 (Step Bucket 2) = 100 (3 steps configured as 100, 100, 100)</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">In this case, the <em class="ph i">RATING RESULT</em> is <var class="keyword varname">OK</var>.</p>
+
+            </div>
+
+            <div class="section" id="concept_azl_t1m_r4b__stepup"><h3 class="title sectiontitle">Example 5: Step-up notification</h3>
+                
+                <p class="p">For step-up notification, create a threshold with the following values and attach
+                    it to a step bucket.</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_pgl_thf_tmb">
+                    <li class="li">
+                        <p class="p">
+                            <span class="ph uicontrol">Threshold value</span> = <var class="keyword varname">0 Byte</var>
+                        </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <span class="ph uicontrol">Threshold profile type</span> = <var class="keyword varname">ABSOLUTE FROM
+                                START</var>
+                        </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <span class="ph uicontrol">Reservation Threshold</span> = <var class="keyword varname">True</var>
+                        </p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">The following figure shows the threshold profile group configuration:</p>
+
+                <div class="fig fignone" id="concept_azl_t1m_r4b__fig_qgl_thf_tmb">
+                    <img class="image break" id="concept_azl_t1m_r4b__image_rgl_thf_tmb" src="../images/img9yz-09126-ug01-pczza-sp1-reservation_threshold_default.png" />
+                </div>
+
+                <p class="p">The following figure shows the threshold rule configured:</p>
+
+                <div class="fig fignone" id="concept_azl_t1m_r4b__fig_sgl_thf_tmb">
+                    <img class="image break" id="concept_azl_t1m_r4b__image_tgl_thf_tmb" src="../images/img9yz-09126-ug01-pczza-sp1-threshold_stepup_default.jpg" height="274" width="526" />
+                </div>
+
+                <p class="p">Note that the step bucket must be defined in the <span class="ph uicontrol">Charging
+                        Services</span> entity. This step bucket can be attached to a step in
+                    the <span class="ph uicontrol">Charging Step</span> entity.</p>
+
+            </div>
+
+            <div class="section" id="concept_azl_t1m_r4b__stepcommit"><h3 class="title sectiontitle">Example 6: Step up on commit (under commit scenario)</h3>
+                
+                <p class="p">Consider that an account has a balance of 100 units and has the following two
+                    bundles:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_ybj_zhf_tmb">
+                    <li class="li">
+                        <p class="p">Bundle 1 has a 1 MB normal volume bucket and</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Bundle 2 has a step-up bucket of 1 step with a step fee of 1 unit per
+                            step with unlimited option selected</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">The application preference <span class="ph uicontrol">Step-up On Commit</span> is set to
+                        <var class="keyword varname">True</var>.</p>
+
+                <p class="p">A CCR(I) arrives with an empty RSU and NCC grants units as shown in the following
+                    table. Note that the step up fee is deducted from the account only when the
+                    actual usage is committed.</p>
+
+                <table cellpadding="4" cellspacing="0" summary="" id="concept_azl_t1m_r4b__table_zbj_zhf_tmb" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /><col /><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e1696"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e1698"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e1700"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e1702">
+                                    <p class="p">Account balance</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e1708"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e1711">
+                                    <p class="p">Bundle 1</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" colspan="3" style="vertical-align:top;" id="d200597e1717">
+                                    <p class="p">Bundle 2</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e1723">
+                                    <p class="p">Current Step</p>
+
+                               </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1696 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1698 ">USU</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1700 ">GSU</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1702 ">Without Reservation</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1708 ">With Reservation</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1711 ">Pass0-Bucket1</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">Pass0-Bucket2</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">Pass1-Stepbucket</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1723 "> </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1696 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1698 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1700 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1702 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1708 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1711 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">Initial value</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">Current value</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1723 "> </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1696 ">Before call</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1698 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1700 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1702 ">100</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1708 ">100</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1711 ">1 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1723 ">1</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1696 ">CCR(I)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1698 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1700 ">5 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1702 ">96</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1708 ">100</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1711 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">4 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1723 ">1</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1696 ">CCR(U)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1698 ">2.2 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1700 ">5 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1702 ">93</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1708 ">98</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1711 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">7 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">0.8 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1723 ">3</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1696 ">CCR(T)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1698 ">2.1 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1700 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1702 ">96</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1708 ">96</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1711 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">4 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1717 ">0.70 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1723 ">5</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+            <div class="section" id="concept_azl_t1m_r4b__section_t1v_fh5_smb"><h3 class="title sectiontitle">Example 7: Step up on commit (custom behavior)</h3>
+                
+                <p class="p">Consider that the step charging from step buckets is configured with steps and
+                    step fees in Pass 0 and step-up is configured to be done at commit. The <strong class="ph b">Use
+                        All Steps First</strong> application preference is set to
+                    <var class="keyword varname">true</var>. The account has a balance of 100 units and has the
+                    following bundles:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_jzx_135_smb">
+                    <li class="li">Bundle 1 has a normal bucket without steps </li>
+
+                    <li class="li">Bundle 2 has a step-bucket with step size of 4 MB, 7 MB, and 5 MB, step fee
+                        is 2 units for second step, 1 unit for third step</li>
+
+                    <li class="li">Bundle 3 has a normal bucket without steps</li>
+
+                </ul>
+
+                <table cellpadding="4" cellspacing="0" summary="" id="concept_azl_t1m_r4b__table_xyy_gj5_smb" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /><col /><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e1983"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e1985"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e1987"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e1989">
+                                    <p class="p">Account balance</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e1995"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e1998">
+                                    <p class="p">Bundle 1</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" colspan="3" style="vertical-align:top;" id="d200597e2004">
+                                    <p class="p">Bundle 2</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e2010">
+                                    <p class="p">Bundle 3</p>
+
+                               </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1983 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1985 ">USU</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1987 ">GSU</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1989 ">Without Reservation</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1995 ">With Reservation</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1998 ">Bucket 1</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 "> </td>
+
+                                <td class="entry cellrowborder" colspan="2" style="vertical-align:top;" headers="d200597e2004 ">Step Bucket</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2010 ">Bucket 3</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1983 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1985 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1987 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1989 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1995 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1998 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">Initial value</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">Current value</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">Current Step</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2010 "> </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1983 ">Before call</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1985 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1987 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1989 ">100</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1995 ">100</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1998 ">1 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">4 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">4 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">1</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2010 ">10 MB</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1983 ">CCR(I)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1985 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1987 ">5 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1989 ">100</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1995 ">100</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1998 ">0 MB (1 MB is reserved)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">4 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">0 MB (4 MB is reserved)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">1</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2010 ">10 MB</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1983 ">CCR(U1)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1985 ">5 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1987 ">5 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1989 ">98</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1995 ">100</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1998 ">0 MB (1 MB is commited)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">11 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">2 MB (4 MB is committed + 5 MB is reserved)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">1</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2010 ">10 MB</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1983 ">CCR(U2)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1985 ">5 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1987 ">5 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1989 ">97</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1995 ">98</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1998 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">16 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">2 MB (5 MB is committed + 5 MB is reserved)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">2</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2010 ">10 MB</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1983 ">CCR(U3)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1985 ">5 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1987 ">5 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1989 ">97</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1995 ">97</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1998 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">16 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">0 MB (5 MB is commited + 2 MB is reserved)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">3</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2010 ">7 MB (3 MB is reserved)</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1983 ">CCR(T)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1985 ">5 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1987 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1989 ">97</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1995 ">97</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e1998 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">16 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">0 MB (2 MB is commited)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2004 ">3</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2010 ">7 MB (3 MB is committed)</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+            <div class="section" id="concept_azl_t1m_r4b__section_m1t_yl5_smb"><h3 class="title sectiontitle">Example 8: Step up on reservation (custom behavior)</h3>
+                
+                <p class="p">Consider that the step charging from step buckets is configured with steps and
+                    step fees in Pass 0 and step-up is configured to be done at reservation. The
+                        <strong class="ph b">Use All Steps First</strong> application preference is set to
+                        <var class="keyword varname">true</var>. The account has a balance of 100 units and has the
+                    following bundles:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_n1t_yl5_smb">
+                    <li class="li">Bundle 1 has a normal bucket without steps </li>
+
+                    <li class="li">Bundle 2 has a step-bucket with step size of 4 MB, 7 MB, and 5 MB, step fee
+                        is 2 units for second step, 1 unit for third step</li>
+
+                    <li class="li">Bundle 3 has a normal bucket without steps </li>
+
+                </ul>
+
+                <table cellpadding="4" cellspacing="0" summary="" id="concept_azl_t1m_r4b__table_o1t_yl5_smb" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /><col /><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e2337"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e2339"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e2341"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e2343">
+                                    <p class="p">Account balance</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e2349"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e2352">
+                                    <p class="p">Bundle 1</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" colspan="3" style="vertical-align:top;" id="d200597e2358">
+                                    <p class="p">Bundle 2</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e2364">
+                                    <p class="p">Bundle 3</p>
+
+                               </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2337 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2339 ">USU</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2341 ">GSU</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2343 ">Without Reservation</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2349 ">With Reservation</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2352 ">Bucket 1</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 "> </td>
+
+                                <td class="entry cellrowborder" colspan="2" style="vertical-align:top;" headers="d200597e2358 ">Step Bucket</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2364 ">Bucket 3</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2337 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2339 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2341 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2343 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2349 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2352 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">Initial value</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">Current value</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">Current Step</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2364 "> </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2337 ">Before call</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2339 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2341 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2343 ">100</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2349 ">100</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2352 ">1 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">4 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">4 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">1</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2364 ">10 MB</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2337 ">CCR(I)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2339 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2341 ">7 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2343 ">98</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2349 ">98</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2352 ">0 MB (1 MB is reserved)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">11 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">5 MB (6 MB is reserved)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">2</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2364 ">10 MB</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2337 ">CCR(U1)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2339 ">5 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2341 ">7 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2343 ">98</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2349 ">98</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2352 ">0 MB (1 MB is commited)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">11 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">0 MB (4 MB is committed + 7 MB is reserved)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">2</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2364 ">10 MB</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2337 ">CCR(U2)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2339 ">5 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2341 ">7 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2343 ">97</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2349 ">97</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2352 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">16 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">0 MB (5 MB is committed + 7 MB is reserved)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">3</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2364 ">10 MB</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2337 ">CCR(U3)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2339 ">5 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2341 ">7 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2343 ">97</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2349 ">97</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2352 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">16 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">0 MB (5 MB is commited + 2 MB is reserved)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">3</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2364 ">5 MB (5 MB is reserved)</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2337 ">CCR(T)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2339 ">5 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2341 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2343 ">97</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2349 ">97</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2352 ">0 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">16 MB</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">0 MB (2 MB is commited)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2358 ">3</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2364 ">7 MB (3 MB is committed)</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+            <div class="section" id="concept_azl_t1m_r4b__section_axm_nxh_kyb"><h3 class="title sectiontitle">Step-up with threshold per step</h3>
+                
+                <p class="p">The following example shows how to configure step-up for each step and send
+                    notification for the following thresholds:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_ivl_vyh_kyb">
+                    <li class="li">usage of every 1 GB</li>
+
+                    <li class="li">usage of every 800 MB</li>
+
+                    <li class="li">once allowance limit is exhausted</li>
+
+                </ul>
+
+                <p class="p">Configuration:</p>
+
+                <p class="p">Configure <em class="ph i">Threshold profile group</em> as follows:</p>
+
+                <ul class="ul" id="concept_azl_t1m_r4b__ul_cf4_hg3_kyb">
+                    <li class="li">Name: P_TPG</li>
+
+                    <li class="li">Applicable to: Allowances and metering</li>
+
+                    <li class="li">Unit type: Data</li>
+
+                    <li class="li">Profiles<table cellpadding="4" cellspacing="0" summary="" id="concept_azl_t1m_r4b__table_tgw_nc3_kyb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /></colgroup><thead class="thead" style="text-align:left;">
+                                    <tr class="row">
+                                        <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e2698"> </th>
+
+                                        <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e2700">Threshold type</th>
+
+                                        <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e2703">Name</th>
+
+                                        <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e2706">Value</th>
+
+                                        <th class="entry cellrowborder" style="vertical-align:top;" id="d200597e2709">Rule</th>
+
+                                    </tr>
+
+                                </thead>
+<tbody class="tbody">
+                                    <tr class="row">
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2698 ">Profile 1</td>
+
+                                        <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d200597e2700 ">Percentage</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2703 ">0PRCT</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2706 ">0</td>
+
+                                        <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d200597e2709 ">NOTIFICATION.Notification-Continue (
+                                            "FlexibleNotification", NotificationPolicy_ALWAYS_SEND )
+                                        </td>
+
+                                    </tr>
+
+                                    <tr class="row">
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2698 ">Profile 2</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2703 ">80PRCT</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2706 ">80</td>
+
+                                    </tr>
+
+                                    <tr class="row">
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2698 ">Profile 3</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2703 ">100PRCT</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d200597e2706 ">100</td>
+
+                                    </tr>
+
+                                </tbody>
+</table>
+</li>
+
+                </ul>
+
+                <p class="p">Configure a <em class="ph i">Tiered allowance</em> with threshold profile per step as shown in
+                    the following figure:</p>
+
+                <div class="fig fignone" id="concept_azl_t1m_r4b__fig_wm4_k13_kyb"><span class="figcap"><span class="fig--title-label">Figure: </span>Tiered allowance with threshold profile per step</span>
+                    
+                    <a href="../images/step_bkt_notif_1.png" class="image"><img class="image break scalefit" id="concept_azl_t1m_r4b__image_yh5_n13_kyb" src="../images/step_bkt_notif_1.png" /></a>
+                </div>
+
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Product related REST API calls" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="product_related_rest_api_calls" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Product related REST API calls</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="product_related_rest_api_calls">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Product related REST API calls</h1>
+<div class="body conbody">
+        <div class="section" id="product_related_rest_api_calls__section_z3v_khb_54b"><h2 class="title sectiontitle">Create product (project)</h2>
+            
+            <p class="p">PATH: <code class="ph codeph">api/project/</code></p>
+
+            <p class="p">METHOD: <code class="ph codeph">POST</code></p>
+
+            <p class="p"><strong class="ph b">Example:</strong></p>
+
+            <pre class="pre codeblock"><code>POST
+https://xxx.xxx.xxx.xxx/cctf/api/project/
+request body:
+{
+  "name": "TEST"
+}
+response body:
+{
+  "res": 0,
+  "resMsg": "Saved Successfully",
+  "obj": {
+    "id": 1,
+    "name": "TEST"
+  }
+}</code></pre>
+        </div>
+
+        <div class="section" id="product_related_rest_api_calls__section_ghp_4hb_54b"><h2 class="title sectiontitle">List the products (projects)</h2>
+            
+            <p class="p">PATH: <code class="ph codeph">api/project/{product ID}/instance/</code></p>
+
+            <p class="p">METHOD: <code class="ph codeph">POST</code></p>
+
+            <p class="p"><strong class="ph b">Example:</strong></p>
+
+            <pre class="pre codeblock"><code>POST
+https://xxx.xxx.xxx.xxx/cctf/api/project/1/instance/
+request body:
+{
+  "lab": {
+    "name": "robot",
+    "ip": "127.0.0.1"
+  },
+  "package": {
+    "name": "robot",
+    "url": "http://csfci.ih.lucent.com/~dickc/cctfTPs/demoRobotDashA.tgz",
+    "dockerimage": "csf-docker-candidates.repo.lab.pl.alcatel-lucent.com/robot:1.0.0-20201014"
+  },
+  "registry": {
+    "docker_server": "",
+    "username": "",
+    "password": ""
+  }
+}
+response body:
+{
+  "res": 0,
+  "resMsg": "Analysising the test package, please wait...",
+  "obj": {
+    "id": 5,
+    "name": "robot",
+    "user": 1,
+    "product": 1,
+    "description": "",
+    "status": "inprogress",
+    "contactinfo": "",
+    "ip": "127.0.0.1",
+    "ndapSutId": "0",
+    "createtime": "2020-10-16T07:25:47.160828Z",
+    "package": null
+  }
+}</code></pre>
+        </div>
+
+        <div class="section" id="product_related_rest_api_calls__section_gx2_shb_54b"><h2 class="title sectiontitle">List the test packages with product (project) ID</h2>
+            
+            <p class="p">PATH: <code class="ph codeph">api/project/{product ID}/instance/</code></p>
+
+            <p class="p">METHOD: <code class="ph codeph">GET</code></p>
+
+            <p class="p"><strong class="ph b">Example:</strong></p>
+
+            <pre class="pre codeblock"><code>GET
+https://xxx.xxx.xxx.xxx/cctf/api/project/1/instance/
+response body:
+{
+  "res": 0,
+  "resMsg": "Data Response Succeeds",
+  "obj": [
+    {
+      "id": 1,
+      "name": "radish",
+      "user": 1,
+      "product": 1,
+      "description": "",
+      "status": "success",
+      "contactinfo": "",
+      "ip": "127.0.0.1",
+      "ndapSutId": "0",
+      "createtime": "2020-10-16T00:59:59.344184Z",
+      "package": {
+        "id": 1,
+        "name": "radish",
+        "tfflag": "radish",
+        "arg": "",
+        "url": "/usr/src/html/testpackage/lab_directory_1/cctf_demo_phI.tgz",
+        "dockerimage": "csf-docker-inprogress.repo.lab.pl.alcatel-lucent.com/radish:1.0.0-20201014",
+        "directory": "/usr/src/html/testpackage/lab_directory_1/source/cctf_demo_phI/",
+        "lab": 1,
+        "date": "2020-10-16T00:59:59.835819Z",
+        "yang": false,
+        "preExecutionHook": false,
+        "postExecutionHook": false,
+        "showtype": "normal",
+        "description": "",
+        "contactinfo": "",
+        "tms": null,
+        "ndapPackageId": 0
+      }
+    },
+    {
+      "id": 2,
+      "name": "robot",
+      "user": 1,
+      "product": 1,
+      "description": "",
+      "status": "success",
+      "contactinfo": "",
+      "ip": "127.0.0.1",
+      "ndapSutId": "0",
+      "createtime": "2020-10-16T01:07:41.396176Z",
+      "package": {
+        "id": 2,
+        "name": "robot",
+        "tfflag": "robot",
+        "arg": "-e AAA",
+        "url": "/usr/src/html/testpackage/lab_directory_2/demoRobotDashA.tgz",
+        "dockerimage": "csf-docker-candidates.repo.lab.pl.alcatel-lucent.com/robot:1.0.0-20201014",
+        "directory": "/usr/src/html/testpackage/lab_directory_2/source/demoRobot/",
+        "lab": 2,
+        "date": "2020-10-16T01:07:41.533964Z",
+        "yang": false,
+        "preExecutionHook": false,
+        "postExecutionHook": false,
+        "showtype": "normal",
+        "description": "",
+        "contactinfo": "",
+        "tms": null,
+        "ndapPackageId": 0
+      }
+    }
+  ]
+}</code></pre>
+        </div>
+
+        <div class="section" id="product_related_rest_api_calls__section_nvx_vhb_54b"><h2 class="title sectiontitle">Force delete product (project)</h2>
+            
+            <p class="p">PATH: <code class="ph codeph">api/project/{product ID}/?force_delete</code></p>
+
+            <p class="p">METHOD: <code class="ph codeph">DELETE</code></p>
+
+            <p class="p"><strong class="ph b">Example:</strong></p>
+
+            <pre class="pre codeblock"><code>DELETE
+https://xxx.xxx.xxx.xxx/cctf/api/project/2/?force_delete
+response body:
+{
+  "res": 0,
+  "resMsg": "Deleted Successfully",
+  "obj": ""
+}</code></pre>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>DevOps Guide • P556766-DN1000055058-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

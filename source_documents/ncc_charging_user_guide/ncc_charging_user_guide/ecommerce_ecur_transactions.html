@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="eCommerce ECUR transactions" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="ecommerce_ecur_transactions" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>eCommerce ECUR transactions</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="ecommerce_ecur_transactions">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">eCommerce ECUR transactions</h1>
+<div class="body conbody">
+        <p class="p"><strong class="ph b">CCA-I rejection due to insufficient balance/bucket</strong></p>
+
+        <p class="p">In case of eCommerce ECUR transactions (Service-Context-Id="32270@3gpp.org" AND
+            "Service-Identifier=ANY ("4408644","4408643") ), if there is insufficient credit
+            (Balance+Cost Bucket) to cover the entire CCR-I Requested-Service-Units, the request is
+            rejected with Result Code 4012 "Diameter Credit Limit Reached". </p>
+
+        <p class="p"><strong class="ph b">Example: Call rejection due to insufficient credit</strong></p>
+
+        <p class="p">NCC receives a eCommerce ECUR CCA-I request. The CCA-I RSU is higher than the available
+            balance + cost bucket. The request is rejected with result code 4012 <strong class="ph b">Diameter Credit
+                Limit Reached</strong>.</p>
+
+        <div class="p">
+            
+            <a href="../images/call_rejection.png" class="image"><img class="image break scalefit" id="ecommerce_ecur_transactions__image_ckl_ksw_v4b" src="../images/call_rejection.png" /></a>
+        </div>
+
+        <p class="p"><strong class="ph b">Modification to NCC logic to reject all types of Diameter calls</strong></p>
+
+        <p class="p">For scenarios where a CCR-t is received without a previous CCR-I, then they are only
+            allowed for eCommerce ECUR transactions. When the application preference <strong class="ph b">New Call
+                Start in Update or Terminate</strong> is enabled, uncorrelated CCR-U/CCR-t are allowed for
+            all types of Diameter calls. Operators can limit this behavior to allow  eCommerce ECUR
+            transactions only. </p>
+
+        <p class="p">See the following example: </p>
+
+        <div class="p">
+            <a href="../images/uncorrelated.png" class="image"><img class="image break scalefit" id="ecommerce_ecur_transactions__image_xhh_3tw_v4b" src="../images/uncorrelated.png" /></a>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

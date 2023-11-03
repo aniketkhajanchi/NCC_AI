@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Subscription activation date" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e193419" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Subscription activation date</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e193419">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Subscription activation date </h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">This feature allows you to send the start date of the bundle subscription in the provisioning request so that the subscription can be activated at a future date. Operators can create a subscription for device or group with subscription activation date in future. Subscription is available for use once the activation date is reached.</p>
+
+<p class="p">For example, a user purchases an offer on November 20, 2018 but it is not activated for charging purpose until December 1, 2018 at 0:00.</p>
+
+</div>
+
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_x3r_lkl_r4b"><h2 class="title topictitle2" id="ariaid-title2">Configuration</h2>
+<div class="body conbody">
+            <div class="section" id="concept_x3r_lkl_r4b__section_r14_mkl_r4b"><h3 class="title sectiontitle">Configuring a subscription activation date</h3>
+                
+                <p class="p">An optional parameter <span class="ph uicontrol">activationTime</span> in subscription is
+                    available in the SM GUI, REST API, or SOAP API of the subscription request. The
+                        <span class="ph uicontrol">activationTime</span> parameter includes both date and time
+                    information.</p>
+
+                <ul class="ul" id="concept_x3r_lkl_r4b__ul_s14_mkl_r4b">
+                    <li class="li">
+                        <p class="p">If the <span class="ph uicontrol">activationTime</span> parameter is in past, then a
+                            subscription or bundle having a periodic lifecycle attached to a device
+                            or group is added depending on the value of the system parameter flag
+                            named as <span class="ph uicontrol">Max Past LifeCycle Trigger Count</span>. For
+                            more information on this flag, refer to section <em class="ph i">Managed Element
+                                application preferences</em> in the <em class="ph i">Global Configuration
+                            Guide</em>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">If the <span class="ph uicontrol">activationTime</span> parameter is configured,
+                            then the activation of subscription is considered accordingly.</p>
+
+                    </li>
+
+                </ul>
+
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> <p class="p">Consider the following assumptions:</p>
+
+                    <ul class="ul" id="concept_x3r_lkl_r4b__ul_t14_mkl_r4b">
+                        <li class="li">
+                            <p class="p">The subscription end time is calculated based on the timezone
+                                configured in an account.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">The creation time is set to the current time, that is <em class="ph i">Now</em> even
+                                when the bundle activation date or bundle activation time is in
+                                past.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">No validity time is considered while provisioning.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">The entity lifecycle (ELC) changes as per the past activation date is
+                                not yet supported. As defined, the entity lifecycle is always driven
+                                by events and periodic lifecycle is always driven by passage of
+                                time, which means for periodic lifecycle, we have a fixed periodic
+                                length which does not change for many lifecycles. There is no fixed
+                                length for entity lifecycle. Therefore, the ELC validity time is
+                                always calculated from current time, that is <em class="ph i">Now</em>.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Prorate is not supported for past activation time</p>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Steps</strong></p>
+
+                    <p class="p">Following are the steps to configure the subscription activation date:</p>
+
+                    <ol class="ol" id="concept_x3r_lkl_r4b__ol_u14_mkl_r4b">
+                        <li class="li">
+                            <p class="p">Configure a lifecycle transition with a timer event with base field
+                                as <span class="ph uicontrol">activationTime</span> that makes a transition
+                                from barred state to active state. If you have entered this date in
+                                the subscription request, a timer based event is created in TEM with
+                                the time as mentioned in <span class="ph uicontrol">activationTime</span>. When
+                                the future date arrives, the subscription is moved to
+                                    <var class="keyword varname">Active</var> state, that is, unbarred state.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">In addition to the preceding configuration, the bundle lifecycle must
+                                also have a transition. That is, after subscription creation, the
+                                subscription entity moves to a barred state so that it is not used
+                                before its <var class="keyword varname">Active</var> state is reached.</p>
+
+                        </li>
+
+                    </ol>
+
+                    <p class="p">Prorate of subscription is considered when it is activated on the date
+                        provided in <span class="ph uicontrol">activationTime</span>.</p>
+
+                </div>
+            </div>
+
+            <div class="section" id="concept_x3r_lkl_r4b__section_e1q_pkl_r4b"><h3 class="title sectiontitle">Configuring a subscription periodic lifecycle</h3>
+                
+                <p class="p">Configure the following data:</p>
+
+                <ol class="ol" id="concept_x3r_lkl_r4b__ol_f1q_pkl_r4b">
+                    <li class="li">
+                        <p class="p">Configure a subscription periodic lifecycle with state --&gt;
+                                <var class="keyword varname">Begin</var> (<kbd class="ph userinput">Initial Flag</kbd>
+                            checked) with a <kbd class="ph userinput">Start Cycle Event</kbd> or timer of
+                            zero seconds. </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The moment the <kbd class="ph userinput">Start Cycle Event</kbd> comes from entity
+                            lifecycle of subscription or zero seconds expires, periodic lifecycle of
+                            subscription moves to a new state <var class="keyword varname">PreActive</var> with
+                                <var class="keyword varname">Barring</var> state checked. This makes sure that the
+                            subscription is not used when created.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The <kbd class="ph userinput">PreActive</kbd> state has a timer configured whose
+                                <span class="ph uicontrol">Base Date Field</span> is set to <var class="keyword varname">Activation
+                                Time</var>. Since this is a reference to the
+                                <span class="ph uicontrol">activationTime</span>, once this date is reached,
+                            the periodic lifecycle of subscription moves to a new state
+                                <var class="keyword varname">Active</var> with the <em class="ph i">Barring</em> flag unchecked.
+                            The subscription can be used and further configuration such as
+                                <kbd class="ph userinput">Repeat Cycle Event</kbd> can be done as needed.</p>
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

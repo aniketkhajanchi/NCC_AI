@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Nchf_ConvergedCharging NEF (N44) interface" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="n44" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Nchf_ConvergedCharging NEF (N44) interface</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="n44">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Nchf_ConvergedCharging NEF (N44) interface</h1>
+<div class="body conbody">
+        <div class="section" id="n44__section_lzh_sd1_zsb"><h2 class="title sectiontitle">Post Event Charging over HTTP from NEF</h2>
+            
+            <p class="p">Post Event Charging (PEC) generates the CDR after the call has occurred. It does not
+                perform rating and charging.</p>
+
+            <p class="p"><strong class="ph b">Identification of 5G PEC call</strong></p>
+
+            <ul class="ul" id="n44__ul_mzc_cjn_vrb">
+                <li class="li">If the request has the <em class="ph i">OneTimeEvent</em> as <em class="ph i">true</em>, and
+                        <em class="ph i">OneTimeEventType</em> as <var class="keyword varname">PEC</var>, then it is a PEC
+                    call.</li>
+
+                <li class="li">NCC supports PEC calls for both known and unknown devices.</li>
+
+                <li class="li">For a known or unknown device, success PEC CDR is generated with NEF Charging
+                    HTTP parameter (<em class="ph i">NEFChargingInformation</em>). The CDR tag for it is
+                        <var class="keyword varname">exposureFunctionAPIInformation</var>.</li>
+
+            </ul>
+
+            <p class="p"><strong class="ph b">Important points</strong></p>
+
+            <ul class="ul" id="n44__ul_qrr_scx_vrb">
+                <li class="li">Rules are not supported for a PEC call except for the Inbound Roamer Agreement
+                    scenario. For details on Inbound Roamer Agreement scenario, refer <a class="xref" href="offl_cdr_gen_for_inb_roam.html#offline_cdr_generation_for_inbound_roaming__table_f3z_rkn_p4b">Support for Inbound Roaming</a>.</li>
+
+                <li class="li">When the Inbound Roamer agreement is not valid for an unknown device, an error
+                    PEC CDR is generated with the error code 403. This CDR includes information
+                    about the NEF Charging HTTP parameter (<em class="ph i">NefChargingInfo</em>).</li>
+
+            </ul>
+
+        </div>
+
+        <div class="section" id="n44__section_mwz_5vm_vrb"><h2 class="title sectiontitle">IEC (without MUU) over HTTP from NEF</h2>
+            
+            <p class="p">IEC provides rating, credit checks, balance management, and CDR generation. The NEF
+                charging events can be charged with an IEC call.</p>
+
+            <p class="p"><strong class="ph b">Identification of 5G IEC call</strong></p>
+
+            <div class="p">
+                <ul class="ul" id="n44__ul_mvf_x3n_vrb">
+                    <li class="li">
+                        <p class="p">If the request has <em class="ph i">OneTimeEvent</em> as <var class="keyword varname">true</var> and
+                                <em class="ph i">OneTimeEventType</em> as IEC, then it is considered as an IEC
+                            call.</p>
+
+                    </li>
+
+                    <li class="li">The request consists of the <em class="ph i">NEFChargingInformation</em>.
+                        
+                    </li>
+
+                    <li class="li">When MUU is not received in the request, a dummy MUU is created in the
+                        request message.</li>
+
+                    <li class="li">The dummy MUU is set to a pre-configured rating group whose information is
+                        taken from the application preference <span class="ph uicontrol">Default NEF Charging
+                            RG</span>.</li>
+
+                    <li class="li"><span class="ph uicontrol">Default NEF Charging RG</span> is a string which consists a
+                        single rating group value. The default value for <span class="ph uicontrol">Default NEF
+                            Charging RG</span> is [NA]. The value corresponds to the
+                            <em class="ph i">NefChargingInformation</em>. </li>
+
+                    <li class="li">If the value for a rating group is <var class="keyword varname">NA</var>, then the
+                        information corresponding to that value is not processed in the call even if
+                        it is present in the request. For example, if the request message is has
+                            <em class="ph i">NefChargingInformation</em>, but the value of <span class="ph uicontrol">Default NEF
+                            Charging RG</span> is [NA], then the <em class="ph i">NefChargingInformation</em>
+                        is not processed in the call. </li>
+
+                    <li class="li">The buckets for charging the events should be of type <em class="ph i">unit</em>. <div class="note" id="n44__note_wdw_jzm_vrb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If the bucket type is not <em class="ph i">unit</em>, then the
+                            rating failed error occurs.</div>
+</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="section" id="n44__section_bv4_nwz_ysb"><h2 class="title sectiontitle">IEC over HTTP from NEF</h2>
+            
+            <p class="p"><strong class="ph b">Decentralized</strong></p>
+
+            <p class="p">Decentralized calls work like normal NCHF (5G) charging calls.</p>
+
+            <p class="p"><strong class="ph b">Centralized</strong></p>
+
+            <p class="p">Requests received without RSU or with empty RSU are treated as centralized calls.</p>
+
+            <p class="p">In centralized 5G calls for NEF node, the slice size is charged only in
+                    <var class="keyword varname">SERVICE_SPECIFIC</var> units (from the corresponding charging
+                services) if the requests consist of <var class="keyword varname">chargingInformation</var>. NEF
+                specific rules must be provided in slicing profile.</p>
+
+            <div class="fig fignone" id="n44__fig_eqq_g31_zsb">
+                <img class="image break" id="n44__image_xpq_nl1_zsb" src="../images/5g_ecur_nef.png" />
+            </div>
+
+            <p class="p">For 5G calls, allocation of units (during reservation) happen in all-or-nothing mode.
+                That is, either the entire RSU is allocated (if available from all applicable
+                resources), or user gets nothing (if not available in all applicable resources) and
+                the error code <em class="ph i">Not Enough Credit</em> is returned.</p>
+
+            <p class="p">For IEC NEF Calls, slice reduction logic works similar to the SMS (Diameter)
+                call.</p>
+
+        </div>
+
+        <div class="section" id="n44__section_pml_1dl_zsb"><h2 class="title sectiontitle">Single CDR</h2>
+            
+            <div class="p">If <var class="keyword varname">Enable-Single-CDR</var> is present in
+                    <var class="keyword varname">NCHF_CHARGING_CALL_ESTABLISHMENT</var> then a single CDR is
+                generated on call termination. For this, single CDR must be configured in rules as
+                    follows:<div class="fig fignone" id="n44__fig_a1n_mkr_vsb">
+                    <img class="image break" id="n44__image_hpv_3m5_cyb" height="192" src="../images/NCHF_Call_est_2.PNG" width="576" />
+                </div>
+</div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

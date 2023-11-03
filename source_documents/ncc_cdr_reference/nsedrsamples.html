@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Sample NS EDRs" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="untitled1" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Sample NS EDRs</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="untitled1">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Sample NS EDRs</h1>
+<div class="body conbody">
+        <div class="section">
+            <p class="p">This section provides sample EDRs for success and failure of notification
+                delivery.</p>
+
+        </div>
+
+        <div class="section" id="untitled1__section_qxh_cls_ymb"><h2 class="title sectiontitle">Successful delivery</h2>
+            
+            <div class="fig fignone" id="untitled1__fig_yvr_qks_ymb">
+                <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       475
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                         Tag                       Data
+RecordType                   0            NotificationEvent
+serviceProvider              1                        MVNO1
+messageId                    1             5074841493349182
+recipientId                  1         http://10.75.52.110:
+                    9999/spb/generichttpserver/offerlogging
+serverInstance               1                      PRIMARY
+messageContent               1       This is a test message
+recipientServer              1                         Rest
+sentTime                     1                1596699948330
+channel                      1                         REST
+notificationType             1                     FAILURES
+msgId                        1                       Alaska
+e164                         1                   1234567890
+childDeviceId                1                          D11
+entityId                     1                       Device
+notificationTemplateId       1                     Template
+notificationVariable         1                 CC:45,CB:567
+notificationDeliveryResult   1                      SUCCESS
+RecordTimestamp              1          06/08/2020 07:45:48</code></pre>
+            </div>
+
+        </div>
+
+        <div class="section" id="untitled1__section_jz4_fls_ymb"><h2 class="title sectiontitle">Delivery failure</h2>
+            
+            <div class="fig fignone" id="untitled1__fig_jtk_gls_ymb">
+                <pre class="pre codeblock"><code>CDR length:                       533
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                         Tag                                Data
+RecordType                   0                     NotificationEvent
+serviceProvider              1                                 MVNO1
+messageId                    1                      5075167976491187
+recipientId                  1     http://10.75.52.110:9999/spb/
+                                       generichttpserver/offerlogging
+secondaryRecipientId         1     http://10.75.52.110:9998/spb/
+                                       generichttpserver/offerlogging
+messageContent               1                This is a test message
+recipientServer              1                                  Rest
+sentTime                     1                         1596700274759
+channel                      1                                  REST
+notificationType             1                              FAILURES
+entityId                     1                                Device
+notificationTemplateId       1                              Template
+notificationVariable         1                          CC:45,CB:567
+notificationDeliveryResult   1                               FAILURE
+RecordTimestamp              1                   06/08/2020 07:51:34</code></pre>
+            </div>
+
+        </div>
+
+        <div class="section" id="untitled1__section_vqx_dlx_x5b"><h2 class="title sectiontitle">Retry and Timeout samples</h2>
+            
+            <div class="p">
+                <a href="../images/retry_timeout_EDR1.png" class="image"><img class="image break scalefit" id="untitled1__image_ylm_mnx_x5b" src="../images/retry_timeout_EDR1.png" /></a>
+            </div>
+
+            <a href="../images/retry_timeout_EDR2.png" class="image"><img class="image break scalefit" id="untitled1__image_e32_qnx_x5b" src="../images/retry_timeout_EDR2.png" /></a>
+            <a href="../images/retry_timeout_EDR3.png" class="image"><img class="image break scalefit" id="untitled1__image_lwd_snx_x5b" src="../images/retry_timeout_EDR3.png" /></a>
+            <a href="../images/retry_timeout_EDR4.png" class="image"><img class="image break scalefit" id="untitled1__image_kvn_5nx_x5b" src="../images/retry_timeout_EDR4.png" /></a>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

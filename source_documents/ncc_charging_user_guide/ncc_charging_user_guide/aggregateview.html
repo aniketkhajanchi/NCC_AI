@@ -1,0 +1,936 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Aggregate View functionality" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e190258" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Aggregate View functionality</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e190258">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Aggregate View functionality</h1>
+<div class="body conbody">
+        <div class="section"><p class="p">The Aggregate View (AV) functionality provides a consolidated view of the
+                following charging entities:</p>
+<ul class="ul">
+                <li class="li">
+                    <p class="p">All available buckets of the same kind included or excluded from the charging
+                        service list and the device-group counter with cap for a shared bucket
+                        defined in a group.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">All available counter of the same kind included or excluded from the charging
+                        service list when the defined threshold for AV is reached.</p>
+
+                    <p class="p">If the resource is in a barred state, then it must not be reflecting in the
+                        AV.</p>
+
+                </li>
+
+            </ul>
+ For all the buckets or counters that have a periodic lifecycle, and are associated
+            to an AV, the execution of <em class="ph i">Reset Resource Action</em>, which resets bucket or counter
+            to its initial value, also reflects in the AV.<p class="p">The AV functionality is applicable to
+                the following charging entities:</p>
+<ul class="ul">
+                <li class="li">
+                    <p class="p">Buckets and/or counters of the same kind</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Group counters</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Device counters</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Device-group counters</p>
+
+                </li>
+
+            </ul>
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Thresholds can be defined on the aggregate value of bucket and/or counters
+                based on which the actions are performed. Note that a consolidated view is provided
+                even when no threshold is attached to an aggregate value.</div>
+</div>
+
+    </div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_ody_pwk_r4b"><h2 class="title topictitle2" id="ariaid-title2">Configuration</h2>
+<div class="body conbody">
+            <div class="section" id="concept_ody_pwk_r4b__section_qyr_rwk_r4b">
+                <p class="p">This functionality is configured based on the <span class="ph uicontrol">Aggregate
+                        Type</span> field value in the SM GUI as shown in the following
+                    figure:</p>
+
+                <div class="fig fignone" id="concept_ody_pwk_r4b__fig_ryr_rwk_r4b"><span class="figcap"><span class="fig--title-label">Figure: </span>Aggregate Type</span>
+                    
+                    <img class="image break" id="concept_ody_pwk_r4b__image_syr_rwk_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-av_default.png" height="268" width="692" />
+                </div>
+
+                <p class="p">For information to define a new AV, see the <a class="xref" href="aggre_view.html">Aggregate View</a>.</p>
+
+                <p class="p">The following tables provides information on the different values selected for
+                    the Aggregate Type field while configuring the AV functionality:</p>
+
+                <table cellpadding="4" cellspacing="0" summary="" id="concept_ody_pwk_r4b__table_ogq_24d_ymb" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:38.46153846153846%" /><col style="width:61.53846153846154%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d106477e123">
+                                    <p class="p">Aggregate Type</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d106477e129">
+                                    <p class="p">Description</p>
+
+                               </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e123 ">Charging Service</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e129 ">This option aggregates the buckets defined in an AV.
+                               </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e123 ">Charging Service and CAP</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e129 ">
+                                    <p class="p">If an AV is attached to a device, then this option aggregates
+                                        the buckets within the charging service based on charging
+                                        service list or all charging services and the cap of
+                                        device-group counter defined for shared group bucket defined
+                                        in AV with same unit type. In this case, device-group
+                                        counter is mandatory else group resources are not counted in
+                                        AV.</p>
+
+                                    <p class="p">This AV type is not applicable for group and cannot be
+                                        attached to group.</p>
+
+                               </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e123 ">Counter</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e129 ">
+                                    <p class="p">If an AV is attached to a device, then this option aggregates
+                                        the subscription, device, device-group counter, or all
+                                        counters defined in AV.</p>
+
+                                    <p class="p">For group, the device-group counters or counters within
+                                        charging service based on list are supported.</p>
+
+                               </td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+            <div class="section" id="concept_ody_pwk_r4b__section_sqt_zwk_r4b"><h3 class="title sectiontitle">Modification of AV configuration</h3>
+                
+                <p class="p">The AV configuration can be modified under the following scenarios:</p>
+
+                <ul class="ul" id="concept_ody_pwk_r4b__ul_j45_g4d_ymb">
+                    <li class="li">
+                        <p class="p">For <em class="ph i">Aggregate Type</em> set as <var class="keyword varname">Charging Service</var>:
+                            When a charging service is added or removed from AV definition.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">For <em class="ph i">Aggregate Type</em> set as <var class="keyword varname">Charging Service and
+                                CAP</var>: when a charging service is added or removed, or the
+                            counter is updated in the AV definition, or both scenarios take
+                            place.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">For <em class="ph i">Aggregate Type</em> set as <var class="keyword varname">Counter</var>: The counter
+                            type is added or removed.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">When a threshold profile group is added or removed from an AV
+                            definition.</p>
+
+                        <div class="p">
+                            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div>  When modifications are done for charging service or any other
+                                parameter in AV definition, the threshold profile group values
+                                attached with the AV definition needs to be modified accordingly (if
+                                needed).</div>
+
+                        </div>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">For better understanding on modification of AV configuration, refer to <a class="xref" href="#concept_dwg_hxk_r4b__Example">Example 5: Modification of AV configuration</a>.</p>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_qjq_cxk_r4b"><h2 class="title topictitle2" id="ariaid-title3">AV behavior</h2>
+<div class="body conbody">
+            <div class="section" id="concept_qjq_cxk_r4b__section_sr5_cxk_r4b">
+                <p class="p">The AV can be attached to a device or group. For example, if an AV is attached to
+                    a device, then the AV instance gets attached to the device and this instance
+                    accumulates the value of an applicable bucket in the device subscription or
+                    subscription, device, device-group counters:</p>
+
+                <ul class="ul" id="concept_qjq_cxk_r4b__ul_tr5_cxk_r4b">
+                    <li class="li">
+                        <p class="p">If a subscription is added to a device or group, then the AV instance
+                            accumulates values considering the new subscription with carry over
+                            buckets (if exists) for that subscription.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">If a subscription is deleted from a device or group, then the AV instance
+                            of that subscription gets updated including the carry over bucket
+                            instance (if exists) and counters for that subscription.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">If a subscription is barred, then the buckets and counters linked to that
+                            subscription are not considered for aggregation by AV.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">If a subscription is reset, then the CS bucket instances also get reset
+                            and if an account is in a new cycle, then the associated device, group,
+                            or device-group counters are reset. The charging and rating engine
+                            performs the following tasks to update the AVs accumulating the
+                            subscription:</p>
+
+                        <ul class="ul" id="concept_qjq_cxk_r4b__ul_ur5_cxk_r4b">
+                            <li class="li">
+                                <p class="p">Retrieves the AVs attached to a device or group to which the
+                                    subscription belongs to.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">Retrieves the AV instance which accumulates the charging service
+                                    before resetting each bucket instance of that charging service.
+                                    Also, fetches all the AV instances that accumulates the counters
+                                    before resetting the counter instance of that subscription.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">Updates the AVs initial, current, unused values before resetting
+                                    each bucket and counter instance.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">Resets the bucket instance and its carry over bucket instance and
+                                    counters and same applicable AV instances of that charging
+                                    service are updated with new values.</p>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The same aggregate view cannot be attached twice to
+                    a device or group. But, more than one AV can be attached to a device or a
+                    group.</div>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title4" id="concept_fbr_2xk_r4b"><h2 class="title topictitle2" id="ariaid-title4">Additional information</h2>
+<div class="body conbody">
+            <div class="section" id="concept_fbr_2xk_r4b__section_czz_2xk_r4b">
+                <p class="p">Following are some important points to note for this feature:</p>
+
+                <ul class="ul" id="concept_fbr_2xk_r4b__ul_dzz_2xk_r4b">
+                    <li class="li">
+                        <p class="p">Only the charging application type and not the policy application type is
+                            currently supported.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The usage control service is currently not supported.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">If the <span class="ph uicontrol">Aggregate Type</span> is set as <var class="keyword varname">Charging
+                                Service and CAP</var> and no device-group is selected, then all
+                            the device-group counters are considered.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">If the <span class="ph uicontrol">Aggregate Type</span> is set as
+                                <var class="keyword varname">Counter</var> and AV accumulates multiple counters that
+                            count the same consumption, then AV shows multiple consumption when
+                            usage is updated.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The counter current value update over REST is currently not
+                            supported.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">For a counter type AV in device or group or account, only the current
+                            value (with reservation) is displayed.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">For a device counter type AV, only the subscription counter, device
+                            counter, and device group counter can be aggregated.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">For a group counter type AV, only the subscription counter and group
+                            counter can be aggregated.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">A cap associated to a device-group counter with
+                                <samp class="ph systemoutput">Notification-Reject</samp>,
+                                <samp class="ph systemoutput">Notification-Stop</samp>, or
+                                <samp class="ph systemoutput">Reject</samp> action is used while calculating
+                            the <var class="keyword varname">Charging Service and CAP</var> value of the
+                                <span class="ph uicontrol">Aggregate Type</span>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">If more than one threshold is exceeded in a transaction, then only the
+                            actions defined in the latest threshold is considered.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">When AV is attached to a device or group, thresholds attached to it are
+                            evaluated as per the provisioning flow.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The AV does not suppress the individual action, such as notification and
+                            runs independently.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The <samp class="ph systemoutput">Empty Subscription</samp> action also refreshes
+                            the current balance of AV.</p>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title5" id="concept_dwg_hxk_r4b"><h2 class="title topictitle2" id="ariaid-title5">Examples</h2>
+<div class="body conbody">
+            <div class="section">
+                <p class="p">Consider the following examples for a better understanding of this feature:</p>
+
+            </div>
+
+            <div class="section" id="concept_dwg_hxk_r4b__section_yfh_3xk_r4b"><h3 class="title sectiontitle">Example 1: When an AV is created</h3>
+                
+                <p class="p"><strong class="ph b">Provisioning:</strong>
+                </p>
+
+                <ol class="ol" id="concept_dwg_hxk_r4b__ol_zfh_3xk_r4b">
+                    <li class="li">
+                        <p class="p">Configure an SMS server and define the notification text to be sent to
+                            the user.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create a notification profile.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create the lifecycles for device, account, bundle.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create two charging services <var class="keyword varname">CS1</var> and
+                                <var class="keyword varname">CS2</var> with 300 and 500 MB data buckets
+                            respectively.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create an absolute threshold for 400 MB data usage.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create a bundle and associate it with the charging service.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create an AV and attach it to the charging service and the above
+                            threshold indicating the current value of the bucket.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Link an iPhone device with the AV.</p>
+
+                    </li>
+
+                </ol>
+
+                <p class="p">The following figure shows the Aggregate View in the SM GUI:</p>
+
+                <div class="fig fignone" id="concept_dwg_hxk_r4b__fig_agh_3xk_r4b">
+                    
+                    <img class="image break" id="concept_dwg_hxk_r4b__image_bgh_3xk_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-avsmexample_default.png" height="195" width="693" />
+                </div>
+
+                <p class="p">
+                    <strong class="ph b">Result:</strong>
+                </p>
+
+                <p class="p">When the threshold is reached, a notification is sent to the user informing about
+                    the subscription usage.</p>
+
+            </div>
+
+            <div class="section" id="concept_dwg_hxk_r4b__section_ntc_jxk_r4b"><h3 class="title sectiontitle">Example 2: When a device subscription associated with an AV is reset or
+                    renewed</h3>
+                
+                <p class="p"><strong class="ph b">Provisioning:</strong>
+                </p>
+
+                <ol class="ol" id="concept_dwg_hxk_r4b__ol_otc_jxk_r4b">
+                    <li class="li">
+                        <p class="p">Attach the device subscription of an iPhone with two charging service
+                            instances <var class="keyword varname">CS1</var> and <var class="keyword varname">CS2</var> wherein;</p>
+
+                        <p class="p">CS1 has the following bucket instances:</p>
+
+                        <ul class="ul" id="concept_dwg_hxk_r4b__ul_ptc_jxk_r4b">
+                            <li class="li">
+                                <p class="p">B1 of unit type volume with initial value = 100 MB, current value
+                                    = 50 MB, and unused value = 50 MB.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">Carry-over bucket <var class="keyword varname">B1CO</var> of unit type volume
+                                    with initial value = 20 MB, current value = 10 MB, and unused
+                                    value = 10 MB.</p>
+
+                            </li>
+
+                        </ul>
+
+                        <p class="p">CS2 has the following bucket instances:</p>
+
+                        <ul class="ul" id="concept_dwg_hxk_r4b__ul_qtc_jxk_r4b">
+                            <li class="li">
+                                <p class="p">B2 of unit type volume with initial value = 100 MB, current value
+                                    = 60 MB, and unused value = 60 MB.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">Carry-over bucket <var class="keyword varname">B2CO</var> of unit type volume
+                                    with initial value = 40 MB, current value = 20 MB, and unused
+                                    value = 20 MB.</p>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create an AV instance <var class="keyword varname">AV1</var> and attach it to the
+                            iPhone.</p>
+
+                    </li>
+
+                </ol>
+
+                <p class="p">
+                    <strong class="ph b">Result:</strong>
+                </p>
+
+                <ul class="ul" id="concept_dwg_hxk_r4b__ul_rtc_jxk_r4b">
+                    <li class="li"><p class="p">Before resetting the <var class="keyword varname">B1</var> and <var class="keyword varname">B1CO</var>
+                            bucket instances, their values are deducted from AV.</p>
+
+                        <p class="p">The following figure shows the AV values for <var class="keyword varname">B1</var> and
+                                <var class="keyword varname">B1CO</var> buckets before and after subscription
+                            reset:</p>
+<img class="image" id="concept_dwg_hxk_r4b__image_stc_jxk_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-av1_default.png" />
+                    </li>
+
+                    <li class="li"><p class="p">Before resetting the <var class="keyword varname">B2</var> and <var class="keyword varname">B2CO</var>
+                            bucket instances, their values are deducted from AV.</p>
+<p class="p">The following
+                            figure shows the AV values for <var class="keyword varname">B2</var> and
+                                <var class="keyword varname">B2CO</var> buckets before and after subscription
+                            reset:</p>
+<img class="image" id="concept_dwg_hxk_r4b__image_ttc_jxk_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-av2_default.png" />
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="section" id="concept_dwg_hxk_r4b__section_kdw_jxk_r4b"><h3 class="title sectiontitle">Example 3: When AV is created for a counter associated with a group</h3>
+                
+                <p class="p"><strong class="ph b">Provisioning:</strong>
+                </p>
+
+                <div class="p">Configure a group, counter, and cap data as per the following table:<table cellpadding="4" cellspacing="0" summary="" id="concept_dwg_hxk_r4b__table_ldw_jxk_r4b" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d106477e697">
+                                        <p class="p">Group and associations</p>
+
+                                   </th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d106477e703">
+                                        <p class="p">Counter</p>
+
+                                   </th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d106477e709">
+                                        <p class="p">Cap</p>
+
+                                   </th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d106477e715">
+                                        <p class="p">Current value </p>
+
+                                   </th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d106477e721">
+                                        <p class="p">Left</p>
+
+                                   </th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e697 ">NokiaGroup</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e703 ">Counter Share</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e709 ">20 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e715 ">8 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e721 ">12 GB</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d106477e697 ">
+                                        <p class="p">Father</p>
+
+                                        <p class="p">(belongs to NokiaGroup)</p>
+
+                                   </td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e703 ">Share Counter (S1)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e709 ">5 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e715 ">3 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e721 ">2 GB</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e703 ">Counter for Home (H1)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e709 ">10 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e715 ">2 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e721 ">8 GB</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e703 ">Counter for Roaming (R1)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e709 ">2 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e715 ">1 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e721 ">1 GB</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+</div>
+
+                <p class="p">The AV for father includes <var class="keyword varname">S1</var>, <var class="keyword varname">H1</var>, and
+                        <var class="keyword varname">R1</var> with thresholds defined at 10 GB, 12 GB, 15 GB with
+                        <samp class="ph systemoutput">Send-notification</samp> action.</p>
+
+                <p class="p">
+                    <strong class="ph b">Result:</strong>
+                </p>
+
+                <p class="p">When the total current value (cost value) reaches 10 GB, 12 GB, or 15 GB, a
+                    notification is sent to the user.</p>
+
+            </div>
+
+            <div class="section" id="concept_dwg_hxk_r4b__section_h3k_kxk_r4b"><h3 class="title sectiontitle">Example 4: When an AV is created for a bucket and cap</h3>
+                
+                <p class="p"><strong class="ph b">Provisioning:</strong>
+                </p>
+
+                <div class="p">Configure the following data:<table cellpadding="4" cellspacing="0" summary="" id="concept_dwg_hxk_r4b__table_i3k_kxk_r4b" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d106477e863">
+                                        <p class="p">Family group</p>
+
+                                   </th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d106477e869">
+                                        <p class="p">Group bucket main (GB)</p>
+
+                                   </th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d106477e875">
+                                        <p class="p">25 GB</p>
+
+                                   </th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d106477e881">
+                                        <p class="p">Group Bucket CO (GB)</p>
+
+                                   </th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d106477e887">
+                                        <p class="p">10 GB</p>
+
+                                   </th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d106477e863 "> Father</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e869 ">Cap (C1)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e875 ">10 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e881 ">Remaining eligibility to use from Group</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e887 ">5 GB</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e869 ">Individual bucket main (B1)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e875 ">7 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e881 ">Current value (Initial - used - reserve)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e887 ">3 GB</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e869 ">Individual bucket CO (B1)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e875 ">3 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e881 ">Current value (Initial - used - reserve)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e887 ">2 GB</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d106477e863 "> Mother</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e869 ">Cap (C2)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e875 ">10 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e881 ">Remaining eligibility to use from Group</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e887 ">6 GB</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e869 ">Individual bucket main (B2)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e875 ">4 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e881 ">Current value (Initial - used - reserve)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e887 ">3 GB</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e869 ">Individual bucket CO (B2)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e875 ">3 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e881 ">Current value (Initial - used - reserve)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e887 ">2 GB</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d106477e863 "> Son</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e869 ">Cap (C3)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e875 ">5 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e881 ">Remaining eligibility to use from Group</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e887 ">2 GB</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e869 ">Individual bucket main (B3)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e875 ">3 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e881 ">Current value (Initial - used - reserve)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e887 ">1 GB</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e869 ">Individual bucket CO (B3)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e875 ">2 GB</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e881 ">Current value (Initial - used - reserve)</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d106477e887 ">0 GB</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+</div>
+
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> In the above scenario, if usage limit is defined for a counter, then while
+                    calculating the AV, the minimum value (cap or usage limit) is considered.</div>
+
+                <p class="p">
+                    <strong class="ph b">Result:</strong>
+                </p>
+
+                <ul class="ul" id="concept_dwg_hxk_r4b__ul_j3k_kxk_r4b">
+                    <li class="li">
+                        <p class="p">Given that the AV for father includes <var class="keyword varname">B1</var> and
+                                <var class="keyword varname">C1</var>, if threshold is defined at 80%, 50%, and 30%,
+                            then a notification is sent when the total current value reaches 16 GB,
+                            10 GB, and 6 GB.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Given that the AV for mother includes <var class="keyword varname">B2</var> and
+                                <var class="keyword varname">C2</var>, if threshold is defined at 5 GB, 2 GB, and 1
+                            GB, then a notification is sent when the total current value reaches 5
+                            GB, 2 GB, and 1 GB.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Given that the AV for son includes <var class="keyword varname">B3</var> and
+                                <var class="keyword varname">C3</var>, if threshold is defined at 80%, 50%, and 30%,
+                            then a notification is sent when the total current value reaches 8 GB, 5
+                            GB, and 3 GB.</p>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="section" id="concept_dwg_hxk_r4b__Example"><h3 class="title sectiontitle">Example 5: Modification of AV configuration</h3>
+                
+                <p class="p">This example shows that AV configuration (adding or removing CS) can be done and
+                    the changes are reflected without having to re-attach the AV to the
+                    subscriber.</p>
+
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If the ME application preference <em class="ph i">Refresh instance on definition
+                        modification</em> is set to <var class="keyword varname">AV</var> (for details on configuring
+                    ME application preferences, see <em class="ph i">Managed Elements</em> section in <em class="ph i">Global
+                        Configuration Guide</em>), then the functionality works without re-attaching
+                    the AV to the subscriber.</div>
+
+                <p class="p">AV adjusts the value when AV is of <var class="keyword varname">Charging Service</var> type and
+                    two CS and two TPG attached to it. After the initial request, if one CS and one
+                    TPG is removed from AV definition, then AvInstance refreshes on next commit or
+                    provisioning request and threshold are crossed accordingly.</p>
+
+                <p class="p"><strong class="ph b">Provisioning:</strong></p>
+
+                <ol class="ol" id="concept_dwg_hxk_r4b__ol_pjh_y1g_5mb">
+                    <li class="li">
+                        <p class="p">Create an AV definition with two CS (<var class="keyword varname">CS1</var> and
+                                <var class="keyword varname">CS2</var>) and two TPG (<var class="keyword varname">TPG1</var> and
+                                <var class="keyword varname">TPG2</var>).</p>
+
+                        <p class="p"><var class="keyword varname">TPG1</var> has a value of 100 bytes and
+                                <var class="keyword varname">TPG2</var> has 200 bytes. Both TPGs are of
+                                <var class="keyword varname">Absolute from End</var> type.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The <var class="keyword varname">CS1</var> has a bucket of 300 bytes with
+                                <var class="keyword varname">TPG1</var>; whereas, <var class="keyword varname">CS2</var> has a
+                            bucket of 1000 bytes with <var class="keyword varname">TPG1</var>.</p>
+
+                        <img class="image break" id="concept_dwg_hxk_r4b__image_avt_g2m_5mb" src="../images/cs1config.png" height="349" width="749" />
+                        
+                        <img class="image break" id="concept_dwg_hxk_r4b__image_uyq_m2m_5mb" src="../images/cs2config.png" height="366" width="742" />
+                        <p class="p">The <var class="keyword varname">TPG1</var> has a value of 100 bytes and is of
+                                <var class="keyword varname">Absolute from End</var> type.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create a device object with AV and subscription. Initially, AV value is
+                            1300.</p>
+
+                        <img class="image break" id="concept_dwg_hxk_r4b__image_gfh_bcg_5mb" src="../images/threshold1.png" height="348" width="733" />
+                        
+                        <img class="image break" id="concept_dwg_hxk_r4b__image_mrx_ccg_5mb" src="../images/threshold2.png" height="364" width="766" />
+                        
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create the following AV:</p>
+
+                        <img class="image break" id="concept_dwg_hxk_r4b__image_rtz_4fm_5mb" src="../images/avconfiguration1.png" height="333" width="729" />
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create the following bundle:</p>
+
+                        <img class="image break" id="concept_dwg_hxk_r4b__image_ptj_qfm_5mb" src="../images/bundleconfigforav.png" height="309" width="715" />
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Currently, the device overview looks like:</p>
+
+                        <img class="image break" id="concept_dwg_hxk_r4b__image_x2d_vfm_5mb" src="../images/deviceoverviewinitial.png" height="350" width="749" />
+                    </li>
+
+                </ol>
+
+                <p class="p"><strong class="ph b">Result:</strong></p>
+
+                <ol class="ol" id="concept_dwg_hxk_r4b__ol_qld_1gm_5mb">
+                    <li class="li">
+                        <p class="p">After executing the initial request, total reservation of 100 bytes is
+                            performed and the device overview looks like:</p>
+
+                        <img class="image break" id="concept_dwg_hxk_r4b__image_ewb_rgm_5mb" src="../images/deviceoverviewafterfirstrequest.png" height="235" width="715" />
+                    </li>
+
+                    <li class="li">
+                        <p class="p">After updating the AV definition by removing <var class="keyword varname">CS1</var> and
+                                <var class="keyword varname">TPG2</var> from it:</p>
+
+                        <img class="image break" id="concept_dwg_hxk_r4b__image_ksj_sgm_5mb" src="../images/avdefinition.png" height="299" width="715" />
+                    </li>
+
+                    <li class="li">
+                        <p class="p">After removal of <var class="keyword varname">CS2</var> and <var class="keyword varname">TPG2</var> from
+                            AV definition, 200 bytes from the AV (of 300 bytes) are consumed when
+                            the following update and terminate requests are executed:</p>
+
+                        <p class="p">For CCR-U with USU = 100 and RSU = 100</p>
+
+                        <p class="p">For CCR-T with USU = 100</p>
+
+                        <p class="p">Therefore, following is the device overview showing that AV is left with
+                            only 100 bytes:</p>
+
+                        <img class="image break" id="concept_dwg_hxk_r4b__image_ocr_tgm_5mb" src="../images/deviceoverviewaftersecondrequest.png" height="209" width="715" />
+                    </li>
+
+                </ol>
+
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

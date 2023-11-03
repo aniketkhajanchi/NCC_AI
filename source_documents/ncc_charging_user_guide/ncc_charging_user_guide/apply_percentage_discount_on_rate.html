@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Apply percentage discount on rate" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="apply_percentage_discount_on_rate" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Apply percentage discount on rate</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="apply_percentage_discount_on_rate">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Apply percentage discount on rate</h1>
+<div class="body conbody">
+        <div class="section" id="apply_percentage_discount_on_rate__section_gss_gyj_t4b">
+            <p class="p">This feature provides the capability to configure percentage discount on the rate,
+                which is being used in the usage call. This discount configuration is further made
+                available in threshold.</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Currently, the discount configuration is supported for monetary and usage counters
+                and buckets. However, the discount is only applicable to monetary buckets and main
+                balance.</div>
+
+        </div>
+
+    </div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_ddw_hyj_t4b"><h2 class="title topictitle2" id="ariaid-title2">Configuration</h2>
+<div class="body conbody">
+            <p class="p">Follow the given steps to configure this functionality:</p>
+
+            <ol class="ol" id="concept_ddw_hyj_t4b__ol_esg_x1k_t4b">
+                <li class="li">
+                    <ol class="ol" type="a" id="concept_ddw_hyj_t4b__ol_oxb_fbk_t4b">
+                        <li class="li">
+                            <p class="p">Create a threshold profile group (TPG). For example:</p>
+
+                            <img class="image break" id="concept_ddw_hyj_t4b__image_sph_fdk_t4b" src="../images/tpg_creation.PNG" height="139" width="767" />
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Add a <strong class="ph b">Usage-Discount</strong> configuration in threshold. For
+                                example:</p>
+
+                            <img class="image break" id="concept_ddw_hyj_t4b__image_rh5_gdk_t4b" src="../images/usage_discount_on_tpg.PNG" height="259" width="730" />
+                        </li>
+
+                    </ol>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Create a charging service. For example:</p>
+
+                    <img class="image break" id="concept_ddw_hyj_t4b__image_hzl_jdk_t4b" src="../images/charging_service_creation.PNG" />
+                </li>
+
+                <li class="li">
+                    <ol class="ol" type="a" id="concept_ddw_hyj_t4b__ol_uvq_lbk_t4b">
+                        <li class="li">
+                            <p class="p">Attach TPG in a bucket. For example:</p>
+
+                            <img class="image break" id="concept_ddw_hyj_t4b__image_nw1_ldk_t4b" src="../images/cs_attached_to_bucket.PNG" />
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Attach TPG in a counter. For example:</p>
+
+                            <img class="image break" id="concept_ddw_hyj_t4b__image_kbm_mdk_t4b" src="../images/cs_attached_to_counter.PNG" />
+                        </li>
+
+                    </ol>
+
+                </li>
+
+            </ol>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_vvs_kck_t4b"><h2 class="title topictitle2" id="ariaid-title3">Additional information</h2>
+<div class="body conbody">
+            <p class="p">Following are some important points to note for this functionality:</p>
+
+            <ul class="ul" id="concept_vvs_kck_t4b__ul_pcm_f2k_t4b">
+                <li class="li">
+                    <p class="p">To have a discount configuration in the threshold, a new rule variable
+                        (Usage-Discount) is added to the threshold rule set. This attribute of
+                            <em class="ph i">BigDecimal</em> type is added in the "Rating" Result Context to have
+                        the discount value, which represents the percentage value.</p>
+
+                    <p class="p">Discount is applied to rate, BOU activation fee,  and charging step-up fee.
+                        The rule evaluation logic is enhanced to consider a new discount variable as
+                        an output in the result. The existing logic of calculating call usage based
+                        on the applicable rate is enhanced to consider discount value as well.</p>
+
+                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Thresholds on accounts are out of scope.</div>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">The discount is fetched by processing the threshold rule engine, which is
+                        executed for each MSCC (USU) commit. Then, the discount value is stored in
+                            <em class="ph i">CounterInstanceClass</em> and <em class="ph i">BucketInstance</em> as thresholds can
+                        be applied on counters and buckets. Therefore, after adding discount on
+                        commit, this discount is applied for next reservation, direct-debit, and
+                        under commit.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">There can be only one discount stored in database for a particular TPG
+                        profile. If particular threshold is crossed and there is no discount
+                        configured in rules, then there is no discount saved for particular TPG
+                        profile. If there is any existing discount stored in database for that
+                        particular TPG profile, then it is removed.</p>
+
+                    <p class="p">The discount percentage at one level is stored until the next level is
+                        reached during CCR calls.</p>
+
+                    <ol class="ol" id="concept_vvs_kck_t4b__ol_vrb_z2k_t4b">
+                        <li class="li">
+                            <p class="p">The discount percentage is <strong class="ph b">updated</strong> when there is a <strong class="ph b">new
+                                    discount</strong> value configured at the next level.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">The discount percentage is <strong class="ph b">deleted</strong> when there is <strong class="ph b">no
+                                    discount</strong> value configured at the next level.</p>
+
+                        </li>
+
+                    </ol>
+
+                    <p class="p">If the discount is configured at the <strong class="ph b">Threshold level- 0 (Zero Level)</strong>,
+                        then the discount percentage is saved at the time of subscription
+                        creation.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">In case, charging step entity is associated with the bucket, then the
+                        step-fee is treated as usage and is tracked by associate cost counters. In
+                        such scenarios, the discount percentage saved in
+                            <em class="ph i">EntityCounterInstance</em> and <em class="ph i">BucketInstance</em>  are applicable
+                        to the step up-fee as well.</p>
+
+                    <p class="p">If the associated counter has a threshold with discount configuration, then
+                        the discounted step-fee is deducted from the main balance.</p>
+
+                    <p class="p">If the volume (or any non-monetary) type threshold is applied on bucket and
+                        has a discount configured, then it is also applicable on step-up fee.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">As the discount functionality is available in the threshold, then two
+                        counters or counters and monetary bucket can have a threshold with a
+                        discount configuration.</p>
+
+                    <p class="p">In such cases, it may happen that both threshold discounts become applicable
+                        to be applied on the same rate for the usage, then they are applied in
+                            <strong class="ph b">order</strong> of their size, starting with the <strong class="ph b">largest</strong> percentage
+                        discount first. This is to avoid different results due to rounding errors
+                        during calculations.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">As the discount values are stored in the bucket instances or counter
+                        instances, so at the time of subscription reset or renew, the discount data
+                        also gets reset along with thresholds.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">The applicable discount percentage is saved in the CDR. For more information,
+                        see <cite class="cite">Nokia Converged Charging CDR/EDR Reference Guide</cite>.</p>
+
+                </li>
+
+            </ul>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title4" id="concept_gph_5cj_v4b"><h2 class="title topictitle2" id="ariaid-title4">Examples</h2>
+<div class="body conbody">
+            <p class="p">Consider the following examples for better understanding of this functionality:</p>
+
+            <div class="section" id="concept_gph_5cj_v4b__section_qvh_wcj_v4b"><h3 class="title sectiontitle">Example 1: Grant usage on discount with different Rating Groups</h3>
+                
+                <p class="p"><strong class="ph b">Preconfiguration:</strong></p>
+
+                <ol class="ol" id="concept_gph_5cj_v4b__ol_yq1_bdj_v4b">
+                    <li class="li">
+                        <p class="p">Configure a threshold <var class="keyword varname">TPGDATA_ABS</var> with following
+                            configuration:</p>
+
+                        <p class="p"><strong class="ph b">Group Name*</strong> = <var class="keyword varname">TPGDATA_ABS</var></p>
+
+                        <p class="p"><strong class="ph b">OCS Policy Threshold</strong> = <var class="keyword varname">false</var></p>
+
+                        <p class="p"><strong class="ph b">Application Type *</strong> = <var class="keyword varname">CHARGING</var></p>
+
+                        <p class="p"><strong class="ph b">Kind of Unit *</strong> = <var class="keyword varname">VOLUME</var></p>
+
+                        <p class="p"><strong class="ph b">Dynamic Milestone Flag</strong> = <var class="keyword varname">false</var></p>
+
+                        <p class="p"><strong class="ph b">Reservation Threshold</strong> = <var class="keyword varname">false</var></p>
+
+                        <p class="p"><strong class="ph b">Discount-10</strong> = <var class="keyword varname">RATING.USAGE-Discount =100</var></p>
+
+                        <p class="p"><strong class="ph b">Discount-0</strong> = <var class="keyword varname">RATING.USAGE-Discount =0</var></p>
+
+                        <p class="p"><strong class="ph b">Discount-30</strong> = <var class="keyword varname">RATING.USAGE-Discount =30</var></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Configure a rate <var class="keyword varname">Rate_Vol_416</var> with following
+                            configuration:</p>
+
+                        <p class="p"><strong class="ph b">Name*</strong> = <var class="keyword varname">Rate_Vol_416</var></p>
+
+                        <p class="p"><strong class="ph b">Connection Cost</strong> = <var class="keyword varname">0</var></p>
+
+                        <p class="p"><strong class="ph b">Rate Type*</strong> = <var class="keyword varname">MByte</var></p>
+
+                        <p class="p"><strong class="ph b">Granularity Level*</strong> = <var class="keyword varname">MByte</var></p>
+
+                        <p class="p"><strong class="ph b">Security Domain</strong> = <var class="keyword varname">N/A</var></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Configure a charging service <var class="keyword varname">CS_1</var> with following
+                            configuration:</p>
+
+                        <p class="p"><strong class="ph b">Name*</strong> = <var class="keyword varname">CS_1</var></p>
+
+                        <p class="p"><strong class="ph b">Priority*</strong> = <var class="keyword varname">200</var></p>
+
+                        <p class="p"><strong class="ph b">Category*</strong> = <var class="keyword varname">DefaultCategory</var></p>
+
+                        <p class="p"><strong class="ph b">Description</strong> = <var class="keyword varname">N/A</var></p>
+
+                        <p class="p"><strong class="ph b">Security Domain</strong> = <var class="keyword varname">N/A</var></p>
+
+                        <p class="p"><strong class="ph b">Thresholds</strong> = <var class="keyword varname">TPGDATA_ABS</var></p>
+
+                        
+                        <img class="image break" id="concept_gph_5cj_v4b__image_abm_s2j_v4b" src="../images/percentage_discount_example_1_img7.PNG" height="319" width="553" />
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Configure a bundle <var class="keyword varname">Bundle-2</var> with following
+                            configuration:</p>
+
+                        <p class="p"><strong class="ph b">Name*</strong> = <var class="keyword varname">Bundle-2</var></p>
+
+                        <p class="p"><strong class="ph b">Security Domain</strong> = <var class="keyword varname">N/A</var></p>
+
+                        <p class="p"><strong class="ph b">Fee*</strong> = <var class="keyword varname">0</var></p>
+
+                        <p class="p"><strong class="ph b">Taxation Profile*</strong> = <var class="keyword varname">N/A</var></p>
+
+                        <p class="p"><strong class="ph b">Charging Service list*</strong> = <var class="keyword varname">[CS_1*]</var></p>
+
+                        <p class="p"><strong class="ph b">Usage Control*</strong> = <var class="keyword varname">[]</var></p>
+
+                        <p class="p"><strong class="ph b">Bundle Activation Type</strong> = <var class="keyword varname">NORMAL</var></p>
+
+                        <p class="p"><strong class="ph b">Usage Control Service List{Policy}*</strong> = <var class="keyword varname">[]</var></p>
+
+                    </li>
+
+                </ol>
+
+                
+                <p class="p"><strong class="ph b">Call flow scenario:</strong></p>
+
+                <img class="image break" id="concept_gph_5cj_v4b__image_rt4_rfj_v4b" src="../images/percentage_discount_example_1_img9.PNG" height="383" width="898" />
+                
+                <p class="p"><strong class="ph b">Result:</strong></p>
+
+                <ul class="ul" id="concept_gph_5cj_v4b__ul_rvs_1fj_v4b">
+                    <li class="li">
+                        <p class="p">Account BEFORE call execution:</p>
+
+                        <img class="image break" id="concept_gph_5cj_v4b__image_a2h_tfj_v4b" src="../images/percentage_discount_example_1_img10.PNG" height="297" width="806" />
+                        
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Account AFTER <em class="ph i">Update1</em> execution:</p>
+
+                        <img class="image break" id="concept_gph_5cj_v4b__image_stm_5fj_v4b" src="../images/percentage_discount_example_1_img11.PNG" height="286" width="850" />
+                        
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Account AFTER <em class="ph i">Update1</em> execution:</p>
+
+                        <img class="image break" id="concept_gph_5cj_v4b__image_dtq_vfj_v4b" src="../images/percentage_discount_example_1_img12.PNG" height="307" width="884" />
+                        
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Account AFTER call execution:</p>
+
+                        <img class="image break" id="concept_gph_5cj_v4b__image_osw_wfj_v4b" src="../images/percentage_discount_example_1_img13.PNG" height="289" width="812" />
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

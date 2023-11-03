@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Provisioning workflow" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="provisioning_workflow" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Provisioning workflow</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="provisioning_workflow">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Provisioning workflow</h1>
+<div class="body conbody">
+        <p class="p">All NCC provisioning is done by using the SM subsystem, whether it is through the GUI or
+            through the APIs. The SM subsystem manages the mapping of which subscribers/devices are
+            homed on which ME subsystems, based on various algorithms. This includes keeping groups
+            together on the same ME subsystem (except for large enterprises), a least-loaded ME
+            algorithm for new subscriber groups.</p>
+
+        <div class="p">The SM subsystem interacts with the ME subsystems through SOAP messages to perform these
+            tasks: <ul class="ul" id="provisioning_workflow__ul_qkk_1fx_nlb">
+                <li class="li">Accept and process the provisioning requests from customers’ upstream CRM
+                        systems.<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> NCC does not prevent the upstream system from provisioning to
+                        either of the SM subsystems in a network deployment. However, data conflicts
+                        are possible if related APIs are sent to opposite SM subsystems. Nokia
+                        recommends that back-to-back transactions for related devices, groups, or
+                        accounts be sent to the same SM subsystem to avoid race conditions.</div>
+
+                </li>
+
+                <li class="li">Perform the SM GUI actions through the REST API gateway on the SM
+                    subsystem.</li>
+
+                <li class="li">Accept and process the SOAP provisioning requests that include actions for
+                    service data, subscriber data, and subscription data. Charging is responsible
+                    for implementing the requests including execution of any business logic that
+                    might be required.</li>
+
+            </ul>
+
+        </div>
+
+        <p class="p">These are the actions associated with the service data:</p>
+
+        <ul class="ul" id="provisioning_workflow__ul_skk_1fx_nlb">
+            <li class="li">An operator creates data and associates it with ME subsystems.</li>
+
+            <li class="li">The SM subsystem maintains the primary copy locally and distributes data to ME
+                subsystems.</li>
+
+            <li class="li">Any further data updates are distributed automatically to the associated list of ME
+                subsystems, whenever an update is done on the SM subsystem.</li>
+
+        </ul>
+
+        <p class="p">These are the actions associated with the subscriber or subscription data:</p>
+
+        <ul class="ul" id="provisioning_workflow__ul_tkk_1fx_nlb">
+            <li class="li">A user creates the data and associates with an ME subsystem, or SM subsystem employs
+                algorithms to choose an optimal host.</li>
+
+            <li class="li">SM subsystem provides the conduit for data to create, read, update and delete, but
+                maintains locally only the ME subsystem location of the data.</li>
+
+        </ul>
+
+        <p class="p">These are the actions associated with the SM subsystem when it acts as an API
+            gateway:</p>
+
+        <ul class="ul" id="provisioning_workflow__ul_ukk_1fx_nlb">
+            <li class="li">The SM subsystem provides methods for subscriber provisioning.</li>
+
+            <li class="li">The SM subsystem determines the appropriate NCC subsystem and proxies the
+                request.</li>
+
+        </ul>
+
+        <p class="p">For more information about the SM GUI, provisioning, and data distribution, see the
+            respective NCC documentation.</p>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

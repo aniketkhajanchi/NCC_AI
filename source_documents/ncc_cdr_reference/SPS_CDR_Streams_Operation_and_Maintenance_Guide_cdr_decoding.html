@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="CDR decoding" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="topicID5" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>CDR decoding</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="topicID5">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">CDR decoding</h1>
+<div class="body">
+        <p class="p">The CDRs generated are ASN.1 encoded and are stored as binary files. A decoding tool may
+            be used to decode to plain text. NCC provides a CDR decoding tool called asn1decoder,
+            which can be accessed through the command line on the redis-oam pod.</p>
+
+        <p class="p">The tool supports binary data encoded in BER format (ITU-T X.690) and enables the
+            decoding of plain ASN.1 objects, as well as ASN.1 objects encapsulated into a CDR file
+            (3GPP TS 32.297). By default, the tool tries to decode the file headers of the binary
+            files and, if it fails, assumes that there is no header in the file. However, if needed,
+            the presence of headers can be defined explicitly with optional arguments.</p>
+
+            
+        </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Late rating input stream" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="lr_input_stream" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Late rating input stream</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="lr_input_stream">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Late rating input stream</h1>
+<div class="body conbody">
+        <p class="p">Late rating input stream, consisting of a standalone Late Rating Collector Node, picks up
+            input files from a remote server using SFTP, parses the files into records that follow
+            the CGF (DR) internal record format and writes the records securely into the database,
+            from which they are picked up for further processing by Late rating business logic
+            stream. Late Rating Collector Node can be configured to retrieve input records according
+            to a schedule.</p>
+
+        <div class="section" id="lr_input_stream__section_imv_zhf_r4b"><h2 class="title sectiontitle">SFTP server and connection parameters</h2>
+            
+            <p class="p">The address of the SFTP server is configured with Late Rating Collector Node
+                parameters <code class="ph codeph">SFTPHost</code> and <code class="ph codeph">SFTPPort</code>. The target
+                directory on the SFTP server is defined with node parameter
+                    <code class="ph codeph">SFTPRemoteDirectory</code>. Authentication on the remote server is
+                configured using node parameters <code class="ph codeph">SFTPUsername</code> and
+                    <code class="ph codeph">SFTPPassword</code>. Node parameter
+                    <code class="ph codeph">SFTPProcessedFileTargetDirectory</code> defines the directory where
+                the file is moved after the file has been processed.</p>
+
+        </div>
+
+        <div class="section" id="lr_input_stream__section_ahc_52x_q4b"><h2 class="title sectiontitle">Processing of input files</h2>
+            
+            <div class="p">
+                <div class="div">
+                    <p class="p">The input files retrieved by Late Rating Collector Node can contain several
+                        lines, each line corresponding to one Mobile Originated Call (MOC), Mobile
+                        Terminated Call (MTC) or Broadband charging data Call (GPRS), with
+                        comma-separated values indicating fields such as the A number MSISDN, B
+                        number MSISDN, time stamp and location information.</p>
+
+                    <p class="p">Each line in the input file is expected to contain different number of fields
+                        as below:</p>
+
+                    <ul class="ul" id="lr_input_stream__ol_fsr_j1j_pyb">
+                        <li class="li">In case of MOC/MTC, <strong class="ph b">14 </strong>values separated by commas, which
+                            correspond to 14 fields in the record.</li>
+
+                        <li class="li">In case of GPRS, <strong class="ph b">10</strong> values separated by commas, which correspond
+                            to 10 fields in the record.</li>
+
+                    </ul>
+
+                    <p class="p">Missing values are accepted if the missing value is not a mandatory field,
+                        and the line still contains 13/9 commas to separate the fields. If a record
+                        does not have the required counts of fields (13/9 commas), or is missing a
+                        mandatory field, it is rejected.</p>
+
+                </div>
+            </div>
+
+            <p class="p"><strong class="ph b">Example of late rating input file:</strong></p>
+
+            <pre class="pre codeblock"><code>MOC,234159184443,447741135,44738987,20190924141100,46007,4,60,123456,101,0,,,
+MOC,234159184936,441861135,44778787,20190924141100,46007,4,60,123457,101,0,,,
+MOC,234159184936,441861135,44778787,20190924141100,46007,4,60,123458,101,0,,,
+MTC,234159184936,44778787,441861135,20190924141100,46007,4,60,123458,101,0,,,
+MOC,000000000000000,35361123488,35361123487,20230827131400,27201,,600,EI89632,101,0,,,
+GPRS,000000000000000,10938908,fbb.vodafone.com,20230801184145,213.233.130.56,,81213321623,RA537728,1603</code></pre>
+        </div>
+
+        <div class="section" id="lr_input_stream__section_v5x_ffx_q4b"><h2 class="title sectiontitle">Storing records into database</h2>
+            
+            <p class="p">For each line in the input file, Late Rating Collector Node creates an event record
+                and separates the comma-separated values into fields in the event record. Empty
+                fields are written to the database as empty, and the Business logic stream should
+                delete and ignore any empty field, so that they are not included in the Diameter
+                output. When writing the records to the database, Late Rating Collector Node adds an
+                origin_record field to the end of the record. The origin_record field is added to
+                maintain a copy of the original record format in case distribution of the record
+                fails (see <a class="xref" href="lr_log_dist_stream.html#lr_log_dist_stream">Late rating log distributor stream</a> for more
+                information). </p>
+
+            <p class="p">The records stored into database are collected into batches for the Late rating
+                business logic stream to pick up. The batch size is specified with node parameter
+                    <code class="ph codeph">RecordsPerBatch</code>, which has a default value of 500 and a minimum
+                value of 1.</p>
+
+            <p class="p"><strong class="ph b">Example of record stored to database by Late Rating Collector Node:</strong></p>
+
+            <pre class="pre codeblock"><code>e
+Ftype MOC
+FIMSI 234159184443936
+FOriginator 447741861135
+FDestination 447389778787
+Fdate_time 20190924141101
+Flocation_info 46007
+Foperator_id 4
+FVolume 60
+Forig_cdr_id 123452
+Fservice_id 101
+Finfo_transfer_cap 0
+Fuser_rate 4
+Fsyn_asyn 4
+Fuser_info_layer1
+Fuser_loc_info
+Forigin_record MOC,234159184443936,447741861135,447389778787,20190924141101,
+46007,4,60,123452,101,0,4,4,,</code></pre>
+            <p class="p">Rejected records are also written into the database, and their keys are added to a
+                specified log queue for the Late rating log distributor stream to handle. The queue
+                name is specified with node parameter <code class="ph codeph">LogQueueName</code>, in Late Rating
+                Collector Node and Late Rating Log Distributor Node. Both nodes should have the same
+                value defined for this parameter.</p>
+
+        </div>
+
+        <div class="section" id="lr_input_stream__section_xvh_yhx_q4b"><h2 class="title sectiontitle">Scaling</h2>
+            
+            <p class="p">Late Rating Collector Node can be scaled by adding multiple instances of the node
+                into the stream. There can also be multiple Late rating input streams working in
+                parallel.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

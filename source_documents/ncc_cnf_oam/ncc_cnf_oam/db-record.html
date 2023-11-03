@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="db-record" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="db-record" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>db-record</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="db-record">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">db-record</h1>
+<div class="body conbody">
+       <div class="section" id="db-record__section_p2m_lst_1qb"><h2 class="title sectiontitle">Description</h2>
+           
+           <p class="p">db-record enables users to read or delete a record from the database. The tool takes
+                as input the namespace, set and the Primary Key (PK).</p>
+
+       </div>
+
+       <div class="section" id="db-record__section_dl5_lst_1qb"><h2 class="title sectiontitle">Syntax</h2>
+           
+           <div class="p">
+               <pre class="pre codeblock" id="db-record__codeblock_wbl_dtt_1qb"><code>db-record [h or ?] [-d] (-n &lt;namespace&gt;) (-s &lt;set&gt;) (-k &lt;Primary Key&gt;) [-i] [-f]</code></pre>
+           </div>
+
+           <table cellpadding="4" cellspacing="0" summary="" id="db-record__table_e3l_nst_1qb" class="table" frame="border" border="1" rules="all"><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d55589e59">Option</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d55589e62">Description</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d55589e65">Option arguments</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e59 "><code class="ph codeph">No arguments</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e62 ">Displays usage/help information.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e65 "> </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e59 "><code class="ph codeph">-h or -?</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e62 ">Displays usage/help information.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e65 "> </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e59 "><code class="ph codeph">-d</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e62 ">Delete the record. Default is Read.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e65 "> </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e59 "><code class="ph codeph">-n &lt;namespace&gt;</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e62 ">Namespace name. (Mandatory)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e65 "> </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e59 "><code class="ph codeph">-s &lt;set&gt;</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e62 ">Indicate the name of the set (table) that will have its record
+                                removed. (Mandatory)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e65 ">Name of the set (table) that will have its record
+                                removed.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e59 "><code class="ph codeph">-k &lt;PK&gt;</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e62 ">Indicate PK of the record to be removed. (Mandatory)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e65 ">Name of PK of the record to be removed.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e59 "><code class="ph codeph">-i</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e62 ">PK is not a string. (Default: String)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e65 "> </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e59 "><code class="ph codeph">-f</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e62 ">Force Delete. Note that this option will not prompt for
+                                confirmation before delete.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55589e65 "> </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+       </div>
+
+       <div class="section" id="db-record__section_xgc_mst_1qb"><h2 class="title sectiontitle">Examples</h2>
+           
+            <p class="p">This example shows output of db-record with flag <code class="ph codeph">-h</code>.</p>
+
+           <pre class="pre codeblock" id="db-record__pre_y1m_4st_1qb"><code>-sh-4.2$ db-record -h
+Usage:
+
+Read/Delete a record from a given namespace and set (both case-sensitive) using specified PK.
+
+**** CAUTION:  THIS TOOL SHOULD BE USED WITH GREAT CARE.
+IT WILL DELETE RECORD FROM A DB SET.
+Syntax:
+db-record [h or ?] [-d] (-n &lt;namespace&gt;) (-s &lt;set&gt;) (-k &lt;Primary Key&gt;) [-i] [-f]
+
+  no arguments   - Display this help information
+  -h or -?       - Display this help information
+  -d             - Delete the record. (Default: Read)
+  -n &lt;namespace&gt; - Namespace name. (Mandatory)
+  -s &lt;set&gt;       - Name of the set (table) that will have its record removed. (Mandatory)
+  -k &lt;PK&gt;        - PK of the record to be removed. (Mandatory)
+  -i             - PK is not a string. (Default: String)
+  -f             - Force Delete (will not prompt for confirmation before delete).</code></pre>
+           <p class="p">This example shows the db-record tool read from
+                spspd1.InfrequentlyChangingData with PK 162129586586357761 (not a string).</p>
+
+           <pre class="pre codeblock" id="db-record__pre_z1m_4st_1qb"><code>-sh-4.2$ db-record -n spspd1 -s InfrequentlyChangingData -k 162129586586357761 -i
+14:35  Input - Namespace: [spspd1] Set: [InfrequentlyChangingData] PK: [162129586586357761] Command: [read]
+select * from spspd1.InfrequentlyChangingData where PK=162129586586357761
+*************************** 1. row ***************************
+$dummy: 0
+schemaVersion: 21020000106
+syncSize: 0
+size: 1
+devices: MAP('{"D99001":{"deviceName":"D99001", "allowOverage":0, "pwdEncrypted":0, "syOCSEnabled":0, "e164":["99001"], "creationTime":1620025396565, "ldapsearch":0, "deviceType":0, "subIndex":0, "schemaVersion":0, "timeOfDay":{"dlSavings":0, "timeZone":""}, "id":"D99001||2400000000f9001", "syncOp":0, "lifeCycleNames":{0:"DefaultDeviceLifeCycle"}, "firstCallDone":0, "states":{0:"DefaultDeviceLifeCycle_Active"}, "offLineTime":0, "categoryList":["DefaultCategory"], "lastUpdateTime":1620225648819}}')
+id: 162129586586357761
+
+1 row in set (0.000 secs)
+
+OK
+
+
+14:35  Record exist for spspd1.InfrequentlyChangingData with PK [162129586586357761]</code></pre>
+           <p class="p">This example shows the db-record tool read from dscglobal.Device_e164 with PK
+                99001 (as string).</p>
+
+           <pre class="pre codeblock"><code>-sh-4.2$ db-record -n dscglobal -s Device_e164 -k 99001
+-sh-4.2$ db-record -n dscglobal -s Device_e164 -k 99001
+14:38  Input - Namespace: [dscglobal] Set: [Device_e164] PK: [99001] Command: [read]
+select * from dscglobal.Device_e164 where PK='99001'
+*************************** 1. row ***************************
+keyList: MAP('{"D99001":162129586586357761}')
+
+1 row in set (0.000 secs)
+
+OK
+
+
+14:38  Record exist for dscglobal.Device_e164 with PK [99001]</code></pre>
+           <p class="p">This example shows the db-record tool delete from dsc.SmManagedElement with
+                PK sps-me (as string), without the force option. On prompt, enter <code class="ph codeph">?</code>
+                and then <code class="ph codeph">q</code>.</p>
+
+           <pre class="pre codeblock" id="db-record__pre_bbm_4st_1qb"><code>-sh-4.2$ db-record -d -n dsc -s SmManagedElement -k sps-me
+16:11  Input - Namespace: [dsc] Set: [SmManagedElement] PK: [sps-me] Command: [delete]
+select * from dsc.SmManagedElement where PK='sps-me'
+*************************** 1. row ***************************
+$dummy: 0
+oamPort: 1F 90
+schemaVersion: 21020000106
+isSafeDel: 1
+reloaded: "Never Executed"
+meRealmName: "realm"
+oamIp: "135.249.93.44"
+isSync: 0
+meSiteName: "sps-me"
+protocol: 1
+oamProtocol: 0
+meName: "sps-me"
+modifiedDate: 1620724297784
+meHostName: "sps-me"
+siteId: 4
+meAssociate: MAP('{"meTypes":[1, 3, 2, 0], "mePort":20 FB, "meIP":"135.249.93.44"}')
+
+1 row in set (0.000 secs)
+
+OK
+
+
+16:11  Record exist for dsc.SmManagedElement with PK [sps-me]
+16:11  ***WARNING***   ***WARNING***   ***WARNING***   ***WARNING***
+16:11  This command will delete the record from dsc.SmManagedElement with PK [sps-me] and this cannot be rollback.
+
+Do you wish to proceed? n [y,n,?,q] ?
+        To respond in the affirmative, enter y, yes, Y or YES. To response in
+        the negative, enter n, no, N, or NO.
+
+Do you wish to proceed? n [y,n,?,q] q</code></pre>
+           <p class="p">This example shows the db-record tool delete from dsc.SmManagedElement with
+                PK sps-me (as string), no force option. On prompt, enter <code class="ph codeph">q</code>.</p>
+
+           <pre class="pre codeblock"><code>-sh-4.2$ db-record -d -n dsc -s SmManagedElement -k sps-me
+-sh-4.2$ db-record -d -n dsc -s SmManagedElement -k sps-me
+16:13  Input - Namespace: [dsc] Set: [SmManagedElement] PK: [sps-me] Command: [delete]
+select * from dsc.SmManagedElement where PK='sps-me'
+*************************** 1. row ***************************
+$dummy: 0
+oamPort: 1F 90
+schemaVersion: 21020000106
+isSafeDel: 1
+reloaded: "Never Executed"
+meRealmName: "realm"
+oamIp: "135.249.93.44"
+isSync: 0
+meSiteName: "sps-me"
+protocol: 1
+oamProtocol: 0
+meName: "sps-me"
+modifiedDate: 1620724297784
+meHostName: "sps-me"
+siteId: 4
+meAssociate: MAP('{"meTypes":[1, 3, 2, 0], "mePort":20 FB, "meIP":"135.249.93.44"}')
+
+1 row in set (0.000 secs)
+
+OK
+
+
+16:13  Record exist for dsc.SmManagedElement with PK [sps-me]
+16:13  ***WARNING***   ***WARNING***   ***WARNING***   ***WARNING***
+16:13  This command will delete the record from dsc.SmManagedElement with PK [sps-me] and this cannot be rollback.
+
+Do you wish to proceed? n [y,n,?,q] q</code></pre>
+           <p class="p">This example shows the db-record tool delete from dsc.SmManagedElement with
+                PK sps-me (as string), no force option. On prompt, enter <code class="ph codeph">y</code>.</p>
+
+           <pre class="pre codeblock"><code>-sh-4.2$ db-record -d -n dsc -s SmManagedElement -k sps-me
+16:14  Input - Namespace: [dsc] Set: [SmManagedElement] PK: [sps-me] Command: [delete]
+select * from dsc.SmManagedElement where PK='sps-me'
+*************************** 1. row ***************************
+$dummy: 0
+oamPort: 1F 90
+schemaVersion: 21020000106
+isSafeDel: 1
+reloaded: "Never Executed"
+meRealmName: "realm"
+oamIp: "135.249.93.44"
+isSync: 0
+meSiteName: "sps-me"
+protocol: 1
+oamProtocol: 0
+meName: "sps-me"
+modifiedDate: 1620724297784
+meHostName: "sps-me"
+siteId: 4
+meAssociate: MAP('{"meTypes":[1, 3, 2, 0], "mePort":20 FB, "meIP":"135.249.93.44"}')
+
+1 row in set (0.000 secs)
+
+OK
+
+
+16:14  Record exist for dsc.SmManagedElement with PK [sps-me]
+16:14  ***WARNING***   ***WARNING***   ***WARNING***   ***WARNING***
+16:14  This command will delete the record from dsc.SmManagedElement with PK [sps-me] and cannot be rollback.
+
+Do you wish to proceed? n [y,n,?,q] y
+16:14  Deleting record from deletion - [dsc.SmManagedElement] with PK [sps-me]
+SET DURABLE_DELETE TRUE
+DURABLE_DELETE = true
+delete from dsc.SmManagedElement where PK='sps-me'
+OK, 1 record affected.
+
+
+16:14  Record deleted from dsc.SmManagedElement with PK [sps-me]</code></pre>
+           <p class="p">This example shows the db-record tool delete from dsc.SmManagedElement with
+                PK sps-me (as string), with force option.</p>
+
+           <pre class="pre codeblock"><code>-sh-4.2$ db-record -d -n dsc -s SmManagedElement -k sps-me -f
+16:15  Input - Namespace: [dsc] Set: [SmManagedElement] PK: [sps-me] Command: [delete]
+select * from dsc.SmManagedElement where PK='sps-me'
+*************************** 1. row ***************************
+$dummy: 0
+oamPort: 1F 90
+schemaVersion: 21020000106
+isSafeDel: 1
+reloaded: "Never Executed"
+meRealmName: "realm"
+oamIp: "135.249.93.44"
+isSync: 0
+meSiteName: "sps-me"
+protocol: 1
+oamProtocol: 0
+meName: "sps-me"
+modifiedDate: 1620729873938
+meHostName: "sps-me"
+siteId: 4
+meAssociate: MAP('{"meTypes":[1, 3, 2, 0], "mePort":20 FB, "meIP":"135.249.93.44"}')
+
+1 row in set (0.000 secs)
+
+OK
+
+
+16:15  Record exist for dsc.SmManagedElement with PK [sps-me]
+16:15  Deleting record from - [dsc.SmManagedElement] with PK [sps-me]
+SET DURABLE_DELETE TRUE
+DURABLE_DELETE = true
+delete from dsc.SmManagedElement where PK='sps-me'
+OK, 1 record affected.
+
+
+16:15  Record deleted from dsc.SmManagedElement with PK [sps-me]</code></pre>
+           <p class="p">This example shows the db-record tool read with an invalid namespace.</p>
+
+           <pre class="pre codeblock"><code>-sh-4.2$ db-record -n dummy -s SmManagedElement -k sps-me
+16:16  Failed to check namespace [dummy] - RC 1
+16:16  Invalid Input Namespace (Exit).
+
+Usage:
+
+Read/Delete a record from a given namespace and set (both case-sensitive) using specified PK.
+
+**** CAUTION:  THIS TOOL SHOULD BE USED WITH GREAT CARE.
+IT WILL DELETE RECORD FROM A DB SET.
+Syntax:
+db-record [h or ?] [-d] (-n &lt;namespace&gt;) (-s &lt;set&gt;) (-k &lt;Primary Key&gt;) [-i] [-f]
+
+  no arguments   - Display this help information
+  -h or -?       - Display this help information
+  -d             - Delete the record. (Default: Read)
+  -n &lt;namespace&gt; - Namespace name. (Mandatory)
+  -s &lt;set&gt;       - Name of the set (table) that will have its record removed. (Mandatory)
+  -k &lt;PK&gt;        - PK of the record to be removed. (Mandatory)
+  -i             - PK is not a string. (Default: String)
+  -f             - Force Delete (will not prompt for confirmation before delete).</code></pre>
+           <p class="p">This example shows the db-record tool trying to delete from
+                dsc.SmManagedElement with PK sps-me1 (as string). With this PK, there is no record
+                in DB.</p>
+
+           <pre class="pre codeblock"><code>-sh-4.2$ db-record -d -n dsc -s SmManagedElement -k sps-me1
+16:21  Input - Namespace: [dsc] Set: [SmManagedElement] PK: [sps-me1] Command: [delete]
+16:21  Failed to check record - RC 0
+select * from dsc.SmManagedElement where PK='sps-me1'
+Error: (2) 127.0.0.1:3000 AEROSPIKE_ERR_RECORD_NOT_FOUND
+
+
+16:21  Record does not exist for dsc.SmManagedElement with PK [sps-me1]</code></pre>
+           <p class="p">This example shows the db-record tool trying to read from
+                dsc.SmManagedElement with PK sps-me1 (as string). With this PK, there is no record
+                in DB.</p>
+
+           <pre class="pre codeblock"><code>-sh-4.2$ db-record -n dsc -s SmManagedElement -k sps-me1
+16:21  Input - Namespace: [dsc] Set: [SmManagedElement] PK: [sps-me1] Command: [read]
+16:21  Failed to check record - RC 0
+select * from dsc.SmManagedElement where PK='sps-me1'
+Error: (2) 127.0.0.1:3000 AEROSPIKE_ERR_RECORD_NOT_FOUND
+
+
+16:21  Record does not exist dsc.SmManagedElement with PK [sps-me1]</code></pre>
+           <p class="p">This example shows the db-record tool trying to read from
+                spspd1.InfrequentlyChangingData with PK 162129586586357762 (not a string). With this
+                PK, there is no record in DB.</p>
+
+           <pre class="pre codeblock" id="db-record__pre_ibm_4st_1qb"><code>-sh-4.2$ db-record -n spspd1 -s InfrequentlyChangingData -k 162129586586357762
+16:22  Input - Namespace: [spspd1] Set: [InfrequentlyChangingData] PK: [162129586586357762] Command: [read]
+16:22  Failed to check record - RC 0
+select * from spspd1.InfrequentlyChangingData where PK=162129586586357762
+Error: (2) 127.0.0.1:3000 AEROSPIKE_ERR_RECORD_NOT_FOUND
+
+
+16:22  Record does not exist for spspd1.InfrequentlyChangingData with PK [162129586586357762]</code></pre>
+       </div>
+
+       </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,2088 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Lifecycle EDRs" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="d1e2742" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Lifecycle EDRs</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="d1e2742">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Lifecycle EDRs</h1>
+<div class="body conbody">
+    <p class="p">NCC-Charging generates lifecycle Event Data Records (EDRs) to track changes that occur in
+      lifecycle entities. The lifecycle entities are accounts, subscriptions, devices, groups, and
+      users. Every lifecycle EDR contains attributes that identify the triggering event that caused
+      the change and all the information related to the change that took place, including the
+      transitions and states used. Each lifecycle EDR corresponds to one triggering event but might
+      contain records related to more than one entity. </p>
+
+    <p class="p">Usually, the lifecycle EDRs are triggered by lifecycle actions. Following are some scenarios
+      when these EDRs are generated:</p>
+
+    <ul class="ul" id="d1e2742__ul_utx_dcj_5xb">
+      <li class="li">
+        <p class="p">Subscription:</p>
+
+        <ul class="ul" id="d1e2742__ul_vtx_dcj_5xb">
+          <li class="li">
+            <p class="p">Subscription is created via lifecycle.</p>
+
+          </li>
+
+          <li class="li">
+            <p class="p">Subscription is added.</p>
+
+          </li>
+
+          <li class="li">
+            <p class="p">Subscription addition failed due to the following reasons:</p>
+
+            <ul class="ul" id="d1e2742__ul_wtx_dcj_5xb">
+              <li class="li">
+                <p class="p">Device/Group is in <var class="keyword varname">final</var> state or barred with
+                    <var class="keyword varname">IgnoreBarredDeviceOrGroup</var> set to <var class="keyword varname">false</var>
+                </p>
+
+              </li>
+
+              <li class="li">
+                <p class="p">Account is in <var class="keyword varname">final</var> state or barred with
+                    <var class="keyword varname">IgnoreBarredAccount</var> set to <var class="keyword varname">false</var>
+                </p>
+
+              </li>
+
+            </ul>
+
+          </li>
+
+          <li class="li">
+            <p class="p">Subscription is renewed.</p>
+
+          </li>
+
+          <li class="li">
+            <p class="p">Subscription renewal failed due to the following reasons:</p>
+
+            <ul class="ul" id="d1e2742__ul_xtx_dcj_5xb">
+              <li class="li">
+                <p class="p">All Devices or Groups attached to reference Subscription are in
+                    <var class="keyword varname">final</var> state or barred with
+                    <var class="keyword varname">IgnoreBarredDeviceOrGroup</var> set to <var class="keyword varname">false</var>
+                </p>
+
+              </li>
+
+              <li class="li">
+                <p class="p">Account is in <var class="keyword varname">final</var> state or barred with
+                    <var class="keyword varname">IgnoreBarredAccount</var> set to <var class="keyword varname">false</var>
+                </p>
+
+              </li>
+
+            </ul>
+
+            <ul class="ul" id="d1e2742__ul_ytx_dcj_5xb">
+              <li class="li">When max renewal for the Subscription Lifecycle with Renew Subscription action
+                reaches.</li>
+
+            </ul>
+
+            <ul class="ul" id="d1e2742__ul_ztx_dcj_5xb">
+              <li class="li">When max renewal for the Account Lifecycle with Renew Subscription action
+                reaches.</li>
+
+            </ul>
+
+          </li>
+
+          <li class="li">
+            <p class="p">Subscription is deleted.</p>
+
+          </li>
+
+          <li class="li">
+            <p class="p">Subscription is reset.</p>
+
+          </li>
+
+          <li class="li">
+            <p class="p">Subscription reset failed as the attached Device or Group is in
+                <var class="keyword varname">final</var> state or barred with
+                <var class="keyword varname">IgnoreBarredDeviceOrGroup</var> set to <var class="keyword varname">false</var>
+            </p>
+
+          </li>
+
+          <li class="li">
+            <p class="p">Subscription is emptied.</p>
+
+          </li>
+
+          <li class="li">Queued subscription is activated: This is lifecycle action is applicable for both
+            device and subscription, for both lifecycle types, that is, entity and periodic
+            lifecycle.</li>
+
+        </ul>
+
+      </li>
+
+      <li class="li">
+        <p class="p">Lifecycle entity is deleted.</p>
+
+      </li>
+
+      <li class="li">Fee:<ul class="ul" id="d1e2742__ul_a5x_dcj_5xb">
+          <li class="li">
+            <p class="p">Fee is charged.</p>
+
+          </li>
+
+          <li class="li">
+            <p class="p">Fee could not be charged due to insufficient credit.</p>
+
+          </li>
+
+        </ul>
+</li>
+
+      <li class="li">
+        <p class="p">Billing cycle is calculated for the lifecycle entity.</p>
+
+      </li>
+
+      <li class="li">
+        <p class="p">Current scheduled transition is rescheduled using Lifecycle Extend timer API.</p>
+
+      </li>
+
+      <li class="li">
+        <p class="p">Plan is changed</p>
+
+      </li>
+
+      <li class="li">Account:<ul class="ul" id="d1e2742__ul_b5x_dcj_5xb">
+          <li class="li">
+            <p class="p">Account reset is successful.</p>
+
+          </li>
+
+          <li class="li">
+            <p class="p">Account reset fails as account overage limit is greater than the reset value.</p>
+
+          </li>
+
+        </ul>
+</li>
+
+      <li class="li">Expired entity is deleted:<ul class="ul" id="d1e2742__ul_c5x_dcj_5xb">
+          <li class="li">Entity is deleted by Account</li>
+
+          <li class="li">Entity is deleted by Device</li>
+
+          <li class="li">Entity is deleted by Group</li>
+
+          <li class="li">Entity is deleted by Subscription</li>
+
+        </ul>
+</li>
+
+      <li class="li">Add-EDR action is used: This action is applicable for all entities, and for both lifecycle
+        types, that is, entity and periodic lifecycle. While defining the Add-EDR action, if
+        additional tags are configured in rule (for example, <var class="keyword varname">CALL_RESULT.Add-EDR ( "Tag1",
+          "Val1")</var>), they are logged in the EDR along with some generic tags.</li>
+
+      <li class="li">Loan is reset</li>
+
+      <li class="li">EDR for deleteProfile API: The lifecycle EDR for deleteProfile API is similar to the
+        provisioning EDR for the API (see <a class="xref" href="delete_profile.html">deleteProfile</a>). The only difference
+        is that the <var class="keyword varname">RecordType</var> tag has the value
+          <var class="keyword varname">LIFECYCLE_RECORD</var>.</li>
+
+    </ul>
+
+    <p class="p">If the subscription is added (or has failed) though the SM GUI, then a CDR is generated per
+      subscription with a result as <var class="keyword varname">Success/Fail</var>. </p>
+
+    <p class="p">If the subscription is renewed/reset/added through an Action, then the CDR is generated with
+        <var class="keyword varname">Success/Fail</var> Subscription request at sub-level with
+        <var class="keyword varname">result</var> and <var class="keyword varname">reason</var> (if applicable), and at root level
+      the result is recorded as <var class="keyword varname">Success</var> if at least one subscription request is
+      successful. Otherwise, the result is <var class="keyword varname">Fail</var>. </p>
+
+  </div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_qd5_hy5_23b"><h2 class="title topictitle2" id="ariaid-title2">EDR tags</h2>
+<div class="body conbody">
+      <p class="p">The following table presents all EDR tags generated for Lifecycle. Section <a class="xref" href="sample_edrs_lifecycle_edrs.html#concept_i3m_3y5_23b">Sample EDRs</a> provides sample EDRs for
+        various scenarios. For different scenarios, a subset of the tags defined in the following
+        table are generated.</p>
+
+      <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Lifecycle EDR tags</span></caption><colgroup><col style="width:28.03234501347709%" /><col style="width:45.01347708894878%" /><col style="width:26.954177897574123%" /></colgroup><thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d50971e339">Tag</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d50971e342">Description</th>
+
+              <th class="entry cellrowborder" style="vertical-align:top;" id="d50971e345">Example</th>
+
+            </tr>
+
+          </thead>
+<tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">recordType</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the lifecycle record type.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">LIFECYCLE_RECORD</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">recordId</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">A unique ID for each CDR having format <var class="keyword varname">&lt;DateTime&gt;_UUID</var>
+                  where <var class="keyword varname">&lt;DateTime&gt;</var> is in <var class="keyword varname">YYYYMMDDHHMMSS</var>
+                  format and UTC designation. </p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">serviceProvider</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">Indicates the service provider (MNO/MVNO) for which the CDR is applicable. This
+                  tag is generated only if service provider is enabled.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">MVNO1</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">result</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates whether the subscription was added/renewed/reset
+                successfully or not.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Success/Fail</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">reason</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">If the result is fail, then this attribute provides the reason for failure.</p>
+
+                <p class="p">Valid values: Refer to <a class="xref" href="reason.html">Appendix: Failure reasons</a>.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">2</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">invokedBy</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the triggering event that invoked the EDR.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">RenewSubscriptionAction</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">triggeredEntityType</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the type of the entity for which the lifecycle is
+                triggered.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Subscription</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">triggeredEntityId</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the ID of the entity for which the lifecycle is
+                triggered.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">75ad31d6-8b27-44ea-8d29-be7aa0b16cd9</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">transitionName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the name of the transition occurred in the triggered
+                lifecycle.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">RepeatCycle</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">transitionStartState</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the name of the state from which the transition
+                starts.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Start</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">correlationId</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">TBD</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">X-CorrelationId:a401f0b1-e5d2-40fd-942d-d6e6bd4c600d</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">periodLifeCycleName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the name of the PERIOD lifecycle of the entity for
+                which the lifecycle is triggered. This tag is generated only if periodic lifecycle
+                is configured.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">SubscriptionBillingCycle</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">billCycleCalendar</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The bill cycle calendar applied for the reset/renew action. This tag is
+                generated only if Bill cycle calendar is configured and attached to account.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">BCC27</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">entityLifeCycleName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the name of the ENTITY lifecycle of the entity for
+                which the lifecycle is triggered. </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">DefaultSubscriptionLifeCycle</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">triggeredBy</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">The flow that caused the transition to execute. </p>
+
+                <div class="p">Valid values: AUDIT, API, ON_CALL, EVENT<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> EVENT is generated if Renew
+                    Subscription Action with allow event broadcast flag is configured in Account
+                    Period Lifecycle and Subscription Renewed event with Accept Broadcast event flag
+                    is configured in a subscription Lifecycle. </div>
+</div>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">API</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">triggeredAtTime</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The time of the first event that occurs on the BCR date, recordOpeningTime. </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">27/08/2020 14:29:56</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">queueId</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">Some lifecycle actions have this tag for queued subscriptions (that is, it is
+                  part of a queue and having a queueId field).</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Q2</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">timestamp</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the time when the EDR is generated. It is presented in
+                standard DD/MM/YYYY HH:MM:SS format.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">
+                <p class="p">10/12/2020 17:45:15</p>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">accountBalanceBefore</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The account balance before fee is charged.<p class="p">For maximum value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">90.0</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">accountBalanceAfter</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The account balance after fee is charged.<p class="p">For maximum value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">85.0</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">meHostName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Host name of the pod that processed the request and generated the CDR/EDR. This
+                tag is present in all CDRs/EDRs.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">nccVersion</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The version of NCC. This tag is present in all CDRs/EDRs.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">SPS_21_0_R1</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">RecordTimeStamp</td>
+
+              <td class="entry cellrowborder" id="concept_qd5_hy5_23b__rts" style="vertical-align:top;" headers="d50971e342 ">Signifies the date and time of the CDR/EDR generation. This value is
+                taken from the CDR module timestamp. By default, it is presented in standard
+                DD/MM/YYYY HH:MM:SS format, as shown in the first example.<p class="p">However, the format can
+                  be changed to include milliseconds as well, as shown in the second example. This
+                  value is in millisecond format with timezoneoffset. Since RecordTimestamp tag is
+                  generated in GMT time, timezone offset is +0000. For this, the ETCD key
+                    <var class="keyword varname">timestampInMS</var> must be set to
+                  <var class="keyword varname">true</var>.</p>
+<div class="note caution"><div class="cautiontitle"><img src="../../web/css/../images/caution.svg" title="caution-icon" class="noteicon" />CAUTION:</div> Contact Nokia Support to change
+                  any ETCD key.</div>
+</td>
+
+              <td class="entry cellrowborder" id="concept_qd5_hy5_23b__rts_val" style="vertical-align:top;" headers="d50971e345 ">
+                <p class="p">10/12/2020 17:45:15</p>
+
+                <p class="p">10/12/2020 17:45:15.617+0000</p>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">discountInfo</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Group of tags for discount information.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">RecordProperty</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘discountDefName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This parameter is the name of the Discount definition.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Discount11</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘discountInstanceId</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">This parameter is the ID of the instance of Discount, attached with
+                  Device/Group.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">d93a88e7-5a53-46ad-9f1f-7813f06f04a2</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘bundleFeeBefore</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Bundle fee before the discount was applied.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">500.00000</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘bundleFeeAfter</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Bundle fee after the discount was applied.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">299.35000</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘discountType</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">Type of discount applied. Possible values are </p>
+
+                <p class="p">PERCENTAGE and ABSOLUTE.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">PERCENTAGE</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘discountValue</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The discount value according to the discount type.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">40.13</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘startDateTime</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The discount start date and time.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">30/04/2022 16:10:33</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘endDateTime</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The discount end date and time.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">10/08/2022 07:44:15</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">additionalBalanceInfo</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This tag appears when charging is done from secondary balance in
+                  <var class="keyword varname">Charge_fee</var> action (for BOU fee deduction).</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">RecordProperty</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘chargingServiceName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Charging service name for secondary balance.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">CS2</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘usageType</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Usage type for secondary balance.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">TVOL</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘usedAs</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Indicates how the secondary balance was used.<p class="p">Valid values:</p>
+<ul class="ul">
+                  <li class="li">USAGE: When secondary balance is used for call consumption.</li>
+
+                  <li class="li">FEE: When secondary balance is used for fee (for example, for, step,
+                    BOU).</li>
+
+                </ul>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">FEE</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘bucketInfo</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Bucket info for secondary balance. <ul class="ul">
+                  <li class="li">bucketName</li>
+
+                  <li class="li">bucketBalanceBefore</li>
+
+                  <li class="li">bucketBalanceAfter</li>
+
+                </ul>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">RecordProperty</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘↘bucketName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Name of the bucket.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">CostBucket007</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘↘bucketBalanceBefore</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Bucket balance before fee deduction.<p class="p">For maximum value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">10</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘↘bucketBalanceAfter</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Bucket balance after fee deduction.<p class="p">For maximum value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">0</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">bundleId</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the ID of the bundle referred by the
+                subscription.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Bundle3</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">bundleActivationType</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">This attribute indicate the activation type of the bundle referred to by
+                  subscription. It can be either of following:</p>
+
+                <ul class="ul">
+                  <li class="li">NORMAL</li>
+
+                  <li class="li">ON_SESSION</li>
+
+                  <li class="li">AUTO_INSTALL</li>
+
+                </ul>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">ON_SESSION</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">bundleVersion</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the bundle version, if versioning is enabled.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">1</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">alternateId</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the unique ID of the subscription. <p class="p">This optional ID
+                  is assigned when the subscription is created with input value.</p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">promo1</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">accountID</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">If the application preference <em class="ph i">AutoGen SPR Ids</em> is set to:</p>
+
+                <ul class="ul">
+                  <li class="li">
+                    <var class="keyword varname">false</var> - It contains the account name associated with the
+                    entity.</li>
+
+                  <li class="li">
+                    <var class="keyword varname">true</var> - It contains the database ID of the account.</li>
+
+                </ul>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Account1</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">accountName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The account name.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Account1</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">fee</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the amount charged for renewing/purchasing the
+                subscription, including FeePerDevice (if any).</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">38</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">taxationID</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the identifier for the taxation profile. This tag is present only if
+                taxation profile is configured for tax to be deducted.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">tax1</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">totalTaxAmount</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the total tax amount charged to the account. This tag is present only
+                if taxation profile is configured for tax to be  deducted.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">3.00</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">taxRateApplied</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This parameter indicates the tax value in percentage defined in the Taxation
+                profile. <div class="note" id="concept_qd5_hy5_23b__note_fz2_qrp_3xb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                  <ul class="ul" id="concept_qd5_hy5_23b__ul_r22_zzm_mxb">
+                    <li class="li">In case of ISU or any modification in the tax rate applied in between the
+                      call, the latest value of tax rate is dumped.</li>
+
+                    <li class="li">Precision of this tag is the same as set in DB precision (<em class="ph i">application
+                        preference</em>).</li>
+
+                  </ul>
+
+                </div>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">20.00</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">feeWithoutTax</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the fee excluding tax amount. This tag is dumped when tax is included
+                to the fee configuration done.<p class="p">It contains the difference between tags
+                    <var class="keyword varname">fee</var> (fee including tax amount) and
+                    <var class="keyword varname">totalTaxAmount</var> (tax amount applied on fee).</p>
+<div class="note" id="concept_qd5_hy5_23b__note_sc4_bsp_3xb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                  <ol class="ol" id="concept_qd5_hy5_23b__ol_m2s_bsp_3xb">
+                    <li class="li">In any scenario, if <em class="ph i">fee</em> or <em class="ph i">totalTaxAmount</em> are not dumped (like
+                      in error scenario), then <em class="ph i">feeWithoutTax</em> tag is not dumped. </li>
+
+                    <li class="li">Precision of this tag is the same as set in  DB precision (application
+                      preference)</li>
+
+                  </ol>
+
+                </div>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">8.34</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">discountPercentage</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The percentage of discount on fee. This tag is available if discount is
+                configured for Bundle on use.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">10</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">discountOnFee</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The discount value calculated on charge fee. This tag is available if discount
+                is configured for Bundle on use.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">120.0</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">maxRenewals</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the number of maximum renewals allowed for the
+                subscription.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">20</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">remainingRenewals</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the number of renewals left for the
+                subscription.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">19</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">subscriptionOnlyRenewalFee</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the amount charged for renewing the subscription,
+                excluding FeePerDevice (if any).</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">15</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">subscriptionRenewalFeeSource</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">This attribute indicates the source of the subscription renewal fee that can be
+                  either of the following:</p>
+
+                <ul class="ul">
+                  <li class="li">RENEWAL_FEE</li>
+
+                  <li class="li">BUNDLE_FEE</li>
+
+                  <li class="li">FEE_OVERRIDE</li>
+
+                </ul>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">BUNDLE_FEE</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">feePerDevice</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the fee charged per device when renewing the
+                subscription (if any).</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">23</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">subscriptionRenewalMode</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">This attribute indicates the property of the subscription which defines how a
+                  subscription is renewed to either of the following values:</p>
+
+                <ul class="ul">
+                  <li class="li">NONE</li>
+
+                  <li class="li">ALL</li>
+
+                  <li class="li">RESET_ONLY</li>
+
+                  <li class="li">BILLING_ONLY</li>
+
+                </ul>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">ALL</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">deviceId</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">This tag is available if the subscription is attached to a device.</p>
+
+                <p class="p">If the application preference <em class="ph i">AutoGen SPR Ids</em> is set to:</p>
+
+                <ul class="ul">
+                  <li class="li">
+                    <var class="keyword varname">false</var> - It contains the name of the device associated with
+                    the entity.</li>
+
+                  <li class="li">
+                    <var class="keyword varname">true</var> - It contains the database ID of the device.</li>
+
+                </ul>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">D2</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">deviceName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The device name.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Device1</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">groupId</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">This tag is available if the subscription is attached to a group.</p>
+
+                <p class="p">If the application preference <em class="ph i">AutoGen SPR Ids</em> is set to:</p>
+
+                <ul class="ul">
+                  <li class="li">
+                    <var class="keyword varname">false</var> - It contains the name of the group associated with the
+                    entity, if present.</li>
+
+                  <li class="li">
+                    <var class="keyword varname">true</var> - It contains the database ID of the group.</li>
+
+                </ul>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Group05</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">groupName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">The group name.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Group05</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">discountInfoOnCommit</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">See sections <em class="ph i">Apply percentage discount on rate</em> and <em class="ph i">Apply percentage
+                  discount on call</em> in the <em class="ph i">Charging User Guide</em> for more information about
+                discount.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">RecordProperty</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">entityName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Name of the charging service in which the call discount is configured in tariff
+                or bucket/counter that drives the discount to be given via the threshold action
+                configured on the bucket/counter.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">MBC_695</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">entityType</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Describes the entity for which the discount is configured in its threshold or
+                the charging service in which the call discount is configured in tariff.<p class="p">Valid
+                  values: Bucket, Counter, Charging-Service</p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Counter</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">discountType</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Type of discount applied. Valid values: PERCENTAGE.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">PERCENTAGE</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">discount</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The discount percentage (without the % sign.)</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">20</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">appliedDiscount</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The actual discount. For example, if discount is 10% and fee 200 then the value
+                is 20.00.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">6.00000</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">billingCycleSource</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the source entity, used to calculate the billing cycle
+                for subscription or account.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">ACCOUNT</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">activationTime</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Indicates the time when the subscription will become active. Till that time,
+                the subscription is not activated.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">26/05/2018 06:31:35</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">hourOfDay</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the hour of day to which the entity is applicable.
+                  <p class="p">A value of 24 indicates EXACT. This indicates that the time in end date and
+                  time is same as subscription start time.</p>
+<p class="p">A value of 25 indicates start of
+                  new day. The end date and time are aligned to 00:00:00 of next day, as per the
+                  lifecycle periodicity.</p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">1</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">dayOfMonth</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the day of month to which the entity is applicable.
+                  <p class="p">A value of 32 indicates EXACT. This indicates the day of month is same as the
+                  the subscription purchase date. </p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">21</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">dayOfWeek</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the day of week to which the entity is applicable.
+                  <p class="p">A value of 7 indicates EXACT. This indicates the day of week is same as the day
+                  of week of the subscription purchase date. </p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">WEDNESDAY</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">startTime</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the start date-time of the current billing
+                cycle.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">27/08/2020 18:00:00</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">endTime</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the end date-time of the current billing
+                cycle.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">27/08/2020 22:00:00</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">prevBillCycleStartTime</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">Previous billing cycle start time.</p>
+
+                <p class="p">For ResetAccountAction and RenewSubscriptionAction/ResetPeriodAction for Account
+                  entity this is the previous account start time.</p>
+
+                <p class="p">For EmptySubscriptionAction, ResetSubscriptionAction, and
+                  RenewSubscriptionAction, ResetPeriodAction for Subscription entity this is the
+                  previous subscription start time.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">27/08/2020 18:00:00</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">prevBillCycleEndTime</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">Previous billing cycle start time.</p>
+
+                <p class="p">For ResetAccountAction, RenewSubscriptionAction, ResetPeriodAction for Account
+                  entity, this is the previous account end time.</p>
+
+                <p class="p">For EmptySubscriptionAction, ResetSubscriptionAction, RenewSubscriptionAction,
+                  ResetPeriodAction for Subscription entity this is subscription previous end
+                  time.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">27/08/2020 22:00:00</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">bucketInfo</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Contains multiple bucket information, with child tags for each bucket.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">RecordProperty</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘bucketName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute specifies the name of bucket being renewed or reset.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">500MB_Bucket</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘bucketUnitType</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the unit type of bucket, for example Bytes, KB, MB, or
+                minutes. It is defined as per customer and type conversion defined by the
+                operator.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Byte</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘bucketKindOfUnit</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the type of bucket. It can be unit, volume, money, or
+                time which are system defined.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">VOLUME</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘bucketPLCName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">-</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Bucket_PLC</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘bucketPLCState</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">-</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Active</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘bucketBalanceBefore</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">If the <em class="ph i">CarryOverBucket</em> is False, then the <em class="ph i">BucketBalanceBefore</em>
+                attribute is the remaining value of the main Bucket at reset or renewal. Otherwise,
+                the <em class="ph i">BucketBalanceBefore</em> attribute is the remaining value of carry over bucket
+                after reset or renewal.<p class="p">For maximum value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">1024</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘bucketBalanceAfter</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">If the <em class="ph i">CarryOverBucket</em> is False, then the <em class="ph i">BucketBalanceAfter</em>
+                attribute is the Initial Value of the main bucket after reset or renewal. Otherwise,
+                the <em class="ph i">BucketBalanceAfter</em> attribute is the Updated Initial Value of the carry
+                over bucket after reset or renewal.<p class="p">For maximum value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">512</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘carryOverBucket</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">This attribute indicates either of the following values:</p>
+
+                <ul class="ul">
+                  <li class="li">True: This value denotes that <em class="ph i">BucketInfo</em> record is for carry over
+                    bucket.</li>
+
+                  <li class="li">False: This value denotes that <em class="ph i">BucketInfo</em> record is for regular
+                    bucket.</li>
+
+                </ul>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">true</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘carryOverTRValue</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">This attribute is available only when <em class="ph i">CarryOverBucket</em> is equal to true and
+                  contains the value forwarded from the main bucket remaining balance to carry over
+                  bucket.</p>
+
+                <p class="p">This attribute is also populated for the session call scenarios where the units
+                  were granted in last CCA before the reset or renewal time of subscription and a
+                  CCR-u is reported after the reset or renewal time containing a USU less than
+                  GSU.</p>
+
+                <p class="p">The delta between GSU and USU (unused quantity of previous billing cycle) is
+                  calculated. The unused quantities are evaluated with respect to carry-over to
+                  check whether the unused quantities are eligible for carry-over considering all
+                  the carry-over feature rules. The carry-over bucket is updated and the
+                    <em class="ph i">CarryOverTRValue</em> tag is filled with the carry-over amount. For example,
+                  if GSU is 100 MB and USU is 80 MB, then 20 MB is evaluated according to the
+                  carry-over. If 10 MB is eligible for carry-over, then this tag reports the same
+                  value. For non-monitory units, this tag has the base unit values, such as seconds
+                  for time or bytes for volume.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">57</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">
+                <p class="p">↘stepInfo</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Contains child tags with StepUp information. This tag appears only when the
+                Bucket type is <var class="keyword varname">Charging-Step</var>.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 "> </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘↘previousStepUpTime</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the previous step up date and time.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">10/10/2019 10:03:03</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘↘currentStepUpTime</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">Specifies the latest step up date and time.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">11/11/2019 11:01:01</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘↘currentStep</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p"> Description: specifies the current step.</p>
+
+                <p class="p">For maximum value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">1</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘↘previousStep</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p"> Specifies the previous step during reset/renew.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">5</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">accountType</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicate the account type for which action was
+                triggered.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">PRE_PAID</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">timeZoneId</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Account time zone.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">IST</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">resetValue</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This attribute indicates the value to which account balance need to be
+                reset.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">100</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">accountBalanceBeforeReset</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The value of account balance before it is reset.<p class="p">For maximum value, refer to
+                    <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">11.0</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">accountBalanceAfterReset</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The value of account balance after it is reset.<p class="p">For maximum value, refer to
+                    <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">100.0</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">counterInfo</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Contains child tags with counter information.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">RecordProperty</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘counterName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the name of Counter updated by lifecycle logic.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Counter1</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘counterKey</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the key of Counter updated by lifecycle logic.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">3b915b7c-15a1-45c6-96c8-4ee96de5fdea</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘counterScope</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Defines the counter scoped.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">SUBSCRIPTION</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘counterPolicySignalState</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Last saved signal state of counter if the counter is a policy counter.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Active</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘counterType</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the Type of the Counter selected by the tariff. Possible values are
+                CALL, USAGE, COST.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">USAGE</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘counterUnitType</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the unit of the Counter (Bytes, KB, MB, Minutes, etc.). It is defined
+                as per customer and type conversion.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Bytes</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘counterKindOfUnit</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the unit type of the Counter. It can be Unit, Volume, Money, or Time,
+                which are system defined.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Volume</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘counterPLCName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">-</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Counter_PLC</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘counterPLCState</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">-</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Active</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘alignGranularity</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">Specifies if counter is updated with granularity. Applicable values are TRUE and
+                  FALSE.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">TRUE</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘counterValueBefore</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies value of the Counter before request has been analyzed for charging
+                and as per counter definition and counter type. For update of Money type counter, DB
+                precision is followed. Counter values are shown in base units (seconds for Time and
+                bytes for Volume).<p class="p">For maximum value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">512</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘counterValueAfter</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the value of the Counter after the request has been analyzed and as
+                per configurable counter definition. For update of Money type counter, DB precision
+                is followed. Counter values are shown in base units (seconds for Time and bytes for
+                  Volume).<p class="p">For maximum value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">1024</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘thresholdProfileGroupIdList</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This is an existing tag in NCC. It defines the threshold group definition name
+                after update or renewal. (For example, after renewal in case of
+                  <em class="ph i">RenewSubscriptionAction</em> EDR).<div class="note" id="concept_qd5_hy5_23b__note_opf_2ts_4wb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If there is no TPG
+                  or ULI attached to counter then this tags does not appear. If there is no change
+                  in TPG or in ULI from its previous value then only current value is printed, if it
+                  is defined for counter.</div>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">[Tpg1]</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘thresholdProfileGroupIdListBefore</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This is a new tag in NCC. It defines the threshold group definition name before
+                update or renewal. (For example, before renewal in case of
+                  <em class="ph i">RenewSubscriptionAction</em> EDR).</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">[Tpg1]</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">listOfSubscriptionID</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Record property/block for each subscriber ID. </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">RecordProperty</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘subscriptionIdType</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Type of subscriber ID.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">1</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘subscriptionIdData</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Subscriber number/data.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">40550999</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">listOfCustomData</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Record property/block for custom data. </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">RecordProperty</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘sourceType</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Source of custom data like Device/Group/Subscription.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Device</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘customDataInfo</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Record property/block for custom data information. </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">RecordProperty</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘↘customDataName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Name of custom data.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">DeviceCustom2</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘↘customDataValue</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Value of custom data.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">12345</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">deviceIdentityInfo </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This parameter is available if <em class="ph i">Add 5G Device Identities in EDR/CDR</em> is
+                set to 1. </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">RecordProperty</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘deviceIdentityType </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This tag indicates the Device ID type. <div class="p">
+                  <div class="note" id="concept_qd5_hy5_23b__note_jmz_byp_3xb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Note: There can be multiple deviceIdentityType and
+                    device IdentityValue tag sets. This indicates multiple Subscriber IDs in the
+                    created Device.</div>
+
+                </div>
+Valid values: 0 (e164), 1 (iMSI), 2 (sIP-URI), 3 (nAI), 4 (uSER\u0002PRIVATE),
+                100 (eXTERNAL-ID), 101 (dEVICE-ID), 102 (sUPI), 103 (gPSI).</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">
+                103
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘deviceIdentityValue</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This parameter is the value of the device identifier.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">msisdn-251437234124</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">countersResetByAccountRenewal</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This tag is available for aggregate counters.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">-</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">attachMode</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Attach mode of aggregate counter, for example, Device, Group, Device_Group, and
+                so on.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Device</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">accountELCState</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This is generated for lifecycle action triggered for subscription
+                entity.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">-</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">accountPLCState</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This is generated for lifecycle action triggered for subscription
+                entity.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">-</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">queuedSubscriptionActivation</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Contains child tags for queuedSubscriptionActivation.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">RecordProperty</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">renewalPriority *</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This tag specifies the priority used at the time of subscription renewal
+                through account renewal.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">0</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">subscriptionActivatedByRenewal</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">This tag specifies that subscription has been activated in its own renewal
+                execution.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">TRUE</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘subscriptionId</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">Indicates the queued/non-queued subscription ID.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">886409aa-ead9-4d8f-99fc-e6b7c43c8658</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘queueId</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The queue ID.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Q2</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘entityLifeCycleName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Name of the ENTITY lifecycle of the entity for which the lifecycle is
+                triggered. </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">DefaultSubscriptionLifeCycle</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘entityLifeCycleState</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">State of the ENTITY lifecycle of the entity for which the lifecycle is
+                triggered.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Inactive</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘periodLifeCycleName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Name of the PERIOD lifecycle of the entity for which the lifecycle is
+                triggered.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">SubscriptionBillingCycle</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘periodLifeCycleState</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">State of the PERIOD lifecycle of the entity for which the lifecycle is
+                triggered.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Inactive</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘bundleName</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Indicates the name of the queued bundle.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">bund6</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘bundleActivationType</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Indicates the activation type of the bundle.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">NORMAL</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘bundleVersion</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Indicates the version of the queued bundle.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">0</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">
+                <p class="p">↘accountBalanceBeforeRenew</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">Specifies the total account balance before renew.</p>
+
+                <p class="p">For maximum value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">60.0</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">
+                <p class="p">↘accountBalanceAfterRenew</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the total account balance after renew.<p class="p">For maximum value, refer to
+                    <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">70.0</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">
+                <p class="p">↘SubscriptionInputDate</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the input date for the subscription.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">18/11/2021 06:55:48</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">accountInfo</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Record property tag for account information for loan. This tag and its child
+                tags are generated only for ResetLoanAction. </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">RecordProperty</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘accountID</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">The account name configured in the Account entity.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Account3461</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘accountType</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">The type as configured in the Account entity.</p>
+
+                <p class="p">Possible values: PRE_PAID, POST_PAID</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">PRE_PAID</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘timeZoneId</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Account time zone.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">EST</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘accountStateBefore</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the entity lifecycle state of the Account before recharge.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Active</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘accountState</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the entity lifecycle state of the Account after recharge.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">Active</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘availableBalance</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">
+                <p class="p">Indicates the monetary balance of the account with reserved values, which
+                  supports a precision of five decimal digits. If more than five decimal digits are
+                  present, then half round-up is applied at the 5th decimal places. It can be a
+                  positive or negative number and the default value is 0.</p>
+
+              </td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">7.35</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘loanStateBefore</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the loan state before recharge.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">OPT_IN</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘loanStateAfter</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the loan state after recharge.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">INITIAL</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘totalLoanRemainingDebtBefore</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the total loan remaining debt before recharge.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">3.45</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘totalLoanRemainingDebtAfter</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the total loan remaining debt after recharge.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">0.00</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">loanInfo</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Record property tag for loan information. This tag and its child tags are
+                generated only for ResetLoanAction.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">RecordProperty</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘loanId</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The identifier of the loan.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">IOU</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘loanAmountBefore</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the loan amount remaining before recharge.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">3.00</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘loanAmountAfter</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">Specifies the loan amount remaining after recharge.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">0.00</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘serviceFee</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">It is an optional parameter which contains the fee which gets deducted at the
+                time of loan payment.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">0.45</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e339 ">↘remainingDebt</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e342 ">The debt that needs to be cleared for that loan.</td>
+
+              <td class="entry cellrowborder" style="vertical-align:top;" headers="d50971e345 ">0.00</td>
+
+            </tr>
+
+          </tbody>
+</table>
+
+    </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Sequencing of CDRs per Record Type" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="sequencing_of_cdrs_per_record_type" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Sequencing of CDRs per Record Type</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="sequencing_of_cdrs_per_record_type">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Sequencing of CDRs per Record Type</h1>
+<div class="body conbody">
+        <p class="p">It is possible to allow CDRs to be ordered sequentially in output files based on a unique
+            number within</p>
+
+        <p class="p">records coming out of the collector. This number is mapper to
+                <code class="ph codeph">localRecordsequencenumber</code> field which keeps on incrementing per
+            record type. All records within the same file have this incremented field. Every time a
+            new file is created, it is continue from the previous counter. This counter is added to
+            ASN1 chargingRecord and genericRecord CDRs. Each type start counting based on the
+                <code class="ph codeph">LocalRecordSequenceNumberInitial</code> parameter till<code class="ph codeph">
+                LocalRecordSequenceNumberLimit</code> parameter. In the case of ISU, LRSN start
+            from the initial value instead of continuing from the previous number.</p>
+
+        <div class="section" id="sequencing_of_cdrs_per_record_type__section_ebb_1b5_tvb"><h2 class="title sectiontitle">Configuring LRSN node parameters in CDR streams</h2>
+            
+            <p class="p">For aggregation to take place, set the following node parameter values:</p>
+
+            <ul class="ul" id="sequencing_of_cdrs_per_record_type__ul_mbm_2b5_tvb">
+                <li class="li">for CG Mapper Node (Business logic stream)<ul class="ul" id="sequencing_of_cdrs_per_record_type__ul_nbm_2b5_tvb">
+                        <li class="li"><code class="ph codeph">LocalRecordSequenceNumberOrderEnabled</code>: yes</li>
+
+                    </ul>
+</li>
+
+                <li class="li">for CG File Collector Node (File output stream)<ul class="ul" id="sequencing_of_cdrs_per_record_type__ul_obm_2b5_tvb">
+                        <li class="li">CustomLRSNClass: com.nokia.mc.node.cg.file.collector.NCCCustomLRSNImpl
+                            (hidden)</li>
+
+                    </ul>
+</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

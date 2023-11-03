@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="check-me-static-data" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="Bookmark1" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>check-me-static-data</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="Bookmark1">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">check-me-static-data</h1>
+<div class="body conbody">
+        <div class="section" id="Bookmark1__section_lc5_5n5_1qb"><h2 class="title sectiontitle">Description</h2>
+            
+            <p class="p">check-me-static-data.sh enables users to compare the static data of ME subsystems by
+                dumping the contents to files which may then be compared. The tool dumps the
+                contents in the namespace dsclocal of the ME subsystem from which the tool is
+                run.</p>
+
+            <div class="p">This tool generates the following files.<ul class="ul" id="Bookmark1__ul_cxv_dq5_1qb">
+                    <li class="li"><code class="ph codeph">&lt;PID&gt;_&lt;ME_name&gt;</code>: This file contains the record info,
+                        or edigest, from the database for the IG or ME system with name
+                            <code class="ph codeph">&lt;ME_name&gt;</code> and process ID <code class="ph codeph">&lt;PID&gt;</code>.
+                        This file is generated when using the <code class="ph codeph">-d</code> flag.</li>
+
+                    <li class="li"><code class="ph codeph">&lt;PID&gt;_Detailed_&lt;ME_name&gt;</code>: this file contains a full
+                        record of information from the database for the IG or ME system with name
+                            <code class="ph codeph">&lt;ME_name&gt;</code> and process ID <code class="ph codeph">&lt;PID&gt;</code>.
+                        This file is generated when using the <code class="ph codeph">-d</code> flag.</li>
+
+                    <li class="li"><code class="ph codeph">&lt;PID&gt;_missing_records</code>: this file contains a record of
+                        differences found between input ME subsystems. This file is generated when
+                        using the <code class="ph codeph">-c</code> flag.</li>
+
+                </ul>
+</div>
+
+        </div>
+
+        <div class="section" id="Bookmark1__section_rwb_vn5_1qb"><h2 class="title sectiontitle">Syntax</h2>
+            
+            <div class="p"><pre class="pre codeblock"><code>check-me-static-data.sh [-d &lt;ME_name&gt;] [-p &lt;path_to_dump&gt;] [-e &lt;list_of_excluded_sets&gt;] [-l]</code></pre></div>
+
+            <div class="p"><pre class="pre codeblock"><code>check-me-static-data.sh [-c &lt;file_having_dump_1&gt;,&lt;file_having_dump_2&gt;]</code></pre></div>
+
+            <div class="p"><pre class="pre codeblock"><code>check-me-static-data.sh [-h/-t]</code></pre></div>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="Bookmark1__table_rfw_zn5_1qb" class="table" frame="border" border="1" rules="all"><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d55989e106">Option</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d55989e109">Description</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d55989e112">Option arguments</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e106 "><code class="ph codeph">-h or -?</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e109 ">Displays usage/help information.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e112 "> </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e106 "><code class="ph codeph">-d &lt;ME_name&gt;</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e109 ">
+                                <p class="p">Dumps the static data of the provided ME subsystem, which is used
+                                    to generate the output files.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e112 "><code class="ph codeph">&lt;ME_name&gt;</code> is the name of the target IG or ME
+                                system.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e106 "><code class="ph codeph">-p &lt;path_to_dump&gt;</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e109 ">Indicates the path where the file should be dumped.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e112 "><code class="ph codeph">&lt;path_to_dump&gt;</code> is the path where the file
+                                should be dumped. Default value is
+                                <code class="ph codeph">/opt/tpa/logs</code>.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e106 "><code class="ph codeph">-e &lt;list_of_excluded_sets&gt;</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e109 ">
+                                <p class="p">Indicates a list of individual sets to exclude by the tool.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e112 ">Comma separated list comprised of any set intended for exclusion
+                                by the tool.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e106 "><code class="ph codeph">-c
+                                    &lt;file_having_dump_1&gt;,&lt;file_having_dump_2&gt;</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e109 ">
+                                <p class="p">Compares dumped data present in the provided files (generated
+                                    with -d option).</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e112 ">Comma separated list comprised of filenames of the dumped data.
+                                All files which need to be compared should be provided in this
+                                list.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e106 "><code class="ph codeph">-t</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e109 ">Runs the tool in DEBUG mode, which provides a more detailed
+                                terminal output.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e112 "> </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e106 "><code class="ph codeph">-l</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e109 ">Displays the default entities name that will not be
+                                searched.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55989e112 "> </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <div class="section" id="Bookmark1__section_c5k_vn5_1qb"><h2 class="title sectiontitle">Examples</h2>
+            
+            <p class="p">This example shows check-me-static-data run with option <code class="ph codeph">-h</code>.</p>
+
+            <pre class="pre codeblock" id="Bookmark1__codeblock_bm5_145_1qb"><code>[tpaadmin@...]$ check-me-static-data.sh -h
+  Dump/Compare ME static Data.
+
+  Usage:
+  check-me-static-data.sh [-d &lt;ME_name&gt;] [-p &lt;path_to_dump&gt;] [-e &lt;list_of_excluded_sets&gt;] [-l]
+  check-me-static-data.sh [-c &lt;file_having_dump_1&gt;,&lt;file_having_dump_2&gt;]
+  check-me-static-data.sh [-h/-t]
+
+where:
+  -d : Dump Static Data of the Provided ME.
+  -p : Path where file should be dumped (Default: /opt/tpa/logs).
+  -e : List of Sets to exclude (comma separated Set Names)
+  -c : Compare dumped data present in the provided files (generated with -d option).
+  -h : This help.
+  -t : Run with Debug. (by default off)
+  -l : Display the default entities name that will not be searched.
+
+O/p Files:
+
+With -d option:
+  &lt;PID&gt;_&lt;ME NAME&gt; : This file will contain the record info (edigest) from the database.
+  &lt;PID&gt;_Detailed_&lt;ME NAME&gt; : This file will contain full record info from the database
+
+With -c option:
+    &lt;PID&gt;_missing_records : Information on records differences.</code></pre>
+            <p class="p">This example shows check-me-static-data dump static data for IG system
+                    <code class="ph codeph">ig1</code> at the default location
+                <code class="ph codeph">/opt/tpa/logs</code>.</p>
+
+            <pre class="pre codeblock" id="Bookmark1__codeblock_cm5_145_1qb"><code>[tpaadmin@ig-admincli-fcc6998d4-zvbct bin]$ ./check-me-static-data.sh -d ig1
+Platform Type: IsVNF [false] IsCNF [true] PID [28493]
+Dump Static Data from ME [ig1]
+Get Rows For [APConfigurationForPeersGroup]
+Get Rows For [AggregateView]
+Get Rows For [AndroidServer]
+Get Rows For [AppleServer]
+Get Rows For [ApplicabilityCondition]
+Get Rows For [AuditResult]
+Get Rows For [BillCycleCalendar]
+Get Rows For [Bucket]
+Get Rows For [Bundle]
+Get Rows For [BundleMapping]
+Get Rows For [CDRMapping]
+Get Rows For [CategoryOrder]
+Get Rows For [ChargingService]
+Get Rows For [ChargingServiceMapping]
+Get Rows For [ChargingStep]
+Get Rows For [CommonCountableEventConfigContainer]
+Get Rows For [Counter]
+Get Rows For [CustomDataDictionary]
+Get Rows For [DDMGBStrKeyProvision]
+Get Rows For [DDMGlblVarCfg]
+Get Rows For [DDMLBConfig]
+Get Rows For [DDMPluginsCfgCont]
+Get Rows For [DbChgNotifSubs]
+Get Rows For [DdmappsMsgValidationConfig]
+Get Rows For [DdmappsRoutingConfig]
+Get Rows For [DdmappsRoutingProfile]
+Get Rows For [DdmappsThrottlingConfig]
+Get Rows For [DdmappsThrottlingProfile]
+Get Rows For [DdmappsTracingProfile]
+Get Rows For [DestMonitorConfig]
+Get Rows For [DiamClientCfg]
+Get Rows For [DiamPeerCfg]
+Get Rows For [DiamPeerConnectionProfile]
+Get Rows For [DiamRouteCfg]
+Get Rows For [DiameterConfig]
+Get Rows For [Discount]
+Get Rows For [EmailServer]
+Get Rows For [EntityCommonTemplate]
+Get Rows For [GlobalList]
+Get Rows For [HttpPluginsCfgCont]
+Get Rows For [KafkaNotificationServer]
+Get Rows For [LeaderKey]
+Get Rows For [LifeCycle]
+Get Rows For [LifeCycleState]
+Get Rows For [LifeCycleTransition]
+Get Rows For [Loan]
+Get Rows For [MeActionStatus]
+Get Rows For [NFDiscoveryResponseCache]
+Get Rows For [NFSubStatus]
+Get Rows For [NFSubscription]
+Get Rows For [NRFFqdnStatus]
+Get Rows For [NotificationLanguage]
+Get Rows For [NotificationProfile]
+Get Rows For [NotificationTemplate]
+Get Rows For [PnDEventConfig]
+Get Rows For [PrivateProfile]
+Get Rows For [Proration]
+Get Rows For [RadiusServerCfg]
+Get Rows For [Rate]
+Get Rows For [RechargeRuleSystemVersion]
+Get Rows For [RerateConfig]
+Get Rows For [RestServer]
+Get Rows For [ServiceProvider]
+Get Rows For [SessionManagementConfig]
+Get Rows For [SlicingProfile]
+Get Rows For [SmMEStatus]
+Get Rows For [SmNSOboundConf]
+Get Rows For [SmPnDEventConfig]
+Get Rows For [SmppServer]
+Get Rows For [SoapServer]
+Get Rows For [StringKeyProvisionMapping]
+Get Rows For [TCPInboundServerConfig]
+Get Rows For [TPAUser]
+Get Rows For [TPAUserRole]
+Get Rows For [Taxation]
+Get Rows For [TcpIpOutbound]
+Get Rows For [ThresholdProfileGroup]
+Get Rows For [ThrottlingLogInfo]
+Get Rows For [TimePeriod]
+Get Rows For [TypeConverter]
+Get Rows For [UCService]
+Get Rows For [UnitType]
+Get Rows For [UsageControlService]
+
+Dumped static Data info in [/opt/tpa/logs/28493_ig1]
+
+Dumped Detailed static Data info in [/opt/tpa/logs/28493_Detailed_ig1]
+
+Done..</code></pre>
+            <p class="p">This example shows check-me-static-data dump static data for IG system
+                    <code class="ph codeph">ig1</code> at the location <code class="ph codeph">/tmp</code>.</p>
+
+            <pre class="pre codeblock" id="Bookmark1__codeblock_dm5_145_1qb"><code>[tpaadmin@ig-admincli-fcc6998d4-zvbct bin]$ ./check-me-static-data.sh -d ig1 -p /tmp/
+Platform Type: IsVNF [false] IsCNF [true] PID [30990]
+Dump Static Data from ME [ig1]
+Get Rows For [APConfigurationForPeersGroup]
+Get Rows For [AggregateView]
+Get Rows For [AndroidServer]
+Get Rows For [AppleServer]
+Get Rows For [ApplicabilityCondition]
+Get Rows For [AuditResult]
+Get Rows For [BillCycleCalendar]
+Get Rows For [Bucket]
+Get Rows For [Bundle]
+Get Rows For [BundleMapping]
+Get Rows For [CDRMapping]
+Get Rows For [CategoryOrder]
+Get Rows For [ChargingService]
+Get Rows For [ChargingServiceMapping]
+Get Rows For [ChargingStep]
+Get Rows For [CommonCountableEventConfigContainer]
+Get Rows For [Counter]
+Get Rows For [CustomDataDictionary]
+Get Rows For [DDMGBStrKeyProvision]
+Get Rows For [DDMGlblVarCfg]
+Get Rows For [DDMLBConfig]
+Get Rows For [DDMPluginsCfgCont]
+Get Rows For [DbChgNotifSubs]
+Get Rows For [DdmappsMsgValidationConfig]
+Get Rows For [DdmappsRoutingConfig]
+Get Rows For [DdmappsRoutingProfile]
+Get Rows For [DdmappsThrottlingConfig]
+Get Rows For [DdmappsThrottlingProfile]
+Get Rows For [DdmappsTracingProfile]
+Get Rows For [DestMonitorConfig]
+Get Rows For [DiamClientCfg]
+Get Rows For [DiamPeerCfg]
+Get Rows For [DiamPeerConnectionProfile]
+Get Rows For [DiamRouteCfg]
+Get Rows For [DiameterConfig]
+Get Rows For [Discount]
+Get Rows For [EmailServer]
+Get Rows For [EntityCommonTemplate]
+Get Rows For [GlobalList]
+Get Rows For [HttpPluginsCfgCont]
+Get Rows For [KafkaNotificationServer]
+Get Rows For [LeaderKey]
+Get Rows For [LifeCycle]
+Get Rows For [LifeCycleState]
+Get Rows For [LifeCycleTransition]
+Get Rows For [Loan]
+Get Rows For [MeActionStatus]
+Get Rows For [NFDiscoveryResponseCache]
+Get Rows For [NFSubStatus]
+Get Rows For [NFSubscription]
+Get Rows For [NRFFqdnStatus]
+Get Rows For [NotificationLanguage]
+Get Rows For [NotificationProfile]
+Get Rows For [NotificationTemplate]
+Get Rows For [PnDEventConfig]
+Get Rows For [PrivateProfile]
+Get Rows For [Proration]
+Get Rows For [RadiusServerCfg]
+Get Rows For [Rate]
+Get Rows For [RechargeRuleSystemVersion]
+Get Rows For [RerateConfig]
+Get Rows For [RestServer]
+Get Rows For [ServiceProvider]
+Get Rows For [SessionManagementConfig]
+Get Rows For [SlicingProfile]
+Get Rows For [SmMEStatus]
+Get Rows For [SmNSOboundConf]
+Get Rows For [SmPnDEventConfig]
+Get Rows For [SmppServer]
+Get Rows For [SoapServer]
+Get Rows For [StringKeyProvisionMapping]
+Get Rows For [TCPInboundServerConfig]
+Get Rows For [TPAUser]
+Get Rows For [TPAUserRole]
+Get Rows For [Taxation]
+Get Rows For [TcpIpOutbound]
+Get Rows For [ThresholdProfileGroup]
+Get Rows For [ThrottlingLogInfo]
+Get Rows For [TimePeriod]
+Get Rows For [TypeConverter]
+Get Rows For [UCService]
+Get Rows For [UnitType]
+Get Rows For [UsageControlService]
+
+Dumped static Data info in [/tmp//30990_ig1]
+
+Dumped Detailed static Data info in [/tmp//30990_Detailed_ig1]
+
+Done..</code></pre>
+            <p class="p">This example shows check-me-static-data dump static data for IG system
+                    <code class="ph codeph">ig1</code> at the default location <code class="ph codeph">/opt/tpa/logs</code> and
+                exclude sets <code class="ph codeph">UnitType,UCService</code>.</p>
+
+            <pre class="pre codeblock" id="Bookmark1__codeblock_em5_145_1qb"><code>[tpaadmin@ig-admincli-fcc6998d4-zvbct bin]$ ./check-me-static-data.sh -d ig1 -e UnitType,UCService
+Platform Type: IsVNF [false] IsCNF [true] PID [3541]
+Dump Static Data from ME [ig1]
+Get Rows For [APConfigurationForPeersGroup]
+Get Rows For [AggregateView]
+Get Rows For [AndroidServer]
+Get Rows For [AppleServer]
+Get Rows For [ApplicabilityCondition]
+Get Rows For [AuditResult]
+Get Rows For [BillCycleCalendar]
+Get Rows For [Bucket]
+Get Rows For [Bundle]
+Get Rows For [BundleMapping]
+Get Rows For [CDRMapping]
+Get Rows For [CategoryOrder]
+Get Rows For [ChargingService]
+Get Rows For [ChargingServiceMapping]
+Get Rows For [ChargingStep]
+Get Rows For [CommonCountableEventConfigContainer]
+Get Rows For [Counter]
+Get Rows For [CustomDataDictionary]
+Get Rows For [DDMGBStrKeyProvision]
+Get Rows For [DDMGlblVarCfg]
+Get Rows For [DDMLBConfig]
+Get Rows For [DDMPluginsCfgCont]
+Get Rows For [DbChgNotifSubs]
+Get Rows For [DdmappsMsgValidationConfig]
+Get Rows For [DdmappsRoutingConfig]
+Get Rows For [DdmappsRoutingProfile]
+Get Rows For [DdmappsThrottlingConfig]
+Get Rows For [DdmappsThrottlingProfile]
+Get Rows For [DdmappsTracingProfile]
+Get Rows For [DestMonitorConfig]
+Get Rows For [DiamClientCfg]
+Get Rows For [DiamPeerCfg]
+Get Rows For [DiamPeerConnectionProfile]
+Get Rows For [DiamRouteCfg]
+Get Rows For [DiameterConfig]
+Get Rows For [Discount]
+Get Rows For [EmailServer]
+Get Rows For [EntityCommonTemplate]
+Get Rows For [GlobalList]
+Get Rows For [HttpPluginsCfgCont]
+Get Rows For [KafkaNotificationServer]
+Get Rows For [LeaderKey]
+Get Rows For [LifeCycle]
+Get Rows For [LifeCycleState]
+Get Rows For [LifeCycleTransition]
+Get Rows For [Loan]
+Get Rows For [MeActionStatus]
+Get Rows For [NFDiscoveryResponseCache]
+Get Rows For [NFSubStatus]
+Get Rows For [NFSubscription]
+Get Rows For [NRFFqdnStatus]
+Get Rows For [NotificationLanguage]
+Get Rows For [NotificationProfile]
+Get Rows For [NotificationTemplate]
+Get Rows For [PnDEventConfig]
+Get Rows For [PrivateProfile]
+Get Rows For [Proration]
+Get Rows For [RadiusServerCfg]
+Get Rows For [Rate]
+Get Rows For [RechargeRuleSystemVersion]
+Get Rows For [RerateConfig]
+Get Rows For [RestServer]
+Get Rows For [ServiceProvider]
+Get Rows For [SessionManagementConfig]
+Get Rows For [SlicingProfile]
+Get Rows For [SmMEStatus]
+Get Rows For [SmNSOboundConf]
+Get Rows For [SmPnDEventConfig]
+Get Rows For [SmppServer]
+Get Rows For [SoapServer]
+Get Rows For [StringKeyProvisionMapping]
+Get Rows For [TCPInboundServerConfig]
+Get Rows For [TPAUser]
+Get Rows For [TPAUserRole]
+Get Rows For [Taxation]
+Get Rows For [TcpIpOutbound]
+Get Rows For [ThresholdProfileGroup]
+Get Rows For [ThrottlingLogInfo]
+Get Rows For [TimePeriod]
+Get Rows For [TypeConverter]
+Get Rows For [UsageControlService]
+
+Dumped static Data info in [/opt/tpa/logs/3541_ig1]
+
+Dumped Detailed static Data info in [/opt/tpa/logs/3541_Detailed_ig1]
+
+Done..</code></pre>
+            <p class="p">This example shows check-me-static-data compare the dumped files
+                    <code class="ph codeph">/opt/tpa/logs/14349_sps-me</code> and
+                    <code class="ph codeph">/opt/tpa/logs/19506_sps-me</code>. Note that as both ME systems have
+                the same data, there is no difference and so nothing is dumped in the output
+                files.</p>
+
+            <pre class="pre codeblock" id="Bookmark1__codeblock_fm5_145_1qb"><code>[tpaadmin@...]$ check-me-static-data.sh -c /opt/tpa/logs/14349_sps-me,/opt/tpa/logs/19506_sps-me
+Platform Type: IsVNF [true] IsCNF [false] PID [25111]
+Compare Files: [/opt/tpa/logs/14349_sps-me /opt/tpa/logs/19506_sps-me]
+
+Finding differences in contents of [/opt/tpa/logs/14349_sps-me] wrt [/opt/tpa/logs/19506_sps-me] .....
+
+Finding differences in contents of [/opt/tpa/logs/19506_sps-me] wrt [/opt/tpa/logs/14349_sps-me] .....
+
+Check Result in file [/opt/tpa/logs/25111_missing_records] ...
+
+Done..
+
+[tpaadmin@...]$ cat /opt/tpa/logs/25111_missing_records
+&gt; &lt;No O/p&gt;</code></pre>
+            <p class="p">This example shows check-me-static-data compare the dumped files
+                    <code class="ph codeph">/opt/tpa/logs/10368_me1</code> and
+                    <code class="ph codeph">/opt/tpa/logs/16820_me3</code>. Note that it can be seen that there is
+                some differences in the dumped data, and set <code class="ph codeph">Counter</code> has the
+                missing entries for
+                    <code class="ph codeph">[{edigest}:"+FNRQKQb/tkhuioREHuAUR43TUI="{edigest}:"4pdRFCDl4Pcj2e3sAVr9tspwg+g="{edigest}:"jfGMArojQoXo6cD2JKBj5+bbUg4=]
+                    in /opt/tpa/logs/16820_me3</code>. The set with missing entries is written to
+                    <code class="ph codeph">/opt/tpa/logs/25198_missing_records</code>.</p>
+
+            <pre class="pre codeblock" id="Bookmark1__codeblock_hm5_145_1qb"><code>[tpaadmin@...]$ check-me-static-data.sh -c /opt/tpa/logs/10368_me1,/opt/tpa/logs/16820_me3
+Platform Type: IsVNF [true] IsCNF [false] PID [25198]
+Compare Files: [/opt/tpa/logs/10368_me1 /opt/tpa/logs/16820_me3]
+
+Finding differences in contents of [/opt/tpa/logs/10368_me1] wrt [/opt/tpa/logs/16820_me3] .....
+
+
+Finding differences in contents of [/opt/tpa/logs/16820_me3] wrt [/opt/tpa/logs/10368_me1] .....
+dsclocal|Counter|{edigest}:"+FNRQKQb/tkhuioREHuAUR43TUI="{edigest}:"4pdRFCDl4Pcj2e3sAVr9tspwg+g="{edigest}:"jfGMArojQoXo6cD2JKBj5+bbUg4="
+
+Check Result in file [/opt/tpa/logs/25198_missing_records] ...
+
+Done..
+
+[tpaadmin@...]$ cat /opt/tpa/logs/25198_missing_records
+</code></pre>
+            <p class="p">This example shows check-me-static-data display the default entities name that will
+                not be searched.</p>
+
+            <pre class="pre codeblock" id="Bookmark1__codeblock_im5_145_1qb"><code>[tpaadmin@...]$ check-me-static-data.sh -l
+Following are the fixed non-searched entities: [ServiceThresholdPolicy DiameterMessageCountThresholdsProfile ServiceCategory PCFInfo ServiceTag ArmingPolicy ExternalSystem DdmappsDownstreamOverloadProfile DDMRuleSystemVersion ExecutionFlow WhiteList CampaignSelectionRule RSRuleSystemVersion DdmappsDownstreamOverloadConfig DdmappsOverloadProtectionConfig Trigger CHFInfo CommonCpuUsageThresholdsProfile TCPServer TriggerPricePlanMapKeys DiameterLatencyThresholdsProfile TriggerMapping PCRFRuleSystemVersion NFProfile ServiceOfferSelectionRule DdmappsOverloadSheddingProfile ChargingRuleSystemVersion Service CEPropertyFile NFDiscoveryQuery NRFServer Campaign NFService PnDRuleSystemVersion PricePlanMapping APIPolicy DiameterPeerWhiteList CommonOverloadConfig DBClientMonitorRecord DiamPeerAddrGrpCfg DiamPeerStatus DiamRouteProfile HostRouteCfg Job LifeCycleRuleSystemVersion MediaIdMSISDN NFRegStatus NFSelector NRFServerSet NSOboundConf NumberPortability PeerGroup Report RetryConfig SitesForcedInService TPASystem TRScheProg]
+</code></pre>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

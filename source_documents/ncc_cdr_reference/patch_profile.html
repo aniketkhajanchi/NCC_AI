@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="patchProfile" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="patch_profile" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>patchProfile</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="patch_profile">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">patchProfile</h1>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_xdm_fs1_srb"><h2 class="title topictitle2" id="ariaid-title2">EDR example</h2>
+<div class="body conbody">
+      <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       3230
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                         Tag                                     Data
+RecordType                   0                        PROVISIONING_RECORD
+serviceProvider              1                                      MVNO1
+invokedBy                    1                                 webService
+invokedMethod                1                              updateProfile
+result                       1                                    SUCCESS
+generationTimestamp          1                        18/11/2021 07:35:40
+meHostName                   1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                 
+nccVersion                   1                                SPS_22_0_R1
+RecordTimestamp              1                        18/11/2021 07:35:40
+  RecordProperty             0                                accountInfo
+  accountID                  1                                 Acc1001308
+  old_hourOfDay              1                                          1
+  hourOfDay                  1                                          2
+  old_dayOfWeek              1                                     MONDAY
+  dayOfWeek                  1                                    TUESDAY
+  old_dayOfMonth             1                                          1
+  dayOfMonth                 1                                          2
+  old_timeZoneId             1                                        IST
+  timeZoneId                 1                                        PST
+  accountCreationTime        1                        18/11/2021 07:34:31
+  accountLastUpdateTime      1                        18/11/2021 07:35:40
+  accountOveragelimit        1                                    -1000.0
+  accountType                1                                  POST_PAID
+  customDataDeleted          1                           [AccountCustom2]
+  renewStatus                1                                      false
+  thresholdProfileGroupIds   1                                 [TPG10990]
+  accountDbId                1       d4988c53-6d95-44ab-afe0-2a3ea0be5001
+  globalEntity               1                                      false
+  AccountCustom1             1                                        AC1
+  old_entityLifeCycleName    1                    DefaultAccountLifeCycle
+  entityLifeCycleName        1                     AccountEntityLifeCycle
+  old_entityLifeCycleState   1                                     Active
+  entityLifeCycleState       1                                    Dormant
+  old_periodLifeCycleName    1                 DefaultAccountBillingCycle
+  periodLifeCycleName        1         AccountPeriodLifeCycle77820_1Month
+  periodLifeCycleState       1                                      Start
+    RecordProperty           0                         accountBalanceInfo
+    balance                  1                                      -13.0
+    availableBalance         1                                      -13.0
+    prevBalance              1                                        0.0
+    prevAvailableBalance     1                                        0.0
+    globalEntity             1                                      false
+  RecordProperty             0                 addAdministratorForAccount
+  accountID                  1                                 Acc1001308
+  accountOwner               1                         New_User_1_1001308
+  RecordProperty             0                    addTPGInstanceToAccount
+  accountID                  1                                 Acc1001308
+  thresholdProfileGroupIds   1                                   TPG10990
+  RecordProperty             0                                 deviceInfo
+  IMSI                       1                              9999910013081
+  E164                       1                              9999910013081
+  deviceId                   1                              Device1001308
+  deviceCreationTime         1                        18/11/2021 07:34:31
+  old_deviceLastUpdateTime   1                        18/11/2021 07:34:31
+  deviceLastUpdateTime       1                        18/11/2021 07:35:39
+  avInstanceDefinitionName   1                                  [AV10990]
+  avInstanceId               1     [c8bc3f73-2986-4fda-93a8-97bd7891cbe6]
+  subscriptionIndex          1                                          0
+  deviceType                 1                                     NORMAL
+  ocsHost                    1                                   ocs-host
+  ocsRealm                   1                                  ocs-realm
+  syOCSEnabled               1                                      false
+  old_allowOverage           1                                      false
+  allowOverage               1                                       true
+  pwdEncrypted               1                                      false
+  categoryList               1                          [DefaultCategory]
+  counterIds                 1                                 [CntD0990]
+  offLineTimeStamp           1                                          0
+  language                   1                                    ENGLISH
+  deviceDbId                 1       cd369ab4-af4d-4753-96fb-e8300099a2fa
+  old_entityLifeCycleName    1                     DefaultDeviceLifeCycle
+  entityLifeCycleName        1                                  DeviceLC1
+  entityLifeCycleState       1                                     Active
+    RecordProperty           0                                   userInfo
+    userId                   1                                User1001308
+    globalEntity             1                                      false
+    RecordProperty           0                           subscriptionInfo
+    subscriptionId           1       71b5d9da-b063-48b9-bee7-9324c45a8f88
+    renewResetStatus         1                                      false
+    bundleChangeCarryOver    1                                      false
+    globalEntity             1                                      false
+    RecordProperty           0                 queuedSubscriptionListInfo
+    queueId                  1                                     Queue1
+    subscriptionList         1     [71b5d9da-b063-48b9-bee7-9324c45a8f88]
+    RecordProperty           0                              timeOfDayInfo
+    timeZone                 1                                        PST
+    daylightSavings          1                                       true
+    RecordProperty           0                         deviceIdentityInfo
+    deviceIdentityType       1                                          0
+    deviceIdentityValue      1                              9999910013081
+    RecordProperty           0                         deviceIdentityInfo
+    deviceIdentityType       1                                        103
+    deviceIdentityValue      1                       msisdn-9999910013081
+    RecordProperty           0                         deviceIdentityInfo
+    deviceIdentityType       1                                        101
+    deviceIdentityValue      1                              Device1001308
+  RecordProperty             0                             addAVsToDevice
+  deviceId                   1                              Device1001308
+  aggregateViewIds           1                                  [AV10990]
+  RecordProperty             0                         addCounterToDevice
+  counterId                  1                                   CntD0990
+  deviceId                   1                              Device1001308
+</code></pre>
+    </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

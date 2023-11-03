@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Backup and recovery with AWS S3 APIs" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="backup_and_recovery_with_aws_s3_apis" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Backup and recovery with AWS S3 APIs</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="backup_and_recovery_with_aws_s3_apis">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Backup and recovery with AWS S3 APIs</h1>
+<div class="body conbody">
+        <p class="p">Backup and Recovery may be configured to utilize AWS S3.</p>
+
+        <div class="section" id="backup_and_recovery_with_aws_s3_apis__section_mfh_b3c_bnb"><h2 class="title sectiontitle">Enabling AWS S3 APIs</h2>
+            
+            <p class="p">To configure Backup and Recovery to utilize the AWS S3 APIs, configure BrPolicy by
+                changing the backend mode to:</p>
+
+            <div class="p">
+                <pre class="pre codeblock"><code>AWSS3</code></pre>
+            </div>
+
+            <div class="p">
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This configuration is case sensitive and must be spelled exactly as described
+                    in this guide.</div>
+
+            </div>
+
+        </div>
+
+        <div class="section" id="backup_and_recovery_with_aws_s3_apis__section_qkv_j3c_bnb"><h2 class="title sectiontitle">Setting AWS S3 keys</h2>
+            
+            <div class="p">There are two ways to set AWS S3 keys.<ol class="ol" id="backup_and_recovery_with_aws_s3_apis__ol_dr2_l3c_bnb">
+                    <li class="li">Create a secret to include all
+                        keys.<pre class="pre codeblock"><code>apiVersion: v1
+kind: Secret
+metadata:
+  name: cburm-s3-key       ###The name must be harded coded to "cburm-s3-key"
+  namespace: ncms          ###The secret should be installed in namespace ncms
+type: Opaque
+data:                      ##Below keys must be base64 encoded. http_proxy is optional, and others are required. If proxy doesn't need to connect to AWS S3, then no proxy is needed to set, otherwise, you must set http_proxy.
+  access_key: QVNJQVFZWlJaMklYTkVENFhZSFM=
+  secret_key: NkExeHRBWDlYSTJhVWhIS1Z0NU4veWc5WDhXNkIrWkRXVEpCaHRaQQ==
+  access_token: RlFvR1pYSXZZWGR6RUt2Ly8vLy8vLy8vL3dFYURQZFNXbUVqdWFLYzg0Qng2eUtpQWdSQWxmeExZckJ2c2tKM3dydlgwSzFTSEcvN09CM0FYZ1lKTmRBWkg4T1hoUU5USXg1YXY2d240M0pubUtDM08yTzhHM1pCUGhhd1dORnRXMm5aTGxhaWZpNHoyNkY2cHNEcE4xeFJFb29uLzE4SFkvSlBxYU42alorVnhIZHNybjMveVZTdmlDUE1aNks4NHlWQlNJUW1xN1pnZzJ6VU5Fa1gwakpmWGRRWXI4eUlxME0yZjc4ZGxmLzlIaTc4ZDZzbENFaXFSZE10b25QSkJmY1FQRjQ0TWNvQk1saEpQNWEwQ3RWV2VVQXlibzJRSk4wZmpQdTdhWmhKUlJvQzdLcVlZR2g4TWVGK2tVQ1hOWGxEODFwK1hHNHVhUmJrN0pocHZZSlB6ZDN6YnJiVjNXRUNZc3cxTVNNTkh0RjRsTWIwRjVRQk1mT3BHMDRyVW9SNUdxZGYyak9RTlFIaXcxc0lWL0p5ZzhBR1dRVnhHTklyQ3BzcWFYOWdTamtISEhZYktMVFZxZUlG
+  uid: aGVsbG90b3lvdQ==
+  region: dXMtZWFzdC0y
+  http_proxy: aHR0cDovLzEzNS4yNDUuMTkyLjc6ODAwMC8=</code></pre></li>
+
+                    <li class="li">Set the keys with the following
+                        command:<pre class="pre codeblock"><code>helm install csf-release/cbur --version 1.3.4 --namespace ncms --set AWSS3.access_key=,AWSS3.secret_key=,AWSS3.access_token=,AWSS3.uid=,AWSS3.region=*,AWSS3.http_proxy=* and the values then will be set to env in cbur-master</code></pre></li>
+
+                </ol>
+</div>
+
+            <p class="p">Backup and Recovery will create a bucket for each UID. For Compass multi-tenant
+                deployments, Backup and Recovery will get project information based on the namespace
+                and create a bucket for each project.</p>
+
+        </div>
+
+        <div class="section" id="backup_and_recovery_with_aws_s3_apis__section_ncg_zmc_bnb"><h2 class="title sectiontitle">AWS S3 server side encryption and AWS S3 server access logging</h2>
+            
+            <p class="p">All AWS S3 buckets created by Backup and Recovery have AES-256 server side encryption
+                enabled.</p>
+
+            <div class="p">AWS S3 server access logging for AWS S3 buckets is controlled by a helm chart
+                parameter, which is set to <code class="ph codeph">false</code> by default. Possible values for
+                this parameter are <code class="ph codeph">true</code> or
+                <code class="ph codeph">false</code>.<pre class="pre codeblock"><code>AWSS3.access_logging=&lt;true/false&gt;</code></pre></div>
+
+            <p class="p">If the parameter is set to <code class="ph codeph">true</code>, AWS S3 server access logging is
+                enabled. A separate bucket <code class="ph codeph">&lt;awss3_bucket&gt;-logs</code> is created to
+                save the access logs.</p>
+
+            <p class="p">If the parameter is set to <code class="ph codeph">false</code>, AWS S3 server access logging is
+                disabled.</p>
+
+            <pre class="pre codeblock"><code>helm install csf-release/cbur --version 1.2.8 --namespace ncms --set AWSS3.access_logging=true</code></pre>
+        </div>
+
+        <div class="section" id="backup_and_recovery_with_aws_s3_apis__section_iwy_tnc_bnb"><h2 class="title sectiontitle">AWS S3 bucket naming convention</h2>
+            
+            <div class="p">The AWS S3 bucket naming format is as
+                follows:<pre class="pre codeblock"><code>&lt;part1&gt;-&lt;part2&gt;</code></pre></div>
+
+            <div class="p">Where:<ul class="ul" id="backup_and_recovery_with_aws_s3_apis__ul_gkp_wnc_bnb">
+                    <li class="li">
+                        <p class="p"><code class="ph codeph">&lt;part1&gt;</code> may be <code class="ph codeph">bucketPrefix</code>,
+                                <code class="ph codeph">clusterId</code>, or <code class="ph codeph">clusterName</code>.</p>
+
+                        <p class="p">If <code class="ph codeph">bucketPrefix</code> is configured for the backend and is not
+                            empty, Backup and Recovery will use it as
+                            <code class="ph codeph">&lt;part1&gt;</code>.</p>
+
+                        <p class="p">Otherwise, Backup and Recovery will use cluster information to populate
+                                <code class="ph codeph">&lt;part1&gt;</code>. If <code class="ph codeph">clusterId</code> is not
+                            empty, it will be used as <code class="ph codeph">&lt;part1&gt;</code>. If both
+                                <code class="ph codeph">bucketPrefix</code> and <code class="ph codeph">clusterId</code> are
+                            both empty, then <code class="ph codeph">&lt;part1&gt;</code> will be populated with
+                                <code class="ph codeph">clusterName</code>.</p>
+
+                        <p class="p">For non-BCMT environments, users must set <code class="ph codeph">clusterId</code> or
+                                <code class="ph codeph">clusterName</code> in the Backup and Recovery helm
+                            values.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p"><code class="ph codeph">&lt;part2&gt;</code> may be <code class="ph codeph">project</code> or
+                                <code class="ph codeph">uid</code>.</p>
+
+                        <p class="p"><code class="ph codeph">project</code> is the value of the label
+                                <code class="ph codeph">project</code> of the namespace and <code class="ph codeph">uid</code>
+                            is the user created ID which identifies the user.</p>
+
+                        <p class="p">If the label <code class="ph codeph">project</code> is configured in the namespace and
+                            the value is not empty, Backup and Recovery will use it as
+                                <code class="ph codeph">&lt;part2&gt;</code>. Otherwise, Backup and Recovery will use
+                                <code class="ph codeph">uid</code> as <code class="ph codeph">&lt;part2&gt;</code>.</p>
+
+                        <p class="p">The <code class="ph codeph">project</code> label was introduced for Compass
+                            mutli-tenant environments. For other environments, use
+                                <code class="ph codeph">uid</code>.</p>
+
+                    </li>
+
+                </ul>
+</div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

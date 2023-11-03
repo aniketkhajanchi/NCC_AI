@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Legacy versioning" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="legacy_versioning" />
+<link rel="stylesheet" type="text/css" href="../../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../web/css/common-extended.css" /><title>Legacy versioning</title>
+<script src="../../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="legacy_versioning">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Legacy versioning</h1>
+<div class="body conbody">
+        <div class="section" id="legacy_versioning__Mappingtableconfig"><h2 class="title sectiontitle">Configuration</h2>
+            
+            <p class="p">The mapping makes use of generic bindings and caches entries into an in-memory map
+                but are configured in the SM GUI.</p>
+
+            <p class="p">Log into SM GUI, navigate to <strong class="ph b">Common Configuration</strong> and select
+                    <span class="ph uicontrol">Mapping Tables</span>. To define a new mapping table, click
+                    <img class="image" id="legacy_versioning__image_ejw_2lb_jqb" src="../../images/hybrid_gui/new_button.png" height="54" width="104" /> to add the basic details and profile configuration as
+                described in the given table:</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="legacy_versioning__table_fjw_2lb_jqb" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d96582e60">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d96582e66">
+                                <p class="p">Description</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d96582e72">
+                                <p class="p">Options</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d96582e78">
+                                <p class="p">Mandatory/Optional</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e60 ">Map Name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e66 ">This parameter indicates a unique name of the map.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e72 ">String</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e78 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d96582e60 "> Reference Based Map</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e66 ">
+                                <p class="p">This parameter can be either set to <var class="keyword varname">True</var> or
+                                        <var class="keyword varname">False</var> by selecting the check box on the
+                                    SM GUI.</p>
+
+                                <p class="p">If this parameter is set as <var class="keyword varname">True</var>, then the
+                                    complex map is a reference-based map, which means that the map
+                                    values inside this map are names of an existing complex map.</p>
+
+                                <p class="p">This parameter must be true for version based map. </p>
+
+                                <div class="note" id="legacy_versioning__note_ifs_jlx_p5b"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                                    <ul class="ul" id="legacy_versioning__ul_gjw_2lb_jqb">
+                                        <li class="li">
+                                            <p class="p">If a map is being referenced by another map, which is
+                                                a reference-based map, then that map cannot be
+                                                deleted until that reference is removed.</p>
+
+                                        </li>
+
+                                        <li class="li">
+                                            <p class="p">When a user tries to provision a reference-based map,
+                                                all the complex maps referenced by that map must be
+                                                provisioned on that selected ME. Otherwise,
+                                                provisioning is not allowed for that reference
+                                                map.</p>
+
+                                        </li>
+
+                                        <li class="li">
+                                            <p class="p">When trying to undistribute a non-reference complex
+                                                map from a selected ME, the SM server checks whether
+                                                that map is being referred by another
+                                                reference-based maps, which are not provisioned on
+                                                same ME. Otherwise, the undistribution is
+                                                prohibited.</p>
+
+                                        </li>
+
+                                        <li class="li">
+                                            <p class="p">By default, this parameter value is set as
+                                                  <var class="keyword varname">False</var>. However, if a user
+                                                updates this flag to <var class="keyword varname">True</var>, then
+                                                the SM server validates all values in that map exist
+                                                as complex map in complex map table, but not as a
+                                                reference-based map, and that map is not referenced
+                                                inside another reference based map. Otherwise, the
+                                                SM server does not allow this flag to be updated to
+                                                  <var class="keyword varname">True</var>.</p>
+
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e72 ">Boolean</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e78 ">Optional</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d96582e66 d96582e72 d96582e78 "><p class="p"><strong class="ph b">Additional information:</strong> In
+                                    case of reference-based map, the <em class="ph i">[value]</em> is a drop-down
+                                    list in the SM GUI that presents the record values of existing
+                                    complex maps. This list can be filtered as per the key name
+                                    specified in the <em class="ph i">[key]</em>. For example, if the <em class="ph i">[key]</em>
+                                    is set as <var class="keyword varname">CDC</var>, then the <em class="ph i">[value]</em>
+                                    displays all the complex maps having <var class="keyword varname">CDC</var> as a
+                                    sub-string in its name. </p>
+<p class="p">Here the key name is not
+                                    case-sensitive and the map key displays maps with names
+                                        <var class="keyword varname">CDC_1</var> or <var class="keyword varname">CDC_2</var>. </p>
+<div class="p">
+                                    <div class="note" id="legacy_versioning__note_i4x_djx_p5b"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If user selects the check box
+                                            <em class="ph i">Show All Refs</em>, then values as per key name are
+                                        not filtered.</div>
+
+                                </div>
+
+                                
+                                <img class="image" id="legacy_versioning__image_hjw_2lb_jqb" src="../../images/img9yz-09126-ug01-pczza-sp1-reference_based_flag_default.png" />
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d96582e60 "> Version</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e66 ">
+                                <p class="p">This parameter allows a user to create multiple complex maps with
+                                    the same name and different versions.</p>
+
+                                <p class="p">The maximum number of characters allowed in this attribute is 50.
+                                    The ID field for versioned map includes a version-suffix
+                                    consisting of a field separator character || and version as an
+                                    user input. For example, map having id
+                                        <var class="keyword varname">test||v1</var>, which indicates the map name is
+                                        <var class="keyword varname">test</var> and version is
+                                    <var class="keyword varname">v1</var>.</p>
+
+                                <p class="p">This parameter is allowed only when the <em class="ph i">Reference Based
+                                        Map</em> flag is set as <var class="keyword varname">True</var>.</p>
+
+                                <div class="p">
+                                    <div class="note" id="legacy_versioning__note_h51_djx_p5b"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Only one version of a given complex
+                                        map can be distributed on a selected ME at a given
+                                        time.</div>
+
+                                </div>
+
+                                <p class="p">The <em class="ph i">Version</em> attribute is only maintained in the SM server
+                                    in the complex map table. While configuring the rules in the
+                                    RSV, a user does not mention the complex map version. Complex
+                                    map versioning allows a user to update a complex map data
+                                    without updating the rule system.</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e72 ">String and read-only</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e78 ">Optional</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d96582e66 d96582e72 d96582e78 ">
+                                <p class="p"><strong class="ph b">Example:</strong> Consider there is an existing distributed
+                                    complex map <var class="keyword varname">REFMAP</var> on a selected ME. A user
+                                    needs to update few fields of this map. The rules in the RSV are
+                                    referring to the <var class="keyword varname">REFMAP</var> key.</p>
+
+                                <p class="p">The user clones the <var class="keyword varname">REFMAP</var> with version
+                                        <var class="keyword varname">v2019</var> and updates the desired fields in
+                                    the newly created complex map. The user then distributes this
+                                    map (which means the <var class="keyword varname">REFMAP</var> with version
+                                        <var class="keyword varname">v2019</var>) to the selected ME.</p>
+
+                                <p class="p">The SM server automatically computes the delta between the two
+                                    version of <var class="keyword varname">REFMAP</var> on the selected ME and
+                                    distributes the contents, which were changed on the selected ME.
+                                    The distributed map in the ME has the same name
+                                        <var class="keyword varname">REFMAP</var>.</p>
+
+                                
+                                <img class="image" id="legacy_versioning__image_ijw_2lb_jqb" src="../../images/img9yz-09126-ug01-pczza-sp1-version_field_example_default.png" />
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d96582e60 "> Pattern Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e66 ">This parameter allows a user to select
+                                    <var class="keyword varname">REGEX_PATTERN</var> or
+                                    <var class="keyword varname">IP_SUBNET_PATTERN</var> while defining a mapping
+                                table.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e72 ">Enum</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e78 ">Optional</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d96582e66 d96582e72 d96582e78 ">
+                                <p class="p">A user can select either of the following values from the
+                                        <em class="ph i">Pattern Type</em> drop-down list:</p>
+
+                                <ul class="ul" id="legacy_versioning__ul_jjw_2lb_jqb">
+                                    <li class="li">
+                                        <p class="p">
+                                            <var class="keyword varname">REGEX_PATTERN</var>: For this <em class="ph i">Pattern
+                                                Type</em>, during network call processing, the input
+                                            keys (such as incoming through AVP) is matched in the
+                                            complex map using regular expression pattern matching
+                                            algorithm.</p>
+
+                                        <p class="p">The sorting order of characters is defined as:</p>
+
+                                        <p class="p">~, }, |, {, z, y, x, w, v, u, t, s, r, q, p, o, n, m, l,
+                                            k, j, i, h, g, f, e, d, c, b, a, `, _, ^, ], [, Z, Y, X,
+                                            W, V, U, T, S, R, Q, P, O, N, M, L, K, J, I, H, G, F, E,
+                                            D, C, B, A, @, ?, &gt;, =, &lt;, ;, :, 9, 8, 7, 6, 5, 4,
+                                            3, 2, 1, 0, /, ., -, ,, +, *, ), (, ', &amp;, %, $, #,
+                                            !</p>
+
+                                        <div class="p">
+                                            <div class="note" id="legacy_versioning__note_j3r_bjx_p5b"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The regex-based keys should
+                                                be provisioned keeping in mind that during a
+                                                Diameter call, input keys (like MCC, MNC, or SGSN)
+                                                are matched with mapping table entries and the very
+                                                first match is returned.</div>
+
+                                        </div>
+
+                                        <p class="p">For example, if the following keys are present in the
+                                            complex map ( reverse natural sorted order):</p>
+
+                                        
+                                        <img class="image" id="legacy_versioning__image_kjw_2lb_jqb" src="../../images/img9yz-09126-ug01-pczza-sp1-regex_image1_default.png" />
+                                        <p class="p">For input as <em class="ph i">key1</em> = <var class="keyword varname">INDIA</var> and
+                                                <em class="ph i">key2</em> =<var class="keyword varname">Himachal</var>, the value
+                                            returned is <var class="keyword varname">Zone1</var>. Although both the
+                                            entries match but the first match is returned.</p>
+
+                                        <div class="p">
+                                            <div class="note" id="legacy_versioning__note_x5t_1jx_p5b"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If the mapping table has the
+                                                row with <em class="ph i">key1</em> = <var class="keyword varname">INDIA</var> and
+                                                  <em class="ph i">key2</em> =<var class="keyword varname">Himachal</var> with
+                                                  <em class="ph i">Value1</em> = <var class="keyword varname">Zone3</var>, then
+                                                  <var class="keyword varname">Zone3</var> is returned.</div>
+
+                                        </div>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">
+                                            <var class="keyword varname">IP_SUBNET_PATTERN</var>: For this
+                                                <em class="ph i">Pattern Type</em>, during network call processing,
+                                            the input keys (such as incoming through AVP) is matched
+                                            in the complex map using IP address prefix or subnet
+                                            concept, which means the given IP address resides in the
+                                            IP address range using the provided subnet. The value of
+                                            the first match of the row from complex map is
+                                            returned.</p>
+
+                                        
+                                        <img class="image" id="legacy_versioning__image_ljw_2lb_jqb" src="../../images/img9yz-09126-ug01-pczza-sp1-ip_subnet_image1_default.png" />
+                                        <p class="p">For a given input, <em class="ph i">key1</em> =
+                                                <var class="keyword varname">10.75.61.94</var> and <em class="ph i">key2</em> =
+                                                <var class="keyword varname">10.10.10.10</var>, <em class="ph i">Zone1</em> value
+                                            is returned.</p>
+
+                                        <p class="p">Another example for IPv6 is:</p>
+
+                                        
+                                        <img class="image" id="legacy_versioning__image_mjw_2lb_jqb" src="../../images/img9yz-09126-ug01-pczza-sp1-ip_subnet_image2_default.png" />
+                                        <p class="p">For given input, <em class="ph i">key1</em> =
+                                                <var class="keyword varname">fe80:0:0:0:0:0:c0a8:11</var> and
+                                                <em class="ph i">key2</em> =
+                                                <var class="keyword varname">ffff:fff:abce:1:1:1:c0a8:f</var>,
+                                                <em class="ph i">Zone1</em> value is returned.</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">
+                                    <strong class="ph b">NOTE:</strong>
+                                </p>
+
+                                <ul class="ul" id="legacy_versioning__ul_njw_2lb_jqb">
+                                    <li class="li">
+                                        <p class="p">The values for the first matched row from the complex map
+                                            is returned. the first matched row is returned after
+                                            considering that complex map rows are sorted in the
+                                            reverse natured order.</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">For reference-based map, all the versions of that map
+                                            should have same <em class="ph i">Pattern Type</em> value. Otherwise,
+                                            it may lead to data inconsistency during a network
+                                            call.</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">If the <em class="ph i">Pattern Type</em> is set as
+                                                <var class="keyword varname">REGEX_PATTERN</var>, then only
+                                            Regex-based matching is done. Similarly, if the
+                                                <em class="ph i">Pattern Type</em> is set as
+                                                <var class="keyword varname">IP_SUBNET_PATTERN</var>, then only IP
+                                            subnet matching is performed.</p>
+
+                                    </li>
+
+                                </ul>
+
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e60 ">Map Keys</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e66 ">
+                                <p class="p">This parameter indicates the name of the first <em class="ph i">Key</em> column.
+                                    This is the header row, which indicates meaning to each
+                                    field.</p>
+
+                                <p class="p">The first column in the example table
+                                        <a class="xref" href="versioning_mapping_tables.html#versioning_mapping_tables__complexmappingtable">ComplexMappingTable example</a> defines the key for the row. You can have up to 10 keys.</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e72 ">String</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e78 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d96582e60 d96582e66 d96582e72 d96582e78 ">
+                                <strong class="ph b">ADD KEY</strong>
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e60 ">Map Values</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e66 ">
+                                <p class="p">This parameter indicates the name of the first <em class="ph i">Value</em>
+                                    column. This is the header row which indicates your meaning to
+                                    each <em class="ph i">Value</em> field in the row.</p>
+
+                                <p class="p">In the example table <a class="xref" href="versioning_mapping_tables.html#versioning_mapping_tables__complexmappingtable">ComplexMappingTable example</a>, each row must consist of exactly m values, where m can be
+                                    between 1 and M, each value can contain up to 1024 characters,
+                                    with a maximum of 1 MB for an entire row of values.</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e72 ">String</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e78 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d96582e60 d96582e66 d96582e72 d96582e78 ">
+                                <strong class="ph b">ADD VALUE</strong> &gt; <strong class="ph b">Import Mapping Table from File</strong>
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e60 ">Import File</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e66 ">Click the <span class="ph uicontrol">BROWSE</span> button to select the
+                                .CSV file that you want to import.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e72 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e78 ">Optional</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e60 ">Overwrite</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e66 ">This parameter defines whether mapping table structure is
+                                derived from a .CSV file.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e72 ">Select this check box to derive the mapping table structure from
+                                a .CSV file.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d96582e78 ">Optional</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <div class="note"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Consider the following points while configuring a complex map:<ul class="ul" id="legacy_versioning__ul_ojw_2lb_jqb">
+                    <li class="li">
+                        <p class="p">A user can specify the version while creating or cloning a given map.
+                            Once a map is created, the version cannot be added or modified in the
+                            existing map. However, if there are two versions of a complex map and
+                            one of the maps having the <em class="ph i">Version</em> field empty while the other
+                            map having the <em class="ph i">Version</em> field non-empty; both are treated two maps
+                            with different versions. For example, a user creates a map with name
+                                <var class="keyword varname">test</var> and empty version and one more map with same
+                            name <var class="keyword varname">test</var> and version <var class="keyword varname">v1</var>. In this
+                            case, the SM server creates two maps; one with id
+                                <var class="keyword varname">test</var> and other with id
+                                <var class="keyword varname">test||v1</var>. Both maps with the same map name are
+                            treated as two versions of a map with the name
+                            <var class="keyword varname">test</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Already existing map can be updated to reference based map only when all
+                            the entries in that map exist as complex map in complex map table.
+                            Complex maps having non-empty version (say v2) cannot be changed to
+                            non-reference map.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">If user clones a new version of an existing non-reference map by setting
+                            the <em class="ph i">Reference Based Map</em> flag as <var class="keyword varname">True</var>, then the
+                            SM server first checks that all the entries from which map is being
+                            cloned exist as a complex map. If all the values exist as a complex map
+                            in SM server, then the SM server clones the new map as a reference-based
+                            map.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">To support the version of any existing map, which was created as
+                            non-reference map before application upgrade (for example
+                                <var class="keyword varname">refMap</var>), user can clone or create next version of
+                            the existing map as reference-based map with same name and non-empty
+                            version attribute. SM server validates the already existing map has
+                            entries exist as complex map in complex map table. If validation is
+                            successful, then the SM server creates a new version of existing map and
+                            auto-updates the already existing non-reference map to reference based
+                            map (<var class="keyword varname">refMap</var> without version). For example, consider
+                            there is an already existing map say refMap. If user tries to create
+                            next version (<code class="ph codeph">map Name</code> = <var class="keyword varname">refMap</var> and
+                                <em class="ph i">version</em> = <var class="keyword varname">v1</var>) of this map by selecting
+                                <em class="ph i">Reference Based Map</em> flag as <var class="keyword varname">True</var>, then the
+                            SM server validates the entries in old version
+                                (<var class="keyword varname">refMap</var>) of same map. If all the entries (map
+                            values) are name of another existing complex map record, then the SM
+                            server allows the user to create next version of same map and
+                            automatically updates the old map (<var class="keyword varname">refMap</var>) as
+                            reference-based map.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">It is recommended to define all versions of a given map with same
+                            nomenclature.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The <em class="ph i">Reference Based Map</em> flag cannot be updated when a given map
+                            has more versions or the <em class="ph i">Version</em> field of that map is non-empty.
+                            Nested referencing is not allowed because using a reference based map
+                            inside other reference based may lead to unexpected behavior.</p>
+
+                    </li>
+
+                    <li class="li"> All the values in the reference based maps should not be null. However, if
+                        a user needs to create a complex map entry with a null value, then one of
+                        the keys must be defined with name as <var class="keyword varname">PLACEHOLDER</var> (which
+                        is case-insensitive) as shown in the following screenshot: 
+                        <img class="image" id="legacy_versioning__image_pjw_2lb_jqb" src="../../images/img9yz-09126-ug01-pczza-sp1-placeholder_image_default.png" height="166" width="463" />
+                    </li>
+
+                </ul>
+</div>
+
+            <div class="sectiondiv">
+                <p class="p"><strong class="ph b">Additional information</strong></p>
+
+                <ul class="ul" id="legacy_versioning__ul_rjw_2lb_jqb">
+                    <li class="li">
+                        <p class="p">A map in the provisioned state cannot be updated or deleted.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Whenever a user provisions a complex map on an ME, the SM server sets its
+                            state on the SM GUI to <var class="keyword varname">IN_PROGRESS</var>, which means the
+                            provisioning of all entries in that map is ongoing. In that state, all
+                            operations like delete, update, retry, or provision are not allowed.
+                            However, if for some reason, a record gets locked in the
+                                <var class="keyword varname">IN_PROGRESS</var>, then the user can use the reset
+                            option (or REST API) present in distribution box of the SM GUI but the
+                            reset option should be only used when provisioning of that record is not
+                            ongoing. Otherwise, it can lead to data inconsistency.</p>
+
+                    </li>
+
+                    <li class="li"><p class="p">If any ME goes offline permanently, then undistribution on that ME does
+                            not work and the record gets locked in the
+                                <var class="keyword varname">DELETE_ATTEMPTED</var> state. To remove such ME from
+                            distribution list of already provisioned record, the reset button is
+                            used, which removes the MEs whose state is
+                                <var class="keyword varname">DELETE_ATTEMPTED</var> from the distribution list.
+                            However, this option does not make any correction in data inconsistency
+                            between an ME and SM server. The reset option should be used only when
+                            ME is not reachable and when provisioning operation for the same record
+                            is not ongoing.</p>
+
+                        
+                        <img class="image" id="legacy_versioning__image_sjw_2lb_jqb" src="../../images/img9yz-09126-ug01-pczza-sp1-undistribution_mapping_tables_default.png" />
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

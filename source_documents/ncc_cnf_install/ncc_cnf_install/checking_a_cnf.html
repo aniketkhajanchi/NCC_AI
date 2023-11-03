@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="task" />
+<meta name="DC.title" content="Checking system health" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="checking_a_cnf" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Checking system health</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="checking_a_cnf">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Checking system health</h1>
+<div class="body taskbody">
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div>
+            <p class="p">This procedure provides instructions on how to ensure that a system is functioning as
+                expected in the deployment.</p>
+
+        </div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">Check that the vital services are <code class="ph codeph">UP</code> by using the
+                        <code class="ph codeph">sps-status</code> tool from the Kubernetes cluster controller node
+                    as shown in this example command:</span>
+                <div class="itemgroup info"><pre class="pre codeblock"><code>kubectl exec -it &lt;&lt;admincli&gt;&gt; -n &lt;&lt;namespace&gt;&gt; -c &lt;application_main_container&gt; -- /opt/tpa/bin/sps-status</code></pre>
+                </div>
+                <div class="tasklabel"><h2 class="sectiontitle tasklabel">Expected outcome</h2></div><div class="itemgroup stepresult">
+                    <p class="p">All services are
+                    <code class="ph codeph">UP</code>.</p>
+<pre class="pre codeblock" id="checking_a_cnf__codeblock_bsy_vrz_gqb"><code>Date: Thu Apr 22 06:22:34 UTC 2021
+Site Name: sm1
+Component SM:
+State      UP
+GeoRole    ACTIVE
+
+
+-------------------------------------------------------------------------------------------------------------------------
+Service              State    Vital    Mode           Instances                                  Composing States
+-------------------------------------------------------------------------------------------------------------------------
+AEROSPIKE CLUSTER    UP       true     STANDALONE
+
+KAFKA                UP       true     STANDALONE
+
+LTM                  UP       true     ONEPLUSONE     smism-centralmanagement-0: UP (ACTIVE)     aerospike client: UP
+                                                                                                 ltm: UP (ACTIVE)
+                                                      smism-centralmanagement-1: UP (STANDBY)    aerospike client: UP
+                                                                                                 ltm: UP (STANDBY)
+SM                   UP       true     NPLUSK         smism-servicemanager-cAffbSfdd-vv7nw: UP   aerospike client: UP
+                                                                                                 ltm client: UP
+                                                                                                 sm: UP
+TRSCHEDULER          UP       true     ONEPLUSONE     smism-centralmanagement-0: UP (ACTIVE)     aerospike client: UP
+                                                                                                 trscheduler: UP (ACTIVE)
+                                                      smism-centralmanagement-1: UP (STANDBY)    aerospike client: UP
+                                                                                                 trscheduler: UP (STANDBY)
+XDR                  UP       true     STANDALONE
+-------------------------------------------------------------------------------------------------------------------------</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Verify the heartbeat status for all members by entering on the cluster
+                    controller node:</span>
+                <div class="itemgroup info"><pre class="pre codeblock"><code>kubectl exec -it &lt;&lt;admincli&gt;&gt; -n &lt;&lt;namespace&gt;&gt; -c &lt;application_main_container&gt; -- /opt/tpa/bin/network-status</code></pre><strong class="ph b">Expected
+                        output</strong><p class="p">All members are <code class="ph codeph">IN_SERVICE</code> and <code class="ph codeph">Missed
+                            traffic beats</code> is zero for the MEs.</p>
+<div class="p">
+                        <pre class="pre codeblock" id="checking_a_cnf__codeblock_xtm_jsz_gqb"><code>Local Status:
+Component [SM] Service Status [IN_SERVICE]
+
+Status for Site 'me6' ID [6] Component [ME] Service status [IN_SERVICE] Missed OAM beats [0] Missed traffic beats [N/A] Last contact [1s ago] Last attempt [1s ago]
+Status for Site 'me5' ID [5] Component [ME] Service status [IN_SERVICE] Missed OAM beats [0] Missed traffic beats [N/A] Last contact [1s ago] Last attempt [1s ago]
+Status for Site 'rt22' ID [22] Component [ME] Service status [IN_SERVICE] Missed OAM beats [0] Missed traffic beats [N/A] Last contact [1s ago] Last attempt [1s ago]
+</code></pre>
+                    </div>
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> SMs' heartbeat status does not display the new MEs. However, the new
+                        MEs' heartbeat status displays the SMs.</div>
+</div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Verify the partition status by entering:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>kubectl exec -it &lt;&lt;admincli&gt;&gt; -n &lt;&lt;namespace&gt;&gt; -c &lt;application_main_container&gt; -- /opt/tpa/bin/network-status -p</code></pre>
+                    <div class="p"><strong class="ph b">Expected output</strong><ul class="ul" id="checking_a_cnf__ul_ntc_qr1_1qb">
+                            <li class="li">The partition status shows as expected.</li>
+
+                            <li class="li">On the SMs, the heartbeat with SMs and initially deployed MEs is
+                                OK.</li>
+
+                            <li class="li">On the initially deployed MEs, the heartbeat with SMs and initially
+                                deployed MEs is OK.</li>
+
+                            <li class="li">On the new MEs, the system shows the heartbeat status for SMs,
+                                initially deployed MEs, and new MEs. New MEs show
+                                    <code class="ph codeph">IS</code>.</li>
+
+                        </ul>
+</div>
+
+                    <div class="p">
+                        <pre class="pre codeblock" id="checking_a_cnf__codeblock_bn4_1tz_gqb"><code>[tpaadmin@nccme5me-admincli-55cd79cm78-twsbk /]$ /opt/tpa/bin/network-status -p
+
+Software Version: SPS_21_6_Rl (SPS_21_6_175)
+Date: Wed May 19 12:51:48 UTC 2021
+
+Partition Status:
+
+Component [ME] Site [me5]         Site ID [5]        Service status [IN_SERVICE]       Partition [(P) spspd5 (IS), (S) spspd4]
+Component [ME] Site [me4]         Site ID [4]        Service status [IN_SERVICE]       Partition [(P) spspd4 (IS), (S) spspd4]</code></pre>
+                    </div>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Verify the <code class="ph codeph">xdr-status</code> is for all the sites by entering:</span>
+                <div class="itemgroup info"><pre class="pre codeblock"><code>kubectl -it exec &lt;admincli&gt; -n &lt;namespace&gt; -- /opt/tpa/bin/xdr-status</code></pre><strong class="ph b">Expected
+                        output</strong><ul class="ul" id="checking_a_cnf__ul_z3n_jpy_bqb">
+                        <li class="li">No lagging, or status <code class="ph codeph">BEHIND</code>, or any failure state is
+                            present.</li>
+
+                        <li class="li">The output shows <code class="ph codeph">CURRENT</code> or
+                            <code class="ph codeph">IN_SERVICE</code>.</li>
+
+                        <li class="li">Both <code class="ph codeph">local site towards remote sites</code> and <code class="ph codeph">remote
+                                sites toward local site</code> have the <code class="ph codeph">sync up state
+                                </code><code class="ph codeph">CURRENT</code>.</li>
+
+                    </ul>
+<div class="p">
+                        <pre class="pre codeblock" id="checking_a_cnf__codeblock_nhs_htz_gqb"><code>XDR replication status (local site towards remote sites):
+--------------------------------------------------------
+Collection Time: 2021-04-07 11:14:20 +0000
+Destination site name: spssite11:
+..sync up state: CURRENT
+..lag: 0
+..latency_ms: 1
+..retry_conn_reset: 1646260
+..retry_dest: 0
+..success: 5
+..in_queue: 0</code></pre>
+                    </div>
+</div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Verify that the database cluster is working as expected, and there is
+                        <code class="ph codeph">NO</code>
+                    <code class="ph codeph">Migration in progress</code> by entering:</span>
+                <div class="itemgroup info"><pre class="pre codeblock"><code>kubectl exec -it &lt;&lt;admincli&gt;&gt; -n &lt;&lt;namespace&gt;&gt; -c &lt;application_main_container&gt; -- /opt/tpa/bin/db-stats -c -s all</code></pre><strong class="ph b">Expected
+                        output</strong><div class="p">
+                        <pre class="pre codeblock" id="checking_a_cnf__codeblock_eyc_jtz_gqb"><code>DB CLUSTER INFO
+--------------------------
+Total DB nodes:          4
+DB nodes responding:     4
+
+ACTIVE RECORDS SUMMARY
+----------------------
+
+N/A, no spspd* namespace has been configured or no data sets for spspd* namespace.
+
+Set (in namespace: dscglobal)   Total
+-------------------------------------
+DiameterIdentity                    0
+SubscriberTracingCriteria           0
+
+Set (in namespace: spsundologs)    Total
+----------------------------------------
+
+
+DB MEMORY AND DISK
+------------------
+NameSpace                  Total Mem (MB)   Free Mem (%)   Total Disk (MB)   Free Disk (%)
+------------------------------------------------------------------------------------------
+dsclocal     Min reported   512                        99             3,072              99
+             Max reported   512                        99             3,072              99
+dscglobal    Min reported   512                        99             3,072             100
+             Max reported   512                        99             3,072             100
+dsc          Min reported   1,024                      99             6,144              99
+             Max reported   1,024                      99             6,144              99
+spsundologs  Min reported   512                       100                 0               0
+             Max reported   512                       100                 0               0
+
+LOCAL CLUSTER DATA MIGRATION
+-----------------------------
+Migration in progress   NO</code></pre>
+                    </div>
+</div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Verify the alarm status in the OpenSearch Dashboard.</span>
+                <div class="itemgroup info"><strong class="ph b">Expected output</strong><ul class="ul" id="checking_a_cnf__ul_fp1_h51_1qb">
+                        <li class="li">On the SMs and initially deployed MEs, there are only alarms related to
+                            the SMs and initially deployed MEs. There are no alarms related to the
+                            new MEs.</li>
+
+                        <li class="li">On the new MEs, heartbeat related alarms will appear for the SMs and
+                            initially deployed MEs.</li>
+
+                        <li class="li">If RTs are deployed, there are only old alarms.</li>
+
+                    </ul>
+</div>
+            </li>
+</ol>
+
+    </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

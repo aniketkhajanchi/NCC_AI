@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="task" />
+<meta name="DC.title" content="Installing Helm charts with NCOM" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="installing_ncc_using_cbnd" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Installing Helm charts with NCOM</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="installing_ncc_using_cbnd">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Installing Helm charts with NCOM</h1>
+<div class="body taskbody">
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div>
+            <p class="p">This procedure provides instructions on how to install the Helm charts by using the
+                Nokia Cloud Operations Manager (NCOM).</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Installation, upgrade, terminate, and delete operations can be completed via the
+                NCOM GUI or the <code class="ph codeph">deployNS.sh</code> tool. For more information about the
+                    <code class="ph codeph">deployNS.sh</code> tool, see <a class="xref" href="deployelementoncbnd.html">Using the deployNS.sh tool</a>.</div>
+
+        </div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">Follow this procedure to generate a network service (NS) package: <a class="xref" href="generating_network_service_package_in_input_generator.html">Generating Network Service Package in input generator</a>.</span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Prepare NCS using the procedure <a class="xref" href="preparing_ncs.html">Preparing NCS</a>.</span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Upload the NS package of the appropriate system type to NCOM, for each
+                    system.</span>
+                <div class="itemgroup info">
+                    <p class="p">For information on how to upload a package, see section <cite class="cite">Managing
+                            Packages/Creating a new package</cite> in the <cite class="cite">&lt;NCOM Version x&gt;
+                            Operating Guide</cite>.</p>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Create and deploy a network service (NS) in NCOM, for all of the systems.</span>
+                <div class="itemgroup info">
+                    <ol class="ol" type="a" id="installing_ncc_using_cbnd__ol_obt_tbm_x4b">
+                        <li class="li">On your local machine where you executed the input generator, collect
+                            all of the <span class="ph filepath">values.yaml</span> files from the directory
+                                <span class="ph filepath">input-generator/output/&lt;site
+                            type&gt;/charts</span>.</li>
+
+                        <li class="li">Generate a <span class="ph filepath">chartsOverrideInputs.json</span> file by using
+                            the tool yaml-to-Json.py and then import the generated file for creation
+                            and deployment of NS. For more information on the tool and file, refer
+                            to <a class="xref" href="deployelementoncbnd.html#deployelementoncbnd__tool_location">Tool location</a>.
+                                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Instead of providing multiple values for charts, after the
+                                first deployment of NS, you can download the inputs file and save it
+                                for later use. The inputs file can be downloaded by going to the
+                                    <span class="ph uicontrol">Inputs</span> tab of the <span class="ph uicontrol">Network
+                                    Service</span> tab (installed Network Service) and then
+                                click the <span class="ph uicontrol">Download</span> button.</div>
+</li>
+
+                    </ol>
+
+                    <p class="p">For information on how to create and deploy an NS, see section <cite class="cite">Managing
+                            Packages/Creating and deploying an NS</cite> in the <cite class="cite">&lt;NCOM
+                            Version x&gt; Operating Guide</cite>.</p>
+
+                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The NS deployment might have issues. Sometimes a chart might be successful
+                        but show as unsuccessful because of some issues such as timeouts.</div>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">After the NS has been deployed, if needed, you can monitor the NS
+                    operations.</span>
+                <div class="itemgroup info">
+                    <p class="p">To see the status, you can click the job ID during the deployment of an NS.
+                        For information on how to monitor NS operations, see section
+                            <cite class="cite">Monitoring Jobs/ Viewing jobs/&lt;Job id&gt;</cite> in <cite class="cite">&lt;NCOM
+                            Version x&gt; Operating Guide</cite>. </p>
+
+                    <p class="p"><strong class="ph b">Expected outcome</strong></p>
+
+                    <p class="p">The NS deploys successfully or fails.</p>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">If the deployment of the NS fails or the installation of some Helm charts
+                    fails, follow this procedure: <a class="xref" href="repackaging_an_ns_package.html">Repackaging an NS package</a>.</span>
+                <div class="itemgroup info">
+                    <p class="p">This step allows you to remove the charts that caused the failure and
+                        redeploy the NS with the successful charts, do some testing, and then deploy
+                        the other charts together with the NS.</p>
+
+                </div>
+            </li>
+</ol>
+
+    </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

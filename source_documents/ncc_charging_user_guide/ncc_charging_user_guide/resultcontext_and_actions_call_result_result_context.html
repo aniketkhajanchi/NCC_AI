@@ -1,0 +1,1911 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="CALL_RESULT result context" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="resultcontext_and_actions_call_result_result_context" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>CALL_RESULT result context</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="resultcontext_and_actions_call_result_result_context">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">CALL_RESULT result context</h1>
+<div class="body conbody">
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>CALL_RESULT result context</span></caption><colgroup><col style="width:28.24858757062147%" /><col style="width:34.18079096045197%" /><col style="width:37.57062146892656%" /></colgroup><thead class="thead" style="text-align:left;">
+     <tr class="row">
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d172369e42">Attribute name</th>
+
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d172369e45">Trigger</th>
+
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d172369e48">Description</th>
+
+     </tr>
+
+    </thead>
+<tbody class="tbody">
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="11" style="vertical-align:top;" headers="d172369e42 ">Add-AVP-In-CCA</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="11" style="vertical-align:top;" headers="d172369e48 ">
+       <p class="p">It is used to add any existing AVP in dictionary or the Vendor Specific AVP (VSA) at root
+        level or MSCC level.</p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RATING_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">DEVICE_NOT_FOUND</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="23" style="vertical-align:top;" headers="d172369e42 "> Add-CDR</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="23" style="vertical-align:top;" headers="d172369e48 ">
+       <div class="p">It is used to add a new CDR tag with value, it is a command level.<div class="note" id="resultcontext_and_actions_call_result_result_context__note_irq_4r3_lwb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For GY_CREDIT_REQUEST trigger, this action is available only at the
+         command level.</div>
+</div>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RATING_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">MMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">SMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_SESSION_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_SESSION_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_SESSION_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">SY_SESSION_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">SY_SESSION_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">DEVICE_NOT_FOUND</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_CREDIT_REQUEST</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d172369e42 ">ADD-Initial-CDR</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_SESSION_ESTABLISHMENT<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d172369e48 ">It is used to optionally allow the generation of CDR at the start of a
+       voice (4G) or data (4G and 5G) session. Use this attribute in the following triggers:<ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_wtp_qkc_znb">
+        <li class="li">for 4G data: GY_SESSION_ESTABLISHMENT</li>
+
+        <li class="li">for 5G data: NCHF_CHARGING_CALL_ESTABLISHMENT</li>
+
+        <li class="li">for 4G voice: IMS_CALL_ESTABLISHMENT</li>
+
+       </ul>
+<p class="p">The result varies for different scenarios as follows:</p>
+<div class="p">4G/5G data: <ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_r34_wnc_znb">
+         <li class="li">If this action is NOT present or set to <var class="keyword varname">true</var>, then CDR is generated
+          at every CCR-I, CCR-U, and CCR-T.</li>
+
+         <li class="li">If this action is present and set to <var class="keyword varname">false</var>, then CDR is generated
+          only for CCR-U and CCR-T.</li>
+
+        </ul>
+</div>
+<p class="p">4G voice:</p>
+<ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_uty_wnc_znb">
+        <li class="li">If <var class="keyword varname">Enable-Single-CDR</var> is NOT present and
+          (<var class="keyword varname">ADD-Initial-CDR</var> is NOT present OR set to <var class="keyword varname">true</var>) then
+         CDR is generated at CCR-I, CCR-U, and CCR-T.</li>
+
+        <li class="li">If <var class="keyword varname">Enable-Single-CDR</var> is NOT present and
+          <var class="keyword varname">ADD-Initial-CDR</var> is set to <var class="keyword varname">false</var> then CDR is
+         generated only at CCR-U and CCR-T.</li>
+
+        <li class="li">If <var class="keyword varname">Enable-Single-CDR</var> is present and
+          (<var class="keyword varname">ADD-Initial-CDR</var> is NOT present or set to <var class="keyword varname">false</var>)
+         then a single CDR for the complete call is generated.</li>
+
+        <li class="li">If <var class="keyword varname">Enable-Single-CDR</var> is present and
+          <var class="keyword varname">ADD-Initial-CDR</var> is set to <var class="keyword varname">true</var> then a CDR for CCR-I
+         and a single CDR for the complete call is generated. </li>
+
+       </ul>
+The type is: <p class="p">BooleanEnum_TRUE</p>
+<p class="p">BooleanEnum_FALSE</p>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_ESTABLISHMENT<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="6" style="vertical-align:top;" headers="d172369e42 ">Add-EDR</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">EDR_PROCESSING</td>
+
+      <td class="entry cellrowborder" rowspan="6" style="vertical-align:top;" headers="d172369e48 ">It is used to add a new EDR tag with value, it is a command level. It is
+       also used in loan balance threshold to generated loan usage EDRs. <p class="p">Following are some
+        example usage for this action to add custom tag to EDR:</p>
+<ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_llg_3jy_qtb">
+        <li class="li">Add the custom tags to the EDR <var class="keyword varname">CALL_RESULT.Add-EDR ( "defaultTariffPlan",
+          SPR_DEVICE.psDefaultTariffPlan)</var> in TPG rules.</li>
+
+        <li class="li">Add custom tag to write the threshold value on which threshold is crossed:
+          <var class="keyword varname">CALL_RESULT.Add-EDR ( "Threshold_Value",THRESHOLD_PROFILE.Threshold-Value
+          )</var></li>
+
+        <li class="li">Add custom tag to write the post balance of Account: <var class="keyword varname">CALL_RESULT.Add-EDR (
+          "Post_Account_Balance",THRESHOLD_PROFILE.Account-Unused-Value)</var></li>
+
+        <li class="li">Add custom tag to dump the value of device name:<var class="keyword varname">CALL_RESULT.Add-EDR
+          ("Device_Name", SPR_DEVICE.Device-Name)</var></li>
+
+       </ul>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">LOAN_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">LOAN_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">LIFECYCLE_PROFILE</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Add-EDR-Action</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">THRESHOLD<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 "><p class="p">This action generates an EDR by accepting the customized values of RecordType,
+        invokedBy, and invokedMethod as its input parameters. </p>
+<p class="p">In this action, RecordType and
+        invokedBy are mandatory parameters, and invokedMethod is optional. It is a command
+        level.</p>
+<p class="p"><strong class="ph b">Example:</strong> CALL_RESULT.Add-EDR-Action("value1_customized_RecordType",
+        "value_customized_invokedBy", "value2_customized_invokedMethod")</p>
+It is also used in loan
+       balance threshold to generated loan usage EDRs.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Add-EDR-RecordProperty</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">EDR_PROCESSING<p class="p">THRESHOLD</p>
+<p class="p">Lifecycle RSV</p>
+<p class="p">LIFECYCLE_PROFILE</p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">This action is used to add a new parent tag including its child tags into custom EDR
+       generated using <em class="ph i">AddEDRAction</em><div class="p"><em class="ph i">RecordProperty_ENUM</em> supports following
+         values:<ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_kyt_2ny_gwb">
+         <li class="li">BUCKET_INFO</li>
+
+         <li class="li">COUNTER_INFO</li>
+
+        </ul>
+</div>
+<p class="p"><strong class="ph b">Examples:</strong> Add-EDR-RecordProperty(AddEdrRecordProperty_BUCKET_INFO)
+        </p>
+<p class="p">This adds entire <em class="ph i">bucketInfo</em> tag including its child tags in
+        EDR</p>
+<p class="p">Add-EDR-RecordProperty(AddEdrRecordProperty_COUNTER_INFO)</p>
+<div class="p">This adds entire
+         <em class="ph i">counterInfo</em> tag including its child tags in EDR<div class="note" id="resultcontext_and_actions_call_result_result_context__note_yzc_x1x_gwb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+         <ol class="ol" id="resultcontext_and_actions_call_result_result_context__ol_zd4_hbx_gwb">
+          <li class="li">As of 23.0, it supports this within LIfecycle RSV inside <em class="ph i">AddEDRAction</em>. This
+           action is applicable for the Subscription lifecycle entity only and is applicable for
+           both entity and periodic lifecycle of subscription.</li>
+
+          <li class="li">If <em class="ph i">RecordProperty_ENUM</em> does not exist in the context of lifecycle then this tag
+           is not printed in EDR.</li>
+
+          <li class="li">If any of the parent tag does not exist in that context then it is not printed in
+           EDR.</li>
+
+         </ol>
+
+        </div>
+</div>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">ADD-Update-CDR</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_MODIFICATION<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">
+       <p class="p">This action is used to generate CDRs for each update request when <em class="ph i">Enable-Single-CDR</em>
+        action is present.</p>
+
+       <p class="p">If <em class="ph i">ADD-Update-CDR</em> and <em class="ph i">Enable-Single-CDR</em> are present, and
+         <em class="ph i">ADD-Initial-CDR</em> is set to <em class="ph i">true</em>, then CDR is generated for CCR-I, CCR-U, and a
+        single CDR is generated for the session.</p>
+
+       <p class="p">If <em class="ph i">ADD-Update-CDR</em> and <em class="ph i">ADD-Initial-CDR</em> are set to <var class="keyword varname">true</var>,
+        and <em class="ph i">Enable-Single-CDR</em> is not present, then CDR is generated for CCR-I, CCR-U, and
+        CCR-T.</p>
+
+       <p class="p">If <em class="ph i">ADD-Update-CDR</em> is set to <var class="keyword varname">true</var>, <em class="ph i">ADD-Initial-CDR</em> is not
+        present or set to <var class="keyword varname">false</var>, and <em class="ph i">Enable-Single-CDR</em> is not present,
+        then CDR is generated for CCR-I, CCR-U, and CCR-T.</p>
+
+       <p class="p">If ADD-Update-CDR is set to true, <em class="ph i">ADD-Initial-CDR</em> is not present, and
+         <em class="ph i">Enable-Single-CDR</em> is present, then CDR is generated for CCR-U and CCR-T.</p>
+
+       <p class="p">If <em class="ph i">ADD-Update-CDR</em> is not present, <em class="ph i">ADD-Initial-CDR</em> is present or set to
+         <var class="keyword varname">true</var>, and <em class="ph i">Enable-Single-CDR</em> is present, then CDR is generated for
+        CCR-I and CCR-T.</p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Aggregate-Custom-Tag</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">
+       <p class="p">IMS_CALL_ESTABLISHMENT</p>
+
+       <p class="p">SMS_CALL_ESTABLISHMENT </p>
+
+       <p class="p">MMS_CALL_ESTABLISHMENT </p>
+
+       <p class="p">NCHF_CHARGING_CALL_ESTABLISHMENT </p>
+
+       <p class="p">RESOURCE_PRE_SORTING</p>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">
+       <p class="p">Defines how to perform the aggregation on the custom tag for the output CDR. It requires
+        custom tag name and the level at which it is created as input.</p>
+
+       <p class="p">Valid values:.</p>
+
+       <div class="p">
+        <ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_qgb_kdl_swb">
+         <li class="li">AGGREGATE_UNIQUE: Aggregates the unique values in Pipe separated format into the final
+          CDR. If there is only one value in the custom tag, the output has only one value, and same
+          values is shown multiple times with pipe separation.</li>
+
+         <li class="li">FIRST_VALUE: Prints only the first value of the Custom tag in final CDR.</li>
+
+         <li class="li">LAST_VALUE: Prints only the last value of the custom tag in final CDR.</li>
+
+         <li class="li">AGGREGATE_SUM: Prints the sum of the values in custom tag. It is only applicable if the
+          custom tag has numbers, else it is ignored.</li>
+
+        </ul>
+
+       </div>
+
+       <p class="p">If this attribute is not present, by default LAST_VALUE of the custom tag is used.</p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Call-Type</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_CREDIT_REQUEST<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 "><p class="p">Defined from <em class="ph i">service-context-id</em> AVP and rating group to specify SMS or PS
+        type calls.</p>
+<p class="p">An ENUM value as defined by a Credit Request Profile rule or an ENUM value
+        determined using a rule variable.</p>
+Entered as an ENUM value.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d172369e42 "> Call-Country</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_CREDIT_REQUEST</td>
+
+      <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d172369e48 ">A value which represents the country of call.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">SLICING_PROFILE</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d172369e42 "> Call-Roaming-Status</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_CREDIT_REQUEST</td>
+
+      <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d172369e48 ">The roaming status of the current device. It can have the following
+        values:<ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_ud2_vky_qtb">
+        <li class="li">Home</li>
+
+        <li class="li">Roaming</li>
+
+       </ul>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">SLICING_PROFILE</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Call-Zones</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_CREDIT_REQUEST<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">A value used to represent one or more zones. Can be a STRING or a list of STRINGS that
+       are type/value pairs.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Call-Sub-Type</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_CREDIT_REQUEST<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">A STRING value as defined by a Credit Request Profile rule or STRING value determined
+       using a rule variable. Entered as a user-defined STRING value.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">CDR-Type</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">DEVICE_NOT_FOUND<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">Used to get CDR type from complex map row. Possible values are RATED and
+       UNRATED.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Copy-CDR-tag</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">
+       <p class="p">RATING_POST_PROCESSING</p>
+
+       <p class="p">RESOURCE_POST_PROCESSING </p>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">This attribute copies the existing tag from the CDR and uses it as custom tag in an
+       other level based on the definition.<p class="p">Format:</p>
+<p class="p"><code class="ph codeph">CALL_RESULT.Copy-CDR-tag (
+         &lt;CUSTOM_TAG_NAME&gt; , CUSTOM_TAG_LEVEL_ENUM , &lt;Existing_Tag_Name&gt; ,
+         &lt;Existing_Tag_Name_Level&gt;, AggregationType_ENUM )</code></p>
+<div class="p">Where, <ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_n1f_pbh_jyb">
+         <li class="li"><code class="ph codeph">&lt;CUSTOM_TAG_NAME&gt;</code> : Name of the custom tag. It is a mandatory
+          parameter.</li>
+
+         <li class="li"><code class="ph codeph">CUSTOM_TAG_LEVEL_ENUM</code> for <em class="ph i">RATING_POST_PROCESSING</em>: It is a
+          mandatory parameter. It can take the following values:<ul class="ul" id="resultcontext_and_actions_call_result_result_context__ol_o1f_pbh_jyb">
+           <li class="li"><var class="keyword varname">AVPLevel_COMMMAND_LEVEL</var></li>
+
+           <li class="li"><var class="keyword varname">AVPLevel_MSCC_LEVEL</var></li>
+
+          </ul>
+</li>
+
+         <li class="li"><code class="ph codeph">CUSTOM_TAG_LEVEL_ENUM</code> for <em class="ph i">RESOURCE_POST_PROCESSING</em>: It is a
+          mandatory parameter. It can take the following values:<ul class="ul" id="resultcontext_and_actions_call_result_result_context__ol_p1f_pbh_jyb">
+           <li class="li"><var class="keyword varname">AVPLevel_COMMMAND_LEVEL</var></li>
+
+           <li class="li"><var class="keyword varname">AVPLevel_MSCC_LEVEL</var></li>
+
+           <li class="li"><var class="keyword varname">AVPLevel_CHARGING_SERVICE_LEVEL</var></li>
+
+           <li class="li"><var class="keyword varname">AVPLevel_RESOURCE_LEVEL</var></li>
+
+          </ul>
+</li>
+
+         <li class="li"><code class="ph codeph">Existing_Tag_Name</code>: Name of the existing tag in CDR. This name should
+          match with the existing tag name. Otherwise, it is ignored. It is a mandatory
+          parameter.</li>
+
+         <li class="li"><code class="ph codeph">Existing_Tag_Name_Level</code>: It represents the level of the existing tag
+          that is to be copied. It is a mandatory parameter. It can take the following values:<ul class="ul" id="resultcontext_and_actions_call_result_result_context__ol_q1f_pbh_jyb">
+           <li class="li"><var class="keyword varname">TAGLevel_deviceInfo</var></li>
+
+           <li class="li"><var class="keyword varname">TAGLevel_groupInfo</var></li>
+
+           <li class="li"><var class="keyword varname">TAGLevel_subscriptionInfo</var></li>
+
+           <li class="li"><var class="keyword varname">TAGLevel_chargingServiceInfo</var></li>
+
+           <li class="li"><var class="keyword varname">TAGLevel_counterInfo</var></li>
+
+           <li class="li"><var class="keyword varname">TAGLevel_accountInfo</var></li>
+
+           <li class="li"><var class="keyword varname">TAGLevel_bucketInfo</var></li>
+
+           <li class="li"><var class="keyword varname">TAGLevel_noChargeInfo</var></li>
+
+           <li class="li"><var class="keyword varname">TAGLevel_MSCCRootElements</var></li>
+
+           <li class="li"><var class="keyword varname">TAGLevel_CDRRoot</var></li>
+
+           <li class="li"><var class="keyword varname">TAGLevel_stepInfo</var></li>
+
+           <li class="li"><var class="keyword varname">TAGLevel_discountInfo</var></li>
+
+           <li class="li"><var class="keyword varname">TAGLevel_additionalBalanceInfo</var></li>
+
+          </ul>
+</li>
+
+         <li class="li"><code class="ph codeph">AggregationType_ENUM</code>: It is an optional parameter. It can take the
+          following values:<ul class="ul" id="resultcontext_and_actions_call_result_result_context__ol_r1f_pbh_jyb">
+           <li class="li"><var class="keyword varname">AGGREGATE_UNIQUE </var>: It is a pipe separated value. For example,
+             <var class="keyword varname">0|2|4</var>.</li>
+
+           <li class="li"><var class="keyword varname">FIRST_VALUE </var>: First value. For example, <var class="keyword varname">0</var>.</li>
+
+           <li class="li"><var class="keyword varname">LAST_VALUE</var> : Last value. For example, <var class="keyword varname">4</var>.</li>
+
+           <li class="li"><var class="keyword varname">AGGREGATE_SUM </var>: Summed value. For example,
+            <var class="keyword varname">6</var>.</li>
+
+          </ul>
+</li>
+
+        </ul>
+Example: <code class="ph codeph">CALL_RESULT.Copy-CDR-tag ( "usageRateId" , AVPLevel_COMMMAND_LEVEL ,
+         "rateId" , TAGLevel_ENUM_accountInfo , AggregationTyp)</code></div>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Credit-Control-Failure-Handling</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_CREDIT_REQUEST<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">The value to set for the <em class="ph i">Credit-Control-Failure-Handling</em> AVP in the CCA. <p class="p">One
+        of the following entered as an ENUM value:</p>
+<ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_kkl_vky_qtb">
+        <li class="li">TERMINATE (0)</li>
+
+        <li class="li">CONTINUE (1)</li>
+
+        <li class="li">RETRY AND TERMINATE (2)</li>
+
+       </ul>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">CC-Session-Failover</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_CREDIT_REQUEST<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">The value of this parameter gets picked for processing through the active RSV. It can
+       have the following values:<ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_p14_gqp_brb">
+        <li class="li">0 (FAILOVER_NOT_SUPPORTED)</li>
+
+        <li class="li">1 (FAILOVER_SUPPORTED)</li>
+
+        <li class="li">2 (IGNORE)</li>
+
+       </ul>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Direct-Debiting-Failure-Handling</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_CREDIT_REQUEST<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">The value to set for the <em class="ph i">Direct-Debiting-Failure-Handling</em> AVP in the
+       CCA.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Default-Roaming-Decision</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_CREDIT_REQUEST<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">This action is used when the value of the action Call-Roaming-Status cannot be
+       determined from the other source. It can have the following values:<ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_u1y_vky_qtb">
+        <li class="li">Home</li>
+
+        <li class="li">Roaming</li>
+
+        <li class="li">Reject</li>
+
+       </ul>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Default-Zoning-Decision</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_CREDIT_REQUEST<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">This action is used when the system cannot get the charging zones. <p class="p">One of the
+        following:</p>
+<ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_ut2_d51_lpb">
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">DROP_CALL</var>: When the system cannot get the charging zones, reject the
+          request.</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">DEFAULT_ZONE</var>: If the system cannot get the charging zones, then set the
+          charging zone to the default zone.</p>
+
+        </li>
+
+       </ul>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Device-Profile</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">DEVICE_NOT_FOUND<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">This action is used to get Global Group from complex map row.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">eCommerce-Reject</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RATING_POST_PROCESSING<p class="p">RESOURCE_POST_PROCESSING</p>
+<p class="p">RESOURCE_PRE_SORTING
+        </p>
+<p class="p">ECOMMERCE_CALL_ESTABLISHMENT</p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">This attribute rejects an e-commerce API instance.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Call-Request-Time</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_CREDIT_REQUEST<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">
+       <p class="p">This action is used in a rule table or in default actions of the Credit Request Profile to
+        provide a time value assigned to the Request Time. If this action is not used in a rule
+        table/default action in the Credit Request Profile, then the default value
+         (<em class="ph i">Event-Time-Stamp</em> AVP) is assigned to request time.</p>
+
+       <p class="p">If the request time value is not set by an action or the <em class="ph i">Event-Time-Stamp</em> AVP is
+        not present in the CCR message, the local system time is used to provide the time of day
+        functionality.</p>
+
+       <p class="p">LONG</p>
+
+       <p class="p">Default value: <em class="ph i">Event-Time-Stamp</em>
+       </p>
+
+       <p class="p">The AVP carries the default request time info as <em class="ph i">Event-Time-Stamp</em> in CCR. The
+        Diameter stack decodes it into the UTC epoc time in milliseconds. Call controller uses the
+        value in this AVP as Request Time and passes it to Rating.</p>
+
+       <p class="p">The possible user-defined values are either <em class="ph i">Event-Time-Stamp</em> or the value of
+        Local-System-Time, as follows:</p>
+
+       <ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_ebl_mt1_lpb">
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">GY_MESSAGE.Local-System-Time</var>
+         </p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">GY_MESSAGE.Event-Time-Stamp</var>
+         </p>
+
+        </li>
+
+       </ul>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Message-Priority</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e48 ">This is used to specify the HTTP/2 message priority for 3GPP service based
+       interfaces. This header can be included in HTTP/2 messages when a priority for the message
+       needs to be conveyed. For example, HTTP/2 messages related to Multimedia Priority
+       Sessions.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Callback</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e48 ">This indicates if a HTTP/2 message is a callback, for example,
+       notification. This can be included in the HTTP POST messages for callbacks towards NF service
+       consumer(s) in another PLMN through the SEPP (see 3GPP TS 29.573[27]).<p class="p">This can also be
+        included in the HTTP POST messages for callbacks in indirect communication.</p>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Target-apiRoot</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e48 ">This is used by an HTTP client to indicate the apiRoot of the target URI
+       when communicating indirectly with the HTTP server through an SCP.<p class="p">This can also be used by
+        an HTTP client to indicate the apiRoot of the target URI towards HTTP server in another PLMN
+        through the SEPP, when TLS is used between the SEPPs.</p>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Routing-Binding</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e48 ">This is used in a service request to signal binding information to direct
+       the service request an HTTP server which has the targeted NF Service Resource
+       context.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Binding</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e48 ">This is used to signal binding information related to an NF Service
+       Resource to a future consumer (HTTP client) of that resource.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Producer-Id</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e48 ">This is used in a service response from the SCP to the NF Service
+       Consumer, when using indirect communication with delegated discovery and the NF Service
+       Producer does not return a binding indication in a service response creating a
+       resource.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Oci</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e48 ">This can be used by an overloaded NF Service Producer in a service
+       response, or in a notification request to signal Overload Control Information (OCI) to the NF
+       Service Consumer.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Lci</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e48 ">This can be used by a NF Service Producer to send Load Control Information
+       (LCI) to the NF Service Consumer.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Origination-Timestamp</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e48 ">This contains the date and time (with a millisecond granularity) when the
+       originating entity initiated the request.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Sender-Timestamp</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e48 ">This indicates the date and time (with millisecond granularity) at which
+       an HTTP request or response is originated. This may be used, for example, for measuring
+       signaling delays between different NF service instances.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Max-Rsp-Time</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e48 ">This may be used in a HTTP request to indicate the duration which the HTTP
+       client waits for a response.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.Via</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT<p class="p">NCHF_CHARGING_CALL_MODIFICATION</p>
+<p class="p">NCHF_CHARGING_CALL_TERMINATION</p>
+<p class="p">RESOURCE_PRE_SORTING
+       </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 "><p class="p">This header is inserted by HTTP proxies, an SCP or SEPP when relaying an HTTP error
+        response, or when relaying other HTTP responses.</p>
+<p class="p">When inserted by an SCP or SEPP, the
+        pattern of the header should be formatted as follows:</p>
+<ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_if5_nkm_1rb">
+        <li class="li"><var class="keyword varname">SCP-&lt;SCP FQDN&gt;</var> for an SCP</li>
+
+        <li class="li"><var class="keyword varname">SEPP-&lt;SEPP FQDN&gt;</var> for a SEPP</li>
+
+       </ul>
+ This is a mandatory standard header.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Client-Credentials</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT<p class="p">NCHF_CHARGING_CALL_MODIFICATION</p>
+<p class="p">NCHF_CHARGING_CALL_TERMINATION</p>
+<p class="p">RESOURCE_PRE_SORTING
+       </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">This header may be used by an NF service consumer to send client credentials assertion
+       to the NRF or to the NF Service Producer. This is a mandatory HTTP custom header.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Discovery-target-nf-instance-id</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT<p class="p">NCHF_CHARGING_CALL_MODIFICATION</p>
+<p class="p">NCHF_CHARGING_CALL_TERMINATION</p>
+<p class="p">RESOURCE_PRE_SORTING
+       </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">Headers beginning with the prefix <var class="keyword varname">3gpp-Sbi-Discovery-</var> are used in
+       indirect communication mode for discovery and selection of a suitable producer by the SCP.
+       Such headers may be included in any SBI message and include information allowing an SCP to
+       find a suitable producer as per the consumer's included
+        <var class="keyword varname">target-nf-instance-id</var>. This is a mandatory HTTP custom header.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Discovery-snssais</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT<p class="p">NCHF_CHARGING_CALL_MODIFICATION</p>
+<p class="p">NCHF_CHARGING_CALL_TERMINATION</p>
+<p class="p">RESOURCE_PRE_SORTING
+       </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">Headers beginning with the prefix <var class="keyword varname">3gpp-Sbi-Discovery-</var> are used in
+       indirect communication mode for discovery and selection of a suitable producer by the SCP.
+       Such headers may be included in any SBI message and include information allowing an SCP to
+       find a suitable producer as per the consumer's included <var class="keyword varname">snssais</var>. This is a
+       mandatory HTTP custom header.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Discovery-target-nf-type</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT<p class="p">NCHF_CHARGING_CALL_MODIFICATION</p>
+<p class="p">NCHF_CHARGING_CALL_TERMINATION</p>
+<p class="p">RESOURCE_PRE_SORTING
+       </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">Headers beginning with the prefix <var class="keyword varname">3gpp-Sbi-Discovery-</var> are used in
+       indirect communication mode for discovery and selection of a suitable producer by the SCP.
+       Such headers may be included in any SBI message and include information allowing an SCP to
+       find a suitable producer as per the consumer's included <var class="keyword varname">target-nf-type</var>.
+       This is a mandatory HTTP custom header.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Target-Nf-Id</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT<p class="p">NCHF_CHARGING_CALL_MODIFICATION</p>
+<p class="p">NCHF_CHARGING_CALL_TERMINATION</p>
+<p class="p">RESOURCE_PRE_SORTING
+       </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">This header is used in a 307 Temporary Redirect or 308 Permanent Redirect response, to
+       identify the target NF (service) instance towards which the request is redirected. This is a
+       mandatory HTTP custom header.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Nrf-Uri</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT<p class="p">NCHF_CHARGING_CALL_MODIFICATION</p>
+<p class="p">NCHF_CHARGING_CALL_TERMINATION</p>
+<p class="p">RESOURCE_PRE_SORTING
+       </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">This header may be used to indicate the NRF API URIs to be used for a given service
+       request, e.g. in indirect communication with delegated discovery as a result of an NSSF
+       query. This is a mandatory HTTP custom header.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Correlation-Info</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e48 ">
+       <p class="p">This header is used to fetch the Site-Info for Site-Routing. The value to be provided is
+        the IMSI (SUPI), MSISDN(GPSI), NAI, or External ID.</p>
+
+       <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Multiple values can be sent for <em class="ph i">3gpp-Sbi-Correlation-Info</em>. The multiple values
+        of <em class="ph i">3gpp-Sbi-Correlation-Info</em> are separated by a semi-colon delimiter.</div>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.User-Agent</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e48 ">The User-Agent header provides a mechanism for indicating the NF name to
+       other servers where NCC is acting as the client in the message flow. It also indicates the
+       time of receiving the message, and the original client of the request.<p class="p">If <em class="ph i">User-Agent</em>
+        is configured in RSV, then it is added as a http header in responses to <em class="ph i">Nchf_
+         ConvergedCharging</em>, and <em class="ph i">Nchf_SpendingLimitControl</em>.</p>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e42 ">HttpHeader.3gpp-Sbi-Binding-Header</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d172369e48 ">This header is used to signal binding information related to an NF service
+       resource to a future consumer (HTTP client) of that resource. This is a mandatory HTTP custom
+       headers.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d172369e42 ">Loan-Activation</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d172369e48 ">This is used to trigger loan activation during a call, that is, a
+       Subscriber can OPT_IN loan during a call using P&amp;C functionally and it shall be able to
+       configure with loan ID or without loan ID (same as REST API). In both the scenarios, this
+       executes LOAN_PRE_PROCESSING and LOAN_POST_PROCESSING
+        rule.<div class="p">Example:<pre class="pre codeblock" id="resultcontext_and_actions_call_result_result_context__codeblock_g42_mb3_4xb"><code>if
+
+      IMS_SERVICE_INFO.Service-Specific-Info.Service-Specific-Data = "2" and
+
+     IMS_SERVICE_INFO.Service-Specific-Info.Service-Specific-Type = 1007 and
+      CALL_COMMON.Call-Type = CallType_IMS and
+      CALL_COMMON.Call-Roaming-Status = RoamingDecision_HOME
+then
+
+      CALL_RESULT.Loan-Activation ( "L1" ) </code></pre></div>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Load-Generated-TransactionId</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">ECOMMERCE_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">Load generated transaction Id.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="8" style="vertical-align:top;" headers="d172369e42 "> RSU-Unit-Type</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_CREDIT_REQUEST</td>
+
+      <td class="entry cellrowborder" rowspan="8" style="vertical-align:top;" headers="d172369e48 ">This represents the type of RSU unit, which can be VOLUME, TIME, UNIT, or
+       MONEY.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">APPLICABILITY</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RATING_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">TARIFF</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">SLICING_PROFILE</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Kind-Of-Unit</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_CREDIT_REQUEST<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">This represents the type of unit for the call, which can be VOLUME, TIME, UNIT, or
+       MONEY.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d172369e42 ">Reporting-Reason-In-Metrics</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RATING_POST_PROCESSING</td>
+
+      <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d172369e48 ">This attribute determines which reporting-reasons must be used to generate
+        metrics.<p class="p">If the request message does not include the specified reporting reason, the
+        corresponding metric is not produced.</p>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Report-Usage-Characteristic</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RATING_POST_PROCESSING</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">
+       <p class="p">This action accepts the name and the value as input parameter and reports them in the
+        first free component of the output usageCharacteristic list in the POST/PATCH /usage API
+        response.</p>
+
+       <div class="p">
+        <div class="note" id="resultcontext_and_actions_call_result_result_context__note_ifj_qrk_4xb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Note: the type in the created usageCharacteristic component is
+         to be hard-coded as <var class="keyword varname">STRING</var>.</div>
+
+       </div>
+
+       <p class="p">Example:</p>
+
+       <ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_n2r_krk_4xb">
+        <li class="li">Action instance
+         <pre class="pre codeblock" id="resultcontext_and_actions_call_result_result_context__codeblock_u32_gtk_4xb"><code>CALL_RESULT.Report-Usage-Characteristic 
+("primaryBalanceAfter", CONVERSION.Double-To-String 
+(SPR_ACCOUNT.Available-Balance))</code></pre></li>
+
+       </ul>
+
+       <ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_o2r_krk_4xb">
+        <li class="li">Output usageCharacteristic component<pre class="pre codeblock" id="resultcontext_and_actions_call_result_result_context__codeblock_q4j_2tk_4xb"><code>{
+ "name": "primaryBalanceAfter",
+ "valueType": "String",
+ "value": "20.0"
+}</code></pre></li>
+
+       </ul>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d172369e42 ">Report-Charged-Amount</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RATING_POST_PROCESSING</td>
+
+      <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d172369e48 "><p class="p">This attribute accepts amount, currency and tax percentage as input
+        parameters, and reports them in the first free component of the <em class="ph i">ratedProductUsage</em>
+        list in the API response.</p>
+<p class="p">Example:</p>
+<p class="p"><em class="ph i">CALL_RESULT.Report-Charged-Amount
+         ("10.00000", "EUR", "22.00000")</em></p>
+<p class="p">The action is called from RSV engine only in case
+        the amount, currency and tax percentage to report in API response are determined internally
+        through the mapping table.</p>
+<p class="p">By default the amount, currency and tax percentage to
+        report in API response are taken directly from the <em class="ph i">ratedProductUsage</em>
+       attributes.</p>
+In case the input attribute is an empty string, and the corresponding
+        <em class="ph i">ratedProductUsage</em> is null, then it is not reported in the API response.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="6" style="vertical-align:top;" headers="d172369e42 ">Service-Parameter-Info</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="6" style="vertical-align:top;" headers="d172369e48 ">This can be used to pass the new destination number.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RATING_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Trigger-Type</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RATING_POST_PROCESSING<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">The <em class="ph i">Trigger-Type</em> AVP indicates the events that can cause the credit control
+       client to reauthorize the associated quota.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="5" style="vertical-align:top;" headers="d172369e42 "> Arm-Nchf-Trigger</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RATING_POST_PROCESSING</td>
+
+      <td class="entry cellrowborder" rowspan="5" style="vertical-align:top;" headers="d172369e48 ">This action is used to set the 5G trigger type, trigger category, and
+       trigger level that can cause the credit control client to reauthorize the associated
+       quota.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="10" style="vertical-align:top;" headers="d172369e42 "> Announcement-Information</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="10" style="vertical-align:top;" headers="d172369e48 ">This action is used to set announcement AVP to the MSCC level.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RATING_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">UC_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="10" style="vertical-align:top;" headers="d172369e42 "> Announcement-Variable-Part</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="10" style="vertical-align:top;" headers="d172369e48 ">It is used to set variable-part AVP in the announcement AVP.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_MODIFICATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_TERMINATION</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">THRESHOLD</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RATING_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_POST_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_PRE_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">UC_PROCESSING</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="5" style="vertical-align:top;" headers="d172369e42 ">Enable-Single-CDR</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">IMS_CALL_ESTABLISHMENT</td>
+
+      <td class="entry cellrowborder" rowspan="5" style="vertical-align:top;" headers="d172369e48 ">
+       <p class="p">It is used to have a single CDR for the complete call. It is not applicable for Gy session
+        calls and SMS/MMS ECUR (I/U/T) calls. It is only applicable for IMS calls (I/U/T).</p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">SMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">MMS_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_PRE_SORTING </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">NOTIFICATION.SMPP-Source</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RATING_POST_PROCESSING<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">
+       <p class="p">This action accepts an MSISDN as input and replaces the value in <em class="ph i">SMS-Orig-Id</em>
+        attribute of the REST API PushNotification instance, which currently is hard-coded to the
+         <strong class="ph b">Mobile Source Number</strong> in SMPP server configuration.</p>
+
+       <p class="p">Example:</p>
+
+       <p class="p"><em class="ph i">NOTIFICATION.SMPP-Source </em>("&lt;A-Number&gt;") where &lt;A-Number&gt; is the SMS
+        sender.</p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">NOTIFICATION.SMPP-Destination</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RATING_POST_PROCESSING<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">
+       <p class="p">This action accepts an MSISDN as input and sets the value in new <em class="ph i">SMS-Dest-Id</em>
+        attribute of the REST API PushNotification instance.</p>
+
+       <p class="p">Example:</p>
+
+       <p class="p"><em class="ph i">NOTIFICATION.SMPP-Destination</em> ("&lt;B-Number&gt;") where &lt;B-Number&gt; is the SMS
+        recipient.</p>
+
+       
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Policy-CounterId-Mapping</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_CREDIT_REQUEST<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">
+       <p class="p">Provides the name of complex map which is used to map the external policy counter ID with
+        internal policy counter IDs. It is preconfigured in the <strong class="ph b">Rules and Variables</strong> with
+        default value PolicyCounterIdMap.</p>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Resource-Trigger-Applicable</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">RESOURCE_POST_PROCESSING<p class="p">RESOURCE_PRE_SORTING </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">
+       <p class="p">When <strong class="ph b">RESOURCE_POST_PROCESSING</strong> is evaluated, this action would determine that
+        resulted actions need to be executed during resource RESERVATION or during resource
+        COMMIT.</p>
+
+       <p class="p">Values of this action:</p>
+
+       <ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_bbm_qtw_z4b">
+        <li class="li">RESERVATION</li>
+
+        <li class="li">COMMIT</li>
+
+        <li class="li">RESERVE_COMMIT</li>
+
+       </ul>
+
+      </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">SSI-In-CCA-Indicator</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 "><p class="p">IMS_CALL_ESTABLISHMENT</p>
+<p class="p">IMS_CALL_MODIFICATION</p>
+<p class="p">IMS_CALL_TERMINATION</p>
+<p class="p">GY_POST_PROCESSING</p>
+<p class="p">THRESHOLD
+        </p>
+<p class="p">RATING_POST_PROCESSING </p>
+ RESOURCE_POST_PROCESSING<p class="p">RESOURCE_PRE_SORTING
+       </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 "><p class="p">This attribute is used to set the language code in ISO-639-2 format to return in CCA
+        message for announcement and which level of SSI AVPs to be present.</p>
+ Options for SSI
+       level is:<ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_ddl_1g4_5sb">
+        <li class="li">
+         <p class="p">NONE, #Not Add SSI avp</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">MSCC_LEVEL, #MSCC Level</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">IMS_INFORMATION_LEVEL, #IMS Information Level</p>
+
+        </li>
+
+        <li class="li">BOTH, #both MSCC and IMS Information Level</li>
+
+       </ul>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Trigger-Life-Cycle-Event</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">
+       <p class="p">IMS_CALL_MODIFICATION</p>
+
+       <p class="p"> IMS_CALL_TERMINATION</p>
+
+       <p class="p">RESOURCE_PRE_SORTING </p>
+
+       <p class="p">ECOMMERCE_CALL_ESTABLISHMENT</p>
+
+       <p class="p">RATING_POST_PROCESSING</p>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">This attribute is used to set the lifecycle event to be triggered after rule
+       evaluation.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e42 ">Post-Call-Notification-Handling</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e45 ">GY_PRE_PROCESSING</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d172369e48 ">This attribute is used to determine whether to send a post call notification.  <ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_kj1_343_myb">
+        <li class="li">If it is null or <em class="ph i">Not_Sent</em>, then no post call  notification is needed.</li>
+
+        <li class="li">For PS call, if it is  <em class="ph i">Send_At_CCRu_CCRt,</em>  then the post call notification is
+         sent per CCRu/CCRt message</li>
+
+        <li class="li"> If it is <em class="ph i">Send_At_CCRt_Per_Session</em>, then post call notification is only sent when
+         CCRt message is received.</li>
+
+       </ul>
+ For other call types, the valid value is <var class="keyword varname">Not_Sent</var> and
+        <var class="keyword varname">Send_At_CCRt_Per_Session</var>. If it is set to
+        <var class="keyword varname">Send_At_CCRu_CCRt</var>, then post call notification is not triggered.<div class="p"><em class="ph i">
+         Example: Enum</em><ul class="ul" id="resultcontext_and_actions_call_result_result_context__ul_ms4_3kh_myb">
+         <li class="li"><em class="ph i">Not_Sent</em></li>
+
+         <li class="li"><em class="ph i">Send_At_CCRu_CCRt</em></li>
+
+         <li class="li"><em class="ph i">Send_At_CCRt_Per_Session</em></li>
+
+        </ul>
+</div>
+</td>
+
+     </tr>
+
+    </tbody>
+</table>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

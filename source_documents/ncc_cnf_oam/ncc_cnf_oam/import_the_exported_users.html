@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Import the exported users" />
+<meta name="DC.relation" scheme="URI" content="web_sso_config.html" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="import_the_exported_users" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Import the exported users</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="import_the_exported_users">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Import the exported users</h1>
+<div class="body conbody">
+        <div class="p">After the migration to SSO/LDAP is completed, these steps can be performed to import the
+            users that you exported prior to the migration. <ol class="ol">
+                <li class="li">Login to the User and Role Management GUI.</li>
+
+                <li class="li">Select the sps-auth realm from the drop-down list in the left navigation.</li>
+
+                <li class="li">Click the <span class="ph uicontrol">Realm settings</span> option under the
+                        <span class="ph uicontrol">Configure</span> section.</li>
+
+                <li class="li">Click the <span class="ph uicontrol">Action</span> drop-down button on top right corner and
+                    select <span class="ph uicontrol">Partial import</span>.</li>
+
+                <li class="li">Click the <span class="ph uicontrol">Browse</span> button to find the exported JSON
+                    file.</li>
+
+                <li class="li">Select the <span class="ph filepath">sps-auth-users-0.json</span> file that was exported for
+                    the Partial Import. <ol class="ol" type="a">
+                        <li class="li">Select <span class="ph uicontrol">Users</span> in the <span class="ph uicontrol">Choose the
+                                resources you want to import</span> section.</li>
+
+                        <li class="li">Choose the appropriate option. The possible values are:
+                                <code class="ph codeph">Skip</code>, <code class="ph codeph">Overwrite</code>, and <code class="ph codeph">Fail
+                                import</code>. </li>
+
+                    </ol>
+</li>
+
+                <li class="li">Click <span class="ph uicontrol">Import</span>.</li>
+
+                <li class="li">Repeat the same partial import for the btel-auth realm with the
+                        <span class="ph filepath">btel-auth-users-0.json</span> file that was exported.</li>
+
+                <li class="li">You must create the <span class="ph uicontrol">grafanaeditor</span> and a
+                        <span class="ph uicontrol">grafanaadmin</span> roles for the Metrics Viewer in the
+                    btel-auth realm, if they do not exist. <ol class="ol" type="a">
+                        <li class="li">Click on <span class="ph uicontrol">Realm Roles</span> in the left navigation.</li>
+
+                        <li class="li">Click on the <span class="ph uicontrol">Create Role</span> button.</li>
+
+                        <li class="li">Enter <span class="ph uicontrol">grafanaeditor</span> in the <span class="ph uicontrol">Role
+                                Name</span> field.</li>
+
+                        <li class="li">Click on <span class="ph uicontrol">Save</span>.</li>
+
+                        <li class="li">Repeat the same process to create the
+                                <span class="ph uicontrol">grafanaadmin</span> role. </li>
+
+                    </ol>
+</li>
+
+                <li class="li">You must remove any existing Metrics Viewer group memberships (GrafanaAdmin and
+                    GrafanaEditor) from the imported btel-auth realm local Metrics Viewer users and
+                    assign the newly created Metrics Viewer roles to them. This step only applies to
+                    imported users that are members of GrafanaAdmin and/or GrafanaEditor.<ol class="ol" type="a" id="import_the_exported_users__ol_hnq_5fb_mxb">
+                        <li class="li">Click on <span class="ph uicontrol">Groups</span> in the left navigation.</li>
+
+                        <li class="li">Select the <span class="ph uicontrol">GrafanaEditor</span> group.</li>
+
+                        <li class="li">Click the three-dot menu at the end of the selected row and click the
+                                <span class="ph uicontrol">Delete</span> button.</li>
+
+                        <li class="li">Click the <span class="ph uicontrol">Delete</span> button in the confirmation
+                            pop-up window.</li>
+
+                        <li class="li">Repeat the same process for the <span class="ph uicontrol">GrafanaAdmin</span>
+                            group.</li>
+
+                        <li class="li">Click on <span class="ph uicontrol">Users</span> in the left navigation.</li>
+
+                        <li class="li">Click on the user that you want to edit.</li>
+
+                        <li class="li">Click on the <span class="ph uicontrol">Groups</span> tab.</li>
+
+                        <li class="li">Select the <span class="ph uicontrol">GrafanaEditor</span> group.</li>
+
+                        <li class="li">Click the <span class="ph uicontrol">Leave</span> button and click the
+                                <span class="ph uicontrol">Leave</span> button in the confirmation pop-up
+                            window.</li>
+
+                        <li class="li">Select the <span class="ph uicontrol">GrafanaAdmin</span> group.</li>
+
+                        <li class="li">Click the <span class="ph uicontrol">Leave</span> button and click the
+                                <span class="ph uicontrol">Leave</span> button in the confirmation pop-up
+                            window.</li>
+
+                        <li class="li">Click on the <span class="ph uicontrol">Role Mappings</span> tab.</li>
+
+                        <li class="li">Click on the <span class="ph uicontrol">Assign Role</span> button.</li>
+
+                        <li class="li">Select the <span class="ph uicontrol">grafanaeditor</span> role and the
+                                <span class="ph uicontrol">grafanaadmin</span> role.</li>
+
+                        <li class="li">Click on the <span class="ph uicontrol">Assign</span> button.</li>
+
+                        <li class="li">Repeat this process for any other local Metrics Viewer users.</li>
+
+                    </ol>
+</li>
+
+                <li class="li">For LDAP: Select <span class="ph uicontrol">Users</span> from the left navigation of the
+                    realm, then <span class="ph uicontrol">List All Users</span> and verify that the list is
+                    only those users that you want to remain <span class="ph uicontrol">local</span>.
+                    LDAP-resident users appear after the first time they authenticate.</li>
+
+            </ol>
+</div>
+
+    </div>
+<div class="related-links related-links-title">More on this topic</div><div class="related-links">
+<div class="linklist relinfo"><ul class="linklist">
+<li class="linklist"><a class="link" href="web_sso_config.html">User and Role Management configuration</a></li></ul></div>
+</div><div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

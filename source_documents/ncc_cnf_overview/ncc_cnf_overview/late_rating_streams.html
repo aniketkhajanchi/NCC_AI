@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Late rating streams" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="late_rating_streams" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Late rating streams</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="late_rating_streams">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Late rating streams</h1>
+<div class="body conbody">
+        <div class="p">In terms of NCC CDR streams, late rating refers to the receiving and processing of input
+            files in a specific ASCII format, which contain records of roaming Voice MO calls, and
+            converting the files into Diameter (IMS Ro) requests to be sent to the Charging
+            application. This type of processing is done by specific late rating streams as follows: <ul class="ul">
+                <li class="li">Late rating input stream is a scheduled stream that reads files from an SFTP
+                    server, parses them into records, validates them, and then stores them in the
+                    database. See <a class="xref" href="lr_input_stream.html#lr_input_stream">Late rating input stream</a> for more
+                    information.</li>
+
+                <li class="li">Late rating business logic stream maps the late rating records into charging
+                    compliant records by extracting the charging information from the parsed records
+                    fields. See <a class="xref" href="lr_bl_stream.html#lr_bl_stream">Late rating business logic stream</a> for more
+                    information.</li>
+
+                <li class="li">Late rating Diameter distributor stream sends the late rating records to the
+                    Charging application as Diameter requests. See <a class="xref" href="lr_diameter_dist_stream.html#lr_diameter_dist_stream">Late rating Diameter distributor stream</a> for more
+                    information.</li>
+
+                <li class="li">Late rating log distributor stream takes both the Diameter requests that Late
+                    rating Diameter distributor stream fails to distribute and the input records
+                    that the Late Rating Input fails to parse and stores them to a remote server.
+                    See <a class="xref" href="lr_log_dist_stream.html#lr_log_dist_stream">Late rating log distributor stream</a> for more
+                    information.</li>
+
+            </ul>
+</div>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

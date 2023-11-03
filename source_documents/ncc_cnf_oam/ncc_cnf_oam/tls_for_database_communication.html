@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Aerospike communication using TLS and mutual TLS" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="tls_for_database_communication" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Aerospike communication using TLS and mutual TLS</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="tls_for_database_communication">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Aerospike communication using TLS and mutual TLS</h1>
+<div class="body conbody">
+        <p class="p"><span class="ph">NCC</span> employs TLS functions provided by Istio and Aerospike to
+            communicate with the Aerospike database. Based on the traffic nature, Aerospike
+            communication in <span class="ph">NCC</span> occurs as intrasystem communication
+            and intersystem communication. Intersystem communication is used for cross-datacenter
+            replication (XDR). Intrasystem communication occurs as client-to-server communication
+            and server-to-server communication.</p>
+
+        <div class="section" id="tls_for_database_communication__section_u1d_cfh_4nb"><h2 class="title sectiontitle">Intrasystem client-to-server communication</h2>
+            
+            <p class="p">NCC uses Istio to manage TLS intrasystem communication between Aerospike clients and
+                servers. The servers are aerospike pods. The clients are the other pod types with
+                which aerospike pods communicate such as charging pods or iohd pods. </p>
+
+            <p class="p">This parameter determines the mode of Aerospke client-to-server intrasystem
+                communication:</p>
+
+            <ul class="ul" id="tls_for_database_communication__ul_k13_jyg_p4b">
+                <li class="li"><code class="ph codeph">global.aerospike.mtls.client.enabled</code></li>
+
+            </ul>
+
+            <p class="p">This parameter is defined in the <span class="ph filepath">sps/values.yaml</span> file. For the
+                description of this parameter, see the SPS Helm chart.</p>
+
+        </div>
+
+        <div class="section" id="tls_for_database_communication__section_v1d_cfh_4nb"><h2 class="title sectiontitle">Intrasystem server-to-server communication</h2>
+            
+            <div class="p">The traffic between aerospike servers (pods) is heartbeat and fabric. Aerospike pods
+                use Aerospike's native TLS function for intrasystem server-to-server communication.
+                The following parameters determine intrasystem server-to-server communication:<ul class="ul" id="tls_for_database_communication__ul_ug1_1dd_snb">
+                    <li class="li">aerospike.network.intraCluster.exposeInsecure</li>
+
+                    <li class="li">aerospike.network.intraCluster.mtls.enabled</li>
+
+                    <li class="li">aerospike.network.intraCluster.mtls.credentialName</li>
+
+                    <li class="li">aerospike.network.intraCluster.mtls.cipherSuites</li>
+
+                    <li class="li">aerospike.network.outboundXdr.mtls.enabled</li>
+
+                    <li class="li">aerospike.network.outboundXdr.mtls.mode</li>
+
+                </ul>
+</div>
+
+            <p class="p"> These parameters are defined in the <span class="ph filepath">sps/values.yaml</span> and
+                    <span class="ph filepath">aerospike/values.yaml</span> files. For the description of these
+                parameters, see the SPS Helm chart.</p>
+
+            <p class="p">When mutual TLS (mTLS) is enabled and the credentialName is not empty, the
+                corresponding Kubernetes secret is mounted to <span class="ph filepath">
+                    /opt/tpa/aerospike/etc/aerospike/mtlscredential</span>. The certificate in
+                the secret specified by
+                    <code class="ph codeph">aerospike.network.intraCluster.mtls.credentialName</code> must contain
+                the common name (CN) in Subject or a DNS entry in Subject Alternative Name (SAN) of
+                the server certificate. The system checks for CN first. If CN is not found, the
+                system accepts the first entry of DNS. Otherwise, an error occurs. </p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> When creating the secret, make sure that the <span class="ph filepath">root-cert.pem</span>,
+                    <span class="ph filepath">cert-chain.pem</span>, and <span class="ph filepath">key.pem</span> files are
+                present. For example,
+                <pre class="pre codeblock"><code>kubectl create -n myNamespace secret generic myCredential --from-file=key.pem=myServerPrivateKey --from-file=cert-chain.pem=myServerCertificate  --from-file=root-cert.pem=myRootCACert</code></pre></div>
+
+        </div>
+
+        <div class="section" id="tls_for_database_communication__section_w1d_cfh_4nb"><h2 class="title sectiontitle">Intersystem communication for XDR</h2><p class="p">Istio
+                Ingress accepts non-TLS XDR traffic over port 3008 or TLS traffic over an insecure
+                port, for example 3009, and forwards the traffic to the corresponding XDR virtual
+                service port. XDR also exposes two virtual service ports: 3008 and an insecure
+                configurable port. Both virtual service ports map to the same XDR service port 3008.
+                Therefore, an Istio sidecar is injected into aerospike pods when TLS enabled so that
+                Istio can handle TLS when communicating to the remote xdrproxy. The TLS origination
+                is handled by the Istio objects ServiceEntry, DesitinationRule and
+                VirtualService.</p>
+<div class="p">The following parameters determine intersystem TLS communication:<ul class="ul" id="tls_for_database_communication__ul_uvw_dhd_snb">
+                    <li class="li">aerospike.network.outboundXdr.mtls.mode</li>
+
+                    <li class="li">global.xdrproxy.securityPort</li>
+
+                    <li class="li">aerospike.network.outboundXdr.mtls.enabled</li>
+
+                    <li class="li">xdrproxy.exposeInsecure</li>
+
+                    <li class="li">xdrproxy.mtls.enabled</li>
+
+                    <li class="li">xdrproxy.mtls.mode</li>
+
+                    <li class="li">xdrproxy.mtls.credentialName</li>
+
+                </ul>
+</div>
+
+            <p class="p">These parameters are defined in the <span class="ph filepath">sps/values.yaml</span>,
+                    <span class="ph filepath">aerospike/values.yaml</span>, and
+                    <span class="ph filepath">xdrproxy/values.yaml</span> files. For the description of these
+                parameters, see the <span class="ph">NCC</span> Helm chart.</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> <span class="ph">NCC</span> supports only TLS and mTLS for intersystem
+                Aerospike communication for XDR.</div>
+</div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

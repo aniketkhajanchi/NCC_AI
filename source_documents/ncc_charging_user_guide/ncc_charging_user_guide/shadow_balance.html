@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Shadow balance" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="shadow_balance" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Shadow balance</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="shadow_balance">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Shadow balance</h1>
+<div class="body conbody">
+        <div class="p">Shadow balance is used to reserve a prepaid balance quota to be used in the current
+            operator. Shadow balance can be used only till the subscriber is associated with the
+            operator. When the subscriber migrates to another operator, the shadow balance is
+            excluded from the current prepaid balance.<div class="fig fignone" id="shadow_balance__fig_vsn_rrh_w5b">
+                <img class="image break" id="shadow_balance__image_rdn_srh_w5b" height="192" src="../images/shadow_balance.PNG" width="480" />
+            </div>
+</div>
+
+        <div class="p">The value of shadow balance is null, by default. Shadow balance is displayed only when it
+            has a value other than null. Shadow balance is a read-only value in the account overview
+            in SM GUI. <div class="note" id="shadow_balance__note_gfq_jpj_w5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For details on account overview, see
+                    <em class="ph i">Subscriber Manager Guide</em>.</div>
+</div>
+
+        <p class="p">Shadow balance can be administered through provisioning API. It can be increased or
+            decreased during call processing. It is also reported in the generated CDR and EDR.</p>
+
+        <div class="section"><h2 class="title sectiontitle">Configuring the shadow balance</h2>
+            
+            <p class="p">The <strong class="ph b">services/ServiceManager/subscriber/create/Profile</strong> API is used to set the
+                shadow balance during subscriber profile creation. The <em class="ph i">shadowBalance</em>
+                parameter specifies the shadow balance quota within the main balance.</p>
+
+            <p class="p">The <strong class="ph b">services/ServiceManager/subscriber/update/adjustbalance/Account</strong> API with
+                    <em class="ph i">adjustMode</em> parameter as <em class="ph i">SET</em> is used to set the shadow balance
+                independently from the main prepaid balance.</p>
+
+            <div class="p">The <em class="ph i">balanceType</em> parameter can be used to set the balance with the following
+                    values:<ul class="ul" id="shadow_balance__ul_lfl_c5g_w5b">
+                    <li class="li"><em class="ph i">STDBAL</em>: to set the standard balance. This is the default value of
+                            <em class="ph i">balanceType</em>.</li>
+
+                    <li class="li"><em class="ph i">SHBAL</em>: to set the shadow balance.</li>
+
+                </ul>
+</div>
+
+            <p class="p">The <strong class="ph b">services/ServiceManager/subscriber/getData/Account</strong> API (both GET and POST)
+                can be used to get the current shadow balance when detailed account information is
+                required (that is, when <em class="ph i">detailedQuery</em> set as <var class="keyword varname">true</var>). If the
+                current shadow balance is configured as null, then it is omitted from response.</p>
+
+            <div class="note" id="shadow_balance__note_xjv_td3_w5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For more details on using the API, refer to the Swagger API
+                documentation.</div>
+
+            <p class="p">EDR tags <em class="ph i">shadowBalanceBefore</em> and <em class="ph i">shadowBalanceAfter</em> specify the shadow
+                balance before and after the operation respectively.</p>
+
+            <p class="p">If the shadow balance is configured using
+                    <strong class="ph b">services/ServiceManager/subscriber/create/Profile</strong> API, and it is not
+                provided in the input, then <em class="ph i">shadowBalanceBefore</em> tag value is
+                    <var class="keyword varname">0</var>. In this case, <em class="ph i">shadowBalanceBefore</em> tag is omitted
+                from the EDR.</p>
+
+            <p class="p">If the shadow balance is configured using
+                    <strong class="ph b">services/ServiceManager/subscriber/update/adjustbalance/Account</strong> API, then
+                the <em class="ph i">shadowBalanceBefore</em> tag reports 0 in case <em class="ph i">shadowBalanceAfter</em> EDR
+                tag is not null. Else, both tags are omitted from the EDR.</p>
+
+            <div class="p">When the shadow balance is configured, errors can occur in the following cases:<ul class="ul" id="shadow_balance__ul_y12_kwg_w5b">
+                    <li class="li">Shadow balance is set to a negative value.</li>
+
+                    <li class="li">Shadow balance larger than 0 but the main balance is negative. </li>
+
+                    <li class="li">Shadow balance is larger than the current main balance.</li>
+
+                    <li class="li">Main balance is smaller than current shadow balance.</li>
+
+                    <li class="li">Main balance is negative and the current shadow balance is not 0.</li>
+
+                </ul>
+</div>
+
+        </div>
+
+        <div class="section" id="shadow_balance__section_yc1_2d3_w5b"><h2 class="title sectiontitle">Increasing the shadow balance</h2>
+            
+            <div class="p">The <strong class="ph b">services/ServiceManager/RechargeRequest</strong> API is used to increase shadow
+                balance along with normal prepaid balance. Shadow balance can also be increased
+                using the attribute <em class="ph i">RATING.Adjust-Shadow-Balance</em>. The rule configuration to
+                increase the shadow balance is as follows:<ul class="ul" id="shadow_balance__ul_yj4_nvg_w5b">
+                    <li class="li"><em class="ph i">PRE_RECHARGE trigger</em><div class="fig fignone" id="shadow_balance__fig_hlh_qvg_w5b">
+                            <img class="image break" id="shadow_balance__image_kfq_4b3_w5b" height="96" src="../images/shadow_balance1.PNG" width="576" />
+                        </div>
+</li>
+
+                    <li class="li"><em class="ph i">POST_RECHARGE trigger</em>: <em class="ph i">RATING.Adjust-Shadow-Balance</em> is used to
+                        increase the shadow balance. It is applicable only in case of successful
+                        increase in prepaid balance.<div class="fig fignone" id="shadow_balance__fig_lz5_tvg_w5b">
+                            <img class="image break" id="shadow_balance__image_h5b_1wg_w5b" height="96" src="../images/shadow_balance_2.PNG" width="480" />
+                        </div>
+
+                    </li>
+
+                </ul>
+<div class="note" id="shadow_balance__note_ozf_5yh_w5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> <em class="ph i">PRE_RECHARGE</em> and <em class="ph i">POST_RECHARGE</em> are
+                    recharge RSV triggers. For details on configuring <em class="ph i">PRE_RECHARGE</em> and
+                        <em class="ph i">POST_RECHARGE</em> triggers, see <em class="ph i">Recharge User Guide</em>.</div>
+</div>
+
+            <p class="p">The shadow balance values before and after the increase are reported in the
+                    <em class="ph i">shadowBalanceBefore</em> and <em class="ph i">shadowBalanceAfter</em> EDR tags. If the shadow
+                balance was null before the increase, then <em class="ph i">shadowBalanceBefore</em> value is
+                always <var class="keyword varname">0</var>.</p>
+
+            <p class="p">Shadow balance values before and after the increase are reported in the response. In
+                case the shadow balance was null before the increase, then the value of shadow
+                balance before the increase is reported as <var class="keyword varname">0</var> in the response.</p>
+
+        </div>
+
+        <div class="section" id="shadow_balance__section_jmt_fd3_w5b"><h2 class="title sectiontitle">Decreasing the shadow balance</h2>
+            
+            <div class="p">The <strong class="ph b">services/ServiceManager/subscriber/update/adjustbalance/Account</strong> API with
+                    <em class="ph i">adjustMode</em> parameter as <em class="ph i">DECR</em> is used to decrease the shadow
+                balance along with main balance when the amount to charge is calculated externally
+                to NCC. If the amount to charge is larger than the current shadow balance, then
+                shadow balance is decreased partially until it is reduced to 0. The remaining amount
+                is deducted only from available normal prepaid balance.<div class="note" id="shadow_balance__note_jfm_rd3_w5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For more details on using the API, refer to the Swagger API
+                    documentation.</div>
+</div>
+
+            <p class="p">If the shadow balance is configured as null before the decrease, then it cannot be
+                not decreased.</p>
+
+            <p class="p">The shadow balance values before and after the decrease are reported in the
+                    <em class="ph i">shadowBalanceBefore</em> and <em class="ph i">shadowBalanceAfter</em> EDR tags.
+                    <em class="ph i">shadowBalanceBefore</em> and <em class="ph i">shadowBalanceAfter</em> EDR tags are omitted
+                when shadow balance before the decrease is null.</p>
+
+            <div class="p">Shadow balance is decreased along with the main balance during call processing in the
+                following cases:<ul class="ul" id="shadow_balance__ul_h32_zth_w5b">
+                    <li class="li">Traffic charge (including e-Commerce usage through REST API).</li>
+
+                    <li class="li">Fee deduction (BOU fee and step-up fee).</li>
+
+                </ul>
+</div>
+
+            <p class="p">Shadow balance usage and its value after charging are reported in following CDR
+                tags:</p>
+
+            <ul class="ul" id="shadow_balance__ul_sw2_g5h_w5b">
+                <li class="li"><em class="ph i">shadowBalanceCommitted </em>: Shadow balance used for charging.</li>
+
+                <li class="li"><em class="ph i">accountInfo/shadowBalanceAfter</em>: Shadow balance remaining after
+                    charging.</li>
+
+                <li class="li"><em class="ph i">bouFeeShadowBalanceCommitted </em>: Shadow balance used for BOU fee
+                    deduction.</li>
+
+                <li class="li"><em class="ph i">bouFeeShadowBalanceAfter </em>: Shadow balance remaining after BOU fee
+                    deduction.</li>
+
+                <li class="li"><em class="ph i">stepUpFeeShadowBalanceCommitted </em>: Shadow balance used for step-up fee
+                    deduction.</li>
+
+                <li class="li"><em class="ph i">stepUpFeeShadowBalanceAfter </em>: Shadow balance remaining after stepUp fee
+                    deduction</li>
+
+            </ul>
+
+            <div class="p">These tags are omitted when shadow balance is not used during traffic charge or fee
+                    deduction.<div class="note" id="shadow_balance__note_h3z_3mj_w5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For more details on CDR and EDR tags, see
+                        <em class="ph i">CDR/EDR Reference Guide</em>.</div>
+</div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

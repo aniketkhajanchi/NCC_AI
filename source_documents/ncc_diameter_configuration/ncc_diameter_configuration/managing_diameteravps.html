@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Managing diameter AVPs using message context attributes" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-cn01-tczza-d1e8198" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Managing diameter AVPs using message context attributes</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-cn01-tczza-d1e8198">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Managing diameter AVPs using message context attributes</h1>
+<div class="body conbody">
+        <p class="p">NCC provides a dictionary of definitions for the AVPs that can be present in the
+            supported Diameter applications. NCC uses these dictionaries to generate source and
+            result contexts to help you build filters and actions. Each Diameter AVP is made
+            available as an attribute of the context corresponding to the message type it is
+            contained in. For example, Subscription-Id is made available as an attribute of GxCCR,
+            GxxCCR, etc. You can write filters to specify the actions that should be performed on
+            the Diameter messages and the conditions when these actions should occur. </p>
+
+<div class="section"><h2 class="title sectiontitle">Structure of Diameter AVPs</h2>
+<p class="p">The structure of the Diameter attributes for Diameter request and answer contexts are defined by the relevant standards document for the given application message type.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For a complete list of standard Attribute Value Pairs (AVPs) for a Diameter command supported
+                by NCC, refer to the appropriate Technical Standard (TS) document.</div>
+
+<p class="p">A Diameter AVP is usually a simple value with a unique identifier that enables the Diameter device to interpret the value. A Diameter message must have at least one AVP. Further, the Diameter protocol also defines the AVP structure for a message. </p>
+
+<p class="p">The following AVP structures are allowed:</p>
+<ul class="ul">
+<li class="li"><strong class="ph b">Simple AVP</strong>- The AVP is a simple value, such as, int, string, float, etc.</li>
+
+<li class="li"><strong class="ph b">Grouped AVP</strong>- The AVP is a container of a collection of other AVPs, each of which may be
+                    simple values or grouped AVPs themselves. For example, in a Rx AAR message, the
+                    Media-Component-Description is multi-valued and of type grouped.</li>
+
+<li class="li"><strong class="ph b">Multi-value AVP</strong>- The AVP (simple or grouped) appears more than once in the Diameter
+                    message. For example, the Flow-Description AVP in a Rx AAR message.</li>
+
+<li class="li"><strong class="ph b">Single-value AVP</strong>- The AVP (simple or grouped) appears once in the Diameter message. For
+                    example, CC-Request-Type, CC-Request-Number in a Gx CCR message.</li>
+
+</ul>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Common action types for Diameter AVPs</h2>
+<p class="p">NCC provides a set of basic actions/attributes that support the content manipulation of any AVP
+                instance in several ways: adding, removing, or moving the AVP. You can also modify
+                the content of an AVP. The common action types are specified as part of the action
+                attribute name in the Action Attribute table for the filter. The actions are
+                available across both single-value and multi-value AVP structures.</p>
+
+<p class="p">Grouped AVPs have the same actions/attributes as simple AVPs with the following exceptions:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">The 'Set' action is not available for Grouped AVPs.</p>
+
+</li>
+
+<li class="li">
+<p class="p">You can use the presence of a grouped AVP in message filter conditions; however, the value of the AVP cannot be tested.</p>
+
+</li>
+
+</ul>
+
+<p class="p">The table below describes the set of basic actions/attributes that allow you to manipulate Diameter AVPs in a message context. </p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Common action types for AVP content manipulation</span></caption><colgroup><col style="width:23.094688221709006%" /><col style="width:76.905311778291%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d24119e109">Action name</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d24119e112">Purpose</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e109 "> Add </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e112 ">
+                                <p class="p">Allows you to add an AVP if it does not already exist in the
+                                    Diameter message.</p>
+
+                                <p class="p">For example, GxCCR.Origin-State-Id.Add 123456789.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e109 "> Set </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e112 ">
+                                <p class="p">Allows you to set the value of an AVP either by overwriting the
+                                    existing value, or by adding the AVP if it does not already
+                                    exist in the Diameter message.</p>
+
+                                <p class="p">For example, Origin-State-Id.Set 987654321.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e109 "> Remove </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e112 ">
+                                <p class="p">Allows you to remove an AVP from the Diameter message.</p>
+
+                                <p class="p">For example, Origin-State-Id.Remove.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e109 "> Remove-Value </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e112 ">
+                                <p class="p">Allows you to delete the existing value of an AVP from the
+                                    Diameter message. </p>
+
+                                <p class="p"> In the case of a single-value AVP, the single value is removed,
+                                    leaving the AVP without any value. For example,
+                                    Origin-State-Id.Remove-Value.</p>
+
+                                <p class="p">When you use the action on a multi-value AVP, the value at the
+                                    current Write-Index is removed and all subsequent entries are
+                                    moved up one position.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e109 "> Append </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e112 "> Allows you to append to the value of an AVP. If the AVP doesn't
+                                exist yet, this action sets the value of the AVP. This action only
+                                applies to string AVPs. </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e109 "> Prepend </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e112 "> Allows you to prepend to the value of an AVP. If the AVP doesn't
+                                exist yet, this action sets the value of the AVP. This action only
+                                applies to string AVPs </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e109 "> Name </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e112 ">
+                                <p class="p">Returns the name of the AVP as a string. For use as a parameter
+                                    in other Rule Attributes or Actions.</p>
+
+                                <p class="p">For example, Subscription-Id.Name returns "Subscription-Id".</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e109 "> Path </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e112 ">
+                                <p class="p">Returns the dot separated path of the AVP as a string. For use as
+                                    a parameter in other Rule Attributes or Actions.</p>
+
+                                <p class="p">For example, Subscription-Id.Subscription-Data.Path returns
+                                    "Subscription-Id.Subscription-Data".</p>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">NCC custom AVP implementers</h2>
+<p class="p">In addition to the basic action types available for AVP content manipulation, NCC also provides
+                custom implementation for specific AVPs. The custom AVP implementers provide
+                additional functionality beyond the standard attributes/actions.</p>
+
+<p class="p">Custom implementers are supported for the following AVPs:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">User-Name</p>
+
+</li>
+
+<li class="li">
+<p class="p">Subscription-Id</p>
+
+</li>
+
+<li class="li">
+<p class="p">Framed-IP-Address</p>
+
+</li>
+
+</ul>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">User-Name AVP custom implementer</strong></p>
+
+<p class="p">Diameter application message contexts that support the User-Name AVP (for example, S6A/S6D ULR) have access to a custom AVP implementer. The implementer is contained in the message context's corresponding filter group and allows you to extract and treat the contents of the User-Name AVP as an IMSI or NAI subscription ID. The table below describes the custom attributes available for the manipulation of the User-Name AVP.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>User-Name AVP custom implementer attributes</span></caption><colgroup><col style="width:28.985507246376812%" /><col style="width:71.01449275362319%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d24119e289">
+                                    <p class="p">Custom Attribute</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d24119e295">
+                                    <p class="p">Description</p>
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e289 "> User-Name.IMSI-MCC </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e295 ">
+                                    <p class="p">This attribute allows you to extract the subscriber's
+                                        IMSI-MCC information from the User-Name AVP.</p>
+
+                                    <p class="p">The IMSI-MCC attribute indicates that the identifier is in
+                                        international IMSI format.</p>
+
+                                </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e289 "> User-Name.IMSI-MNC </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e295 "> This attribute allows you to extract the
+                                    subscriber's IMSI-MNC information from the User-Name AVP.
+                                </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e289 "> User-Name.IMSI-MSIN </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e295 "> This attribute allows you to extract the
+                                    subscriber's IMSI-MSIN information from the User-Name AVP.
+                                </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e289 "> User-Name.NAI-Realm </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e295 "> This attribute allows you to extract the
+                                    subscriber's NAI-Realm information from the User-Name AVP.
+                                </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e289 "> User-Name.NAI-User-Name </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e295 ">
+                                    <p class="p">This attribute allows you to extract the subscriber's
+                                        NAI-User-Name information from the User-Name AVP.</p>
+
+                                    <p class="p">The NAI-User-Name attribute indicates that the end user
+                                        identifier is in the form of a NAI and is requesting the
+                                        username.</p>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Subscription-Id AVP custom implementer</strong></p>
+
+<p class="p">Diameter application message contexts that support the Subscription-Id AVP (for example, Gx CCR) have access to a custom AVP implementer. The implementer is contained in the message context's corresponding filter group and allows you to extract and treat the contents of the Subscription-Id AVP as an IMSI, NAI, E164 or SIP value. The table below describes the custom attributes available for the manipulation of the Subscription-Id AVP.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Subscription-Id AVP custom implementer attributes</span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+<tr class="row">
+<th class="entry cellrowborder" style="vertical-align:top;" id="d24119e390">
+<p class="p">Custom Attribute</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d24119e396">
+<p class="p">Description</p>
+
+</th>
+
+</tr>
+
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e390 "> Subscription-Id.E164-Country-Code </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e396 "> This attribute allows you to extract the
+                                    subscriber's three digit E.164 country code from the data. A
+                                    null is returned if the type is not E.164. </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e390 "> Subscription-Id.E164-National-Number </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e396 "> This attribute allows you to extract the
+                                    subscriber's E.164 national number from data. A null is returned
+                                    if the type is not E.164. </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e390 "> Subscription-Id.IMSI-MCC </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e396 "> This attribute allows you to extract the
+                                    subscriber's three digit IMSI Mobile Country Code information
+                                    from data. A null is returned if the type is not IMISI. </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e390 "> Subscription-Id.IMSI-MNC </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e396 "> This attribute allows you to extract the
+                                    subscriber's IMSI Mobile Network Code from data. A null is
+                                    returned if the type is not IMSI. </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e390 "> Subscription-Id.IMSI-MSIN </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e396 "> This attribute allows you to extract the
+                                    subscriber's IMSI mobile station identification number (MSIN). A
+                                    null is returned if the type is not IMSI. </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e390 "> Subscription-Id.NAI-Realm </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e396 "> This attribute allows you to extract the
+                                    subscriber's NAI-Realm information from the NAI URI data. A null
+                                    is returned if the Subscription-Id is not NAI. </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e390 "> Subscription-Id.NAI-User-Name </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e396 ">
+<p class="p">This attribute allows you to extract the subscriber's
+                                        username from the NAI URI data. A null is returned if the
+                                        Subscription-Id is not NAI.</p>
+
+<p class="p">The NAI-User-Name attribute indicates that the end user
+                                        identifier is in the form of a NAI and is requesting the
+                                        username.</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e390 "> Subscription-Id.SIP-Port </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e396 "> This attribute allows you to extract the port
+                                    number from SIP URI data. A null is returned if the
+                                    Subscription-Id is not SIP. </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e390 "> Subscription-Id.SIP-Realm </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e396 "> This attribute allows you to extract the realm
+                                    from SIP URI data. A null is returned if the Subscription-Id is
+                                    not SIP. </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e390 "> Subscription-Id.SIP-User-Name </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e396 "> This attribute allows you to extract the
+                                    username from the SIP URI data. A null is returned if the
+                                    Subscription-Id is not SIP. </td>
+
+</tr>
+
+</tbody>
+</table>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Framed-IP-Address AVP custom implementer</strong></p>
+
+<p class="p">Diameter application message contexts that support the Framed-IP-Address AVP (for example, Gx CCR) have access to a custom AVP implementer. The implementer is contained in the message context's corresponding filter group and allows you to extract and treat the contents of the Framed-IP-Address AVP. The table below describes the custom attributes available for the manipulation of the Framed-IP-Address AVP.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Framed-IP-Address AVP custom implementer action attributes</span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+<tr class="row">
+<th class="entry cellrowborder" style="vertical-align:top;" id="d24119e532">
+<p class="p">Custom Action Attribute</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d24119e538">
+<p class="p">Description</p>
+
+</th>
+
+</tr>
+
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e532 "> Framed-IP-Address.Set-As-String </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e538 "> This action attribute allows you to set the
+                                    value of the IP address to the specified string value, for
+                                    example, 192.168.0.1. </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e532 "> Framed-IP-Address.As-String </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e538 "> This attribute returns the IP-Address in a
+                                    string form. A null is returned in case of an error, for
+                                    example, 192.168.0.1. </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e532 "> Framed-IP-Address.as-IP-Address </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d24119e538 "> This attribute returns the IP-Address in a form usable by NCC. </td>
+
+</tr>
+
+</tbody>
+</table>
+
+</div>
+</div>
+
+</div>
+<div class="footer"><hr /><p>Diameter/HTTP Configuration Guide • P556766-DN1000054969-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

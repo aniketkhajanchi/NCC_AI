@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Lifecyclemodel Error Messages" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id445ac096-a132-432c-aa0d-566af8e87b54" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Lifecyclemodel Error Messages</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id445ac096-a132-432c-aa0d-566af8e87b54">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Lifecyclemodel Error Messages</h1>
+<div class="body conbody"><p class="p">This table describes the LifecycleModel error messages that the NCC may generate.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>LifecycleModel error messages</span></caption><colgroup><col style="width:16.666666666666664%" /><col style="width:21.428571428571427%" /><col style="width:30.952380952380953%" /><col style="width:30.952380952380953%" /></colgroup><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:top;" id="d19937e40">Number</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d19937e42">Message</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d19937e44">HTTP Error Code</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d19937e47">Description</th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">ACTION_00001</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">A type name for the action is required.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">When providing a new action, a type name for the action is required.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">ACTION_00002</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Parameter name is required.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">When providing a default value for an action's parameter, the parameter is required.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">ACTION_00003</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Parameter value is required.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">When providing a default value for an action's parameter, the value is required.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">ACTION_00004</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Unrecognized action.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Cannot find action with name "{0}".</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">ACTION_00005</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Action used in incorrect life cycle type.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Action with name "{0}" cannot be used in life cycle of type "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">ACTION_00006</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Action used in a life cycle with an incompatible entity type.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Action with name "{0}" cannot be used in a life cycle of entity of type "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">ACTION_00007</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Action id in the request is invalid.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Action with id "{0}" doesn't exist in the existing lifecycle transition.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">CDR_00001</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Missing CDR parameter.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">CDR data is missing.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">CDR_00002</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Failed to encode CDR DATA.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Failed to encode CDR DATA of type "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">CONDITION_00001</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Parameter name is required.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">When providing a condition, the parameter name to be evaluated is required.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">CONDITION_00002</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Unrecognized parameter name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Cannot find event parameter with name "{0}" for event with name "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">CONDITION_00003</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Invalid operator.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">The operator "{0}" is not valid for parameter with name "{1}" and type "{2}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">CONDITION_00004</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Parameter value is required.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">When providing a condition, the value to be compared with is required.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00001</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle is missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle is mandatory.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00002</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle name is required.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle name is required; please provide one.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00003</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle name exceeds maximum length.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle name "{0}" exceeds 64 characters; please use a shorter name.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00004</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle name is not unique.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle name "{0}" is not unique; please use another.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00005</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Default Life Cycle cannot be deleted.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle "{0}" is a default life which cannot be removed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00006</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle must contain at least one State.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle "{0}" must contain at least one State.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00007</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle not found.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle "{0}" not found.</td>
+</tr>
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00008</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle entity type is mandatory.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle "{0}" entity type is required.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00009</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle entity type is not recognized.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle "{0}" entity type cannot use "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00010</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle entity type cannot change.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle "{0}" entity type cannot change once provisioned.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00011</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle type does not match entity type.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle "{0}" type does not match entity type "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00012</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle type is mandatory.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle "{0}" lifecycle type is required.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00013</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle type cannot change.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle "{0}" lifecycle type cannot change once provisioned.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00014</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle type is invalid.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle type of "{0}" is not supported for entity type of "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00015</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle period length is mandatory.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle "{0}" period length is required.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00016</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle period length time unit is not recognized.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle "{0}" period length time unit is invalid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00017</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle period length units is invalid.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle "{0}" period length units must be greater than zero.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00018</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle type is mismatched.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle "{0}" type does not match mapped life cycle type of "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00020</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Start time and end time cannot be changed.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">"{0}" entity is not a periodic life cycle entity, so start time and end time cannot be changed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00021</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">End time cannot be changed.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">"{0}" entity is not a periodic life cycle entity, so end time cannot be changed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00022</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">End time based transition is not scheduled currently.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">"{0}" entity does not have an end time based transition scheduled currently.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00023</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Time based transition is not scheduled currently.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">"{0}" entity does not have a time based transition scheduled currently.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00024</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Current transition's scheduled time is null.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Entity does not have any scheduled transition currently as its transition end time is null.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00025</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Adjust mode is mandatory.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Adjust mode is required in update scheduled time.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00026</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Period length time unit is mandatory.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Period length time unit value is required in update scheduled time.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00027</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Period length time unit is invalid.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Period length time unit value cannot be SECONDS or MINUTES in update scheduled time.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00028</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Period length units is mandatory.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Period length units value is required in update scheduled time.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00029</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Period length units is invalid.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Period length units must be greater than or equal to zero.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00030</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Entity Lifecycle is not associated.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">"{0}" entity does not have an entity lifecycle associated with itself.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00031</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Period Lifecycle is not associated.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">"{0}" entity does not have a period lifecycle associated with itself.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00032</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Could not find a valid entity class for the entityType.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Input entityType "{0}" does not have a corresponding entity class.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">LIFECYCLE_00033</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Input entityType is not a valid Lifecycle Entity.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Input entityType "{0}" is not a valid Lifecycle Entity.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00001</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">State name is required.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">State name is required; please provide one.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00002</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">State name exceeds maximum length.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">State name "{0}" exceeds 64 characters; please use a shorter name.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00003</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">State name is not unique.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">State name "{0}" is not unique; please use another.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00004</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">State is invalid.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Cannot link "{0}" to State with ID "{1}" in Life Cycle with name "{2}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00005</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">More than one initial state.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">More than one State in the Life Cycle has been marked as an initial State.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00006</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">State is null.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Cannot link "{0}" to a null State in Life Cycle with name "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00007</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">State barring value cannot be changed.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">State barring value cannot be changed after creation.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00008</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">State barring value is required.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">State barring is required; please provide one.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00009</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">State cannot be deleted.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">State deletion is not (yet) supported. Cannot delete State with name "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00010</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">More than one final state.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">More than one State in the Life Cycle has been marked as a final State.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00011</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">State final value cannot be changed.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">State final value cannot be changed after creation.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00012</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">State final must also be barring.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">A final state must also be a barring state.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00013</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">State initial cannot be final.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">A state that is initial cannot also be final; choose one or the other.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00014</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">State initial is mandatory.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Life Cycle "{0}" initial state is required.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00015</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">State value required.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">A state must be provided for the key-value pairing; please provide one.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">STATE_00016</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Life Cycle Type key required.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">A Life Cycle Type must be provided for the key-value pairing; please provide one.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00001</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Transition name is required.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Transition name is required; please provide one.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00002</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Transition name exceeds maximum length.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Transition name "{0}" exceeds 64 characters; please use a shorter name.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00003</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Transition requires a start State.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Transition "{0}" does not specify a start (initial) State.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00004</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Transition requires an end State.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Transition "{0}" does not specify an end (final) State.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00005</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Transition requires the start State name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Transition "{0}" does not specify a start (initial) State name.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00006</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Transition requires the end State name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Transition "{0}" does not specify an end (final) State name.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00007</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Transition refers to invalid State.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Transition "{0}" refers to invalid State with name "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00008</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Duplicated transition.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Transition "{0}" is a duplicate.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00009</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Multiple timers in the same state.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">State "{0}" contains too many transitions with timers. States may contain at most two timed transitions, one of which must be a zero timed looping transition and the other one must NOT be a zero timed looping transition.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00010</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Multiple looping transitions with zero timer.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">State "{0}" contains more than one looping transition with a zero timer.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00011</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Invalid transition timer.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">The timer of transition "{0}" is invalid. Base date field and/or offset(units + timeUnit) must be specified.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00012</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Transition cannot be deleted.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Transition deletion is not (yet) supported. Cannot delete Transition with name "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00013</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Ambiguous transition.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Transition name "{0}" is ambiguous as it is already used by another Transition.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00014</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Transition from final state.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Cannot transition from a final state.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00015</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Transition end State must be final.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Transition event "{0}" requires end State to be final.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00016</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Invalid base date field of the transition timer.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Transition "{0}" with timer "{1}" requires a valid base date field. "{2}" is not a "date-related" field which is not defined as a long / Long type.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00017</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Base date field of the transition timer cannot be found.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Transition "{0}" with timer "{1}" requires a valid base date field. "{2}" cannot be found in the entity type class.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00018</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Missing units or timeUnit.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Units and timeUnit of transition "{0}" with timer must be either both specified or both not specified.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00019</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Value of tolerance cannot be negative.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Tolerance of timer defined on transition "{0}" cannot be negative.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e40 ">TRANSITION_00020</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e42 ">Tolerance cannot be applied to an auto-timer.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d19937e47 ">Timer defined on transition "{0}" is an auto-timer whose base date field is empty and units is not greater than 0. Cannot set value to tolerance on this auto-timer.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="footer"><hr /><p>Error Messages • P556766-DN1000055003-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

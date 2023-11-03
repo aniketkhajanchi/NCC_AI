@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="User lifecycle configuration" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e190008" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>User lifecycle configuration</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e190008">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">User lifecycle configuration</h1>
+<div class="body conbody">
+        <p class="p">The system supports only the ENTITY lifecycle for users. As a lifecycle entity, a user
+            must be associated with an ENTITY lifecycle. If you do not associate an ENTITY lifecycle
+            with a user, the system associates this user with DefaultUserLifeCycle.</p>
+
+        <p class="p">You can configure various ENTITY lifecycles for users and choose any of them to associate
+            with a user. You can associate a user only with one ENTITY lifecycle.</p>
+
+        <div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e190008__note_t5v_m5b_nwb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Once a lifecycle is created, it cannot be deleted.</div>
+
+<div class="section"><h2 class="title sectiontitle">User ENTITY lifecycle configuration</h2>
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>User ENTITY lifecycle configuration</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d337581e55">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d337581e61">
+                                <p class="p">Configuration</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d337581e67">
+                                <p class="p">Mandatory / Optional</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d337581e55 ">Name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d337581e61 ">Defined by you, should not exceed 64 characters</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d337581e67 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d337581e55 ">Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d337581e61 ">Must be set to ENTITY, that is, Object Status Lifecycle.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d337581e67 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d337581e55 ">Applicable to</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d337581e61 ">Must be set to User.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d337581e67 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d337581e55 ">States</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d337581e61 ">
+                                <p class="p">Must contain at least one state.</p>
+
+                                <p class="p">Must contain exactly one state marked as initial.</p>
+
+                                <p class="p">Defined and configured by you.</p>
+
+                                <p class="p">For information on state configuration, see the
+                                        <a class="xref" href="lifecycleparameters.html#id9yz-09126-ug01-pczza-sp1-lifecycleparameters__StateParameters">State parameters</a> section.</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d337581e67 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d337581e55 ">Transitions</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d337581e61 ">
+                                <p class="p">Defined and configured by you.</p>
+
+                                <p class="p">For information on transition configuration, see the
+                                        <a class="xref" href="lifecycleparameters.html#id9yz-09126-ug01-pczza-sp1-lifecycleparameters__TransitionParameters">Transition parameters</a> section.</p>
+
+                                <p class="p">For information on timer configuration, see the
+                                        <a class="xref" href="lifecycleparameters.html#id9yz-09126-ug01-pczza-sp1-lifecycleparameters__TimerParameters">Timer parameters</a> section.</p>
+
+                                <p class="p">For information on actions, see the
+                                        <a class="xref" href="actions.html">Lifecycle actions</a> section.</p>
+
+                                <p class="p">For information on events, see the <a class="xref" href="events.html">Lifecycle events</a> section.</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d337581e67 ">Optional</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

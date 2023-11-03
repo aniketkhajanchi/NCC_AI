@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="THRESHOLD result context" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="resultcontext_and_actions_threshold_result_context" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>THRESHOLD result context</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="resultcontext_and_actions_threshold_result_context">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">THRESHOLD result context</h1>
+<div class="body conbody">
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>THRESHOLD result context</span></caption><colgroup><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /></colgroup><thead class="thead" style="text-align:left;">
+     <tr class="row">
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d339894e42">Attribute name</th>
+
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d339894e45">Trigger</th>
+
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d339894e48">Description</th>
+
+     </tr>
+
+    </thead>
+<tbody class="tbody">
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e42 ">Block-Next-Rate</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e45 ">THRESHOLD</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e48 ">Block-Next-Rate action blocks the next rate, so that only the primary rate is
+       applied.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e42 ">Disable-User-Configuration</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e45 ">THRESHOLD</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e48 ">If this flag is configured, then the rule configuration determining whether a user in
+        <em class="ph i">Send-Notification</em> action is by-passed and notifications are processed without user
+       identification.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e42 ">Threshold-Crossed</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e45 ">THRESHOLD</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e48 ">Threshold-Crossed is an action attribute info name defined within the Threshold result
+       context. It signifies that the flag indicating threshold applied to bucket/counter has been
+       crossed or not. Input as a ThresholdName_STRING or RecurrenceCount_STRING.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e42 ">Threshold-Profile-Interval-Count</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e45 ">THRESHOLD</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e48 ">
+       <kbd class="ph userinput">Threshold Profile Interval Count</kbd> is an action attribute info name
+       defined within the Threshold result context. It signifies the interval count of the threshold
+       profile configured. Input as a Long value.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e42 ">Notification-Destination</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e45 ">THRESHOLD</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e48 ">Notification-Destination is an action attribute info name that indicates whether the
+       notification must be sent to a group or device based on the value defined. Entered as an ENUM
+       value.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e42 ">Threshold-Trigger-Type</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e45 ">THRESHOLD</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e48 ">Indicates whether the threshold is triggered by a call or provisioning task.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e42 ">Schedule-Event</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e45 ">THRESHOLD</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d339894e48 ">
+       <p class="p">Schedule-Event is an action attribute to support the time management in counters. The
+        syntax for this action is:</p>
+
+       <p class="p">
+        <code class="ph codeph">Schedule-Event("&lt;TIME_VALUE&gt;",&lt;TIME_UNIT&gt;,&lt;Action&gt;)</code>
+       </p>
+
+       <p class="p">TIME_VALUE is the length of the period, TIME_UNIT is the period unit such as Day, Week,
+        and Action is the action to perform such as Reset.</p>
+
+       <p class="p">
+        <span class="ph uicontrol">Example: Daily counter reset</span>THRESHOLD.Schedule-Event
+        (“1”,TimeUnit_DAY, ThresholdScheduledEventType_RESET)</p>
+
+       <p class="p">SECONDS</p>
+
+       <p class="p">MINUTES</p>
+
+       <p class="p">HOURS</p>
+
+       <p class="p">DAYS</p>
+
+       <p class="p">WEEKS</p>
+
+       <p class="p">MONTHS</p>
+
+       <p class="p">YEARS</p>
+
+     </td>
+
+     </tr>
+
+    </tbody>
+</table>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

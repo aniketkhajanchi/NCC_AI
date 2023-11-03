@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="renameProfile" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="rename_profile" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>renameProfile</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="rename_profile">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">renameProfile</h1>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_tpq_ks1_srb"><h2 class="title topictitle2" id="ariaid-title2">EDR example</h2>
+<div class="body conbody">
+      <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       3330
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                          Tag                                     Data
+RecordType                    0                        PROVISIONING_RECORD
+serviceProvider               1                                      MVNO1
+invokedBy                     1                                 webService
+invokedMethod                 1                              renameProfile
+result                        1                                    SUCCESS
+generationTimestamp           1                        17/11/2021 12:16:56
+meHostName                    1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                   
+nccVersion                    1                                SPS_22_0_R1
+RecordTimestamp               1                        17/11/2021 12:16:56
+  RecordProperty              0                                   userInfo
+  old_userId                  1                               User-1001382
+  userId                      1                           User-New-1001382
+  lastName                    1                                      Gates
+  firstName                   1                                       Bill
+  phoneNumbers                1                             [100138212345]
+  emails                      1                     [SPSProfile@gmail.com]
+  facebookId                  1                          SPSuser@gmail.com
+  userCreationTime            1                        17/11/2021 12:16:37
+  userLastUpdateTime          1                        17/11/2021 12:16:56
+  notificationProfile         1                SPSAUTO_NotificationProfile
+  userDbId                    1       ad1ade58-1668-4373-a157-f6cebb9c7e91
+  globalEntity                1                                      false
+  entityLifeCycleName         1                       DefaultUserLifeCycle
+  entityLifeCycleState        1                                     Active 
+  CUSTOMER_USER1              1                                        CU1
+  CUSTOMER_USER2              1                                        CU2
+  RecordProperty              0                                accountInfo
+  old_accountID               1                                Acc-1001382
+  accountID                   1                            Acc-New-1001382
+  hourOfDay                   1                                          1
+  dayOfWeek                   1                                     MONDAY
+  dayOfMonth                  1                                          1
+  timeZoneId                  1                                        IST
+  accountCreationTime         1                        17/11/2021 12:16:38
+  old_accountLastUpdateTime   1                        17/11/2021 12:16:38
+  accountLastUpdateTime       1                        17/11/2021 12:16:56
+  accountOveragelimit         1                                    -1000.0
+  accountType                 1                                  POST_PAID
+  renewStatus                 1                                      false
+  thresholdProfileGroupIds    1                                 [TPG10990]
+  billCycleCalendar           1                                    BCC0990
+  accountDbId                 1       25474889-f2ea-417a-96f2-310d7fd797b4
+  globalEntity                1                                      false
+  entityLifeCycleName         1                    DefaultAccountLifeCycle
+  entityLifeCycleState        1                                     Active
+  periodLifeCycleName         1                      AccountPeriodicLC5639
+  periodLifeCycleState        1                                     Active 
+  AccountCustom2              1                                        AC2
+  AccountCustom1              1                                        AC1
+  RecordProperty              0                                 deviceInfo
+  old_deviceId                1                             Device-1001382
+  deviceId                    1                         Device-New-1001382
+  deviceCreationTime          1                        17/11/2021 12:16:38
+  old_deviceLastUpdateTime    1                        17/11/2021 12:16:54
+  deviceLastUpdateTime        1                        17/11/2021 12:16:56
+  avInstanceDefinitionName    1                                  [AV10990]
+  avInstanceId                1     [b1f2fe65-cccd-4f33-976b-e550102f6d60]
+  subscriptionIndex           1                                          0
+  notificationProfile         1                SPSAUTO_NotificationProfile
+  deviceType                  1                                     NORMAL
+  ocsHost                     1                                   ocs-host
+  ocsRealm                    1                                  ocs-realm
+  syOCSEnabled                1                                      false
+  allowOverage                1                                      false
+  pwdEncrypted                1                                      false
+  categoryList                1                          [DefaultCategory]
+  counterIds                  1                                 [CntD0990]
+  offLineTimeStamp            1                                          0
+  language                    1                                    English
+  deviceDbId                  1       8bf7e9bc-1ab1-4b9f-bb87-ead1cb412f2d
+  old_IMSI                    1                              1001382000011
+  IMSI                        1                            001001382000011
+  E164                        1                              1001382000011
+  entityLifeCycleName         1                     DefaultDeviceLifeCycle
+  entityLifeCycleState        1                                     Active
+    RecordProperty            0                                   userInfo
+    userId                    1                               User-1001382
+    globalEntity              1                                      false
+    RecordProperty            0                                  groupInfo
+    groupID                   1                              Group-1001382
+    globalEntity              1                                      false
+    RecordProperty            0                           subscriptionInfo
+    subscriptionId            1       19b2829a-8abc-4c00-97b7-cb69e277e7c6
+    renewResetStatus          1                                      false
+    bundleChangeCarryOver     1                                      false
+    globalEntity              1                                      false
+    RecordProperty            0                 queuedSubscriptionListInfo
+    queueId                   1                                     Queue1
+    subscriptionList          1     [19b2829a-8abc-4c00-97b7-cb69e277e7c6]
+    RecordProperty            0                              timeOfDayInfo
+    timeZone                  1                                      +5:30
+    daylightSavings           1                                       true 
+  DeviceCustom1               1                                         D1
+  DeviceCustom2               1                                         D2
+  RecordProperty              0                                  groupInfo
+  groupName                   1                              Group-1001382
+  old_groupID                 1                              Group-1001382
+  groupID                     1                          Group-New-1001382
+  groupCreationTime           1                        17/11/2021 12:16:54
+  groupLastUpdateTime         1                        17/11/2021 12:16:56
+  groupDbId                   1       de4d4bed-f896-4579-8145-27bb1959d95a
+  childDeviceIds              1                       [Device-New-1001382]
+  traversalOrder              1                                   TOP_DOWN
+  globalEntity                1                                      false
+  entityLifeCycleName         1                      DefaultGroupLifeCycle
+  entityLifeCycleState        1                                     Active
+</code></pre>
+    </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

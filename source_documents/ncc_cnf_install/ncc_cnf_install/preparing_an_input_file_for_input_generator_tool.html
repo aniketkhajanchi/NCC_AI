@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="task" />
+<meta name="DC.title" content="Preparing Helm chart input values" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="preparing_an_input_file_for_input_generator_tool" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Preparing Helm chart input values</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="preparing_an_input_file_for_input_generator_tool">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Preparing Helm chart input values</h1>
+<div class="body taskbody">
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div>
+            <p class="p">This procedure provides instructions on how to prepare the
+                    <span class="ph filepath">Inputs.xlsx</span> file for your network deployment.</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The <span class="ph filepath">Inputs.xlsx</span> file must be edited with a currently
+                supported version of LibreOffice or Excel since both applications provide the best
+                support for input validation. Versions of LibreOffice prior to 6.2 do not support
+                custom validation.</div>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If you are running the Docker container on the machine that does not have a
+                spreadsheet editor, transfer the <span class="ph filepath">Inputs${CHART_VERSION}.xlsx</span>
+                from the server to your local machine, edit it, and then transfer it back to the
+                server using, for example, the <code class="ph codeph">scp</code> tool:<p class="p">Example to transfer the
+                    file to your local
+                    machine:</p>
+<pre class="pre codeblock"><code>scp cloud-user@111.111.111:/path/to/input-generator/Inputs${CHART_VERSION}.xlsx</code></pre><p class="p">Example
+                    to transfer the file back to the
+                server:</p>
+<pre class="pre codeblock"><code>scp Inputs${CHART_VERSION}.xlsx cloud-user@111.111.111:/path/to/input-generator/</code></pre></div>
+
+            <div class="p">The <span class="ph filepath">Inputs.xlsx</span> file allows you to specify customer values for
+                the Helm charts. To modify the values that are not exposed in the
+                    <span class="ph filepath">Inputs.xlsx</span> file, you create a custom YAML file, which is
+                specific to each Helm chart. For example, if you need to modify the values in the
+                User and Role Management and <span class="ph">NCC</span> Telemetry Helm charts,
+                you need to use two custom YAML files: one file for the User and Role Management
+                Helm chart and the other file for the <span class="ph">NCC</span> Telemetry
+                Helm chart. For more information about the contents of the Helm charts and
+                    <span class="ph filepath">Inputs.xlsx</span> file, see the following:<ul class="ul" id="preparing_an_input_file_for_input_generator_tool__ul_pzy_5g4_ynb">
+                    
+                    <li class="li">For the descriptions of the values in the Helm charts, see the charts'
+                            <code class="ph codeph">README</code> files or run a query<code class="ph codeph">helm show values
+                            [CHART]</code>. </li>
+
+                    <li class="li">For more information on the Aerospike parameters, see section <a class="xref" href="aerospike_parameters.html">Aerospike parameters</a>.</li>
+
+                    <li class="li">For more information on the topology parameters, see section <a class="xref" href="topologyParameters.html">Topology parameters</a>.</li>
+
+                </ul>
+</div>
+
+        </div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">Ensure that Excel or LibreOffice version 6.2 or later is available on your
+                    workstation where you are going to edit the <span class="ph filepath">Inputs.xlsx</span>
+                    file.</span>
+                <div class="itemgroup info">For more information on how to install LibreOffice, see LibreOffice
+                        documentation.<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The following commands might help you determine what
+                        LibreOffice version your system has.<div class="p">To check the version, enter:
+                            <pre class="pre codeblock"><code>yum info libreoffice</code></pre></div>
+<div class="p">If your version is
+                            older than 6.2 and cannot upgrade using <code class="ph codeph">yum</code>, download a
+                            newer RPM version, remove the existing version, and install the newer
+                            version by
+                            entering:<pre class="pre codeblock"><code>sudo yum remove openoffice* libreoffice*
+cd /path/where/you/saved/the/file/
+tar -xvf LibreOffice*.tar.gz
+cd LibreOffice*/RPMS/
+sudo yum localinstall *.rpm</code></pre></div>
+</div>
+</div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Ensure that the structure of the <span class="ph filepath">Inputs.xlsx</span> file
+                    corresponds to your deployment as follows:</span>
+                <div class="itemgroup info">
+                    <ul class="ul" id="preparing_an_input_file_for_input_generator_tool__ul_mlj_jgd_n4b">
+                        <li class="li">Remove the tabs that represent the namespaces that are not in your
+                            deployment. For example, if IG is not in your deployment, remove the IG
+                            tab.</li>
+
+                        <li class="li">If your deployment contains more than one system of a certain type,
+                            duplicate these tabs. For example, if your deployment has two MEs,
+                            duplicate the ME namespace tab.</li>
+
+                        <li class="li">If the <span class="ph">NCC</span> Telemetry is shared across
+                            multiple NCC systems in the same Kubernetes cluster, ensure that each of
+                            those <span class="ph">NCC</span> systems has a corresponding
+                            worksheet for Telemetry.</li>
+
+                    </ul>
+
+                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> All worksheets in the <span class="ph filepath">Inputs.xlsx</span> file are taken into
+                        account for the network topology. For example, if your deployment has one SM
+                        and two MEs that belong to the same cluster, and you install shared <span class="ph">NCC</span> Telemetry, your
+                            <span class="ph filepath">Inputs.xlsx</span> file must have the Common worksheet,
+                        one worksheet for SM, two worksheets for ME, and one Telemetry
+                        worksheet.</div>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">For each namespace's Ingress node, create an FQDN.</span>
+                <div class="itemgroup info">
+                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This FQDN is used for handling the internal <span class="ph">NCC</span>
+                        traffic.</div>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Fill in the <span class="ph filepath">Inputs.xlsx</span> file as needed and required.</span>               
+            </li>
+</ol>
+
+    </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

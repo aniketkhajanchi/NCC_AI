@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Configurations" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="configurations" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Configurations</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="configurations">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Configurations</h1>
+<div class="body conbody">
+        <p class="p">Log Export supports the following environment variables.</p>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="configurations__table_cmc_2mg_tpb" class="table" frame="border" border="1" rules="all"><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d36317e42">ENV</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d36317e45">Default</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d36317e48">Description</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e42 "><code class="ph codeph">LOG_INDICES</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e45 ">'["log-*", journal]'</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e48 ">An OpenSearch based simple query to control the index-pattern to
+                            list.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e42 "><code class="ph codeph">DEFAULT_FIELDS</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e45 ">"log,message"</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e48 ">Comma separated values. Default search fields to search upon when
+                            field key is not provided in search query.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e42 "><code class="ph codeph">TIMESTAMP_FIELD</code>
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e45 ">'@timestamp'</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e48 ">Default time field. Applicable to all indices.</td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+        <p class="p">Use these variables for tuning. Change these variables only to address download speed
+            issues.</p>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="configurations__table_dmc_2mg_tpb" class="table" frame="border" border="1" rules="all"><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d36317e115">ENV</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d36317e118">Default</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d36317e121">Description</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e115 "><code class="ph codeph">EXPORT_CHUNK_SIZE</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e118 ">"500"</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e121 ">Tune stream chunk size for exporting (number of records in one
+                            stream). Higher number can also clog slow down.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e115 "><code class="ph codeph">SCROLL_TIME</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e118 ">"10m"</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e121 ">
+                            <p class="p">OpenSearch API scroll value.</p>
+
+                            <p class="p">This query is used for creating stream chunk, refer diagram.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e115 "><code class="ph codeph">EXPORT_TIMEOUT</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e118 ">"40s"</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e121 ">Timeout for above scroll based query
+                            <code class="ph codeph">SCROLL_TIME</code>.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e115 "><code class="ph codeph">HIGH_DOWNLOAD_LIMIT</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e118 ">"200000"</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e121 ">App pops a confirmation to user when size of record to download
+                            reaches this value to discourage download of huge records.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e115 "><code class="ph codeph">HIGH_WATER_MARK_BROWSER</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e118 ">"2"</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e121 "><code class="ph codeph">highWaterMark</code> for browser</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e115 "><code class="ph codeph">HIGH_WATER_MARK_SERVER</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e118 ">"5"</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d36317e121 "><code class="ph codeph">highWaterMark</code> for server</td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+        <p class="p">The <code class="ph codeph">highWaterMark</code> option is a threshold, dictating the amount of data
+            that a stream buffers before it stops asking for more data. The option does not enforce
+            a strict memory limitation in general. Specific stream implementations may choose to
+            enforce stricter limits, but doing so is optional.</p>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="plmnId grouped to single conversion" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="plmnid_grouped_tag_to_single_tag_conversion" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>plmnId grouped to single conversion</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="plmnid_grouped_tag_to_single_tag_conversion">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">plmnId grouped to single conversion</h1>
+<div class="body conbody">
+        <p class="p">In 5G, PLMN ID is an object and NCC converts it into an octet string. Bits in octet
+            string depend on MCC and MNC values as defined in the following tables. The type is
+            defined as per CDR description in 3GPP TS 32.298 V16.2.0 (2019-09).</p>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="plmnid_grouped_tag_to_single_tag_conversion__table_gmw_4lt_mtb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Octet/bit position</span></caption><colgroup><col /><col /><col /><col /><col /><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e60">Octets/Bit Position</th>
+
+                        <th class="entry cellrowborder" colspan="2" style="vertical-align:top;" id="d119335e63">7</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e66">6</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e69">5</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e72">4</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e76">3</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e79">2</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e82">1</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e85">0</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d119335e60 ">1</td>
+
+                        <td class="entry cellrowborder" colspan="5" style="vertical-align:top;" headers="d119335e63 d119335e66 d119335e69 d119335e72 ">MCC digit 2</td>
+
+                        <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d119335e76 d119335e79 d119335e82 d119335e85 ">MCC digit 1</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d119335e60 ">2</td>
+
+                        <td class="entry cellrowborder" colspan="5" style="vertical-align:top;" headers="d119335e63 d119335e66 d119335e69 d119335e72 ">MNC digit 3</td>
+
+                        <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d119335e76 d119335e79 d119335e82 d119335e85 ">MCC digit 3</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d119335e60 ">3</td>
+
+                        <td class="entry cellrowborder" colspan="5" style="vertical-align:top;" headers="d119335e63 d119335e66 d119335e69 d119335e72 ">MNC digit 2</td>
+
+                        <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d119335e76 d119335e79 d119335e82 d119335e85 ">MNC digit 1</td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="plmnid_grouped_tag_to_single_tag_conversion__table_hmw_4lt_mtb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Octet/bit position if mnc does not have a third digit</span></caption><colgroup><col /><col /><col /><col /><col /><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e164">Octets/Bit Position</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e167">7</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e170">6</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e173">5</th>
+
+                        <th class="entry cellrowborder" colspan="2" style="vertical-align:top;" id="d119335e176">4</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e180">3</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e183">2</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e186">1</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d119335e189">0</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d119335e164 ">1</td>
+
+                        <td class="entry cellrowborder" colspan="5" style="vertical-align:top;" headers="d119335e167 d119335e170 d119335e173 d119335e176 ">MCC digit 2</td>
+
+                        <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d119335e180 d119335e183 d119335e186 d119335e189 ">MCC digit 1</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d119335e164 ">2</td>
+
+                        <td class="entry cellrowborder" colspan="5" style="vertical-align:top;" headers="d119335e167 d119335e170 d119335e173 d119335e176 ">1111</td>
+
+                        <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d119335e180 d119335e183 d119335e186 d119335e189 ">MCC digit 3</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d119335e164 ">3</td>
+
+                        <td class="entry cellrowborder" colspan="5" style="vertical-align:top;" headers="d119335e167 d119335e170 d119335e173 d119335e176 ">MNC digit 2</td>
+
+                        <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d119335e180 d119335e183 d119335e186 d119335e189 ">MNC digit 1</td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+        <p class="p"><strong class="ph b">5G representation: PLMNId object:</strong></p>
+
+        <p class="p"> nFPLMNID = { mcc:"123", mnc:"456" }</p>
+
+        <p class="p"> nFPLMNID = { mcc:"123", mnc:"56" }</p>
+
+        <p class="p"><strong class="ph b">CDR Representation:</strong></p>
+
+        <p class="p"> networkFunctionPLMNIdentifier :: 0x216354</p>
+
+        <p class="p"> networkFunctionPLMNIdentifier :: 0x21F365</p>
+
+    </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Network deployment" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="network_deployment" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Network deployment</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="network_deployment">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Network deployment</h1>
+<div class="body conbody">
+        <p class="p">The entire solution that is deployed across multiple sites is called the network
+            deployment.</p>
+
+        <p class="p">A typical NCC network deployment has one pair of SM subsystems and one or more pairs of
+            ME subsystems. Physically, this is deployed as a pair of IG systems, which include both
+            the SM and the ME subsystems. Additional pairs of ME subsystems may be deployed for
+            purposes of regionalization or additional capacity as standalone ME systems (not part of
+            an IG).</p>
+
+        <div class="section" id="network_deployment__section_xzs_1bb_llb"><h2 class="title sectiontitle">SM subsystem deployment</h2>
+            
+            <div class="p">An NCC network deployment always includes a pair of IG systems, which each include an
+                SM subsystem. The IG systems are typically deployed in geographically diverse
+                locations to maximize resiliency. SM subsystems are active / active, with data
+                replication between them. <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For back-to-back transactions for a given device,
+                    group, or account, it is recommended to send those all to the same SM subsystem
+                    in order to avoid race conditions.</div>
+
+            </div>
+
+        </div>
+
+        <div class="section" id="network_deployment__section_u1l_wq5_klb"><h2 class="title sectiontitle">ME subsystem deployment</h2>
+            
+            <p class="p">An NCC network deployment always includes a pair of IG systems, which each include an
+                ME subsystem. The IG systems are typically deployed in geographically diverse
+                locations to maximize resiliency. ME subsystems are active / active, with data
+                replication between them. A subset of subscribers or devices is primary on one ME
+                subsystem and secondary on the other in the pair, and the remaining subset is
+                secondary on one ME subsystem and primary on the other.</p>
+
+            <p class="p">Additional pairs of ME subsystems can be deployed in standalone ME systems as
+                required for additional network capacity.</p>
+
+        </div>
+
+        <div class="section" id="network_deployment__section_inc_cny_54b"><h2 class="title sectiontitle">Additional ME subsystem deployment options</h2>
+            
+            <p class="p">The ME subsystem pairs can be deployed with two routing options:</p>
+
+            <ul class="ul" id="network_deployment__ul_dw4_1ny_54b">
+                <li class="li">Independent ME subsystem pairs <p class="p">In this model, each ME subsystem pair is
+                    independent from the other pairs. Received traffic is either processed
+                    locally or site-routed to the other ME subsystem in the pair (or is
+                    rejected). There is no NCC site routing to an ME subsystem outside of this
+                    pair. The operator's network must perform routing to ensure that a
+                    particular message arrives to the correct ME subsystem pair, if that is
+                    required.</p>
+
+                </li>
+
+                <li class="li">Networked ME subsystem pairs<p class="p"> In this model, all ME subsystems can communicate
+                    with each other and know which subscribers are homed on any of the ME
+                    subsystems in the network. When a message arrives at an ME subsystem, if the
+                    subscriber is not homed on this local ME subsystem, then this ME subsystem
+                    can site-route this message to the home ME subsystem anywhere in the
+                    network, not limited to just the other ME subsystem in this pair.</p>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="section" id="network_deployment__section_ksj_4xy_54b"><h2 class="title sectiontitle">Example deployments</h2>
+            
+            <p class="p">This figure shows an example deployment with a pair of IG systems</p>
+
+            <p class="p">where:</p>
+
+            <ul class="ul" id="network_deployment__ul_xv4_1ny_54b">
+                <li class="li">SM subsystem data is replicated across the two SM subsystems.</li>
+
+                <li class="li">ME subsystem data has two partitions replicating between the two ME subsystems,
+                    one for subscribers primary on ME 1 and secondary on ME 2, and another one for
+                    those primary on ME 2 and secondary on ME 1.</li>
+
+                <li class="li">ME global mapping data is replicated across all ME subsystems.</li>
+
+            </ul>
+
+            <div class="fig fignone" id="network_deployment__fig_od4_5xt_1pb"><span class="figcap"><span class="fig--title-label">Figure: </span>Example deployment with a pair of IG systems</span>
+                
+                <img class="image imagecenter break" id="network_deployment__image_pd4_5xt_1pb" src="images/cnf_overview_figure_A.GIF" height="197" width="430" />
+            </div>
+
+            <p class="p">This figure shows an example deployment with a pair of IG systems and an
+                additional pair of ME systems</p>
+
+            <p class="p">where:</p>
+
+            <ul class="ul" id="network_deployment__ul_zv4_1ny_54b">
+                <li class="li">SM subsystem data is replicated across the two SM subsystems.</li>
+
+                <li class="li">Each ME subsystem pair has two partitions, replicating between the two ME
+                    subsystems in that particular pair.</li>
+
+                <li class="li">ME subsystem global mapping data is replicated across all four ME
+                    subsystems.</li>
+
+            </ul>
+
+            <div class="fig fignone" id="network_deployment__fig_tkn_xxt_1pb"><span class="figcap"><span class="fig--title-label">Figure: </span>IG systems and an additional pair of ME systems</span>
+                
+                <img class="image imagecenter break" id="network_deployment__image_ukn_xxt_1pb" src="images/cnf_overview_figure_B.GIF" height="164" width="462" />
+            </div>
+
+            
+            
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Backup and Recovery" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="backup_and_restore" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Backup and Recovery</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="backup_and_restore">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Backup and Recovery</h1>
+<div class="body conbody">
+        <p class="p">The <em class="ph i">Backup and Recovery</em> feature is introduced in the <em class="ph i">Performance</em> suite.
+            Backup is executed only once after a fresh installation during a Performance suite
+            execution, and Restore is an on-demand feature. Restore can be run by enabling the
+                <code class="ph codeph">ondemand_restore</code> flag in the <code class="ph codeph">parameters.yaml</code> file.
+            For more information on Backup and Recovery parameters, see <a class="xref" href="optional_parameters.html#optional_parameters__section_qtf_zrp_znb">Test execution variables</a>.</p>
+
+        <p class="p">The following procedures describe how to first back up the system, and then restore it
+            with on-demand restore. The <code class="ph codeph">max_reruns</code> parameter must be set to
+                <code class="ph codeph">0</code>, and it is assumed that Backup and Recovery parameters have been
+            set in <code class="ph codeph">parameters.yaml</code> according your system.</p>
+
+        <div class="section" id="backup_and_restore__section_pfk_ck3_qpb"><h2 class="title sectiontitle">To back up the system</h2>
+            
+            <ol class="ol" id="backup_and_restore__ol_djk_fs3_qpb">
+                <li class="li">Ensure that <code class="ph codeph">ondemand_restore</code> is set to <code class="ph codeph">false</code>
+                    (the default value).</li>
+
+                <li class="li">Run the Performance suite.</li>
+
+                <li class="li">After the test suite completes, a backup has been created on the SM/ME admincli
+                    pod at <code class="ph codeph">/opt/tpa/users/tpaadmin</code>.</li>
+
+            </ol>
+
+        </div>
+
+        <div class="section" id="backup_and_restore__section_mww_2v3_qpb"><h2 class="title sectiontitle">To restore the system</h2>
+            
+            <ol class="ol" id="backup_and_restore__ol_dws_bq3_qpb">
+                <li class="li">Before running the Performance suite, set <code class="ph codeph">ondemand_restore</code> to
+                        <code class="ph codeph">true</code>, keeping the rest of the configuration as is.</li>
+
+                <li class="li">
+                    <p class="p">Run the Performance suite.</p>
+
+                    <p class="p">Restore is executed as the first test case in the suite, thereby restoring
+                        the system. Restore is done from the backup generated in <a class="xref" href="#backup_and_restore__section_pfk_ck3_qpb">To back up the system</a>.</p>
+
+                </li>
+
+                <li class="li">After the test suite completes, reset <code class="ph codeph">ondemand_restore</code> to
+                        <code class="ph codeph">false</code> to avoid running restore in the following test suite
+                    runs.</li>
+
+            </ol>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>DevOps Guide • P556766-DN1000055058-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

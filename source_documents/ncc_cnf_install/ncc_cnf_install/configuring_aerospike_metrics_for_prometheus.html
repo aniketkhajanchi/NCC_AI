@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Configuring Aerospike metrics for Prometheus" />
+<meta name="DC.relation" scheme="URI" content="https://docs.aerospike.com/reference/metrics" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="configuring_aerospike_metrics_for_prometheus" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Configuring Aerospike metrics for Prometheus</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="configuring_aerospike_metrics_for_prometheus">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Configuring Aerospike metrics for Prometheus</h1>
+<div class="body conbody">
+        <p class="p">Aerospike provides various metrics to monitor the health and performance of the Aerospike
+            cluster. These metrics can be used to understand cluster behavior, diagnose issues, and
+            tune the cluster for better performance.</p>
+
+        <p class="p">To enable or disable Aerospike metrics, navigate to the <span class="ph uicontrol">Common &gt; SPS &gt;
+                Aerospike Metrics List</span> field in the <span class="ph filepath">Inputs.xlsx</span>
+            spreadsheet and select <span class="keyword parmname">enabled</span> or
+            <span class="keyword parmname">disabled</span>.</p>
+
+        <p class="p"><span class="ph">NCC</span> provides a default set of Aerospike metrics that can be
+            scraped by Prometheus. A list of these default metrics can be found in the
+                <span class="ph filepath">aerospikeallowedmetrics.txt</span> file that is located in the
+                <span class="ph filepath">input-generator/staticfiles/data/</span> directory.</p>
+
+        <p class="p">This is an example of the content in the <span class="ph filepath">aerospikeallowedmetrics.txt</span>
+            file:</p>
+
+        <pre class="pre codeblock"><code>#Namespace-metrics-allowlist-begins
+namespace_metrics_allowlist=[
+"clock_skew_stop_writes",
+"dead_partitions",
+"device_available_pct",
+...
+]</code></pre>
+
+        <div class="p">This is the list of metrics categories: <ul class="ul">
+                <li class="li">namespace_metrics</li>
+
+                <li class="li">node_metrics</li>
+
+                <li class="li">xdr_metrics</li>
+
+                <li class="li">job_metrics</li>
+
+                <li class="li">sindex_metrics</li>
+
+                <li class="li">set_metrics</li>
+
+            </ul>
+</div>
+
+        <p class="p">To name metrics in Prometheus, a convention is followed where the prefix
+                <code class="ph codeph">aerospike_</code> is added, along with a prefix corresponding to their
+            respective category name. </p>
+
+        <p class="p">For example, the metric <code class="ph codeph">clock_skew_stop_writes</code> that belongs to the
+            namespace category is found in Prometheus by searching for
+                <code class="ph codeph">aerospike_namespace_clock_skew_stop_writes</code>.</p>
+
+        <p class="p">To add or remove any Aerospike metrics, create a copy of the
+                <span class="ph filepath">aerospikeallowedmetrics.txt</span> file and place it in the
+                <span class="ph filepath">input-generator/overrides/</span> directory. Then specify the file
+            name in the <span class="ph uicontrol">Aerospike Metrics List</span> field. Once the installation
+            is complete, the Aerospike exporter only exports the metrics that are specified in the
+            provided text file.</p>
+
+        <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The Aerospike exporter has the ability to export additional metrics. However, exercise
+            caution when adding any new metric to the Aerospike metric list in the
+                <span class="ph filepath">input-generator/overrides/</span> directory, as this may impact the
+            resource requirements of both Aerospike and Prometheus. Consult with your Nokia support
+            team before adding any new metrics.</div>
+
+        <div class="note" id="configuring_aerospike_metrics_for_prometheus__note_rdd_2hc_3xb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Metrics added that are not in the default metrics list are not
+            written in Gen3GPPXML.</div>
+
+        <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> You cannot use any wild card characters (*) in the Aerospike metrics list.</div>
+
+<div class="section"><h2 class="title sectiontitle">Storage latency</h2>
+    
+            <p class="p">The write latency exhibited by the storage device has a significant impact on the
+                performance of the Aerospike server. Whenever the NFS server slows down, the client
+                read/write operations made by applications also exhibit higher latencies.</p>
+
+            <p class="p"><span class="ph">NCC</span> configures Aerospike to store all data in-memory
+                (backed by the storage device) and all client reads/writes are served from the
+                memory itself. Also, the flush to the storage is made asynchronously by a different
+                thread.</p>
+
+            <p class="p">This behavior is attributed to limitations which are inherent to the NFS technology.
+                NFS adds a layer of software abstraction which has less performance and
+                reliability.</p>
+
+            <p class="p">The NFS network driver is not as robust since the OS NFS driver locks a CPU core when
+                it receives a hard interrupt. The hard interrupt does not release control to the CPU
+                core until it finishes, and if control does not return quickly, this disrupts and
+                delays other threads (such as Aerospike threads that serve client read/write
+                operations) on the same core. </p>
+    
+</div>
+
+        <div class="section"><h2 class="title sectiontitle">Metrics</h2>
+            
+            <p class="p">Aerospike does not provide any metric that records the latency of the reads/writes
+                made from/to the storage device. Micro-benchmarking can be used to switch on
+                collection and printing of storage latencies in the Aerospike logs. Switching on
+                micro-benchmarks can have an adverse effect on the performance of the server. It is
+                therefore not recommended to switch it on perpetually or for long durations.</p>
+
+            <p class="p">Diagnostic commands such as <code class="ph codeph">iostat</code> can be used measure exact
+                latencies reported by the storage sub-system. However, <span class="ph">NCC</span> does not have the privileges to execute such
+                commands in a cloud environment.</p>
+
+            <p class="p">In the absence of any direct measure of the storage latencies, you can use an
+                indirect measure of the storage latency by using the <code class="ph codeph">time</code> command
+                to measure the time it takes for any arbitrary task (such as the
+                    <code class="ph codeph">realpath</code> command) to complete on the Aerospike server
+                container. Higher time reported by the time command is indicative of higher
+                latencies from the storage system. The <code class="ph codeph">realpath</code> command (or it
+                could be any other command), which is scheduled on one of the N CPU cores that also
+                performs the I/O from/to the storage/NFS server, would be blocked for longer
+                durations if the hard interrupt, caused by a slow NFS server, takes longer to
+                release the CPU core.</p>
+
+            <p class="p">If the <code class="ph codeph">realpath</code> command is instead scheduled on a CPU core that is
+                not blocked, at that moment, by the OS, it would complete immediately and not report
+                any latency even though another CPU core may be blocked by the slow NFS server.
+                Therefore, the time should be recorded multiple times at frequent intervals.</p>
+
+            <p class="p">The mechanism to execute the <code class="ph codeph">time realpath</code> command on every
+                Aerospike container and record the time taken by the command as a metric has been
+                automated. The metrics are exported to Prometheus as well.</p>
+
+            <div class="p">
+                <div class="note" id="configuring_aerospike_metrics_for_prometheus__note_kt4_1hp_4xb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This metric is only an indirect measure of the latency
+                    reported by the storage system. The values provided by this metric should not be
+                    compared with those provided by the more direct measures (such as the
+                        <code class="ph codeph">iostat</code> command).</div>
+
+            </div>
+
+            <p class="p">A perpetually running script provides the functionality for measuring the command
+                latency (<code class="ph codeph">realpath</code> command executed on any one Aerospike data file)
+                and exporting the results as Prometheus metrics. The script exports a histogram
+                metric named <span class="keyword parmname">db_storage_latency</span> with latency buckets in
+                milliseconds (1, 2, 5, 10, 50, 100, 500, 1000). </p>
+
+            <p class="p">The command is run every <span class="keyword parmname">METRICS_INTERVAL</span> (default 5 seconds;
+                overridable in the Aerospike chart) on every Aerospike container.</p>
+
+            <p class="p">The <span class="keyword parmname">METRICS_PORT</span> (default 9146; overridable in the Aerospike
+                chart) is used by Prometheus to scrape these metrics.</p>
+
+            <p class="p">The script also provides logging for error messages and the frequency of observed
+                latency values in each bucket.</p>
+
+            <p class="p">The collection of this metric is enabled by the same Input Generator field that
+                controls the generation of other Aerospike metrics.</p>
+
+            <p class="p">This is an example of how to obtain the metrics.</p>
+
+            <pre class="pre codeblock"><code>histogram_quantile(.95,rate(aerospike_latencies_batch_index_ms_bucket
+{instance="sps-ig_po-ig-ig-aerospike-rk1-0_ctr-ig-ig-aerospike-dbexporter"}
+[5m]))
+histogram_quantile(.95,rate(aerospike_realpath_latency_bucket[5m]))</code></pre>
+        </div>
+
+    </div>
+<div class="related-links related-links-title">More on this topic</div><div class="related-links">
+<div class="linklist relinfo"><ul class="linklist">
+<li class="linklist"><a class="link" href="https://docs.aerospike.com/reference/metrics" target="_blank" rel="noopener noreferrer">Aerospike Metrics Reference</a></li></ul></div>
+</div><div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

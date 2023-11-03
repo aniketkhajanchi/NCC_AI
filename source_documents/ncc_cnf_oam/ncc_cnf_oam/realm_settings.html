@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Realm settings" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="realm_settings" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Realm settings</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="realm_settings">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Realm settings</h1>
+<div class="body conbody">
+        <div class="section" id="realm_settings__section_dt1_1rv_klb"><h2 class="title sectiontitle">Purpose</h2>
+            
+            <p class="p">Realm Selection on the upper-left drop-down menu allows the selection of the realm to
+                be managed. The sps-auth realm is the only realm used in <span class="ph">NCC</span>, and it is created with SSL automatically
+                configured on it by the installation scripts.</p>
+
+        </div>
+
+        <div class="section" id="realm_settings__section_wrw_brv_klb"><h2 class="title sectiontitle">Realm</h2>
+            
+            <p class="p">A predefined realm is created when the User and Role Management server is booted for the first time.
+                This initial realm is referred to as the master realm or the head of all realms. The
+                administrators of the master realm have the permissions to view and manage any other
+                realm created on the server instance. When the initial administrator account is
+                defined, an account must be created in the master realm. The initial login to the
+                User and Role Management GUI is initiated through the master
+                realm.</p>
+
+            <div class="p">The realm has a dedicated admin console that can be accessed from the URL:<span class="ph filepath">
+                    /auth/admin/&lt;realm-name&gt;/console</span>. The users within that realm can
+                be granted realm management permissions by assigning specific user role
+                    mappings.<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> : Do not use the master realm to manage the users and
+                    applications in an organization. The master realm should only be preserved for
+                    super administrator tasks such as creating or managing realms in the
+                    system.</div>
+</div>
+
+            <p class="p">The <span class="ph">NCC</span> installation scripts create a realm called sps-authalong with associated
+                client configurations for communicating with the local SM application.</p>
+
+        </div>
+
+        <div class="section" id="realm_settings__section_ssm_hrv_klb"><h2 class="title sectiontitle">SSL mode</h2>
+            
+            <p class="p">The realm has an SSL mode associated with it, which defines the SSL or HTTPS
+                requirements for interacting with the realm. The web browsers and applications that
+                interact with the realm must comply with the SSL or HTTPS requirements defined by
+                the SSL mode. SSL is configured by default during installation.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

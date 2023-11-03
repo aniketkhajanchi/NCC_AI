@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Slicing Profile" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="d1e51412" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Slicing Profile</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="d1e51412">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Slicing Profile</h1>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_rrb_mcb_f3b"><h2 class="title topictitle2" id="ariaid-title2">EDR tags</h2>
+<div class="body conbody">
+            <div class="section" id="concept_rrb_mcb_f3b__section_kj2_mcb_f3b">
+                <table cellpadding="4" cellspacing="0" summary="" id="concept_rrb_mcb_f3b__table_hhy_rk3_qqb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:24.33537832310838%" /><col style="width:55.21472392638036%" /><col style="width:20.449897750511244%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d55279e44">Tag</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d55279e47">Description</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d55279e50">Example</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e44 ">slicingProfileName</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e47 ">This parameter is the unique name of a Slicing
+                                    profile.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e50 ">default_profile</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e44 ">sliceSize</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e47 ">This parameter indicates the static size of slice in
+                                    Bytes.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e50 ">512</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e44 ">quotaHoldingTime</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e47 ">This parameter has value in seconds, which is used to control
+                                    the time the session remains in the idle state in the
+                                    network.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e50 ">5</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e44 ">validityTime</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e47 ">This parameter has value in seconds which is used to control
+                                    the time the quota remains active in the network and the
+                                    effective allocation of resources.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e50 ">10</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e44 ">slicingCreationTime</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e47 ">This parameter is the time at which the Slicing profile was
+                                    created.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e50 ">02/07/2018 12:31:26</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e44 ">slicingLastUpdateTime</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e47 ">This parameter is the Time at which the Slicing profile was
+                                    last modified.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e50 ">-</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e44 ">ignoreReservedQuota</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e47 ">
+                                    <p class="p">This parameter determines whether the reservation quota must
+                                        be considered in slice reduction logic or not. The default
+                                        value of this parameter is No.</p>
+
+                                    <p class="p">Possible values: No, Counter</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e50 ">-</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_lyy_3k4_yqb"><h2 class="title topictitle2" id="ariaid-title3">Applicability of tags</h2>
+<div class="body conbody">
+            <div class="section">
+                <table cellpadding="4" cellspacing="0" summary="" id="concept_lyy_3k4_yqb__table_ihy_rk3_qqb" class="table" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d55279e175"><strong class="ph b">EDR Tag</strong></th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d55279e179"><strong class="ph b">Create</strong></th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d55279e183"><strong class="ph b">Update</strong></th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d55279e187"><strong class="ph b">Delete</strong></th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e175 ">slicingProfileName</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e179 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e183 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e187 ">Yes</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e175 ">sliceSize</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e179 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e183 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e187 ">Yes</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e175 ">quotaHoldingTime</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e179 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e183 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e187 ">Yes</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e175 ">validityTime</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e179 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e183 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e187 ">Yes</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e175 ">slicingCreationTime</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e179 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e183 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e187 ">Yes</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e175 ">slicingLastUpdateTime</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e179 ">No</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e183 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e187 ">Yes</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e175 ">ignoreReservedQuota</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e179 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e183 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d55279e187 ">Yes</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title4" id="concept_ytc_jk4_yqb"><h2 class="title topictitle2" id="ariaid-title4">Associated EDRs</h2>
+<div class="body conbody">
+            <p class="p">There are no associated EDRs for this EDR.</p>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title5" id="concept_wtl_mcb_f3b"><h2 class="title topictitle2" id="ariaid-title5">EDR examples</h2>
+<div class="body conbody">
+            <div class="section" id="concept_wtl_mcb_f3b__section_mj2_mcb_f3b">
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Create</strong></p>
+
+                    <pre class="pre codeblock"><code>------------------------------------- 
+EDR length:                     325 
+Release ID | Version ID:        7|2 
+Data record format | TS number: 1|7 
+Release identifier extension:    4 
+Name                        Tag            Data 
+RecordType                   0          PROVISIONING_RECORD 
+invokedBy                    1          webService 
+invokedMethod                1          create_slicingProfile 
+slicingProfileName           1          default_profile 
+sliceSize                    1          512 
+quotaHoldingTime             1          5 
+validityTime                 1          10 
+slicingCreationTime          1          02/07/2018 12:31:26 
+result                       1          SUCCESS 
+generationTimestamp          1          02/07/2018 12:31:26 
+RecordTimestamp              1          02/07/2018 07:01:26 </code></pre>
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Update</strong></p>
+
+                    <pre class="pre codeblock"><code>-------------------------------------
+EDR length:            306 
+Release ID | Version ID:        7|2 
+Data record format | TS number: 1|7 
+Release identifier extension:    4 
+Name                      Tag             Data 
+RecordType                 0          PROVISIONING_RECORD 
+invokedBy                  1          webservice 
+invokedMethod              1          update_slicingProfile 
+profileName                1          slice_prof 
+sliceSize                  1          11 
+quotaHoldingTime           1          5 
+validityTime               1          500 
+creationTime               1          23/05/2018 06:32:52 
+result                     1          SUCCESS 
+generationTimestamp        1          23/05/2018 06:32:52 
+RecordTimestamp            1          23/05/2018 13:02:52</code></pre>
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Delete</strong></p>
+
+                    <pre class="pre codeblock"><code>-------------------------------------
+EDR length:            306 
+Release ID | Version ID:        7|2 
+Data record format | TS number: 1|7 
+Release identifier extension:    4 
+Name                         Tag            Data 
+RecordType                    0         PROVISIONING_RECORD 
+invokedBy                     1         webservice 
+invokedMethod                 1         delete_slicingProfile 
+profileName                   1         slice_prof 
+sliceSize                     1         11 
+quotaHoldingTime              1         5 
+validityTime                  1         500 
+creationTime                  1         23/05/2018 06:33:44 
+result                        1         SUCCESS 
+generationTimestamp           1         23/05/2018 06:33:44 
+RecordTimestamp               1         23/05/2018 13:03:44 </code></pre>
+                </div>
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

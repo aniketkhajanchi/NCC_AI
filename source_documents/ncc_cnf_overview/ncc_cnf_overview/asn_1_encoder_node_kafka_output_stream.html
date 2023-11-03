@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="ASN.1 Encoder Node" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="asn.1_encoder_node_kafka_output_stream" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>ASN.1 Encoder Node</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="asn.1_encoder_node_kafka_output_stream">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">ASN.1 Encoder Node</h1>
+<div class="body conbody">
+        <p class="p">ASN.1 Encoder Node converts the batch of output records into given ASN.1 format. By
+            default, NCC generic ASN.1 schema is used. For more information on the schema, see the
+                <cite class="cite">CDR/EDR Reference</cite> in the NCC documentation set.</p>
+
+        <p class="p">For Kafka output stream processing, records must be encoded together with CDR headers,
+            and the file header must be omitted. The default node parameter configuration defines
+            the required headers to be included in the output. For more information about file and
+            CDR headers, see 3GPP TS 32.297.</p>
+
+        <div class="section" id="asn.1_encoder_node_kafka_output_stream__section_fwx_nqr_mnb"><h2 class="title sectiontitle">Rejected data storage</h2>
+            
+            <p class="p">ASN.1 Encoder Node can reject records if there is a problem in encoding them in the
+                given ASN.1 schema. If the node rejects a record, the record is stored in CGF
+                Rejected Data storage area called DEFAULT. This area can be inspected at any time,
+                and the records can be reprocessed either manually or via a schedule, while other
+                options include taking the records offline or removing them.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

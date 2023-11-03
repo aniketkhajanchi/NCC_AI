@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Example 4: Applying slice reduction functionality on a multi-bundle counter" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="section_xyl_3zk_r4b" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Example 4: Applying slice reduction functionality on a multi-bundle counter</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="section_xyl_3zk_r4b">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Example 4: Applying slice reduction functionality on a multi-bundle
+                    counter</h1>
+<div class="body">
+                
+                <p class="p">The following example explains how the slice reduction functionality is applied
+                    on a multi-bundle counter.</p>
+
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If the <var class="keyword varname">Notification-Stop</var> threshold action of a multi-bundle
+            counter having is crossed, then during the reservation for parallel call, delta for the
+            slice is calculated with next priority multi-bundle counter instead of granting
+                <span class="ph uicontrol">MIN Slice Size</span>. The highest priority multi-bundle counter is
+            ignored for parallel calls in case the counter has a
+                <var class="keyword varname">Notification-Stop</var> threshold action. See <a class="xref" href="supportacfeature.html#id9yz-09126-ug01-pczza-sp1-supportacfeature__multi">Multi-bundle restrictions</a> for restrictions applicable to multi-bundle
+            counter.</div>
+
+                <p class="p">
+                    <strong class="ph b">Preconditions:</strong>
+                </p>
+
+                <ol class="ol" id="section_xyl_3zk_r4b__ol_yyl_3zk_r4b">
+                    <li class="li">
+                        <p class="p">A base bundle is defined with two charging services:</p>
+
+                        <p class="p">- The first charging service is associated with a multi-bundle counter
+                                <var class="keyword varname">ABY</var>, which has a threshold of 50 GB.</p>
+
+                        <p class="p">- The second charging service is associated with a subscription counter
+                                <var class="keyword varname">TBY</var>, which has a threshold of 15 GB.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Define a domestic databoost bundle with a multi-bundle counter
+                                <var class="keyword varname">ABB</var>, which has a
+                                <var class="keyword varname">Notification-Stop</var> threshold at 10 GB.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The quota management (slicing profile) has a
+                        <span class="ph uicontrol">SAF</span> of 50% and <span class="ph uicontrol">MIN Slice Size</span>
+                    of 1 GB.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Subscribe a device to the base bundle.</p>
+
+                    </li>
+
+                </ol>
+
+                <p class="p">
+                    <strong class="ph b">Post-conditions:</strong>
+                </p>
+
+                <ul class="ul" id="section_xyl_3zk_r4b__ul_zyl_3zk_r4b">
+                    <li class="li">
+                        <p class="p">Execute domestic calls from a device till the <var class="keyword varname">ABY</var>
+                            counter value becomes 40 GB.</p>
+
+                        <p class="p">Verify whether the <var class="keyword varname">ABY</var> counter threshold is considered
+                            for slice reduction.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The device subscribes to domestic databoost bundle.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">For next data reservation, the <var class="keyword varname">ABB</var> counter is
+                            considered for slice reduction.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Execute more calls, such that the <var class="keyword varname">ABB</var> counter value
+                            reaches 9.5 GB.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Execute a tethered call and verify whether the <span class="ph uicontrol">MIN Slice
+                                Size</span> of 1 GB is granted.</p>
+
+                        <p class="p">Now, the committed value of the <var class="keyword varname">ABB</var> counter is 9.5 GB,
+                            and (committed + reserved) value is 10.5 GB.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Execute domestic call.</p>
+
+                        <p class="p">Verify in slice reduction whether <span class="ph uicontrol">MIN Slice Size</span>
+                            is granted and <var class="keyword varname">ABY</var> counter delta value is considered
+                            for determining the slice size.</p>
+
+                    </li>
+
+                </ul>
+
+            </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

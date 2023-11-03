@@ -1,0 +1,1357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Rule Error Messages" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="idf6aaad85-95f3-4686-b3c0-e08ade24c770" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Rule Error Messages</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="idf6aaad85-95f3-4686-b3c0-e08ade24c770">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Rule Error Messages</h1>
+<div class="body conbody"><p class="p">This table describes the Rules error messages that the NCC may generate.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Rule error messages</span></caption><colgroup><col style="width:16.666666666666664%" /><col style="width:21.428571428571427%" /><col style="width:30.952380952380953%" /><col style="width:30.952380952380953%" /></colgroup><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:top;" id="d28818e40">Number</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d28818e42">Message</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d28818e44">HTTP Error Code</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d28818e47">Description</th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00001</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Name is a mandatory field.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The mandatory Name field provides a unique name for this object and must be 1 to 255 characters.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00002</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Name exceeds the maximum length of 255 characters.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The Name field must be 1 to 255 characters.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00003</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Empty condition Criteria value.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The Value field of the condition criteria must be assigned a value. The behavior of the Value field depends on the option that you chose for the Value Type field.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00004</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Empty Operator field for Criteria.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The Operator field must contain an Operator value; for example, Equal.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00005</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Empty Criteria value.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">You must assign a condition in the Criteria drop-down list.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00007</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Empty Action Attribute Information.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">An Action needs an Action attribute.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00008</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Name data is invalid.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The name data field should only contain letters, numbers, underscores (_), dashes (-), dots (.), and spaces.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00009</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">A rule needs at least one Action.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Create at least one Action for a rule.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00011</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Default action "{0}.{1}" is not valid for rule set "{2}"</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The specified default action or one of the attribute values used in it are not applicable for the rule set.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00017</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Error while processing Action "{0}"</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The action data may be corrupt. Try re-creating and saving the action.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00018</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">A rule table that is being used as an Action by a rule cannot be a top-level rule table</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The rule table must be re-created and not flagged as a top-level rule table, or the rule must use another rule table that is not flagged as a top-level rule table as an action.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00019</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Reference to rule table "{0}" from rule table "{1}" causes a loop</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The rule table assigned to the rule table action is already used in this rule table action link. The rule table should not be used again in this link to avoid a rule table loop.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00020</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Unknown attribute name "{0}" and result context "{1}".</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Attribute name "{0}" and result context "{1}" does not match any attributes in the rule attribute dictionary.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00022</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Unknown attribute name "{0}" and source context "{1}".</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Attribute name "{0}" and source context "{1}" does not match any attributes in the rule attribute dictionary.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00023</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Unknown attribute name "{0}" and source context "{1}" used as attribute value.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Attribute name "{0}" and source context "{1}" used as attribute value does not match any attributes in the rule attribute dictionary.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00032</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Error resolving rule attribute dictionary.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The system cannot resolve the rule attribute dictionary cache.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00033</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Action "{0}" is used too many times in rule "{1}"</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The action "{0}" in rule "{1}" may only be used "{2}" time(s) in a single rule.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00034</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Action value "{0}" is too large for attribute "{1}"</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The value for the action is too large for the attribute.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00035</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Adjustment value "{0}" is too large for Integer attribute</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The adjustment value for the action is too large for the attribute.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00036</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Action parameter type and value type are not compatible.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The action parameter type [type="{0}", class="{1}", occurrence="{2}"] is not compatible with value type [type="{3}", class="{4}", occurrence="{5}"].</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00037</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Multiple occurrences of the Charging/QoS rule definition in Action "{0}" rule "{1}" is not allowed</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">You cannot use the same Charging/QoS rule definition name multiple times with action "{0}" within a single rule.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00038</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">This combination is not supported for split charging functionality</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Invalid combination of actions used in a single rule.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00039</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rate-RoundingFactor is supported only with Rate/Next-Rate/Threshold-Rate/ Threshold-Next-Rate</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Invalid combination of actions used in a single rule.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00040</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">The Active Rule System Version cannot be deleted.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule System Version "{0}" is in an Active state and cannot be deleted.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00042</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Modifying the description of a read-only Rule System Version is not allowed.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule System Version "{0}" is flagged as read-only. You cannot remove, add or modify the description. Current description is "{1}", changed description is "{2}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00043</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Active or Release Rule System Versions cannot be modified.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Active or release rule system versions cannot be modified.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00044</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Cannot activate a Rule System Version from a Draft state.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The state of rule system version "{0}" cannot be changed from Draft to Active.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00045</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Read-only flag of Rule System Version cannot be modified.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The ReadOnlyAccess property of rule system version "{0}" cannot be modified during an update.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00046</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Failed to deactivate Rule System Version.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Failed to deactivate the previously active rule system version during activation of rule system version "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00047</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule engine reload failed.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Failed to reload rule engine after activation of rule system version "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00048</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid Rule System Version state change - Active to Draft.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The state of rule system version "{0}" cannot be changed from Active to Draft.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00050</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule table name must be unique within the rule system version.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule tables must have a name which is unique within the associated rule system version.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00051</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule set name must be unique within the rule system version.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule sets must have a name which is unique within the associated rule system version.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00052</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Active, release or read-only rule system version cannot be modified.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">"{0}" in rule system version "{1}" cannot be modified because the rule system version is in the active or release state or is read-only.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00053</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule set cannot be created.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule set "{1}" in rule system version "{0}" cannot be created.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00054</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Changing the state of a read-only Rule System Version to DRAFT is not allowed.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule System Version "{0}" is flagged as read-only. Changing the state from "{1}" to DRAFT is not allowed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00055</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">A read-only Rule System Version cannot be deleted.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule System Version "{0}" is marked as read-only and cannot be deleted.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00056</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule System Version was not found.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule System Version "{0}" was not found in the database.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00060</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule table is associated to an invalid rule table schedule</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule table "{0}" is associated to invalid rule table schedule "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00061</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Schedule frequency type can only be set to Weekly Recurring.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Set the schedule frequency type to Weekly Recurring.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00062</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Description exceeds the maximum length of 255 characters.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The description is "{0}" characters long. The Description field must be 0 to 255 characters.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00063</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Number of schedule intervals out of range.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The number of schedule intervals must be at least 1, but no more than required to fit into one week while complying with the other interval restrictions (for example, non-overlapping, minimum length, and non-adjacent).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00064</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Schedule interval duration out of range.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The intervals can be recurring but cannot be less than 30 min long after the start time. The intervals cannot overlap.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00065</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Overlapping schedule intervals.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">One or more of the scheduled intervals has a stop time that is after the start time of another interval, or has a start time that is before the stop time of another interval. Review the scheduled intervals to ensure that none of the intervals overlap.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00066</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid interval time for Rule Table Schedule.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The scheduled interval start and stop time must be on a valid 5 min boundary. Time is displayed in the format hh:mm:ss. Please enter a numeric value between 00:00:00 (midnight) to 23:55:00.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00068</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Select at least one day of the week option.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The schedule frequency type is Weekly Recurring; therefore, select at least one day of the week, or select all days of the week.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00070</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Schedule interval start or stop time out of range.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The scheduled interval start and stop time can only be on the hour. The format displayed is hh:mm:ss. The value entered can be any number from 0 (midnight) to 23 (23:00:00).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00074</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule table schedule name must be unique within the rule system version.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule table schedules must have a name which is unique within the associated rule system version.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00075</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Duplicate Rule System Version name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule System Version with specified name "{0}" already exists.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00080</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">There is a problem with the regular expression.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The pattern in question is: {0} Error message: {1}</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00081</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid value type for regular expression operator.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Condition values used with the regular expression operators must use a value type of String.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00082</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid value for condition.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Condition value must not be set when the operator is Present or Not Present.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00083</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule names within a rule table must be unique</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The Name field of each rule must be unique. Modify the rule names of the rule table and try saving again.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00084</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Name of the rule system version is not unique.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Name of rule system version "{0}" must be unique. Modify the name and try saving again.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00085</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule set is associated to an invalid rule table</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule set "{0}" is associated to invalid rule table "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00086</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Action "{0}" is used too many times in rule set "{1}"</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The action "{0}" in rule set "{1}" may only be used "{2}" time(s).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00087</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule Description exceeds the maximum length of 255 characters.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule "{0}" has a description "{1}" characters long. The Rule Description field must be 0 to 255 characters.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00089</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule table "{0}" does not belong to correct rule sets</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The rule table "{0}" is referenced by rule table "{1}", so rule table "{0}" must include at least the rule sets of rule table "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00100</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Condition value does not allow arguments.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The value of condition "{0}" does not allow arguments.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00101</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Condition operator is not compatible with criteria attribute.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The operator "{0}" for condition "{1}" is not compatible with the criteria attribute type.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00102</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Condition operator is not compatible with condition value.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The operator "{0}" for condition "{1}" is not compatible with the condition value type.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00103</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Condition value "{0}" is too large for attribute "{1}"</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The value for the condition is too large for the attribute.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00104</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Argument value does not allow arguments.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The value of argument "{0}" does not allow arguments.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00105</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Condition type and value type are not compatible.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The condition type [type="{0}", class="{1}", occurrence="{2}"] is not compatible with value type [type="{3}", class="{4}", occurrence="{5}"].</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00106</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule System Version is null</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Provided Rule System Version object is null.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00107</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Unable to find given Rule System Version</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Unable to find the Rule System Version in the database with name="{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00108</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule System Version in Active state cannot be changed.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">State of currently Active Rule System Version cannot be changed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00109</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Current Rule System Version cannot be activated</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule System Version "{0}" needs to be set to Active state in order to activate.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00110</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Timed out waiting for Rule System Version activation lock</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Timed out waiting for Rule System Version activation lock.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00111</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Exception acquiring activation lock</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Exception acquiring activation lock.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00112</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule System Version activation failed</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule System Version activation failed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00114</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Could not switch Rule System Version state</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Could not switch Rule System Version state.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00115</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Could not fetch Rule System Version</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Could not fetch Rule System Version.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00116</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Could not clone Rule System Version</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Could not clone Rule System Version with specified name "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00118</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Could not initialize Rule System Version export.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Could not initialize Rule System Version export.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00119</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Name not provided for imported Rule System Version</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Name not provided for imported Rule System Version.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00120</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Could not initialize Rule System Version import/export</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Could not initialize Rule System Version import/export.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00150</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Condition adjustment value is prohibited if no adjustment operator is provided.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">If a condition does not have an adjustment operator selected, no adjustment values can be provided.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00151</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Condition adjustment value is mandatory if an adjustment operator is provided.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">If a condition has an adjustment operator selected, at least one adjustment value must be provided.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00152</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Criteria adjustment value is prohibited if no adjustment operator is provided.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">If a criteria does not have an adjustment operator selected, no adjustment values can be provided.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00153</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Criteria adjustment value is mandatory if an adjustment operator is provided.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">If a criteria has an adjustment operator selected, at least one adjustment value must be provided.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00180</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">The value type "{0}" is not valid for a numeric adjustment operator</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">For numeric adjustment operators, all attributes must be of a numeric type: for example, Long, Integer, or Date/Time.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00181</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">The value type "{0}" is not valid for the Union adjustment operator</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">For the Union adjustment operator, the attribute must be a type supported by lists, for example String or IP address.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00182</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">All lists used in a Union operation must be the same type.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Lists of different types cannot be used in the same Union operation.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00184</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">The adjustment data type is invalid.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">For numeric adjustment operators, the Adjustment Data Type field used must be either a numeric type (for example, Long) or Attribute type.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00185</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">In Action formula, the data type of the action is invalid.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">When used in an Action formula, the Data Type field of the action must select the Attribute type.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00186</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">The adjustment attribute value must not be unbounded.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">For the numeric adjustment operators, the adjustment attribute must be a single occurrence attribute.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00187</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">In Action formula, the "{0}" cannot be bounded</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">When used in an Action formula, the attribute used in the Action Data field or in the Adjustment Data field cannot be bounded in its selected SourceContextType.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00188</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">The adjustment value type "{0}" is not valid for this Union operation</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">For the Union adjustment operator, the adjustment attribute must be of a type supported by lists. For example, String or IP address. It must also match the type of the attribute being adjusted.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00189</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">The adjustment attribute value must be unbounded.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">All attributes used in a Union operation must be unbounded.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00190</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">The value type "{0}" is not valid for the Concatenate adjustment operator</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">For the Concatenate adjustment operator, the attribute must be a type supported by lists, for example String.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00191</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">All lists used in a Concatenate operation must of be the same type.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Lists of different types cannot be used in the same Concatenate operation.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00192</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">The adjustment value type "{0}" is not valid for this Concatenate operation</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">For the Concatenate adjustment operator, the adjustment attribute must be of a type supported by lists, for example String. It must also match the type of the attribute being adjusted.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00193</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">The adjustment attribute value must be unbounded.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">All attributes used in a Concatenate operation must be unbounded.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00200</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule table has invalid condition for its associated RuleSets.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule table "{0}": Rule "{1}" with Condition "{2}" is not applicable for RuleSets "{3}". A rule contained in a rule table has a condition that is not applicable to the associated rule sets on this rule table, all the conflicted rule sets are listed. Modify the conditions in this rule table or the selected rule sets to make the rule table applicable.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00201</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule table has invalid action for its associated RuleSets.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule table "{0}": Rule "{1}" with action "{2}" is not applicable for RuleSets "{3}". A rule contained in rule table has an action that is not applicable to the associated rule sets on this rule table. All the conflicted rule sets are listed. Modify the actions in this rule table or the selected rule sets to make the rule table applicable.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00301</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">A flow description cannot be empty.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The Description parameter is used to identify the flow description and cannot be empty. Please assign a flow description to the Charging/QoS rule definition.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00302</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid flow description string.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Flow description string validation error: "{0}". A flow description string must follow the format described in RFC 3588.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00303</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid flow description string.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">You must set the Action to PERMIT.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00304</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid flow description string.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Invert modifier (!) is not allowed in a flow description string.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00305</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid rule type selected.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule type must be one of the following types: Provisioned Rule Template, Predefined Rule Template, Predefined Base Rule Template, Predefined ADC Rule Template, Predefined Base ADC Rule Template.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00306</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid values for predefined template, predefined base template, predefined adc template or predefined base adc template.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Only name, activation time, and deactivation time may be provided for predefined templates and predefined base templates.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00311</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid guaranteed bitrate value.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The guaranteed bitrate value in a direction must be less than or equal to the maximum requested bandwidth in that direction.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00312</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Priority level is mandatory.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The priority level field is mandatory.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00317</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Type cannot be changed.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The type of a Charging/QoS rule definition cannot be changed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00318</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Service identifier and rating group cannot be empty for service identifier reporting level.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Service identifier level is not applicable when the service identifier and rating group have not been provisioned in the charging rule.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00319</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rating group cannot be empty for rating group reporting level.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rating group level is not applicable when rating group has not been provisioned in the charging rule.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00320</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Max Requested BW fields are mandatory.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The Max Requested Bandwidth fields are mandatory for QCI values in the range of 1-9, 65, 66, 69, 70 and 128-254,all inclusive.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00321</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Guaranteed Bitrate fields are mandatory for GBR QCIs.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The Guaranteed Bitrate fields are mandatory for GBR QCIs.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00322</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Guaranteed Bitrate fields must be empty for non-GBR QCIs.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Guaranteed Bitrate fields must be empty for non-GBR QCIs.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00323</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Charging rule name must be unique within the rule system version.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Charging rules must have a name which is unique within the associated rule system version.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00324</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Charging rule name AVP value is a required field.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Charging rules must have a charging rule name AVP value which must be 1 to 255 characters.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00325</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Charging rule name AVP value exceeds the maximum length of 255 characters.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The Charging rule name AVP value field must be 1 to 255 characters.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00326</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Precedence field is mandatory for provisioned template.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The Precedence field is mandatory for provisioned template.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00327</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Priority Level is mandatory field</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">A Priority Level must be chosen if either Pre-emption Capability or Pre-emption Vulnerability is specified.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00330</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Monitoring Key must not be provisioned.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The Predefined Base ADC Rule Template and Provisioned ADC Rule Template must not have Monitoring Key provisioned.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00331</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Sponsored data connectivity parameters and rating group are mandatory when provisioning a sponsored reporting level.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Sponsored connectivity level is not applicable when the sponsored identity, application service provider identity and rating group have not been provisioned in the charging rule.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00332</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Flow configuration name must be unique.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Flow configuration name "{0}" is duplicated within the PCC rule definition.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00333</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Time configuration name must be unique</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Time configuration name "{0}" is duplicated within the PCC rule definition.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00334</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Time configuration name is not valid</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The name given to the time configuration is not valid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00335</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Flow configuration name is not valid</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The name given to the flow configuration is not valid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00336</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid QCI value</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The QCI value is invalid. Valid QCI range is from 1 to 9, 65, 66, 69, 70 and from 128 to 254, all inclusive.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00337</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Redirect address type is required</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The redirect address type is required when the redirect server address is present.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00338</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Redirect server address is required</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The redirect server address is required when the redirect address type is selected.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00339</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid IP address</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The value "{0}" is not a valid entry. Enter a valid IP address in one of the NCC acceptable formats; for example, 1.2.3.4, or 1:2:3:4:5:7:8, or 1.2.3.0/24.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00340</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">The address and address type doesn't match</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The redirect server address doesn't match the redirect address type.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00341</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">VSA configuration name "{0}" is not valid</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The name given to the VSA configuration "{0}" is not valid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00342</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">VSA configuration name must be unique</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">VSA configuration name "{0}" is duplicated within the pcc rule definition.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00343</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid Action "{0}"</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The action "{0}" is not a VSA.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00344</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid QCI value</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The QCI value is invalid. Valid values are from 1 to 254.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00350</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Failed to load Rule Attribute Dictionary "{0}"</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Validation error occurred loading the dictionary file. See the system log (/opt/tpa/logs/SPSServer.log) for more information.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00351</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Cannot resolve vendor "{0}" qualified name for an Attribute "{1}"</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Could not resolve fully qualified domain name from Diameter attribute information.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00352</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Failed to load rule attribute dictionary schema file "{0}"</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Validation error occurred while loading or parsing dictionary schema file "{0}" See the system log (/opt/tpa/logs/SPSServer.log) for more information.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00353</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Applicable Rule Set(s) not specified for Source Context "{1}" of Attribute "{0}"</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Source Context of an Attribute must specify at least one applicable Rule Set.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00354</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Applicable Rule Set(s) not specified for Result Context "{1}" of Attribute "{0}"</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Result Context of an Attribute must specify at least one applicable Rule Set.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00355</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Failed to load Diameter/VSA to rule context map "{0}"</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Error occurred loading the dictionary file "{0}". See the system log (/opt/tpa/logs/SPSServer.log) for more information.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00357</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Failed to load diameter/VSA to rule context map schema file "{0}"</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Validation error occurred while loading or parsing dictionary schema file "{0}" See the system log (/opt/tpa/logs/SPSServer.log) for more information.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00358</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Failed to initialize XML parsing context.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Failed to initialize XML parsing context. See the system log /opt/tpa/logs/SPSServer.log for more information.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00359</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Failed to export Rule Attribute Dictionary.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Error occurred exporting the rule attribute dictionary. See the system log (/opt/tpa/logs/SPSServer.log) for more information.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00390</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Failed to load TAC data file "{0}"</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Validation error occurred loading the TAC data file. See the system log (/opt/tpa/logs/SPSServer.log) for more information.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Attribute argument "{0}" is not set.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">If an Attribute [Condition Criteria, Action, or AttributeValueType] of a source/result context is defined with one or more arguments, then all the Attribute arguments are required in order to successfully resolve the Attribute in Rule Engine.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00401</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Attribute argument "{0}" is not defined in dictionary.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The arguments of an Attribute [Condition Criteria, Action, or AttributeValueType] must match the arguments in the dictionary.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00402</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Argument type and value type are not compatible.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The argument type [type="{0}", class="{1}", occurrence="{2}"] is not compatible with value type [type="{3}", class="{4}", occurrence="{5}"].</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00404</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Unable to find class "{0}".</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The system was unable to find the class with name "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00406</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Action "{0}.{1}" does not have parameter named "{2}"</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">All provided parameters must be defined in the attribute dictionary for the action attribute.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00407</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Action parameter "{2}" in action "{0}.{1}" is not set</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">All mandatory parameters defined in the attribute dictionary for the action must have a value.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00408</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Action parameter "{0}" does not have a value</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">All action parameters must have a value.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00410</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Condition adjustment value does not allow arguments.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">One or more of the adjustment values of condition [criteria name "{0}"] does not allow arguments.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00411</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Present/Not Present are not applicable to non-nullable attributes.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Non-nullable attribute "{0}.{1}" cannot be used with the Present and Not Present comparison operators.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00412</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">QCI value is out of range.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">QCI value "{0}" for attribute "{1}" must be in the range of 1-9, 65, 66, 69, 70 and 128-254, all inclusive.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00413</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid custom data name length.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The name "{0}" for attribute "{1}" can contain 1 to {2} characters only.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00414</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid TypeOfService or Mask.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The value of ToS-Traffic-Class action parameters must be in the range of 0-255.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00555</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Queue IDs must be unique.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The Queue ID field of each queue must be unique.</td>
+</tr>
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00556</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">QoS override mapping name must be unique within the rule system version.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">QoS override mappings must have a name which is unique within the associated rule system version.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00557</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Defined Rate is a mandatory field.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The Defined Rate field is mandatory for an operator defined aggregate rate.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00601</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule variable name must be unique within the rule system version.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable must have a name which is unique within the associated rule system version.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00602</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule variable name is a mandatory field.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable Name field is a mandatory field and must be 1 to 80 characters.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00603</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule variable name exceeds the maximum length of 80 characters.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable Name field must be 1 to 80 characters.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00604</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Evaluation name must be unique within the rule variable definition.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Evaluation must have a name which is unique within the associated rule variable definition.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00605</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule variable has an invalid condition for its associated rule sets.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable "{0}": Evaluation Rule "{1}" with Condition "{2}.{3}" is not applicable for rule sets "{4}". An evaluation rule contained in a rule variable has a condition that is not applicable to the associated rule sets on this rule variable, all the conflicted rule sets are listed. Modify the conditions in this rule variable or the selected rule sets to make the rule variable valid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00606</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule variable has an invalid value for its associated rule sets.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable "{0}": Evaluation Rule "{1}" has a value is not applicable for rule sets "{2}". An evaluation rule contained in rule variable has a value that is not applicable to the associated rule sets. All the conflicted rule sets are listed. Modify the value in this rule variable or the selected rule sets to make the rule variable valid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00607</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule variable has an invalid default value for its associated rule sets.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable "{0}" has default value that is not applicable for rule sets "{1}". The default value of rule variable is not applicable to the associated rule sets. All the conflicted rule sets are listed. Modify the default value in this rule variable or the selected rule sets to make the rule variable valid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00608</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid rule set types for application associated with rule variable.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable "{0}" has extra rule set types "{1}" that are not applicable for application "{2}". The rule set types assigned to the rule variable are not all applicable to the associated application. All the extra rule set types are listed. Modify the rule set types of this rule variable to make it valid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00609</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Condition of rule variable references an undefined rule variable.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable "{0}" has an evaluation "{1}" whose condition references an undefined rule variable "{2}". Make sure the referenced rule variable is defined.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00610</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Condition of rule variable references another rule variable with incompatible rule set types.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable "{0}" with rule set types "{1}" has an evaluation "{2}" whose condition references a rule variable "{3}" with rule set types "{4}" that are not compatible. The referenced rule variable must have the same or a super set of rule set types.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00611</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule variable circular dependency detected.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Definition of rule variable "{0}" has a dependency loop detected in its referenced variable path: "{1}". Modify the rule variable definition to avoid the loop.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00612</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule variable description exceeds the maximum length of 255 characters.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable "{0}" has a description field with "{1}" characters long. The description length must be 0 to 255 characters.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00613</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule variable has invalid value type.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable "{0}" has invalid value type "{1}". The provided rule variable value type must be from the valid value type list "{2}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00614</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Condition of rule table references an undefined rule variable.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule table "{0}" has a rule "{1}" whose condition references an undefined rule variable "{2}". Make sure the referenced rule variable is defined.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00615</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Condition of rule table references a rule variable with incompatible rule set types.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule table "{0}" with rule set types "{1}" has a rule "{2}" whose condition references a rule variable "{3}" with rule set types "{4}" that are not compatible. The referenced rule variable must have the same or a super set of rule set types.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00616</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule variable does not have a value type field.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The value type field is missing in rule variable "{0}". The value type field is mandatory and cannot be null in rule variable definition.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00617</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Value of rule variable references an undefined rule variable.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable "{0}" has an evaluation "{1}" whose value references an undefined rule variable "{2}". Make sure the referenced rule variable is defined.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00618</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Value of rule variable references another rule variable with incompatible rule set types.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable "{0}" with rule set types "{1}" has an evaluation "{2}" whose value references a rule variable "{3}" with rule set types "{4}" that are not compatible. The referenced rule variable must have the same or a super set of rule set types.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00619</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Default value of rule variable references an undefined rule variable.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable "{0}" has a default value that references an undefined rule variable "{1}". Make sure the referenced rule variable is defined.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00620</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Default value of rule variable references another rule variable with incompatible rule set types.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable "{0}" with rule set types "{1}" has an default value that references a rule variable "{2}" with rule set types "{3}" that are not compatible. The referenced rule variable must have the same or a super set of rule set types.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00621</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Action of rule table references an undefined rule variable.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule table "{0}" has a rule "{1}" with an action "{2}" that references an undefined rule variable "{3}". Make sure the referenced rule variable is defined.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00622</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Action of rule table references a rule variable with incompatible rule set types.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule table "{0}" with rule set types "{1}" has a rule "{2}" with an action "{3}" that references a rule variable "{4}" with rule set types "{5}" that are not compatible. The referenced rule variable must have the same or a super set of rule set types.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00623</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Default action of rule set references an undefined rule variable.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule set "{0}" has a default action "{1}" that references an undefined rule variable "{2}". Make sure the referenced rule variable is defined.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00624</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Default action of rule set references a rule variable with incompatible rule set types.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule set "{0}" has a default action "{1}" that references a rule variable "{2}" with rule set types "{3}" that are not compatible. The referenced rule variable must have the same or a super set of rule set types.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00625</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Value is too large for the variable.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Value "{0}" is too large for variable "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00626</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Variable type and value type are not compatible.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The variable type [type="{0}", class="{1}", occurrence="{2}"] is not compatible with value type [type="{3}", class="{4}", occurrence="{5}"].</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00650</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule variable evaluation name is a mandatory field.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The rule variable evaluation name field is a mandatory field and must be 1 to 80 characters.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00651</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule variable evaluation name exceeds the maximum length of 80 characters.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">The rule variable evaluation name field must be 1 to 80 characters.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00652</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule variable evaluation description exceeds the maximum length of 255 characters.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable evaluation "{0}" has a description "{1}" characters long. The rule variable evaluation description field must be 0 to 255 characters.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00653</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Rule variable evaluation value is a mandatory field.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Rule variable evaluation "{0}" has no value. Value is a mandatory field and must be specified.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00700</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Missing value data.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Data is a mandatory field for values.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00701</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Non-attribute value does not allow arguments.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Values of type "{0}" do not allow arguments.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00702</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Invalid adjustment operator or adjustment data.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">When a formula is used, the adjustment operator field and adjustment data field must both be assigned to a valid value. If the formula is not used, both fields must be empty.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e40 ">RULE_00703</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e42 ">Non-attribute adjustment value does not allow arguments.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28818e47 ">Adjustment values of type "{0}" do not allow arguments.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="footer"><hr /><p>Error Messages • P556766-DN1000055003-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

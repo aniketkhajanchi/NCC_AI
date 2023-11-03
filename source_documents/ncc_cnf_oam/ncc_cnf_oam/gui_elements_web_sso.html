@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="GUI elements" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="gui_elements_web_sso" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>GUI elements</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="gui_elements_web_sso">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">GUI elements</h1>
+<div class="body conbody">
+        <div class="section" id="gui_elements_web_sso__section_ndf_btz_jlb"><h2 class="title sectiontitle">Log in and log out of the User and Role Management GUI</h2>
+            
+            <p class="p">To log into the User and Role Management GUI as an administrator, open the web
+                browser and enter <span class="ph filepath">https://$SM_FQDN/auth</span> in the address bar.
+                Then, enter the username and password to access the User and Role Management server
+                GUI.</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The username and password credentials are stored in system parameters, so they
+                need to be in sync if SM login is to interact correctly with the User and Role
+                Management server. This command can be used to view and change the credentials used
+                by SM to communicate with the User and Role Management
+                server:<pre class="pre codeblock"><code>tpaadmin@naperil95vzwcchf-y-nk-ig-000-ig-admincli-5dbd9884bd-crqn9 /]$ ./opt/tpa/sbin/TPA_systemProp | grep CKEY
+77 CKEY Admin Password: Admin@123
+78 CKEY Admin </code></pre></div>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Generally, a user who is not an administrator only needs to log in as usual and
+                User and Role Management redirects the user as required.</div>
+
+            <p class="p"><span class="ph uicontrol">Launch pad</span></p>
+
+            <div class="p">Once a user logs into the User and Role Management server GUI, the <span class="ph uicontrol">Launch
+                    Pad</span> is displayed that provides various options. The desired category
+                under which all the entities belonging to that particular category are available may
+                be selected.<table cellpadding="4" cellspacing="0" summary="" id="gui_elements_web_sso__table_csl_yvz_jlb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Categories available on the User and Role Management server GUI</span></caption><colgroup><col style="width:33.33333333333333%" /><col style="width:66.66666666666666%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d34529e69">Category</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d34529e72">Description</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d34529e69 ">Administration Console</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d34529e72 ">Allows the admin to centrally manage all aspects of the User
+                                    and Role Management server by redirecting to the
+                                        <span class="ph uicontrol">Admin Console</span> of that server.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d34529e69 ">Documentation</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d34529e72 ">Allows the admin to access the documentation related to User
+                                    and Role Management server information, such as server
+                                    installation and configuration guide, server administration
+                                    guide, and Javadocs amongst many others.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d34529e69 ">User and Role Management Project</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d34529e72 ">Allows the admin to learn User and Role Management server
+                                    basics, such as adding authentication to User and Role
+                                    Management server applications and securing services.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d34529e69 ">Mailing List</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d34529e72 ">Allows the admin to manage or subscribe to the User and Role
+                                    Management user mailing list.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d34529e69 ">Report an issue</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d34529e72 ">Allows the admin to resolve any known User and Role
+                                    Management server issues by redirecting to the known issues list
+                                    and their related workarounds.</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

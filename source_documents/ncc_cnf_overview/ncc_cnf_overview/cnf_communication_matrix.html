@@ -1,0 +1,1124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Communication matrix" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="cnf_communication_matrix" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Communication matrix</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="cnf_communication_matrix">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Communication matrix</h1>
+<div class="body conbody">
+        <p class="p">This section describes how the components in <span class="ph">NCC</span> communicate
+            externally.</p>
+
+        <p class="p">This table lists the open and/or listening ports on every interface in <span class="ph">NCC</span>.</p>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="cnf_communication_matrix__table_ylk_cbs_2pb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Open and/or listening ports</span></caption><colgroup><col style="width:12.5%" /><col style="width:12.5%" /><col style="width:25%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e56">Port</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e59">Transport</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e62">Service</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e65">Comments</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">22</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">SFTP </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">This port is for collecting Telemetry 3GPP metrics files.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">80/8080</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">HTTP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">Optional port for insecure traffic in case of northbound clients
+                            unable to handle security.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">89</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">HTTP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">CITM-Ingress (HTTP Port)</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">161</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">UDP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">SNMP Get</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">SNMP Get</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">443/8443</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">HTTPS</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">All secure HTTP traffic including heartbeats, web consoles,
+                            APIs</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">444</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">HTTPS</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">CITM-Ingress (HTTPS Port)</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">2222</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">CDR FTP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">FTP server hosting Call Data Records</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">2309</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">3GPPXML FTP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">FTP server hosting 3GPPXML records</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">2310</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">Admincli FTP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">Used for retrieving batch command results</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">2311</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">RMS server</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">Synchronizes RMS voucher data</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">3008</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">Aerospike XDR</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">This port is for geo-redundant database replication</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">3009</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">Aerospike XDR</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">Aerospike cross-system replication</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">3306</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">MariaDB</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">MariaDB data replication: MariaDB database system SQL client
+                            connections</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">3868</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">Diameter</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">Inbound insecure Diameter traffic</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">4306</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">RMS MariaDB</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">MariaDB data replication for RMS Vouchers: MariaDB database system
+                            SQL client connections</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">5868</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">Diameter</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">Inbound secure Diameter traffic</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">8989</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">MaxScale</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">MariaDB data replication: MaxScale maxctrl REST API administration
+                            port</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">9093</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">HTTP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">Prometheus alert manager</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">9989</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">RMS MaxScale</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">MariaDB data replication for RMS Vouchers: MaxScale maxctrl REST API
+                            administration port</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">10389</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">LDAP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">LDAP connection for synchronizing upstream subscriber records</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">10636</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">LDAP server</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">This port allows outbound traffic from User and Role Management to
+                            your LDAP server.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e56 ">30003</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e59 ">TCP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e62 ">Backup and Recovery</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e65 ">Mobile Centric Services for Avamar client computers</td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+        
+        <div class="p">This table lists the open and/or listening ports of the SS7 application. For more
+            information on SS7, see the SS7 documentation. <table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>SS7 open and/or listening ports</span></caption><colgroup><col style="width:14.285714285714285%" /><col style="width:14.285714285714285%" /><col style="width:28.57142857142857%" /><col style="width:42.857142857142854%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e430">Port</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e433">Transport</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e436">Service</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e439">Comments</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e430 ">3868 </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e433 ">TCP</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e436 ">Diameter </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e439 "> </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e430 ">80</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e433 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e436 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e439 ">Optional port for insecure traffic in case of northbound clients
+                                unable to handle security.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e430 ">443</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e433 ">TCP</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e436 ">HTTP </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e439 ">
+                                <p class="p">All secure HTTP traffic including</p>
+
+                                <p class="p">heartbeats, web consoles, APIs</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e430 ">32106</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e433 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e436 ">Mariadb</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e439 ">Mariadb replication between SS7 instances </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e430 ">32189</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e433 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e436 ">MaxScale </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e439 ">MaxScale replication between SS7 instances </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e430 ">2905</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e433 ">TCP</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e436 ">SIGTRAN</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e439 "> </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e430 ">
+                                <p class="p">10002, 10003, 10004, 10005, 10006, 10007, </p>
+
+                                <p class="p">10008, 10009, 10010, 10011, 10012, 10013, </p>
+
+                                <p class="p">10014, 10015, 10016, 10017 </p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e433 ">TCP</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e436 ">BEP </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e439 "> </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e430 ">10001, 10100, 10200, 10300 </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e433 ">TCP</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e436 ">FEP</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e439 "> </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <div class="p">This table list the OAM provisioning traffic ports. <table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>OAM provisioning traffic ports</span></caption><colgroup><col style="width:14.285714285714285%" /><col style="width:14.285714285714285%" /><col style="width:28.57142857142857%" /><col style="width:42.857142857142854%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e608">Port</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e611">Transport</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e614">Service</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e617">Comments</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e608 ">8088, 8085, 8091, 8080 </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e611 ">TCP</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e614 ">SS7 Web/OSP GUI </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e617 ">All SS7 and OSP GUI operations</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e608 ">2223</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e611 ">TCP</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e614 ">SFTP</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e617 ">SFTP for CDR access</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e608 ">25002, 25001 </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e611 ">TCP</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e614 ">EM</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e617 ">EM Provisioning </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <p class="p">This table describes the initiated connections inside <span class="ph">NCC</span> to
+            external systems.</p>
+
+        <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The connections originating from an Istio-enabled pod must create a service
+            entry.</div>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="cnf_communication_matrix__table_bpy_2pw_pnb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Connections between components</span></caption><colgroup><col style="width:16.096747289407844%" /><col style="width:11.843202668890743%" /><col style="width:16.180150125104255%" /><col style="width:8.340283569641368%" /><col style="width:26.93911592994162%" /><col style="width:9.424520433694745%" /><col style="width:11.175979983319435%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e710">Name</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e713">TLS type</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e716">Targets</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e719">Port</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e722">Description</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e726">Service entry required</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e729">Service entry generated by the product</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e710 ">Aerospike XDR</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e713 ">mTLS, insecure</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e716 ">SM subsystem to other SM subsystems, and ME subsystem to other ME
+                            subsystems</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e719 ">3008, 3009</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e722 ">Data replication.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e726 ">yes</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e729 ">no</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e710 ">HTTP within NCC systems</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e713 ">TLS</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e716 ">All NCC systems</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e719 ">443/8443</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e722 ">
+                            <p class="p">Heartbeat requires every site to every other site. Includes the
+                                current site.</p>
+
+                            <p class="p">SM calling ME SOAP APIs.</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e726 ">yes</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e729 ">yes (one entry for everything found in topology)</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e710 ">Diameter between NCC systems</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e713 ">TLS</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e716 ">NCC systems</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e719 ">5658</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e722 ">
+                            <p class="p">Diameter heartbeat plus forwarding.</p>
+
+                            <p class="p">Diameter peers must be configured, as well as a route if it is not
+                                direct.</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e726 ">yes</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e729 ">no</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e710 ">Notification server</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e713 ">insecure</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e716 ">SMPP Server</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e719 ">2775</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e722 ">Sends text messages via ShortMessageCenter to a handset.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e726 ">yes</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e729 ">no</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e710 ">LDAP Concentrator</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e713 ">mTLS or TLS depends on capabilities</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e716 ">LDAP servers in the network</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e719 ">10389</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e722 ">The LDAP Concentrator takes in requests and funnels them through a
+                            single connection.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e726 ">yes</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e729 ">no</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e710 ">Event stream</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e713 ">mTLS</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e716 ">Event stream collector</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e719 ">443</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e722 ">REST call to push log, alarm, and metrics events.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e726 ">yes</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e729 ">no</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e710 ">Alarm manager</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e713 ">insecure</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e716 ">SNMP</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e719 ">161, 162</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e722 ">Alarms are sent over UDP.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e726 ">no</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e729 "> </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e710 ">User and Role Management</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e713 ">TLS</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e716 "> </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e719 ">443/8443</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e722 ">Internal token authentication. Uses the system's service entry to an
+                            SM subsystem.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e726 ">yes</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e729 ">yes</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e710 ">NRF</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e713 ">mTLS</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e716 ">NRF</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e719 ">443/8443</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e722 ">Network Repository Function (discovery service). The system makes
+                            outbound call from every ME subsystem to register. Charging initiates
+                            registration. Needs to be registered in SM subsystem.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e726 ">yes</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e729 ">no</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e710 ">5G Notification</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e713 ">mTLS</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e716 ">Various notification recipients</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e719 ">443/8443</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e722 ">Routed through the SCP.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e726 ">yes</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e729 ">no</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e710 ">NCC system backup to operator's S3 storage</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e713 ">mTLS</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e716 "> </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e719 "> </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e722 ">Upgrade with ServiceEntry/DestinationRule (backup file is
+                            encrypted).</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e726 "> </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e729 "> </td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+        <div class="section" id="cnf_communication_matrix__section_mmw_fzx_2pb"><h2 class="title sectiontitle">TLS incoming requests between pods</h2>
+            
+            <p class="p">This table describes the TLS incoming requests between pods within a particular NCC
+                system.</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="cnf_communication_matrix__table_u2d_tfs_2pb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Internal pods incoming requests TLS (last hop to the pod)</span></caption><colgroup><col style="width:40%" /><col style="width:40%" /><col style="width:20%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e1046">Architecture area</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e1049">Pod</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d6801e1052">Incoming uses TLS</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Subscriber database</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">aerospike</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Subscriber database</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">aerospike xdr</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">System configuration and management</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">centralmanagement</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Charging application</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">charging</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Ingress and load balancers</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">iohd</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Push notifications</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">notification</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">System configuration and management</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">provisioning</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Service manager</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">servicemanager</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">System configuration and management</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">admincli</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">n/a</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">System configuration and management</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">csdc</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Internal queues and pub/sub</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">CKAF-broker</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Internal queues and pub/sub</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">CKAF-zookeeper</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Service manager</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">ckey</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Service manager</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">cmdb</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">bssc-indexmgr</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">bssc-indexsearch-client</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">bssc-indexsearch-data</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">bssc-indexsearch-manager</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">bssc-fluentd</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">bssc-dashboards</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">calm</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">no (SNMP)</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">calm-config-rest</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">cpro-restserver</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">gen3gppxml</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">cmdb</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">cpro-alertmanager</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">cpro-kube-state-metrics</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">crpo-node-exporter</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">n/a</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">cpro-pushgateway</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">cpro-server</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">crmq</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">Telemetry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">grafana</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1046 ">System configuration and management</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1049 ">cbur</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6801e1052 ">yes</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Secure TLS communication modes</h2>
+            
+            <p class="p">Previously, the <span class="ph">NCC</span> implementation of mTLS used
+                ISTIO_MUTUAL. This assumes that to communicate to another Istio-enabled application
+                that shares the same root certificate you must use Istio. You can now use your own
+                generated certificates/secrets for TLS communication with TLS mode set to MUTUAL
+                which does not need the external services to be Istio-enabled or require the same
+                CA.</p>
+
+            <p class="p"><span class="ph">NCC</span> supports SIMPLE, ISTIO_MUTUAL, and MUTUAL TLS modes
+                in the Input Generator spreadsheet.</p>
+
+            <p class="p">Note these assumptions:</p>
+
+            <ul class="ul">
+                <li class="li">You can either choose ISTIO_MUTUAL or MUTUAL for mTLS communication, not
+                    both.</li>
+
+                <li class="li">You must create the required certificates, keys, and setup the Kubernetes secret
+                    for both the client and server whose reference is passed in the Input Generator
+                    under the <span class="ph uicontrol">Istio</span> and <span class="ph uicontrol">Shared</span>
+                    sections for all namespaces.</li>
+
+                <li class="li">The mTLS FQDN value in the Input Generator is considered for both ISTIO_MUTUAL
+                    or MUTUAL mode.</li>
+
+                <li class="li">Only ingress and egress (including inter-system traffic) uses your CA
+                    certificates and keys. All internal workload certificates are generated and
+                    assigned by Istio. These certificates are self-signed.</li>
+
+                <li class="li">All GUI (SM, Prometheus, Metrics Viewer, CGF [DR]) traffic accessed by a web
+                    browser is TLS and not mTLS.</li>
+
+                <li class="li">Different client certificates are set for different types of traffic in the
+                        <span class="ph uicontrol">Shared</span> section for all namespaces.</li>
+
+                <li class="li">All secrets containing server certificates for ingress traffic are set in the
+                        <span class="ph uicontrol">Istio</span> section for all namespaces.</li>
+
+                <li class="li">All TLS traffic is handled via istio-proxy.</li>
+
+                <li class="li">ISU is supported from MUTUAL TLS to MUTUAL TLS. ISU and NSU are not supported
+                    for SIMPLE to MUTUAL TLS.</li>
+
+                <li class="li">The default option for TLS mode is SIMPLE. If you need to use MUTUAL mode, you
+                    must select that value in the Input Generator spreadsheet.</li>
+
+                <li class="li">Communication of external Kafka with Fluentd uses TLS mode SIMPLE only.</li>
+
+                <li class="li">Service Entries with client secrets for egress communication are set in
+                        <span class="ph uicontrol">Service Entries</span> section for all namespaces</li>
+
+            </ul>
+           
+        </div>
+
+        <div class="section" id="cnf_communication_matrix__section_n15_pdy_2pb"><h2 class="title sectiontitle">Ingress overview communication</h2>
+            
+            <p class="p">This figure shows the communication in NCC using Istio Ingress gateway.</p>
+
+            <div class="fig fignone" id="cnf_communication_matrix__fig_vdw_lp2_znb"><span class="figcap"><span class="fig--title-label">Figure: </span>Ingress conceptual overview</span>
+                
+                <img class="image imagecenter break" id="cnf_communication_matrix__image_u2b_hfs_znb" src="images/cnf_overview_ingress_conceptual_overview_21_0.GIF" height="483" width="369" />
+            </div>
+
+        </div>
+
+        <div class="section" id="cnf_communication_matrix__section_slr_ldy_2pb"><h2 class="title sectiontitle">Aerospike communication</h2>
+            
+            <p class="p">This figure shows Aerospike communication between two NCC systems.</p>
+
+            <div class="fig fignone" id="cnf_communication_matrix__fig_ys2_5sm_znb"><span class="figcap"><span class="fig--title-label">Figure: </span>Aerospike communication</span>
+                
+                <img class="image imagecenter break" id="cnf_communication_matrix__image_ym1_qcs_znb" src="../images/cnf_overview_aerospike_communication_21_0.gif" height="430" width="462" />
+            </div>
+
+        </div>
+
+        <div class="section" id="cnf_communication_matrix__section_tnh_nks_2pb"><h2 class="title sectiontitle">Distribution of components across namespaces</h2>
+            
+            <p class="p">NCC offers a number of options how its components can be distributed across
+                namespaces. These figures show several available options.</p>
+
+            <div class="fig fignone" id="cnf_communication_matrix__fig_wpm_bgc_zpb"><span class="figcap"><span class="fig--title-label">Figure: </span>Single NCC system with a customer service mesh</span>
+                
+                <img class="image imagecenter break" id="cnf_communication_matrix__image_exw_xw5_yqb" src="../images/cnf_overview_single_CNF_with_customer_ServiceMesh_21_9.png" height="399" width="409" />
+            </div>
+
+            <div class="fig fignone" id="cnf_communication_matrix__fig_hvh_lsp_ypb"><span class="figcap"><span class="fig--title-label">Figure: </span>Single NCC system with a Nokia service mesh</span>
+                
+                <img class="image imagecenter break" id="cnf_communication_matrix__image_zkr_1x5_yqb" src="../images/cnf_overview_single_CNF_with_Nokia_ServiceMesh_21_9.png" height="406" width="408" />
+            </div>
+
+            <div class="fig fignone" id="cnf_communication_matrix__fig_fkq_xky_gpb"><span class="figcap"><span class="fig--title-label">Figure: </span>Multiple NCC systems with a Nokia service mesh</span>
+                
+                <img class="image imagecenter break" id="cnf_communication_matrix__image_mwq_cx5_yqb" src="../images/cnf_overview_multiple_CNFs_with_Nokia_ServiceMesh_21_9.png" height="402" width="531" />
+            </div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

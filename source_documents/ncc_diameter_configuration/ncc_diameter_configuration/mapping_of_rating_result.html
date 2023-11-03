@@ -1,0 +1,1083 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Mapping of rating result codes with diameter results codes" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-cn01-tczza-d1e15092" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Mapping of rating result codes with diameter results codes</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-cn01-tczza-d1e15092">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Mapping of rating result codes with diameter results codes</h1>
+<div class="body conbody">
+        <p class="p">The mapping of rating result codes with the diameter result codes are shown in the below
+            table:</p>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-cn01-tczza-d1e15092__table_abh_qnn_qxb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Mapping of rating result codes with the diameter result codes</span></caption><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d1014e47">
+                            <p class="p">Rating Engine Result Code</p>
+
+                        </th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d1014e53">
+                            <p class="p">Diameter Result Code</p>
+
+                        </th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d1014e59">
+                            <p class="p">Diameter Result Code AVP (MSCC Level)</p>
+
+                        </th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d1014e65">
+                            <p class="p"> Diameter Result Code AVP (Command Level)</p>
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CALL_OK </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_SUCCESS </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 2001 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CALL_OK_PARTIAL_RESERVE </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_LIMITED_SUCCESS </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 2002 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CALL_OK_LOST_CREDIT </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_LIMITED_SUCCESS </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 2002 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CALL_OK_LOST_CREDIT_DEVICE_BARRED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_LIMITED_SUCCESS </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 2002 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CALL_OK_LOST_CREDIT_SUB_BARRED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_LIMITED_SUCCESS </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 2002 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CALL_OK_PARTIAL_RESERVE_SUB_BARRED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_LIMITED_SUCCESS </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 2002 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CALL_OK_RSU_VALUE_ZERO </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_LIMITED_SUCCESS </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 2002 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CALL_OK_RSU_NULL </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_LIMITED_SUCCESS </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 2002 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> NOT_ENOUGH_CREDIT_SUB_BARRED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_LIMITED_SUCCESS </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4012 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> NOT_ENOUGH_LOST_CREDIT_SUB_BARRED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_LIMITED_SUCCESS </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4012 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 ">  RSU_VALUE_ZERO </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_LIMITED_SUCCESS </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 2002 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 ">  NOT_ENOUGH_CREDIT </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_CREDIT_LIMIT_REACHED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4012 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> NOT_ENOUGH_LOST_CREDIT </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_CREDIT_LIMIT_REACHED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4012 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d1014e47 "> ALL_GROUPS_BARRED </td>
+
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" headers="d1014e47 "> NOT_ENOUGH_LOST_CREDIT_GROUP_BARRED </td>
+
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_CREDIT_LIMIT_REACHED </td>
+
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" headers="d1014e59 "> 4012 </td>
+
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" headers="d1014e65 "> 2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" headers="d1014e47 "> CALL_OK_LOST_CREDIT_GROUP_BARRED </td>
+
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_LIMITED_SUCCESS </td>
+
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" headers="d1014e59 "> 2002 </td>
+
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:bottom;" headers="d1014e65 "> 2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" colspan="4" style="text-align:center;vertical-align:bottom;" headers="d1014e47 d1014e53 d1014e59 d1014e65 ">
+                            <strong class="ph b">Database Errors</strong>
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> DB_CHARGING_SERVICE_NOT_FOUND </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> DB_ACCOUNT_NOT_FOUND </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> DB_RATE_NOT_FOUND </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> DB_SUBSCRIPTION_LIST_NOT_FOUND </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> DB_ACCOUNT_OPERATION_EXCEPTION </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_UNABLE_TO_COMPLY </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> - </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  5012 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> DB_CONVERTER_NOT_FOUND </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> DB_SESSION_NOT_FOUND </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> DB_BUCKET_OPERATION_EXCEPTION </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_UNABLE_TO_COMPLY </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> - </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  5012 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> DB_SESSION_CREATION_ERROR </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> DB_RE_UNIT_TYPE_NOT_FOUND </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> DB_DYNAMIC_SLICING_PROFILE_NOT_FOUND </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> SESSION_ALREADY_EXISTS </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_UNABLE_TO_COMPLY </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> - </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  5012 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" colspan="4" style="text-align:center;vertical-align:bottom;" headers="d1014e47 d1014e53 d1014e59 d1014e65 ">
+                            <strong class="ph b">Various Errors</strong>
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> BILLING_QTY_INITIALIZATION_ERROR </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> SUBSCRIPTION_ID_NULL_IN_SUBSCRIPTION_LIST </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> RULE_ENGINE_RATE_ID_MISSING_FOR_ACCOUNT </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> RULE_ENGINE_RESULT_NOT_VALID </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> RULE_ENGINE_RESULT_EMPTY </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> RULE_ENGINE_RATE_MISSING_FOR_MONETARY_BUCKET </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> RATE_CALCULATION_ERROR </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> SESSION_ALREADY_EXIST_WRONG_MESSAGE </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_UNABLE_TO_COMPLY </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> - </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  5012 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> RULE_ENGINE_ERROR </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_UNABLE_TO_COMPLY </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> - </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  5012 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> RULE_NOT_APPLICABLE </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row" style="vertical-align:middle;">
+                        <td class="entry cellrowborder" colspan="4" style="text-align:center;vertical-align:middle;" headers="d1014e47 d1014e53 d1014e59 d1014e65 ">
+                            <strong class="ph b">Should be used rarely</strong>
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> GENERIC_RATING_ERROR </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_UNABLE_TO_COMPLY </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> - </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  5012 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" colspan="4" style="text-align:center;vertical-align:bottom;" headers="d1014e47 d1014e53 d1014e59 d1014e65 ">
+                            <strong class="ph b">Rating Errors</strong>
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> SUBSCRIPTION_INSTANCES_NOT_FOUND </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> ACCOUNT_REF_NOT_FOUND_IN_CS_INSTANCE </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> INVALID_CHARGING_STEP_IN_RATE </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> INVALID_GRANUALITY_STEP </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CHARGING_SERVICE_LIST_EMPTY </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> RULE_SET_NULL </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> RULE_RATE_NOT_FOUND </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> RATE_CONFIGURATION_ERROR </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CHARGING_SERVICE_NOT_FOUND_IN_SUBSCRIPTION </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> NO_SUBSCRIPTION_ATTACHED_WITH_DEVICE </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> INVALID_RATE_CONFIGURATION </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> RATE_ERROR_MULTISTEP_NOT_SUPPORTED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> RULE_NOT_APPLICABLE_SUB_BARRED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> NEW_RES_NOT_ALLOWED_DEVICE_BARRED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> NEW_RES_NOT_ALLOWED_ALL_SUB_BARRED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> ALL_SUBSCRIPTIONS_BARRED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> ATTACHED_SUBSCRIPTION_CATEGORY_MISSING_IN_DEVICE </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> INVALID_REQUEST_TYPE </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> RATE_CONFIGURATION_ERROR </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> ACCOUNT_REF_NOT_FOUND_IN_CS_INSTANCE </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_END_USER_SERVICE_DENIED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 4010 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> RATE_EROR_MULTISTEP_NOT_CONFIGURED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" colspan="4" style="text-align:center;vertical-align:bottom;" headers="d1014e47 d1014e53 d1014e59 d1014e65 ">
+                            <strong class="ph b">CC Request Errors</strong>
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_SOURCE_CONTEXT_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_DEVICE_CONTEXT_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_COMMON_CALL_CONTEXT_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_SERVICE_INFO_CONTEXT_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_REQUEST_TYPE_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_REQUEST_TYPE_IS_NOT_EVENT_REQUEST </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_REQUEST_ACTION_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_REQUEST_ACTION_IS_NOT_DIRECT_DEBIT </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_CALL_TYPE_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_RSU_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_SERVICE_CONTEXT_ID_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_SUBSCRIPTION_ID_LIST_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_DEVICE_ID_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_USER_UNKNOWN </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_SERVICE_INFO_AVP_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_INVALID_REQUEST_TYPE </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_RSU_UNIT_TYPE_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_RSU_IVOL_VALUE_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_RSU_BASECCUNITTYPE_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_RSU_LIST_EMPTY </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_RSU_OVOL_VALUE_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_RSU_SERVICE_SPECIFIC_VALUE_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_RSU_TVOL_VALUE_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_RSU_TIME_VALUE_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_USU_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_RATING_GROUP_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_SESSION_ID_MISSING </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_RSU_VALUE_ZERO </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_DIRECT_DEBIT_IN_CENTRALIZED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> CC_NULL_RSU_UNIT_TYPE_IN_CENTRALIZED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e47 "> BM_OVER_COMMIT </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e53 "> RESULT_DIAMETER_RATING_FAILED </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e59 "> 5031 </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:bottom;" headers="d1014e65 ">  2001 </td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+</div>
+<div class="footer"><hr /><p>Diameter/HTTP Configuration Guide • P556766-DN1000054969-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

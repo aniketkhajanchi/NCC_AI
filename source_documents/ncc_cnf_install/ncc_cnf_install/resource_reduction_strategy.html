@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Resource reduction strategy for in-service upgrade" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="untitled1" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Resource reduction strategy for in-service upgrade</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="untitled1">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Resource reduction strategy for in-service upgrade</h1>
+<div class="body conbody">
+        <p class="p">The goal of the in-service (ISU) is to upgrade a Kubernetes release from its current
+            state to a new state. The scope of the upgrade operation can range from something as
+            simple as changing a single parameter value in the override yaml file to increase the
+            resources of a particular pod, to something much more invasive such as replacing the pod
+            with a new pod that is instantiated using an entirely different image version.</p>
+
+        <p class="p">In most cases, upgrading a pod in Kubernetes involves the following conceptual steps:</p>
+
+        <ol class="ol" id="untitled1__ol_l4l_h5q_bnb">
+            <li class="li">A pod that corresponds to the target image version or configuration the override
+                file for the upgrade is created and initialized.</li>
+
+            <li class="li">Upon the new pod reaching its <code class="ph codeph">Ready</code> state, Kubernetes effectively
+                toggles all traffic, API calls, and activity in general to the new pod.</li>
+
+            <li class="li">Once the new pod has taken over all responsibilities from the old pod, the old pod
+                is terminated and discarded.</li>
+
+        </ol>
+
+        <p class="p">However, there is always an expectation that enough resources exist in the system to
+            allow for the creation, initialization and execution of the new pod at a time when the
+            old pod is still running and consuming all of its resources (which might be
+            significantly high in cases where there is moderate to high load in the system).</p>
+
+        <p class="p">The goal of the resource reduction strategy is to free up resources in preparation of an
+            ISU operation, with the expectation that this allows for the subsequent ISU operation to
+            succeed.</p>
+
+        <div class="p">In general, this strategy assumes that the charging pod is the one that has the most
+            replicas in the system, and therefore the charging pods is targeted to free up enough
+            resources to allow a subsequent ISU operation to succeed.<div class="note" id="untitled1__note_mcj_drn_4yb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> You
+                may choose to change/modify the <code class="ph codeph">retention_bytes</code> and
+                    <code class="ph codeph">segment_bytes</code> of any Kafka topic during an ISU (if needed).
+                However, the recommended way to provide these values is through the Dimensioning
+                Tool as per your requirements and not to change/modify these values through override
+                files.</div>
+</div>
+
+        <div class="section" id="untitled1__section_m4l_h5q_bnb"><h2 class="title sectiontitle">Resource reduction strategy overview</h2>
+            
+            <p class="p">The strategy consists of the following steps:</p>
+
+            <ol class="ol" id="untitled1__ol_n4l_h5q_bnb">
+                <li class="li"> Identify a time when load is expected to be low on the system that is planned
+                    for an In-Service Upgrade.</li>
+
+                <li class="li"> Use a minimal ISU operation to decrease the number of replicas for the charging
+                    pod. The suggested target is 50% (or half) of the number of pods that the system
+                    is configured to run under normal operating conditions.</li>
+
+                <li class="li"> Wait for the actual number of charging pods reach at least 60% of the original
+                    pod count.</li>
+
+                <li class="li"> When the system reaches a 60% or lower charging pod count, execute the ISU
+                    operation as intended for the system.</li>
+
+            </ol>
+
+        </div>
+
+        <div class="section" id="untitled1__section_p4l_h5q_bnb"><h2 class="title sectiontitle">Example scenario</h2>
+            
+            <p class="p">In the following example, a system has the charging pod that is configured to run
+                eight replicas under normal operating conditions, which is defined as follows:</p>
+
+            <pre class="pre codeblock"><code>charging:
+  hpa:
+    minReplicas: 8
+    maxReplicas: 8
+    averageCpuUtilization: 80</code></pre>
+            <p class="p">1. Start monitoring the charging pod count using <code class="ph codeph">kubectl get pods</code>
+                command, for example:</p>
+
+            <pre class="pre codeblock"><code>[root@aem0041node02 ~]# kubectl get pods -n $NAMESPACE -w
+NAME                                        READY   STATUS    RESTARTS   AGE
+kf-sps-0                                    3/3     Running   1          2d13h
+kf-sps-1                                    3/3     Running   0          2d13h
+kf-sps-2                                    3/3     Running   0          2d13h
+me-sps-admincli-f89df64bb-dvbb2             2/2     Running   0          2d12h
+me-sps-aerospike-0                          1/1     Running   0          2d12h
+me-sps-aerospike-1                          1/1     Running   0          2d12h
+me-sps-aerospike-2                          1/1     Running   0          2d12h
+me-sps-aerospike-3                          1/1     Running   0          2d12h
+me-sps-centralmanagement-0                  2/2     Running   0          2d12h
+me-sps-centralmanagement-1                  2/2     Running   0          2d12h
+me-sps-charging-88c6dcb44-6bf5w             2/2     Running   0          24m
+me-sps-charging-88c6dcb44-ddhh9             2/2     Running   0          24m
+me-sps-charging-88c6dcb44-jlvsd             2/2     Running   0          24m
+me-sps-charging-88c6dcb44-lz8vj             2/2     Running   0          2d12h
+me-sps-charging-88c6dcb44-nrl6v             2/2     Running   0          2d10h
+me-sps-charging-88c6dcb44-prjf9             2/2     Running   0          24m
+me-sps-charging-88c6dcb44-t7ksx             2/2     Running   0          24m
+me-sps-charging-88c6dcb44-vb9kw             2/2     Running   0          24m
+me-sps-iohd-0                               2/2     Running   0          2d12h
+me-sps-iohd-1                               2/2     Running   0          2d12h
+me-sps-notification-5b57cbf486-wk9vq        2/2     Running   0          2d12h
+me-sps-provisioning-c64b6749f-cvhh4         2/2     Running   0          2d12h
+sps-csdc-0                                  2/2     Running   0          2d13h
+sps-csdc-1                                  2/2     Running   0          2d13h
+sps-csdc-2                                  2/2     Running   0          2d13h
+sps-ingressgateway-cc946db78-bsr62          2/2     Running   0          11d
+sps-ingressgateway-nginx-78644df997-gjvsv   1/1     Running   0          11d
+zk-sps-0                                    3/3     Running   0          2d13h
+zk-sps-1                                    3/3     Running   0          2d13h
+zk-sps-2                                    3/3     Running   0          2d13h
+</code></pre>
+            <p class="p">2. In preparation for the ISU operation that will upgrade the system, change the
+                    <code class="ph codeph">minReplicas</code> value for the charging pod to half its original
+                value as follows:</p>
+
+            <pre class="pre codeblock"><code>charging:
+  hpa:
+    minReplicas: 4
+    maxReplicas: 8
+    averageCpuUtilization: 80
+</code></pre>
+            <p class="p">3. Execute a <code class="ph codeph">helm upgrade</code> operation to apply this minimal change to
+                the system, for example:</p>
+
+            <pre class="pre codeblock"><code>helm upgrade sps sps-chart-&lt;version&gt;.tgz -n $NAMESPACE -f overrides-sps.yaml --wait --timeout=1200s
+</code></pre>
+            <p class="p">4. Upon execution of the <code class="ph codeph">helm upgrade</code> command, continue to monitor
+                the pods in the target namespace, waiting for the number of charging pods to reach
+                at least 60% (and ideally 50%) of the original value as the following output
+                shows:</p>
+
+            <pre class="pre codeblock"><code>[root@aem0041node02 ~]# kubectl get pods -n $NAMESPACE
+NAME                                        READY   STATUS    RESTARTS   AGE
+kf-sps-0                                    3/3     Running   1          2d13h
+kf-sps-1                                    3/3     Running   0          2d13h
+kf-sps-2                                    3/3     Running   0          2d13h
+me-sps-admincli-f89df64bb-dvbb2             2/2     Running   0          2d13h
+me-sps-aerospike-0                          1/1     Running   0          2d13h
+me-sps-aerospike-1                          1/1     Running   0          2d13h
+me-sps-aerospike-2                          1/1     Running   0          2d13h
+me-sps-aerospike-3                          1/1     Running   0          2d13h
+me-sps-centralmanagement-0                  2/2     Running   0          2d13h
+me-sps-centralmanagement-1                  2/2     Running   0          2d13h
+me-sps-charging-88c6dcb44-6bf5w             2/2     Running   0          64m
+me-sps-charging-88c6dcb44-lz8vj             2/2     Running   0          2d13h
+me-sps-charging-88c6dcb44-nrl6v             2/2     Running   0          2d11h
+me-sps-charging-88c6dcb44-prjf9             2/2     Running   0          64m
+me-sps-iohd-0                               2/2     Running   0          2d13h
+me-sps-iohd-1                               2/2     Running   0          2d13h
+me-sps-notification-5b57cbf486-wk9vq        2/2     Running   0          2d13h
+me-sps-provisioning-c64b6749f-cvhh4         2/2     Running   0          2d13h
+sps-csdc-0                                  2/2     Running   0          2d13h
+sps-csdc-1                                  2/2     Running   0          2d13h
+sps-csdc-2                                  2/2     Running   0          2d13h
+sps-ingressgateway-cc946db78-bsr62          2/2     Running   0          11d
+sps-ingressgateway-nginx-78644df997-gjvsv   1/1     Running   0          11d
+zk-sps-0                                    3/3     Running   0          2d13h
+zk-sps-1                                    3/3     Running   0          2d13h
+zk-sps-2                                    3/3     Running   0          2d13h</code></pre>
+            <p class="p">5. At this point, it is considered safe to execute the ISU operation that will
+                upgrade the system as intended, as the resources have been freed up, and the chance
+                of success is much better. </p>
+
+            <p class="p">6. Once the ISU operation is completed successfully, revert the change to the
+                    <code class="ph codeph">minReplicas</code> value of the charging pod, changing it back to its
+                original value (in this example, 8), and execute a third minimal ISU operation to
+                apply the change and allow the number of charging pods to return to the original
+                number for normal operation of the system.</p>
+
+            <p class="p">7. The final ISU operation that will upgrade the system as intended consists on
+                preparing all necessary assets (Helm charts, Override yaml files, and so on),
+                executing any steps that are deemed necessary as preliminary to the ISU operation
+                (which varies on a case by case basis depending on the source and target versions
+                for the upgrade, as well as how different these versions are and how invasive the
+                upgrade operation is going to be), and finally, executing the <code class="ph codeph">helm
+                    upgrade</code> command that orchestrates the ISU operation. In general this
+                command is as follows:</p>
+
+            <pre class="pre codeblock"><code>helm upgrade &lt;RELEASE_NAME&gt; &lt;TARGET_HELM_CHART&gt; -n &lt;NAMESPACE&gt; -f &lt;OVERRIDES_YAML_FILE&gt; --wait --timeout=&lt;TIMEOUT_IN_SECONDS&gt;
+</code></pre>
+            <p class="p">The same command that is used to monitor the status of the pods in the target
+                namespace can be used to keep track of the progress of the ISU operation. Similarly,
+                the <code class="ph codeph">helm history</code> command can be used to show the history of all ISU
+                operations for a specified release in a particular namespace, including the one that
+                might be currently in progress.</p>
+
+            <p class="p">The following example shows the output of the <code class="ph codeph">helm history</code> command
+                while an ISU operation is in progress.</p>
+
+            <pre class="pre codeblock"><code>[root@aem0041node02 ~]# helm history sps -n me
+REVISION        UPDATED                         STATUS          CHART           APP VERSION     DESCRIPTION
+1               Sat Sep  5 15:47:41 2020        deployed        sps-20.9.1-87                   Install complete
+2               Tue Sep  8 13:12:17 2020        pending-upgrade sps-20.9.1-100                  Preparing upgrade
+</code></pre>
+            <p class="p">Once the ISU operation is complete, the output changes to reflect that fact
+                accordingly, as the following example shows:</p>
+
+            <pre class="pre codeblock"><code>[root@aem0041node02 ~]# helm history sps -n me
+REVISION        UPDATED                         STATUS          CHART           APP VERSION     DESCRIPTION
+1               Sat Sep  5 15:47:41 2020        superseded      sps-20.9.1-87                   Install complete
+2               Tue Sep  8 13:12:17 2020        deployed        sps-20.9.1-100                  Upgrade complete
+</code></pre>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

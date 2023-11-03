@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="listCerts" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="listcerts" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>listCerts</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="listcerts">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">listCerts</h1>
+<div class="body conbody">
+        <div class="section"><h2 class="title sectiontitle">Description</h2>
+            
+            <p class="p">This operation provides a way to easily monitor the certificates stored in secrets in
+                different</p>
+
+            <p class="p">namespaces, ensuring that they remain up-to-date.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Syntax</h2>
+            
+            <div class="p">
+                <pre class="pre codeblock"><code>adminctl [-h] -o listCerts [-o {table,json,yaml}] [-j JMESEXPRESSION, --jmesExpression JMESEXPRESSION]</code></pre>
+            </div>
+
+            <div class="p">
+                <table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%" /><col style="width:66.66666666666666%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d13090e62">Option</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d13090e65">Description</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d13090e62 "><code class="ph codeph">No arguments</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d13090e65 ">Displays list of certificates in table format.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d13090e62 "><code class="ph codeph">-h or -?</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d13090e65 ">Displays usage/help information.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d13090e62 ">-o &lt;type&gt;</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d13090e65 ">Determines the output type:<ul class="ul" id="listcerts__ul_mcq_w2j_mxb">
+                                        <li class="li">table (default)</li>
+
+                                        <li class="li">json</li>
+
+                                        <li class="li">yaml</li>
+
+                                    </ul>
+</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d13090e62 ">-j JMESEXPRESSION, --jmesExpression JMESEXPRESSION</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d13090e65 ">Performs the JMESPath filter on the output data.<p class="p">Apply a
+                                        JMESPath filter to the returned value (for example:
+                                            <code class="ph codeph">[?namespace=='ig1']</code>. You can
+                                        concatenate multiple JMESPath filters like
+                                            <code class="ph codeph">[?namespace == 'ig1'] |
+                                            [?daysToExpiry.to_number(@) &lt;=
+                                        \`700\`]</code>).</p>
+</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+                <div class="note" id="listcerts__note_opb_r2k_wxb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> <strong class="ph b">When using the <code class="ph codeph">!</code> operator, the error
+                            <code class="ph codeph">bash: !: event not found</code> may occur. Run the command
+                            <code class="ph codeph">set +H</code> to avoid this.</strong></div>
+
+            </div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Examples</h2>
+            
+            <p class="p">To display certificate list in YAML format:</p>
+
+            <pre class="pre codeblock"><code>Command: adminctl -o listCerts -o yaml
+                
+Output: 
+- daysToExpiry: '344'
+  expiryDate: '2024-04-25'
+  issuer: CN=noop-cert.nokia.com
+  namespace: ig1
+  secretKey: keycloakcert.pem
+  secretName: dr-keycloak-client-secrets
+  serialNumber: &lt;serial_number&gt;
+- daysToExpiry: '410'
+  expiryDate: '2024-06-29'
+  issuer: L=currentcluster, CN=Intermediate CA, O=Istio
+  namespace: istio-system
+  secretKey: ca-cert.pem
+  secretName: istio-istio-discovery-cacerts
+  serialNumber: &lt;serial_number&gt;</code></pre>
+            <p class="p">To display data in JSON format and apply filter on secretName:</p>
+
+            <pre class="pre codeblock"><code>Command: adminctl -o listCerts -o json -j "[?secretName == 'sps-ldap-credential']"
+                
+Output:
+[
+   {
+      "namespace": "ig1",
+      "secretName": "sps-ldap-credential",
+      "secretKey": "cacert",
+      "serialNumber": &lt;serial_number&gt;,
+      "issuer": "L=Finland, CN=NCC Server Intermediate CA, O=Nokia",
+      "expiryDate": "2025-01-30",
+      "daysToExpiry": "625"
+   }
+
+]</code></pre>
+            <p class="p">These examples demonstrate how to apply filters using JMESPath to extract specific
+                data based on different criteria:</p>
+
+            <pre class="pre codeblock"><code>Filter data by 'secretName' with the value "sps-ldap-credential":
+JMESPath: "[?secretName == 'sps-ldap-credential']"
+
+Filter data by 'daysToExpiry' less than or equal to 700 days:
+JMESPath: "[?daysToExpiry.to_number(@) &lt;= \`700\`]"
+
+Multiple filters can be used together using pipe ( | ) operator.
+JMESPath: "[?secretName == 'sps-ldap-credential'] | [?daysToExpiry.to_number(@) &lt;= \`700\`]"
+
+Filter data by 'secretName' containing substring 'maria':
+JMESPath: "[?secretName.contains(@, 'maria')]"
+
+Filter data where 'secretName' does not contain 'maria' or 'ldap':
+JMESPath: "[?!(secretName.contains(@, 'maria') || secretName.contains(@, 'ldap'))]"
+
+Filter data by 'secretName' matching 'sps-ldap-credential' or mtls-client-credential:
+JMESPath: "[?secretName == 'sps-ldap-credential' || secretName == 'mtls-client-credential']
+
+Sort data by 'secretName':
+JMESPath: "sort_by(@, &amp;secretName)"
+
+Reverse sort by 'secretName':
+"sort_by(@, &amp;secretName) | reverse(@)"</code></pre>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,3137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="NCC computational contexts" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-cn01-tczza-d1e9435" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>NCC computational contexts</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-cn01-tczza-d1e9435">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">NCC computational contexts</h1>
+<div class="body conbody">
+		<p class="p">In addition to Diameter AVP manipulation, NCC can perform other functions to route
+			Diameter messages. For example, NCC can store the results of routing decisions and
+			mirror a Diameter message. </p>
+
+		<p class="p">Computational contexts are dynamically loaded by NCC and are automatically made available to
+			support additional manipulation of all Diameter messages. A computational context can be
+			a source context and/or a result context in NCC. </p>
+
+		<table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-cn01-tczza-d1e9435__table_x1x_w2s_4xb" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Computational contexts</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+					<tr class="row">
+						<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e48">
+							<p class="p">Computational Context</p>
+
+						</th>
+
+						<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e54">
+							<p class="p">Description</p>
+
+						</th>
+
+						<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e60">
+							<p class="p">Context type</p>
+
+						</th>
+
+					</tr>
+
+				</thead>
+<tbody class="tbody">
+					<tr class="row">
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e48 "> Calculator </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e54 "> Allows you to write message filters to store and
+							manipulate numbers and strings. </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e60 "> Source and result context </td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e48 "> Destination mapping </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e54 "> Allows you to persist routing decisions in NCC database and use those
+							decisions as inputs to route Diameter messages in the future. </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e60 "> Source and result context </td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e48 "> Peer table </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e54 "> Allows you to write message filters to access and manipulate the Diameter
+							peer table information on NCC system. </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e60 "> Source and result context </td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e48 "> Properties </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e54 "> Allows you to write message filters to read from both
+							Java and managed object properties in NCC. </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e60 "> Source and result context </td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e48 "> System </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e54 "> Allows you to write message filters to control specific behavioral aspects
+							of NCC system. You can also check the geo-state of the local system, and
+							control access to the calendar, system overload state, and Diameter peer
+							table information of NCC system. </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e60 "> Result context </td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e48 "> Mirroring </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e54 "> Allows you to write message filters to replicate a
+							Diameter message and send a copy to the mirroring servers. </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e60 "> Result context </td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e48 "> Downstream Overload Protection </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e54 "> Allows you to write message filters to protect downstream peers or
+							destinations. </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e60 "> Result context </td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e48 "> Logging </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e54 "> Allows you to write message filters, for Tracing, that log information about the
+							current Diameter message that is being processed and/or the state of
+							NCC. </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e60 "> Result context </td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e48 "> Diameter Logging </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e54 "> Allows you to extend the Logging context functionalitys, for Tracing, to log more
+							information about the Diameter message that is being processed and/or
+							the state of NCC. </td>
+
+						<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e60 "> Result context </td>
+
+					</tr>
+
+				</tbody>
+</table>
+
+<div class="section" id="id9yz-09126-cn01-tczza-d1e9435__Calculatorcontext"><h2 class="title sectiontitle">Calculator context</h2><p class="p">The Calculator computational
+				context enables you to write message filters to store and manipulate numbers and
+				strings contained in both Diameter request and answer messages.</p>
+<p class="p">The calculator
+				has ten memories for each type of data. The supported data types are: int, long, and
+				string. The Calculator context is available both as a source and a result context in
+				NCC. It allows you to extract AVPs from a message, perform a sequence of
+				manipulations on the AVP, then put the modified value back into the message.
+				</p>
+<p class="p">The table below describes the calculator context attributes/actions that are
+				available. You can invoke these actions multiple times on a given Diameter request,
+				as required. </p>
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Calculator context attributes/actions</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+						<tr class="row">
+							<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e208">
+								<p class="p">attribute/action</p>
+
+							</th>
+
+							<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e214">
+								<p class="p">Description</p>
+
+							</th>
+
+							<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e220">
+								<p class="p">Impact on performance</p>
+
+							</th>
+
+						</tr>
+
+					</thead>
+<tbody class="tbody">
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Clear-All </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to clear all of the contents
+								of the calculator. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Enum.To-Octet </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action converts an enumerated AVP value into an octet
+								string </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> The Int attribute can be invoked for any filter, and
+								allows you to return the value of the integer at the current index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int.Add </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to add the given value to the
+								integer value at the current write index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int.Clear </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to set the integer value at
+								the current write index to zero. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int.Divide-By </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to divide the integer value
+								at the current write index by the given value. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int.Modulo </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to divide the integer value
+								at the current write index by the given value and set the integer
+								value to the modulo of the division. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int.Multiply-By </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to multiply the given value
+								with the integer value at the current write index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int.Negate </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to negate the integer value
+								at the current write index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int.Negate-Value </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you to negate the given
+								integer value. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int.Null-Value </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute can be invoked for any Request filter
+								group. It allows you to return a null integer value at the current
+								index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int.Read-Index </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to set the current read index
+								for integer values to the new index value specified. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int.Set </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to set the integer value at
+								the current write index to the given value. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int.Subtract </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to subtract the given value
+								from the integer value at the current write index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int.To-Octet </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action converts an integer AVP value into octet string. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int.To-Long </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you to convert the given value
+								from the integer value to a long value. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int.Value-Of-String </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to convert a string value
+								into an integer value and assign it to the integer value at the
+								current write index. If the value cannot be converted, then no
+								change is made to the state of the calculator. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Int.Write-Index </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to set the current write
+								index for integer values to the new write index value specified. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Ints.Add </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you to add two integer values
+								and return the sum. A null is returned if there was a problem with
+								the input parameters. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Ints.Divide </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you to divide an integer value
+								by another integer value and return the quotient. A null is returned
+								if there was a problem with the input parameters. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Ints.Modulo </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you to divide the given
+								integer value by another integer value and return the remainder. A
+								null is returned if there was a problem with the input parameters. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Ints.Multiply </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you to multiply two integer
+								values and return the product. A null is returned if there was a
+								problem with the input parameters. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Ints.Subtract </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you to subtract an integer
+								value from the integer value and return the difference. A null is
+								returned if there was a problem with the input parameters. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> IPAddress-Equal </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you to compare two IP identity
+								or IP address strings for equality. The same IP address can have
+								more than one string representation (for example, Base 10 or
+								Hexidecimal). </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> IPAddress-To-String </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 ">
+								<p class="p">This attribute allows you to convert the IP address AVPs into a
+									dot notation format for easier use in message filters.</p>
+
+								<p class="p">The IPAddress-To-String attribute accepts a single parameter,
+									which is the IP address in byte array format. You can reference
+									the attribute and its parameter in the following format:</p>
+
+								<p class="p">IPAddress-To-String (<em class="ph i">Address to Convert</em>)</p>
+
+							</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Long </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> The Long attribute can be invoked for any message
+								filter. It returns the long value at the current read index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Long.Add </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to add the given value to the
+								long value at the current write index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Long.Clear </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to set the long value at the
+								current write index to zero. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Long.Divide-By </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to divide the long value at
+								the current write index by the given value. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Long.Modulo </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to divide the long value at
+								the current write index by the given value and set the long value to
+								the modulo of the division. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Long.Multiply-By </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to multiply the given value
+								with the long value at the current write index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Long.Negate </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to negate the long value at
+								the current index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Long.Negate-Value </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> The attribute allows you to negate the given long
+								value. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Long.Null-Value </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> The attribute can be invoked for any Request filter
+								group. It returns a null long value at the current index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Long.Read-Index </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to set the current read index
+								for long values. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Long.Set </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to set the long value at the
+								current write index to the given value. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Long.Subtract </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to subtract the given value
+								from the long value at the current write index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Long.Subtract </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to subtract the given value
+								from the long value at the current write index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Long.To-Int </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you to convert a long value to
+								an integer value. There may be a loss of data depending on the long
+								value that was passed in. A null is returned if there was a problem
+								with the input parameters. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Long.Write-Index </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to set the current write
+								index for long values to the new value specified for the write
+								index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Longs.Add </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you add two long values and
+								return the sum. A null is returned if there was a problem with the
+								input parameters. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Longs.Divide </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you to divide a long value by
+								another long value and return the quotient. A null is returned if
+								there was a problem with the input parameters. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Longs.Modulo </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you to divide a long value by
+								another long value and return the remainder. A null is returned if
+								there was a problem with the input parameters. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Longs.Multiply </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you to multiply two long
+								values and return the product. A null is returned if there was a
+								problem with the input parameters </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Longs.Subtract </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you to subtract a long value
+								from another long value and return the difference. A null is
+								returned if there was a problem with the input parameters. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Octet.As-String </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action gives the output of input octet string value as it
+								is. For example, if input octet string is <var class="keyword varname">535053</var>,
+								then the output of <em class="ph i">CalculatorContext.Octet.As-String</em> is
+									<var class="keyword varname">535053</var>. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Random.Next-Int </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> The attribute allows you to generate a random number
+								between -2 and 2 to the power -1. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Random.Next-Int-In-Range </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> The attribute allows you to generate a random number
+								between 0 and the specified number, excluding the specified number.
+								If an invalid range is specified, the value returned is the same as
+								from the Random.Next-Int attribute. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Random.Next-Long </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> The attribute allows you to generate a random number
+								between 2 and 2 to the power -1. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Random.Next-Long-In-Range </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 ">
+								<p class="p">The attribute allows you to generate a random number between 0
+									and the specified number, excluding the specified number. If an
+									invalid range is specified, the value returned is the same as
+									from the Random.Next-Long attribute.</p>
+
+								<p class="p">
+									<strong class="ph b">NOTE: </strong>The Next-Long-In-Range is currently limited to a
+									range up to 53 bits, and not the full 63 bit range.</p>
+
+							</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> Random.Seed </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> The action allows you to provide the seed value to
+								use to initialize the random generator. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> The String attribute can be invoked for any message
+								filter. It returns the value of the string at the current read
+								index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Append </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to update the string at the
+								current write index with the given string appended to the string at
+								the current write index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Begin-Substring </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to update the string at the
+								current write index with a substring of the string at the current
+								read index, from the beginning of the string to the specified index
+								minus one. In the case of an invalid index being specified, the
+								calculator state is not updated. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Clear </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to set the string value at
+								the current write index to an empty string. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.End-Substring </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to update the string at the
+								current write index with a substring of the string at the current
+								read index, from the specified index to the end of the string. In
+								the case of an invalid index being specified, the calculator state
+								is not updated. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Index-Of </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to determine the index within
+								the string at the current read index of the first occurrence of the
+								specified substring and assign that index to the integer value at
+								the current integer write index. If the substring is not found then
+								the index is -1. (Same as the last indexOf method of String). </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Last-Index-Of </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to determine the index within
+								the string at the current read index of the first occurrence of the
+								specified substring. You can assign that index to the integer value
+								at the current integer write index. If the substring is not found,
+								then the index is -1. (Same behavior as the Index-Of action of
+								String) </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Length </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute returns the length of the string at
+								the current read index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Null-Value </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute returns a null string value. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Prepend </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to update the string at the
+								current write index with the given string prepended to the string at
+								the current write index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Read-Index </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to specify the current read
+								index for string values. This allows subsequent read actions to be
+								performed on the string value at the current Read-Index </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Set </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to set the string value at
+								the current write index to the given value. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Substring </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to update the string at the
+								current write index with a substring of the string at the current
+								read index, from the specified start index up to but not including
+								the end index. In the case of an invalid index being specified, the
+								calculator state is not updated. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Substring-Of </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you return a substring of the
+								given string, from the specified start index up to but not including
+								the end index. In the case of an invalid value or index being
+								specified, a null value is returned. Indices are zero-based, so
+								valid indices are 0 to string.length() - 1. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.To-Int </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you to convert a string value
+								to an integer value. A null is returned if the value could not be
+								converted. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.To-Long </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This attribute allows you to convert a string value
+								to a long value. A null is returned if the value could not be
+								converted. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.To-Lowercase </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to update the string at the
+								current write index with the string value at the current read index
+								converted to all lower case </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.To-Uppercase </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to update the string at the
+								current write index with the string value at the current read index
+								converted to all upper case. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Value-Of-Double </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to convert a double value to
+								a string and assign it to the string value at the current write
+								index. In the case null being specified, no change is made to the
+								state of the calculator. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Value-Of-Float </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to convert a float value to a
+								string and assign it to the string value at the current write index.
+								In the case null being specified, no change is made to the state of
+								the calculator. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Value-Of-Int </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to convert an integer value
+								to a string and assign it to the string value at the current write
+								index. In the case of null being specified, no change is made to the
+								state of the calculator. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Value-Of-Long </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to convert an long value to a
+								string and assign it to the string value at the current write index.
+								In the case of null being specified, no change is made to the state
+								of the calculator. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e208 "> String.Write-Index </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e214 "> This action allows you to allows you to manipulate
+								the string value at the current Write-Index. All write actions on
+								the string will be on the value at this index. </td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e220 "> Low </td>
+
+						</tr>
+
+					</tbody>
+</table>
+
+			<p class="p">All reads from the calculator take place from the memory at the current read index
+				for the data type, and all writes take place to the memory at the current write
+				index. The index values range from 0 to 9. Indices are initialized to 0 before each
+				message filter is invoked by NCC. Indices are preserved when you invoke a filter
+				group as an action, so the called filter group can access the current value of the
+				indices. </p>
+
+			<p class="p">You can use the calculator context to write message filters to manipulate the AVPs in
+				a Diameter message. For example, suppose a PCRF is miscalculating a value, you can
+				use the write filters to trigger actions to adjust the value as the message passes
+				through. </p>
+
+			<p class="p">In some cases, you may have to write multiple message filters to perform an action.
+				Specifically, when a message filter criteria or action takes parameters, the values
+				specified for those parameters are not allowed to be attributes/actions that
+				themselves take parameters. For example, suppose you want to Set() action to set the
+				CC-Request-Number to (3 - 1) + (2 * 4) = 2 + 8 = 10. This would require the
+				calculation to be done in steps, with multiple criteria/actions in a sequence in the
+				message filter, as follows:</p>
+
+			<kbd class="ph userinput">Calculator.Int.Write-Index (0) Calculator.Set (3) Calculator.Subtract (1)
+				Calculator.Int.Write-Index (1) Calculator.Set (2) Calculator.Multiply-By (4)
+				Calculator.Read-Index (0) Calculator.Int.Add (Calculator.Int) Calculator.Read-Index
+				(1) GxCCR.CC-Request-Number.Set (Calculator.Int)</kbd>
+		</div>
+
+<div class="section"><h2 class="title sectiontitle">Destination Mapping context</h2>
+<p class="p">The Destination Mapping computational context allows the user to persist routing decisions to NCC
+				database and use those decisions as inputs to route Diameter messages in the future. </p>
+
+<p class="p">NCC can examine and modify the contents of a message it is routing, including the ultimate
+				destination of the message. Some Policy and Charging Control Diameter messages
+				contain AVPs that uniquely identify the intended subscriber of the message. These
+				AVPs can be used to correlate messages that have a common subscriber but use
+				different Diameter applications. </p>
+
+<p class="p">When NCC makes a routing decision for a message, you can use the Destination Mapping context to
+				write message filters to persist the following information from the message into NCC
+				database:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">destination decision</p>
+
+</li>
+
+<li class="li">
+<p class="p">point of message origination</p>
+
+</li>
+
+<li class="li">
+<p class="p">PCC-related message details</p>
+
+</li>
+
+</ul>
+
+<p class="p">When subsequent messages are received by NCC, you can write message filter to query the database
+				for the routing decision. If a routing decision matching the information in the
+				current message is found stored in NCC database, the current message can be modified
+				to be sent to the same destination.</p>
+
+<p class="p">For example, assume that you specify a destination for a Diameter message when a Gx session
+				establishment message is sent. At this point, the origination and destination
+				information, and the PCC-related details are extracted from the message and stored
+				in the database. Suppose that NCC later receives an Rx message that has similar (but
+				not identical) PCC-related information. NCC database can then be queried for
+				previous destination decisions using the PCC information from the current message.
+				If a match is found, the Rx message destination can be modified, thus ensuring that
+				the Rx message is handled by the same Diameter node that handled the Gx message.</p>
+
+<p class="p">Unless disabled, the configured destination mappings are subject to audit after a specified
+				interval. The audit removes records that have a timestamp that is older than the age
+				specified by the DRA Destination Mapping Inactivity Duration application preference
+				at the time the audit runs.</p>
+
+<p class="p">The Destination Mapping context implements a stateful deployment and requires more system resources, which can affect system performance. </p>
+
+<p class="p">Alcatel-Lucent recommends that you use the default stateless deployment for optimal system performance.</p>
+
+<p class="p">The table below describes the Destination Mapping context attributes/actions that are available.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Destination Mapping: applicable attributes/actions</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+<tr class="row">
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e1245">
+<p class="p">attribute/action</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e1251">
+<p class="p">Description</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e1257">
+<p class="p">Impact on performance</p>
+
+</th>
+
+</tr>
+
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1245 ">
+Mapping-Exists-By-PCC-Info 
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1251 ">
+<p class="p">The Mapping-Exists-By-PCC-Info attribute indicates if a mapping can be found for the information in the current Diameter message. </p>
+
+<p class="p">One of the following result codes is returned:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">1 if a mapping is found</p>
+
+</li>
+
+<li class="li">
+<p class="p">0 if a mapping is not found</p>
+
+</li>
+
+</ul>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1257 ">
+High
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1245 ">
+Create-Destination-Mapping-For-Message 
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1251 ">
+<p class="p">The Create-Destination-Mapping-For-Message action extracts the user-specified destination mapping information from the origin-host/realm AVPs for a Diameter answer message context and from the destination-host/realm AVPs for a Diameter request message context.</p>
+
+<p class="p">When a destination mapping is created via a message filter in a request message context, the destination-host and destination-realm are extracted and used as the destination values in the mapping record.If a destination mapping for a Diameter message is not found, you can specify a new destination by updating the values of the destination-host/realm AVPs of the message. These values are then read and stored in the mapping record in the database.</p>
+
+<p class="p">When a destination mapping is created via a message filter in an answer message context, the origin-host/realm of the answer message are extracted and used as the destination values in the mapping record. The mapping is only created if the Diameter message contains a Diameter result-code AVP indicating that the request is successful (2000-2999).</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1257 ">
+High
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1245 ">
+Update-Message-With-Destination-From-Mapping 
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1251 ">
+The Update-Message-With-Destination-From-Mapping action updates the Destination-Host/Realm in the current Diameter message with the values previously stored by the Create-Destination-Mapping-For-Message action for a related message.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1257 ">
+High
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1245 ">
+Update-Mapping-Timestamp 
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1251 ">
+The Update-Mapping-Timestamp action is used to update the timestamp of a mapping record(s) stored in the database, to prevent the record(s) from being audited out.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1257 ">
+High
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1245 ">
+Remove-Mappings-For-Session-Id
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1251 ">
+This action deletes all destination mappings that match the session-id AVP of the current request message. 
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1257 ">
+High
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Parameters to list Destination elements</strong></p>
+
+<p class="p">The following parameters are displayed:</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+<tr class="row">
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e1381">
+<p class="p">Parameter</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e1387">
+<p class="p">Description</p>
+
+</th>
+
+</tr>
+
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1381 "> Destination ID </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1387 "> Displays the ID for a destination mapping. </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1381 "> Destination </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1387 "> Displays the unique ID for a destination mapping. </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1381 "> Distribution list </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1387 "> Displays the distribution list associated with the
+									destination mapping. </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1381 "> Actions </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1387 ">
+<p class="p">Displays the actions.</p>
+
+<p class="p">Select any of the actions and use the buttons:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">to modify the selected destination mapping.</p>
+
+</li>
+
+<li class="li">
+<p class="p">to delete the selected destination mapping.</p>
+
+</li>
+
+<li class="li">
+<p class="p">to provision the selected destination mapping.</p>
+
+</li>
+
+</ul>
+
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Peer Table context</h2>
+<p class="p">The Peer Table context allows you to write message filters to access and manipulate the Diameter
+				peer table information and control peer connectivity on the local NCC system. </p>
+
+<p class="p">The peer table connectivity aspects that you can manipulate are:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">perform a peer disconnect for a given Origin-Host, but allow the peer to immediately reconnect</p>
+
+</li>
+
+<li class="li">
+<p class="p">perform a peer disconnect for a given Origin-Host, then prevent the peer from immediately reconnecting</p>
+
+</li>
+
+<li class="li">
+<p class="p">perform a check to determine whether a Diameter peer with the given origin-host (FQDN) is connected</p>
+
+</li>
+
+<li class="li">
+<p class="p">get/set the per-peer timeout (in milliseconds) when a peer connects</p>
+
+</li>
+
+</ul>
+
+<p class="p">The table below describes the Peer Table context attributes/actions (and where applicable, the associated parameters) that are available. </p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Peer Table context attributes/actions</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+<tr class="row">
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e1522">
+<p class="p">attribute/action</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e1528">
+<p class="p">Description</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e1534">
+<p class="p">Impact on performance</p>
+
+</th>
+
+</tr>
+
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1522 "> Copy-Peer-To-Capabilities-Exchange </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1528 ">
+<p class="p">Under the result context Peer Table, this action enables you to
+									populate the AVPs of a CER/CEA message with the peer
+									details.</p>
+
+<p class="p">By using this action, NCC presents itself to the newly connected peer exactly as the other peer
+									presented itself to NCC</p>
+
+<p class="p">For this action to work correctly, the peer whose identity is being copied must be connected to
+									NCC. The connectivity status of a peer can be checked using the
+									Peer-Table.Is-Connected attribute.</p>
+
+<p class="p">By also suppressing additions to the Route-Record AVP using the Suppress-Route-Record action for
+									all messages going to the peer, NCC can effectively make itself
+									invisible, giving the peer the impression that it is directly
+									connected to another peer, and not NCC.</p>
+
+<p class="p">Note: The action is applicable to Diameter CER and Diameter CEA
+									rule sets only.</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1534 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1522 "> Is-Connected (Peer Origin-Host) </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1528 "> This action is used to check whether a Diameter peer
+								with the given origin-host (FQDN) is connected. </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1534 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1522 "> Disconnect(Peer Origin-Host) </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1528 "> Under the result context Peer Table, this action enables you to
+								disconnect the peer with the given Origin-Host with a disconnect
+								cause of 'Do Not Want To Talk To You' in the Disconnect-Peer-Request
+								message. The peer may immediately reconnect. </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1534 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1522 "> Quarantine (Peer Origin-Host, Duration) </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1528 ">
+<p class="p">This action enables you to perform a peer disconnect with the
+									specified Origin-Host. </p>
+
+<p class="p">The peer is not allowed to reconnect for the duration specified
+									in seconds by one of the following methods:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">putting the peer in the peer filter black list (if the
+											peer is the one originating the connection)</p>
+
+</li>
+
+<li class="li">
+<p class="p">disabling the peer config for the peer (if NCC is controlling the peer connection)</p>
+
+</li>
+
+</ul>
+
+<p class="p">If not set, the default maximum quarantine duration is 5
+									minutes.</p>
+
+<p class="p">
+<strong class="ph b">Note1:</strong> You can change these configuration items by
+									deleting the peer from the peer filter black list or by enabling
+									the peer config for the peer. In either case, the peer
+									connection is allowed to be re-established, effectively
+									overriding this action.</p>
+
+<p class="p">
+<strong class="ph b">Note2:</strong> You can also adjust the maximum allowed quarantine
+									duration (in seconds) by adding the Java property
+									"ddm.maxpeerquarantine" to the /opt/tpa/conf/sac/tpa.properties
+									file. You must restart the application server for the change to
+									take effect. </p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1534 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1522 "> Get-Timeout (Peer Origin-Host) </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1528 ">
+<p class="p">Under the source context Peer Table, this attribute enables you to get the timeout value (in
+									milliseconds) for the specified peer. The timeout controls how
+									long NCC will wait for a response to requests sent to the
+									peer.</p>
+
+<p class="p">Enter the Peer Origin-Host as a string.</p>
+
+<p class="p">Enter the Value as a Number.</p>
+
+<p class="p">A null is returned if the peer does not exist in the peer table,
+									or if there is no timeout specific to the peer.</p>
+
+<p class="p">Note: The action is applicable to Diameter CER and Diameter CEA
+									rule sets only.</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1534 "> </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1522 "> Choose-Peer-By-Origin-Host (Peer Origin-Host) </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1528 ">
+<p class="p">An attribute under the source context Peer Table that allows for
+									choosing a peer by Origin-Host. This attribute finds a peer by
+									comparing the given Origin-Host against the configured FQDN
+									values and connected O-H values and returns 1 for chosen and 0
+									for not chosen. The chosen peer is then stored in the current
+									Diameter message.</p>
+
+<p class="p">Origin-Host is the FQDN when the peer connection is initiated on NCC. When you use a rule with
+									"Choose-Peer-By-...", the FQDN is not required to be same as the
+									Peer Origin-host in Table 19-25 Diameter Peers: parameters And
+									when the Peer connection is initiated from a downstream server
+									to NCC, Choose-Peer-By-Origin-Host will match the connected peer
+									by the OriginHost, and return the first matched peer.</p>
+
+<p class="p">Enter Origin-Host value as a string in the format: host.realm.
+									Only one chosen peer can be stored per message. Multiple
+									“Choose-Peer-By-...” calls will result in the last successful
+									“Choose-Peer-By-...” call's chosen peer being stored.</p>
+
+<p class="p">For example:</p>
+
+<p class="p">
+<kbd class="ph userinput">IF
+										(PeerTable.Choose-Peer-By-Origin-Host(Peer-By-Origin-Host=host.realm)
+										= 1)</kbd>
+</p>
+
+<p class="p">
+<kbd class="ph userinput">THEN</kbd>
+</p>
+
+<p class="p">
+<kbd class="ph userinput">Gx CCR.Route-To-Chosen-Peer or</kbd>
+</p>
+
+<p class="p">
+<kbd class="ph userinput">IF (PeerTable.Choose-Peer-By-Origin-Host
+										(Peer-By-Origin-Host=host.realm) = 1)</kbd>
+</p>
+
+<p class="p">
+<kbd class="ph userinput">THEN</kbd>
+</p>
+
+<p class="p">
+<kbd class="ph userinput">Mirroring.Route-To-Chosen-Peer</kbd>
+</p>
+
+<p class="p">See more usage examples in the following:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">Diameter message routing</p>
+
+</li>
+
+<li class="li">
+<p class="p">Mirroring context</p>
+
+</li>
+
+</ul>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1534 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1522 "> Choose-Peer-By-Origin-Host-And-IP (Peer Origin-Host, IP
+								Identity, Port Number) </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1528 ">
+<p class="p">An attribute under the source context Peer Table that allows for
+									choosing a peer by Origin-Host and IP identity or port number.
+									This attribute returns 1 for chosen and 0 for not chosen. The
+									chosen peer is then stored in the current Diameter message.</p>
+
+<p class="p">Enter Origin-Host value as a string in the format: Host.realm</p>
+
+<p class="p">An IP identity can be represented as a domain name (for example,
+									iphost.domain or localhost) or as an IP address. Supported
+									formats for the IP address include:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">IPv4 dot notation (127.0.0.1)</p>
+
+</li>
+
+<li class="li">
+<p class="p">IPv6 hexadecimal (::1, 0::FFFF:7F00:1)</p>
+
+</li>
+
+<li class="li">
+<p class="p">IPv4 hexadecimal (0x7F000001)</p>
+
+</li>
+
+<li class="li">
+<p class="p">IPv4 dotted hexadecimal (0x7F.0x00.0x00.0x01)</p>
+
+</li>
+
+</ul>
+
+<p class="p">The Port value is entered as a number. The Port can be Null,
+									which indicates that it is not used in the search. It can be set
+									to null using the “Calculator Context.Int.Null-Value”.</p>
+
+<p class="p">Other Null values for arguments are errors. Only one chosen peer
+									can be stored per message. Multiple “Choose-Peer-By-...” calls
+									will result in the last successful “Choose-Peer-By-...” call's
+									chosen peer being stored.</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1534 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1522 "> Choose-Peer-By-IP (IP Identity, Port Number) </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1528 ">
+<p class="p">An attribute under the source context Peer Table that allows for
+									choosing a peer by IP identity or port number. This attribute
+									returns 1 for chosen and 0 for not chosen. The chosen peer is
+									then stored in the current Diameter message. An IP identity
+									value is entered as a string and can be represented as a domain
+									name (for example, iphost.domain or localhost) or as an IP
+									address. </p>
+
+<p class="p">Supported formats for the IP address include:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">IPv4 dot notation (127.0.0.1)</p>
+
+</li>
+
+<li class="li">
+<p class="p">IPv6 hexadecimal (::1, 0::FFFF:7F00:1)</p>
+
+</li>
+
+<li class="li">
+<p class="p">IPv4 hexadecimal (0x7F000001)</p>
+
+</li>
+
+<li class="li">
+<p class="p">IPv4 dotted hexadecimal (0x7F.0x00.0x00.0x01)</p>
+
+</li>
+
+</ul>
+
+<p class="p">The Port value is entered as a number. The Port can be Null,
+									which indicates that it is not used in the search. It can be set
+									to null using the “Calculator Context.Int.Null-Value”.</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1534 "> </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1522 "> Choose-Peer-By-ID (Diameter Identity, Port Number) </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1528 "> An attribute under the source context Peer Table that allows for
+								choosing a peer by Diameter identity or port number. This attribute
+								returns 1 for chosen and 0 for not chosen. The chosen peer is then
+								stored in the current Diameter message. A Diameter identity value is
+								entered as a string and can be represented as a domain name (for
+								example, hostname.domain or localhost). </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1534 "> </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1522 "> Chosen-Peer </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1528 ">
+<p class="p">This is an attribute under the source context Peer Table that
+									returns a value that can be used with other Peer Table
+									attributes or actions that accept an origin-host. The value
+									tells that method to use the chosen peer instead of treating the
+									value as an origin-host. You must use one of the
+									“Choose-Peer-By-...” attributes before the Chosen-Peer action
+									will provide meaningful information to other Peer Table context
+									attributes or actions.</p>
+
+<p class="p">For example:</p>
+
+<p class="p">IF (PeerTable.Choose-Peer-By-Origin-Host</p>
+
+<p class="p">(Peer-By-Origin-Host=host.realm) = 1)</p>
+
+<p class="p">THEN</p>
+
+<p class="p">Peer Table.Is-Connected (Peer Table.Chosen-Peer)</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1534 "> </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1522 "> Has-Chosen-Peer </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1528 ">
+<p class="p">This is an attribute under the source context Peer Table that
+									returns 1 if the message has a chosen peer and 0 if it does not
+									have a chosen peer.</p>
+
+<p class="p">For example, on a Diameter Request rule table:</p>
+
+<p class="p">IF (Peer
+									Table.Choose-Peer-By-Origin-Host(Peer-By-Origin-Host=host.realm)
+									= 1)</p>
+
+<p class="p">(The peer was found and stored in the message)</p>
+
+<p class="p">On a Gx CCR rule table, you could use:</p>
+
+<p class="p">IF (Peer Table.Has-Chosen-Peer = 1)</p>
+
+<p class="p">(A peer was found while invoking the generic Diameter Request
+									rule table, it was stored in the message and is available for
+									use in the Gx CCR rule table called afterwards).</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1534 "> </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1522 "> Clear-Chosen-Peer </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1528 ">
+<p class="p">This action clears the chosen peer from the Diameter message.</p>
+
+<p class="p">For example to clear the result of the “Choose-Peer-By-...”
+									attribute, you would use:</p>
+
+<p class="p">Peer Table.Clear-Chosen-Peer</p>
+
+<p class="p">Then if Peer Table.Has-Chosen-Peer is executed, the result would
+									be 0 because the Chosen-Peer has been removed from message.</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1534 "> </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1522 "> Get-Peer-Product-Name (Peer Origin-Host) </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1528 ">
+<p class="p">An attribute under the source context Peer Table that retrieves
+									the product name of the peer using the Origin-Host.</p>
+
+<p class="p">Enter the Peer Origin-Host as a string.</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e1534 "> </td>
+
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Properties context</h2>
+<p class="p">The Properties computational context allows you to write message filters to read from both Java and managed object properties in message filters. </p>
+
+<p class="p">System properties are the configuration properties that you can view or configure to monitor and
+				control system behavior. You can use the SM GUI to view application preferences and
+				change some of the displayed application preference values. NCC attributes always
+				return the value of the application preferences as strings. </p>
+
+<p class="p">The table below describes the Properties context attributes/actions that are available. </p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Properties context attributes/actions</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+<tr class="row">
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e2002">
+<p class="p">attribute/action</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e2008">
+<p class="p">Description</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e2014">
+<p class="p">Impact on performance</p>
+
+</th>
+
+</tr>
+
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2002 "> Get-Java-Property </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2008 "> This attribute enables you to read the Java property
+								as a string. </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2014 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2002 "> Get-Java-Property-With-Default </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2008 "> This attribute enables you to read the Java property
+								as a string.In the case where no such Java property exists or the
+								value cannot be retrieved, the default value is returned. </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2014 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2002 "> Get-System-Property </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2008 "> This attribute enables you read the managed object
+								property in a message filter. </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2014 "> Medium </td>
+
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">System context</h2>
+<p class="p">The System result context allows you to write message filters to access and manipulate specific
+				behavioral aspects of the local NCC system, control filter evaluation, and
+				manipulate peer connectivity. </p>
+
+<p class="p">You can write message filters to manipulate the following system behavior:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">specific calendar (current day, time, etc.)</p>
+
+</li>
+
+<li class="li">
+<p class="p">system overload state</p>
+
+</li>
+
+<li class="li">
+<p class="p">site name of the local and remote geo-redundant systems</p>
+
+</li>
+
+</ul>
+
+<p class="p">The behaviors that you can manipulate are:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">stop current filter processing when exit criteria is met</p>
+
+</li>
+
+<li class="li">
+<p class="p">allow a sub-filter to be called as an action of a message filter in a filter group</p>
+
+</li>
+
+</ul>
+
+<p class="p">The table below describes the System context attributes/actions (and where applicable, the
+				associated parameters) that are available on NCC. </p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>System context attributes/actions</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+<tr class="row">
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e2132">
+<p class="p">attribute/action</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e2138">
+<p class="p">Description</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e2144">
+<p class="p">Impact on performance</p>
+
+</th>
+
+</tr>
+
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Calendar.Current-Date-Time </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 "> This attribute allows you to access the current
+								system date and time in milliseconds since Unix epoch (January 1,
+								1970). </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Calendar.Current-Date-Time-String </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 "> This attribute allows you to access the current
+								system date and time in milliseconds since Unix epoch (January 1,
+								1970) as a string. </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Calendar.Current-Day-Of-Month </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 "> This attribute allows you to return the current day
+								of the month as a number from 1 to 31. </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Calendar.Current-Day-Of-Week </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 "> This attribute allows you to return the current day
+								of the week as a number from 0-6. The actual value returned for a
+								given day will depend on the local settings. </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Calendar.Current-Hour-Of-Day </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 "> This attribute allows you to return the current hour
+								of the day as a number from 0 to 23. </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Calendar.Current-Time-Of-Day </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 "> This attribute allows you to return the current time
+								of day as the number of milliseconds since midnight. </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Calendar.Time-Start-Of-Day </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 "> This attribute allows you to return the number of
+								milliseconds at midnight since epoch. </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Geo-Mate-Declared-Down </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 "> This attribute allows you to access the
+								geo-redundant status of the system. The attribute returns 1 when the
+								geo-mate has been declared down; otherwise, it returns 0. </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Is-Overloaded </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 ">
+<p class="p">This attribute allows you to access the current usage state of
+									the system.</p>
+
+<p class="p">One of the following result codes is returned:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">1 if the system is overloaded</p>
+
+</li>
+
+<li class="li">
+<p class="p">0 if the system is not overloaded</p>
+
+</li>
+
+</ul>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Overloaded-State </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 ">
+<p class="p">This attribute allows you to access the current system overload
+									state. </p>
+
+<p class="p">The system overload state is returned as one of the following
+									integer values:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">0-normal</p>
+
+</li>
+
+<li class="li">
+<p class="p">1-minor overload</p>
+
+</li>
+
+<li class="li">
+<p class="p">2-major overload</p>
+
+</li>
+
+<li class="li">
+<p class="p">3-critical overload</p>
+
+</li>
+
+<li class="li">
+<p class="p">4-resource-critical overload</p>
+
+</li>
+
+</ul>
+
+<p class="p">NCC rejects all Diameter requests when in a resource-critical overload state.</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Overloaded-Components </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 ">
+<p class="p">This attribute enables you to get the set of names of the system
+									components that are currently overloaded. </p>
+
+<p class="p">An empty string is returned if the current system overload state
+									is normal (i.e. the Overloaded-State attribute returns a value
+									of 0). </p>
+
+<p class="p">Otherwise, one or more of the following values is returned as a
+									list of comma-separated strings:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">Diameter message count</p>
+
+</li>
+
+<li class="li">
+<p class="p">Java Heap Memory Usage</p>
+
+</li>
+
+<li class="li">
+<p class="p">CPU Usage</p>
+
+</li>
+
+<li class="li">
+<p class="p">Diameter Latency</p>
+
+</li>
+
+</ul>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Possible-Split-Brain </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 "> This attribute allows you to access the
+								geo-redundant status of the system. The attribute returns 1 when the
+								system is possibly in a split-brain situation; otherwise, it returns
+								0. </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Run-IO-Bound </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 ">
+<p class="p">The Run-IO-Bound action allows you to indicate that further rule
+									engine evaluation for the current rule set should be performed
+									in the IO-bound thread pool. If processing is already occurring
+									in the IO-bound thread pool then this action is ignored. </p>
+
+<p class="p">Note that this action should be very early in a rule system
+									version as the rule engine plugin will be invoked again so the
+									rule set currently being evaluated will be evaluated again.</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Set-Application-Name </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 ">
+<p class="p">The Set-Application-Name action attribute is used to set the user-specified application name of
+									the Diameter message when NCC needs to manipulate messages for
+									two applications that share the same Diameter application ID.
+									Once the generic processing by the
+									Diameter-Request/Diameter-Answer filter group is complete, NCC
+									uses the specified application name to invoke the correct
+									Diameter application filter group to process the message. </p>
+
+<p class="p">For example, suppose that NCC gets a Diameter Request message for application 4 and command 272.
+									Since application ID 4 is shared by the Credit-Control CCR and
+									Gy CCR message types, you can use the Set-Application-Name
+									attribute to specify how to interpret the ambiguous information.
+									You can write a message filter in the Diameter-Request filter
+									group as follows:</p>
+
+<p class="p">
+<strong class="ph b">if app == 4 and command == 272 and origin-realm ==
+										"charging-realm" then</strong>
+</p>
+
+<p class="p">
+<strong class="ph b">RequestContext.Set-Application-Name "Gy"</strong>
+</p>
+
+<p class="p">
+<strong class="ph b">else</strong>
+</p>
+
+<p class="p">
+<strong class="ph b">RequestContext.Set-Application-Name "Credit-Control"</strong>
+</p>
+
+<p class="p">Once NCC has finished executing the Diameter-Request filter group, it will then execute the Gy
+									CCR message filter.</p>
+
+<p class="p">If the application/command combination is ambiguous and the application name is not specified,
+									NCC invokes the filter group set for one of the applications,
+									and it may not be the correct one. </p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Set-Default-Application-Name (Application Name,
+								Application Id) </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 ">
+<p class="p">The Set-Default-Application-Name action attribute allows you to
+									associate the specified Diameter application name with the given
+									Diameter application id. When a Diameter message arrives with
+									the given application id, it is then evaluated and processed
+									accordingly.</p>
+
+<p class="p">This action is available in the `initialization' filter group
+									only.</p>
+
+<p class="p">The Diameter application names can be found in the
+									/opt/tpa/diameter/definition/ApplicationDefinition&lt;AppName&gt;.xml
+									files. The application names are not case sensitive, but must be
+									spelled correctly.</p>
+
+<p class="p">
+<strong class="ph b">NOTE:</strong> For individual messages, the Set-Application-Name
+									action overrides the application name/id association set by the
+									Set-Default-Application-Name action attribute.</p>
+
+<p class="p">You can use the Set-Default-Application-Name action to interpret a message with an ambiguous
+									application id when the Set-Application-Name action is not
+									invoked. This is useful when NCC processes messages for only one
+									application of an ambiguous set (for example, NCC only processes
+									Gy messages, not Credit Control or Ro messages, though they all
+									share Application Id 4), or when one application of an ambiguous
+									set is the most common (for example, mostly Gy traffic, with
+									some Ro). Using the Set-Default-Application-Name action you can
+									map the application id to application name once, instead of
+									mapping every message with the ambiguous application id.</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2132 "> Site-Name </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2138 ">
+<p class="p">This attribute enables you to access the site name of the local
+									system.</p>
+
+<p class="p">You can configure per-site behavior on two geo-redundant
+									sites.</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2144 "> Low </td>
+
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Diameter result code context</h2>
+<p class="p">The Diameter Result Code context provides rule attributes that check the value of the current Diameter Answer message's Result-Code or Experimental-Result.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> All rule attributes on this context will check both the Result-Code and Experimental-Result,
+				unless otherwise noted.</div>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> All Diameter answer messages defined in vendor-specific applications must include either one
+				Result-Code AVP or one Experimental-Result AVP. However, a Result-Code and
+				Experimental-Result cannot be in a Diameter answer at the same time.</div>
+
+<p class="p">The table below describes the rule attributes provided by Diameter result code context.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Diameter result code context attribute/actions</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+<tr class="row">
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e2550">
+<p class="p">attribute/action</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e2556">
+<p class="p">Description</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e2562">
+<p class="p">Impact on performance</p>
+
+</th>
+
+</tr>
+
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2550 ">
+Is-Informational
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2556 ">
+<p class="p">Used as a condition, Is-Informational checks for Result-Code and Experimental-Result (expecting to only find one) and then checks if the value is within the 1xxx range. The Is-Informational attribute returns:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">1—(true) if the Diameter Answer has a Result-Code value in the Informational series of 1xxx</p>
+
+</li>
+
+<li class="li">
+<p class="p">0—(false) if the Diameter Answer does not have a Result-Code value in the Informational series of 1xxx</p>
+
+</li>
+
+</ul>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2562 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2550 ">
+Is-Success
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2556 ">
+<p class="p">Used as a condition, Is-Success checks for Result-Code and Experimental-Result (expecting to only find one) and then checks if the value is within the 2xxx range. The Is-Success attribute returns:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">1—(true) if the Diameter Answer has a Result-Code value in the Success series of 2xxx</p>
+
+</li>
+
+<li class="li">
+<p class="p">0—(false) if the Diameter Answer does not have a Result-Code value in the Success series of 2xxx</p>
+
+</li>
+
+</ul>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2562 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2550 ">
+Is-Protocol-Error
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2556 ">
+<p class="p">Used as a condition, Is-Protocol-Error checks for Result-Code and Experimental-Result (expecting to only find one) and then checks if its value is within the 3xxx range. The Is-Protocol-Error attribute returns:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">1—(true) if the Diameter Answer has a Result-Code value in the protocol error series of 3xxx</p>
+
+</li>
+
+<li class="li">
+<p class="p">0—(false) if the Diameter Answer does not have a Result-Code value in the protocol error series of 3xxx</p>
+
+</li>
+
+</ul>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2562 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2550 ">
+Is-Transient-Failure
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2556 ">
+<p class="p">Used as a condition, Is-Transient-Failure checks for Result-Code and Experimental-Result (expecting to only find one) and then checks if its value is within the 4xxx range. The Is-Transient-Failure attribute returns:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">1—(true) if the Diameter Answer has a Result-Code value in the transient failure series of 4xxx</p>
+
+</li>
+
+<li class="li">
+<p class="p">0—(false) if the Diameter Answer does not have a Result-Code value in the transient failure series of 4xxx</p>
+
+</li>
+
+</ul>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2562 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2550 ">
+Is-Permanent-Failure
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2556 ">
+<p class="p">Used as a condition, Is-Permanent-Failure checks for Result-Code and Experimental-Result (expecting to only find one) and then checks if its value is within the 5xxx range. The Is-Permanent-Failure attribute returns:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">1—(true) if the Diameter Answer has a Result-Code value in the Permanent failure series of 5xxx</p>
+
+</li>
+
+<li class="li">
+<p class="p">0—(false) if the Diameter Answer does not have Result-Code value in the Permanent failure series of 5xxx</p>
+
+</li>
+
+</ul>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2562 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2550 ">
+Is-Experimental-Result
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2556 ">
+<p class="p">Used as a condition, Is-Experimental-Result checks if the response has the Experimental-Result AVP, it does not check values. The Is-Experimental-Result attribute returns:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">1—(true) if the Diameter Answer has an Experimental-Result</p>
+
+</li>
+
+<li class="li">
+<p class="p">0—(false) if the Diameter Answer does not have an Experimental-Result</p>
+
+</li>
+
+</ul>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2562 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2550 ">
+Set-Result
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2556 ">
+<p class="p">Used as an action, Set-Result creates either a Result-Code AVP or Experimental-Result AVP and may create an Error-Message AVP. The values configured in the parameters determines which AVPs are created as follows:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">
+<strong class="ph b">Vendor Id and Result Code value</strong> - If the Vendor Id is IETF (i.e., the number 0), Set-Result creates a Result-Code AVP with the configured Result Code value. If the Vendor Id is not IETF (i.e., not the number 0), Set-Result creates an Experimental-Result AVP with the configured Vendor Id and an Experimental-Result-Code set to the configured Result Code value.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Error Message</strong> - If the Error-Message is not null (for example, as provided by Calculator.String.Null), it creates an Error-Message AVP with the configured Error Message.</p>
+
+</li>
+
+</ul>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2562 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2550 ">
+Is-Destined-To-Host/Realm
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2556 "> </td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2562 ">
+Low
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Mirroring context</h2>
+<p class="p">The Mirroring computational context allows you to write message filters to replicate a Diameter
+				message and send a copy of the message to the mirroring servers. Mirroring a message
+				does not block the processing of the original message, which continues unimpeded.
+				Once a mirroring requirement is identified, a copy of the original message is made
+				and processed in the background by NCC mirroring thread pool, which is responsible
+				for handling mirrored messages.</p>
+
+<p class="p">You can use message filters to configure the following properties of the Mirroring context: </p>
+<ul class="ul">
+<li class="li">
+<p class="p">percentage of mirrored messages on the system</p>
+
+</li>
+
+<li class="li">
+<p class="p">number of mirroring servers</p>
+
+</li>
+
+<li class="li">
+<p class="p">resource allocation for mirroring</p>
+
+</li>
+
+</ul>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Configuring the Mirroring context application preferences is potentially service-affecting.
+				Contact Technical Support before you configure the Mirroring application
+				preferences.</div>
+
+<p class="p">The Mirroring context provides several attributes/actions that can be invoked for any message filter to replicate Diameter messages.The table below describes the Mirroring context attributes/actions that are available.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Mirroring context attributes/actions</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+<tr class="row">
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e2850">
+<p class="p">attribute/action</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e2856">
+<p class="p">Description</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e2862">
+<p class="p">Impact on performance</p>
+
+</th>
+
+</tr>
+
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2850 ">
+Set-Destination-Host 
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2856 ">
+<p class="p">The Set-Destination-Host action attribute is used to set the host name of the mirroring server that requires a copy of the current Diameter message. The host does not contain the realm name</p>
+
+<p class="p">The Set-Destination-Host action attribute is of type string. </p>
+
+<p class="p">Using the Set-Destination-Host attribute is optional. </p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2862 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2850 ">
+Set-Destination-Realm 
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2856 ">
+<p class="p">The Set-Destination-Realm action attribute is used to set the user-specified realm name of the mirroring server that requires a copy of the Diameter message.</p>
+
+<p class="p">The Set-Destination-Realm action attribute is of type string. </p>
+
+<p class="p">This is a mandatory attribute and must be specified. </p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2862 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2850 ">
+Send 
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2856 ">
+<p class="p">The send action attribute is used to send the message to the mirroring server.</p>
+
+<p class="p">It is mandatory to use the Set-Destination-Realm attribute to specify the realm name of the mirroring server before this attribute is called; otherwise, an error is logged and the message processing is terminated.</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2862 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2850 ">
+Message-Is-A-Mirror
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2856 ">
+<p class="p">This attribute returns 1 (true) to signify that the current message is a Mirrored message (a message sent via a Mirroring.Send rule action). If it returns 0, the message is not a mirror.</p>
+
+<p class="p">
+<strong class="ph b">Caution:</strong> If you write a rule that will mirror a mirrored message, author the rule with caution and provide a limit to control the number of mirrors of mirrors created.</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2862 "> </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2850 ">
+Clear-Routing-Peer
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2856 ">
+An action used to clear the peer from the message if you have used the Mirroring.Route-To-Chosen-Peer action.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2862 "> </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2850 ">
+Route-To-Chosen-Peer
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2856 ">
+<p class="p">The Route-To-Chosen-Peer action indicates that the diameter message should be routed to the chosen-peer that was stored in the message. When this action is used, the message will bypass the normal host and realm routing mechanisms.</p>
+
+<p class="p">The Mirroring.Route-To-Chosen-Peer action allows you to write rules that mirror messages to chosen peers in networks where two or more devices in that network use the same Diameter identity.</p>
+
+<p class="p">For example, if you have two devices with the same identity in your network, you can configure
+									one or both of those devices identities to be different, which
+									allows NCC to select the correct destination for forwarding the
+									Diameter message to one device, then mirroring the Diameter
+									message to another device. The destination selection can be
+									based on the Origin-Host, IP identity, or a specific Port (or
+									supported combination of the three via the Peer
+									Table.Choose-Peer-By actions) rather than using the diameter
+									routing table.</p>
+
+<p class="p">A basic usage example for a Mirroring rule where the Diameter message is sent to the chosen peer could be as follows:</p>
+
+<p class="p">IF (Peer Table.Choose-Peer-By-IP(IP Identity, Port Number) = 1)</p>
+
+<p class="p">THEN</p>
+
+<p class="p">Mirroring.Route-To-Chosen-Peer()</p>
+
+<p class="p">Mirroring.Send()</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2862 "> </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2850 ">
+Set-Default-Policy-Processing
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2856 ">
+<p class="p">The Set-Default-Policy-Processing is a Mirror action that is used to set the default for policy processing of mirrored messages. It can only be used with the Initialization rule set.</p>
+
+<p class="p">The default value is false.</p>
+
+<p class="p">If this attribute is set to true then those mirrored messages sent via the Mirroring.Send rule action will be processed by policy in the rule engine, by default.</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2862 "> </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2850 ">
+Set-Policy-Processing
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2856 ">
+The Set-Policy-Processing action attribute is used to set the policy processing of the mirrored message about to be sent with any Mirroring.Send action for the current message. This value will override the value of the Set-Default-Policy-Processing.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e2862 "> </td>
+
+</tr>
+
+</tbody>
+</table>
+
+<p class="p">You can invoke the Mirroring context to write message filters for any NCC message context to
+				define when to trigger message mirroring. You can mirror a message before and/or
+				after the original message has been modified by other filters on the system. </p>
+
+<p class="p">When invoked for NCC generic message contexts, the Mirroring context behaviour is as follows:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">If the Mirroring context is invoked to write message filters for Diameter request message context filter groups, the mirroring message filter can be configured to execute before and/or after the original Diameter message has been modified by the system. The Diameter message is replicated, regardless of the response to the original message. </p>
+
+</li>
+
+<li class="li">
+<p class="p">If the Mirroring context is invoked to write message filters for Diameter answer message context filter groups, the original request message is still accessible, however, it may include updates that have been made by preceding message filters. Invoking the Mirroring context at this point provides you with the opportunity to check the result code of the answer message before mirroring the request.</p>
+
+</li>
+
+</ul>
+
+<p class="p">When invoked for the Diameter application message contexts, you can use the Mirroring context to write message filters against the generic request/answer message context(s), as well as against a more specific message context (for example, Gx CCR or Gx CCA).</p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Request and Answer context</h2>
+<p class="p">The Request and Answer context provides rule attributes that check the value of the current Diameter Answer message's Result-Code or Experimental-Result.</p>
+
+<p class="p">The table below describes the rule attributes provided by Diameter answer code context.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Request and Answer attributes/actions</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+<tr class="row">
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e3084">
+<p class="p">attribute/action</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e3090">
+<p class="p">Description</p>
+
+</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d17014e3096">
+<p class="p">Impact on performance</p>
+
+</th>
+
+</tr>
+
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Is-Destined-To-Host
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The attribute name for determining if a request is destined to a given host.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Is-Destined-To-Realm
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The attribute name for determining if a request is destined to a given realm.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Suppress-Route-Record
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated action name for suppressing the route-record AVP.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Clear-Read-Indices
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated action name for clearing the read index cache.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Clear-Write-Indices
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated action name for clearing the write index cache.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Number-Of-AVPs
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated attribute name for getting the number of AVPs in a message.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Peer-Origin-Host
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated attribute name for getting the Origin-Host of the peer that this message was received from.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Peer-Origin-Realm
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated attribute name for getting the Origin-Realm of the peer that this message was received from.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Move-AVP-Before
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated action name for moving an AVP in front of another AVP.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Move-AVP-After
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated action name for moving an AVP behind another AVP.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Property-Exists
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+<p class="p">The annotated attribute name for checking whether a property exists in the message.</p>
+
+<p class="p">LOw</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 "> </td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Get-String-Property
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated attribute name for getting a string property from the message.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Set-String-Property
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated action name for setting a string property in the message.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Get-Long-Property
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated attribute name for getting a long property from the message.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Reception-Address
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+ The annotated attribute name for getting the IP address the current Diameter message was received on.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Set-Long-Property
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated action name for setting a long property in the message.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Delay
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated action name for delaying the forwarding/answering of a message. This action may only make sense for test deployments, not customer deployments.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Discard-Delayed-Messages
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The attribute name for getting the resend count. The number of times the Resend-Request action has been used.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Resend-Count
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The attribute name for getting the resend count. The number of times the Resend-Request action has been used.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Reprocess-Count
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The attribute name for getting the reprocess count. The number of times the Reprocess-Request action has been used.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Add-Metrics-Attribute
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated action for adding a metrics attribute for the current message being processed.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Command
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated action for getting the command of a message.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Set-Command
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated action for setting the command of a message.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Command Number
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The name of the parameter for SET_COMMAND_ACTION.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Application
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated action for getting the application of a message.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Set-Application
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated action for setting the application of a message.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3084 ">
+Log-EDR
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3090 ">
+The annotated action name for logging an EDR for the current Diameter message.
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d17014e3096 ">
+Low
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Diameter/HTTP Configuration Guide • P556766-DN1000054969-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Restore replicated Aerospike data" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="restore_replicated_data_from_another_sm" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Restore replicated Aerospike data</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="restore_replicated_data_from_another_sm">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Restore replicated Aerospike data</h1>
+<div class="body conbody">
+    <div class="section"><h2 class="title sectiontitle">Disable Aerospike data replication from healthy systems</h2>
+      
+      <p class="p">Some operations must be performed on the other healthy SMs in the deployment. This ensures
+        the recovery process is not disrupted.</p>
+
+      <p class="p">To obtain a list of the names of SM systems in the deployments, run this command from the
+        admincli pod of any SM in the deployment:</p>
+
+      <pre class="pre codeblock"><code>/opt/tpa/bin/disaster-recovery-helper.py -w        
+        ## This is an example of the output:
+        INFO: This tool must be run on following list of sites : ['SM1','SM2','SM3','SM4']</code></pre>
+      <p class="p">On each healthy SM in the deployment, temporary update the replication configuration to
+        exclude SM4 by running this command from the admincli pod:</p>
+
+      <pre class="pre codeblock"><code>/opt/tpa/bin/disaster-recovery-helper.py -a remove -s SM4 
+## where SM4 is the name of the recovering SM system</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Restore replicated data from mate system</h2>
+      
+      <p class="p">The replicated data can be restored from any healthy system.</p>
+
+      <pre class="pre codeblock"><code>## Restart the xdrproxy pods on SM4, so the replicated namespace can be restored.
+## Run this command, where $XDRPROXY_DEPLOYMENT is the name of xdrproxy deployment in your installation
+kubectl -n $NAMESPACE scale --replicas=1 deploy $XDRPROXY_DEPLOYMENT
+ 
+## On the healthy SM that you want to use to restore data on the recovering system (for example, SM1), perform a rewind of SM4.
+## Run this command from admincli pod of SM1, where the value for -s option is the name of the recovering system SM4.
+/opt/tpa/bin/disaster-recovery-helper.py -x start -s SM4
+ 
+## On SM1, check the status of the rewind. 
+## Run this command from admincli pod of SM1, where the value for -s option is the name of the recovering system SM4,
+## and the value of -l is the max number of times the script should check for rewind status, at intervals, before exiting. Default is 100.
+## The script can be run multiple times until it reports that the rewind is complete.
+/opt/tpa/bin/disaster-recovery-helper.py -x status -s SM4 -l 20
+ 
+## Once the rewind is complete, go to the recovering system SM4 and make sure the Aerospike pods are in running state.</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Re-enable Aerospike data replication</h2>
+      
+      <pre class="pre codeblock"><code>## On each SM except the recovering system SM4, restore replication to SM4. Run this command on all healthy SMs, from the admincli pod:  
+/opt/tpa/bin/disaster-recovery-helper.py -a add -s SM4</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Clear DOWN_DRR state for Aerospike cluster</h2>
+      
+      <pre class="pre codeblock"><code># NOTE: This clears the DOWN_DRR state in case if it was set for the system. 
+kubectl -it exec &lt;admincli&gt; -c &lt;container&gt; -n &lt;namespace&gt; -- /opt/tpa/sbin/db-roster.py clear</code></pre>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Repair the key generators data set</h2>
+      
+      <p class="p">Run this command on the recovering system (only for IG).</p>
+
+      <pre class="pre codeblock"><code>kubectl -it exec &lt;admincli&gt; -c &lt;container&gt; -n &lt;namespace&gt; -- /opt/tpa/bin/TPA_repairKeyGen
+# if it asks to continue then type "y" and press enter button</code></pre>
+    </div>
+
+  </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

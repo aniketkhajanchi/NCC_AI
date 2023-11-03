@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Charging Step" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="untitled1" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Charging Step</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="untitled1">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Charging Step</h1>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_bkq_t1b_f3b"><h2 class="title topictitle2" id="ariaid-title2">EDR tags</h2>
+<div class="body conbody">
+            <table cellpadding="4" cellspacing="0" summary="" id="concept_bkq_t1b_f3b__table_i51_hj3_qqb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:27.27272727272727%" /><col style="width:50%" /><col style="width:22.727272727272727%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d31923e42">Tag</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d31923e45">Description</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d31923e48">Example</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e42 ">chargingStepName</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e45 ">Name of charging step.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e48 ">step94203</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e42 ">↘stepSize*</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e45 ">Size of a step.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e48 ">5.00</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e42 ">↘stepFee*</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e45 ">The fee to be deducted on step up.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e48 ">2</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e42 ">chargingStepCreationTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e45 ">Specifies the time at which the entity was created.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e48 ">13/09/2019 09:37:07</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e42 ">chargingStepLastUpdateTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e45 ">Specifies the time at which entity was last modified.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e48 ">13/09/2019 09:37:20</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e42 ">chargingStepUnitType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e45 ">Indicates the unit type for the entity.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e48 ">MByte</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e42 ">chargingStepKindofUnit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e45 ">Indicates the kind of unit for the entity.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e48 ">VOLUME</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e42 ">taxationID</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e45 ">Specifies the identifier for the taxation profile.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e48 ">tx03</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e42 ">taxIncluded</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e45 ">This parameter indicates whether applied tax is included to the
+                                fee/cost or not. <p class="p">If true, tax is included to the
+                                    cost/fee.</p>
+<p class="p">If false, tax is applied over and above
+                                    cost/fee.</p>
+<p class="p"><em class="ph i">Default Value: false</em></p>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e48 ">true</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e42 ">lastStepUnlimited</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e45 ">Indicates if last step is unlimited or not. Possible values:
+                                true, false.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e48 ">false</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_lyy_3k4_yqb"><h2 class="title topictitle2" id="ariaid-title3">Applicability of tags</h2>
+<div class="body conbody">
+            <table cellpadding="4" cellspacing="0" summary="" id="concept_lyy_3k4_yqb__table_m15_3j3_qqb" class="table" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d31923e207">EDR tag</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d31923e210">Create</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d31923e213">Update</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d31923e216">Delete</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e207 ">chargingStepName</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e210 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e213 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e216 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e207 ">↘stepSize</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e210 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e213 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e216 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e207 ">↘stepFee</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e210 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e213 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e216 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e207 ">chargingStepCreationTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e210 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e213 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e216 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e207 ">chargingStepLastUpdateTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e210 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e213 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e216 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e207 ">chargingStepUnitType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e210 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e213 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e216 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e207 ">chargingStepKindofUnit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e210 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e213 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e216 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e207 ">taxationID</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e210 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e213 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e216 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e207 ">lastStepUnlimited</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e210 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e213 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e216 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e207 ">taxIncluded</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e210 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e213 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d31923e216 ">Yes</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title4" id="concept_ytc_jk4_yqb"><h2 class="title topictitle2" id="ariaid-title4">Associated EDRs</h2>
+<div class="body conbody">
+            <p class="p">There are no associated EDRs for this EDR.</p>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title5" id="concept_jrg_mpx_m3b"><h2 class="title topictitle2" id="ariaid-title5">EDR examples</h2>
+<div class="body conbody">
+            <div class="section" id="concept_jrg_mpx_m3b__section_bnc_y1b_f3b">
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Create</strong></p>
+
+                    <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       515
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                       Tag                  Data
+RecordType                 0     PROVISIONING_RECORD
+invokedBy                  1              webService
+invokedMethod              1     create_chargingStep
+chargingStepName           1               step94203
+lastStepUnlimited          1                   false
+chargingStepCreationTime   1     13/09/2019 09:37:07
+result                     1                 SUCCESS
+generationTimestamp        1     13/09/2019 09:37:07
+RecordTimestamp            1     13/09/2019 04:07:07
+  RecordProperty           0                stepInfo
+  stepSize                 1                    4.00
+  RecordProperty           0                stepInfo
+  stepSize                 1                    5.00
+  stepFee                  1                       2
+  RecordProperty           0                stepInfo
+  stepSize                 1                    7.00
+  stepFee                  1                       5
+  RecordProperty           0          reUnitTypeInfo
+  chargingStepUnitType     1                   MByte
+  chargingStepKindOfUnit   1                  VOLUME
+  taxationID               1                    tx03</code></pre>
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Update</strong></p>
+
+                    <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       612
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                         Tag                  Data
+RecordType                   0     PROVISIONING_RECORD
+invokedBy                    1              webService
+invokedMethod                1     update_chargingStep
+chargingStepName             1               step94203
+lastStepUnlimited            1                   false
+chargingStepCreationTime     1     13/09/2019 09:37:07
+chargingStepLastUpdateTime   1     13/09/2019 09:37:20
+result                       1                 SUCCESS
+generationTimestamp          1     13/09/2019 09:37:20
+RecordTimestamp              1     13/09/2019 04:07:20
+  RecordProperty             0                stepInfo
+  stepSize                   1                    4.00
+  RecordProperty             0                stepInfo
+  stepSize                   1                    5.00
+  stepFee                    1                       2
+  RecordProperty             0                stepInfo
+  stepSize                   1                    7.00
+  stepFee                    1                       5
+  RecordProperty             0                stepInfo
+  stepSize                   1                    8.00
+  stepFee                    1                       9
+  RecordProperty             0          reUnitTypeInfo
+  chargingStepUnitType       1                   MByte
+  chargingStepKindOfUnit     1                  VOLUME
+  taxationID                 1                    tx03</code></pre>
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Delete</strong></p>
+
+                    <pre class="pre codeblock"><code>CDR length:                       612
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                         Tag                  Data
+RecordType                   0     PROVISIONING_RECOR
+invokedBy                    1              webService
+invokedMethod                1     delete_chargingStep
+chargingStepName             1               step94203
+lastStepUnlimited            1                   false
+chargingStepCreationTime     1     13/09/2019 09:37:07
+chargingStepLastUpdateTime   1     13/09/2019 09:37:20
+result                       1                 SUCCESS
+generationTimestamp          1     13/09/2019 09:37:20
+RecordTimestamp              1     13/09/2019 04:07:21
+  RecordProperty             0                stepInfo
+  stepSize                   1                    4.00
+  RecordProperty             0                stepInfo
+  stepSize                   1                    5.00
+  stepFee                    1                       2
+  RecordProperty             0                stepInfo
+  stepSize                   1                    7.00
+  stepFee                    1                       5
+  RecordProperty             0                stepInfo
+  stepSize                   1                    8.00
+  stepFee                    1                       9
+  RecordProperty             0          reUnitTypeInfo
+  chargingStepUnitType       1                   MByte
+  chargingStepKindOfUnit     1                  VOLUME
+  taxationID                 1                    tx03</code></pre>
+                </div>
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

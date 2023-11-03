@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Lab or package related REST API calls" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="lab_or_package_related_rest_api_calls" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Lab or package related REST API calls</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="lab_or_package_related_rest_api_calls">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Lab or package related REST API calls</h1>
+<div class="body conbody">
+        <div class="section" id="lab_or_package_related_rest_api_calls__section_c2n_k3b_54b"><h2 class="title sectiontitle">Get the test parameters of test package</h2>
+            
+            <p class="p">PATH: <code class="ph codeph">api/lab/editparameter/?labID={lab ID}</code></p>
+
+            <p class="p">METHOD: <code class="ph codeph">GET</code></p>
+
+            <div class="p"><strong class="ph b">Example:</strong><pre class="pre codeblock"><code>GET
+https://xxx.xxx.xxx.xxx/cctf/api/lab/editparameter/?labID=2
+response body:
+{
+  "res": 0,
+  "resMsg": "Data Response Succeeds",
+  "obj": {
+    "simulators": [
+      {
+        "image_url": null,
+        "number_of_instances": 1,
+        "simulator_name": "SIPp"
+      },
+      {
+        "image_url": null,
+        "number_of_instances": 1,
+        "simulator_name": "IPSL"
+      }
+    ],
+    "sut_parameters": {
+      "access_point": "255.1.1.1",
+      "paraX": 123,
+      "paraY": 456,
+      "paraZ": 789,
+      "platform_info": [
+        {
+          "access_point": "255.1.1.2"
+        },
+        {
+          "ssh_key": "private SSH Key"
+        },
+        {
+          "user_name": "user name to log on server"
+        },
+        {
+          "user_password": "passsword to log on server"
+        }
+      ],
+      "ssh_key": "private SSH Key",
+      "user_name": "user name to log on server",
+      "user_password": "passsword to log on server"
+    },
+    "test_package_info": {
+      "platform_name": "BCMT",
+      "platform_ver": "1.0",
+      "product_name": "XXXX",
+      "product_ver": "1.0",
+      "runTime_OS_name": "redhat",
+      "runTime_OS_ver": "1.0",
+      "testPackage_name": "XXXX",
+      "testPackage_ver": "1.0",
+      "test_tool_arg": "-e AAA",
+      "test_tool_name": "robot",
+      "test_tool_ver": "1.0"
+    },
+    "tp_parameters": {
+      "para1": "...",
+      "para2": "...",
+      "paraN": "..."
+    }
+  }
+}</code></pre></div>
+
+        </div>
+
+        <div class="section" id="lab_or_package_related_rest_api_calls__section_lp2_p3b_54b"><h2 class="title sectiontitle">Update the data of parameters of test package</h2>
+            
+            <p class="p">PATH: <code class="ph codeph">api/lab/editparameter/?labID={lab ID}</code></p>
+
+            <p class="p">METHOD: <code class="ph codeph">POST</code></p>
+
+            <p class="p"><strong class="ph b">Example:</strong></p>
+
+            <pre class="pre codeblock"><code>POST
+https://xxx.xxx.xxx.xxx/cctf/api/lab/editparameter/?labID=2
+request body:
+{
+  "json": {
+    "test_package_info": {
+      "platform_name": "BCMT",
+      "platform_ver": "1.0",
+      "product_name": "XXXX",
+      "product_ver": "1.0",
+      "runTime_OS_name": "redhat",
+      "runTime_OS_ver": "1.0",
+      "testPackage_name": "XXXX",
+      "testPackage_ver": "1.0",
+      "test_tool_arg": "-e AAA",
+      "test_tool_name": "robot",
+      "test_tool_ver": "1.0"
+    },
+    "simulators": [
+      {
+        "image_url": null,
+        "number_of_instances": 1,
+        "simulator_name": "SIPp"
+      },
+      {
+        "image_url": null,
+        "number_of_instances": 1,
+        "simulator_name": "IPSL"
+      }
+    ],
+    "tp_parameters": {
+      "para1": "...",
+      "para2": "...",
+      "paraN": "..."
+    },
+    "sut_parameters": {
+      "access_point": "255.1.1.1",
+      "ssh_key": "private SSH Key",
+      "user_name": "user name to log on server",
+      "user_password": "passsword to log on server",
+      "platform_info": [
+        {
+          "access_point": "255.1.1.2"
+        },
+        {
+          "ssh_key": "private SSH Key"
+        },
+        {
+          "user_name": "user name to log on server"
+        },
+        {
+          "user_password": "passsword to log on server"
+        }
+      ],
+      "paraX": 123,
+      "paraY": 456,
+      "paraZ": 789
+    }
+  }
+}
+response body:
+{
+  "res": 0,
+  "resMsg": "Data Response Succeeds",
+  "obj": {
+    "simulators": [
+      {
+        "image_url": null,
+        "number_of_instances": 1,
+        "simulator_name": "SIPp"
+      },
+      {
+        "image_url": null,
+        "number_of_instances": 1,
+        "simulator_name": "IPSL"
+      }
+    ],
+    "sut_parameters": {
+      "access_point": "255.1.1.1",
+      "paraX": 123,
+      "paraY": 456,
+      "paraZ": 789,
+      "platform_info": [
+        {
+          "access_point": "255.1.1.2"
+        },
+        {
+          "ssh_key": "private SSH Key"
+        },
+        {
+          "user_name": "user name to log on server"
+        },
+        {
+          "user_password": "passsword to log on server"
+        }
+      ],
+      "ssh_key": "private SSH Key",
+      "user_name": "user name to log on server",
+      "user_password": "passsword to log on server"
+    },
+    "test_package_info": {
+      "platform_name": "BCMT",
+      "platform_ver": "1.0",
+      "product_name": "XXXX",
+      "product_ver": "1.0",
+      "runTime_OS_name": "redhat",
+      "runTime_OS_ver": "1.0",
+      "testPackage_name": "XXXX",
+      "testPackage_ver": "1.0",
+      "test_tool_arg": "-e AAA",
+      "test_tool_name": "robot",
+      "test_tool_ver": "1.0"
+    },
+    "tp_parameters": {
+      "para1": 123,
+      "para2": 456,
+      "paraN": 789
+    }
+  }
+}</code></pre>
+        </div>
+
+        <div class="section" id="lab_or_package_related_rest_api_calls__section_rf4_t3b_54b"><h2 class="title sectiontitle">Upload parameters file from local</h2>
+            
+            <p class="p">PATH: <code class="ph codeph">api/lab/editparameter/?labID={lab ID}</code></p>
+
+            <p class="p">METHOD: <code class="ph codeph">PUT</code></p>
+
+            <p class="p"><strong class="ph b">Example:</strong></p>
+
+            <pre class="pre codeblock"><code>PUT
+https://xxx.xxx.xxx.xxx/cctf/api/lab/editparameter/?labID=1
+request body:
+Content-Disposition: form-data; name="myfile"; filename="parameters.json"
+Content-Type: application/json
+
+response body:
+{
+  "res": 0,
+  "resMsg": "Upload parameter file successfully",
+  "obj": {
+    "name": "parameters.json",
+    "size": "0.001MB"
+  }
+}</code></pre>
+        </div>
+
+        <div class="section" id="lab_or_package_related_rest_api_calls__section_a15_x3b_54b"><h2 class="title sectiontitle">Delete test package by lab ID</h2>
+            
+            <p class="p">PATH: <code class="ph codeph">api/project/instance/{lab ID}/</code></p>
+
+            <p class="p">METHOD: <code class="ph codeph">DELETE</code></p>
+
+            <p class="p"><strong class="ph b">Example:</strong></p>
+
+            <pre class="pre codeblock"><code>DELETE
+https://xxx.xxx.xxx.xxx/cctf/api/project/instance/3/
+response body:
+{
+  "res": 0,
+  "resMsg": "Deleted Successfully",
+  "obj": ""
+}</code></pre>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>DevOps Guide • P556766-DN1000055058-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

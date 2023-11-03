@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Account Error Messages" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="idd7757100-d1b6-4459-a73f-f9b458226358" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Account Error Messages</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="idd7757100-d1b6-4459-a73f-f9b458226358">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Account Error Messages</h1>
+<div class="body conbody"><p class="p">This table describes the Account error messages that the NCC may generate.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Account error messages</span></caption><colgroup><col style="width:16.666666666666664%" /><col style="width:21.428571428571427%" /><col style="width:30.952380952380953%" /><col style="width:30.952380952380953%" /></colgroup><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:top;" id="d141663e40">Number</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d141663e42">Message</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d141663e44">HTTP Error Code</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d141663e47">Description</th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00001</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Invalid hour of day.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">The hour of day must be between 0 and 23.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00002</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Invalid day of month.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">The day of month must be between 1 and 31.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00003</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Account does not exist.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Could not fetch account with id "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00004</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Invalid time zone ID.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">The timezone ID "{0}" must be one of the following: "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00005</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Failed to adjust balance.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Failed to adjust balance for the account with id "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00006</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Invalid overage limit.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">The overage limit must be between "{0}" and 0.</td>
+</tr>
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00007</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">The account type is mandatory.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">The accountType is a mandatory field and must be specified.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00008</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">The account type cannot change with active session in progress</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">The accountType cannot be updated due to active session in progress for account id {0}</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00009</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Balance cannot go lower than overage limit.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Balance cannot go lower than overage limit.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00010</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">The period start time cannot change.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">The period start time is read-only and cannot be updated.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00011</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">The period end time cannot change.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">The period end time is read-only and cannot be updated.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00012</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">The period start time is read-only.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">The period start time cannot be set at creation time.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00013</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">The period end time is read-only.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">The period end time cannot be set at creation time.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00014</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Reservation Already Exist for this Session</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Reservation already exists for this Session, Id "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00015</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Units to be committed are more than reserved units.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Units to be committed are more than reserved units.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00016</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">One or More Parameter is NULL or Empty.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Input Parameter "{0}".</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00017</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Amount to reserve/commit in Account is negative</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Amount to reserve/commit in Account is negative</td>
+</tr>
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00018</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Reservation corresponding to Session not found</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Reservation corresponding to Session id : "{0}" not found in Account Reservation Map.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00019</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Same Old and New Account Name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Old and new Account Name must be different.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00020</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Null Old and New Account Name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Old and new Account Name cannot be NULL.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00021</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Account id is missing.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Account id is a mandatory field and must be specified.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00022</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Account is missing.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Account is a mandatory field and must be specified.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00023</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Tax is already attached to the Account.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Unique identity of type "{0}" and value "{1}" has already been provisioned.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00024</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Tax has not been attached with Account.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Tax has not been attached with Account.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00025</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Account balance does not exist.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Could not fetch account balance with account id "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00026</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">No such Account available on LDAP Server.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">No such Account available on LDAP server.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00027</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Account could not be fetched from LDAP Server.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Account could not be fetched from LDAP server.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00028</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Account cannot be updated.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Request cannot be performed as data is being refreshed. Request needs to be sent again considering updated data.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00029</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Child Record found.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Could not delete "{0}" as child records with id "{1}" were found</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00030</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">The account shadow balance is not valid.: The account shadow balance cannot be larger than Balance.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">The account shadow balance is not valid.: The account shadow balance cannot be larger than Balance.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00031</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">The account shadow balance is not valid.: The account shadow balance cannot be larger than 0 when account balance is negative</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">The account shadow balance is not valid.: The account shadow balance cannot be larger than 0 when account balance is negative.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00032</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Balance's are not sufficient for adjust.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Balance's are not sufficient for adjust.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00033</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Balance is greater than the overage limit.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Overage limit must be greater than the balance.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e40 ">ACCOUNT_00034</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e42 ">Temporary overage limit is supported by Post-paid Accounts only</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d141663e47 ">Temporary overage limit is supported in Post-paid accounts only, please set the overage permanently if you are updating your Account Type to Pre-paid.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="footer"><hr /><p>Error Messages • P556766-DN1000055003-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

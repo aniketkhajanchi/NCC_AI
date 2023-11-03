@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="REST API calls" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="alt_rest_api_calls" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>REST API calls</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="alt_rest_api_calls">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">REST API calls</h1>
+<div class="body conbody">
+        <p class="p">Here are presented the supported alternative REST API calls.</p>
+
+        <div class="section" id="alt_rest_api_calls__section_wmr_1f3_5rb"><h2 class="title sectiontitle">Starting a test suite</h2>
+            
+            <p class="p">PATH: <code class="ph codeph">/api/testsuite/run</code></p>
+
+            <p class="p">METHOD: <code class="ph codeph">POST</code></p>
+
+            <p class="p">There are 3 test suites that can be managed by the client:
+                    <span class="ph uicontrol">NEW_FEATURES</span>, <span class="ph uicontrol">REGRESSION</span>, and
+                (lightweight) <span class="ph uicontrol">PERFORMANCE</span>. When a test suite is initiated, it
+                should return a unique token identifier that can be used in the management of that
+                suite.</p>
+
+            <p class="p"><strong class="ph b">Example request:</strong></p>
+
+            <pre class="pre codeblock" id="alt_rest_api_calls__codeblock_nd4_zb3_5rb"><code>curl 'http://&lt;ip&gt;:&lt;port&gt;/api/testsuite/run/{test_suite_name}' \
+--request POST \
+--header 'Accept: application/json' \
+--user 'username':'password'</code></pre>
+            <table cellpadding="4" cellspacing="0" summary="" id="alt_rest_api_calls__table_zdw_vds_vrb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters for starting a test suite</span></caption><colgroup><col style="width:10.869565217391305%" /><col style="width:21.73913043478261%" /><col style="width:43.47826086956522%" /><col style="width:23.913043478260875%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e82">Type</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e85">Name</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e88">Description</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e91">Example</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e82 ">path</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e85 "><code class="ph codeph">test_suite_name</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e88 ">
+                                <p class="p">Specifies the test suite to be executed. The test suite name is
+                                    the last element in the URL path.</p>
+
+                                <p class="p"><strong class="ph b">Possible values:</strong>
+                                    <code class="ph codeph">NEW_FEATURES</code>, <code class="ph codeph">REGRESSION</code>,
+                                        <code class="ph codeph">PERFORMANCE</code>, </p>
+
+                                <p class="p">This parameter is mandatory.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e91 "><code class="ph codeph">NEW_FEATURES</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e82 ">header</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e85 "><code class="ph codeph">Accept</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e88 ">
+                                <p class="p">Data format of the response body.</p>
+
+                                <p class="p"><strong class="ph b">Possible types:</strong>
+                                    <code class="ph codeph">app<code class="ph codeph">ALL</code>lication/json</code>
+                                </p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e91 "><code class="ph codeph">Accept: application/json</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e82 ">query</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e85 ">-</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e88 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e91 "> </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <p class="p"><strong class="ph b">Example response:</strong></p>
+
+            <pre class="pre codeblock" id="alt_rest_api_calls__codeblock_sln_mfv_trb"><code>{
+  "testsuites": [
+    {
+      "name": "NEW_FEATURES",
+      "id": "{id}",
+      "status": "NOT_BUILT",
+      "error": "",
+      "vendor": "Company X",
+      "product": "Product Y",
+      "release": "v10.0.5",
+      "estimatedDuration": 600000,		
+      "duration": 0,
+      "timestamp": 1612216174323,
+      "tests": 100
+    } 
+  ]
+}
+</code></pre>
+            <p class="p">A result can have more than one test suite responses based on the request.
+                Specifically, an <code class="ph codeph">ALL</code> request will return 3 test suite responses in
+                the result; one for each of NEW_FEATURES, REGRESSION, and PERFORMANCE.</p>
+
+            <p class="p">For more information on the response body parameters and HTTP status codes, see <a class="xref" href="response_parameters.html">Response parameters</a>.</p>
+
+        </div>
+
+        <div class="section" id="alt_rest_api_calls__section_fp5_jf3_5rb"><h2 class="title sectiontitle">Monitoring a test suite</h2>
+            
+            <p class="p">PATH: <code class="ph codeph">/api/testsuite/status</code></p>
+
+            <p class="p">METHOD: <code class="ph codeph">GET</code></p>
+
+            <p class="p">This REST API call requests the status of a test suite. Common states include
+                    <em class="ph i">Running</em>, <em class="ph i">Successful</em>, and <em class="ph i">Failure</em>.</p>
+
+            <p class="p"><strong class="ph b">Example request:</strong></p>
+
+            <pre class="pre codeblock" id="alt_rest_api_calls__codeblock_hqv_xq1_5rb"><code>curl 'http://&lt;ip&gt;:&lt;port&gt;/api/testsuite/status/{id}' \
+--request GET \
+--header 'Accept: application/json' \
+--user 'username':'password'
+</code></pre>
+            <table cellpadding="4" cellspacing="0" summary="" id="alt_rest_api_calls__table_j51_gfs_vrb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters for monitoring a test suite</span></caption><colgroup><col style="width:10.869565217391305%" /><col style="width:21.73913043478261%" /><col style="width:43.47826086956522%" /><col style="width:23.913043478260875%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e258">Type</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e261">Name</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e264">Description</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e267">Example</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e258 ">path</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e261 "><code class="ph codeph">id</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e264 ">
+                                <p class="p">A String defining a unique identifier of the test suite status to
+                                    retrieve. If this value is not provided, the results for all
+                                    current or last completed test suites will be returned.</p>
+
+                                <p class="p">This parameter is optional.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e267 "><code class="ph codeph">0578a6f6</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e258 ">header</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e261 "><code class="ph codeph">Accept</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e264 ">
+                                <p class="p">Data format of the response body.</p>
+
+                                <p class="p"><strong class="ph b">Possible types:</strong>
+                                    <code class="ph codeph">application/json</code>
+                                </p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e267 "><code class="ph codeph">Accept: application/json</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e258 ">query</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e261 ">-</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e264 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e267 "> </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <p class="p"><strong class="ph b">Example response:</strong></p>
+
+            <pre class="pre codeblock" id="alt_rest_api_calls__codeblock_nt2_1t1_5rb"><code>{
+  "testsuites": [
+    {
+      "name": "NEW_FEATURES",
+      "id": "{id}",
+      "status": "FAILURE",
+      "error": "Total of 5 failed test cases",
+      "vendor": "Company X",
+      "product": "Product Y",
+      "release": "v10.0.5",
+      "estimatedDuration": 600000,		
+      "duration": 284500,
+      "timestamp": 1612216174323,
+      "tests": 100, 
+      "errors": 0,
+      "failures": 5,
+      "attempts": 1
+    }
+  ]
+}
+</code></pre>
+            <p class="p">A result can have more than one test suite responses based on the request.
+                Specifically, a request without a test suite ID will return 3 test suite responses
+                in the result; one for each of <span class="ph uicontrol">NEW_FEATURES</span>,
+                    <span class="ph uicontrol">REGRESSION</span>, and <span class="ph uicontrol">PERFORMANCE</span>.</p>
+
+            <p class="p">For more information on the response body parameters and HTTP status codes, see <a class="xref" href="response_parameters.html">Response parameters</a>.</p>
+
+        </div>
+
+        <div class="section" id="alt_rest_api_calls__section_wmt_2g3_5rb"><h2 class="title sectiontitle">Cancelling a test suite</h2>
+            
+            <p class="p">PATH: <code class="ph codeph">/api/testsuite/cancel</code></p>
+
+            <p class="p">METHOD: <code class="ph codeph">DELETE</code></p>
+
+            <p class="p">This REST API call requests a running test suite to be cancelled.</p>
+
+            <p class="p"><strong class="ph b">Example request:</strong></p>
+
+            <pre class="pre codeblock" id="alt_rest_api_calls__codeblock_p4j_1h3_5rb"><code>curl 'http://&lt;ip&gt;:&lt;port&gt;/api/testsuite/status/{id}' \
+--request GET \
+--header 'Accept: application/json' \
+--user 'username':'password'
+</code></pre>
+            <table cellpadding="4" cellspacing="0" summary="" id="alt_rest_api_calls__table_i4j_vfs_vrb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters for cancelling a test suite</span></caption><colgroup><col style="width:10.869565217391305%" /><col style="width:21.73913043478261%" /><col style="width:43.47826086956522%" /><col style="width:23.913043478260875%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e414">Type</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e417">Name</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e420">Description</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e423">Example</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e414 ">path</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e417 "><code class="ph codeph">id</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e420 ">
+                                <p class="p">A String defining a unique identifier of the test suite status to
+                                    cancel. </p>
+
+                                <p class="p">This parameter is mandatory.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e423 "><code class="ph codeph">0578a6f6</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e414 ">header</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e417 "><code class="ph codeph">Accept</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e420 ">
+                                <p class="p">Data format of the response body.</p>
+
+                                <p class="p"><strong class="ph b">Possible types:</strong>
+                                    <code class="ph codeph">application/json</code>
+                                </p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e423 "><code class="ph codeph">Accept: application/json</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e414 ">query</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e417 ">-</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e420 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e423 "> </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <p class="p"><strong class="ph b">Example response:</strong></p>
+
+            <pre class="pre codeblock" id="alt_rest_api_calls__codeblock_xdn_fh3_5rb"><code>{
+  "testsuites": [
+    {
+      "name": "NEW_FEATURES",
+      "id": "{id}",
+      "status": "FAILURE",
+      "error": "Total of 5 failed test cases",
+      "vendor": "Company X",
+      "product": "Product Y",
+      "release": "v10.0.5",
+      "estimatedDuration": 600000,		
+      "duration": 284500,
+      "timestamp": 1612216174323,
+      "tests": 100, 
+      "errors": 0,
+      "failures": 5,
+      "attempts": 1
+    }
+  ]
+}
+</code></pre>
+            <p class="p">A result will have one test suite response; either
+                    <span class="ph uicontrol">NEW_FEATURES</span>, <span class="ph uicontrol">REGRESSION</span>, or
+                    <span class="ph uicontrol">PERFORMANCE</span> based on which test suite was cancelled.</p>
+
+            <p class="p">For more information on the response body parameters and HTTP status codes, see <a class="xref" href="response_parameters.html">Response parameters</a>.</p>
+
+        </div>
+
+        <div class="section" id="alt_rest_api_calls__section_scv_vwr_vrb"><h2 class="title sectiontitle">Creating a test suite artifact</h2>
+            
+            <p class="p">PATH: <code class="ph codeph">/api/testsuite/results</code></p>
+
+            <p class="p">METHOD: <code class="ph codeph">GET</code></p>
+
+            <p class="p">There are three possible high-level actions: <em class="ph i">submitting</em>, <em class="ph i">checking the
+                    status of</em>, and <em class="ph i">cancelling</em> a test suite. If additional test
+                information needs to be provided at the end of the job, a status file (that can be
+                retrieved by a test management system) must be created. For example, an artifact is
+                created when the test has completed in a <strong class="ph b">SUCCESS</strong> or <strong class="ph b">FAILURE</strong> state. The
+                test management system then retrieves this artifact for details on the test job.</p>
+
+            <p class="p">In the following example, the returned status file is based on XUnit/JUnit format,
+                and therefore in XML format.</p>
+
+            <p class="p"><strong class="ph b">Example request:</strong></p>
+
+            <pre class="pre codeblock" id="alt_rest_api_calls__codeblock_pw4_dzr_vrb"><code>curl 'http://&lt;ip&gt;:&lt;port&gt;/api/testsuite/results/{id}' \
+--request GET \
+--header 'Accept: application/xml' \
+--user 'username':'password'
+</code></pre>
+            <table cellpadding="4" cellspacing="0" summary="" id="alt_rest_api_calls__table_xr4_fgs_vrb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters for creating a test suite artifact</span></caption><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e588">Type</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e591">Name</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e594">Description</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d12306e597">Example</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e588 ">path</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e591 "><code class="ph codeph">id</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e594 ">
+                                <p class="p">A String defining a unique identifier of the test suite for which
+                                    to create the artifact. </p>
+
+                                <p class="p">This parameter is optional.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e597 "><code class="ph codeph">0578a6f6</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e588 ">header</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e591 "><code class="ph codeph">Accept</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e594 ">
+                                <p class="p">Data format of the response body.</p>
+
+                                <p class="p"><strong class="ph b">Possible types:</strong>
+                                    <code class="ph codeph">application/xml</code>
+                                </p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e597 "><code class="ph codeph">Accept: application/xml</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e588 ">query</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e591 ">-</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e594 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d12306e597 "> </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <p class="p"><strong class="ph b">Example response:</strong></p>
+
+            <pre class="pre codeblock" id="alt_rest_api_calls__codeblock_ekg_2js_vrb"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;testsuites&gt;
+  &lt;testsuite id="78" name="NEW_FEATURES" failures="0" tests="100" errors="0" attempts="2" time="320.033" timestamp="2021-02-15T10:23:58"&gt;
+    &lt;properties&gt;
+      &lt;property name="vendor.name" value="Company X" /&gt;
+      &lt;property name="vendor.product" value="Product Y" /&gt;
+      &lt;property name="vendor.release" value="v10.0.5" /&gt;
+    &lt;/properties&gt;
+    &lt;testcase classname="…" name="Test 1…" time="0.006" attempts="1" /&gt;
+    &lt;testcase classname="…" name="Test 2…" time="2.025" attempts="2" /&gt;
+    &lt;testcase classname="…" name="Test 3…" time="3.036" attempts="1" /&gt;
+     …
+    &lt;testcase classname="…" name="Test X…" time="0.238" attempts="1" /&gt;
+  &lt;/testsuite&gt;
+&lt;/testsuites&gt;
+</code></pre>
+            <p class="p">The returned file is in XUnit/JUnit format and includes a summary of the executed
+                test suite(s). A result can have more than one test suite responses based on the
+                request. Specifically, a request without a test suite ID will return 3 test suite
+                responses in the result; one for each of <span class="ph uicontrol">NEW_FEATURES</span>,
+                    <span class="ph uicontrol">REGRESSION</span>, and <span class="ph uicontrol">PERFORMANCE</span>. In
+                addition, the test results file can include a status for each test case in a
+                suite.</p>
+
+            <p class="p">For more information on the response body parameters and HTTP status codes, see <a class="xref" href="response_parameters.html">Response parameters</a>.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>DevOps Guide • P556766-DN1000055058-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

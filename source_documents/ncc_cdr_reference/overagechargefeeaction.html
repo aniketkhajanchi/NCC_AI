@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="overageChargeFeeAction" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="overagechargefeeaction" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>overageChargeFeeAction</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="overagechargefeeaction">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">overageChargeFeeAction</h1>
+<div class="body conbody">
+        <p class="p">For description of EDR tags, refer to <a class="xref" href="counter.html">Counter</a>.</p>
+
+    </div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_kyd_4vv_tvb"><h2 class="title topictitle2" id="ariaid-title2">EDR example</h2>
+<div class="body conbody">
+            <pre class="pre codeblock" id="concept_kyd_4vv_tvb__codeblock_qlt_qvv_tvb"><code>
+-------------------------------------
+CDR length:                       988
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                             Tag                                                   Data
+RecordType                       0                                      PROVISIONING_RECORD
+invokedBy                        1                                                   onCall
+invokedMethod                    1                                   overageChargeFeeAction
+result                           1                                                  SUCCESS
+correlationID                    1     X-CorrelationId:65f462d7-99c9-41d4-a3ad-8832583a8273
+generationTimestamp              1                                      01/11/2022 13:13:01
+meHostName                       1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                                    
+nccVersion                       1                                              SPS_23_0_R1
+recordId                         1      20221101074301_348efba1-3ed1-4f96-9756-c260ee0d24cb
+RecordTimestamp                  1                                      01/11/2022 13:13:01
+  RecordProperty                 0                                               deviceInfo
+  deviceId                       1                                               device7615
+    RecordProperty               0                                               bundleInfo
+    bundleName                   1                                                    S7615
+    subscriptionId               1                     9527010b-a534-41a6-8420-125c163f8436
+      RecordProperty             0                                              counterInfo
+      counterName                1                                                    C7615
+      counterInstanceID          1                     668b05bb-e98c-4d0f-a92b-02d9951fb2ab
+      counterType                1                                             SUBSCRIPTION
+      counterUnitType            1                                                     Byte
+      counterValueAfter          1                                                     2200
+      currentOverageBlockUsage   1                                                      200
+      totalOverageUsage          1                                                     1200
+      counterOverageCount        1                                                        6
+      currentOverageUsageCost    1                                                    100.0
+      totalOverageUsageCost      1                                                    600.0
+  RecordProperty                 0                                              accountInfo
+  accountID                      1                                                  acc7615
+  accountType                    1                                                POST_PAID
+  accountBalanceBefore           1                                                   -500.0
+  accountBalanceAfter            1                                                   -600.0
+</code></pre>
+        </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

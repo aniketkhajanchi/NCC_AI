@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="task" />
+<meta name="DC.title" content="Creating Jenkins slave service, virtual service, gateway and destination rule" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="creating_yaml_files_for_jenkins_slave_service_virtualservice_gateway_and_destinationrule" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Creating Jenkins slave service, virtual service, gateway and destination rule</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="creating_yaml_files_for_jenkins_slave_service_virtualservice_gateway_and_destinationrule">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Creating Jenkins slave service, virtual service, gateway and destination rule</h1>
+<div class="body taskbody">
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div>
+            <p class="p">This procedure describes how to create YAML files for Jenkins slave service, virtual
+                service, gateway and destination rule on OpenShift with custom SCC and service
+                account.</p>
+
+        </div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">Create (and navigate to) a <code class="ph codeph">jenkins-slave</code> directory:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>mkdir jenkins-slave
+cd jenkins-slave</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Create a <code class="ph codeph">jenkins-slave.yaml</code> file for Jenkins slave service,
+                    with the given content:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>cat &lt;&lt;EOF &gt; jenkins-slave.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    jenkins: slave
+  name: cctf-jenkins-slave
+  namespace: &lt;NAMESPACE&gt;
+spec:
+  type: ClusterIP
+  ports:
+  - name: slavelistener
+    port: 11200
+    protocol: TCP
+    targetPort: 11200
+  selector:
+    jenkins: slave
+EOF</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Create a <code class="ph codeph">jenkins-slave-gw.yaml</code> file for gateway, with the
+                    given content:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>cat &lt;&lt;EOF &gt; jenkins-slave-gw.yaml
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: jenkins-slave-gw
+  namespace: &lt;NAMESPACE&gt;
+spec:
+  selector:
+    istio: cctf
+  servers:
+  - hosts:
+    - '*'
+    port:
+      name: tcp-slave
+      number: 11200
+      protocol: TCP
+EOF</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Create a <code class="ph codeph">jenkins-slave-vs.yaml</code> file for virtual service, with
+                    the given content:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>cat &lt;&lt;EOF &gt; jenkins-slave-vs.yaml
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: jenkins-slave
+  namespace: &lt;NAMESPACE&gt;
+spec:
+  gateways:
+  - jenkins-slave-gw
+  hosts:
+  - '*'
+  tcp:
+  - match:
+    - port: 11200
+      - '*'
+    route:
+    - destination:
+        host: cctf-jenkins-slave
+        port:
+          number: 11200</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Create a <code class="ph codeph">jenkins-slave-dr.yaml</code> file for destination rule, with
+                    the given content:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>cat &lt;&lt;EOF &gt; jenkins-slave-dr.yaml
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: jenkins-slave
+  namespace: &lt;NAMESPACE&gt;
+spec:
+  host: jenkins-slave.cctf.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+EOF</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Replace <code class="ph codeph">&lt;NAMESPACE&gt;</code> with the real namespace:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>find . -type f -print | xargs grep -l "&lt;NAMESPACE&gt;" | xargs sed -i "s/&lt;NAMESPACE&gt;/$NAMESPACE/g"</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Apply the values defined in the YAML files:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>oc apply -f jenkins-slave.yaml
+oc apply -f jenkins-slave-gw.yaml
+oc apply -f jenkins-slave-vs.yaml
+oc apply -f jenkins-slave-dr.yaml</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Add port <code class="ph codeph">11200</code> to the <code class="ph codeph">istio-ingressgateway</code>
+                    service:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>kubectl edit svc -n cctf istio-ingressgateway
+
+...
+  - name: tcp-jenkins
+    port: 11200
+    protocol: TCP
+    targetPort: 11200
+...</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Create service entries for SM and SE sites:</span>
+                <div class="itemgroup info">
+                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Replace <code class="ph codeph">&lt;NAMESPACE&gt;</code> and
+                            <code class="ph codeph">&lt;xx-site-FQDN&gt;</code> with the actual values.</div>
+
+                    <pre class="pre codeblock"><code>cat &lt;&lt; EOF | kubectl apply -f -
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: ext-me-se-443-3868
+  namespace: &lt;NAMESPACE&gt;
+spec:
+  hosts:
+  - &lt;me-site-FQDN&gt;
+  ports:
+  - name: https-443
+    number: 443
+    protocol: https
+  - name: tcp-3868
+    number: 3868
+    protocol: tcp
+  location: MESH_EXTERNAL
+  resolution: DNS
+EOF
+</code></pre>
+                    <p class="p">where port <code class="ph codeph">3868</code> is the default port of the 4G test server.
+                        If needed, you can define additional ports.</p>
+
+                    <pre class="pre codeblock"><code>cat &lt;&lt; EOF | kubectl apply -f -
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: ext-sm-se-443
+  namespace: &lt;NAMESPACE&gt;
+spec:
+  hosts:
+  - &lt;sm-site-FQDN&gt;
+  ports:
+  - name: https-443
+    number: 443
+    protocol: https
+  location: MESH_EXTERNAL
+  resolution: DNS
+EOF
+</code></pre>
+                    <pre class="pre codeblock"><code>cat &lt;&lt; EOF | kubectl apply -f -
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: ext-ssh-se-22
+  namespace: &lt;NAMESPACE&gt;
+spec:
+  addresses:
+  - &lt;jumphost_IP-CIDR&gt;
+  hosts:
+  - "any"
+  ports:
+  - name: ssh-22
+    number: 22
+    protocol: tcp
+  location: MESH_EXTERNAL
+  resolution: NONE
+EOF</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Check that the <code class="ph codeph">istio-ingressgateway</code> service is running:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>kubectl get svc -n cctf istio-ingressgateway</code></pre>
+                    <p class="p">Example output:</p>
+
+                    <pre class="pre codeblock"><code>NAME                   TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                                                                                                                                                                      AGE
+istio-ingressgateway   LoadBalancer   10.254.206.231   &lt;pending&gt;     15020:30824/TCP,80:31380/TCP,443:31390/TCP,31400:31400/TCP,30080:30080/TCP,30081:30081/TCP,15030:31420/TCP,15031:31644/TCP,15032:30845/TCP,15443:31416/TCP,11200:30099/TCP   3d23h
+</code></pre>
+                </div>
+            </li>
+</ol>
+
+    </div>
+<div class="footer"><hr /><p>DevOps Guide • P556766-DN1000055058-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

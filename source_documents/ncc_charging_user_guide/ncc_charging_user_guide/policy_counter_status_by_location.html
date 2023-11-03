@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Policy counter" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9YZ-09126-UG01-PCZZA-SP1-d1e4272" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Policy counter</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9YZ-09126-UG01-PCZZA-SP1-d1e4272">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Policy counter</h1>
+<div class="body conbody">
+        <div class="section">
+            <p class="p">This feature supports the policy counters where the policy counter status can be
+                modified based on location information. Different counters can be defined to track
+                the usage based on the location. For example, when a user is in home location, the
+                usage can be tracked in the base counter, whereas when a user in roaming location,
+                the usage can be tracked in the roaming counter. The Policy Counter (PC) IDs can be
+                defined to indicate the status of the home and roaming counters. A location PC ID
+                can be defined to indicate the user's current zone to the PCRF. Different tariff
+                plans get activated based on the location.</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The defined policy counter ID must not exist in the device. </div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Configuring a policy counter status</h2>
+            
+            <p class="p">Perform the following steps to configure a policy counter:</p>
+
+            <ol class="ol">
+                <li class="li">
+                    <p class="p">Create a custom data string to define a location and attach it to a
+                        device.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Create the complex maps data to define the mapping between MCCMNC, Country,
+                        and Location.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Create a threshold with rule to trigger SNR message with location such as
+                        home, roam and so on.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Create and attach counter to the device and enable the policy counter and
+                        resource based options. Attach the previously defined threshold to it. Note
+                        that the device counter is the PC ID for location.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Create a <kbd class="ph userinput">THRESHOLD</kbd> trigger and define two rule
+                        variables <kbd class="ph userinput">Country</kbd> and <kbd class="ph userinput">Location</kbd>
+                        in it.</p>
+
+                </li>
+
+            </ol>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                
+                <ul class="ul">
+                    <li class="li">
+                        <p class="p">Whenever a usage limit notification is sent for a policy counter, it can
+                            cause the change in status of the policy counter.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Only one policy threshold can be associated with a policy counter.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Multiple normal thresholds can be associated with a policy counter.</p>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Example</h2>
+            
+            <p class="p">Bob has an iPhone device and originates a 5G data call when in Canada and Brazil. The
+                PC status is set based on the location. For this example, configure the following
+                entities:</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d59621e129">
+                                <p class="p">Entity</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d59621e135">
+                                <p class="p">Task</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e129 ">Mapping tables</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e135 ">Configure the complex map MCCMNC. NCC takes MCCMNC as input and
+                                provides at least two output.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e129 ">Custom data</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e135 ">Create a custom data for Device type.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e129 ">Thresholds</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e135 ">Create the thresholds of different types with same rule.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e129 ">Counter</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e135 ">Create the counters of different types and attach to the device
+                                as Device counter type.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e129 ">Device</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e135 ">Create a device and attach the device counter and custom data to
+                                it.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e129 ">Rules and Variables</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e135 ">Create a THRESHOLD trigger and define two variables Country and
+                                Location in it.</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <div class="sectiondiv">
+                <p class="p"><strong class="ph b">Mapping tables</strong></p>
+
+                <p class="p">Following is the complex map table. From SM GUI, navigate to <span class="ph uicontrol">Charging
+                        Configurator &gt; Mapping tables</span>. </p>
+
+                <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d59621e229">
+                                    <p class="p">MCCMNC</p>
+
+                                    <p class="p">[key]</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d59621e238">
+                                    <p class="p">Country</p>
+
+                                    <p class="p">[value]</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d59621e247">
+                                    <p class="p">Location</p>
+
+                                    <p class="p">[value]</p>
+
+                               </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e229 ">302380</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e238 ">CANADA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e247 ">ROAM</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e229 ">310410</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e238 ">US</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e247 ">HOME</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e229 ">301234</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e238 ">MEXICO</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e247 ">ROAM</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e229 ">403370</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e238 ">BRAZIL</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e247 ">ROAM</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+            <div class="sectiondiv">
+                <p class="p"><strong class="ph b">Custom data</strong></p>
+
+                <p class="p">Create the following custom data.</p>
+
+                <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Locationpass1</span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d59621e336">
+                                    <p class="p">Field</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d59621e342">
+                                    <p class="p">Value</p>
+
+                               </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e336 ">Name</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e342 ">Locationpass1</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e336 ">Context Type</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e342 ">DEVICE</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e336 ">Required</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e342 ">false</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e336 ">Read Only</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e342 ">false</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e336 ">Value Type</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e342 ">String</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e336 ">Multi Value</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e342 ">true</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+            <div class="sectiondiv">
+                <p class="p"><strong class="ph b">Device</strong></p>
+
+                <p class="p">Create the device and configure the custom data while attaching it to the device. </p>
+
+                <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d59621e433">
+                                    <p class="p">Field</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d59621e439">
+                                    <p class="p">Value</p>
+
+                               </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e433 ">Key</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e439 ">Locationpass1</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e433 ">Type</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e439 ">String</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e433 ">Value</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d59621e439 ">BRAZIL, CANADA</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+            <div class="sectiondiv">
+                <p class="p"><strong class="ph b">Thresholds</strong></p>
+
+                <p class="p">Create two different types of absolute threshold profile (THR) threshold
+                    TPG333331 and TPG333332 with the same rule. </p>
+
+                <p class="p">
+                    <span class="ph uicontrol">Threshold - Byte (Kind of Unit = Volume)</span>
+                </p>
+
+                <div class="fig fignone">
+                    
+                    <img class="image break" id="id9YZ-09126-UG01-PCZZA-SP1-d1e4272__image_xmj_f1k_lpb" src="../images/threshold_byte_default.png" height="326" width="643" />
+                </div>
+
+                <p class="p">
+                    <span class="ph uicontrol">Threshold - Second (Kind of Unit = Time)</span>
+                </p>
+
+                <div class="fig fignone">
+                    
+                    <img class="image break" src="../images/threshold_second_default.png" height="332" width="640" />
+                </div>
+
+            </div>
+            <div class="sectiondiv">
+                <p class="p"><strong class="ph b">Counter</strong></p>
+
+                <p class="p">Create two different types of counter and attach them to device as
+                        <kbd class="ph userinput">Device Counter</kbd> type.</p>
+
+                <p class="p">
+                    <span class="ph uicontrol">Counter - Byte (Unit Type = Byte)</span>
+                </p>
+
+                <div class="fig fignone">
+                    
+                    <img class="image break" src="../images/counter_byte_default.png" height="123" width="668" />
+                </div>
+
+                <p class="p">
+                    <span class="ph uicontrol">Counter - Second (Unit Type = Second)</span>
+                </p>
+
+                <div class="fig fignone">
+                    
+                    <img class="image break" src="../images/counter_second_default.png" height="123" width="670" />
+                </div>
+
+            </div>
+            <div class="sectiondiv">
+                <p class="p"><strong class="ph b">Rules and variables</strong></p>
+
+                <p class="p">Create the <kbd class="ph userinput">THRESHOLD</kbd> rule trigger and define
+                        <span class="ph uicontrol">Country</span> and <span class="ph uicontrol">Location</span> rule
+                    variables in it.</p>
+
+                <p class="p">
+                    <span class="ph uicontrol">Trigger Type = THRESHOLD, Rule variable = Country</span>
+                </p>
+
+                <div class="fig fignone">
+                    
+                    <img class="image break" src="../images/trigger_country_default.png" />
+                </div>
+
+                <p class="p">
+                    <span class="ph uicontrol">Trigger Type = THRESHOLD, Rule variable = Location</span>
+                </p>
+
+                <div class="fig fignone">
+                    
+                    <img class="image break" src="../images/trigger_location_default.png" />
+                </div>
+
+            </div>
+            <div class="sectiondiv">
+                <p class="p"><strong class="ph b">NCC actions</strong></p>
+
+                <p class="p">Consider that the iPhone device is in Canada and the custom data Locationpass1 is
+                    CANADA and BRAZIL.</p>
+
+                <p class="p">NCC performs the following logic based on the MCCMNC values:</p>
+
+                <ul class="ul">
+                    <li class="li">
+                        <p class="p">The CCR-I with MCCMNC = 302380 is received. Since CANADA is in the custom
+                            data Locationpass1 list, Locationpass1 is used for location PC status.
+                        </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The CCR-I with MCCMNC = 301234 is received. Since MEXICO is not in the
+                            custom data Locationpass1 list, ROAM is used for location PC status.
+                        </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The CCR-I with MCCMNC = 310410 is received. Since US is configured as HOME
+                            zone in the complex mapping table, HOME is used for location PC status.
+                        </p>
+
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

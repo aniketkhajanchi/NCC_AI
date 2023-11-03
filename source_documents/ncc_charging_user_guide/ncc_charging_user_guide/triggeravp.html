@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Trigger AVP support for VoLTE/ViLTE/Gy calls" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e25835" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Trigger AVP support for VoLTE/ViLTE/Gy calls</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e25835">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Trigger AVP support for VoLTE/ViLTE/Gy calls</h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">This section provides information about the support for the <em class="ph i">Trigger</em> AVP in NCC for VoLTE,
+                                                  ViLTE, Gy calls.</p>
+
+<p class="p">NCC call controller supports <em class="ph i">Trigger</em> AVP in CCA for VoLTE and ViLTE calls using rules.
+                                                  This support is also available for Gy interface.
+                                                  The <em class="ph i">Trigger</em> AVP is supported for both
+                                                  decentralized and centralized calls. This AVP
+                                                  comes into picture only if some quantity is
+                                                  reserved and granted in CCA. </p>
+
+<p class="p">A CDR tag is generated with the value of trigger reported in the CCR.</p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Trigger AVP</h2>
+<p class="p">The <em class="ph i">Trigger</em> AVP (AVP code 1264) is of type Grouped and holds the trigger types. The presence of the <em class="ph i">Trigger</em> AVP  without any <em class="ph i">Trigger-Type</em> AVP in a CCA allows OCS to disable all the triggers. The presence of the Trigger AVP in the  CCR identifies the event(s) triggering the CCR.  It has the following ABNF grammar:</p>
+
+<samp class="ph systemoutput">Trigger ::= &lt; AVP Header: 1264 &gt;
+                 * [ Trigger-Type ]</samp>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Trigger-Type AVP</h2>
+<p class="p">The <em class="ph i">Trigger-Type</em> AVP (AVP code 870) is of type Enumerated and indicates a single reauthorization event type. When included in the Credit-Control-Answer command, the <em class="ph i">Trigger-Type</em> AVP indicates the events that cause the credit control client to reauthorize the associated quota. The client do not reauthorize the quota when events, which are not included in the <em class="ph i">Trigger</em> AVP occur. When included in the Credit-Control-Request command indicates the specific event which caused the reauthorisation request of the <span class="ph uicontrol">Reporting-Reason</span> with value <var class="keyword varname">RATING_CONDITION_CHANGE</var> associated.</p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Application preference</h2>
+<p class="p">To enable <em class="ph i">Trigger</em> AVP support in NCC, the application preference <span class="ph uicontrol">Trigger
+                                                  Feature Supported</span> must be set to
+                                                  <var class="keyword varname">true</var>.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:30.245231607629425%" /><col style="width:27.24795640326975%" /><col style="width:42.50681198910081%" /></colgroup><thead class="thead" style="text-align:left;">
+                                                  <tr class="row">
+                                                  <th class="entry cellrowborder" style="vertical-align:top;" id="d151751e119">
+                                                  <p class="p">Trigger Feature Supported</p>
+
+                                                 </th>
+
+                                                  <th class="entry cellrowborder" style="vertical-align:top;" id="d151751e125">
+                                                  <p class="p">And...</p>
+
+                                                 </th>
+
+                                                  <th class="entry cellrowborder" style="vertical-align:top;" id="d151751e131">
+                                                  <p class="p">Then</p>
+
+                                                 </th>
+
+                                                  </tr>
+
+                                                  </thead>
+<tbody class="tbody">
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d151751e119 ">False</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d151751e125 ">-</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d151751e131 ">No change</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d151751e119 ">True</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d151751e125 ">Trigger Received in CCR-U is armed</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d151751e131 ">No change</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d151751e119 ">True</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d151751e125 ">Trigger Received in CCR-U is NOT armed</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d151751e131 ">Ignores the triggered Value received in
+                                                   the request, takes the appropriate value from database
+                                                  (last request) and continue with existing logic.
+                                                 </td>
+
+                                                  </tr>
+
+                                                  </tbody>
+</table>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Rule support</h2>
+                                                  <p class="p">In NCC, the <em class="ph i">Trigger-Type</em> AVP is stored
+                                                  in the
+                                                  <span class="ph uicontrol">CALL_RESULT.Trigger-Type</span>
+                                                  result context attribute. This attribute is
+                                                  available in the <em class="ph i">RATING_POST_PROCESSING</em>
+                                                  rule set.</p>
+
+                                                  <p class="p">
+                                                  <strong class="ph b">Example action:</strong>
+                                                  </p>
+
+                                                  <samp class="ph systemoutput">CALL_RESULT.Trigger-Type =
+                                                  TriggerType_CHANGE_IN_LOCATION</samp>
+                                                  <p class="p">For all valid values of <em class="ph i">Trigger-Type</em>
+                                                  AVP, see <a class="xref" href="resultcontext_and_actions_call_result_result_context.html">CALL_RESULT result context</a>. </p>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Example: Media-Type trigger</h2>
+<p class="p">Set the application preference <span class="ph uicontrol">Trigger Feature Supported</span> to <var class="keyword varname">true</var>.</p>
+
+<p class="p">In initial request, set <span class="ph uicontrol">SDP-Media-Name</span> as <var class="keyword varname">m=video 49170 RTP/AVP 0</var>. If <em class="ph i">Trigger-Type</em>
+<var class="keyword varname">CHANGE_IN_MEDIA_COMPOSITION</var> is armed and it is received in CCR-U also, then <span class="ph uicontrol">SDP-Media-Name</span> is updated with the new value (<var class="keyword varname">m=audio 49170 RTP/AVP 0</var>) received in CCR-U and charging happens from bucket <var class="keyword varname">bkt_audio</var>.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Trigger setup in rules</span>
+                                                  
+                                                  
+                                                  <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-triggermediatype_default.png" />
+                                                  </div>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Media-based charging configuration in
+                                                  Tariff</span>
+                                                  
+                                                  
+                                                  <img class="image break" height="288" src="../images/img9yz-09126-ug01-pczza-sp1-triggermediatype2_default.png" width="480" />
+                                                  </div>
+
+<p class="p">When running IMS call with different Media-type values in <span class="ph uicontrol">SDP-Media-Component</span>:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">In initial request, set <span class="ph uicontrol">SDP-Media-Name</span> as <var class="keyword varname">m=video 49170 RTP/AVP 0</var>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">In update request, set <span class="ph uicontrol">SDP-Media-Name</span> as <var class="keyword varname">m=audio 49170 RTP/AVP 0</var> and <em class="ph i">Trigger-Type</em> AVP as <var class="keyword varname">CHANGE_IN_MEDIA_COMPOSITION</var>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">In terminate request, do not set any <span class="ph uicontrol">SDP-Media-Name</span>.</p>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

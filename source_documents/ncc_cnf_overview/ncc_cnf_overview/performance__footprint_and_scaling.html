@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Performance, footprint, and scaling" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="performance__footprint_and_scaling" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Performance, footprint, and scaling</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="performance__footprint_and_scaling">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Performance, footprint, and scaling</h1>
+<div class="body conbody">
+        <p class="p">This section describes the performance, footprint, and scaling of <span class="ph">NCC</span>.</p>
+
+        <div class="section" id="performance__footprint_and_scaling__section_n4m_yr2_llb"><h2 class="title sectiontitle">Intelligent autoscaling</h2>
+            
+            <p class="p"><span class="ph">NCC</span> is designed to be a cloud-native solution with
+                containers that can be horizontally scaled in and scaled out as appropriate for
+                handling the current offered load using the Kubernetes controller, Horizontal Pod
+                Autoscaler (HPA). HPA monitors workload and utilization of resources in a cluster,
+                and based on the current need as well as thresholds and specified utilization
+                metrics (which is CPU utilization by default), dynamically adjusts the number of
+                instances of a particular type. During times of high traffic, HPA spins up more
+                instances of particular pod types as required and when traffic is lower, it scales
+                in the number of instances. Therefore, NCC only consumes the resource footprint that
+                is required to handle the offered load on the system.</p>
+
+            <p class="p">This autoscaling is especially important considering that <span class="ph">NCC</span> systems are typically deployed in pairs, meaning
+                that any particular NCC system receives only one half of the traffic load compared
+                to its engineered capacity. Moreover, the system dimensioning is typically done
+                conservatively to allow for maximum anticipated peak, busy-hour traffic, while the
+                actual traffic is often much lower.</p>
+
+            <p class="p"><span class="ph">NCC</span> consumes a much lower footprint during typical
+                operation, scaling up only as much as required for the actual load on the
+                system.</p>
+
+            <p class="p">HPA autoscaling is done within the minReplicas and maxReplicas range configured.
+                Administrators or, potentially, an NFVO could adjust the maxReplicas when needed.
+                For example, year 2/3 capacity has been installed, and NCC can now consume further
+                resources. HPA will not scale in or scale out if the new number of pods is less than
+                a tolerance percentage of the current number of pods, which defaults to 10%. This
+                mechanism allows HPA to scale out and scale in only when a significant portion of
+                resources needs to be added or released from the system. For example, if there are
+                11 pods and the HPA calculation suggests 12 pods, HPA will not scale out from 11 to
+                12 pods. If the HPA calculation suggests 13 pods, then HPA will scale out the number
+                of pods from 11 to 13. The same is true for the scale-in operation. For example, if
+                there are 12 pods and only 11 are needed, HPA will not trigger a scale-in. If there
+                are 12 pods and only 10 are needed, then HPA will scale in from 12 to 10 pods.</p>
+
+            <p class="p">Database instances (Aerospike and Redis) are excluded from automatic scaling. The
+                database might be constrained by the memory required to hold the records for the
+                engineered number of subscribers/devices. Therefore, it is not possible to scale in
+                those instances as traffic diminishes since the required amount of memory remains
+                unchanged.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Caching of data</h2>
+            
+            <p class="p">NCC application pods maintain a local cached copy of infrequently changing data that
+                have a small number of records (for example, service bundle definitions, that are
+                system-level records and not per-subscriber nor per-device). This helps further
+                optimize the performance and reduce the load on the database. Cached data must be
+                updated periodically either by polling, or using the data change notification
+                mechanism which leverages Kafka pub/sub functionality to notify interested
+                clients.</p>
+
+        </div>
+        
+        <div class="section" id="performance__footprint_and_scaling__section_kkr_qr2_llb"><h2 class="title sectiontitle">Data model principles for high performance</h2>
+            
+            <p class="p"><span class="ph">NCC</span> is designed with best-practice strategies for
+                leveraging NoSQL database technology. An important aspect of this strategy is to
+                create records that include most of the data needed for the most common
+                transactions, rather than have that data spread across many tables or sets. This
+                approach reduces the number of database accesses for the typical charging
+                transaction. <span class="ph">NCC</span> leverages several Aerospike features
+                to achieve this, including lists and maps within the record. The <span class="ph">NCC</span> data model includes separate records for
+                provisioned data that changes infrequently, dynamic data records, and indexes to
+                locate data entities within larger provisioned and dynamic data records. Even with
+                the large record strategy, there are multiple records involved in many network
+                transactions, so transaction management and rollback capability is used to manage
+                data consistency for multiple updates.</p>
+
+            
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Late rating Diameter distributor stream" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="lr_diameter_dist_stream" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Late rating Diameter distributor stream</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="lr_diameter_dist_stream">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Late rating Diameter distributor stream</h1>
+<div class="body conbody">
+        <p class="p">Late rating Diameter distributor stream consists of only one node, Late Rating Diameter
+            Distributor Node, which collects records from the database and converts them into
+            Diameter messages, then sends them out as Diameter requests.</p>
+
+        <p class="p">After the records have been processed and mapped by Late rating business logic stream,
+            Late Rating Diameter Distributor Node constructs a Diameter message for every serialized
+            event record written to the database, where the serialized event record is converted
+            into a Diameter message by adding the extra fields needed to meet the Diameter standard,
+            which is represented is configurable <code class="ph codeph">dictionary.xml</code>. </p>
+
+        <p class="p">Late Rating Diameter Distributor Node saves the OutputRecord object in a list and
+            establishes a connection to the Diameter server based on the node parameters
+            configuration of Late Rating Diameter Distributor Node and a configurable
+                <code class="ph codeph">stack.xml</code> file, and passes the list of output records for sending
+            the list as Diameter requests. If the connection to the Diameter server fails, all the
+            output objects lists are saved to a failed list. Otherwise, the stream keeps listening
+            to the responses of Diameter requests, and if it receives any unsuccessful responses,
+            the corresponding original records are stored to the failed list as well. After that,
+            all the records in the failed list is written to the database log queue to be handled by
+            Late Rating Log Distributor Node. The log queue is defined with node parameter
+                <code class="ph codeph">LogQueueName</code>.</p>
+
+        <div class="section" id="lr_diameter_dist_stream__section_k4j_4vm_r4b"><h2 class="title sectiontitle">Scaling</h2>
+            
+            <p class="p">Late Rating Diameter Distributor Node can be scaled by adding multiple instances of
+                the node into the stream. There can also be multiple Late rating input streams
+                working in parallel.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

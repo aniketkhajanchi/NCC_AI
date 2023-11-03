@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Nchf_ConvergedCharging support for duplicate ChargingRequest invocationSequenceNumber and UsedUnitContainer localSequenceNumber" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="nchf_convergedcharging_support_for_duplicate_chargingrequest_invocationsequencenumber_and_usedunitcontainer_localsequencenumber" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Nchf_ConvergedCharging support for duplicate ChargingRequest invocationSequenceNumber and UsedUnitContainer localSequenceNumber</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="nchf_convergedcharging_support_for_duplicate_chargingrequest_invocationsequencenumber_and_usedunitcontainer_localsequencenumber">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Nchf_ConvergedCharging support for duplicate ChargingRequest invocationSequenceNumber and UsedUnitContainer localSequenceNumber</h1>
+<div class="body conbody">
+        <div class="section" id="nchf_convergedcharging_support_for_duplicate_chargingrequest_invocationsequencenumber_and_usedunitcontainer_localsequencenumber__section_cd2_1wr_t4b"><h2 class="title sectiontitle">Normal update request flow</h2>
+            
+            <ol class="ol" id="nchf_convergedcharging_support_for_duplicate_chargingrequest_invocationsequencenumber_and_usedunitcontainer_localsequencenumber__ol_xsh_gxr_t4b">
+                <li class="li">When this feature is configured, the <em class="ph i">InnvocationSequenceNumber</em> attribute
+                    value received in incoming request is compared with the previous request's
+                        <em class="ph i">InnvocationSequenceNumber</em> received in Update or Terminate request. In
+                    case incoming <em class="ph i">InnvocationSequenceNumber</em> is same as with previous
+                    request's <em class="ph i">InvocationSequenceNumber</em>, then the request is considered as
+                        <strong class="ph b">duplicate</strong> request.</li>
+
+                <li class="li">The UUC (with LSN higher than max LSN in previous request) and CHF that is newly
+                    discovered is considered with the new UUC(s) for rating as new usage is reported
+                    by the network.</li>
+
+                <li class="li">In case the UUC's reported have LSN less than or equal to the max LSN reported
+                    in the previous request, then all the UUC's is reset to zero for further
+                    rating.</li>
+
+                <li class="li">In duplicate request, CDR is not generated when there is no new UUC
+                    present.</li>
+
+                <li class="li">In duplicate request, a custom tag <strong class="ph b">DUPLICATE_REQUEST</strong> is added in Call
+                    Metrics. Possible values for this custom tag is as follows,<ol class="ol" type="a" id="nchf_convergedcharging_support_for_duplicate_chargingrequest_invocationsequencenumber_and_usedunitcontainer_localsequencenumber__ol_lcs_4cp_z4b">
+                        <li class="li"><em class="ph i">WITHOUT_ADDITIONAL_USAGE</em></li>
+
+                        <li class="li"><em class="ph i">WITH_ADDITIONAL_USAGE</em></li>
+
+                    </ol>
+</li>
+
+                <li class="li">This feature also works with following request type as well,
+                        <em class="ph i">NewCallStartInUpdateAndTerminate</em>, <em class="ph i">AP</em>, and <em class="ph i">TTC Request</em>.
+                        <p class="p">For any kind of session termination either from Terminate request or
+                        Audit (VT expire), the session is marked as inactive and is retained till
+                        configured <em class="ph i">Time to Live for Terminated Sessions (Seconds)</em> value gets
+                        expired. Session marked inactive can only be activated again when the
+                        corresponding Update Request is received.</p>
+</li>
+
+            </ol>
+
+        </div>
+
+    </div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_iry_cvr_t4b2"><h2 class="title topictitle2" id="ariaid-title2">Additional information</h2>
+<div class="body conbody">
+            <ul class="ul" id="concept_iry_cvr_t4b2__ul_yjj_24s_x5b">
+                <li class="li">Configure application preference <em class="ph i">Time to Live for Terminated Sessions
+                        (Seconds)</em> in such way that too many sessions are not collected or stored
+                    in database, as it may lead to database performance issues.</li>
+
+                <li class="li">In case of Duplicate TTC Requests for which additional usage is reported. Only
+                    additional usage from only AFTER USU is considered for rating. but CDR is
+                    generated for Both BEFORE with Zero Usage and AFTER with additional usage (if
+                    any), similar to as generated in normal TTC requests.</li>
+
+                <li class="li">If a session is terminated normally due to receiving a
+                    Nchf_ConvergedCharging_Release message from the network, then the CHF must
+                    reduce the amount of storage required for the session (that is, it no longer
+                    needs to store reported usage or reactivate the session) to the minimum needed
+                    for successfully identifying a duplicate release transaction for the same
+                    session.</li>
+
+            </ul>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

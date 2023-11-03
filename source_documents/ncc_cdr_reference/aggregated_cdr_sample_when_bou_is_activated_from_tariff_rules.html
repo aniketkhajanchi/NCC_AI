@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Aggregated CDR sample when BOU is activated from tariff rules" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="aggregated_cdr_sample_when_bou_is_activated_from_tariff_rules" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Aggregated CDR sample when BOU is activated from tariff rules</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="aggregated_cdr_sample_when_bou_is_activated_from_tariff_rules">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Aggregated CDR sample when BOU is activated from tariff rules</h1>
+<div class="body conbody">
+        <pre class="pre codeblock" id="aggregated_cdr_sample_when_bou_is_activated_from_tariff_rules__codeblock_td4_hht_mxb"><code>record1:
+  payload:
+    genericRecord:
+      recordType: OCSChargingRecord
+      recordElements:
+      - varName: prevMeName
+        varValue: ajay-me
+      - varName: recordId
+        varValue: 20230410180917_2e12e51a-e5ac-4d33-9093-4f255cefe5cb
+      - varName: generationTimestamp
+        varValue: 10/04/2023 23:39:16
+      - varName: sessionId
+        varValue: maestro.nsn-intra.net;20230410233908;c9ce7ac2
+      - varName: serviceContextId
+        varValue: 32251@3gpp.org
+      - varName: sessionStartTime
+        varValue: 10/04/2023 23:39:10
+      - varName: dayOfWeek
+        varValue: Monday
+      - varName: originHost
+        varValue: maestro.nsn-intra.net
+      - varName: accessPointName
+        varValue: web.omnitel.it
+      - varName: psChargingID
+        varValue: '94410608'
+      - varName: gGSNAddress
+        varValue: '[IPV4: 83.224.35.96]'
+      - varName: sGSNAddress
+        varValue: '[IPV4: 82.194.63.3]'
+      - varName: deviceId
+        varValue: '393460100061'
+      - varName: deviceName
+        varValue: '393460100061'
+      - varName: deviceOwner
+        varValue: '393460100061'
+      - varName: deviceOwnerName
+        varValue: '393460100061'
+      - varName: deviceState
+        varValue: ACTIVE
+      - varName: devicePartitionId
+        varValue: '1'
+      - varName: deviceSiteId
+        varValue: '4'
+      - varName: userEquipmentType
+        varValue: '0'
+      - varName: userEquipmentValue
+        varValue: '35333837313433303231343930373030'
+      - varName: DEVICE_IMSI
+        varValue: '222103460100061'
+      - varName: classOfService
+        varValue: '111'
+      - varName: originatingZoneCode
+        varValue: '78'
+      - varName: destinationZoneCode
+        varValue: '2037'
+      - varName: endUserTypology
+        varValue: '01'
+      - varName: TIME_ID
+        varValue: DAY
+      - varName: IMEI
+        varValue: '5387143021490700'
+      - varName: defaultTariffPlan
+        varValue: '1001'
+      - varName: rulebaseId
+        varValue: roamnovf
+      - varName: extendedDayOfWeek
+        varValue: '1'
+      - varName: SOSCall
+        varValue: N
+      - varName: AVAILABLE_BALANCE
+        varValue: '94.0'
+      - varName: roamingIndicator
+        varValue: ROAMING
+      - varName: causeForRecClosing
+        varValue: '1'
+      - varName: origUserLocationInfo
+        varValue: 0024F61012345678
+      - varName: userLocationInformation
+        varValue: 0024F61012345678
+      - varName: servingNodePLMNIdentifier
+        varValue: 24F610
+      - varName: rATType
+        varValue: '2'
+      - varName: resultCode
+        varValue: '2001'
+      - varName: recordOpeningTime
+        varValue: 10/04/2023 23:39:11
+      - varName: recordClosureTime
+        varValue: 10/04/2023 23:39:17
+      - varName: duration
+        varValue: '6'
+      - varName: meHostName
+        varValue: naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr
+      - varName: nccVersion
+        varValue: SPS_23_5_R1
+      - varName: RecordTimestamp
+        varValue: 10/04/2023 23:39:11
+      - varName: sessionDuration
+        varValue: '7'
+      - varName: sessionStopTime
+        varValue: 10/04/2023 23:39:17
+      recordExtensions:
+      - recordProperty: listOfSubscriptionID
+        recordSubExtensions:
+        - recordProperty: subscriptionId
+          recordElements:
+          - varName: subscriptionIdType
+            varValue: '0'
+          - varName: subscriptionIdData
+            varValue: '393460100061'
+        - recordProperty: subscriptionId
+          recordElements:
+          - varName: subscriptionIdType
+            varValue: '1'
+          - varName: subscriptionIdData
+            varValue: '222103460100061'
+      - recordProperty: listOfMscc
+        recordSubExtensions:
+        - recordProperty: mscc
+          recordElements:
+          - varName: ratingGroup
+            varValue: '1'
+          - varName: chargingType
+            varValue: ONLINE_CHARGING
+          - varName: recordEventType
+            varValue: PS
+          - varName: firstDataStart
+            varValue: 10/04/2023 23:39:11
+          - varName: grantedUnits
+            varValue: '8388507'
+          - varName: usageType
+            varValue: TVOL
+          - varName: validityTime
+            varValue: '3600'
+          - varName: resultCode
+            varValue: '2001'
+          - varName: recordEventResult
+            varValue: '00'
+          - varName: subRecordEventType
+            varValue: PS
+          - varName: reportReason
+            varValue: FINAL
+          - varName: usedUnitType
+            varValue: TVOL
+          - varName: totalVolumeConsumed
+            varValue: '5242880'
+          - varName: lastDataUsage
+            varValue: 10/04/2023 23:39:17
+          - varName: timeUsage
+            varValue: '6'
+          recordSubExtensions:
+          - recordProperty: deviceInfo
+            recordSubExtensions:
+            - recordProperty: subscriptionInfo
+              recordElements:
+              - varName: subscriptionId
+                varValue: ba2a6d9f-cd20-4483-8277-ebbe1798114e
+              - varName: subscriptionState
+                varValue: Active
+              - varName: bundleName
+                varValue: '849'
+              - varName: bundleActivationType
+                varValue: NORMAL
+              - varName: accountID
+                varValue: '393460100061'
+              - varName: accountName
+                varValue: '393460100061'
+              - varName: subscriptionStartDateTime
+                varValue: 10/04/2023 23:38:59
+              - varName: subscriptionEndDateTime
+                varValue: 11/04/2023 03:30:00
+              recordSubExtensions:
+              - recordProperty: chargingServiceInfo
+                recordElements:
+                - varName: chargingServiceName
+                  varValue: UBD_849_CS1
+                - varName: chargingServiceType
+                  varValue: VOLUME
+                - varName: chargingServicePriority
+                  varValue: '16630'
+                - varName: chargingServiceCategory
+                  varValue: DefaultCategory
+                - varName: usedForReservation
+                  varValue: Y
+                - varName: tariffAMACode
+                  varValue: '6116'
+                - varName: CS_SEQ_NUMBER
+                  varValue: '0'
+                recordSubExtensions:
+                - recordProperty: bucketInfo
+                  recordElements:
+                  - varName: bucketName
+                    varValue: '849'
+                  - varName: bucketKey
+                    varValue: daeb6bb9-a280-4156-86e9-8f9da6c59fa3
+                  - varName: bucketUnitType
+                    varValue: Byte
+                  - varName: bucketKindOfUnit
+                    varValue: VOLUME
+                  - varName: bucketBalanceBefore
+                    varValue: '10485760'
+                  - varName: bucketBalanceAfter
+                    varValue: '5242880'
+                  - varName: carryOverBucket
+                    varValue: 'false'
+                  - varName: bucketCommitedUnits
+                    varValue: '5242880'
+                  - varName: bucketReservedUnits
+                    varValue: '8388508'
+                  - varName: secondaryCostCommitted
+                    varValue: '0.00000'
+                  - varName: tariffID
+                    varValue: UBD_849_CS1_ChargingRules
+                  - varName: totalVolumeCharged
+                    varValue: '5242880'
+                  - varName: roundedVolumeCharged
+                    varValue: '5242880'
+                  - varName: deltaVolume
+                    varValue: '0'
+                  recordSubExtensions:
+                  - recordProperty: stepInfo
+                    recordElements:
+                    - varName: currentStepUpTime
+                      varValue: 10/04/2023 23:38:59
+                    - varName: currentStep
+                      varValue: '1'
+            - recordProperty: subscriptionInfo
+              recordElements:
+              - varName: subscriptionId
+                varValue: 080dc545-3ab0-440a-9d04-40018a3566eb
+              - varName: subscriptionState
+                varValue: Active
+              - varName: bundleName
+                varValue: '61'
+              - varName: bundleActivationType
+                varValue: ON_SESSION
+              - varName: accountID
+                varValue: '393460100061'
+              - varName: accountName
+                varValue: '393460100061'
+              - varName: subscriptionStartDateTime
+                varValue: 10/04/2023 23:38:59
+              - varName: subscriptionEndDateTime
+                varValue: 11/04/2023 03:30:00
+              - varName: accountBalanceAfter
+                varValue: '94.00000'
+              - varName: accountBalanceBefore
+                varValue: '100.00000'
+              - varName: taxationID
+                varValue: VAT
+              - varName: bouActivationFee
+                varValue: '6.00000'
+              - varName: bouFeeTaxAmount
+                varValue: '1.08197'
+              - varName: taxRateApplied
+                varValue: '22.00000'
+              - varName: bouResult
+                varValue: Success
+              recordSubExtensions:
+              - recordProperty: chargingServiceInfo
+                recordElements:
+                - varName: chargingServiceName
+                  varValue: UBD_61_CS1
+                - varName: chargingServicePriority
+                  varValue: '999999'
+                - varName: chargingServiceCategory
+                  varValue: DefaultCategory
+            - recordProperty: counterInfo
+              recordElements:
+              - varName: counterName
+                varValue: Sy
+              - varName: counterKey
+                varValue: e0420143-2ce0-4d8e-bd0b-5e1af05d68c4
+              - varName: counterType
+                varValue: DEVICE
+              - varName: counterUnitType
+                varValue: Byte
+              - varName: counterKindOfUnit
+                varValue: VOLUME
+              - varName: alignGranularity
+                varValue: 'TRUE'
+              - varName: counterValueBefore
+                varValue: '0'
+              - varName: counterValueAfter
+                varValue: '0'
+              - varName: counterPolicySignalState
+                varValue: High
+              - varName: counterPolicySignalName
+                varValue: Sy
+</code></pre>
+    </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

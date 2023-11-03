@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Requirements" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="requirements" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Requirements</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="requirements">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Requirements</h1>
+<div class="body conbody">
+        <div class="section" id="requirements__section_zfc_kys_tnb"><h2 class="title sectiontitle">Cluster</h2>
+            
+            <p class="p">NCS must be installed with <strong class="ph b">Cinder</strong>, <strong class="ph b">GlusterFS/rook</strong> or
+                    <strong class="ph b">localStorage</strong> enabled on the Worker nodes, given CMDB and CCTF both
+                require Persistent Volumes (PV).</p>
+
+            <p class="p">For NCS installation instructions, see NCS documentation.</p>
+
+            <p class="p">For example, for vLab (OpenStack), you can choose <strong class="ph b">OneKey</strong>, <strong class="ph b">CLI -
+                    OpenStack</strong> or the <strong class="ph b">Web Portal - OpenStack Guide</strong>. OneKey is the easiest
+                one.</p>
+
+            <ul class="ul" id="requirements__ul_cz1_5lz_tnb">
+                <li class="li">Software recommendation: NCS version 20 or later</li>
+
+                <li class="li">Resource requirement: Minimum 2 VMs:<ul class="ul" id="requirements__ul_dz1_5lz_tnb">
+                        <li class="li">1 Deployment node</li>
+
+                        <li class="li">1 Control/Worker/Edge combined node</li>
+
+                    </ul>
+</li>
+
+            </ul>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="requirements__table_pn5_ylz_tnb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Resource requirements</span></caption><colgroup><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d10364e92">Node role</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d10364e95">CPUs</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d10364e98">Memory (GB)</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10364e92 ">Deployer</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10364e95 ">2</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10364e98 ">4</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10364e92 ">Control</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10364e95 ">4</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10364e98 ">8</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10364e92 ">Worker</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10364e95 ">2</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10364e98 ">4</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10364e92 ">Edge</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10364e95 ">2</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10364e98 ">4</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10364e92 ">Storage</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10364e95 ">2</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10364e98 ">4</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                <p class="p">If you have a Control/Worker/Edge combined VM, the requirement for the combined
+                    VM should be 8 cores and 16G RAM.</p>
+
+                <p class="p">If NCS 20 is used, the Worker node should have at least 4 cores and 8G RAM.</p>
+
+            </div>
+
+        </div>
+
+        <div class="section" id="requirements__section_jvp_vmz_tnb"><h2 class="title sectiontitle">Ingress controller</h2>
+            
+            <p class="p">To access the CCTF UI, an ingress controller needs to be installed. The selection of
+                ingress controller depends on the cluster administrator.</p>
+
+            <p class="p">It is recommended to use citm-ingress as the ingress controller. For more
+                information, refer to CITM guide.</p>
+
+        </div>
+
+        <div class="section" id="requirements__section_bfv_lnz_tnb"><h2 class="title sectiontitle">User provided Docker image</h2>
+            
+            <p class="p">User provided Docker images will be started as a container to run test cases.</p>
+
+            <p class="p">The default user in user provided Docker images can be <code class="ph codeph">root</code> or
+                non-root (UID:10000, GID:10000). CCTF will not change the default user defined in
+                user provided docker images.</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If a non-root user is used, create a user with UID:10000 and GID:10000 and ensure
+                that all test scripts can be executed via this non-root user.</div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>DevOps Guide • P556766-DN1000055058-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

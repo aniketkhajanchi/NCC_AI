@@ -1,0 +1,1249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Optional parameters" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="optional_parameters" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Optional parameters</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="optional_parameters">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Optional parameters</h1>
+<div class="body conbody">
+        <p class="p">Optional parameters that can be used in any test cases on need basis are located in the
+                <code class="ph codeph">tp_parameters</code> section in the <code class="ph codeph">parameters.yaml</code> file,
+            including:</p>
+
+        <ul class="ul" id="optional_parameters__ul_k25_mq4_znb">
+            <li class="li">Flags specific for this test package used by CCTF.</li>
+
+            <li class="li">SUT configuration/access data.</li>
+
+            <li class="li">Other parameters that are needed by the test cases.</li>
+
+        </ul>
+
+        <p class="p">Users can define whatever parameters per their needs. A sub-section named
+                <code class="ph codeph">cctf</code> (reserved for CCTF to read other configuration information) is
+            also located in the <code class="ph codeph">tp_parameters</code> section.</p>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="optional_parameters__table_ovt_cs4_znb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Optional CCTF parameters</span></caption><colgroup><col style="width:25%" /><col style="width:50%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d4746e72">Data item</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d4746e75">Description</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d4746e78">Example value</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e72 "><code class="ph codeph">pre_execution_hook</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e75 ">
+                            <p class="p">Switch of preExecution hook.</p>
+
+                            <p class="p"><strong class="ph b">Default value:</strong>
+                                <code class="ph codeph">true</code></p>
+
+                            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This value must not be changed.</div>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e78 "><code class="ph codeph">true</code></td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e72 "><code class="ph codeph">post_execution_hook</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e75 ">
+                            <p class="p">Switch of postExecution hook.</p>
+
+                            <p class="p"><strong class="ph b">Default value:</strong>
+                                <code class="ph codeph">false</code></p>
+
+                            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This value must not be changed.</div>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e78 "><code class="ph codeph">false</code></td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e72 "><code class="ph codeph">agentPodTemplate</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e75 ">
+                            <p class="p">User defined pod template fragments.</p>
+
+                            <ul class="ul" id="optional_parameters__ul_en4_jtj_x4b">
+                                <li class="li">
+                                    <pre class="pre codeblock"><code>securityContext: 
+  fsGroup: 10000 
+  runAsUser: 10000</code></pre>
+                                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Defined only if a restricted account is used. See <a class="xref" href="administration.html">Administration</a>.</div>
+
+                                </li>
+
+                                <li class="li">
+                                    <pre class="pre codeblock"><code>containers:  
+- name: &lt;container name&gt;
+  resources:
+    limits:
+    cpu: &lt;number of CPUs&gt;
+    memory: &lt;amount of memory&gt;
+  requests:
+    cpu: &lt;number of CPUs&gt;
+    memory: &lt;amount of memory&gt;</code></pre>
+                                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The values must be consistent with the container limits
+                                        and requests in the installation requirements. See <a class="xref" href="resource_requirements.html#resource_requirements__table_ux1_fkk_tnb">CPU and memory recommendations</a>.</div>
+
+                                    <p class="p"><strong class="ph b">Example:</strong></p>
+
+                                    <p class="p">In this example, there is also container-specific security
+                                        context:</p>
+
+                                    <pre class="pre codeblock"><code>containers:  
+- name: exec-env
+  resources:
+    limits:
+    cpu: 2
+    memory: 8Gi
+  requests:
+    cpu: 2
+    memory: 8Gi
+  securityContext:
+    privileged: false
+    allowedCapabilities: [NET_ADMIN, NET_RAW]
+    capabilities:
+      add:
+        - NET_ADMIN
+        - NET_RAW</code></pre>
+                                    <ul class="ul" id="optional_parameters__ul_ivr_cvd_1rb">
+                                        <li class="li"><code class="ph codeph">privileged</code> must be
+                                                <code class="ph codeph">false</code> if a restricted account is
+                                            used, otherwise <code class="ph codeph">true</code></li>
+
+                                        <li class="li">to enable PCAP capture in the <code class="ph codeph">exec-env</code>
+                                            container, the <code class="ph codeph">NET_ADMIN</code> capability
+                                            must be added. This requires that SCC (in OpenShift) or
+                                            PSP (in case of BCMT), to which the service account used
+                                            by CCTF is bound, has adequate permission to add this
+                                            capability. Otherwise, the test execution cannot be
+                                            started.</li>
+
+                                    </ul>
+
+                                </li>
+
+                            </ul>
+
+                            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If changed, might cause unexpected behavior of the test execution,
+                                such as silent crash of the test executor.</div>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e78 ">a block of YAML data</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e72 "><code class="ph codeph">variables</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e75 ">Variables for test execution. For more information, see <a class="xref" href="#optional_parameters__section_qtf_zrp_znb">Test execution variables</a>.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e78 "> </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e72 "><code class="ph codeph">consolidate_logs</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e75 ">If defined and <code class="ph codeph">True</code>, the logs from reruns are shown
+                            as a consolidated single log. Otherwise, each rerun shows its own
+                            log.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e78 "><code class="ph codeph">True</code></td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e72 "><code class="ph codeph">loglevel</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e75 ">
+                            <p class="p">Test execution log level. Robot framework debug level.</p>
+
+                            <p class="p"><strong class="ph b">Possible values:</strong>
+                                <code class="ph codeph">TRACE</code>, <code class="ph codeph">DEBUG</code>,
+                                    <code class="ph codeph">INFO</code>, <code class="ph codeph">WARN</code>,
+                                    <code class="ph codeph">NONE</code></p>
+
+                            <p class="p"><strong class="ph b">Recommended values:</strong>
+                                <code class="ph codeph">DEBUG</code> or <code class="ph codeph">TRACE</code></p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e78 "><code class="ph codeph">DEBUG</code></td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e72 "><code class="ph codeph">max_reruns</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e75 ">Maximum number of reruns.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e78 "><code class="ph codeph">0</code></td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e72 "><code class="ph codeph">pcap_capture_level</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e75 ">
+                            <p class="p">Network traffic capture suite level. 0 means disabled. Level numbers
+                                greater than 0 represent the suite hierarchy level.</p>
+
+                            <p class="p"><strong class="ph b">Example:</strong></p>
+
+                            <p class="p">In a structure of
+                                    <code class="ph codeph">spstests&gt;Charging&gt;EPC-1234_EPIC&gt;EPC-1235_Campaign&gt;EPC-1236_TestSuite</code>,
+                                    <code class="ph codeph">spstests</code> has level 1 and
+                                    <code class="ph codeph">EPC-1236_TestSuite</code> has level 5.</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e78 "><code class="ph codeph">0</code></td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e72 "><code class="ph codeph">health_check</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e75 ">
+                            <p class="p">The health check is run in the <code class="ph codeph">pre-execution.sh</code>
+                                hooks. It pings the target API to ensure a healthy connection. The
+                                health check passes if the number of requests specified in the
+                                    <code class="ph codeph">required_success_tries</code> parameter passes in one
+                                attempt. If an attempt is unsuccessful, the health check fails and
+                                no tests are executed.</p>
+
+                            <p class="p">Health check parameters:</p>
+
+                            <ul class="ul" id="optional_parameters__ul_hm2_phd_1rb">
+                                <li class="li"><code class="ph codeph">run_health_check</code> defines whether the health
+                                    check is run (<code class="ph codeph">True</code>/<code class="ph codeph">False</code>)</li>
+
+                                <li class="li"><code class="ph codeph">required_success_tries</code> defines the amount of
+                                    requests performed in one run</li>
+
+                                <li class="li"><code class="ph codeph">sleep_between_tries</code> defines the delay between
+                                    subsequent requests</li>
+
+                                <li class="li"><code class="ph codeph">max_reattempts</code> defines the maximum number of
+                                    retries before the health check is aborted.</li>
+
+                            </ul>
+
+                            <p class="p"><strong class="ph b">Example:</strong></p>
+
+                            <pre class="pre codeblock"><code>health_check:
+  run_health_check: True
+  required_success_tries: 30
+  sleep_between_tries: 1
+  max_reattempts: 5</code></pre>
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e78 ">a block of YAML data</td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+        <div class="section" id="optional_parameters__section_qtf_zrp_znb"><h2 class="title sectiontitle">Test execution variables</h2>
+            
+            <p class="p">The following table presents the test execution variables available. The variables
+                can be Mandatory (M) or Optional (O).</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="optional_parameters__table_pm3_xw4_znb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Test execution variables</span></caption><colgroup><col style="width:18.181818181818183%" /><col style="width:27.27272727272727%" /><col style="width:48.18181818181818%" /><col style="width:6.363636363636363%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d4746e439">Data item</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d4746e442">Description</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d4746e445">Example value</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d4746e448">M/O</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">certkey</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">TLS certificate private key used in performance tests.</p>
+
+                                <p class="p">If not defined, the default Nokia CA certificate is used.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 ">
+                                <pre class="pre codeblock"><code>certkey: |
+  -----BEGIN PRIVATE KEY-----
+  MIIEpQIBAAKCAQEAzbIL6YPQRrVHiPuIifr5Wbn79Ig1u286TD3H23LiC9IdYeOD
+  jb/2AvNYCceYA+3rOex37K6C13ktWIOmrLA/RjYAW6mrY0xLVKjUL6LWRE0XrUFZ
+  Aoa2EJOfFGz/KfLE1kTXKMStRZac36DTtSlWPY7HIkynxwGasr7GBLzQq/c1eJEW
+  cLI6TBbTJ5E/jiJ9qPPV88a+FwBAsiESRPGf6EnHh0ATnzPhhc4KRHmMK7yj1vhv
+  i0Dmsr2FmB1p6nN+O/jpsb/U/3s+ugk3kDvVkc0DAmLvE0UC+48zmzPglLXstFmn
+  CtU001dF5k6Q5hcOtCE7nxXF1XNfvmURdg0CPQIDAQABAoIBAQCm3u15CL17z270
+  OxMe1SNa3l3/mEz2/RovZeNwLXginNfHZRqBcZyz8hSXAnxZm7c765GyyjRNd/oI
+  l+0spWL/o6mQs0neKbPnP3u8FX98M4qkvKHoQb8MHaZtnKs4rcFwDrL6WOw0yyYC
+  6ec2Tg2vrNfyBHwMH0oP/mKIz2D+T/835cMzZer1aCbth98cl1O/CuR/Uj6jPlNO
+  ZGwRekSqD7W5g/vk8IZw2Vggm8ualw5DBNdj4WDjst5ppkl3bSXNhInp4l5+uvON
+  0Fn+n940NhpI4ADuoS2g2NrBPOiSUn3LDj/KSMN/d3xlj0tVZMQ9fWPDQNnAmQJ/
+  1lFgLmBFAoGBAO/q2qgfLgJPIFRf436JKt4/2ANeJxKoOIN9WkCKGZnmZnYk3MaN
+  7km7bz+lC7/VkdP3htkuojbPk5n4s6T1KV5ThjkVz8GurwdB+vPdAH2H3jVbOBbL
+  cW02RwpOqsnWnUKzdnt5RzCQzL0k8ZgSBLQ9LHVeJR0A9DvOVEX+9gffAoGBANt7
+  69V0j0IAdn3ASKjcOHIVxaj7UDPr8l+YDdCApKMNaJMUTxmej8pe1mk8BfOiiPhq
+  N4B4IRG2s/sYfjafccjqrPuzvLARaSL/JDePw9ry9/HVSMG0aM+Qrijk4SMceaXI
+  aqpelcs/v57Tv5a/feh98we5pRBOs/I6bzYgAuljAoGAPnt/rsFQDjHlTZQbf1zh
+  2TfvXhErQ+Sjszr2QlC1Eiu7C5HWHa/hGzrBYmXthWxtqjKQ4AcRIA03d6YZwyBG
+  Qdam4j8X+G0yEEXSwagQ9KBp8qNrHCSnybWVEs4iFKbcFf7/IHEZZUCQ0cHJWb13
+  lClKZta5+6+/68N0lzYrhSkCgYEAyrEvgyoonpBk3Q71SxRNAHbA2qR0Ve7hH40B
+  vPsAkB/y4llQD13SdtaMdhTbfjss+RTGetr11zD+F7Zv4Kvw3dZzt+MuLv91M7+i
+  R7l56zqU5f3NOi4M2RtI6zUsAUvrv8FNWFcPSOtvYBM3DNV9RncCOLEmEeBM6Dc0
+  uyxm4/cCgYEAzxcPcRk3/Gagx/2lfEN69K3lTTOmnQiU+9zChBc1tr/GmD7owCTF
+  AR5qR/RbXWHEqvEYwgq/Le1Ky44ExtIVIiZ85DdCYf5w8cu3VX3gadroFxzbLOqS
+  4GLhXl3Gx/quecvhxJpGItZ0QrM7591sUi5c+7FJFtuPhc2lPbdFeCM=
+  -----END PRIVATE KEY-----
+</code></pre>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 "> O</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">certificate</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">TLS certificate used in performance tests.</p>
+
+                                <p class="p">If not defined, the default Nokia CA certificate is used.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 ">
+                                <pre class="pre codeblock"><code>certificate:  |
+  -----BEGIN CERTIFICATE-----
+  MIIDYTCCAkmgAwIBAgIUcSLOQiJYS5gC3kTUUCC+moxSxdUwDQYJKoZIhvcNAQEL
+  BQAwQDELMAkGA1UEBhMCVUsxDzANBgNVBAgMBkxvbmRvbjEPMA0GA1UEBwwGTG9u
+  ZG9uMQ8wDQYDVQQKDAZGb29iYXIwHhcNMjAxMTE3MTE1MDU4WhcNMjUxMTE2MTE1
+  MDU4WjBAMQswCQYDVQQGEwJVSzEPMA0GA1UECAwGTG9uZG9uMQ8wDQYDVQQHDAZM
+  b25kb24xDzANBgNVBAoMBkZvb2JhcjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
+  AQoCggEBAM2yC+mD0Ea1R4j7iIn6+Vm5+/SINbtvOkw9x9ty4gvSHWHjg42/9gLz
+  WAnHmAPt6znsd+yugtd5LViDpqywP0Y2AFupq2NMS1So1C+i1kRNF61BWQKGthCT
+  nxRs/ynyxNZE1yjErUWWnN+g07UpVj2OxyJMp8cBmrK+xgS80Kv3NXiRFnCyOkwW
+  0yeRP44ifajz1fPGvhcAQLIhEkTxn+hJx4dAE58z4YXOCkR5jCu8o9b4b4tA5rK9
+  hZgdaepzfjv46bG/1P97ProJN5A71ZHNAwJi7xNFAvuPM5sz4JS17LRZpwrVNNNX
+  ReZOkOYXDrQhO58VxdVzX75lEXYNAj0CAwEAAaNTMFEwHQYDVR0OBBYEFCJROk7I
+  hZhyni5hddA63nfdEh5qMB8GA1UdIwQYMBaAFCJROk7IhZhyni5hddA63nfdEh5q
+  MA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBABQFiI89hNHDU5cu
+  OnUuwhi6zCZfC9+ddc9LVZnDqKqNWcwLJ5+eTZwQX5eGcfvMb/zmrSb+dgZDhRSE
+  rbaR3C2SMhY2o74+/sTiFfQ4a0vh1Eck2hxNX3F//AB0eQknRxowjChJpY+iJKNM
+  B6soi+I8hl0byDrliPP21C/QH0XGX1QUD0QGlvlwpEFRrBrLE3itAswjTPjZAWTt
+  +Fkvi7QA528mJjnXshSnNrkJOK2dnZljmxZq5FX5f3ZK1YFyuOjof+AY0cG0ZAI4
+  PHMkO1dlIqUk2jQbYzNDij04ISKrZzvWdB7kEZuVUB5Bl2fcW9PSYH1j9M2qnhRr
+  B1qNSF0=
+  -----END CERTIFICATE-----
+</code></pre>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 "> O</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">deployment_type</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Type of the deployment environment.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">SPS-CNF</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">SPS-CNF</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 "> M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">keystore</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Base64 encoded keystore.</p>
+
+                                <p class="p">If not defined, the default keystore containing
+                                        <code class="ph codeph">ca.nokia.com.crt</code> and
+                                        <code class="ph codeph">wildcard.dyn.nesc.nokia.net</code> is used.</p>
+
+                                <p class="p">If the default keystore is used,
+                                        <code class="ph codeph">keystore_password</code> must be
+                                        <code class="ph codeph">bash123</code>.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 ">
+                                <pre class="pre codeblock"><code>MIIElgIBAzCCBE8GCSqGSIb3DQEHAaCCBEAEggQ8MIIEODCCBDQGCSqGSIb3DQEHBqCCBCUwggQh
+AgEAMIIEGgYJKoZIhvcNAQcBMCkGCiqGSIb3DQEMAQYwGwQUCvXYtbaDBtNQGynSQvKQ3dSIreYC
+AwDDUICCA+CvC7pSEfTKaZqBrs2vxYGqcIaUWW3vPC+h3nxbUGf2yP7EME//NsGVhX4JqNLprTmp
+UdFmqIq9tAVlsTx25fYVzi6eo7UfgmdyUAuoFiZ2d8qD5Q7RZhdpFdofGLADzuS5jgh4+s+Yuno8
+MWccMEzBmsHsH29fQrYDebwV6Ug+fxVgsHeJlBVvEFQ2Nw5O1W/Se5oCFpgYwcbS/OdWL0hcjpZr
+OGn6yIEZ/xTU+wBd9NJB+M6eTl8o/l/aWHkLqoLSxrjZKZIh551uHU5dZwwNvho6DWhM4LJDUkgu
+UNxauWc8i598mTgTbKAa3Mh0WJSHBQ2TllO1jMnvU7TWIMGzwcb4t4ENUGKU7g+dJNe9ImVj4WYl
+81KC827Yotyudgfb1Ma4oL3IRu2EaEOMPiMww3kPUcZgzI+h2lHbm6HMQeIXUbT+fBt4eJbbbhNu
+ABRCvfhWGb8JP9XB+b0Sfv9HsAisj5B4keVgCGztjjHXtGOBOtPM9z/JkPnX0iYtJ5V5J33pV07U
+pL4XcfeBQTowXxjLQh2WS4i7hz61mdrmvhNw7AaUFtwrwg+ZlWmMyq4ffWxllPZS1rQK4S5MxoX4
+0HQWLes452WTNYqDsIRViywGq6nREdIoOmDOZ0vwVTwibTTi6tOstnNnDCg53YRG+Oqu/vqLus/1
+/6f87l8bR4tpc0e0eXMOvQGOg9yb/CJpNG62leBYtSFaMmqtCVNdRMEDS0M8i285uCdItiLsXLBz
+9KS6T6ct3ic9xp30/8IZFK+drQHEuuNDeKsRsLerB1V2dECYhbzzEas8yp41X+RHghooUza/JqeH
+C48ikeLkXpcJSz+rhLjvH+01r9t7wRQ/feSEAEOrnG9g2BevJrwf2gkMuSb5UZ3K3OKWqd6B+WXp
+f79gPeiOa57c/VvMox/XeFuMFiphJALqWh2R16mhd1er+9xnqFKIn3Aqu8e1FZS2i88jfGv4bHS9
+IROt/UrOxfVq2JI7rTGpE7u0eOE06zOn/kO128dv4dTUq2fLz5hQdxRtLWFB7fLTA2+A1cFE4j6Q
+/GznBZRabbE5kg4ZeE/UfYlkdcXSaG7bo7T2GHlpiL1nFTjDMol1LLyQkZlHlN8vGkEF5DVorS4b
+Y3pCXcLiQOEHgi1DmKIwKKfd6octqAjri4k1MKDq/zVyHBWb2yCWRC0niQGH6pPc58fWaWw8OugA
+XFuNPlvJzIPK5gUrv8hmVtJkDUatNgfzULvH2gUi5JY72aMatUf2ARIzEunP64a283/Vw/r8cm/+
+tfGfDYBtz/OOrVpLVDYLdz9iD3ZNcUz4RtnVSAp+nTA+MCEwCQYFKw4DAhoFAAQUXdQkcAqWoDhy
+B2nqU2/i/JrcZ7UEFFNj6EjVLT3qKhE27PTAqxsLq6R8AgMBhqA=</code></pre>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">O</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">keystore_password</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Keystore password used during the Performance suite.</p>
+
+                                <p class="p">Must not be changed unless a custom keystore is defined through
+                                    the <code class="ph codeph">keystore</code> variable.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">bash123</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">bash123</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 "> M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">me_diameter_floating_ip</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">IP for diameter calls. Its value is taken from
+                                    <code class="ph codeph">diameterFloatingIP</code> of IOHD.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">10.1.2.4</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">me_diameter_host</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Value of Diameter Origin Host to use. </p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">tpapps</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">tpapps</code>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">me_diameter_port</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Value of Diameter Port.</p>
+
+                                <p class="p"><strong class="ph b">Default value</strong> (for TLS): <code class="ph codeph">5868</code></p>
+
+                                <p class="p">For non-TLS, set the value to <code class="ph codeph">3868</code>.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">5868</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">me_diameter_protocol</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Value of Diameter protocol.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">tcp</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">tcp</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">me_diameter_realm</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Value of Diameter realm to use.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">nokia.realm</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">nokia.realm</code>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">me_http_floating_ip</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">IP for 5G calls.</p>
+
+                                <p class="p">The value should be set to ME-FQDN.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">10.1.2.5</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">me_http2_secure_flag</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Value of HTTP2 Flag used for ME Site in use.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">True</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">True</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">me_name</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">ME Site Name.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">SPS-ME</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">SPS-ME</code>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">me_iohd_ip_protocol</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Value of Ingress Protocol for ME Site.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">https</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">https</code>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">me_ioho_floating_ip</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Ingress IP for ME Site.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">10.1.2.6</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">me_ioho_port</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Ingress Port Value for ME Site.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">443</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">443</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">notification_service</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Name of Notification service installed on ME.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">&lt;SPS-release&gt;-notification-service:8080</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 "> </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">rammbock_home</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Path for Rammbock Version to use.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">/opt/Rammbock-HSS</code></p>
+
+                                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div>  If changed, might cause failures of the test
+                                    executions.</div>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">/opt/Rammbock-HSS</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">robot_ip</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">IP address or FQDN of the test executor.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 "> </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">sm_ioho_floating_ip</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Ingress IP for SM Site.</p>
+
+                                <p class="p">The value should be set to SM-FQDN.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">sm1-tls-bcmtag.dyn.nesc.nokia.net</code>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">sm_ioho_port</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Ingress Port value for SM Site.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">443</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">443</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">sm_ioho_protocol</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Value of Ingress Protocol for SM Site.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">https</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">https</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">sm_name</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">SM Site Name.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">SPS-SM</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">SPS-SM</code>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">tls_enabled</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Defines whether TLS is enabled on the CNF setup.</p>
+
+                                <p class="p">Set to <code class="ph codeph">True</code> if TLS is enabled on the CNF setup,
+                                    otherwise set to <code class="ph codeph">False</code>.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">False</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">True</code>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">O</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">Max_Prov_Attempts</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Defines the maximum attempts made by an SM server to provision
+                                the data on an ME for any operation.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">1</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">ME_Comm_Timeout</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Defines the time (in milliseconds) that an SM server waits for a
+                                    reply from the ME for a subscriber model provisioning
+                                    request.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">5000</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">5000</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">ServiceModel_Timeout</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Defines the time (in milliseconds) that an SM server waits for a
+                                    reply from the ME for a service model provisioning request.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">8000</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">8000</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">Rest_Req_Timeout</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Defines the timeout (in seconds) of any REST request
+                                triggers.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">12</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">Rest_API_Retry</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Defines the maximum number of REST API retry attempts if the REST
+                                API fails because of, for example, a connection error or
+                                timeout.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">1</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">Rest_API_Retry_Delay</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Defines the delay time (in seconds) between REST API
+                                retries.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">6</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d4746e439 d4746e442 d4746e445 d4746e448 "><strong class="ph b">Backup and Recovery
+                                parameters</strong></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">jumphost_ip</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">IP address or FQDN of the jumphost (that contains the jumphost
+                                    parameters for backup and restore).</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">jumphost_username</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Username to log in to the jumphost.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">jumphost_password</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Password to log in to the jumphost.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">O</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">jumphost_key</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Private key for jumphost login.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 ">
+                                <pre class="pre codeblock"><code>-----BEGIN PRIVATE KEY-----
+MIIEpQIBAAKCAQEAzbIL6YPQRrVHiPuIifr5Wbn79Ig1u286TD3H23LiC9IdYeOD
+jb/2AvNYCceYA+3rOex37K6C13ktWIOmrLA/RjYAW6mrY0xLVKjUL6LWRE0XrUFZ
+Aoa2EJOfFGz/KfLE1kTXKMStRZac36DTtSlWPY7HIkynxwGasr7GBLzQq/c1eJEW
+cLI6TBbTJ5E/jiJ9qPPV88a+FwBAsiESRPGf6EnHh0ATnzPhhc4KRHmMK7yj1vhv
+i0Dmsr2FmB1p6nN+O/jpsb/U/3s+ugk3kDvVkc0DAmLvE0UC+48zmzPglLXstFmn
+CtU001dF5k6Q5hcOtCE7nxXF1XNfvmURdg0CPQIDAQABAoIBAQCm3u15CL17z270
+OxMe1SNa3l3/mEz2/RovZeNwLXginNfHZRqBcZyz8hSXAnxZm7c765GyyjRNd/oI
+l+0spWL/o6mQs0neKbPnP3u8FX98M4qkvKHoQb8MHaZtnKs4rcFwDrL6WOw0yyYC
+6ec2Tg2vrNfyBHwMH0oP/mKIz2D+T/835cMzZer1aCbth98cl1O/CuR/Uj6jPlNO
+ZGwRekSqD7W5g/vk8IZw2Vggm8ualw5DBNdj4WDjst5ppkl3bSXNhInp4l5+uvON
+0Fn+n940NhpI4ADuoS2g2NrBPOiSUn3LDj/KSMN/d3xlj0tVZMQ9fWPDQNnAmQJ/
+1lFgLmBFAoGBAO/q2qgfLgJPIFRf436JKt4/2ANeJxKoOIN9WkCKGZnmZnYk3MaN
+7km7bz+lC7/VkdP3htkuojbPk5n4s6T1KV5ThjkVz8GurwdB+vPdAH2H3jVbOBbL
+cW02RwpOqsnWnUKzdnt5RzCQzL0k8ZgSBLQ9LHVeJR0A9DvOVEX+9gffAoGBANt7
+69V0j0IAdn3ASKjcOHIVxaj7UDPr8l+YDdCApKMNaJMUTxmej8pe1mk8BfOiiPhq
+N4B4IRG2s/sYfjafccjqrPuzvLARaSL/JDePw9ry9/HVSMG0aM+Qrijk4SMceaXI
+aqpelcs/v57Tv5a/feh98we5pRBOs/I6bzYgAuljAoGAPnt/rsFQDjHlTZQbf1zh
+2TfvXhErQ+Sjszr2QlC1Eiu7C5HWHa/hGzrBYmXthWxtqjKQ4AcRIA03d6YZwyBG
+Qdam4j8X+G0yEEXSwagQ9KBp8qNrHCSnybWVEs4iFKbcFf7/IHEZZUCQ0cHJWb13
+lClKZta5+6+/68N0lzYrhSkCgYEAyrEvgyoonpBk3Q71SxRNAHbA2qR0Ve7hH40B
+vPsAkB/y4llQD13SdtaMdhTbfjss+RTGetr11zD+F7Zv4Kvw3dZzt+MuLv91M7+i
+R7l56zqU5f3NOi4M2RtI6zUsAUvrv8FNWFcPSOtvYBM3DNV9RncCOLEmEeBM6Dc0
+uyxm4/cCgYEAzxcPcRk3/Gagx/2lfEN69K3lTTOmnQiU+9zChBc1tr/GmD7owCTF
+AR5qR/RbXWHEqvEYwgq/Le1Ky44ExtIVIiZ85DdCYf5w8cu3VX3gadroFxzbLOqS
+4GLhXl3Gx/quecvhxJpGItZ0QrM7591sUi5c+7FJFtuPhc2lPbdFeCM=
+-----END PRIVATE KEY-----</code></pre>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">O</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">jumphost_source_sm</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Relative or absolute path to the jumphost source file to be
+                                    sourced in the first login.</p>
+
+                                <p class="p">The source file SM is meant for sourcing Kubernetes client
+                                    environment for the NCC SM pods.</p>
+
+                                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Jumphost can be accessed only as <code class="ph codeph">root</code>.</div>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">false</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">false</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">O</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">jumphost_source_me</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Relative or absolute path to the jumphost source file to be
+                                    sourced in the first login.</p>
+
+                                <p class="p">The source file ME is meant for sourcing Kubernetes client
+                                    environment for the NCC ME pods.</p>
+
+                                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Jumphost can be accessed only as <code class="ph codeph">root</code>.</div>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">false</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">false</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">O</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">jumphost_sudo</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">false</code></p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">false</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">backup_path_sm</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Path to the folder on the pod, where the SM backup will be
+                                    stored.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">/opt/tpa/users/tpaadmin</code></p>
+
+                                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The default value must not be changed.</div>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">/opt/tpa/users/tpaadmin</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">backup_path_me</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Path to the folder on the pod, where the ME backup will be
+                                    stored.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">/opt/tpa/users/tpaadmin</code></p>
+
+                                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The default value must not be changed.</div>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">/opt/tpa/users/tpaadmin</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">me_namespace</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Namespace of the ME node. Set the value according your
+                                    environment.</p>
+
+                                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Mandatory parameter for Restore.</div>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">sps-btel-me</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">O</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">sm_namespace</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Namespace of the SM node. Set the value according your
+                                    environment.</p>
+
+                                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Mandatory parameter for Restore.</div>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">sps-btel-sm</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">O</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">sm_podprefix</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Pod prefix of SM on the controller node. Set the value according
+                                    your environment.</p>
+
+                                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Mandatory parameter for Restore.</div>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">nccsmsps-sm</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">O</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">me_podprefix</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Pod prefix of ME on the controller node. Set the value according
+                                    your environment.</p>
+
+                                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Mandatory parameter for Restore.</div>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">nccmesps-me</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">O</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">restore_backup</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">
+                                <p class="p">Global flag to take a backup and restore the system.</p>
+
+                                <p class="p"><strong class="ph b">Default value:</strong>
+                                    <code class="ph codeph">true</code></p>
+
+                                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This flag should be always <code class="ph codeph">true</code> to take a
+                                    backup on every first run.</div>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">true</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">O</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">ondemand_restore</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">If restore needs to be done explicitly (while running the
+                                Performance suite), this flag must be set to
+                                    <code class="ph codeph">true</code>.<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Once the suite execution is
+                                    completed, set this flag back to
+                                <code class="ph codeph">false</code>.</div>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">true</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">O</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d4746e439 d4746e442 d4746e445 d4746e448 "><strong class="ph b">5G Retry parameters</strong></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">5G_Req_Timeout</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Defines the timeout (in seconds) of any Http2 Call(5G)
+                                triggers.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">12</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">5G_Req_Retry</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Defines the maximum number of retries a 5G API attempts if it
+                                fails for any reason.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">1</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">5G_Req_Retry_Delay</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Defines the delay time (in seconds) between Http2 Call(5G)
+                                retries.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">6</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d4746e439 d4746e442 d4746e445 d4746e448 "><strong class="ph b">4G Retry parameters</strong></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">4G_Req_Timeout</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Defines the timeout (in seconds) of any Http2 Call(4G)
+                                triggers.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">12</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">4G_Req_Retry</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Defines the maximum number of retries a 4G API attempts if it
+                                fails for any reason.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">3</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">4G_Req_Retry_Delay</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Defines the delay time (in seconds) between Http2 Call(4G)
+                                retries.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">10</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">M</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e439 "><code class="ph codeph">4G_Req_Retry_Result_Codes</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e442 ">Defines the list of result codes, for which the failed Http2
+                                Call(4G) should be retried.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e445 "><code class="ph codeph">3002 3004 3005 4002 5012</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d4746e448 ">O</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>DevOps Guide • P556766-DN1000055058-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Transitioning to out of service" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="Bookmark43" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Transitioning to out of service</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="Bookmark43">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Transitioning to out of service</h1>
+<div class="body conbody">
+    <p class="p">When an NCC subsystem transitions to out of service, it stops making the pods that first
+      process requests available to Kuberentes. Specifically, it leaves the pods running, but puts
+      them into a NOT READY state so they no longer accept requests. HTTP requests are responded
+      with HTTP error code 503 Service Unavailable, and diameter requests return error 3004.</p>
+
+    <p class="p">In the case of the ME subsystem, this means that the IOHD and charging pods report back a
+      readiness probe state of unavailable. With no pods available for incoming requests, clients
+      receive HTTP 503 or diameter 3004 errors. To allow for a quick recovery when the system is
+      healthy, those pods report a liveness probe as a success. This means the pods stay alive
+      without being discarded (liveness), but do not report themselves as available for requests
+      (readiness).</p>
+
+    <p class="p">For the SM subsystem, the same behavior applies to the servicemanager pods which accept API
+      requests. In an earlier example it was described that TMF would take itself out of service if
+      the service manager it depends on goes out of service. The behavior here is for TMF to report
+      liveness true so that its pods stay in place, but readiness false so that no requests are sent
+      to it. This results in HTTP requests being responded to with error code 503, and diameter
+      requests getting 3004.</p>
+
+  </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

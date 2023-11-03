@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Aggregate View" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="aggregateviewdesc" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Aggregate View</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="aggregateviewdesc">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Aggregate View</h1>
+<div class="body conbody">
+  <p class="p">An aggregate view aggregates all resource information from all entities of the same type (like
+   buckets, counters).</p>
+
+  <p class="p">For information on support of <samp class="ph systemoutput">Send-SNR</samp> action and QoS handling
+   when AV is exhausted or updated, see the
+    <a class="xref" href="snraction.html">SNR action and QoS handling when charging resources are exhausted or updated</a> section.</p>
+
+  <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+   
+   <p class="p">Log into the SM GUI and navigate to navigate to <span class="ph uicontrol">Charging</span> → ≡ →
+     <span class="ph uicontrol">Catalog Assets</span> → <span class="ph uicontrol">Aggregate View</span>. To define a new
+    aggregate view, click 
+    <img class="image" id="aggregateviewdesc__image_h3r_nbx_2qb" src="../images/hybrid_gui/new_button.png" height="54" width="104" /> and add the basic details as described in the following table.</p>
+
+   <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters for aggregate view</span></caption><colgroup><col style="width:24.963072378138847%" /><col style="width:35.30280649926145%" /><col style="width:14.771048744460858%" /><col style="width:24.963072378138847%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d217967e79">Parameter</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d217967e82">Description</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d217967e85">Options</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d217967e88">Mandatory/Optional</th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e79 ">Name</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e82 ">Identifier for uniquely identification of aggregate view.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e85 ">String</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e88 ">Mandatory</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e79 ">Description</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e82 ">Description of the aggregate view.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e85 ">String</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e88 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e79 ">Type</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e82 ">Type of the aggregate view.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e85 ">Enum<p class="p">Select the required type.</p>
+</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e88 ">Mandatory</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e79 ">Unit</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e82 ">Unit for the aggregate view.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e85 ">
+        <p class="p">Enum</p>
+
+        <p class="p">Select the required unit.</p>
+
+      </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e88 ">Mandatory</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e79 ">Aggregated usage</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e82 ">
+        <p class="p">Aggregate type of aggregate view.</p>
+
+        <p class="p">The supported values are as follows:</p>
+
+        <ul class="ul">
+         <li class="li">
+          <p class="p">
+           <span class="ph uicontrol">Allowance</span>: Aggregate bucket defined in AV.</p>
+
+         </li>
+
+         <li class="li">
+          <p class="p">
+           <span class="ph uicontrol">Metering and custom counters</span>: This parameter is enabled and
+           applicable only when counter is selected for Aggregate Type. If not selected, it means
+           ALL, that is, all the counters with same unit type can be aggregated.</p>
+
+         </li>
+
+        </ul>
+
+      </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e85 ">Enum</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e88 ">Mandatory</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e79 ">Charging logics</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e82 ">
+        <p class="p">Contains the list of Charging Service entity IDs corresponding to the aggregate type.
+         Only the created CS can be provisioned in the AV.</p>
+
+        <p class="p">If not selected, then it means that all the charging services with same unit type can be
+         aggregated.</p>
+
+        <p class="p">This parameter is enabled and applicable only when <em class="ph i">Aggregated usage</em> parameter is
+          <em class="ph i">Allowances</em>.</p>
+
+      </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e85 ">List &lt;String&gt;</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e88 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e79 ">Counter Types</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e82 ">
+        <p class="p">This parameter is enabled and applicable only when <em class="ph i">Aggregated usage</em> parameter is
+          <em class="ph i">Metering and custom counters</em>.</p>
+
+        <p class="p">The supported values are as follows:</p>
+
+        <ul class="ul">
+         <li class="li">
+          <p class="p">
+           <span class="ph uicontrol">SUBSCRIPTION</span>: Counter defined in charging service.</p>
+
+         </li>
+
+         <li class="li">
+          <p class="p">
+           <span class="ph uicontrol">DEVICE</span>: Aggregate the device counter.</p>
+
+         </li>
+
+         <li class="li">
+          <p class="p">
+           <span class="ph uicontrol">DEVICE_GROUP</span>: Aggregate the device-group counter.</p>
+
+         </li>
+
+         <li class="li">
+          <p class="p">
+           <span class="ph uicontrol">GROUP</span>: Aggregate the group counter.</p>
+
+         </li>
+
+        </ul>
+
+      </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e85 ">Enum</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e88 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e79 ">Threshold Profiles</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e82 ">List of threshold profiles used in Rating logic to send notifications, and SNR. Only
+        the created threshold profiles can be provisioned in the AV.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e85 ">List &lt;String&gt;</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e88 ">Optional</td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+   <p class="p">
+    <span class="ph uicontrol">Aggregate view - instance</span>
+   </p>
+
+   <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters for aggregate view - instance</span></caption><colgroup><col style="width:21.031746031746035%" /><col style="width:40.74074074074075%" /><col style="width:13.22751322751323%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d217967e346">Parameter</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d217967e349">Description</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d217967e352">Options</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d217967e355">Mandatory/Optional</th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">InstanceId</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">Unique ID.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">String</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">Mandatory</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">defName</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">Name of the aggregate view instance.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">String</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">
+        <p class="p">Mandatory for Aggregate View instance.</p>
+
+        <p class="p">Aggregate view definition taken at the time of creation.</p>
+
+        <p class="p"> Read-only and non-modifiable.</p>
+
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">deviceGrpCounters</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">List of names of device group counters.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">List&lt;String&gt;</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">counterTypes</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">Counter types aggregated when aggregateType is selected as COUNTER.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">String</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">UnitType</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">Identifies the type of unit.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">String</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">
+        <p class="p">Mandatory for Aggregate View instance. </p>
+
+        <p class="p">Aggregate view definition taken at the time of creation.</p>
+
+        <p class="p"> Read-only and non-modifiable.</p>
+
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">CreationTime</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">The time stamp of when this aggregate view was created. The value is automatically
+        generated.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">Long</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">
+        <p class="p">Mandatory for Aggregate View instance. </p>
+
+        <p class="p">Linux timestamp taken at the time of creation.</p>
+
+        <p class="p"> Read-only and non-modifiable.</p>
+
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">applicationType</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">Indicates the type of application such as Charging.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">ApplicationType</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">
+        <p class="p">Mandatory for Aggregate View instance. </p>
+
+        <p class="p">Aggregate view definition taken at the time of creation.</p>
+
+        <p class="p"> Read-only and non-modifiable.</p>
+
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">aggregateType</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">Indicates the aggregate type such as Charging Service.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">AggregateType</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">
+        <p class="p">Mandatory for Aggregate View instance. </p>
+
+        <p class="p">Aggregate view definition taken at the time of creation.</p>
+
+        <p class="p"> Read-only and non-modifiable.</p>
+
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">aggregateList</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">Contains the charging service IDs.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">List&lt;String&gt;</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">
+        <p class="p">Optional for Aggregate View instance. </p>
+
+        <p class="p">Aggregate view definition taken at the time of creation.</p>
+
+        <p class="p"> Read-only and non-modifiable.</p>
+
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">InitialValue</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">The initial value of the bucket/bucket-cap/counter.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">BigDecimal</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">
+        <p class="p">Mandatory for Aggregate View instance. </p>
+
+        <p class="p">Set aggregate initial value of same kind of bucket/bucket-cap/counter at time of
+         creation.</p>
+
+        <p class="p"> Read-only and non-modifiable.</p>
+
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">CurrentValue</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">The current value of the bucket/bucket-cap/counter.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">BigDecimal</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">
+        <p class="p">Mandatory</p>
+
+        <p class="p">Saved as long in database. It is set same as initial value at the time of creation and
+         can be updated to any positive value.</p>
+
+        <p class="p">Set as "0" when no value is given in update request.</p>
+
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">UnusedValue</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">The unused value of the bucket/bucket-cap/counter.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">BigDecimal</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">
+        <p class="p">Mandatory</p>
+
+        <p class="p">Saved as long in database. It is set same as initial value at the time of creation and can be
+         updated to any positive value.</p>
+
+        <p class="p">Set as "0" when no value is given in update request.</p>
+
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">InitialCOBVal</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">The initial value of carry-over bucket.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">BigDecimal</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">
+        <p class="p">Saved as long in database. Mandatory for Aggregate View instance.</p>
+
+        <p class="p">Set aggregate initial value from same kind of carry-over bucket instances at time of
+         creation.</p>
+
+        <p class="p"> Read-only and non-modifiable.</p>
+
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">CurrCOBVal</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">The current value of carry-over bucket.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">BigDecimal</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">
+        <p class="p">Mandatory</p>
+
+        <p class="p">Saved as long in database. It is set same as initial carry-over bucket value at the time of
+         creation and can be updated to any positive value.</p>
+
+        <p class="p">Set as "0" when no value is given in update request.</p>
+
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">UnusedCOBVal</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">The unused value of carry-over bucket.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">BigDecimal</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">
+        <p class="p">Mandatory</p>
+
+        <p class="p">Saved as long in database. It is set same as initial carry-over bucket value at the time of
+         creation and can be updated to any positive value.</p>
+
+        <p class="p">Set as "0" when no value is given in update request.</p>
+
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e346 ">thresholdProfileGroupIdList</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e349 ">The list of TPG Id.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e352 ">List&lt;String&gt;</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e355 ">
+        <p class="p">Optional</p>
+
+        <p class="p">Aggregate view definition taken at the time of creation.</p>
+
+        <p class="p"> Read-only and non-modifiable.</p>
+
+      </td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+   <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The Aggregate view entity - instance cannot be modified through SM GUI. Some of the
+    parameters listed in the table are linked to the calculations performed by the internal service
+    logic.</div>
+
+  </div>
+
+  <div class="section"><h2 class="title sectiontitle">Actions associated with an aggregate view</h2>
+   
+   <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:40.98360655737705%" /><col style="width:59.01639344262295%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d217967e747">
+        <p class="p">Action</p>
+
+      </th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d217967e753">
+        <p class="p">Description</p>
+
+      </th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e747 ">Create</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e753 ">Used to create an aggregate view entity in database by providing the mandatory and
+        optional parameters.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e747 ">Read</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e753 ">Used to display the aggregate view entity per the data retrieved from database.
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e747 ">Update</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e753 ">Used to update a particular aggregate view entity in database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e747 ">Delete</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e753 ">Used to delete a particular aggregate view entity from database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e747 ">addAVsToDevice</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e753 ">Used to attach a list of AVs as well as a single AV to a device.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e747 ">addAVsToGroup</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e753 ">Used to attach a list of AVs as well as a single AV to a group.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e747 ">removeAVsFromDevice</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e753 ">Used to remove a list of AVs as well as a single AV from a device.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e747 ">removeAVsFromGroup</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e753 ">Used to remove a list of AVs as well as a single AV from a group.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e747 ">deleteAVInstWhileDeletingDevice</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e753 ">Used to delete all the AV instances corresponding to that device when a device is
+        removed.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e747 ">deleteAVInstWhileDeletingGroup</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e753 ">Used to delete all the AV instances corresponding to that group when a group is
+        removed.</td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+   <div class="p">Following are the actions associated with the AV instance.<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Aggregate View - instance</span></caption><colgroup><col style="width:43.47826086956522%" /><col style="width:56.52173913043479%" /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d217967e874">
+         <p class="p">Action</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d217967e880">
+         <p class="p">Description</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e874 ">Read</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e880 ">Used to read an aggregate view instance from database by providing the mandatory and
+         optional parameters. AggregateViewInstance ID is the mandatory parameter.</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e874 ">getAvInstancesByDeviceId</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e880 ">Used to get AV instance list attached to a device.</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e874 ">getAvInstancesByGroupId</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d217967e880 ">Used to get AV instance list attached to a group.</td>
+
+       </tr>
+
+      </tbody>
+</table>
+</div>
+
+   <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> These actions are valid for internal purposes only. It is not accessible through the SM GUI
+     for operators.</div>
+
+  </div>
+
+  <div class="section"><h2 class="title sectiontitle">AV threshold variables</h2>
+   
+   <p class="p">The AV threshold variables are <var class="keyword varname">AV-Def-Name</var>,
+     <var class="keyword varname">AV-Unused-Value</var>, <var class="keyword varname">AV-Current-Value</var> as shown in the
+    following figure.</p>
+
+   <div class="fig fignone">
+    
+    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-av_threshold_default.png" height="108" width="521" />
+   </div>
+
+  </div>
+
+  <div class="section"><h2 class="title sectiontitle">Examples</h2>
+   
+   <div class="sectiondiv">
+    <p class="p"><strong class="ph b">Example 1: AV configuration for device</strong></p>
+
+    <p class="p">Perform the following steps to configure an AV for a device using the SM GUI:</p>
+
+    <ol class="ol">
+     <li class="li">
+      <p class="p">Create a charging service (CS1) with data buckets - <var class="keyword varname">Bucket101</var> of 100
+       byte and <var class="keyword varname">Bucket102</var> of 200 bytes. Use the <span class="ph uicontrol">ADDBUCKET</span>
+       option to add multiple buckets in the <span class="ph uicontrol">Charging Services</span> entity.</p>
+
+     </li>
+
+     <li class="li">
+      <p class="p">Create a bundle (NokiaBundle) and link the charging service to it. </p>
+
+     </li>
+
+     <li class="li">
+      <p class="p">Create an Aggregate View (AV101) and attach the charging service to it, to aggregate the
+       buckets. </p>
+
+     </li>
+
+     <li class="li">
+      <p class="p">Create an account (Acc1) to associate with a device.</p>
+
+     </li>
+
+     <li class="li">
+      <p class="p">Create a device (iPhone) and attach the aggregate view and subscription (NokiaBundle) to
+       it.</p>
+
+     </li>
+
+    </ol>
+
+    <p class="p">The following figure shows the device overview which displays the bundles linked to the
+     device:</p>
+
+    <div class="fig fignone">
+     
+     <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-deviceoverview1_default.png" height="121" width="523" />
+    </div>
+
+    <p class="p">The following figure shows the device overview which displays the aggregate view of the
+     device:</p>
+
+    <div class="fig fignone">
+     
+     <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-deviceoverview2_default.png" height="100" width="522" />
+    </div>
+
+    <p class="p">Here, the data buckets are consolidated in the aggregate view, that is, 100 + 200 = 300
+     bytes.</p>
+
+   </div>
+   <div class="sectiondiv">
+    <p class="p"><strong class="ph b">Example 2: Account overview of a device linked with AV</strong></p>
+
+    <p class="p">The following figure shows the account overview of an iPhone device subscribed to a bundle
+     and linked to an aggregate view.</p>
+
+    <div class="fig fignone">
+     
+     <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-avsmaccount_default.png" height="166" width="528" />
+    </div>
+
+   </div>
+   <div class="sectiondiv">
+    <p class="p"><strong class="ph b">Example 3: Group overview of a group linked with AV</strong></p>
+
+    <p class="p">The following figure shows the group overview of a group subscribed to a bundle and linked to
+     an aggregate view.</p>
+
+    <div class="fig fignone">
+     
+     <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-avgroup_default.png" height="99" width="525" />
+    </div>
+
+   </div>
+  </div>
+
+ </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

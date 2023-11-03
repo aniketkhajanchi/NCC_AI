@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Verify database records are successfully recovered" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="Bookmark55" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Verify database records are successfully recovered</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="Bookmark55">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Verify database records are successfully recovered</h1>
+<div class="body conbody">
+        <p class="p">Verify that database records for all MEs have been recovered, and compare the output of
+            recovering site from healthy sites. To do so, issue the following command.</p>
+
+        <pre class="pre codeblock"><code>kubectl -it exec &lt;admincli&gt; -c &lt;container&gt; -n &lt;namespace&gt; -- /opt/tpa/bin/db-stats -c -s all
+# Stats should be same for same partition on different sites.
+# EX. AccountBalance_account, Device_owner, GySession_device... should be same for spspd1 in ME1 and spspd1 in ME2</code></pre>
+        <div class="p">Where:<ul class="ul" id="Bookmark55__ul_rgh_xdb_bqb">
+                <li class="li"><code class="ph codeph">&lt;admincli&gt;</code> is the name of the admincli pod.</li>
+
+                <li class="li"><code class="ph codeph">&lt;container&gt;</code> is the name of the container.</li>
+
+                <li class="li"><code class="ph codeph">&lt;namespace&gt;</code> is the name of the namespace.</li>
+
+            </ul>
+</div>
+
+        <p class="p">For example, this example shows the expected output of the commands with
+                <code class="ph codeph">growthme-admincli-b6496b469-hlmwb</code> as
+            <code class="ph codeph">&lt;admincli&gt;</code>, <code class="ph codeph">growthme-admincli</code> as
+                <code class="ph codeph">&lt;container&gt;</code>, and <code class="ph codeph">sps-btel-me5</code> as
+                <code class="ph codeph">&lt;namespace&gt;</code>.</p>
+
+        <pre class="pre codeblock" id="Bookmark55__codeblock_dkp_jyb_bqb"><code>[root@bcmtvzrm3-control-01 me5]# kubectl -it exec growthme-admincli-b6496b469-hlmwb -c growthme-admincli -n sps-btel-me5 -- /opt/tpa/bin/db-stats -c -s all
+ Date: Sun Jun 13 17:40:57 UTC 2021
+ DEBUG: Got Aerospike service name externally as ''
+ DEBUG: Will wait until aerospike service is found
+ INFO: Aerospike service set as 'me-aerospike-service.sps-btel-me5.svc.cluster.local'
+ db-stats -c -s all 2021-06-13 17:41:01
+ DB CLUSTER INFO
+ -------------------------
+ Total DB nodes: 4
+ DB nodes responding: 4
+ACTIVE RECORDS SUMMARY
+ ----------------------
+ Set Total spspd5 spspd6 spspd8
+ ----------------------------------------------------------------
+ AccountBalance_account 10 5 5 0
+ Device_owner 10 5 5 0
+ Device_subscriptions 10 5 5 0
+ DeviceCustomData_device 10 5 5 0
+ DynamicData 20 10 10 0
+ EntityCounterInstance_account 10 5 5 0
+ GyClientSession 0 0 0 0
+ InfrequentlyChangingData 20 10 10 0
+ NotificationTracker 0 0 0 0
+ PendingTransactionMap 0 0 0 0
+ SessionContainer 0 0 0 0
+ Subscription_account 10 5 5 0
+ TEMEntity 10 5 5 0
+ TEMEntityPayload 10 5 5 0
+ User_emails 10 5 5 0
+ User_facebookId 10 5 5 0
+ User_phoneNumbers 10 5 5 0
+Set (in namespace: dscglobal) Total
+ -------------------------------------
+ AccountBalancePar_id 15
+ AccountPar_id 15
+ Account_accountName 15
+ BucketInstancePar_id 45
+ CEGroup 0
+ CEGroupState 0
+ CESubscriber 0
+ CESubscriberRelations 0
+ CESubscriberState 0
+ DeviceCustomDataPar_id 15
+ DevicePar_id 15
+ Device_deviceName 15
+ Device_e164 15
+ Device_imsi 15
+ DiameterIdentity 4
+ DiameterPeer 0
+ EntityCounterInstancePar_id 15
+ SubscriberTracingCriteria 0
+ SubscriptionPar_id 15
+ UserPar_id 15
+ User_userName 15
+Set (in namespace: spsundologs) Total
+ ---------------------------------------
+ TxMetadata 0
+Set (in namespace: dsc) Total
+ ------------------------------------
+ AppRegistration 0
+ AppleServerRegistration 0
+ AuditBatchAssignment 0
+ AuditScheduler 0
+ ComMetric 0
+ CommonCountableEvent 0
+ CommonCountableEventTotal 0
+ CounterInstance 0
+ CreditRequestProfile 1
+ CustomAcknowledgement 0
+ DDMIndexedStrKey 0
+ DeviceRegistration 0
+ DiamRouteDeprioritization 0
+ ExternalBalanceManager 0
+ NASCluster 0
+ NASProfile 0
+ NotifAppData 0
+ NotificationJobs 0
+ NotificationTrackerMigration 0
+ OCSDiameterPeer 0
+ PnDEvtConsump 0
+ RadiusHostCluster 0
+ SpsHomeNetworkInfo 2
+ SpsRoamingAgreements 2
+ SpsRoamingPartners 2
+ SubscriberDevice 0
+ SubscriberUser 0
+ TcpConfiguration 0
+ TcpCustomMessageSequence 0
+ ToolsConfig 1
+ ZoningAndRoamingMapping 0
+Set (in namespace: dsclocal) Total
+ ---------------------------------------------
+ APConfigurationForPeersGroup 0
+ AggregateView 0
+ AndroidServer 0
+ AppleServer 0
+ ApplicabilityCondition 0
+ BillCycleCalendar 0
+ Bucket 3
+ Bundle 1
+ BundleMapping 0
+ CDRMapping 1
+ CHFInfo 0
+ CategoryOrder 1
+ ChargingRuleSystemVersion 1
+ ChargingService 1
+ ChargingServiceMapping 0
+ ChargingStep 0
+ CommonCountableEventConfigContainer 1
+ CommonCpuUsageThresholdsProfile 0
+ CommonOverloadConfig 1
+ Counter 6
+ CustomDataDictionary 1
+ DBClientMonitorRecord 11
+ DDMGBStrKeyProvision 0
+ DDMGlblVarCfg 1
+ DDMLBConfig 1
+ DDMPluginsCfgCont 2
+ DDMRuleSystemVersion 2
+ DbChgNotifSubs 1
+ DdmappsDownstreamOverloadConfig 1
+ DdmappsDownstreamOverloadProfile 0
+ DdmappsMsgValidationConfig 1
+ DdmappsOverloadProtectionConfig 1
+ DdmappsOverloadSheddingProfile 0
+ DdmappsRoutingConfig 1
+ DdmappsRoutingProfile 0
+ DdmappsThrottlingConfig 1
+ DdmappsThrottlingProfile 0
+ DdmappsTracingProfile 0
+ DestMonitorConfig 0
+ DiamClientCfg 5
+ DiamPeerAddrGrpCfg 1
+ DiamPeerCfg 1
+ DiamPeerConnectionProfile 0
+ DiamPeerStatus 16
+ DiamRouteCfg 1
+ DiamRouteProfile 1
+ DiameterConfig 1
+ DiameterLatencyThresholdsProfile 0
+ DiameterMessageCountThresholdsProfile 0
+ Discount 0
+ EmailServer 0
+ EntityCommonTemplate 0
+ ExternalSystem 0
+ GlobalList 0
+ HostRouteCfg 1
+ HttpPluginsCfgCont 2
+ Job 0
+ KafkaNotificationServer 0
+ KeyGenerators 1
+ LifeCycle 7
+ LifeCycleRuleSystemVersion 1
+ LifeCycleState 16
+ LifeCycleTransition 24
+ MediaIdMSISDN 0
+ NFDiscoveryQuery 0
+ NFProfile 0
+ NFRegStatus 0
+ NFSelector 0
+ NFService 0
+ NFSubStatus 0
+ NFSubscription 0
+ NRFServer 0
+ NRFServerSet 0
+ NSOboundConf 7
+ NotificationLanguage 1
+ NotificationProfile 2
+ NotificationTemplate 4
+ NumberPortability 0
+ PCFInfo 0
+ PCRFRuleSystemVersion 1
+ PeerGroup 0
+ PnDEventConfig 0
+ PnDRuleSystemVersion 1
+ PrivateProfile 0
+ RadiusServerCfg 0
+ Rate 0
+ Report 3
+ RestServer 0
+ RetryConfig 0
+ ServiceProvider 0
+ SessionManagementConfig 0
+ SitesForcedInService 1
+ SlicingProfile 1
+ SmppServer 0
+ SoapServer 0
+ StringKeyProvisionMapping 0
+ TCPInboundServerConfig 0
+ TPASystem 1
+ TPAUser 1
+ TPAUserRole 1
+ TRScheProg 1
+ Tariff 1
+ Taxation 0
+ TcpIpOutbound 0
+ ThresholdProfileGroup 0
+ ThrottlingLogInfo 0
+ TimePeriod 0
+ TypeConverter 7
+ UCService 0
+ UnitType 12
+ UsageControlService 0
+ DB MEMORY AND DISK
+ --------------------
+ NameSpace Total Mem (MB) Free Mem (%) Total Disk (MB) Free Disk (%)
+ ---------------------------------------------------------------------------------------------
+ dsclocal Min reported 300 99 864 99
+ Max reported 300 99 864 99
+ spspd6 Min reported 680 99 2,016 99
+ Max reported 680 99 2,016 99
+ dscglobal Min reported 512 99 1,536 99
+ Max reported 512 99 1,536 99
+ spspd8 Min reported 680 99 2,016 100
+ Max reported 680 99 2,016 100
+ dsc Min reported 512 99 1,536 99
+ Max reported 512 99 1,536 99
+ spspd5 Min reported 680 99 2,016 99
+ Max reported 680 99 2,016 99
+ spsundologs Min reported 512 100 0 0
+ Max reported 512 100 0 0
+ LOCAL CLUSTER DATA MIGRATION
+ ------------------------------
+ Migration in progress NO
+ CROSS SITE DATA REPLICATION
+ -----------------------------
+ Destination Sites: spssite6,spssite7,spssite8
+ More details can be obtained from xdr-status.</code></pre>
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

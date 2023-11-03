@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Truncate recovering system dscglobal and partitions data" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="Bookmark34" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Truncate recovering system dscglobal and partitions data</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="Bookmark34">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Truncate recovering system dscglobal and partitions data</h1>
+<div class="body conbody">
+                
+                <p class="p">The dcglobal and partition data should be truncated on the recovering system. To
+            do so, run this command only on the recovering system.</p>
+
+                <pre class="pre codeblock"><code># It will clear all partitions and dscglobal
+kubectl -it exec &lt;admincli&gt; -c &lt;container&gt; -n &lt;namespace&gt; -- /opt/tpa/bin/disaster-recovery-helper.py -t 
+# Type y or yes and press enter when it ask for confirmation “Do you want to continue?: y|yes|n|no”</code></pre>
+        <div class="p">Where:<ul class="ul" id="Bookmark34__ul_rgh_xdb_bqb">
+                <li class="li"><code class="ph codeph">&lt;admincli&gt;</code> is the name of the admincli pod.</li>
+
+                <li class="li"><code class="ph codeph">&lt;container&gt;</code> is the name of the container.</li>
+
+                <li class="li"><code class="ph codeph">&lt;namespace&gt;</code> is the name of the namespace.</li>
+
+            </ul>
+</div>
+
+        <p class="p">This example shows expected output with
+                <code class="ph codeph">growthme-admincli-b6496b469-hlmwb</code> as
+            <code class="ph codeph">&lt;admincli&gt;</code>, <code class="ph codeph">growthme-admincli</code> as
+                <code class="ph codeph">&lt;container&gt;</code>, and <code class="ph codeph">sps-btel-me5</code> as
+                <code class="ph codeph">&lt;namespace&gt;</code>.</p>
+
+                <div class="p">
+            <pre class="pre codeblock" id="Bookmark34__codeblock_yct_ksb_bqb"><code>[root@bcmtvzrm3-control-01 me5]# kubectl -it exec growthme-admincli-b6496b469-hlmwb -c growthme-admincli -n sps-btel-me5 -- /opt/tpa/bin/disaster-recovery-helper.py -t
+ 2021-06-13T17:04:58,539 INFO: Going to start truncating partitions and dscglobal namespaces of target site 'me5' on source site 'me5'.
+ 2021-06-13T17:04:58,594 INFO: Going to run following set of commands on 'me5' :
+ {
+ /opt/tpa/aerospike/bin/asinfo -v "truncate-namespace:namespace=spspd5";
+ /opt/tpa/aerospike/bin/asinfo -v "truncate-namespace:namespace=spspd6";
+ /opt/tpa/aerospike/bin/asinfo -v "truncate-namespace:namespace=spspd8";
+ /opt/tpa/aerospike/bin/asinfo -v "truncate-namespace:namespace=dscglobal";
+ }
+ Do you want to continue?: y|yes|n|no
+ y
+ 2021-06-13T17:05:05,136 INFO: Going to run command '/opt/tpa/aerospike/bin/asinfo -v "truncate-namespace:namespace=spspd5";'.
+ 2021-06-13T17:05:05,789 INFO: The result is
+ ok
+ 2021-06-13T17:05:05,822 INFO: Going to run command '/opt/tpa/aerospike/bin/asinfo -v "truncate-namespace:namespace=spspd6";'.
+ 2021-06-13T17:05:06,467 INFO: The result is
+ ok
+ 2021-06-13T17:05:06,506 INFO: Going to run command '/opt/tpa/aerospike/bin/asinfo -v "truncate-namespace:namespace=spspd8";'.
+ 2021-06-13T17:05:07,219 INFO: The result is
+ ok
+ 2021-06-13T17:05:07,250 INFO: Going to run command '/opt/tpa/aerospike/bin/asinfo -v "truncate-namespace:namespace=dscglobal";'.
+ 2021-06-13T17:05:07,932 INFO: The result is
+ ok
+ 2021-06-13T17:05:07,963 INFO: Exiting...
+ INFO: Logs can be seen in log file '/tmp/disaster-recovery-helper.py.log'.</code></pre>
+        </div>
+
+            </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="CDRs for orphan rating session audit" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="orphan_rating_session_audit" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>CDRs for orphan rating session audit</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="orphan_rating_session_audit">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">CDRs for orphan rating session audit</h1>
+<div class="body conbody">
+        <pre class="pre codeblock" id="orphan_rating_session_audit__codeblock_k3b_jqb_5vb"><code>  header:
+    recordLength: 408
+    releaseId: 10
+    versionId: 2
+    dataRecordFormat: BER
+    tsNumber: 3GPP TS 32.251
+  payload:
+    genericRecord:
+      recordType: OCSChargingRecord
+      recordElements:
+      - varName: recordEventType
+        varValue: RatingSessionAudit
+      - varName: sessionId
+        varValue: 80008;1708628685_SI121
+      - varName: deviceId
+        varValue: Device80008
+      - varName: generationTimestamp
+        varValue: 28/11/2022 13:02:04
+      - varName: recordEventResult
+        varValue: '316'
+      - varName: recordSequenceNumber
+        varValue: '0'
+      - varName: recordId
+        varValue: 20221128130204_fe4abbff-08b7-45c6-955d-8ea678c1da0f
+      - varName: meHostName
+        varValue: naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr
+      - varName: nccVersion
+        varValue: SPS_23_0_R1
+      - varName: RecordTimestamp
+        varValue: 28/11/2022 13:02:04</code></pre>
+    </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

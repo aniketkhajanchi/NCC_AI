@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Context logging" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="context_logging" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Context logging</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="context_logging">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Context logging</h1>
+<div class="body conbody">
+        <div class="section"><h2 class="title sectiontitle">Context logging overview</h2>
+            
+            <p class="p">This table describes the tasks and details for context logging.</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Context logging task details</span></caption><colgroup><col style="width:33.33333333333333%" /><col style="width:66.66666666666666%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d28618e48">Task</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d28618e51">Detail</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d28618e48 ">Subscriber ID information</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d28618e51 ">If an error occurs during a charging or provisioning call,
+                                subscriber information (for example, the device ID and corresponding
+                                e164/IMSI) is dumped in logs at the ERROR log level which is ON by
+                                default. <p class="p">Subscriber information is also dumped for successful
+                                    scenarios but only at the DEBUG level.</p>
+<p class="p">The scrambling tool
+                                    is enhanced to scramble subscriber confidential data (for
+                                    example: e164, IMSI) to comply with privacy rules.</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d28618e48 ">Database read information</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d28618e51 ">The log contains IDs of all the entities along with entity name
+                                that have been read during a charging or provisioning call. This
+                                information is dumped at the ERROR log level only for error
+                                scenarios. This information is also dumped for successful scenarios
+                                but only at the DEBUG level.<p class="p">This option is individually
+                                    controlled and can be turned ON/OFF by using special keyword in
+                                    the application preference value.</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d28618e48 ">Call context and session ID information</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d28618e51 ">If an error occurs during a charging or provisioning call, the
+                                call context (for example: Gy Initial Request, Gy Update Request,
+                                N40 Update request) and session ID information is dumped in logs at
+                                the ERROR log level which is ON by default.<p class="p">This information is
+                                    also dumped for successful scenarios but only at the DEBUG
+                                    level.</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d28618e48 ">Http request headers for provisioning calls</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d28618e51 ">If an error occurs during provisioning call, all of the HTTP
+                                request headers are dumped in the service manager logs at the ERROR
+                                log level which is ON by default.<p class="p">This information is also dumped
+                                    for successful scenarios but only at the DEBUG
+                                level.</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d28618e48 ">System name and pod/node hostname for provisioning calls</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d28618e51 ">If an error occurs during a provisioning call, the system name
+                                and pod/node hostname (which eventually processes the request)
+                                information is dumped in the service manager logs at the ERROR log
+                                level which is ON by default.<div class="p">This information is also dumped for
+                                    successful scenarios but only at the DEBUG level. <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If a pod
+                                        restarts, the hostname changes. At any given time, it is
+                                        possible that the hostname dumped in the logs does not match
+                                        any existing running pods.</div>
+</div>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d28618e48 ">Context logging database sets</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d28618e51 ">This parameter is used to enable context logging for specific
+                                database sets (only for 5G and diameter). Provide a comma-separated
+                                list of database set names (for example: InfrequentlyChangingData,
+                                    DynamicData).<p class="p">When this feature is enabled, the logging
+                                    details are added to the call context for a specific
+                                    flow.</p>
+<p class="p">By default, this feature is disabled (empty
+                                    value).</p>
+</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <p class="p">For information on setting the system preferences, see the <cite class="cite"><span class="ph">NCC</span> Global Configuration Guide</cite>.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Example of different failures and their corresponding logging</h2>
+            
+            <p class="p">5G Create Log</p>
+
+            <p class="p">Context Logging Database Sets: InfrequentlyChangingData, DynamicData</p>
+
+            <p class="p">Context Logging Enabled: 5G</p>
+
+            <p class="p">Call Context:</p>
+
+            <pre class="pre codeblock"><code>{
+    "inProgressTasks": 0,
+    "lockInfo": {
+        "txId": "SPS-StackImpl-RequestHandler-CommandDispatcher-20-1683792532331",
+        "lockEvents": [
+            {
+                "name": "lock",
+                "data": {
+                    "aInLocks": [
+                        "ClubNumber158329674399940"
+                    ]
+                },
+                "timeStamp": 1683879283694,
+                "success": true
+            },
+            {
+                "name": "addLock",
+                "data": {
+                    "aInOldLock": "ClubNumber158329674399940",
+                    "aInLocks": [
+                        "ClubNumber158329674399908"
+                    ]
+                },
+                "timeStamp": 1683879283697,
+                "success": true
+            },
+            {
+                "name": "addLock",
+                "data": {
+                    "aInOldLock": "ClubNumber158329674399940",
+                    "aInLocks": [
+                        "TEMLock1-4-N40-sps-me-6fd540a2-025e-4004-a629-929840e9c9bc"
+                    ]
+                },
+                "timeStamp": 1683879283763,
+                "success": true
+            },
+            {
+                "name": "beginTransaction",
+                "data": {},
+                "timeStamp": 1683879283765,
+                "success": true
+            },
+            {
+                "name": "unlock",
+                "data": {
+                    "aInIsSync": false,
+                    "aInTxID": "SPS-StackImpl-RequestHandler-CommandDispatcher-20-1683792532331",
+                    "aInLocks": [
+                        "ClubNumber158329674399908",
+                        "ClubNumber158329674399940",
+                        "TEMLock1-4-N40-&lt;SITE_NAME&gt;-6fd540a2-025e-4004-a629-929840e9c9bc"
+                    ]
+                },
+                "timeStamp": 1683879283769,
+                "success": true
+            }
+        ]
+    },
+    "correlationId": "X-CorrelationId:7877a6e7-4346-48ce-a061-e323530871d7",
+    "traceEnabled": false,
+    "device": {
+        "identities": [
+            {
+                "type": "IMSI",
+                "value": "&lt;IMSI_Number&gt;"
+            },
+            {
+                "type": "E164",
+                "value": "&lt;E164_Number&gt;"
+            },
+            {
+                "type": "NAI",
+                "value": "&lt;NAI_Number&gt;"
+            }
+        ]
+    },
+    "dbEntityIdLoggingOnErrorEnabled": false,
+    "dbEnabledSetNames": [
+        "InfrequentlyChangingData",
+        "DynamicData"
+    ],
+    "callIdentifiers": {
+        "callReqDetails": {
+            "CALL_TYPE": "N40",
+            "CC_REQUEST_NUMBER": "1",
+            "CC_REQUEST_TYPE": "UPDATE_REQUEST",
+            "End User E.164": "&lt;E164_Number&gt;",
+            "End User IMSI": "&lt;IMSI_Number&gt;",
+            "REQUEST_TYPE": "CHARGING",
+            "SESSION_ID": "N40-&lt;SITE_NAME&gt;-6fd540a2-025e-4004-a629-929840e9c9bc",
+            "SITE_NAME": "&lt;SITE_NAME&gt;"
+        },
+        "dbReadKeys": {
+            "spspd1:DynamicData:162129586585505793": "1 @1683879283735",
+            "spspd1:DynamicData:162129586585538561": "1 @1683879283695",
+            "spspd1:InfrequentlyChangingData:162129586585505793": "1 @1683879283734",
+            "spspd1:InfrequentlyChangingData:162129586585538561": "1 @1683879283696"
+        }
+    },
+    "response": {
+        "STATUS": "[[RG=9, Result=4012]]"
+    },
+    "lastUpdated": 1683879283735,
+    "argumentKeys": [],
+    "chargingLoggingEnabled": true
+}</code></pre>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

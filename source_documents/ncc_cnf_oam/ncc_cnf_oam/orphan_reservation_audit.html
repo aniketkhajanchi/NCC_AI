@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Orphan reservation audit" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="orphan_reservation_audit" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Orphan reservation audit</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="orphan_reservation_audit">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Orphan reservation audit</h1>
+<div class="body conbody">
+      <p class="p">A reservation whose rating session and primary sessions (GySession Or ImsSession) do not
+        exist in the database is called an orphan reservation.</p>
+
+      <p class="p">Account, BucketInstance, and CounterInstance entities are supported.</p>
+
+      <p class="p">If an orphan reservation is found in an account, bucket instance, or counter instance
+        through db-list scanning, then the tool creates a TEM entry that expires soon. A healing
+        report is generated.</p>
+
+      <p class="p">Upon audit, the orphan reservation is cleared (that is, the reserved amount is
+        cleared).</p>
+
+      <p class="p">Account's inconsistency and healing report is generated.</p>
+
+      <div class="p">Healing report:<pre class="pre codeblock" id="orphan_reservation_audit__codeblock_ymd_hlb_5vb"><code>&lt;?xml version="1.0"?&gt;
+&lt;clubs&gt;
+  &lt;club clubId="148618787703849985" partitionId="1" siteId="1"&gt;
+    &lt;accounts count="1"&gt;
+      &lt;account accountId="Acc14||210000000098401" status="HEALED"&gt;
+        &lt;AccountPar_id&gt;
+          &lt;id&gt;Acc14&lt;/id&gt;
+          &lt;status&gt;OK&lt;/status&gt;
+        &lt;/AccountPar_id&gt;
+        &lt;Account_accountName&gt;
+          &lt;id&gt;Acc14&lt;/id&gt;
+          &lt;status&gt;OK&lt;/status&gt;
+        &lt;/Account_accountName&gt;
+        &lt;DDaccountData&gt;
+          &lt;acctBalances status="OK"&gt;
+            &lt;AccountBalancePar_id&gt;
+              &lt;id&gt;Acc14&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/AccountBalancePar_id&gt;
+            &lt;AccountBalance_account&gt;
+              &lt;id&gt;Acc14||210000000098401&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/AccountBalance_account&gt;
+            &lt;AccountBalance_reservation&gt;
+              &lt;HEALED&gt;
+                &lt;action&gt;TEM created&lt;/action&gt;
+                &lt;temId&gt;1-1-N40-sps-me-3a38eaaf-7100-4791-8ac2-b7a9f92bf0c0_Acc14||210000000098401&lt;/temId&gt;
+              &lt;/HEALED&gt;
+              &lt;ratingSessionId&gt;1-1-N40-sps-me-3a38eaaf-7100-4791-8ac2-b7a9f92bf0c0_RG1&lt;/ratingSessionId&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/AccountBalance_reservation&gt;
+          &lt;/acctBalances&gt;
+        &lt;/DDaccountData&gt;
+        &lt;temPlcInfo status="OK"&gt;
+          &lt;TEMEntity&gt;
+            &lt;id&gt;1-1-LC_1-ACCOUNT_TYPE:Acc14||210000000098401:DefaultAccountBillingCycle_Start:RepeatCycle:PERIOD&lt;/id&gt;
+            &lt;status&gt;OK&lt;/status&gt;
+          &lt;/TEMEntity&gt;
+        &lt;/temPlcInfo&gt;
+        &lt;childDevices count="1" status="OK"&gt;
+          &lt;childDevice&gt;
+            &lt;childDeviceId e164="1414141414" imsi="1414141414" status="OK"&gt;Dev14||2100000000a0401&lt;/childDeviceId&gt;
+            &lt;subsRefs status="OK"&gt;
+              &lt;subsRef status="OK"&gt;fc3e75dd-be59-4f1e-a74e-5f16d22dc8d2||210000000098401&lt;/subsRef&gt;
+            &lt;/subsRefs&gt;
+          &lt;/childDevice&gt;
+        &lt;/childDevices&gt;
+      &lt;/account&gt;
+    &lt;/accounts&gt;
+  &lt;/club&gt;
+&lt;/clubs&gt;</code></pre>Inconsistency
+        report:<pre class="pre codeblock" id="orphan_reservation_audit__codeblock_pc3_hlb_5vb"><code>&lt;?xml version="1.0"?&gt;
+&lt;clubs&gt;
+  &lt;club clubId="148618787703849985" partitionId="1" siteId="1"&gt;
+    &lt;accounts count="1"&gt;
+      &lt;account accountId="Acc14||210000000098401" status="INCORRECT"&gt;
+        &lt;AccountPar_id&gt;
+          &lt;id&gt;Acc14&lt;/id&gt;
+          &lt;status&gt;OK&lt;/status&gt;
+        &lt;/AccountPar_id&gt;
+        &lt;Account_accountName&gt;
+          &lt;id&gt;Acc14&lt;/id&gt;
+          &lt;status&gt;OK&lt;/status&gt;
+        &lt;/Account_accountName&gt;
+        &lt;DDaccountData&gt;
+          &lt;acctBalances status="INCORRECT"&gt;
+            &lt;AccountBalancePar_id&gt;
+              &lt;id&gt;Acc14&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/AccountBalancePar_id&gt;
+            &lt;AccountBalance_account&gt;
+              &lt;id&gt;Acc14||210000000098401&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/AccountBalance_account&gt;
+            &lt;AccountBalance_reservation&gt;
+              &lt;ratingSessionId&gt;1-1-N40-sps-me-3a38eaaf-7100-4791-8ac2-b7a9f92bf0c0_RG1&lt;/ratingSessionId&gt;
+              &lt;status&gt;NOT_FOUND&lt;/status&gt;
+            &lt;/AccountBalance_reservation&gt;
+          &lt;/acctBalances&gt;
+        &lt;/DDaccountData&gt;
+        &lt;temPlcInfo status="OK"&gt;
+          &lt;TEMEntity&gt;
+            &lt;id&gt;1-1-LC_1-ACCOUNT_TYPE:Acc14||210000000098401:DefaultAccountBillingCycle_Start:RepeatCycle:PERIOD&lt;/id&gt;
+            &lt;status&gt;OK&lt;/status&gt;
+          &lt;/TEMEntity&gt;
+        &lt;/temPlcInfo&gt;
+        &lt;childDevices count="1" status="OK"&gt;
+          &lt;childDevice&gt;
+            &lt;childDeviceId e164="1414141414" imsi="1414141414" status="OK"&gt;Dev14||2100000000a0401&lt;/childDeviceId&gt;
+            &lt;subsRefs status="OK"&gt;
+              &lt;subsRef status="OK"&gt;fc3e75dd-be59-4f1e-a74e-5f16d22dc8d2||210000000098401&lt;/subsRef&gt;
+            &lt;/subsRefs&gt;
+          &lt;/childDevice&gt;
+        &lt;/childDevices&gt;
+      &lt;/account&gt;
+    &lt;/accounts&gt;
+  &lt;/club&gt;
+&lt;/clubs&gt;</code></pre></div>
+
+      <p class="p">BucketInstance and CounterInstance inconsistency and healing report is generated.</p>
+
+      <div class="p">Healing report:<pre class="pre codeblock" id="orphan_reservation_audit__codeblock_zc4_hlb_5vb"><code>&lt;?xml version="1.0"?&gt;
+&lt;clubs&gt;
+  &lt;club clubId="148618787706962945" partitionId="1" siteId="1"&gt;
+    &lt;devices count="1"&gt;
+      &lt;device deviceId="D3||210000000390401" status="HEALED"&gt;
+        &lt;DevicePar_id&gt;
+          &lt;id&gt;D3&lt;/id&gt;
+          &lt;status&gt;OK&lt;/status&gt;
+        &lt;/DevicePar_id&gt;
+        &lt;Device_e164 count="1"&gt;
+          &lt;e164&gt;
+            &lt;id&gt;9999999903&lt;/id&gt;
+            &lt;status&gt;OK&lt;/status&gt;
+          &lt;/e164&gt;
+        &lt;/Device_e164&gt;
+        &lt;Device_imsi count="1"&gt;
+          &lt;imsi&gt;
+            &lt;id&gt;9999999903&lt;/id&gt;
+            &lt;status&gt;OK&lt;/status&gt;
+          &lt;/imsi&gt;
+        &lt;/Device_imsi&gt;
+        &lt;Device_deviceName&gt;
+          &lt;id&gt;D3&lt;/id&gt;
+          &lt;status&gt;OK&lt;/status&gt;
+        &lt;/Device_deviceName&gt;
+        &lt;deviceSubscriptions count="2"&gt;
+          &lt;deviceSubscription bundleName="Bundle_BktCounter_13" status="OK"&gt;
+            &lt;Device_subscriptions&gt;
+              &lt;id&gt;4a8e06b1-53d3-4594-9e3c-496e170e551c||210000000388401&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/Device_subscriptions&gt;
+            &lt;SubscriptionPar_id&gt;
+              &lt;id&gt;4a8e06b1-53d3-4594-9e3c-496e170e551c&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/SubscriptionPar_id&gt;
+            &lt;ICDsubsData&gt;
+              &lt;csInstances&gt;
+                &lt;csInstance csDefName="CL_BktCounter_13"&gt;
+                  &lt;bucketInstances&gt;
+                    &lt;bucketInstance bucketDefName="Bucket_Data" bucketInstanceId="0d678d81-465f-4cb5-8d73-cfecd87f0900||210000000388401" status="OK"&gt;
+                      &lt;BucketInstancePar_id&gt;
+                        &lt;id&gt;0d678d81-465f-4cb5-8d73-cfecd87f0900&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                      &lt;/BucketInstancePar_id&gt;
+                      &lt;DDbucketInstanceData&gt;
+                        &lt;accountRef&gt;
+                          &lt;status&gt;OK&lt;/status&gt;
+                          &lt;value&gt;S3||210000000388401&lt;/value&gt;
+                        &lt;/accountRef&gt;
+                        &lt;subsId&gt;
+                          &lt;status&gt;OK&lt;/status&gt;
+                          &lt;value&gt;4a8e06b1-53d3-4594-9e3c-496e170e551c&lt;/value&gt;
+                        &lt;/subsId&gt;
+                        &lt;BucketInstance_reservation&gt;
+                          &lt;HEALED&gt;
+                            &lt;action&gt;TEM created&lt;/action&gt;
+                            &lt;temId&gt;1-1-192.168.1.100:3868;8596890799;1_0d678d81-465f-4cb5-8d73-cfecd87f0900&lt;/temId&gt;
+                          &lt;/HEALED&gt;
+                          &lt;ratingSessionId&gt;1-1-192.168.1.100:3868;8596890799;1_RG91&lt;/ratingSessionId&gt;
+                          &lt;status&gt;OK&lt;/status&gt;
+                        &lt;/BucketInstance_reservation&gt;
+                      &lt;/DDbucketInstanceData&gt;
+                    &lt;/bucketInstance&gt;
+                  &lt;/bucketInstances&gt;
+                  &lt;entityCounterInstances&gt;
+                    &lt;entityCounterInstance clubId="148618787706930177" entityCounterInstanceId="SUBSCRIPTION;4a8e06b1-53d3-4594-9e3c-496e170e551c;148618787706930177" status="OK"&gt;
+                      &lt;DDentityCounterInstanceData&gt;
+                        &lt;accountRef&gt;
+                          &lt;status&gt;OK&lt;/status&gt;
+                          &lt;value&gt;S3||210000000388401&lt;/value&gt;
+                        &lt;/accountRef&gt;
+                        &lt;counterInstance counterDefName="DataSubsCounter" counterInstanceId="3bde4995-0e0c-4f62-b184-e2b5a38821e1" status="OK"&gt;
+                          &lt;subsId&gt;
+                            &lt;status&gt;OK&lt;/status&gt;
+                            &lt;value&gt;4a8e06b1-53d3-4594-9e3c-496e170e551c&lt;/value&gt;
+                          &lt;/subsId&gt;
+                          &lt;CounterInstance_reservation&gt;
+                            &lt;HEALED&gt;
+                              &lt;action&gt;TEM created&lt;/action&gt;
+                              &lt;temId&gt;1-1-192.168.1.100:3868;8596890799;1_3bde4995-0e0c-4f62-b184-e2b5a38821e1&lt;/temId&gt;
+                            &lt;/HEALED&gt;
+                            &lt;ratingSessionId&gt;1-1-192.168.1.100:3868;8596890799;1_RG91&lt;/ratingSessionId&gt;
+                            &lt;status&gt;OK&lt;/status&gt;
+                          &lt;/CounterInstance_reservation&gt;
+                        &lt;/counterInstance&gt;
+                      &lt;/DDentityCounterInstanceData&gt;
+                      &lt;EntityCounterInstancePar_id&gt;
+                        &lt;id&gt;SUBSCRIPTION;4a8e06b1-53d3-4594-9e3c-496e170e551c;null&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;edigest&gt;wVsQVcNS2JJUpFufgm6PruwG+7I=&lt;/edigest&gt;
+                      &lt;/EntityCounterInstancePar_id&gt;
+                      &lt;EntityCounterInstance_account&gt;
+                        &lt;id&gt;S3||210000000388401&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                      &lt;/EntityCounterInstance_account&gt;
+                    &lt;/entityCounterInstance&gt;
+                  &lt;/entityCounterInstances&gt;
+                &lt;/csInstance&gt;
+              &lt;/csInstances&gt;
+            &lt;/ICDsubsData&gt;
+            &lt;Subscription_account&gt;
+              &lt;id&gt;S3||210000000388401&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/Subscription_account&gt;
+          &lt;/deviceSubscription&gt;
+          &lt;deviceSubscription bundleName="Bundle_Rate_13" status="OK"&gt;
+            &lt;Device_subscriptions&gt;
+              &lt;id&gt;c57cc76c-6668-42cf-bc64-8b54f4a92a67||210000000388401&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/Device_subscriptions&gt;
+            &lt;SubscriptionPar_id&gt;
+              &lt;id&gt;c57cc76c-6668-42cf-bc64-8b54f4a92a67&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/SubscriptionPar_id&gt;
+            &lt;ICDsubsData&gt;
+              &lt;csInstances&gt;
+                &lt;csInstance csDefName="CL_Rate_13"/&gt;
+              &lt;/csInstances&gt;
+            &lt;/ICDsubsData&gt;
+            &lt;Subscription_account&gt;
+              &lt;id&gt;S3||210000000388401&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/Subscription_account&gt;
+          &lt;/deviceSubscription&gt;
+        &lt;/deviceSubscriptions&gt;
+        &lt;entityCounterInstances&gt;
+          &lt;entityCounterInstance clubId="148618787706962945" entityCounterInstanceId="DEVICE;D3;148618787706962945" status="OK"&gt;
+            &lt;DDentityCounterInstanceData&gt;
+              &lt;deviceRef&gt;
+                &lt;status&gt;OK&lt;/status&gt;
+                &lt;value&gt;D3||210000000390401&lt;/value&gt;
+              &lt;/deviceRef&gt;
+              &lt;counterInstance counterDefName="DevCounter" counterInstanceId="dde49320-1be5-4f96-b43e-2264f28422ee" status="OK"&gt;
+                &lt;CounterInstance_reservation&gt;
+                  &lt;HEALED&gt;
+                    &lt;action&gt;TEM created&lt;/action&gt;
+                    &lt;temId&gt;1-1-192.168.1.100:3868;8596890799;1_dde49320-1be5-4f96-b43e-2264f28422ee&lt;/temId&gt;
+                  &lt;/HEALED&gt;
+                  &lt;ratingSessionId&gt;1-1-192.168.1.100:3868;8596890799;1_RG91&lt;/ratingSessionId&gt;
+                  &lt;status&gt;OK&lt;/status&gt;
+                &lt;/CounterInstance_reservation&gt;
+              &lt;/counterInstance&gt;
+            &lt;/DDentityCounterInstanceData&gt;
+            &lt;EntityCounterInstancePar_id&gt;
+              &lt;id&gt;DEVICE;D3;null&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+              &lt;edigest&gt;W1/kIYw6900RT2TLK7RQHBQCm4c=&lt;/edigest&gt;
+            &lt;/EntityCounterInstancePar_id&gt;
+            &lt;EntityCounterInstance_account&gt;
+              &lt;id&gt;S3||210000000388401&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/EntityCounterInstance_account&gt;
+          &lt;/entityCounterInstance&gt;
+        &lt;/entityCounterInstances&gt;
+      &lt;/device&gt;
+    &lt;/devices&gt;
+  &lt;/club&gt;
+&lt;/clubs&gt;
+</code></pre>Inconsistency
+        report:<pre class="pre codeblock" id="orphan_reservation_audit__codeblock_cls_hlb_5vb"><code>&lt;?xml version="1.0"?&gt;
+&lt;clubs&gt;
+  &lt;club clubId="148618787706962945" partitionId="1" siteId="1"&gt;
+    &lt;devices count="1"&gt;
+      &lt;device deviceId="D3||210000000390401" status="INCORRECT"&gt;
+        &lt;DevicePar_id&gt;
+          &lt;id&gt;D3&lt;/id&gt;
+          &lt;status&gt;OK&lt;/status&gt;
+        &lt;/DevicePar_id&gt;
+        &lt;Device_e164 count="1"&gt;
+          &lt;e164&gt;
+            &lt;id&gt;9999999903&lt;/id&gt;
+            &lt;status&gt;OK&lt;/status&gt;
+          &lt;/e164&gt;
+        &lt;/Device_e164&gt;
+        &lt;Device_imsi count="1"&gt;
+          &lt;imsi&gt;
+            &lt;id&gt;9999999903&lt;/id&gt;
+            &lt;status&gt;OK&lt;/status&gt;
+          &lt;/imsi&gt;
+        &lt;/Device_imsi&gt;
+        &lt;Device_deviceName&gt;
+          &lt;id&gt;D3&lt;/id&gt;
+          &lt;status&gt;OK&lt;/status&gt;
+        &lt;/Device_deviceName&gt;
+        &lt;deviceSubscriptions count="2"&gt;
+          &lt;deviceSubscription bundleName="Bundle_BktCounter_13" status="INCORRECT"&gt;
+            &lt;Device_subscriptions&gt;
+              &lt;id&gt;4a8e06b1-53d3-4594-9e3c-496e170e551c||210000000388401&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/Device_subscriptions&gt;
+            &lt;SubscriptionPar_id&gt;
+              &lt;id&gt;4a8e06b1-53d3-4594-9e3c-496e170e551c&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/SubscriptionPar_id&gt;
+            &lt;ICDsubsData&gt;
+              &lt;csInstances&gt;
+                &lt;csInstance csDefName="CL_BktCounter_13"&gt;
+                  &lt;bucketInstances&gt;
+                    &lt;bucketInstance bucketDefName="Bucket_Data" bucketInstanceId="0d678d81-465f-4cb5-8d73-cfecd87f0900||210000000388401" status="INCORRECT"&gt;
+                      &lt;BucketInstancePar_id&gt;
+                        &lt;id&gt;0d678d81-465f-4cb5-8d73-cfecd87f0900&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                      &lt;/BucketInstancePar_id&gt;
+                      &lt;DDbucketInstanceData&gt;
+                        &lt;accountRef&gt;
+                          &lt;status&gt;OK&lt;/status&gt;
+                          &lt;value&gt;S3||210000000388401&lt;/value&gt;
+                        &lt;/accountRef&gt;
+                        &lt;subsId&gt;
+                          &lt;status&gt;OK&lt;/status&gt;
+                          &lt;value&gt;4a8e06b1-53d3-4594-9e3c-496e170e551c&lt;/value&gt;
+                        &lt;/subsId&gt;
+                        &lt;BucketInstance_reservation&gt;
+                          &lt;ratingSessionId&gt;1-1-192.168.1.100:3868;8596890799;1_RG91&lt;/ratingSessionId&gt;
+                          &lt;status&gt;NOT_FOUND&lt;/status&gt;
+                        &lt;/BucketInstance_reservation&gt;
+                      &lt;/DDbucketInstanceData&gt;
+                    &lt;/bucketInstance&gt;
+                  &lt;/bucketInstances&gt;
+                  &lt;entityCounterInstances&gt;
+                    &lt;entityCounterInstance clubId="148618787706930177" entityCounterInstanceId="SUBSCRIPTION;4a8e06b1-53d3-4594-9e3c-496e170e551c;148618787706930177" status="INCORRECT"&gt;
+                      &lt;EntityCounterInstancePar_id&gt;
+                        &lt;id&gt;SUBSCRIPTION;4a8e06b1-53d3-4594-9e3c-496e170e551c;null&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;edigest&gt;wVsQVcNS2JJUpFufgm6PruwG+7I=&lt;/edigest&gt;
+                      &lt;/EntityCounterInstancePar_id&gt;
+                      &lt;DDentityCounterInstanceData&gt;
+                        &lt;accountRef&gt;
+                          &lt;status&gt;OK&lt;/status&gt;
+                          &lt;value&gt;S3||210000000388401&lt;/value&gt;
+                        &lt;/accountRef&gt;
+                        &lt;counterInstance counterDefName="DataSubsCounter" counterInstanceId="3bde4995-0e0c-4f62-b184-e2b5a38821e1" status="INCORRECT"&gt;
+                          &lt;subsId&gt;
+                            &lt;status&gt;OK&lt;/status&gt;
+                            &lt;value&gt;4a8e06b1-53d3-4594-9e3c-496e170e551c&lt;/value&gt;
+                          &lt;/subsId&gt;
+                          &lt;CounterInstance_reservation&gt;
+                            &lt;ratingSessionId&gt;1-1-192.168.1.100:3868;8596890799;1_RG91&lt;/ratingSessionId&gt;
+                            &lt;status&gt;NOT_FOUND&lt;/status&gt;
+                          &lt;/CounterInstance_reservation&gt;
+                        &lt;/counterInstance&gt;
+                      &lt;/DDentityCounterInstanceData&gt;
+                      &lt;EntityCounterInstance_account&gt;
+                        &lt;id&gt;S3||210000000388401&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                      &lt;/EntityCounterInstance_account&gt;
+                    &lt;/entityCounterInstance&gt;
+                  &lt;/entityCounterInstances&gt;
+                &lt;/csInstance&gt;
+              &lt;/csInstances&gt;
+            &lt;/ICDsubsData&gt;
+            &lt;Subscription_account&gt;
+              &lt;id&gt;S3||210000000388401&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/Subscription_account&gt;
+          &lt;/deviceSubscription&gt;
+          &lt;deviceSubscription bundleName="Bundle_Rate_13" status="OK"&gt;
+            &lt;Device_subscriptions&gt;
+              &lt;id&gt;c57cc76c-6668-42cf-bc64-8b54f4a92a67||210000000388401&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/Device_subscriptions&gt;
+            &lt;SubscriptionPar_id&gt;
+              &lt;id&gt;c57cc76c-6668-42cf-bc64-8b54f4a92a67&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/SubscriptionPar_id&gt;
+            &lt;ICDsubsData&gt;
+              &lt;csInstances&gt;
+                &lt;csInstance csDefName="CL_Rate_13"/&gt;
+              &lt;/csInstances&gt;
+            &lt;/ICDsubsData&gt;
+            &lt;Subscription_account&gt;
+              &lt;id&gt;S3||210000000388401&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/Subscription_account&gt;
+          &lt;/deviceSubscription&gt;
+        &lt;/deviceSubscriptions&gt;
+        &lt;entityCounterInstances&gt;
+          &lt;entityCounterInstance clubId="148618787706962945" entityCounterInstanceId="DEVICE;D3;148618787706962945" status="INCORRECT"&gt;
+            &lt;EntityCounterInstancePar_id&gt;
+              &lt;id&gt;DEVICE;D3;null&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+              &lt;edigest&gt;W1/kIYw6900RT2TLK7RQHBQCm4c=&lt;/edigest&gt;
+            &lt;/EntityCounterInstancePar_id&gt;
+            &lt;DDentityCounterInstanceData&gt;
+              &lt;deviceRef&gt;
+                &lt;status&gt;OK&lt;/status&gt;
+                &lt;value&gt;D3||210000000390401&lt;/value&gt;
+              &lt;/deviceRef&gt;
+              &lt;counterInstance counterDefName="DevCounter" counterInstanceId="dde49320-1be5-4f96-b43e-2264f28422ee" status="INCORRECT"&gt;
+                &lt;CounterInstance_reservation&gt;
+                  &lt;ratingSessionId&gt;1-1-192.168.1.100:3868;8596890799;1_RG91&lt;/ratingSessionId&gt;
+                  &lt;status&gt;NOT_FOUND&lt;/status&gt;
+                &lt;/CounterInstance_reservation&gt;
+              &lt;/counterInstance&gt;
+            &lt;/DDentityCounterInstanceData&gt;
+            &lt;EntityCounterInstance_account&gt;
+              &lt;id&gt;S3||210000000388401&lt;/id&gt;
+              &lt;status&gt;OK&lt;/status&gt;
+            &lt;/EntityCounterInstance_account&gt;
+          &lt;/entityCounterInstance&gt;
+        &lt;/entityCounterInstances&gt;
+      &lt;/device&gt;
+    &lt;/devices&gt;
+  &lt;/club&gt;
+&lt;/clubs&gt;</code></pre></div>
+
+      <div class="p">db-list option to audit orphan reservations<table cellpadding="4" cellspacing="0" summary="" id="orphan_reservation_audit__table_odh_wlb_5vb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>db-list option to audit orphan reservations</span></caption><colgroup><col style="width:33.33333333333333%" /><col style="width:66.66666666666666%" /></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d19726e77">Entity</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d19726e80">Tool option</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d19726e77 ">Account</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d19726e80 "><code class="ph codeph">./db-list -i accounts -a heal -k &lt;path of file&gt;</code></td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d19726e77 ">BucketInstance</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d19726e80 "><code class="ph codeph">./db-list -i devices -a heal -k &lt;path of file&gt;</code></td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d19726e77 ">Counter</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d19726e80 "><code class="ph codeph">./db-list -i devices -a heal -k &lt;path of file&gt;</code></td>
+
+              </tr>
+
+            </tbody>
+</table>
+</div>
+
+      <div class="p">Note these important points:<ul class="ul" id="orphan_reservation_audit__ol_z3l_hhn_rvb">
+          <li class="li">If healing entity has greater than or equal to 100 reservations entries in the
+            reservation map, then orphan reservation audit does not work due to performance
+            impact.</li>
+
+          <li class="li">If the application preference <span class="ph uicontrol">Use DynamicData TEM for sessions</span>
+          is set to <var class="keyword varname">1</var>, and GySession and rating session do not exist in database,
+          then upon running db-list these events occur:<ul class="ul" id="orphan_reservation_audit__ul_pqz_k14_rvb">
+            <li class="li">ddTEM entry is not deleted.</li>
+
+            <li class="li">New TEM entry is created in TEMEntity table to audit orphan reservation.</li>
+
+          </ul>
+<p class="p">This is supported when <span class="keyword parmname">tpapss.sessionmapping</span> is either true
+            (default) or false. Toggling of <span class="keyword parmname">tpapps.sessionmapping</span> may result in
+            unexpected behavior.</p>
+</li>
+
+          <li class="li">For account, reservations ending with <code class="ph codeph">_RG</code> are considered for orphan session
+            audit. For example: STEP_XXX and OLI_XXX are considered.</li>
+
+          <li class="li">Group is not considered for this feature.</li>
+
+          <li class="li">Upon audit, these events occur for orphan reservation:<ul class="ul" id="orphan_reservation_audit__ul_uyf_2d4_rvb">
+              <li class="li">Reservations are cleared from the entity.</li>
+
+              <li class="li">TEM entities are deleted.</li>
+
+              <li class="li">Charging session map entities are deleted.</li>
+
+              <li class="li">Secondary index tables are not considered for update.</li>
+
+            </ul>
+</li>
+
+        </ul>
+</div>
+
+    
+  </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

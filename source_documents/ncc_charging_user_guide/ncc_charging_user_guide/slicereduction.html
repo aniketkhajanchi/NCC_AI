@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Slice reduction" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-slicereduction" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Slice reduction</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-slicereduction">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Slice reduction</h1>
+<div class="body conbody">
+        <p class="p">Without slice reduction, threshold is not considered during reservation, which result in
+            delay in triggering the associated rule actions and produced incorrect behavior. For
+            example, if a threshold level is configured to send a notification to the user once the
+            data usage reaches 80% of the account balance, then the notification was sent only at
+            commit despite of the reservation logic realizing that the threshold level is crossing
+            80% at the time of reservation. In this case, the actions associated with the threshold
+            level led to inaccurate results as logic took the decision at commit and by that time,
+            the current usage already crossed the defined threshold value by a significant gap.
+            Therefore, to reduce this gap, the slice reduction feature was introduced to make the
+            actions associated with the threshold value more accurate.</p>
+
+        <p class="p">Slice reduction checks the upcoming threshold values defined for a (main or carry-over)
+            bucket, counter, account balance, or Aggregate View (AV) and its associated actions,
+            such as <samp class="ph systemoutput">Notification</samp>,
+                <samp class="ph systemoutput">Notification-Stop</samp>,
+                <samp class="ph systemoutput">Notification-Reject</samp>,
+                <samp class="ph systemoutput">Send-SNR</samp>, or <samp class="ph systemoutput">Send-RAR</samp> at
+            the time of reservation. With slice reduction, when the current usage approaches the
+            upcoming threshold values, the slice size is reduced in such a way that the result of
+            actions become more accurate for the defined threshold values.</p>
+
+        <p class="p">This feature is applicable to both centralized and decentralized charging calls and
+            performed for all defined threshold actions.</p>
+
+        <div class="note notice"><div class="noticetitle"><img src="../../web/css/../images/notice.svg" title="notice-icon" class="noteicon" />Notice:</div> It is recommended not to use the slice reduction feature with
+                <em class="ph i">DYNAMIC_ALGO</em> or <em class="ph i">DYNAMIC_ALGO_2</em> because the slice reduction logic is
+            itself an algorithm, which reduces the slice size depending on the upcoming threshold
+            values. However, if the slice reduction logic and <em class="ph i">DYNAMIC_ALGO</em> or
+                <em class="ph i">DYNAMIC_ALGO_2</em> are configured together, then the feature behavior might
+            change and this may lead to unexpected results.</div>
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

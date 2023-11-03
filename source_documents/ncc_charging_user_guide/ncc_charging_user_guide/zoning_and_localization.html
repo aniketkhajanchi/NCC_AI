@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Zoning and localization" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e192865" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Zoning and localization</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e192865">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Zoning and localization</h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">Zoning, which is permanently on, allows computation of the tariff from the origin of the data
+                                                  session. A zone is the current location of the
+                                                  owner of the session, which is based on the value
+                                                  of
+                                                  <var class="keyword varname">PS-Information.3GPP-SGSN-MCC-MNC/SGSN-Address</var>
+                                                  in the request message. Zoning is used to
+                                                  fine-tune rating and charging to service provider
+                                                  defined zones. When roaming, zones are used to
+                                                  fine-tune roaming zones that may have more or less
+                                                  favorable rating and charging relative to each
+                                                  other. For this purpose, NCC collects a number of
+                                                  parameters in the requests received from the
+                                                  external entity and builds zoning parameters sent
+                                                  to the rating function. It is the rating function
+                                                  that identifies the areas and applies the
+                                                  corresponding tariff for the communication. </p>
+
+<p class="p">Zoning is independent of roaming; however, the MCC-MNC values are used to determine a zone. If the MCC-MNC value does not map to a zone, then the SGSN IP address is used to determine zone. For call control, zoning maps MCC-MNC or SGSN-ip-addresses to a zone(s) and can be used to dictate the tariff applied by the Rating Engine using the following criteria:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Origin</p>
+
+</li>
+
+<li class="li">
+<p class="p">Roaming or non-roaming</p>
+
+</li>
+
+</ul>
+
+<p class="p">Roaming and zoning attributes can be configured using complex map.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Complex map list</span>
+                                                  
+                                                  <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-case3_mt2_default.png" height="230" width="549" />
+                                                  </div>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For more information on complex mapping list, refer to <cite class="cite">NOKIA Converged Charging Global
+                    Configuration Guide</cite>.</div>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

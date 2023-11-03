@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Exhausting higher priority resources before the lower priority resources" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="first_come_first_commit_resource" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Exhausting higher priority resources before the lower priority resources</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="first_come_first_commit_resource">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Exhausting higher priority resources before the lower priority resources</h1>
+<div class="body conbody">
+        <p class="p">If a bucket (higher priority resource) is reserved by one or more ongoing sessions, then
+            new sessions are either rejected or the main balance (lower priority resource) is used
+            before consuming from the bucket. In this case, the lower priority resource is used
+            before exhausting the higher priority resource.</p>
+
+        <div class="p">This feature provides the functionality to exhaust the higher priority resources before
+            using the lower priority resources.<div class="note" id="first_come_first_commit_resource__note_a1x_j5v_kxb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This feature is
+                applicable only when main balance has the lowest priority.</div>
+</div>
+
+        <p class="p">For the reported usage quota, NCC re-evaluates the applicable resources, and commits the
+            usage to the resources with higher priority even if they are reserved by other sessions.
+            Lower priority resources are consumed only after higher priority resources are
+            exhausted. This functionality is called <em class="ph i">First Come First Commit Resource</em>. </p>
+
+        <p class="p">If this feature is disabled, then lower priority resources can be exhausted before the
+            higher priority resources.</p>
+
+        <div class="section" id="first_come_first_commit_resource__section_xnm_rhv_kxb"><h2 class="title sectiontitle">Configuration</h2>
+            
+            <div class="p">The functionality to exhaust the higher priority resources before using the lower
+                priority resources can be enabled using either of the following:<ul class="ul" id="first_come_first_commit_resource__ul_fp1_z5v_kxb">
+                    <li class="li">Set the application preference <code class="ph codeph">First Come First Commit
+                            Resource</code> to <var class="keyword varname">Enabled</var>.<p class="p">Default:
+                                <var class="keyword varname">Disabled</var></p>
+</li>
+
+                    <li class="li">Set <code class="ph codeph">First-Come-First-Commit-Resource</code> attribute to
+                            <var class="keyword varname">Enabled</var> in <em class="ph i">GY_PRE_PROCESSING</em> trigger.</li>
+
+                </ul>
+</div>
+
+            <p class="p">The <code class="ph codeph">First-Come-First-Commit-Resource</code> attribute in
+                    <em class="ph i">GY_PRE_PROCESSING</em> trigger has higher priority than the application
+                preference <code class="ph codeph">First Come First Commit Resource</code>. If the rule attribute
+                is configured, then the application preference is ignored.</p>
+
+        </div>
+
+        <div class="section" id="first_come_first_commit_resource__section_ryg_hwv_kxb"><h2 class="title sectiontitle">First Come First Commit Resource</h2>
+            
+            <p class="p">NCC commits the reported USU from the applicable higher priority resource even if it
+                is reserved by other sessions. Reported USU is committed until the higher priority
+                resource is exhausted.</p>
+
+            <p class="p">If the USU is completely committed to the higher priority resource, then the lower
+                priority resource which was reserved by that session is released. If higher priority
+                resource is exhausted, then the remaining usage quota is allocated from the lower
+                priority resource.</p>
+
+        </div>
+
+        <div class="section" id="first_come_first_commit_resource__section_m52_khw_kxb"><h2 class="title sectiontitle">Resource over-reservation</h2>
+            
+            <p class="p">If a session reserves a lower priority resource, but commits to a higher priority
+                resource later, then the higher priority resource is over-reserved. </p>
+
+        </div>
+
+        <div class="section" id="first_come_first_commit_resource__section_wxv_lhw_kxb"><h2 class="title sectiontitle">Balance threshold for over-reservation</h2>
+            
+            <p class="p">The balance threshold for over-reservation can be configured using the application
+                preference <code class="ph codeph">Balance Threshold for Over Reservation</code> and rule
+                attribute <code class="ph codeph">Balance-Threshold-For-Over-Reservation</code> in
+                    <em class="ph i">GY_PRE_PROCESSING</em> trigger.</p>
+
+            <p class="p">It allows main balance to be used for resource outstanding usage, if any.</p>
+
+            <p class="p">The rule attribute <code class="ph codeph">Balance-Threshold-For-Over-Reservation</code> has higher
+                priority than the application preference <code class="ph codeph">Balance Threshold for Over
+                    Reservation</code>. If the rule attribute is configured, then <code class="ph codeph">Balance
+                    Threshold for Over Reservation</code> is ignored.</p>
+
+            <div class="p">
+                <div class="note" id="first_come_first_commit_resource__note_e1k_2jb_lxb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Configuring <code class="ph codeph">Balance Threshold for Over
+                        Reservation</code> has the risk of generating revenue loss for main
+                    balance. When the session is reserving a bucket that is used by other sessions,
+                    and the rate for the outstanding usage for the session is higher than other
+                    sessions, then outstanding charge is discarded and stored in CDR.</div>
+
+            </div>
+
+        </div>
+
+        <div class="section" id="first_come_first_commit_resource__section_qyg_nhw_kxb"><h2 class="title sectiontitle">Available balance calculation for quota allocation</h2>
+            
+            <p class="p">If a resource is over-reserved while allocating quota, then only the delta balance
+                    (<code class="ph codeph">available main balance -  <em class="ph i">Balance Threshold for Over
+                    Reservation</em></code>) can be used for the allocation.</p>
+
+            <p class="p">If secondary balance is applicable, then only the delta secondary balance
+                    (<code class="ph codeph">available secondary balance + available main balance - <em class="ph i">Balance
+                        Threshold for Over Reservation</em></code>) can be used for the
+                allocation.</p>
+
+        </div>
+
+        <div class="section" id="first_come_first_commit_resource__section_snb_4hw_kxb"><h2 class="title sectiontitle">Sending RAR while allocating quota</h2>
+            
+            <p class="p">While allocating quota or committing usage, RAR is sent to the sessions which have
+                reserved the over-reserved resources to force quota reporting, when the following
+                conditions are met:</p>
+
+            <ul class="ul" id="first_come_first_commit_resource__ul_z5l_d3w_kxb">
+                <li class="li">A resource is over-reserved.</li>
+
+                <li class="li">Quota allocation fails because of insufficient credit. </li>
+
+                <li class="li">Quota allocation/commit is successful but the available balance (including main
+                    balance and secondary balance, if applicable) is equal to or less than the value
+                    configured for <code class="ph codeph">Balance Threshold for Over Reservation</code>. <div class="note" id="first_come_first_commit_resource__note_rdv_b4b_lxb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If the over-reserved resource is at group level, then
+                        the rule attribute
+                            <code class="ph codeph">Group-Balance-Threshold-For-Over-Reservation</code> in
+                            <em class="ph i">GY_PRE_PROCESSING</em> trigger is checked for the available group
+                        balance. If the device belongs to a local group, then device balance is
+                        equal to or less than the <code class="ph codeph">Balance Threshold for Over
+                            Reservation</code>.</div>
+</li>
+
+                <li class="li">The application preference <code class="ph codeph">Trigger RAR for Over Reservation</code> or
+                    rule attribute <code class="ph codeph">Trigger-RAR-For-Over-Reservation</code> in
+                        <em class="ph i">GY_PRE_PROCESSING</em> trigger is set to any value other than
+                        <var class="keyword varname">None</var>. The session which has reserved the over-reserved
+                    resources is either data call or IMS call. <div class="note" id="first_come_first_commit_resource__note_gcs_cpb_lxb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The rule
+                        attribute <code class="ph codeph">Trigger-RAR-For-Over-Reservation</code> has higher
+                        priority than the application preference <code class="ph codeph">Trigger RAR for Over
+                            Reservation</code>. If the rule attribute is configured, then
+                            <code class="ph codeph">Trigger RAR for Over Reservation</code> is
+                    ignored.</div>
+</li>
+
+            </ul>
+
+            <div class="p">Consider the following important points about sending RAR while allocating quota or
+                committing usage:<ul class="ul" id="first_come_first_commit_resource__ul_h2k_cvb_lxb">
+                    <li class="li">
+                        <p class="p">For a data session, RAR is sent only to the rating groups/categories that
+                            have reserved the over-reserved resource.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The application preference <code class="ph codeph">Interval for Trigger RAR to same
+                                RG</code> is used to configure the interval within which a RAR is
+                            sent only once to an IMS session/rating group. It is used to avoid
+                            sending RAR multiple times to the same IMS session/rating group within
+                            the configured interval. If the interval is zero, then there is no
+                            limitation on sending RAR multiple times to an IMS session/rating
+                            group.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">If RAR has been sent to an IMS session/rating group, and the IMS
+                            session/rating group is waiting for usage report (CCRU/CCRT), then RAR
+                            is not sent again until the usage report is received.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">If a bucket in the bundle queue is over-reserved, the related bundle in
+                            the queue is not the last bundle, and the application preference
+                                <code class="ph codeph">RAR for Queue Bundle Over Reservation</code> is set to
+                                <var class="keyword varname">Disabled</var>, then RAR is not sent for the
+                            bucket.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">For calls (both session calls and IEC calls), even if the over-reserved
+                            resource is not selected by the current call, and the available balance
+                            is lower than the <code class="ph codeph">Balance Threshold for Over
+                                Reservation</code>, RAR is triggered for sessions/rating groups
+                            which use the over-reserved resource.</p>
+
+                    </li>
+
+                </ul>
+</div>
+
+        </div>
+
+        <div class="section" id="first_come_first_commit_resource__section_mln_4vb_lxb"><h2 class="title sectiontitle">Use cases</h2>
+            
+            <div class="p">Consider the following configuration for the use case:<ul class="ul" id="first_come_first_commit_resource__ul_zz3_gyb_lxb">
+                    <li class="li">
+                        <p class="p">Bucket: 120M </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Balance: 16, </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Balance threshold for over reservation: 12</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Call rate: 0.1/1M</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Slice size: 50M</p>
+
+                    </li>
+
+                </ul>
+</div>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="first_come_first_commit_resource__table_shv_jxb_lxb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Results</span></caption><colgroup><col style="width:10.182119205298012%" /><col style="width:10.347682119205297%" /><col style="width:8.278145695364238%" /><col style="width:9.02317880794702%" /><col style="width:8.609271523178808%" /><col style="width:11.341059602649006%" /><col style="width:14.155629139072845%" /><col style="width:13.162251655629136%" /><col style="width:14.900662251655628%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d99311e354">Time</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d99311e357">Rating group</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d99311e360">GSU</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d99311e363">USU</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d99311e366">Bucket unused value</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d99311e370">Bucket current value</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d99311e373">Balance with reservation</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d99311e376">Balance without reservation</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d99311e379">Note</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e354 ">8:00</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e357 ">RG1</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e360 ">50</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e363 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e366 ">120</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e370 ">70</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e373 ">16</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e376 ">16</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e379 ">-</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e354 ">8:02</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e357 ">RG2</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e360 ">50</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e363 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e366 ">120</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e370 ">20</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e373 ">16</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e376 ">16</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e379 ">-</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e354 ">8:03</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e357 ">RG3</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e360 ">50</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e363 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e366 ">120</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e370 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e373 ">16</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e376 ">13</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e379 ">-</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e354 ">8:06</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e357 ">RG3</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e360 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e363 ">50</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e366 ">70</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e370 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e373 ">16</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e376 ">16</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e379 ">First come first commit bucket, and bucket is
+                                over-reserved.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e354 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e357 ">RG3</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e360 ">40</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e363 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e366 ">70</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e370 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e373 ">16</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e376 ">12</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e379 ">Allocate quota based on balance threshold, and sending RAR for
+                                RG1 and RG2.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e354 ">8:10</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e357 ">RG1</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e360 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e363 ">50</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e366 ">20</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e370 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e373 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e376 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e379 "> New quota allocation failed due to reaching balance
+                                threshold.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e354 ">8:11</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e357 ">RG2</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e360 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e363 ">40</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e366 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e370 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e373 ">14</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e376 ">10</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e379 ">Commit 20M on bucket, and 20M on balance.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e354 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e357 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e360 ">50</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e363 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e366 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e370 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e373 ">14</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e376 ">5</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e379 ">Allocate 50M from balance as bucket is not over-reserved.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e354 ">8:20</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e357 ">RG3</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e360 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e363 ">40</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e366 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e370 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e373 ">10</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e376 ">5</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e379 ">-</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e354 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e357 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e360 ">50</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e363 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e366 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e370 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e373 ">10</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e376 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e379 ">Allocate 50M from balance.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e354 ">8:30</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e357 ">RG2</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e360 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e363 ">50</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e366 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e370 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e373 ">5</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e376 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e379 ">Quota allocation failed due to no balance.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e354 ">8:40</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e357 ">RG3</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e360 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e363 ">50</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e366 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e370 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e373 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e376 ">0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d99311e379 ">Quota allocation failed due to no balance.</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <div class="section" id="first_come_first_commit_resource__section_l4z_pvb_lxb"><h2 class="title sectiontitle">Additional information</h2>
+            
+            <ul class="ul" id="first_come_first_commit_resource__ul_grs_qvb_lxb">
+                <li class="li">The feature can cause revenue loss for main balance.</li>
+
+                <li class="li">This feature is not applicable to event charging (for example, bundle renewal
+                    fee, step fee). Hence, event charging can be done even when the available
+                    balance is less than the <code class="ph codeph">Balance Threshold for Over
+                    Reservation</code>. This may lead to insufficient balance for over-reserved
+                    resource outstanding usage.</li>
+
+                <li class="li">Step up fee, BOU activation fee, and bundle renewal fee can be applied even if
+                    the balance is less than the value configured for <code class="ph codeph">Balance Threshold for
+                        Over Reservation</code>. This may lead to insufficient balance for bucket
+                    outstanding usage.</li>
+
+                <li class="li">If a queued bundle is activated during reservation, then it cannot be rolled
+                    back. Hence, with the <code class="ph codeph">First Come First Commit</code> functionality,
+                    the next in-active instance in the queue can be activated before completely
+                    exhausting the current active instance of the queue.</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

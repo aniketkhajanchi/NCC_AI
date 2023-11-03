@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Types of charging" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e1513" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Types of charging</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e1513">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Types of charging</h1>
+<div class="body conbody">
+<div class="section"><h2 class="title sectiontitle">Immediate event charging - IEC</h2>
+<p class="p">Immediate event charging, also referred to as direct charging, is an event-based charging
+        performed by immediate debit on receiving a single charging request. There is no separate
+        reservation for direct charging and event charging is performed as a single step
+        request.</p>
+
+<p class="p">IEC processes event-based charging for the following Diameter requests:</p>
+<ul class="ul">
+<li class="li"><em class="ph i">Immediate debit</em>: Event-based charging with IEC is performed in an immediate debit mode
+          wherein the external entity indicates the origin, destination, service identifier, and
+          requested service units (for example, volume, time, specific units, and money). NCC
+          provides an external entity with the information stating whether immediate debit request
+          is granted or not.</li>
+
+<li class="li"><em class="ph i">Debit function over Diameter</em>: IEC uses the <em class="ph i">Direct Debiting One Time Event</em>
+          procedure only when there is no need to maintain any state in the Diameter credit-control
+          server. For example, it is used for direct debiting without any credit reservation.</li>
+
+                                                  <li class="li"><em class="ph i">Check balance</em>: IEC uses the <em class="ph i">Check
+            Balance One Time Event</em> procedure to determine whether account balance is available
+          to process the requested service units.<p class="p">NCC must check the presence of
+              <em class="ph i">Requested-Action</em> and <em class="ph i">Service-Information</em> in the Event Request (CCR), and
+            if <em class="ph i">Requested-Action</em> is <var class="keyword varname">Check-Balance</var>, then it must include
+              <em class="ph i">Check-Balance-Result</em> AVP in the response (CCA).</p>
+<p class="p">NCC must reply with the
+              <em class="ph i">Check-Balance-Result</em> AVP set as <var class="keyword varname">ENOUGH_CREDIT (0)</var> when there
+            is sufficient credit (bucket or main balance) using the incoming RSU to cover the
+            requested service units or else reply with the <em class="ph i">Check-Balance-Result</em> AVP set as
+              <var class="keyword varname">NO_CREDIT (1)</var> in case sufficient credit is unavailable.</p>
+</li>
+
+</ul>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> When Credit-Control-Request (CCR) event messages are generated, the Network Element (NE)
+        applies IEC and the decision whether to apply IEC is based on the service and/or your
+        policy.</div>
+
+<p class="p">The figure below shows the call flow when an external entity requests immediate charging for a
+                                                  service from NCC. The Call Transfer Function (CTF)
+                                                  makes the service request and sends a CCR to
+                                                  NCC as an event request specifying the Requested
+                                                  Service Unit (RSU). After transmitting the CCR
+                                                  message, the NE starts the communication
+                                                  supervision timer Tx and the server verifies
+                                                  whether the account or device has enough quota
+                                                  available to satisfy the rating based on the RSUs.
+                                                  If there is sufficient quota, then the server
+                                                  grants all the requested units to the client.</p>
+
+<p class="p">The direct debit is performed after receiving the Credit-Control-Answer (CCA) message, which triggers a response to the CTF with event request, Granted Service Unit (GSU), and Cost Information (CI) and delivers the service.</p>
+
+<p class="p">However, in case there is insufficient quota or bucket available, then the CCR is completely rejected.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Event-based direct debiting transactions are performed over Gy or Ro interface. The direct
+        debiting operation is carried out prior to service or content delivery but the NE must
+        ensure that the requested service execution is successful.</div>
+
+<div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e1513__iecdirect"><span class="figcap"><span class="fig--title-label">Figure: </span>Call flow for IEC direct debiting
+                                                  operation</span>
+                                                  
+                                                  <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-iec_callflow_default.png" />
+                                                  </div>
+
+<p class="p">The message flows are in-general driven by the control-point asking for units and the server granting them. The messages are also generated by other Diameter applications, such as Diameter Network Access Server Requirements (NASREQ) for sessions that are time-limited or usage-limited.</p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Event charging with unit reservation - ECUR</h2>
+<p class="p">The event charging with unit reservation is a two-stage Diameter event charging wherein:</p>
+<ul class="ul">
+<li class="li">The first stage is a reservation of a cost amount or reservation of cost for an event</li>
+
+<li class="li">The second stage is to commit that cost amount (calculated in the first stage).</li>
+
+</ul>
+
+<p class="p">Both request and commit actions are managed using CCR or CCA pairs in the Gy or Ro interface.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>ECUR call flow</span>
+                                                  
+                                                  <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-ecur_callflow_default.png" />
+                                                  </div>
+
+<p class="p">Once a CCR message is received and message validation is passed, the call controller determines <em class="ph i">CallSubType</em> SMS using either of the following methods:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Loading the <em class="ph i">creditRequestProfile</em> with the highest priority value.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Searching the map in the <em class="ph i">creditRequestProfile</em> using the <em class="ph i">service-context-Id</em> AVP from the CCR message to get the <em class="ph i">ServiceCallType</em> value. However, if not provisioned, then the call controller uses the hard-coded <em class="ph i">3GPP service-context-Id</em> value to <em class="ph i">ServiceCallType</em> map.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Using the <em class="ph i">ServiceCallType</em> value to find the <em class="ph i">CallSubTypeMapInfo</em> in the <em class="ph i">creditRequestProfile</em>.</p>
+
+<p class="p">After this, use the rating-group value from each MSCC to search into the map to determine the <em class="ph i">CallSubType</em>.</p>
+
+<div class="p">
+            <div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e1513__note_odm_t2k_vsb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If no rating-group value is matched, then it uses the
+                <em class="ph i">defaultValue</em> provisioned in <em class="ph i">CallSubTypeMapInfo</em>.</div>
+
+          </div>
+
+</li>
+
+</ul>
+
+<p class="p">If the <em class="ph i">ServiceCallType</em> value is not provisioned, then call controller uses the <em class="ph i">originator-Interface</em> AVP in the CCR message to map into the <em class="ph i">CallSubType</em> value.</p>
+
+<p class="p">For more information on different types of call flows and scenarios, see the <em class="ph i">Custom scenarios</em> appendix.</p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Session charging with unit reservation</h2>
+<p class="p">Session Charging with Unit Reservation (SCUR) is session-based charging with unit reservation
+        when the debit unit and reserve unit operations are both needed and combined in one message.
+        Session control in this context refers to handling a Diameter session as a complete entity
+        and the session consists of a number of CCR and CCA pairs. OCS requests the reauthorization
+        through RAR to a gateway.</p>
+
+<p class="p">For SCUR, the consumed units are deducted from the subscriber account after service delivery. Thus, the reserved and consumed units are not necessarily the same.</p>
+
+<p class="p">The given figure shows the transactions required on the Gy or Ro reference point for SCUR.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>SCUR call flow</span>
+                                                  
+                                                  <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-scur_callflow_default.png" />
+                                                  </div>
+
+<p class="p">The following steps show the SCUR call flow as shown in the figure:</p>
+<ol class="ol">
+<li class="li">The NE receives a session initiation. The session initiation may be done either by the user or
+          the other NE.</li>
+
+<li class="li">To perform reserve units operations for a number of units (monetary or non-monetary units), the
+          NE sends a CCR with <em class="ph i">CC-Request-Type</em> AVP set to <var class="keyword varname">INITIAL_REQUEST</var>
+          for the OCS. If known, the NE may include <em class="ph i">RSU</em> AVP (monetary or non-monetary units)
+          in the request message.</li>
+
+<li class="li">If the service cost information is not received by the OCS, then the OCS determines the price of
+          the desired service according to the service-specific information received by issuing a
+          rating request to the Rating Function. If the cost of the service is included in the
+          request, the OCS directly reserves the specified monetary amount. If the credit balance is
+          sufficient, the OCS reserves the corresponding amount from the users account.</li>
+
+<li class="li">Once the reservation has been made, the OCS returns CCA message with <em class="ph i">CC-Request-Type</em> set
+          to <var class="keyword varname">INITIAL_REQUEST</var> for the network element to authorize the service
+          execution with Granted-Service-Unit. The OCS may return the <em class="ph i">Validity-Time</em> AVP with
+          value field set to a non-zero value. The OCS may indicate in the
+            <em class="ph i">Low-Balance-Indication</em> AVP that the subscriber account balance has fallen below a
+          predefined threshold of this account.</li>
+
+<li class="li">Content/service delivery starts and the reserved units are concurrently controlled.</li>
+
+<li class="li">During session delivery, to perform debit units and subsequent reserve units operations, the NE
+          sends a CCR with <em class="ph i">CC-Request-Type</em> AVP set to <var class="keyword varname">UPDATE_REQUEST</var>, to
+          report the units used and request additional units, respectively. The CCR message with
+            <em class="ph i">CC-Request-Type</em> AVP set to <var class="keyword varname">UPDATE_REQUEST</var> must be sent by the
+          NE between the <var class="keyword varname">INITIAL_REQUEST</var> and
+            <var class="keyword varname">TERMINATION_REQUEST</var> either on request of the credit control
+          application within the validity time or if the validity time is elapsed. When VT is
+          elapsed, TEM removes the session and return the reservations. If known, the NE may include
+            <em class="ph i">Requested-Service-Unit</em> AVP (monetary or non-monetary units) in the request
+          message. The <em class="ph i">Used-Service-Unit (USU)</em> AVP is complemented in the CCR message to
+          deduct units from both the user's account and the reserved units, respectively.</li>
+
+<li class="li">The OCS deducts the amount used from the account. If the service cost information is not
+          received by the OCS, then the OCS determines the price of the desired service according to
+          the service-specific information received by issuing a rating request to the Rating
+          Function. If the cost of the service is included in the request, then the OCS directly
+          reserves the specified monetary amount. If the credit balance is sufficient, then the OCS
+          reserves the corresponding amount from the users account.</li>
+
+<li class="li">Once the deduction and reservation have been made, the OCS returns CCA message with
+            <em class="ph i">CC-Request-Type</em> set as <var class="keyword varname">UPDATE_REQUEST</var> to the NE, to allow the
+          content or service delivery to continue with new <em class="ph i">Granted-Service-Unit (GSU)</em> AVP.
+          The OCS may include in the CCA message the <em class="ph i">Final-Unit-Indication (FUI)</em> AVP to
+          indicate the final granted units. The OCS may indicate in the
+            <em class="ph i">Low-Balance-Indication</em> AVP that the subscriber account balance has fallen below a
+          predefined threshold of this account.</li>
+
+<li class="li">The session delivery continues and reserved units are concurrently controlled.</li>
+
+<li class="li">The session is terminated at the NE.</li>
+
+<li class="li">The NE sends CCR with <em class="ph i">CC-Request-Type</em> AVP set to <var class="keyword varname">TERMINATION_REQUEST</var>
+          for terminating the active credit control session and report the used units.</li>
+
+<li class="li">The OCS deducts the amount used from the account. Unused reserved units are released (if
+          applicable).</li>
+
+<li class="li">The OCS acknowledges the reception of the CCR message by sending CCA message with
+            <em class="ph i">CC-Request-Type</em> AVP indicating <var class="keyword varname">TERMINATION_REQUEST</var>.</li>
+
+</ol>
+
+</div>
+
+    <div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e1513__section_u2z_x2k_vsb"><h2 class="title sectiontitle">5G ECUR calls with NEF and AMF node</h2><strong class="ph b">Important points</strong><ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e1513__ol_rmm_glr_vsb"><li class="li"><em class="ph i">Gy Session Authorisation Validity (seconds)</em> application preference should not be enabled
+          in ECUR + AMF/NEF calls.</li>
+<li class="li">NotifyURI is not mandatory for such calls.</li>
+<li class="li">Update result code in 5G ECUR charging calls for AMF and NEF node:<ol class="ol" id="id9yz-09126-ug01-pczza-sp1-d1e1513__ol_smm_glr_vsb"><li class="li">If in the response any MSCC has success result code, then root result code is not updated.</li>
+<li class="li">If in response all MSCCs fail with same reason/result code then the failed result code(of MSCC) will be set in root result code.</li>
+<li class="li">If in response all MSCCs fail with different reason/result code then <var class="keyword varname">4012 - RATING_FAILED</var> is set in root result code.</li>
+</ol>
+</li>
+<li class="li">Update result code in OneTimeEvent/IEC in 5G charging calls:<ol class="ol" id="id9yz-09126-ug01-pczza-sp1-d1e1513__ol_umm_glr_vsb"><li class="li">If in response any MSCC has success result code, then root result code is not updated.</li>
+<li class="li">If in response all MSCCs fail with same reason/result code, then the failed result code (of MSCC) is set in root result code.</li>
+<li class="li">If in response all MSCCs fail with different reason/result code, then <var class="keyword varname">4012 - RATING_FAILED</var> is set in root result code.</li>
+</ol>
+</li>
+<li class="li">Only first value is dumped for <var class="keyword varname">externalGroupIdentifier</var> as specified in 3GPP 32298 Rel 16 specs.</li>
+<li class="li"><var class="keyword varname">GroupIdentifiers</var> is dumped in TBCD format in CDR.</li>
+<li class="li">IEC call for NEF and AMF node also works as SMS (Diameter) calls.</li>
+</ul>
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

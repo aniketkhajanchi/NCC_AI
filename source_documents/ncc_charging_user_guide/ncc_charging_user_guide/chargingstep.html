@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Tiered Allowances (Charging Step)" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-chargingstep" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Tiered Allowances (Charging Step)</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-chargingstep">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Tiered Allowances (Charging Step) </h1>
+<div class="body conbody">
+  <p class="p">The tiered allowance (charging step) entity allows you to configure allowance limit (bucket)
+   amount from services (bundles) in steps. The reference of tiered allowance (charging step) must
+   be present in the allowance limit (bucket) definition. For example, consider that you define 5
+   steps:</p>
+
+  <ol class="ol" id="id9yz-09126-ug01-pczza-sp1-chargingstep__ol_jlx_cnn_gqb">
+   <li class="li">
+    <p class="p">Step 1 -&gt; 1 GB</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">Step 2 -&gt; 1 GB</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">Step 3 -&gt; 1 GB</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">Step 4 -&gt; 2 GB</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">Step 5 -&gt; 15 GB</p>
+
+   </li>
+
+  </ol>
+
+  <p class="p">Initially, only 1 GB is available to the user. Once this 1 GB of service (bundle) is exhausted,
+   the next available resource is checked, that is, other services (bundles). If there is no amount
+   available, then step-up is used and the step allowance limit (bucket) is moved to Step 2 and has
+   1 GB available for usage. This process continues until all the data available is exhausted. Note
+   that the SM service (bundle) is moved to Step 2 only when the call does not consume any bytes in
+   between from another allowance limit (bucket).</p>
+
+  <p class="p">The steps are maintained in a list and used to change the initial value of the step charge
+   allowance limit (bucket) instance. The tiered allowance (charging step) must have at least one
+   step. The same tiered allowance (charging step) can be referenced from multiple allowance limits
+   (buckets). Addition, deletion, modification of steps is allowed, but you cannot reduce the step
+   from 1 to 0.</p>
+
+  <p class="p">The current step and step up time increments for every step up performed. If the
+    <span class="ph uicontrol">Unlimited</span> flag is true, then the current step can be more than the number
+   of steps defined in the tiered allowance (charging step) entity. For example, consider that a
+   step entity has three steps defined as follows:</p>
+
+  <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-chargingstep__fig_klx_cnn_gqb">
+   <pre class="pre codeblock"><code>Step Size = 10, Step Fee = NULL
+Step Size = 20, Step Fee = 2
+Step Size = 30, Step Fee = 3
+Unlimited = True</code></pre>
+  </div>
+
+  <p class="p">After four step ups are performed (20, 30, 30, 30), the value of
+    <span class="ph uicontrol">currentStep</span> = <var class="keyword varname">4</var> (which is greater than the number of
+   steps defined) and <span class="ph uicontrol">currentStepUpTime</span> contains the time of last (fourth)
+   step-up performed.</p>
+
+  <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+   Users can add or remove steps of a tiered allowance.</div>
+
+  <div class="section"><h2 class="title sectiontitle">Configuration</h2>
+   
+   <p class="p">Log into the new GUI, navigate to <span class="ph uicontrol">Charging</span> → ≡ → <span class="ph uicontrol">COMPONENT
+     LIBRARY</span> → <span class="ph uicontrol">Tiered allowance</span>.</p>
+
+   <p class="p">To define a new tiered allowance (charging step), click <img class="image" src="../images/img9yz-09126-ug01-pczza-sp1-add_button_default.png" height="18" width="22" /> to add the
+    details as described in the following table:</p>
+
+   <table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-chargingstep__param_tiered_allow" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters for tiered allowances</span></caption><colgroup><col style="width:20.442571127502635%" /><col style="width:57.85036880927292%" /><col style="width:10.537407797681771%" /><col style="width:11.169652265542677%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d87960e139">Parameter</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d87960e142">Description</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d87960e145">Options</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d87960e148">Mandatory/Optional</th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e139 ">Name</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e142 ">This parameter indicates the name of the tiered allowance.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e145 ">String</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e148 ">Mandatory</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e139 ">Description</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e142 ">This provides a description for the tiered allowance.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e145 ">String</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e148 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e139 ">Unit</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e142 ">
+        <p class="p">This parameter indicates the unit type of charging step.</p>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e145 "> ENUM</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e148 "> Mandatory</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e139 ">Type</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e142 ">This parameter indicates the type of charging step.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e145 ">ENUM</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e148 ">Mandatory</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e139 ">Tax ID</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e142 ">ID of a taxation profile. This drop-down is available only when Apply taxation is
+        selected.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e145 ">Enum</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e148 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e139 ">Charge tax</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e142 ">This parameter indicates whether applied tax is included to the fee/cost or not.
+        Available options are: <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-chargingstep__ul_fbm_pfl_nwb">
+         <li class="li"><em class="ph i">On top of the fee</em>: When selected, tax is applied over and above cost/fee.</li>
+
+         <li class="li"><em class="ph i">Included to the fee</em>: When selected, it is considered that fee/cost provided in
+          configuration contains tax amount in it.</li>
+
+        </ul>
+<em class="ph i">Default value: On top of the fee</em></td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e145 ">Boolean</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e148 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d87960e139 d87960e142 d87960e145 d87960e148 ">
+        <p class="p">
+         <span class="ph uicontrol">Tiers</span>
+        </p>
+
+        <p class="p">Configure the tiered allowance (charging steps). If an allowance limit (bucket) has its
+         initial value set, then it overrides the first step value. Edit tier sizes and fees.</p>
+
+       </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e139 ">Size</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e142 ">This parameter indicates the value of each step to be used as the initial
+        value of bucket.<div class="note" id="id9yz-09126-ug01-pczza-sp1-chargingstep__note_odz_kxx_25b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This parameter cannot have a negative
+         value.</div>
+<p class="p">The value of last step size defined cannot be zero when the
+          <span class="ph uicontrol">Unlimited</span> flag is true. Any other step (except last step) can be
+         zero even if the <span class="ph uicontrol">Unlimited</span> flag is true. For example, the following
+         configuration is allowed:</p>
+<pre class="pre codeblock"><code>Step size = 10, Step fee = NULL
+Step size = 0, Step fee = 0
+Step size = 20, Step fee = 2, Unlimited = true</code></pre><p class="p">But, if you configure the last
+         step size = 0 with <span class="ph uicontrol">Unlimited</span> flag = true, then such configuration is
+         not allowed as shown in the following
+        example:</p>
+<pre class="pre codeblock"><code>Step size = 10, Step fee = NULL
+Step size = 0, Step fee = 0
+Step size = 0, Step fee = 2, Unlimited = true</code></pre>The maximum supported value is
+        1125899906842624 (in base units) with database precision = 2.<div class="note" id="id9yz-09126-ug01-pczza-sp1-chargingstep__note_hgt_r5x_25b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> With
+         increase in database precision, this value decreases. For example, in case database precision is set to
+         5, the maximum supported value is 92233720368547. </div>
+</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e145 "> Big decimal</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e148 "> Mandatory</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e139 ">Fee</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e142 ">
+        <p class="p">This parameter indicates the fee for the step. If a value is defined, then this value
+         gets deducted from the account before step up.</p>
+
+        <p class="p">You can configure fee for step 1 when there is only one step configured in charging step
+         entity and the <span class="ph uicontrol">Unlimited</span> flag is true.</p>
+
+        <p class="p">Note that this parameter cannot have negative value.</p>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e145 ">Big decimal</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e148 "> Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e139 ">Recurring</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e142 ">If this parameter is selected, then the step keeps recurring.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e145 ">Boolean</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e148 "> Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e139 ">Run-time override</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e142 ">If this parameter is selected, the values override and are applied dynamically when
+        rules are evaluated.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e145 ">Boolean</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e148 "> Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e139 ">Enable Parametrisation</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e142 ">If this parameter is enabled, a new field called <em class="ph i">Custom Data</em> is
+        displayed.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e145 ">Boolean</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e148 "> Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e139 ">Custom data</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e142 ">This custom data should be pre-defined in the system and attached manually to each
+        bundle where it is used. <p class="p">The custom data defined can have only one type of service. And
+         only one value of type integer or decimal can be selected.</p>
+<div class="note" id="id9yz-09126-ug01-pczza-sp1-chargingstep__note_p54_3nb_myb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Override happens only in the charging logic inline creation and not in the entity under
+         component library.</div>
+</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e145 ">Integer or Decimal</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e148 "> Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d87960e139 d87960e142 d87960e145 d87960e148 "><strong class="ph b">Threshold Profile</strong></td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e139 ">Threshold Profile</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e142 ">Indicates the threshold profile already defined in the system that you can
+        attach to the tiered allowance.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e145 ">ENUM</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e148 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e139 ">Threshold Profile Per Step</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e142 ">Using this parameter, you can define a threshold profile for each step in
+        the tiered allowance. It supports only percentage-based threshold profiles. From the
+        drop-down list, select a threshold profile already defined in the system. This attribute
+        works only when the application preferences <strong class="ph b">StepUp-OnCommit</strong> is set
+         <var class="keyword varname">True</var>.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e145 ">ENUM</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e148 ">Optional</td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+   <div class="note" id="id9yz-09126-ug01-pczza-sp1-chargingstep__note_qgg_1xh_kyb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> You can configure any one, both, or none from <strong class="ph b">Threshold
+     Profile</strong> and <strong class="ph b">Threshold Profile Per Step</strong> at the same time based on requirement. Do not
+    the select same TPG in both the fields. The value of this field can be overridden in the
+    charging logic like other fields.</div>
+
+  </div>
+
+  <div class="section"><h2 class="title sectiontitle">Actions associated with a tiered allowance (charging step)</h2>
+   
+   <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:28.08988764044944%" /><col style="width:71.91011235955057%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d87960e484">
+        <p class="p">Action</p>
+
+       </th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d87960e490">
+        <p class="p">Description</p>
+
+       </th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e484 ">Create</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e490 ">Creates a tiered allowance (charging step) entity in database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e484 ">Read</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e490 ">Displays a particular tiered allowance (charging step) entity as per the data
+        retrieved from database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e484 ">Update</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e490 ">Updates a particular tiered allowance (charging step) entity with provisioning to
+        MEs.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e484 ">Delete</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e490 ">Deletes a particular tiered allowance (charging step) entity from database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e484 ">Provision</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e490 ">Processes the update request for tiered allowance (charging step) entity for
+        provisioning.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e484 ">retryprovision</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e490 ">Retries provisioning of tiered allowance (charging step) entity to an ME that was
+        previously failed.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e484 ">resetprovision</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d87960e490 ">Clears the provisioning status for failed provisioning attempt on ME.</td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+   <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> These actions are valid for only for internal purposes and cannot be accessed using the SM
+    GUI.</div>
+
+  </div>
+
+ </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

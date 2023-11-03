@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Basic Details" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="bundles_basic_details" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Basic Details</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="bundles_basic_details">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Basic Details</h1>
+<div class="body">
+  <table cellpadding="4" cellspacing="0" summary="" id="bundles_basic_details__table_x3g_tv4_gqb" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters for Services</span></caption><colgroup><col style="width:16.986706056129986%" /><col style="width:45.05169867060561%" /><col style="width:23.190546528803544%" /><col style="width:14.771048744460858%" /></colgroup><thead class="thead" style="text-align:left;">
+     <tr class="row">
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d370435e44">Parameter</th>
+
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d370435e47">Description</th>
+
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d370435e50">Options</th>
+
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d370435e53">Mandatory/Optional</th>
+
+     </tr>
+
+    </thead>
+<tbody class="tbody">
+     <tr class="row">
+      <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d370435e44 d370435e47 d370435e50 d370435e53 "><span class="ph uicontrol">Basic details</span></td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Name</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates a unique name for the service.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">String</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Mandatory</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Description</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">Describes the service.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">String</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Aggregate view</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates the aggregate view associated with the service.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">String<p class="p">Select from the list of available aggregate views.</p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Service Updates</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">Following are the update types:<ul class="ul" id="bundles_basic_details__ul_ctw_rxp_xqb">
+        <li class="li"><span class="ph uicontrol">IMMEDIATE:</span> The subscriptions get updated to a newer version on
+         the next CCR.</li>
+
+        <li class="li"><span class="ph uicontrol">ON NEXT PERIOD:</span> The subscriptions get updated to newer versions
+         in the next bill cycle.</li>
+
+        <li class="li"><span class="ph uicontrol">DO NOT UPDATE:</span> The subscriptions do not get updated.</li>
+
+       </ul>
+<div class="note" id="bundles_basic_details__note_knd_kft_mwb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The <strong class="ph b">Service Updates</strong> option get enabled only when the
+         <strong class="ph b">Entity Versioning Enabled</strong> preference is enabled.</div>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Enum</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d370435e44 d370435e47 d370435e50 d370435e53 ">
+       <span class="ph uicontrol">Service Monetization</span></td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Entity Lifecycle</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates the object status lifecycle associated with the
+       service.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Select the required lifecycle from the predefined lifecycle values in the drop-down
+       list.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Activation Type</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 "><p class="p">This parameter indicates whether the service (bundle) is a normal service (bundle)
+        or a Bundle On Use (BOU) type of service (bundle).</p>
+<p class="p">Following are the supported values
+        for this parameter:</p>
+<ul class="ul" id="bundles_basic_details__ul_bpp_spw_fqb">
+        <li class="li">
+         <div class="p">
+          <var class="keyword varname">Normal</var>: Indicates that the service is a normal service.<div class="note" id="bundles_basic_details__note_nhg_bqc_1rb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> When the Activation Type is set to <var class="keyword varname">Normal</var>, an
+           optional field <span class="ph uicontrol">Queue ID</span> is available.</div>
+</div>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">On use</var>: Indicates that it is a BOU type of service. Once you select
+          this option, you must define at least a single rule with an activation event.</p>
+
+        </li>
+
+        <li class="li"><var class="keyword varname">Auto-install</var>: Indicates the auto-install type of service. Once you
+         select this option, you must define at least a single rule with an activation event.</li>
+
+        <li class="li"><var class="keyword varname">Activation queue</var>: Once you select this option, you can provide a
+          <em class="ph i">Queue ID</em>.</li>
+
+        <li class="li"><var class="keyword varname">Subscription merge</var>: Indicates that it is a rollover type of service.
+         Once you select this option, you must provide a <em class="ph i">Merge ID</em>. <div class="note" id="bundles_basic_details__note_r5r_csz_f5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For more details on rollover services, see <a class="xref" href="rollover_bundles.html">Rollover services (bundles)</a>.</div>
+</li>
+
+       </ul>
+ See <a class="xref" href="bundles_auto-install_bundle_activation_type.html">Auto-install service (bundle) activation type</a> for more
+       details.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Enum</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Queue ID</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates an Identifier that is used to store subscriptions in a queue
+       structure so that they can be used in the order of their creation date.<div class="note" id="bundles_basic_details__note_i3d_gqc_1rb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> <span class="ph uicontrol">Queue ID</span> is available only when the
+         <span class="ph uicontrol">Activation Type</span> is set to <var class="keyword varname">Activation
+        queue</var>.</div>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">String</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Merge ID</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">
+       <p class="p">Merging of two rollover services (bundles) is possible only if both services have same
+         <em class="ph i">Merge ID</em>.</p>
+
+       <p class="p">Services with same <em class="ph i">Merge ID</em> are considered as same type while merging them.</p>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">String</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Auto-manage service</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates whether the service (bundle) is an auto-manage bundle. <p class="p">If
+        this parameter is enabled, then the service (bundle) is eligible for automatic
+        synchronization.</p>
+<p class="p">By default, this parameter is disabled (not eligible for automatic
+        synchronization).</p>
+For more details on automatic service (bundle) synchronization, see
+        <a class="xref" href="bundle_synchronization.html">Auto-synchronization of services (bundles)</a>.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Toggle</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Rule</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates the rule name.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">String</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d370435e44 d370435e47 d370435e50 d370435e53 ">Click <span class="ph uicontrol">NEW</span> to add a new
+       rule.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Align to bill cycle</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates whether a periodic lifecycle is selected or not. When ON, the
+       periodic lifecycle of the account is used. When OFF, a periodic lifecycle must be selected
+       for reference. Default value is true.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">-</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Periodical lifecycle</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates the billing cycle associated with the service. If not
+       specified, the periodic lifecycle of the account is used.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Select the required lifecycle from the predefined lifecycle values in the drop-down
+       list.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Campaign start date</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates a start date, after which the bundle is available for
+       use.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Long  (It can be null, which means it is applied from the moment it was created)<p class="p">It
+        is applicable only if bundle is a campaign bundle with Campaign end date
+       configured.</p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Campaign end date</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates an end date, after which the bundle is not available for use.
+        <p class="p">Long </p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Long(Decides whether the bundle is a campaign or not) </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Conditional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Subscription end  date</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates a subscription end date, after which a bundle cannot be
+       subscribed by any subscriber.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Long (It can be null, which means user can subscribe any time up to campaign end
+       date. If not null, it should be greater than current time and less than campaign end
+       date)</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Renewal end date</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates a renewal end date, after which a subscription corresponding
+       to a bundle cannot be renewed.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Long (It can be null, which means user can renew any time up to campaign end time.
+       If not null, it should be greater than current time, campaign start date and less than
+       campaign end date)</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Maximum renewals</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates the maximum number of times a subscription can be renewed. If
+       there is no value specified, then it denotes unlimited renewals can take place.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Positive integers including zero</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Renewal priority (Optional)</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter is used to define the renewal priority of the subscriptions associated
+       with an account. It can take the following values:<ul class="ul" id="bundles_basic_details__ul_khc_pwv_25b">
+        <li class="li">0: Bundles with <em class="ph i">Renewal Priority</em> value as 0 are mandatory bundles. <p class="p">If the
+          account balance is sufficient to fund the renewal of all mandatory bundles, then all the
+          mandatory bundles are renewed successfully.</p>
+</li>
+
+        <li class="li">Non-zero values: Bundles with non-zero <em class="ph i">Renewal Priority</em> are optional bundles.
+         Optional subscriptions are processed for renewal as per their renewal priority only if all
+         mandatory subscriptions are successfully renewed. Lower value of this parameter means
+         higher priority.</li>
+
+       </ul>
+<p class="p">The functionality to configure bundles as optional and mandatory is applicable only
+        when the application preference <em class="ph i">Controlled Renewal Sequence</em> is set to any value other
+        than <em class="ph i">DISABLED</em>. For more details, see <em class="ph i">Charging application preferences</em> section
+        in <em class="ph i">Global Configuration Guide</em>.</p>
+<div class="p">
+        <div class="note" id="bundles_basic_details__note_c2f_vvj_gyb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+         <p class="p">If the renewal of mandatory bundles fails, then the renewal of other bundles is halted
+          until the account balance is sufficient to fund the renewal of suspended mandatory
+          bundles. </p>
+
+         <p class="p">If the functionality of halting the renewal of lower priority bundles due to higher
+          priority bundles being suspended is not required, then it is recommended to not configure
+          the bundles as mandatory bundles (that is, do not set the <em class="ph i">Renewal Priority</em>
+          parameter to <var class="keyword varname">0</var>). </p>
+
+        </div>
+
+        <div class="note" id="bundles_basic_details__note_jqw_fb2_c5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> It is not mandatory to categorize bundles as mandatory bundles.
+         All the bundles associated with an account can be categorized as optional bundles and they
+         are renewed according to their renewal priority.</div>
+
+       </div>
+<p class="p">If <em class="ph i">Renewal Priority</em> parameter is not configured, then it is
+         <var class="keyword varname">0</var> by default. However, if the SM application preference <em class="ph i">Default
+         Subscription Renewal Priority</em> is configured, and <em class="ph i">Renewal Priority</em> parameter is
+        not configured, then <em class="ph i">Default Subscription Renewal Priority</em> value is considered for
+         <em class="ph i">Renewal Priority</em> parameter.</p>
+<p class="p">Default: 0</p>
+<p class="p">Valid range:
+        0-2147483647</p>
+<div class="note" id="bundles_basic_details__note_rhx_twv_25b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For details on defining the bundle renewal
+        priority, see <a class="xref" href="defining_renweal_order_of_subscriptions_associated_with_an_account.html">Defining renewal priority of subscriptions</a>.</div>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Integer</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Align subscription period end to a date</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 "><p class="p">If this parameter is true, then Day of Week, or Hour of Day, or Day of Month can
+        either be Null or Exact. Supported values are True, False. Default value is False.</p>
+Once
+       selected, the following parameters are enabled:<ul class="ul" id="bundles_basic_details__ul_arm_mzy_hqb">
+        <li class="li">Reference date</li>
+
+        <li class="li">Day of Week</li>
+
+        <li class="li">Hour of Day</li>
+
+       </ul>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">-</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Charge all missed fees upon renewal</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter is visible only when periodical lifecycle is set. This is supported for
+       versioning and can be modified. It is hidden when <var class="keyword varname">Align to billing cycle</var>
+       is set to <em class="ph i">true</em> (set to false if it was true). <p class="p"><em class="ph i">Default value:
+       False</em></p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Select this check box to charge fee for all the missed periods during a successful
+       renewal.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Reference date</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">It supports <var class="keyword varname">Day of Month </var>, <var class="keyword varname">Day of Week</var>,
+        <var class="keyword varname">Subscription input date</var> values.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Enum</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Mandatory if <strong class="ph b">Align with Subscription period end to a date</strong> is selected</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Day of Month</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">
+       <p class="p">This parameter indicates the day of month to which the bundle is applicable.</p>
+
+       <div class="p">Following are the supported values for this parameter:<ul class="ul" id="bundles_basic_details__ul_s1z_g1z_hqb">
+         <li class="li">1 to 31</li>
+
+         <li class="li">Exact: If selected, the day of month is aligned to subscription purchase date.</li>
+
+        </ul>
+</div>
+
+       <p class="p">Once the service is created, this attribute cannot be added or deleted, but can be
+        modified using the <var class="keyword varname">Update</var> action.</p>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 "> </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 "> </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Day of Week</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">
+       <p class="p">Following are the supported values for this parameter</p>
+
+       <ul class="ul" id="bundles_basic_details__ul_vcq_kqw_fqb">
+        <li class="li">
+         <p class="p">Sunday to Saturday</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <span class="ph uicontrol">Exact</span>: If selected, the day of week is aligned to subscription
+          purchase date.</p>
+
+        </li>
+
+       </ul>
+
+       <p class="p">Once the service is created, this attribute is set to default value when no input is
+        provided in <var class="keyword varname">Update</var> action.</p>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">String</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Mandatory if <strong class="ph b">Align with Subscription period end to a date</strong> is selected</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Hour of Day</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">
+       <p class="p">This parameter indicates the hour of day to which the service is applicable.</p>
+
+       <p class="p">Following are the supported values for this parameter</p>
+
+       <ul class="ul" id="bundles_basic_details__ul_kwq_nyc_fqb">
+        <li class="li">
+         <p class="p">0 to 23</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <span class="ph uicontrol">Exact</span>: If selected, the end date and time has the same time as
+          subscription start time.</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <span class="ph uicontrol">Next Day Start</span>: If selected, the end date and time is aligned to
+          00:00:00 of next day as per the lifecycle periodicity. For example, if a monthly
+          subscription is purchased on 20th Jan 13:45:00, then the end date and time of subscription
+          is set to 21st Feb 00:00:00.</p>
+
+        </li>
+
+       </ul>
+
+       <div class="p">
+        <div class="note" id="bundles_basic_details__note_u53_nqw_fqb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Once the service is created, this attribute cannot be added or
+         deleted, but it can be modified using the <var class="keyword varname">Update</var> action.</div>
+
+       </div>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Integer</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Mandatory if <strong class="ph b">Align with Subscription period end to a date</strong> is selected</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Proration profile</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">When selected, the data for proration is taken from proration profile (see <a class="xref" href="new_topics/proration_profiles.html">Proration Profiles</a>).</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Enum</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d370435e44 d370435e47 d370435e50 d370435e53 "><strong class="ph b">Content</strong><p class="p">Click <span class="ph uicontrol">+</span> button to
+        add new content.</p>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Logics</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter allows you to add charging logic to the service. <div class="p">Supported charging
+        logics are:<ul class="ul" id="bundles_basic_details__ul_fs5_v1z_hqb">
+         <li class="li">Data</li>
+
+         <li class="li">Messaging</li>
+
+         <li class="li">Voice</li>
+
+        </ul>
+</div>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Enum</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d370435e44 d370435e47 d370435e50 d370435e53 "><strong class="ph b">Fee and Advanced Settings</strong></td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Service fee</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates the service purchase fee deducted only from the main account
+       balance.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Big decimal</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Mandatory</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Maximum instance per device/group</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates the times that a bundle can be subscribed to a particular
+       device or group. The default value is Null. If the value is 0 or null, it means there is no
+       limit. The integer value less than 0 is invalid.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Digit</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Apply taxation</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">When selected applies tax to the service fee.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Boolean</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Tax ID</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">ID of a taxation profile. This drop-down is available only when Apply taxation is
+       selected.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Enum</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Charge tax</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates whether applied tax is included to the fee/cost or not.
+       Available options are: <ul class="ul" id="bundles_basic_details__ul_fbm_pfl_nwb">
+        <li class="li"><em class="ph i">On top of the fee</em>: When selected, tax is applied over and above cost/fee.</li>
+
+        <li class="li"><em class="ph i">Included to the fee</em>: When selected, it is considered that fee/cost provided in
+         configuration contains tax amount in it.</li>
+
+       </ul>
+<em class="ph i">Default value: On top of the fee</em></td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Boolean</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d370435e44 d370435e47 d370435e50 d370435e53 "><strong class="ph b">Custom Data</strong><p class="p">Click <span class="ph uicontrol">ADD</span> to
+        add new custom data.</p>
+</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Name</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter describes the name of the custom data.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">String</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Default value</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This parameter indicates the default value of the custom data. It
+       is an optional parameter.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">-</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Service reference</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 "><p class="p">This parameter indicates a reference of another service
+        (bundle). When a new service (bundle) is subscribed, the reference service (bundle) must be
+        attached and must not be in barred state. If a reference service (bundle) is not present in
+        Device or Group, or if present but in barred state, then the new service (bundle) is not
+        subscribed.</p>
+<p class="p">If a new subscription is created with future activation and if future
+        activation time is greater than or equal to reference service (bundle) expiry time, then the
+        new service (bundle) is not subscribed.</p>
+<p class="p">If a reference service (bundle) is not in
+        barred state, then the new service (bundle) is aligned with reference service's end date and
+        time.</p>
+<p class="p">If a reference service (bundle) has more than one subscriptions attached with
+        Device/Group and those are not barred, then the new service (bundle) is aligned with
+        reference service (bundle) subscription with least expiry time.</p>
+<p class="p">Supported values are
+        null, service name. The default value is null. If an empty string is provided in the
+        provisioning request, it is internally treated as default value of null.</p>
+See <a class="xref" href="bundles_example_1_bundle_reference_parameter_usage.html">Example 1: Service (bundle) reference parameter usage</a> for more details.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Enum</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Disable tariff time change</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">
+       <p class="p">If this flag is set to <var class="keyword varname">true</var>, then TTC calculation is not done and VT is
+        aligned to subscription's expiry date and time. If MIN_VT is set in quota management
+        (slicing profile) entity, it acts as a limit that cannot be crossed for Validity Time.</p>
+
+       <p class="p">When both aligned service (bundle) and reference service (bundle) are present and
+        reservation is done from aligned service (bundle), then Disable TTC flag of aligned service
+        (bundle) is ignored and flag of reference service (bundle) is always used. </p>
+
+       <p class="p">Supported values are true, false. The default value is false. If null is provided in the
+        provisioning request, it is internally treated as default value of false. </p>
+
+       <p class="p">For more details, see <a class="xref" href="bundles_example_2_disable_ttc_flag_usage_and_snr_processing.html">Example 2: Disable tariff time change flag usage and SNR processing</a>.</p>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Boolean</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Randomize validity time without tariff time change</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">
+       <p class="p">This attribute is used to enable randomization of Validity Time (VT) when Tariff Time
+        Change (TTC) is disabled and VT spans the bundle activation, renewal, or expiration date. </p>
+
+       <p class="p">It can be applied to both prepaid and postpaid accounts.</p>
+
+       <div class="note" id="bundles_basic_details__note_dwx_gkq_svb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For more details, see <a class="xref" href="vt_randomization_when_ttc_is_disabled_for_4g_and_5g_calls.html">VT randomization when TTC is disabled for 4G and 5G calls</a>.</div>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">-</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d370435e44 d370435e47 d370435e50 d370435e53 "><strong class="ph b">Publish Version</strong></td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Publish To</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">This provides a list. Operators can publish to All subscribers and so on.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Enum</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Mandatory</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Activation Time</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">The supported values are as follows:<ul class="ul" id="bundles_basic_details__ul_yf1_h1h_ysb">
+        <li class="li"><strong class="ph b">Activate Now</strong>: If this is selected, then the service is activated
+         immediately.</li>
+
+        <li class="li"><strong class="ph b">Schedule Activation</strong>: Operators can schedule activation to a future time using
+         this option.</li>
+
+       </ul>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Enum</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Mandatory</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Validity Start</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 "><p class="p">This field appears only if <strong class="ph b">Activation Time</strong> = <var class="keyword varname">Schedule
+         Activation</var>.</p>
+The new version of the entity becomes active at the selected
+       date-time.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Date-time</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Time zone for publish</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">
+       <p class="p">This field appears only if <strong class="ph b">Activation Time</strong> = <var class="keyword varname">Schedule
+        Activation</var>.</p>
+
+       <ul class="ul" id="bundles_basic_details__ul_tnq_hby_pwb">
+        <li class="li">Always use UTC: The new version of the entity becomes active for all accounts at the
+         same UTC time.</li>
+
+        <li class="li">Based on account time zone: The new version of the entity becomes active for each
+         account at its respective timezone. A time before 26 hours from last active version cannot
+         be selected.</li>
+
+       </ul>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Radio button</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Mandatory</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Publish Type</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">The supported values are as follows:<ul class="ul" id="bundles_basic_details__ul_ud4_yxg_ysb">
+        <li class="li"><strong class="ph b">Normal</strong>: If this is selected, then no action is taken and the processing happens
+         as per the defined logic.</li>
+
+        <li class="li"><strong class="ph b">Retroactive update</strong>: If this is selected, then the <strong class="ph b">forcedVersioning</strong>
+         attribute is set in the API and the update is immediately applied.</li>
+
+       </ul>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Enum</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Mandatory</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Service Summary</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">Displays the lifecycle states of the lifecycle selected for <strong class="ph b">Entity lifecycle</strong>
+       field.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">-</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Displays when a lifeycle is selected for Entity lifecycle field</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e44 ">Delete all prior draft versions</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e47 ">If you select this option, it deletes any draft versions with the same major number,
+       excluding the contributing draft version. The deletion takes place only if the
+       provisioning/publish is successful. For failure, the drafts are not deleted. <p class="p">If not
+        selected, the draft versions remain in the system after provisioning/publish.</p>
+<p class="p">Example
+        (if selected): </p>
+<ul class="ul" id="bundles_basic_details__ul_qnp_v5w_pwb">
+        <li class="li">Before: 1.1 Draft → 1.2 Draft → 1.3 Draft → 2.0.0 Withdrawn → <strong class="ph b">2.1 Draft → 2.2
+          Draft</strong> → 2.3 Draft</li>
+
+        <li class="li">After publishing: 1.1 Draft → 1.2 Draft → 1.3 Draft → 2.0.0 Withdrawn → 2.3 Draft →
+         3.0.0 Active</li>
+
+       </ul>
+<p class="p">In this example, versions <strong class="ph b">2.1 Draft</strong> and <strong class="ph b">2.2 Draft</strong> are deleted, but
+         <strong class="ph b">2.3 Draft</strong> is not deleted as it is the contributing draft version.</p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e50 ">Check box</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d370435e53 ">Optional</td>
+
+     </tr>
+
+    </tbody>
+</table>
+
+  <div class="p">If the <span class="ph uicontrol">Activation Type</span> is <em class="ph i">NORMAL</em>, then fee deduction during the
+   bundle subscription time has the following priorities:<ol class="ol" id="bundles_basic_details__ol_j2r_gvt_ysb">
+    <li class="li">Subscription fee override</li>
+
+    <li class="li">Bundle rule</li>
+
+    <li class="li">Bundle fee</li>
+
+   </ol>
+During bundle subscription, if the subscription does not have fee override, then the bundle
+   rule is evaluated, if it exists. If the bundle rule does not exist, then the default bundle fee
+   is deducted.<div class="note" id="bundles_basic_details__note_zx2_33g_ysb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Currently, only SPR_DEVICE source context is considered
+    for evaluation. If any other source context is configured in the rules, then it is bypassed at
+    provisioning and the rule evaluation fails. In this case, the default bundle fee is deducted.
+   </div>
+</div>
+
+  <div class="p">After publishing the service, click <img class="image" id="bundles_basic_details__image_o3x_gqp_swb" src="../images/references.PNG" height="40" width="100" /> to view the references associated with the service.<div class="fig fignone" id="bundles_basic_details__fig_lss_kqp_swb">
+    <img class="image break" id="bundles_basic_details__image_ytk_lqp_swb" height="144" src="../images/references2.PNG" width="240" />
+   </div>
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

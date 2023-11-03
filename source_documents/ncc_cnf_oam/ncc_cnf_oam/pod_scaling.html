@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Pod scaling" />
+<meta name="DC.relation" scheme="URI" content="sps-status.html" />
+<meta name="DC.relation" scheme="URI" content="TPA_heartbeatStatus.html" />
+<meta name="DC.relation" scheme="URI" content="db-stats.html" />
+<meta name="DC.relation" scheme="URI" content="xdr_status.html" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="pod_scaling" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Pod scaling</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="pod_scaling">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Pod scaling</h1>
+<div class="body conbody">
+        <p class="p">Perform these steps to scale out/in the pods in an <span class="ph">NCC</span>
+            deployment.</p>
+
+        <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+            <ul class="ul">
+                <li class="li">Aerospike scaling causes traffic outage and should only be done with a
+                    geo-deployment setup.</li>
+
+                <li class="li">Scale out/in activities should be planned by considering the engineering load on
+                    the site. Traffic is impacted if you scale in beyond the required
+                    dimensioning.</li>
+
+                <li class="li">Perform scale operations during a maintenance window (low peak hours).</li>
+
+                <li class="li">You must allocate resources before scale out activities.</li>
+
+                <li class="li">For IOHD, Central Management is the site going Out-of-Service (OOS).</li>
+
+            </ul>
+
+        </div>
+
+        <p class="p">These are the basic steps in the process:</p>
+
+        <ul class="ul">
+            <li class="li">Health check</li>
+
+            <li class="li">Increase/decrease the pod count by using Helm commands</li>
+
+            <li class="li">Verification steps</li>
+
+            <li class="li">Post-verification</li>
+
+        </ul>
+
+        <div class="section"><h2 class="title sectiontitle">Health check</h2>
+            
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If any health check fails, you must fix the issue and then proceed with scale
+                operations.</div>
+
+            <p class="p">All pod containers must be up and running before you start scaling operations.</p>
+
+            <div class="p">Run these tools on the namespace to verify all pods are up and running: <ul class="ul">
+                    <li class="li">sps-status - verify all components are <samp class="ph systemoutput">UP</samp>.</li>
+
+                    <li class="li">network-status - verify all components are
+                            <samp class="ph systemoutput">IN_SERVICE</samp>.</li>
+
+                    <li class="li">db-stats</li>
+
+                    <li class="li">xdr-status - verify both <samp class="ph systemoutput">local site towards remote
+                            sites</samp> and <samp class="ph systemoutput">remote sites toward local
+                            site</samp><p class="p">have sync up state of
+                                <samp class="ph systemoutput">CURRENT</samp>.</p>
+</li>
+
+                </ul>
+
+            </div>
+</div>
+
+        <div class="section"><h2 class="title sectiontitle">Scale out/in for namespace</h2>
+            
+            <p class="p">This table shows the scaling types.</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Pod scaling types</span></caption><colgroup><col style="width:37.5%" /><col style="width:25%" /><col style="width:37.5%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d48659e141">Pod type</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d48659e144">HPA</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d48659e147">Scaling type</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">Charging</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Horizontal</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">Servicemanager</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Horizontal</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">Aerospike</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Horizontal</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">Provisioning</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Horizontal</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">XDR</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Horizontal</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">Notification</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Horizontal</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">IngressGateway</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Horizontal</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">IOHD</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Vertical</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">CentralMangement</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Vertical</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">Indexserach-Dashboard</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Horizontal</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">indexsearch-client</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Horizontal</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">indexsearch-data</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Horizontal</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">indexsearch-manager</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Horizontal</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">Btel-Fluentd</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Vertical</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">Maria-db</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Horizontal</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e141 ">Maxscale</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e144 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e147 ">Horizontal</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+           
+            <div class="p">
+                <table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Testing results</span></caption><colgroup><col style="width:16%" /><col style="width:12%" /><col style="width:12%" /><col style="width:12%" /><col style="width:8%" /><col style="width:8%" /><col style="width:8%" /><col style="width:8%" /><col style="width:8%" /><col style="width:8%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" rowspan="2" style="vertical-align:top;" id="d48659e385">Pods</th>
+
+                                <th class="entry cellrowborder" rowspan="2" style="vertical-align:top;" id="d48659e388">HPA</th>
+
+                                <th class="entry cellrowborder" rowspan="2" style="vertical-align:top;" id="d48659e391">Scaling type</th>
+
+                                <th class="entry cellrowborder" colspan="2" style="vertical-align:top;" id="d48659e394">Traffic impact</th>
+
+                                <th class="entry cellrowborder" colspan="2" style="vertical-align:top;" id="d48659e397">Traffic impact duration</th>
+
+                                <th class="entry cellrowborder" colspan="2" style="vertical-align:top;" id="d48659e401">Pod operation duration</th>
+
+                                <th class="entry cellrowborder" rowspan="2" style="vertical-align:top;" id="d48659e404">Impact scope</th>
+
+                            </tr>
+
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d48659e410">Scale in</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d48659e413">Scale out</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d48659e416">Scale in</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d48659e419">Scale out</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d48659e422">Scale in</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d48659e426">Scale out</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e385 ">Charging</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e388 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e391 ">Horizontal</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e410 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e413 ">No</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e416 ">30 Sec</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e419 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e422 ">2 mins</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e426 ">2 mins</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e404 ">Limited to Pod (impacted)</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e385 ">Servicemanager</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e388 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e391 ">Horizontal</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e410 ">No </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e413 ">No</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e416 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e419 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e422 ">2 mins</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e426 ">2 mins</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e404 ">NA</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e385 ">Aerospike</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e388 ">No</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e391 ">Horizontal</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e410 ">Without traffic</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e413 ">Without traffic</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e416 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e419 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e422 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e426 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e404 ">Require to take site OOS</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e385 ">Provisioning</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e388 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e391 ">Horizontal</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e410 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e413 ">No</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e416 ">2 sec</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e419 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e422 ">2 mins</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e426 ">2 mins</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e404 ">Limited to Pod (impacted)</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e385 ">XDR</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e388 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e391 ">Horizontal</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e410 ">No</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e413 ">No</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e416 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e419 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e422 ">30 Sec</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e426 ">30 Sec</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e404 ">NA</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e385 ">Notification</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e388 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e391 ">Horizontal</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e410 ">No</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e413 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e416 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e419 ">30 Sec</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e422 ">4 min</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e426 ">4 mins</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e404 ">NA</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e385 ">IngressGateway</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e388 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e391 ">Horizontal</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e410 ">No</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e413 ">No</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e416 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e419 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e422 ">30 Sec</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e426 ">30 Sec</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e404 ">NA</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e385 ">IOHD*</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e388 ">No</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e391 ">Vertical</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e410 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e413 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e416 ">40 sec</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e419 ">40 sec</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e422 ">2 mins</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e426 ">2 mins</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e404 ">Overall (Site)</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e385 ">CentralMangement2*</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e388 ">No</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e391 ">Vertical</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e410 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e394 d48659e413 ">Yes</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e416 ">20 sec</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e397 d48659e419 ">20 sec</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e422 ">4 mins</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e401 d48659e426 ">4 mins</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d48659e404 ">Overall (Site)</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> <ul class="ul">
+                    <li class="li">For HPA pods, you must increase the <span class="keyword parmname">minReplicas:</span> and
+                            <span class="keyword parmname">maxReplicas:</span> values to the desired count in the
+                        generated override files (for example:
+                            <span class="ph filepath">charts/chf-charging.yaml</span>). (Horizontal
+                        Scaling)</li>
+
+                    <li class="li">For non-HPA pods, you must increase the <span class="keyword parmname">replicas:</span> value
+                        in the generated override files (for example:
+                            <span class="ph filepath">charts/chf-ckaf-kafka.yaml</span>). (Horizontal
+                        Scaling)</li>
+
+                    <li class="li">For Vertical Scaling only: <span class="keyword parmname">cpu</span>,
+                            <span class="keyword parmname">ephemeral-storage</span>, and <span class="keyword parmname">memory</span>
+                        can be increased.</li>
+
+                    <li class="li">The pods restart during the Helm operation.</li>
+
+                <li class="li">To scale MariaDB pods, increase the count variable in the generated override
+                        file. <pre class="pre codeblock language-yml"><code>mariadb:
+  count: 1</code></pre></li>
+
+                </ul>
+</div>
+
+            <ol class="ol">
+                <li class="li">Update the replica count to the desired count of pods in the override files for
+                    the respective chart.</li>
+
+                <li class="li">Run this command to perform a Helm upgrade with new replica counts chart files. 
+                    <pre class="pre codeblock"><code>helm3 upgrade --install -n &lt;namespace&gt;  &lt;chart&gt; -f &lt;Updated_yaml_file_with_Path&gt; --timeout 1800s</code></pre></li>
+
+                <li class="li">Wait for the new pods to come up.</li>
+
+                <li class="li">Verify local cluster migration using admincli pod.</li>
+
+                <li class="li">Delete the PVC in case of scale in (as applicable).</li>
+
+                <li class="li">Perform another health check.</li>
+
+            </ol>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Rollback</h2>
+            
+            <p class="p">After the scale operation, if any of the health check started failing or there is a
+                need to rollback to the previous state, then perform the reverse operation. </p>
+
+            <p class="p">For instance, if the charging pod’s horizontal scale out operation failed due to a
+                resource issue and there is no possibility to provide extra resources, then re-run
+                the Helm upgrade operation with the original override files for the charging pods.
+            </p>
+
+        </div>
+
+    </div>
+<div class="related-links related-links-title">More on this topic</div><div class="related-links">
+<div class="linklist relinfo"><ul class="linklist">
+<li class="linklist"><a class="link" href="sps-status.html">sps-status</a></li>
+<li class="linklist"><a class="link" href="TPA_heartbeatStatus.html">network-status</a></li>
+<li class="linklist"><a class="link" href="db-stats.html">db-stats</a></li>
+<li class="linklist"><a class="link" href="xdr_status.html">xdr-status</a></li></ul></div>
+</div><div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

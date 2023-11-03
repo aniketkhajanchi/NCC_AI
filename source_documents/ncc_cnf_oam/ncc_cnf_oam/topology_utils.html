@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="topology_utils.py" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="introduction" />
+<meta name="DC.language" content="en-us" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>topology_utils.py</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="introduction">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">topology_utils.py</h1>
+<div class="body conbody">
+      <div class="section" id="introduction__section_qmn_2wd_zpb"><h2 class="title sectiontitle">Description</h2>
+         
+         <p class="p">This tool is a python utility script for parsing and fetching specific data from the <span class="ph">NCC</span> topology configuration file.</p>
+
+      </div>
+
+      <div class="section" id="introduction__section_itr_fwd_zpb"><h2 class="title sectiontitle">Syntax</h2>
+         
+         <pre class="pre codeblock"><code>/opt/tpa/etc/topology_utils.py [&lt;-f path&gt;] &lt;-g action&gt; [&lt;-e element_name&gt; {&lt;-k Key_name&gt; | &lt;-i ID.}] </code></pre>
+         <pre class="pre codeblock"><code>/opt/tpa/etc/topology_utils.py [&lt;-f path&gt;] &lt;-g action&gt; &lt;-p partition_type&gt; &lt;-s site_id/site_name&gt;</code></pre>
+         <pre class="pre codeblock"><code>/opt/tpa/etc/topology_utils.py [&lt;-f path&gt;] &lt;-g action&gt; &lt;-s site_id/site_name&gt;</code></pre>
+         <table cellpadding="4" cellspacing="0" summary="" id="introduction__table_ed1_3wd_zpb" class="table confluenceTable" frame="border" border="1" rules="all"><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                  <tr class="row">
+                     <th class="entry cellrowborder" style="vertical-align:top;" id="d9131e65">Option</th>
+
+                     <th class="entry cellrowborder" style="vertical-align:top;" id="d9131e68">Description</th>
+
+                     <th class="entry cellrowborder" style="vertical-align:top;" id="d9131e71">Option arguments</th>
+
+                  </tr>
+
+               </thead>
+<tbody class="tbody">
+                  <tr class="row">
+                     <td class="entry cellrowborder confluenceTd" rowspan="1" colspan="1" style="vertical-align:top;" headers="d9131e65 "><code class="ph codeph">-g, --get</code></td>
+
+                     <td class="entry cellrowborder confluenceTd" rowspan="1" colspan="1" style="vertical-align:top;" headers="d9131e68 ">
+                        <p class="p">Values for this option are case-insensitive. Users must provide the
+                           action name, indicating for what the user wants to search.</p>
+
+                     </td>
+
+                     <td class="entry cellrowborder" style="vertical-align:top;" headers="d9131e71 ">
+                        <div class="p"> Accepted values are as follows.<ul class="ul" id="introduction__ul_kwk_k12_zpb">
+                              <li class="li"><code class="ph codeph">topology</code>: Specifies the script should search for
+                                 topology. If the <code class="ph codeph">-e</code> flag is given, then the script
+                                 will return the fetched topology for the given <code class="ph codeph">-e</code>
+                                 value.</li>
+
+                              <li class="li"><code class="ph codeph">keyValue</code>: Specifies the script should fetch the
+                                 value for the given key in <code class="ph codeph">root_element</code>.</li>
+
+                              <li class="li"><code class="ph codeph">partitionId</code>: Specifies the script should fetch
+                                 the <span class="ph">NCC</span> partition ID for the given
+                                 database partition and system.</li>
+
+                              <li class="li"><code class="ph codeph">partitionName</code>: Specifies the script should fetch
+                                 the <span class="ph">NCC</span> partition name for the given
+                                 database partition and system. </li>
+
+                              <li class="li"><code class="ph codeph">siteId</code>: Specifies the script should fetch the NCC
+                                 system ID for the given system name.</li>
+
+                              <li class="li"><code class="ph codeph">siteName</code>: Specifies the script should fetch the
+                                    <span class="ph">NCC</span> system name for the given
+                                 system ID.</li>
+
+                              <li class="li"><code class="ph codeph">idData</code>: Specifies the script should fetch the
+                                 data for the given <code class="ph codeph">root_element</code> and ID. If
+                                    <code class="ph codeph">-k</code> is provided, then it will fetch the value
+                                 for the given key in the matching ID.</li>
+
+                              <li class="li"><code class="ph codeph">sitePartition</code>: Specifies the script should fetch
+                                 the partition list for the given system. Output is returned in this
+                                 order: <code class="ph codeph">['primary', 'secondary', 'tertiary']</code></li>
+
+                              <li class="li"><code class="ph codeph">elementType</code>: Indicates the type of this <span class="ph">NCC</span> system, such as IG or ME.</li>
+
+                              <li class="li"><code class="ph codeph">commonNamespace</code>: Returns list of common
+                                 namespaces between two systems specified using <code class="ph codeph">-s</code>
+                                 and <code class="ph codeph">-t</code> option. <code class="ph codeph">-t</code> is optional; if
+                                 not given, then the local system is used.</li>
+
+                           </ul>
+
+                        </div>
+
+                     </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e65 "><code class="ph codeph">-h, --help</code></td>
+
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e68 ">Display script help.</td>
+
+                     <td class="entry cellrowborder" style="vertical-align:top;" headers="d9131e71 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e65 "><code class="ph codeph">-e, --element</code></td>
+
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e68 ">
+                        <p class="p">Root element name in <code class="ph codeph">["config"]["topology"]</code>.</p>
+
+                     </td>
+
+                     <td class="entry cellrowborder" style="vertical-align:top;" headers="d9131e71 ">
+                        <div class="p">Accepted values are as follows:<ul class="ul" id="introduction__ul_c2h_1b2_zpb">
+                              <li class="li"><code class="ph codeph">spspartition</code></li>
+
+                              <li class="li"><code class="ph codeph">spssite</code></li>
+
+                           </ul>
+</div>
+
+                     </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e65 "><code class="ph codeph">-f, --file</code></td>
+
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e68 ">
+                        <p class="p">SpsTopologyConfiguration.yaml file path.</p>
+
+                     </td>
+
+                     <td class="entry cellrowborder" style="vertical-align:top;" headers="d9131e71 ">
+                        <p class="p">Default value is
+                              <code class="ph codeph">'/opt/tpa/conf/topology/SpsTopologyConfiguration.yaml'</code></p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e65 "><code class="ph codeph">-i, --id</code></td>
+
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e68 ">Value for key <code class="ph codeph">id</code> in the
+                        respective <code class="ph codeph">root_element</code>.</td>
+
+                     <td class="entry cellrowborder" style="vertical-align:top;" headers="d9131e71 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e65 "><code class="ph codeph">-k, --key</code></td>
+
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e68 ">A key name in the topology
+                        dictionary.</td>
+
+                     <td class="entry cellrowborder" style="vertical-align:top;" headers="d9131e71 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e65 "><code class="ph codeph">-p, --ptype</code></td>
+
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e68 ">
+                        <p class="p">Database partition type.</p>
+
+                     </td>
+
+                     <td class="entry cellrowborder" style="vertical-align:top;" headers="d9131e71 ">
+                        <div class="p">Valid values are:<ul class="ul" id="introduction__ul_f4c_yfj_zpb">
+                              <li class="li"><code class="ph codeph">1</code>, indicating primary partition.</li>
+
+                              <li class="li"><code class="ph codeph">2</code>, indicating secondary partition.</li>
+
+                              <li class="li"><code class="ph codeph">3</code>, indicating tertiary partition.</li>
+
+                           </ul>
+</div>
+
+                     </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e65 "><code class="ph codeph">-s, --system</code></td>
+
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e68 ">Integer value representing system ID, or a
+                        string representing system name. Values for <code class="ph codeph">-s</code> and
+                           <code class="ph codeph">-t</code> should not be the same.</td>
+
+                     <td class="entry cellrowborder" style="vertical-align:top;" headers="d9131e71 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e65 "><code class="ph codeph">-t, --system1</code></td>
+
+                     <td class="entry cellrowborder" style="vertical-align:top;" headers="d9131e68 ">Integer value representing system ID, or a string representing system
+                        name. Values for <code class="ph codeph">-s</code> and <code class="ph codeph">-t</code> should not be
+                        the same.</td>
+
+                     <td class="entry cellrowborder" style="vertical-align:top;" headers="d9131e71 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e65 "><code class="ph codeph">-v, --version</code></td>
+
+                     <td class="entry cellrowborder" colspan="1" style="vertical-align:top;" headers="d9131e68 ">Display module version.</td>
+
+                     <td class="entry cellrowborder" style="vertical-align:top;" headers="d9131e71 "> </td>
+
+                  </tr>
+
+               </tbody>
+</table>
+
+      </div>
+
+      <div class="section" id="introduction__section_o42_gwd_zpb"><h2 class="title sectiontitle">Examples</h2>
+         
+         <p class="p">This example shows the <code class="ph codeph">topology_utils.py</code> script running with flags and
+            inputs <code class="ph codeph">-g elementType -s me5</code>.</p>
+
+         <div class="p">
+            <pre class="pre codeblock" id="introduction__codeblock_gvl_qqy_nqb"><code>[tpaadmin@growthme-admincli-b6496b469-hlmwb etc]$ ./topology_utils.py -g elementType -s me5
+me</code></pre>
+         </div>
+
+         <p class="p">This example shows the <code class="ph codeph">topology_utils.py</code> script running on
+               <code class="ph codeph">me5</code> with flags and inputs <code class="ph codeph">-g commonNamespace -s
+            me6</code>.</p>
+
+         <div class="p">
+            <pre class="pre codeblock" id="introduction__codeblock_rmk_wqy_nqb"><code>[tpaadmin@growthme-admincli-b6496b469-hlmwb etc]$ ./topology_utils.py -g commonNamespace -s me6
+['dscglobal', 'spspd5', 'spspd6']</code></pre>
+         </div>
+
+         <p class="p">This example shows the <code class="ph codeph">topology_utils.py</code> script running with flags and
+            inputs <code class="ph codeph">-g commonNamespace -s me6 -t me5</code>.</p>
+
+         <div class="p">
+            <pre class="pre codeblock" id="introduction__codeblock_wsb_dry_nqb"><code>[tpaadmin@growthme-admincli-b6496b469-hlmwb etc]$ ./topology_utils.py -g commonNamespace -s me6 -t me5
+['dscglobal', 'spspd5', 'spspd6']</code></pre>
+         </div>
+
+      </div>
+
+   </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

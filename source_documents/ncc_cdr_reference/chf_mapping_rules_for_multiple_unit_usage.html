@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Mapping rules for multiple unit usage in CHF records (V15)" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="chf_mapping_rules_for_multiple_unit_usage" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Mapping rules for multiple unit usage in CHF records (V15)</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="chf_mapping_rules_for_multiple_unit_usage">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Mapping rules for multiple unit usage in CHF records (V15)</h1>
+<div class="body conbody">
+        <table cellpadding="4" cellspacing="0" summary="" id="chf_mapping_rules_for_multiple_unit_usage__table_ifq_js1_l4b" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Mapping rules for multiple unit usage in CHF records (V15)</span></caption><colgroup><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d82022e42">Output field name</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d82022e45">Input field name</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d82022e48">Conversion rule for NCHFChargingRecord (5G)</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d82022e42 ">
+                            <p class="p">ratingGroup</p>
+
+                            <p class="p">(mandatory)</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d82022e45 ">&lt;parent&gt;.ratingGroup</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d82022e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">Validate that the input is of type integer and raise a warning if it
+                                is not.</p>
+
+                            <p class="p">If ratingGroup does not exist or is not valid, raise a warning and do
+                                not map the whole block.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d82022e42 ">usedUnitContainers. usedUnitContainer*</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d82022e45 ">&lt;parent&gt;. usedUnitContainers.usedUnitContainer*</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d82022e48 ">
+                            <p class="p">Make a list of all usedUnitContainer elements in input:</p>
+
+                            <ul class="ul" id="chf_mapping_rules_for_multiple_unit_usage__ul_mll_ms1_l4b">
+                                <li class="li">usedUnitContainer -&gt; UsedUnitContainer</li>
+
+                            </ul>
+
+                            <p class="p">See <a class="xref" href="chf_mapping_rules_for_used_unit_containers.html#chf_mapping_rules_for_used_unit_containers">Mapping rules for used unit containers in CHF records (V15)</a> with usedUnitContainer as parent. </p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d82022e42 ">uPFID</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d82022e45 ">&lt;parent&gt;.uPFID</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d82022e48 ">
+                            <p class="p">OPTIONAL.</p>
+
+                            <p class="p">Direct mapping. </p>
+
+                            <p class="p">If the value has more than 36 characters, take the first 36
+                                characters.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row" style="vertical-align:top;">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d82022e42 ">NokiaSystemExtensions</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d82022e45 ">
+                            <p class="p">listOfMscc.mscc* </p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d82022e48 ">
+                            <p class="p">See  <a class="xref" href="mapping_rules_for_nokiasystemextensions.html">Mapping rules for NokiaSystemExtensions</a> with
+                                mscc element as parent.</p>
+
+                            <p class="p">Include only if the output will have at least one field under it.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row" style="vertical-align:top;">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d82022e42 ">
+                            <p class="p">NokiaMUUExtensions</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d82022e45 ">
+                            <p class="p">listOfMscc.mscc* </p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d82022e48 ">
+                            <p class="p">See <a class="xref" href="mapping_rules_for_nokiamuuextensions.html">Mapping rules for NokiaMUUExtensions</a> with
+                                mscc element as parent.</p>
+
+                            <p class="p">Include only if the output will have at least one field under it.</p>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+    </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

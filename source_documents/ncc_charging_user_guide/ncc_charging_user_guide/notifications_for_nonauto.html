@@ -1,0 +1,1552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Notifications for non-auto charge and connectivity criteria" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e208069" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Notifications for non-auto charge and connectivity criteria</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e208069">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Notifications for non-auto charge and connectivity criteria </h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">This feature provides information on notification for following cases:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Devices are barred or unbarred based on certain connectivity criteria. </p>
+
+</li>
+
+<li class="li">
+<p class="p">Volume Threshold (VT) notifications sent from threshold.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Expiry Threshold (ET) notifications sent from lifecycle.</p>
+
+</li>
+
+<li class="li">
+<p class="p">AutoCharge (AC) custom data has the value disable. This indicates that the group has not subscribed to the auto-charge feature. </p>
+
+</li>
+
+<li class="li">
+<p class="p">Provisioning interface make changes to the AV with Charging Service, AV with Charging Service and CAP, Bucket and Account.</p>
+
+</li>
+
+</ul>
+
+<p class="p">This feature is applicable only to Absolute from Start (AFS) or Absolute from End (AFE) threshold and does not work for percentage thresholds. That is, the provisioning gateway can trigger threshold actions only for AFS and AFE thresholds but not for percentage thresholds. </p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Bar and unbar notification</h2>
+<p class="p">The subsequent blocks provide information on the bar and unbar notification cases.</p>
+</div>
+
+<div class="section">
+<p class="p"><strong class="ph b">Bar notification</strong></p>
+
+<p class="p">Consider that a group has multiple devices associated and the group has not subscribed to the
+                    auto-charge feature. In this case, when the group subscription is exhausted,
+                    then the Aggregate View (AV) unused value is zero. NCC sends a notification to
+                    the operator provisioning system with well-defined parameters to take further
+                    action such as bar all the devices of group. The operator provisioning system
+                    triggers the PGW to bar all the devices of a group. This is the bar notification
+                    case for volume threshold. </p>
+
+<p class="p">Similarly, when a device lifecycle moves to a state which is barred from an unbarred state, NCC
+                    sends a notification to the operator provisioning system with well-defined
+                    parameters to take further action such as bar a single device in the group. The
+                    barred notification is sent when the device moves to the barred state. This is
+                    the bar notification case (expiry threshold) linked to the device lifecycle
+                    state.</p>
+
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Unbar notification</h2>
+<p class="p">Consider that a group with exhausted subscription receives notification about the subscription
+                    status and refills its subscription due to which the AV unused value is
+                    increased to a non-zero value. NCC sends a notification to the operator
+                    provisioning system with well-defined parameters to take further action if
+                    absolute from start threshold is defined such as unbar all the devices of a
+                    given group. This is the unbar notification case for volume threshold. </p>
+
+<p class="p">Similarly, when a device lifecycle moves to unbarred state from barred state, NCC sends a
+                    notification with well-defined parameters to the operator provisioning system to
+                    take further action. This is the unbar notification case (expiry threshold)
+                    linked to the device lifecycle state.</p>
+
+<p class="p">Following are the important points related to bar and unbar cases:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">The notification variables are different for all the cases.</p>
+
+</li>
+
+<li class="li">
+<p class="p">It is assumed that the CCR-T is sent by PGW for all active sessions of devices are barred.</p>
+
+</li>
+
+<li class="li">
+<p class="p">It is assumed that the CCR-I is sent by PGW for all devices are unbarred.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The barring and unbarring is done by the operator provisioning system. NCC only sends
+                            notification to the operator provisioning system.</p>
+
+</li>
+
+<li class="li">
+<p class="p">A single notification is sent for each bar and unbar for group through threshold of AV with Charging Service, AV with Charging Service and CAP, bucket and account, that is sent to the operator provisioning system.</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="section">
+<p class="p"><strong class="ph b">Notification variables for bar/unbar - Threshold</strong></p>
+
+<p class="p">The following table provides information on notification connectivity when sent from threshold. </p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e160">
+                                    <p class="p">Parameter</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e166">
+                                    <p class="p">Description</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e172">
+                                    <p class="p">AV</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e178">
+                                    <p class="p">Bucket</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e184">
+                                    <p class="p">Account</p>
+
+                               </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e160 ">Subscriber CD</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e166 ">This variable can be sent with the value of custom data
+                                    available on Group/Device. This custom data can be created and
+                                    set by the operator provisioning system.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e172 ">Custom-Data (Owner DeviceId) on group/device level</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e178 ">Custom-Data (Owner DeviceId) on group/device level</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e184 ">Custom-Data (Owner DeviceId) on group level</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e160 ">Share ID</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e166 ">The Group Id/Device Id of the AV/bucket.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e172 ">SPR_GROUP.Group-Id/SPR_DEVICE.Device-Id</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e178 ">SPR_GROUP.Group-Id/SPR_DEVICE.Device-Id</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e184 ">SPR_GROUP.Group-Id/SPR_DEVICE.Device-Id</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e160 ">Remaining data volume</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e166 ">The current value. In barred case, the value is 0, for
+                                    unbarred case, the value is non-zero.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e172 ">
+                                    <p class="p">THRESHOLD_PROFILE.AV-Current-Value</p>
+
+                                    <p class="p">THRESHOLD_PROFILE.AV-Unused-Value</p>
+
+                               </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e178 ">
+                                    <p class="p">THRESHOLD_PROFILE.Bucket-Current-Value</p>
+
+                                    <p class="p">THRESHOLD_PROFILE.Bucket-Unused-Value</p>
+
+                               </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e184 ">
+                                    <p class="p">THRESHOLD_PROFILE.Account-Current-Value</p>
+
+                                    <p class="p">THRESHOLD_PROFILE.Account-Unused-Value</p>
+
+                               </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e160 ">IMSI</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e166 ">This is not sent by NCC.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e172 ">SPR_DEVICE.IMSI</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e178 ">SPR_DEVICE.IMSI</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e184 ">SPR_DEVICE.IMSI</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e160 ">Line Status</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e166 ">This is not sent by NCC.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e172 ">-</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e178 ">-</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e184 ">-</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Notification variables for bar/unbar - Lifecycle</h2>
+<p class="p">The following table provides information on notification connectivity when sent from lifecycle of device. </p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e328">
+                                    <p class="p">Parameter</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e334">
+                                    <p class="p">Description</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e340">
+                                    <p class="p">Example</p>
+
+                               </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e328 ">Subscriber CD</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e334 ">The custom data <em class="ph i">DeviceID</em> attached to the first group
+                                    fetched from device. If Custom Data is not present in first
+                                    group, the value of this variable is null.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e340 ">SPR_GROUP.DeviceID</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e328 ">Share ID</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e334 ">The Group Id of the first group fetched from device.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e340 ">SPR_GROUP-Group-Id</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e328 ">IMSI</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e334 ">This variable is set by NCC with the IMSI of a device.
+                                    Device must be configured with IMSI as one of the identifier.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e340 ">SPR_DEVICE.IMSI</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e328 ">Line Status</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e334 ">
+                                    <p class="p">This variable can be filled with a static value.</p>
+
+                                    <p class="p">NCC provides the Device lifecycle status (old and new state)
+                                        and validity time (if available with that state) as a
+                                        notification variable. </p>
+
+                                    <p class="p">Example: Device lifecycle transitions from State A to State
+                                        B, with action <em class="ph i">Send Notification</em> action. NCC sends
+                                        State A and State B validity time and State A and State B
+                                        name.</p>
+
+                               </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e340 ">
+                                    <p class="p">LIFECYCLE.From-State</p>
+
+                                    <p class="p">LIFECYCLE.To-State</p>
+
+                                    <p class="p">LIFECYCLE.Old-Validity-Time</p>
+
+                                    <p class="p">LIFECYCLE.Next-Validity-Time</p>
+
+                               </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e328 ">Remaining data volume</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e334 ">This variable is not sent by NCC.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e340 ">-</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+</div>
+
+    <div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e208069__isbar"><h2 class="title sectiontitle">Example: Threshold actions of AFE 0 is triggered when a subscription is removed and AFS 0 is triggered when another subscription is added to group</h2>
+<p class="p"><strong class="ph b"></strong></p>
+
+<p class="p">Here, AFE is Absolute from End and AFS is Absolute from Start. Note that the threshold action associated with the percentage based thresholds are not triggered from provisioning gateway.</p>
+
+<p class="p">
+<span class="ph uicontrol">Prerequisite:</span>
+</p>
+<ol class="ol">
+<li class="li"><p class="p">Create a threshold profile group TPG1 with TP1 value 0 AFS having the <em class="ph i">Send
+                            Notification</em> action. Create another threshold profile group TPG2
+                        with TP2 value 0 AFE having <em class="ph i">Send Notification</em> action. AFS is shown in
+                        the following figure:</p>
+
+                    
+                    <img class="image" src="../images/img9yz-09126-ug01-pczza-sp1-mod170_afs_default.png" />
+                    <p class="p">AFE is shown in the following figure:</p>
+
+                    
+                    <img class="image" src="../images/img9yz-09126-ug01-pczza-sp1-mod170_afe_default.png" />
+                </li>
+
+<li class="li">
+<p class="p">Ensure that you have created group, subscription, and notification profile.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Create an AV of type volume having TPG1 and TPG2 and accumulating charging service attached to group G1.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The Group G1 has subscriptions such that sub1 has a bucket with value of 100 bytes.</p>
+
+</li>
+
+</ol>
+
+<p class="p">Perform the following actions:</p>
+<ol class="ol">
+<li class="li">
+<p class="p">Remove the subscription sub1.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Add another subscription to group.</p>
+
+</li>
+
+</ol>
+
+<p class="p">Following is the result of the actions performed:</p>
+<ol class="ol">
+<li class="li">
+<p class="p">The <kbd class="ph userinput">Send-notification</kbd> actions of AFE 0 is triggered when the subscription sub1 is removed.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The <kbd class="ph userinput">Send-notification</kbd> actions of AFS 0 is triggered when a subscription is added.</p>
+
+</li>
+
+</ol>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Volume threshold notification variables</h2>
+<p class="p">The following notification variables for Volume threshold notification are supported for all type of AVs, counter, bucket, account related notifications. These notification variables are applicable for threshold on group as well as device resources.</p>
+
+<div class="note notice"><div class="noticetitle"><img src="../../web/css/../images/notice.svg" title="notice-icon" class="noteicon" />Notice:</div> The notification variables listed in the subsequent tables are sample
+                variables only and you can create custom variables based on your requirement. <p class="p">For
+                    more variables, see <a class="xref" href="genericnotif.html">Generic notification variables</a>.</p>
+</div>
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e567">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e573">
+                                <p class="p">Description</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e579">
+                                <p class="p">Applicable for resources</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e567 ">Subscriber CD</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e573 ">
+                                <p class="p">This variable is the custom data available on Group/Device. This
+                                    custom data can be created and set by the operator provisioning
+                                    system. </p>
+
+                                <p class="p">For notification through THR, it can also be filled, if needed,
+                                    with the DeviceId of that subscriber whose call has made the THR
+                                    to reach.</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e579 ">AV (all types), Bucket, Counter, Account</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e567 ">Share ID</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e573 ">The Group Id/Device Id.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e579 ">AV (all types), Bucket, Counter, Account</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e567 ">Remaining data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e573 ">The current value. Notification variables can be made available
+                                for both type of current value, that is, with and without
+                                reservation.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e579 ">AV (all types), Bucket, Counter, Account</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e567 ">Original data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e573 ">This variable is filled with a static value. NCC provides
+                                notification variables which is sum of initial values of each
+                                resource being accumulated for AV.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e579 ">AV (all types), Bucket, Counter, Account</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e567 ">Threshold Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e573 ">This variable is filled with a static value.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e579 ">AV (all types), Bucket, Counter, Account</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e567 ">Threshold</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e573 ">This variable is filled with a static value. NCC provides
+                                notification variable for threshold value. This is also applicable
+                                when the threshold is on individual bucket, counter, and account.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e579 ">AV (all types), Bucket, Counter, Account</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e567 ">Expiry date of the line</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e573 ">This variable is filled with a static value.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e579 ">AV (all types), Bucket, Counter, Account</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e567 ">Expiry date of the purchased data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e573 ">This variable is filled with a static value or it can be mapped
+                                to a custom data.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e579 ">AV (all types), Bucket, Counter, Account</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>AV threshold notification variables </span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e710">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e716">
+                                <p class="p">Example</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e710 ">Subscriber CD</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e716 ">Custom-Data</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e710 ">Share ID</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e716 ">SPR_GROUP.Group-Id/SPR_DEVICE.Device-Id</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e710 ">Remaining data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e716 ">
+                                <p class="p">THRESHOLD_PROFILE.AV-Current-Value</p>
+
+                                <p class="p">THRESHOLD_PROFILE.AV-Unused-Value</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e710 ">Original data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e716 ">THRESHOLD_PROFILE.AV-Initial-Value</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e710 ">Threshold Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e716 ">Custom-Data/Static</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e710 ">Threshold</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e716 ">THRESHOLD_PROFILE.Threshold-Value ( "ThresholdName" )</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e710 ">Expiry date of the line</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e716 ">Custom-Data/Static</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e710 ">Expiry date of the purchased data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e716 ">Custom-Data/Static</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Account threshold notification variables </span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e823">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e829">
+                                <p class="p">Example</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e823 ">Subscriber CD</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e829 ">Custom-Data</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e823 ">Share ID</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e829 ">SPR_GROUP.Group-Id/SPR_DEVICE.Device-Id</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e823 ">Remaining data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e829 ">
+                                <p class="p">THRESHOLD_PROFILE.Account-Current-Value</p>
+
+                                <p class="p">THRESHOLD_PROFILE.Account-Unused-Value</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e823 ">Original data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e829 ">Custom-Data/Static</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e823 ">Threshold Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e829 ">Custom-Data/Static</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e823 ">Threshold</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e829 ">THRESHOLD_PROFILE.Threshold-Value ( "ThresholdName" )</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e823 ">Expiry date of the line</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e829 ">Custom-Data/Static</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e823 ">Expiry date of the purchased data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e829 ">Custom-Data/Static</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Bucket threshold notification variables </span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e937">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e943">
+                                <p class="p">Example</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e937 ">Subscriber CD</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e943 ">Custom-Data</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e937 ">Share ID</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e943 ">SPR_GROUP.Group-Id/SPR_DEVICE.Device-Id</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e937 ">Remaining data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e943 ">
+                                <p class="p">THRESHOLD_PROFILE.Bucket-Current-Value</p>
+
+                                <p class="p">THRESHOLD_PROFILE.Bucket-Unused-Value</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e937 ">Original data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e943 ">THRESHOLD_PROFILE.Bucket-Initial-Value</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e937 ">Threshold Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e943 ">Custom-Data/Static</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e937 ">Threshold</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e943 ">THRESHOLD_PROFILE.Threshold-Value ( "ThresholdName" )</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e937 ">Expiry date of the line</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e943 ">Custom-Data/Static</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e937 ">Expiry date of the purchased data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e943 ">Custom-Data/Static</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Counter threshold notification variables </span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e1050">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e1056">
+                                <p class="p">Example</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1050 ">Subscriber CD</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1056 ">Custom-Data</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1050 ">Share ID</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1056 ">SPR_GROUP.Group-Id/SPR_DEVICE.Device-Id</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1050 ">Remaining data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1056 ">THRESHOLD_PROFILE.Counter-Current-Value</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1050 ">Original data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1056 ">Custom-Data/Static/0</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1050 ">Threshold Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1056 ">Custom-Data/Static</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1050 ">Threshold</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1056 ">THRESHOLD_PROFILE.Threshold-Value ( "ThresholdName" )</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1050 ">Expiry date of the line</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1056 ">Custom-Data/Static</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1050 ">Expiry date of the purchased data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1056 ">Custom-Data/Static</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example: VT notification for bucket with normal and CO instances</strong></p>
+
+<p class="p">Auto-charge feature is turned off on group. Create the group and subscribe the bundle. Create device and add it to the group. Create the custom data - <kbd class="ph userinput">ExpiryDataLine</kbd> and <kbd class="ph userinput">ExpiryDataPurchasedDataVolume</kbd> for the group. Create the account, threshold, Charging Service, and Bundle. In the bundle, define a bucket with volume data of 300 byte. In the threshold profile, define AFS = 20. The VT notifications are sent based on the variables defined in the threshold profile as shown in the following figure.</p>
+
+<div class="fig fignone">
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-vt_notification_default.png" height="294" width="646" />
+                </div>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Subscription expiry notification variables</h2>
+<p class="p">The notification variables in the following table are applicable for the variables being created in the lifecycle of subscription from group as well as device.</p>
+
+<p class="p">The <kbd class="ph userinput">SPR_GROUP</kbd> and <kbd class="ph userinput">SPR_DEVICE</kbd> source context are available in the lifecycle for <span class="ph uicontrol">Send-Notification</span> action only. These source context are provided in rules in lifecycle which means the custom data and other attributes of Group and Device can be used in rules as notification variables. If the subscription is attached to group, then <kbd class="ph userinput">SPR_GROUP</kbd> context is available in the rule of lifecycle for the <span class="ph uicontrol">Send-Notification</span> action. Similarly, when a subscription is attached to the device, <kbd class="ph userinput">SPR_DEVICE</kbd> source context is available in the rule of lifecycle for the <span class="ph uicontrol">Send-Notification</span> action</p>
+
+<p class="p">Notification variables for date of entity and periodic lifecycle of subscription are available. That is, for the subscription, the validity date is in entity lifecycle and end date in periodic lifecycle are available which can be used in rules with notification variables. When a notification is sent to end user using lifecycle, then the validity of their subscription can be informed.</p>
+
+<div class="note notice"><div class="noticetitle"><img src="../../web/css/../images/notice.svg" title="notice-icon" class="noteicon" />Notice:</div> 
+<p class="p">The notification variables listed in the subsequent table are sample variables only and you can create custom variables based on your requirement.</p>
+
+<p class="p">For more variables, see <a class="xref" href="genericnotif.html">Generic notification variables</a>.</p>
+</div>
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e1227">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e1233">
+                                <p class="p">Description</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e1239">
+                                <p class="p">Behavior for Group subscription</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e1245">
+                                <p class="p">Behavior for Device subscription</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1227 ">Subscriber CD</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1233 ">This variable can be sent with the value of custom data
+                                available on Group. This custom data can be created and set by the
+                                operator provisioning system.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1239 ">
+                                <p class="p">SPR_GROUP.Device-Id</p>
+
+                                <p class="p">Custom Data</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1245 ">
+                                <p class="p">SPR_DEVICE.Group-Id</p>
+
+                                <p class="p">Custom Data</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1227 ">Share ID</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1233 ">The Group Id of the subscription.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1239 ">SPR_GROUP.Group-Id</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1245 ">SPR_DEVICE.Device-Id</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1227 ">Remaining data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1233 ">This variable is not sent by NCC. It can be set to Null in
+                                notification template in NS or can be sent as a static value by
+                                charging or can be sent from any of the custom data at group.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1239 ">Static/NULL</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1245 ">Static/NULL</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1227 ">Original data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1233 ">This variable is filled with a static value.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1239 ">Static value</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1245 ">Static value</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1227 ">Threshold Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1233 ">This variable is filled with a static value.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1239 ">Static data</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1245 ">Static data</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1227 ">Threshold</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1233 ">This variable is filled with a static value.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1239 ">Static</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1245 ">Static</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1227 ">Expiry date of the line</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1233 ">This variable is filled with a static value.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1239 ">Static data</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1245 ">Static data</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1227 ">Expiry date of the purchased data volume</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1233 ">This is set to the expiry date of the group subscription. The
+                                end time of entity and periodic lifecycle of subscription,
+                                subscription creation time, can be made available as notification
+                                variable.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1239 ">
+                                <p class="p">
+                                    <span class="ph uicontrol">For entity lifecycle:</span>
+                                </p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">SUBSCRIPTION.Creation-Time</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">LIFECYCLE.Old-Validity-Time</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">LIFECYCLE.Next-ValidityTime</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">
+                                    <span class="ph uicontrol">For periodic lifecycle:</span>
+                                </p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">SUBSCRIPTION.Creation-Time</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">SUBSCRIPTION.Start-Time</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">SUBSCRIPTION.End-Time</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">LIFECYCLE.Old-Validity-Time</p>
+
+                                    </li>
+
+                                </ul>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1245 ">
+                                <p class="p">
+                                    <span class="ph uicontrol">For entity lifecycle:</span>
+                                </p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">SUBSCRIPTION.Creation-Time</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">LIFECYCLE.Old-Validity-Time</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">LIFECYCLE.Next-ValidityTime</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">
+                                    <span class="ph uicontrol">For periodic lifecycle:</span>
+                                </p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">SUBSCRIPTION.Creation-Time</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">SUBSCRIPTION.Start-Time</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">SUBSCRIPTION.End-Time</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">LIFECYCLE.Old-Validity-Time</p>
+
+                                    </li>
+
+                                </ul>
+
+                           </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<div class="sectiondiv">
+                <p class="p"><strong class="ph b">Example 1: Entity Lifecycle for Subscription expiry notification</strong></p>
+
+                <p class="p">This example is designed to send notification using the Send Notification action.
+                    Send Notification Action 1 sends Validity Time of Active state, that is, 28 days
+                    timestamp as well as subscription creation time (see
+                        <a class="xref" href="notifications_for_nonauto.html#id9yz-09126-ug01-pczza-sp1-d1e208069__statepre">Entity lifecycle - preactive state</a>). Send Notification
+                    Action 2 sends Validity Time of Active State (28 days) as well as Validity Time
+                    of Inactive state, that is, 2 days. Following is the generic transition from
+                    StateA to StateB with Send Notification action.</p>
+
+                <kbd class="ph userinput">Transition -</kbd>
+                <kbd class="ph userinput">From: StateA</kbd>
+                <kbd class="ph userinput">To State: StateB</kbd>
+                <kbd class="ph userinput">Action: Send Notification Action</kbd>
+                <p class="p">The following parameters are used for ExpiryDataPurchasedDataVolume variable:</p>
+<ul class="ul">
+                    <li class="li">
+                        <p class="p">StateA Validity Time</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">StateB Validity Time</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Subscription Creation Time</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">The subscription entity lifecycle has the preactive (Initial state), active,
+                    inactive, deactive (Barred) states.</p>
+<p class="p">Following is the configuration made
+                    for the group subscription entity lifecycle:</p>
+
+                <div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Entity lifecycle</span>
+                    
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bou_entitylc1_default.png" />
+                </div>
+
+                <p class="p">The <span class="ph uicontrol">preactive</span> state has the following event.</p>
+
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e208069__statepre"><span class="figcap"><span class="fig--title-label">Figure: </span>Entity lifecycle - preactive state</span>
+                    
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bou_entitylc2_default.png" height="375" width="570" />
+                </div>
+
+                <p class="p">Following is the event in <span class="ph uicontrol">active</span> state.</p>
+
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e208069__stateact"><span class="figcap"><span class="fig--title-label">Figure: </span>Entity lifecycle - active state</span>
+                    
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bou_entitylc6_default.png" height="389" width="568" />
+                </div>
+
+                <p class="p">Following is the event in <span class="ph uicontrol">inactive</span> state.</p>
+
+                <div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Entity lifecycle - inactive state</span>
+                    
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bou_entitylc7_default.png" height="380" width="575" />
+                </div>
+
+                <p class="p">Following is the event in <span class="ph uicontrol">deactive</span> state.</p>
+
+                <div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Entity lifecycle - deactive state</span>
+                    
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bou_entitylc8_default.png" />
+                </div>
+
+            </div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 2: Periodic Lifecycle for Subscription expiry notification</strong></p>
+
+<p class="p">This example is designed to send notification using the Send Notification action. Send Notification Action 1, Send Notification Action 2, Send Notification Action 3 sends Subscription Start Time, Subscription End Time, and Subscription Entity Lifecycle current state Validity Time.</p>
+
+<p class="p">For periodic lifecycle, the following parameters are used for <em class="ph i">ExpiryDataPurchasedDataVolume</em> variable:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Subscription Start Time</p>
+
+</li>
+
+<li class="li">
+<p class="p">Subscription End Time</p>
+
+</li>
+
+<li class="li">
+<p class="p">Subscription Entity LifeCycle current state Validity Time</p>
+
+</li>
+
+</ul>
+
+<p class="p">Following is the configuration made for the group subscription periodic lifecycle:</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Periodic lifecycle</span>
+                    
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bou_sub_periodiclc1_default.png" height="192" width="479" />
+                </div>
+
+<p class="p">The <span class="ph uicontrol">preactive</span> state transitions are as follows:</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Periodic lifecycle - preactive state</span>
+                    
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bou_sub_periodiclc2_default.png" height="466" width="573" />
+                </div>
+
+<p class="p">The notification event along with the rule defined in the <span class="ph uicontrol">active</span> state is as follows:</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Periodic lifecycle - active state</span>
+                    
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bou_sub_periodiclc3_default.png" height="433" width="577" />
+                </div>
+
+<p class="p">The <span class="ph uicontrol">notify</span> state is as follows:</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Periodic lifecycle - notify state</span>
+                    
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bou_sub_periodiclc4_default.png" height="433" width="580" />
+                </div>
+
+<p class="p">The <span class="ph uicontrol">deactive</span> state is as follows:</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Periodic lifecycle - deactive state</span>
+                    
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bou_entitylc8_default.png" />
+                </div>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Notifications through northbound interface</h2>
+<p class="p">NCC triggers notification when the northbound provisioning interface makes either of the
+                following changes:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">AV with charging service</p>
+
+</li>
+
+<li class="li">
+<p class="p">AV with charging service and cap, bucket, and account</p>
+
+</li>
+
+</ul>
+
+<p class="p">If a defined threshold is crossed when an AV is updated using the provisioning interface, then
+                the notification action on the threshold of AV are executed. The threshold at zero
+                is optional. However, if any threshold value is crossed and required configurations
+                are done for that threshold, then NCC sends the configured notification action.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Only the <samp class="ph systemoutput">Send-Notification</samp> action is considered and the remaining actions, if defined, are considered when the next CCR request is received. The notification action is considered when the update is made to the threshold of AV.</div>
+
+<p class="p">The threshold execution of threshold profile type <span class="ph uicontrol">ABSOLUTE_FROM_ZERO</span> for account can be used at the time of provisioning. During provisioning, the <span class="ph uicontrol">ABSOLUTE_FROM_ZERO</span> profile is considered irrespective of whether the account balance is increased or decreased. Only the send notification action of the threshold crossed is supported during provisioning. </p>
+
+<p class="p">The notification to end user is sent if the following conditions are met:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">The available balance becomes equal to the threshold value.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The notification action is <samp class="ph systemoutput">Send-Notification</samp>.</p>
+
+</li>
+
+</ul>
+
+<p class="p">The following context variables can be used:</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:47.393364928909946%" /><col style="width:52.60663507109005%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e1815">
+                                <p class="p">Context variable</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d79188e1821">
+                                <p class="p">Description</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1815 ">THRESHOLD.Threshold-Trigger-Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1821 ">This variable can be configured in result action, when you want
+                                to execute the actions during only provisioning or only Diameter
+                                call. If this action is not defined, then THRESHOLD_TRIGGER_TYPE is
+                                treated for both Diameter call and provisioning and the notification
+                                is sent.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1815 ">THRESHOLD_PROFILE.Is-Balance-Increased</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1821 ">
+                                <p class="p">This variable can be used in a condition. During provisioning,
+                                    there can be following scenarios:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Increase balance using set/adjust API. For this scenario,
+                                            the value of flag must be true.</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Decrease balance using set/adjust API. For this scenario,
+                                            the value of flag must be false.</p>
+
+                                    </li>
+
+                                </ul>
+
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1815 ">THRESHOLD_PROFILE.Is-Diameter-Call</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d79188e1821 ">This variable can be used in a condition. If the rule is executed
+                                on a call, its value is true and for provisioning its value is
+                                false.</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<p class="p">Following are some points related to notification through north bound interface:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Whenever AV/bucket is filled, then the Absolute From Start (ABS) Thresholds get triggered and whenever AV/bucket is being decremented, the Absolute From End gets executed. During provisioning, the behavior of ABS is different when compared to the Diameter call since during provisioning, ABS is triggered when AV/bucket is being filled whereas in Diameter call, the ABS is being triggered based on consumption from AV/bucket. </p>
+
+</li>
+
+<li class="li">
+<p class="p">Reservation is not restricted even after sending bar notification through threshold.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Lifecycle AV/bucket update is treated as provisioning request.</p>
+
+</li>
+
+<li class="li">
+<p class="p">For receiving bar/unbar notification, the required configuration is done on either all thresholds or chosen thresholds.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Whenever AV/Bucket is incremented or decremented, then ABS and ABE executes respectively and only <em class="ph i">Send Notification</em> action is triggered. Rest of the actions are handled in upcoming Diameter call and same <em class="ph i">Send Notification</em> action is not executed in upcoming Diameter call.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Only the device or group custom data attribute can be taken to handle the Device/Group Bar/Unbar notification. </p>
+
+</li>
+
+<li class="li">
+<p class="p">The <em class="ph i">Threshold-Trigger-Type</em> is used for configuration in threshold rules to differentiate between provisioning and Diameter call. The supported values are PROVISION or DIAMETER.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The <em class="ph i">Threshold_Profile.Is-Diameter-Call</em> variable can be used in threshold to handle online or offline notification as well as handling of remaining actions of threshold in a Diameter call.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If multiple actions are being configured on a single Threshold with one of the Action as
+                            <code class="ph codeph">Send Notification Action</code>, then <code class="ph codeph">Send
+                            Notification Action</code> gets triggered from provisioning. And out
+                        of remaining actions, if any action has higher priority than <code class="ph codeph">Send
+                            Notification Action</code>, then that action is executed during
+                        upcoming Diameter call. But if none of the action out of remaining actions
+                        has higher priority than <code class="ph codeph">Send Notification Action</code>, then no
+                        Action gets executed during upcoming Diameter call. Priority of Threshold
+                        Actions -</p>
+
+<p class="p">
+<code class="ph codeph">Reject&gt;Notification-Reject&gt;Notification-Stop&gt;Send-Notification&gt;Notification-Continue&gt;Send-RAR</code>
+</p>
+
+</li>
+
+<li class="li">
+<p class="p">Only <samp class="ph systemoutput">Send Notification</samp> action of threshold is triggered through provisioning.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the <samp class="ph systemoutput">Send Notification</samp> has been triggered through provisioning for AFS, and same threshold is being crossed during upcoming Diameter call, then send notification action is not suppressed in Diameter call. This is because, the AFS has different behavior for call and provisioning, whereas this notification is suppressed in case of AFE.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If AV is created during runtime, then rules or thresholds do not get evaluated since rules or thresholds are evaluated only during update</p>
+
+</li>
+
+<li class="li">
+<p class="p">A custom data attribute, for example, <em class="ph i">SPR_GROUP.IsBar</em>, a sample shown in <a class="xref" href="#id9yz-09126-ug01-pczza-sp1-d1e208069__isbar">Example: Threshold actions of AFE 0 is triggered when a subscription is removed and AFS 0 is triggered when another subscription is added to group</a>, can
+                        be taken to handle Device/Group Bar/Unbar notification. </p>
+
+</li>
+
+<li class="li">
+<p class="p">Triggering threshold through provisioning interface is applicable only for Thresholds and not CAP.</p>
+
+</li>
+
+</ul>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Examples:</strong></p>
+
+<p class="p">
+<span class="ph uicontrol">Example 1</span>
+</p>
+
+<p class="p">AV initial value = 0</p>
+
+<p class="p">AV current value = 0</p>
+
+<p class="p">AV unused value = 0</p>
+
+<p class="p">TPG1 - Absolute from start</p>
+
+<p class="p">T1 = 100, T2 = 200, T3 = 300, T4 = 400</p>
+
+<p class="p">A subscription is added, initial = current = unused = 90. AV initial = current = unused = 90. As the AV unused value has incremented, the threshold from list of Absolute from start thresholds is T1 = 100. As no threshold is reached, so the <samp class="ph systemoutput">Send Notification</samp> action is not triggered. Therefore, as per the configuration, if no threshold is crossed then notification is not sent.</p>
+
+<p class="p">
+<span class="ph uicontrol">Example 2</span>
+</p>
+
+<p class="p">AV initial value = 100</p>
+
+<p class="p">AV current value = 50</p>
+
+<p class="p">AV unused value = 50</p>
+
+<p class="p">TPG1 - Absolute from end</p>
+
+<p class="p">T1 = 0, T2 = 10, T3 = 20, T4 = 30</p>
+
+<p class="p">Remove the subscription, initial = 50, current = 50, unused = 50. AV initial = 50, current = 0, unused =0. Since the AV unused value has decremented, only Absolute from end thresholds are considered.</p>
+
+<p class="p">It depends completely on provisioning that on which threshold of Absolute from end, you want to send bar notification. The rule gets called on AV unused value. If the rule to send bar notification action is configured on threshold <var class="keyword varname">T1</var>, then rule is as follows:</p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>if SPR_GROUP.custom_data.Barred = false and 
+THRESHOLD_PROFILE.Is-Diameter-Call = false 
+then 
+THRESHOLD.Threshold-Trigger-Type = ThresholdTriggerType_PROVISION // attribute set in result context, Actions will be triggered only if rules are evaluated using Provisioning interface / North bound
+and 
+Then send barred notification and 
+SPR_GROUP.custom_data.Barred = true
+else
+SPR_GROUP.custom_data.Barred = false and 
+THRESHOLD_PROFILE.Is-Diameter-Call = true
+Then send barred notification and
+SPR_GROUP.custom_data.Barred = true</code></pre>
+</div>
+
+<p class="p">Therefore, the bar notification is sent on threshold value 0 of Absolute from end.</p>
+
+<p class="p">
+<span class="ph uicontrol">Example 3: Notification sent using threshold on account when an account balance is updated through Diameter or provisioning call </span>
+</p>
+
+<p class="p">Consider the following values:</p>
+
+<pre class="pre codeblock"><code>Account Initial Balance = 50 units</code></pre>
+<pre class="pre codeblock"><code>TPG: Absolute from Zero</code></pre>
+<pre class="pre codeblock"><code>TH1 = 10, TH2 = 40</code></pre>
+<p class="p">
+<span class="ph uicontrol">Provisioning case:</span>
+</p>
+
+<p class="p">Consider that the account is provisioned by setting the account balance to 30 units.</p>
+
+<p class="p">When the balance is decreased from 50 to 30 units, the threshold rule is evaluated with account available balance and the threshold action of TH2 is executed. </p>
+
+<p class="p">To send the notification for balance decreased by provisioning, the following rules must be configured for TH1 and TH2. Note that you can configure the <span class="ph uicontrol">ABSOLUTE_FROM_ZERO</span> profile only for <span class="ph uicontrol">Kind of Unit = Money</span>. </p>
+
+<div class="fig fignone">
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-mod_170_triggertype_default.png" height="327" width="599" />
+                </div>
+
+<p class="p">Here, the else condition, that is, <code class="ph codeph">Is-Diameter-Call = False</code> gets executed. The
+                    notification is sent to the end user and the action reject is not executed at
+                    the provisioning time.</p>
+
+<p class="p">
+<span class="ph uicontrol">Diameter call case:</span>
+</p>
+
+<p class="p">Consider the following values:</p>
+
+<pre class="pre codeblock"><code>Account Initial Balance = 50 units</code></pre>
+<pre class="pre codeblock"><code>TPG: Absolute from Zero</code></pre>
+<pre class="pre codeblock"><code>TH1 = 10, TH2 = 40</code></pre>
+<p class="p">Assume that the balance gets reduced to 15 units. The threshold rule is evaluated with the
+                    account available balance and the remaining threshold action of TH2 is executed.
+                    Here, the remaining else condition is executed. In this case, the notification
+                    is not sent. This is because, the notification has already been sent during
+                    provisioning and only the remaining actions , that is, <code class="ph codeph">Reject</code>
+                    gets executed.</p>
+
+</div>
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

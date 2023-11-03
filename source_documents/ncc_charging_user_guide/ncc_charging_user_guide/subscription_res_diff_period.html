@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Subscription resources with different periodicity than subscription period" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="subscription_res_diff_period" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Subscription resources with different periodicity than subscription period</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="subscription_res_diff_period">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Subscription resources with different periodicity than subscription period</h1>
+<div class="body conbody">
+        <div class="p">NCC provides the capability for the bundle components (bucket and counter) to have a
+            separate reset periodic cycle. The lifecycle can be configured at the bundle components
+            level. Hence, the buckets and counters do not follow the periodic life cycle of the
+            bundle and account.<ul class="ul" id="subscription_res_diff_period__ul_zdn_zgf_bqb">
+                <li class="li">The lifecycle from the bucket and counter definition is copied to bucket and
+                    counter instances. Lifecycle can be associated to a bucket or counter definition
+                    before a bucket or counter instance is created.</li>
+
+                <li class="li">Lifecycle support is provided on all types of buckets except the carry over
+                    bucket. </li>
+
+                <li class="li">Lifecycle support is provided on all the counters (Device, Group, Device_Group,
+                    Multi_bundle and Subscription).</li>
+
+                <li class="li">The billing information, which is available in both account and bundle, is also
+                    added on the counter and bucket definition, and can be configured through REST
+                    API.</li>
+
+                <li class="li">The periodicity of the bucket and counter can be set as daily, weekly, monthly,
+                    or minutes. <em class="ph i">Reset Resource Action</em> is introduced to reset the bucket and
+                    counter resources as per their defined bill cycle. The <em class="ph i">Send Notification</em>
+                    action sends a notification upon successful reset of bucket and counter.</li>
+
+                <li class="li"><em class="ph i">ResetResourceSuccessEvent</em> is triggered upon the successful execution of
+                    the <em class="ph i">Reset Resource Action</em>.</li>
+
+                <li class="li"><em class="ph i">ResetResourceFailedEvent</em> is triggered in the following cases:<ul class="ul" id="subscription_res_diff_period__ul_gf5_kmh_bqb">
+                        <li class="li">When the <em class="ph i">Reset Resource Action</em> is not executed successfully.</li>
+
+                        <li class="li">When the <em class="ph i">ResetResourceSuccessEvent</em> fails to reset a
+                            resource.</li>
+
+                    </ul>
+</li>
+
+                <li class="li">The <em class="ph i">Reset Resource Action</em> and <em class="ph i">ResetResourceSuccessEvent</em> can fail
+                    due to the following reasons:<ul class="ul" id="subscription_res_diff_period__ul_rrr_j1c_bqb">
+                        <li class="li">Subscription was barred.</li>
+
+                        <li class="li">Device or group is in a barred or final state, and the
+                                <code class="ph codeph">ignoreBarredDeviceOrGroup</code> is set to
+                                <var class="keyword varname">false</var></li>
+
+                    </ul>
+</li>
+
+                <li class="li">The following actions do not impact the bucket and counter resources which have
+                    a separate reset periodic cycle.<ul class="ul" id="subscription_res_diff_period__ul_oks_kbj_1qb">
+                        <li class="li"><em class="ph i">ResetSubscription Action</em>: This action resets only those
+                            subscription resources which do not have a lifecycle. </li>
+
+                        <li class="li"><em class="ph i">RenewSubscriptionAction</em>: This action resets only those
+                            subscription resources which do not have a lifecycle, or when triggered
+                            on account, they do not reset any device, group, device_group, or
+                            counters with a lifecycle.</li>
+
+                        <li class="li"><em class="ph i">EmptySubscriptionAction</em>:  This action does not impact the buckets
+                            or counters with a lifecycle.</li>
+
+                    </ul>
+</li>
+
+                <li class="li">Bucket and Counter entities are supported only on the PERIOD lifecycle.<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The
+                        ENTITY lifecycle is not allowed to be configured for bucket and
+                        counter.</div>
+</li>
+
+                <li class="li">In case the bucket and counter are in a barred state as per their periodic
+                    lifecycle, the call request consumption is not possible from the respective
+                    bucket and counter, even if the subscription is in active state.</li>
+
+                <li class="li">In case the device or group is in a barred or final state, and you want to bar
+                    the bucket and counter reset as per their periodic lifecycle , then set the
+                        <code class="ph codeph">ignoreBarredDeviceOrGroup</code> to <var class="keyword varname">false</var>.</li>
+
+            </ul>
+</div>
+
+        <div class="p">
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The lifecycle, and periodicity related configuration is provisioned in the bucket
+                and counter through REST APIs. </div>
+
+        </div>
+
+        <div class="p"><strong class="ph b">Additional information</strong><ul class="ul" id="subscription_res_diff_period__ul_uxz_bhf_bqb">
+                <li class="li">The <em class="ph i">BundleOnUse</em> (BOU) type of bundles can have the buckets and counters
+                    with a separate periodic lifecycle feature, provided the BOU bundles also have a
+                    periodic lifecycle.</li>
+
+                <li class="li">The future activation bundles can have resources (buckets and counters) with the
+                    separate periodic lifecycle feature, provided they have a bundle periodic
+                    lifecycle in a pre-active state (future activation). </li>
+
+                <li class="li">Step-Up buckets are reset as per the configured bucket periodic lifecycle.</li>
+
+                <li class="li">If subscription that is used for call processing has a lifecycle which is not in
+                    barred state, but the bucket or counter selected in that subscription has a
+                    lifecycle which is in barred stated, then that bucket or counter is not used
+                    from that subscription for call processing. If this subscription has any other
+                    bucket or counter, it is used if valid. If the bucket or counter is not valid,
+                    then an other subscription is picked, if applicable.</li>
+
+                <li class="li">The impending TEM entries on bucket or counter are triggered if they are pending
+                    when a call is executed on a device which has subscription containing these
+                    resources. This currently works for subscription, device, group and
+                    account.</li>
+
+                <li class="li">The impending TEM entries on bucket or counter are triggered if they are pending
+                    when the provisioning call is executed on device, group or account.</li>
+
+            </ul>
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This feature does not addresses the requirement of modifying the start time
+                for subscription, bucket or counter. </div>
+</div>
+
+        <div class="p">
+            <ol class="ol" id="subscription_res_diff_period__ol_dzv_q3j_1qb">
+                <li class="li">
+                    <div class="p"><strong class="ph b">Use case 1: Non-Bill Cycle subscribers having a Daily BOU Bundle</strong><ul class="ul" id="subscription_res_diff_period__ul_svx_fpj_1qb">
+                            <li class="li">The device is subscribed to a <em class="ph i">BundleOnUse</em> (BOU) Bundle having
+                                the bill cycle as Daily. The bundle periodic lifecyle (PLC) is
+                                applied as Daily. The bundle has a subscription counter PLC of 15
+                                    minutes.<ul class="ul" id="subscription_res_diff_period__ul_tzr_4pj_1qb">
+                                    <li class="li">Account and Subscription are created together on
+                                            <var class="keyword varname">12/06/2021 08:50 PM</var>.</li>
+
+                                    <li class="li">BOU bundle activation date is <var class="keyword varname">12/06/2021</var>
+                                        at <var class="keyword varname">09:08:00 PM</var>. </li>
+
+                                    <li class="li">The bundle periodically renews every day, that is
+                                            <var class="keyword varname">13/06/2021 08:50 PM</var>.</li>
+
+                                </ul>
+</li>
+
+                            <li class="li">Counter is created with bundle creation on <var class="keyword varname">12/06/2021
+                                    09:08:00 PM</var>.<ul class="ul" id="subscription_res_diff_period__ul_erx_vpj_1qb">
+                                    <li class="li">The Counter PLC is 15 minutes. Hence, it is reset every 15
+                                        minutes, that is <var class="keyword varname">12/06/2021 09:23:00</var>
+                                        (considering that the BOU bundle is activated on
+                                            <var class="keyword varname">12/06/2021 09:08:00 PM</var>)</li>
+
+                                </ul>
+</li>
+
+                            <li class="li">Notification is sent upon the bucket reset (Daily or Weekly). </li>
+
+                            <li class="li">Lifecycle Reset EDR and notification EDR are also generated with the
+                                bucket reset details.</li>
+
+                        </ul>
+</div>
+
+                    <div class="p"><strong class="ph b">Configuration details:</strong><ul class="ul" id="subscription_res_diff_period__ul_vnt_ftc_bqb">
+                            <li class="li">
+                                <div class="p"><strong class="ph b">BOU Bundle PLC:</strong><ol class="ol" type="a" id="subscription_res_diff_period__ol_x4k_w1f_bqb">
+                                        <li class="li">
+                                            <img class="image break" id="subscription_res_diff_period__image_ih4_sbf_bqb" height="192" src="../images/bou_bundle1.png" width="576" />
+                                        </li>
+
+                                        <li class="li">
+                                            <img class="image break" id="subscription_res_diff_period__image_ers_5bf_bqb" height="192" src="../images/bou_bundle2.png" width="576" />
+                                        </li>
+
+                                        <li class="li">
+                                            <img class="image break" id="subscription_res_diff_period__image_rkt_wbf_bqb" height="192" src="../images/bou_bundle3.png" width="576" />
+                                        </li>
+
+                                        <li class="li">
+                                            <img class="image break" id="subscription_res_diff_period__image_xcl_bcf_bqb" height="192" src="../images/bou_bundle5.png" width="576" />
+                                        </li>
+
+                                        <li class="li">
+                                            <img class="image break" id="subscription_res_diff_period__image_xgv_2df_bqb" height="192" src="../images/bou_bundle7.png" width="576" />
+                                        </li>
+
+                                        <li class="li">
+                                            <img class="image break" id="subscription_res_diff_period__image_zc4_gdf_bqb" height="192" src="../images/bou_bundle8.png" width="576" />
+                                            <p class="p">When the <em class="ph i">CallActivationEvent</em> occurs, and the
+                                                  <em class="ph i">ChargeFeeAction</em> is successfully executed to
+                                                commit the BOU activation fee from the account, the
+                                                  <em class="ph i">Trigger Event Action</em> is added. </p>
+
+                                            <p class="p">When the <em class="ph i">Trigger Event Action</em> is executed, it
+                                                triggers the <em class="ph i">Resource Activate event</em> on which
+                                                the counter is listening to get activated.</p>
+
+                                        </li>
+
+                                        <li class="li">
+                                            <img class="image break" id="subscription_res_diff_period__image_brq_hdf_bqb" height="192" src="../images/bou_bundle9.png" width="576" />
+                                        </li>
+
+                                        <li class="li">
+                                            <img class="image break" id="subscription_res_diff_period__image_pxm_kdf_bqb" height="192" src="../images/bou_bundle10.png" width="576" />
+                                        </li>
+
+                                        <li class="li">
+                                            <img class="image break" id="subscription_res_diff_period__image_cfs_ldf_bqb" height="192" src="../images/bou_bundle11.png" width="576" />
+                                        </li>
+
+                                        <li class="li">
+                                            <img class="image break" id="subscription_res_diff_period__image_xm4_mdf_bqb" height="192" src="../images/bou_bundle12.png" width="576" />
+                                        </li>
+
+                                        <li class="li">
+                                            <img class="image break" id="subscription_res_diff_period__image_f2l_ndf_bqb" height="192" src="../images/bou_bundle13.png" width="576" />
+                                        </li>
+
+                                        <li class="li">
+                                            <img class="image break" id="subscription_res_diff_period__image_fsk_4df_bqb" height="192" src="../images/bou_bundle14.png" width="576" />
+                                        </li>
+
+                                        <li class="li">
+                                            <img class="image break" id="subscription_res_diff_period__image_fdj_pdf_bqb" height="192" src="../images/bou_bundle15.png" width="576" />
+                                        </li>
+
+                                        <li class="li">
+                                            <img class="image break" id="subscription_res_diff_period__image_ejk_qdf_bqb" height="192" src="../images/bou_bundle16.png" width="576" />
+                                        </li>
+
+                                    </ol>
+</div>
+
+                            </li>
+
+                            <li class="li"><strong class="ph b">Counter Periodic Lifecycle:</strong><ul class="ul" id="subscription_res_diff_period__ul_hbp_q5f_bqb">
+                                    <li class="li">During the <em class="ph i">Start</em> state of the lifecycle, the
+                                            <em class="ph i">StartCycleEvent</em> is triggered.</li>
+
+                                    <li class="li"><em class="ph i">Reset Period Action</em> is triggered upon the occurrence
+                                        of <em class="ph i">StartCycleEvent</em>. The <em class="ph i">Reset Period Action</em>
+                                        calculates the Start Time and End Time for a period. </li>
+
+                                    <li class="li">The lifecycle transits again to the <em class="ph i">Start</em> state upon
+                                        successful execution of the <em class="ph i">Reset Period Action</em>.</li>
+
+                                    <li class="li">When the lifecycle reaches the End Time, the
+                                            <em class="ph i">RepeatCycleEvent</em> is triggered. </li>
+
+                                    <li class="li">During the execution of <em class="ph i">RepeatCycleEvent</em>, the
+                                            <em class="ph i">Reset Resource Action</em> is triggered. The <em class="ph i">Reset
+                                            Resource Action</em> resets the counter to initial
+                                        values.</li>
+
+                                    <li class="li">The lifecycle transits to the <em class="ph i">Start</em> state.</li>
+
+                                    <li class="li">The successful execution of the <em class="ph i">Reset Resource Action</em>
+                                        triggers the <em class="ph i">ResetResourceSuccessEvent</em>. The <em class="ph i">Reset
+                                            Period Action</em> is triggered, and the <em class="ph i">Send
+                                            Notification</em> action sends a notification upon
+                                        successful reset of the counter. It is followed by the
+                                        lifecycle transiting to the <em class="ph i">Start</em> state.</li>
+
+                                    <li class="li">If the <em class="ph i">Reset Resource Action</em> fails, then the
+                                            <em class="ph i">ResetResourceFailedEvent</em> is triggered on the
+                                        lifecycle of the resource. It is followed by the execution
+                                        of <em class="ph i">Send Notification</em> action.</li>
+
+                                    <li class="li">The lifecycle again transits to the <em class="ph i">Start</em> state.</li>
+
+                                </ul>
+</li>
+
+                            <li class="li">
+                                <p class="p"><strong class="ph b">BOU Activation Priority : ON_COMMIT</strong></p>
+
+                                <img class="image break" id="subscription_res_diff_period__image_upk_xdf_bqb" height="96" src="../images/bou_bundle_acti_priority.png" width="576" />
+                            </li>
+
+                            <li class="li">
+                                <div class="p"><strong class="ph b">Bundle Billing Info:</strong><img class="image break" id="subscription_res_diff_period__image_mvq_zsg_bqb" height="192" src="../images/bundle_billing_information.png" width="576" /></div>
+
+                            </li>
+
+                            <li class="li"><strong class="ph b">Charging Services</strong>: <img class="image break" id="subscription_res_diff_period__image_yh4_h2f_bqb" height="192" src="../images/bou_cs.png" width="576" /></li>
+
+                            <li class="li"><strong class="ph b">Tariff: </strong><img class="image break" id="subscription_res_diff_period__image_q3t_k2f_bqb" height="192" src="../images/bou_tarrif.png" width="576" /></li>
+
+                            <li class="li"><strong class="ph b">Account billing info: </strong><img class="image break" id="subscription_res_diff_period__image_l4b_t2f_bqb" height="192" src="../images/account_billing_info.png" width="576" /></li>
+
+                            <li class="li"><strong class="ph b">Device subscription details: </strong><img class="image break" id="subscription_res_diff_period__image_kmm_w2f_bqb" height="192" src="../images/device_subscription_details.png" width="576" /></li>
+
+                            <li class="li">
+                                <div class="p"><strong class="ph b">Account overview before calls execution: </strong><img class="image break" id="subscription_res_diff_period__image_abl_z2f_bqb" height="192" src="../images/account_overview.png" width="576" /></div>
+
+                            </li>
+
+                            <li class="li">
+                                <div class="p"><strong class="ph b">Account Overview after call execution: </strong><img class="image break" id="subscription_res_diff_period__image_fft_gff_bqb" height="192" src="../images/account_overview_after_call_exec.png" width="576" /></div>
+
+                            </li>
+
+                            <li class="li"><strong class="ph b">Account overview after counter reset: </strong><img class="image break" id="subscription_res_diff_period__image_tpz_4ff_bqb" height="192" src="../images/account_overview_after_counter_reset.png" width="576" /></li>
+
+                        </ul>
+</div>
+
+                </li>
+
+                <li class="li">
+                    <p class="p"><strong class="ph b">Use case 2: Bill cycle subscribers</strong></p>
+
+                    <ul class="ul" id="subscription_res_diff_period__ul_g11_fz2_bqb">
+                        <li class="li">The device is subscribed to a bundle with a reset periodic lifecycle
+                            (PLC) as Monthly. The bundle has two buckets with reset periodic
+                            lifecyle as Daily and Weekly.</li>
+
+                        <li class="li">Bundle has a monthly bill cycle, and the subscription is purchased or
+                            activated along with the account.<ul class="ul" id="subscription_res_diff_period__ul_chr_fz2_bqb">
+                                <li class="li">Account and Subscription are created on <var class="keyword varname">16/06/2021
+                                        08:54:00</var>.</li>
+
+                                <li class="li">The bundle periodically renews every month on
+                                        <var class="keyword varname">16/07/2021 00:00:00</var>.</li>
+
+                            </ul>
+</li>
+
+                        <li class="li">Buckets are created with bundle creation on <var class="keyword varname">16/06/2021
+                                08:54:00</var>.<ul class="ul" id="subscription_res_diff_period__ul_owz_hz2_bqb">
+                                <li class="li">The Bucket 1 PLC is Daily, Hence it resets daily, that is on
+                                        <var class="keyword varname">17/06/2021 00:00:00</var></li>
+
+                                <li class="li">The Bucket 2 PLC is Weekly. Hence it is reset weekly, that is on
+                                        <var class="keyword varname">23/06/2021 00:00:00</var>.</li>
+
+                            </ul>
+</li>
+
+                        <li class="li">Notification is sent upon the bucket reset (Daily or Weekly). </li>
+
+                        <li class="li">Lifecycle Reset EDR and notification EDR are also generated with the
+                            bucket reset details.</li>
+
+                    </ul>
+
+                    <div class="p"><strong class="ph b">Configuration details:</strong><ol class="ol" type="a" id="subscription_res_diff_period__ol_vtt_kqf_bqb">
+                            <li class="li">Bucket Periodic Lifecycle<ul class="ul" id="subscription_res_diff_period__ul_dmn_lqf_bqb">
+                                    <li class="li">During the <em class="ph i">Start</em> state of the lifecycle, the
+                                            <em class="ph i">StartCycleEvent</em> is triggered.</li>
+
+                                    <li class="li"><em class="ph i">Reset Period Action</em> is triggered upon the occurrence
+                                        of <em class="ph i">StartCycleEvent</em>. The <em class="ph i">Reset Period Action</em>
+                                        calculates the Start Time and End Time for a period. </li>
+
+                                    <li class="li">The lifecycle transits again to the <em class="ph i">Start</em> state upon
+                                        successful execution of the <em class="ph i">Reset Period Action</em>.</li>
+
+                                    <li class="li">When the lifecycle reaches the End Time, the
+                                            <em class="ph i">RepeatCycleEvent</em> is triggered. </li>
+
+                                    <li class="li">During the execution of <em class="ph i">RepeatCycleEvent</em>, the
+                                            <em class="ph i">Reset Resource Action</em> is triggered. The <em class="ph i">Reset
+                                            Resource Action</em> resets the bucket to initial
+                                        values.</li>
+
+                                    <li class="li">The lifecycle transits to the <em class="ph i">Start</em> state.</li>
+
+                                    <li class="li">The successful execution of the <em class="ph i">Reset Resource Action</em>
+                                        triggers the <em class="ph i">ResetResourceSuccessEvent</em>. The <em class="ph i">Reset
+                                            Period Action</em> is triggered, and the <em class="ph i">Send
+                                            Notification</em> action sends a notification upon
+                                        successful reset of the bucket. It is followed by the
+                                        lifecycle transiting to the <em class="ph i">Start</em> state.</li>
+
+                                    <li class="li">If the <em class="ph i">Reset Resource Action</em> fails, then the
+                                            <em class="ph i">ResetResourceFailedEvent</em> is triggered on the
+                                        lifecycle of the resource. It is followed by the execution
+                                        of <em class="ph i">Send Notification</em> action.</li>
+
+                                    <li class="li">The lifecycle again transits to the <em class="ph i">Start</em> state.</li>
+
+                                </ul>
+</li>
+
+                        </ol>
+</div>
+
+                </li>
+
+                <li class="li"><strong class="ph b">Use case 3: Non-bill cycle subscribers</strong><ul class="ul" id="subscription_res_diff_period__ul_wty_y3j_1qb">
+                        <li class="li">The device is subscribed to a bundle with a reset periodic lifecycle
+                            (PLC) as Monthly, bucket PCL as 24 hours, and counter reset PLC as
+                            Weekly.</li>
+
+                        <li class="li">Bundle has the monthly bill cycle as exact. That is, the subscription is
+                            purchased or activated along with the account.<ul class="ul" id="subscription_res_diff_period__ul_njq_jjj_1qb">
+                                <li class="li">Account and Subscription are created together on
+                                        <var class="keyword varname">16/06/2021 12:22:30</var>.</li>
+
+                                <li class="li">The bundle periodically renews on <var class="keyword varname">16/07/2021
+                                        00:00:00</var>.</li>
+
+                            </ul>
+</li>
+
+                        <li class="li"> Bucket is created with bundle creation on <var class="keyword varname">16/06/2021
+                                12:22:30</var>.<ul class="ul" id="subscription_res_diff_period__ul_bzg_pjj_1qb">
+                                <li class="li">The bucket PLC is 24 Hours. Hence it is reset on
+                                        <var class="keyword varname">17/06/2021 12:22:30</var>.</li>
+
+                                <li class="li">Notification is sent upon the bucket reset.</li>
+
+                            </ul>
+</li>
+
+                        <li class="li"> Counter is created with bundle creation on <var class="keyword varname">16/06/2021
+                                12:22:30</var>.<ul class="ul" id="subscription_res_diff_period__ul_m2n_yjj_1qb">
+                                <li class="li">The counter PLC is weekly. Hence the counter is reset every
+                                    Week, that is on <var class="keyword varname">23/06/2021 12:22:30</var>.</li>
+
+                                <li class="li">Notification is sent upon the counter reset. </li>
+
+                            </ul>
+</li>
+
+                        <li class="li">Lifecycle Reset EDR and notification EDR are also generated with the
+                            bucket reset details.</li>
+
+                    </ul>
+</li>
+
+                <li class="li">
+                    <div class="p"><strong class="ph b">Use case 4: Non-Bill Cycle subscribers Future Activation Bundle</strong><ul class="ul" id="subscription_res_diff_period__ul_r2v_ynj_1qb">
+                            <li class="li">The device is subscribed to a bundle which is going to be activated
+                                in the future. It has a Weekly periodic lifecycle (PLC). The bundle
+                                has a bucket with a 2 hour PLC.</li>
+
+                            <li class="li">The bundle has weekly bill cycle.<ul class="ul" id="subscription_res_diff_period__ul_ld2_k4j_1qb">
+                                    <li class="li">Account and Subscription are created on <var class="keyword varname">15/06/2021
+                                            10:15:02</var>.</li>
+
+                                    <li class="li">Bundle is activated in future, that is on
+                                            <var class="keyword varname">27/06/2021 12:22:17</var>.</li>
+
+                                    <li class="li">The bundle periodically renews weekly, that is on
+                                            <var class="keyword varname">22/06/2021 00:00:00</var>.</li>
+
+                                </ul>
+</li>
+
+                            <li class="li">Bucket is created with bundle creation on <var class="keyword varname">15/06/2021
+                                    10:15:02</var>.<ul class="ul" id="subscription_res_diff_period__ul_rmh_54j_1qb">
+                                    <li class="li">The bucket PLC is 2 Hours. Hence it resets every 2 hours,
+                                        that is <var class="keyword varname">16/06/2021 12:24:35</var> (considering
+                                        that the bundle is activated on <var class="keyword varname">15/06/2021
+                                            10:24:35</var>)</li>
+
+                                </ul>
+</li>
+
+                            <li class="li">Notification is sent upon the bucket reset (Daily or Weekly). </li>
+
+                            <li class="li">Lifecycle Reset EDR and notification EDR are also generated with the
+                                bucket reset details.</li>
+
+                        </ul>
+</div>
+
+                </li>
+
+            </ol>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

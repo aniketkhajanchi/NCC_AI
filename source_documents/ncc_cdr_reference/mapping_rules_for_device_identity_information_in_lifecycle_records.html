@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Mapping rules for device identity information in Lifecycle records" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="mapping_rules_for_device_identity_information_in_lifecycle_records" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Mapping rules for device identity information in Lifecycle records</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="mapping_rules_for_device_identity_information_in_lifecycle_records">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Mapping rules for device identity information in Lifecycle records</h1>
+<div class="body conbody">
+        <table cellpadding="4" cellspacing="0" summary="" id="mapping_rules_for_device_identity_information_in_lifecycle_records__table_dvw_3rt_1nb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Mapping rules for device identity information in Lifecycle records</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d68137e42">Output  field name</th>
+
+                        <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d68137e45">Input  field name</th>
+
+                        <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d68137e48">Conversion rule</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d68137e42 ">deviceIdentityType</td>
+
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d68137e45 ">&lt;parent&gt;.deviceIdentityType</td>
+
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d68137e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            
+                            <p class="p">Validate that the input is of type integer and has one of the
+                                following values: 0, 1, 2, 3, 4, 100, 101, 102, 103. Raise a warning
+                                and do not map if it is not.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d68137e42 ">deviceIdentityValue</td>
+
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d68137e45 ">&lt;parent&gt;.deviceIdentityValue</td>
+
+                        <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d68137e48 ">Direct mapping.</td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+    </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

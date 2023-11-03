@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Group notifications" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e210716" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Group notifications</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e210716">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Group notifications</h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">Notifications can be sent to group resources for the following cases:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">
+<span class="ph uicontrol">Notification from lifecycle of the group</span>: In this case, the lifecycle module includes Group ID in the notification request sent to NS.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<span class="ph uicontrol">Notification from lifecycle of subscription attached to the group</span>: In this case, the lifecycle module includes Group ID in the notification request sent to NS.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+                        <span class="ph uicontrol">Notification from the threshold attached to the group resources
+                            such as bucket, counter, and AV</span>: In this case, the threshold
+                        rule includes the Group ID in the notification request sent to NS. Within
+                        the rule, you can define the variable
+                            <var class="keyword varname">Notification-Destination</var> to select either Device or
+                        Group such as <kbd class="ph userinput">THRESHOLD.Notification-Destination =
+                            NotificationDestinationType_DEVICE</kbd> for notification. In case
+                        of deviceGroupCounter, notifications are pushed to device or group depending
+                        on Notification-Destination. If nothing is mentioned, the notification is
+                        sent to device. </p>
+
+</li>
+
+</ul>
+
+<p class="p">If a rule with <var class="keyword varname">Notification-Destination</var> is not specified, then a notification is triggered as follows:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">For group counter, notification is sent to group.</p>
+
+</li>
+
+<li class="li">
+<p class="p">For device counter, notification is sent to device</p>
+
+</li>
+
+<li class="li">
+<p class="p">For device-group counter, notification is sent based on the <var class="keyword varname">Notification-Destination</var> defined. </p>
+
+</li>
+
+<li class="li">
+<p class="p">For device or group subscription counter, notification is sent based on the type of subscription (group or device).</p>
+
+</li>
+
+<li class="li">
+<p class="p">For AV, notification is sent based on the type of subscription (group or device).</p>
+
+</li>
+
+<li class="li">
+<p class="p">For group or device subscription bucket, notification is sent based on the type of subscription (group or device).</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Configuring group notification</h2>
+<p class="p">Following are the methods to activate the group notification feature:</p>
+<ul class="ul">
+<li class="li">
+                    <p class="p">Configure the <var class="keyword varname">Notification-Destination</var> in rules.</p>
+
+                    
+                    <img class="image" src="../images/img9yz-09126-ug01-pczza-sp1-groupnotification_threshold_default.png" height="162" width="629" />
+                </li>
+
+<li class="li">
+<p class="p">Configure the subscription resource and attach it to a group for notifications. Threshold reached
+                        attached with AV accumulates the subscription of group. Threshold reached
+                        attached with counter accumulates the subscription of group. Threshold
+                        reached attached with bucket accumulates the subscription of group.</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Assumptions</h2>
+<p class="p">Following assumptions apply to the group notification feature:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">The recipient of the group notification is decided by the Group Notification profile (available under <span class="ph uicontrol">Notification Management</span> → <span class="ph uicontrol">Notification Preferences</span> → ≡ → <span class="ph uicontrol">Group Notification Profiles</span>). </p>
+
+<p class="p">For NCC, only <span class="ph uicontrol">All Members and Group Admin</span>, <span class="ph uicontrol">All Members except
+                            Group Admin</span>, <span class="ph uicontrol">Group Admin</span>, and
+                            <span class="ph uicontrol">None</span> can be used. See the following table for
+                        descriptions.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="90%" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d331315e190">
+                                        <p class="p">Value</p>
+
+                                   </th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d331315e196">
+                                        <p class="p">Description</p>
+
+                                   </th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e190 ">Group Selected Members</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e196 ">The notifications are sent to selected members specified
+                                        in the incoming request.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e190 ">Group Admin</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e196 ">The notifications are sent to only the group admin.
+                                   </td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e190 ">Group Admin and Selected Members</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e196 ">The notifications are sent to the group admin and
+                                        selected members specified in the incoming request.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e190 ">All Members and Group Admin</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e196 ">The notifications are sent to all group members
+                                        including the group admin.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e190 ">All Members except Group Admin</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e196 ">The notifications are sent to all group members in the
+                                        group except for the group admin.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e190 ">None</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e196 ">No notification is sent.</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+
+</li>
+
+<li class="li">
+<p class="p">There is no dynamic parameter except Group Id.</p>
+
+</li>
+
+<li class="li">
+<p class="p">For group notification, the lifecycle EDR contains the tag recipient id with the value of first retrieved group administrator.</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Group lifecycle notification</h2>
+<p class="p">The <em class="ph i">Send Notification</em> action is enhanced to send notifications to group. The groupId template parameter is added for group notification and can be used in the notification template. For example, create a new group lifecycle. Add the <var class="keyword varname">Send Notification Action</var> for event <span class="ph uicontrol">Activate</span> and provide the <span class="ph uicontrol">Notification Template Id</span>. Create a new group with the entity lifecycle created. Whenever the configured event occurs on a group, the notification action is triggered for the group.</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-groupex1_default.png" height="281" width="534" />
+            </div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Group subscription notification</h2>
+<p class="p">The subscription type (TypeOfSubscription) checks and send notifications for group if the subscription type is Group. For example, create a new subscription entity lifecycle. Add the <var class="keyword varname">Send Notification Action</var> for events <span class="ph uicontrol">Subscription Renewed Event</span>, <span class="ph uicontrol">Activate</span>, <span class="ph uicontrol">Deactivate</span> and provide the <span class="ph uicontrol">Notification Template Id</span> in the lifecycle entity. Create a charging service and associate it to a new bundle. Associate the entity lifecycle with the bundle created as shown in the following figure. Associate this bundle to the group. </p>
+
+<p class="p">Whenever a configured event such as <span class="ph uicontrol">Subscription Renewed Event</span> occurs on the group subscription, then notification action gets triggered for the group. Attach the <span class="ph uicontrol">EnterpriseGroupLifeCycle</span> and <span class="ph uicontrol">Bundle123</span> to the group entity (as shown in the following example).</p>
+
+<p class="p">
+<span class="ph uicontrol">Lifecycle creation:</span>
+</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-grouplc_default.png" height="396" width="708" />
+            </div>
+
+<p class="p">Ensure that you have created a charging service before creating the bundle.</p>
+
+<p class="p">
+<span class="ph uicontrol">Bundle creation: </span>
+</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bundleentity_default.png" height="200" width="505" />
+            </div>
+
+<p class="p">Ensure that you have created an account to associate with the bundle.</p>
+
+<p class="p">
+<span class="ph uicontrol">Group creation:</span>
+</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-groupentity_default.png" height="165" width="643" />
+            </div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Group threshold notification</h2>
+<p class="p">The subscription type (TypeOfSubscription) checks if the subscription type and
+                    <var class="keyword varname">Notification-Destination</var> is Group. Then notification is sent
+                to the Group Admins or All Members. A sample is shown in the following figure where
+                a notification is from the threshold attached to group resources such as allowance
+                limit (bucket), counters:</p>
+
+<div class="fig fignone">
+                
+                <a href="../images/img9yz-09126-ug01-pczza-sp1-groupnotification_threshold_default.png" class="image"><img class="image break scalefit" src="../images/img9yz-09126-ug01-pczza-sp1-groupnotification_threshold_default.png" height="195" width="754" /></a>
+            </div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Examples</h2>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 1: Notification sent to admin when notification profile is set to GROUP ADMIN</strong></p>
+
+<p class="p">A notification is sent to group when the group subscription bucket usage is reached as per threshold defined. The group notification profile is set to <var class="keyword varname">GROUP ADMIN</var>.</p>
+
+<div class="p">Configure the following entities for this example:<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:33.557046979865774%" /><col style="width:66.44295302013423%" /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d331315e426">
+                                        <p class="p">Entity</p>
+
+                                   </th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d331315e432">
+                                        <p class="p">Task</p>
+
+                                   </th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e426 ">Notification server</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e432 ">Configure the Email and SMS servers.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e426 ">Notification template</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e432 ">
+                                        <p class="p">Create a template with <span class="ph uicontrol">Name</span>:
+                                                <var class="keyword varname">Usage_Notification_Data</var>,
+                                                <span class="ph uicontrol">Notification Priority</span>:
+                                                <var class="keyword varname">Normal</var> and the details as shown
+                                            in the following figure:</p>
+
+                                        
+                                        <a href="../images/img9yz-09126-ug01-pczza-sp1-nt_ex1_default.png" class="image"><img class="image scalefit" src="../images/img9yz-09126-ug01-pczza-sp1-nt_ex1_default.png" height="225" width="240" /></a>
+                                   </td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e426 ">Notification preferences</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e432 ">Create a group notification profile. See the figure after
+                                        the table for details.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e426 ">Thresholds</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e432 ">Create the threshold profile group (TPG1). See the
+                                        figure after the table for details.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e426 ">Counter</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e432 ">Create a counter with <span class="ph uicontrol">Unit Type</span>:
+                                            <var class="keyword varname">Byte</var>, <span class="ph uicontrol">Counter
+                                            Type</span>: <var class="keyword varname">Usage</var>,
+                                            <span class="ph uicontrol">Counter Consumption Type</span>:
+                                            <var class="keyword varname">All</var>, <span class="ph uicontrol">Counter
+                                            Scope</span>: <var class="keyword varname">All</var>,
+                                            <span class="ph uicontrol">Threshold Profile Group ID List</span>:
+                                            <var class="keyword varname">TPG1</var>
+                                   </td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e426 ">Charging Services</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e432 ">
+                                        <p class="p">Create bucket and tariff for non-monetary bucket.</p>
+
+                                        
+                                        <a href="../images/img9yz-09126-ug01-pczza-sp1-cs_ex1_default.png" class="image"><img class="image scalefit" src="../images/img9yz-09126-ug01-pczza-sp1-cs_ex1_default.png" /></a>
+                                   </td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e426 ">Bundles</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e432 ">Create a bundle with fee = 0 and associate the charging
+                                        service created.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e426 ">Account</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e432 ">Create an account.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e426 ">User</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e432 ">Create a user.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e426 ">Group</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e432 ">Create the group with subscription (bundle created) and
+                                        select the Notification profile created for group.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e426 ">Device</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e432 ">Create the device with subscription (bundle created) and
+                                        link the user and group.</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+</div>
+
+<p class="p">
+<span class="ph uicontrol">Notification preferences (Group notification profile):</span>
+</p>
+
+<div class="fig fignone">
+                    
+                    <a href="../images/img9yz-09126-ug01-pczza-sp1-np_ex1_default.png" class="image"><img class="image break scalefit" src="../images/img9yz-09126-ug01-pczza-sp1-np_ex1_default.png" height="215" width="698" /></a>
+                </div>
+
+<p class="p">
+<span class="ph uicontrol">Thresholds (TPG1):</span>
+</p>
+
+<div class="fig fignone">
+                    
+                    <a href="../images/img9yz-09126-ug01-pczza-sp1-groupnotification_threshold_default.png" class="image"><img class="image break scalefit" src="../images/img9yz-09126-ug01-pczza-sp1-groupnotification_threshold_default.png" height="178" width="691" /></a>
+                </div>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 2: Notification from lifecycle linked to group subscription</strong></p>
+
+<p class="p">A notification is sent to the users of the group when a subscription lifecycle is attached to the group. The group notification profile is set to <var class="keyword varname">ALL MEMBERS</var>.</p>
+
+<div class="p">Configure the following entities for this example:<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:33.670033670033675%" /><col style="width:66.32996632996634%" /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d331315e648">
+                                        <p class="p">Entity</p>
+
+                                   </th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d331315e654">
+                                        <p class="p">Task</p>
+
+                                   </th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e648 ">Notification server</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e654 ">Configure the Email server.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e648 ">Notification template</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e654 ">
+                                        <p class="p">Create a template with <span class="ph uicontrol">Name</span>:
+                                                <var class="keyword varname">Recharge_Template</var>,
+                                                <span class="ph uicontrol">Notification Priority</span>:
+                                                <var class="keyword varname">Normal</var> and the details as shown
+                                            in the following figure:</p>
+
+                                        
+                                        <img class="image" src="../images/img9yz-09126-ug01-pczza-sp1-nt_ex2_default.png" />
+                                   </td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e648 ">Notification preferences</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e654 ">Create a group notification profile with
+                                            <span class="ph uicontrol">Name</span>:
+                                            <var class="keyword varname">NotificationProfile1</var>,
+                                            <span class="ph uicontrol">Type</span>: <var class="keyword varname">Group
+                                            Profile</var>, <span class="ph uicontrol">Receiver</span>:
+                                            <var class="keyword varname">All Members</var>,
+                                            <span class="ph uicontrol">Channels</span>:
+                                            <var class="keyword varname">EMAIL</var>, <span class="ph uicontrol">Notification
+                                            Type</span>: <var class="keyword varname">Usage</var>,
+                                            <span class="ph uicontrol">Local</span>: True,
+                                            <span class="ph uicontrol">Languages</span>:
+                                            <var class="keyword varname">ENGLISH</var>
+                                   </td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e648 ">Lifecycles</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e654 ">Create the Enterprise Group subscription lifecycle with
+                                            <span class="ph uicontrol">Name</span>:
+                                            <var class="keyword varname">EnterpriseGroupLifecycle1</var>,
+                                            <span class="ph uicontrol">Type</span>: <var class="keyword varname">Object Status
+                                            Lifecycle</var>, <span class="ph uicontrol">Applicable
+                                            to</span>: <var class="keyword varname">Subscription</var>,
+                                            <span class="ph uicontrol">States</span>:
+                                        <var class="keyword varname">Active</var>, <var class="keyword varname">Disconnected</var>,
+                                            <var class="keyword varname">Inactive</var>. See the lifecycle state
+                                        figures after the table.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e648 ">Counter</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e654 ">Create counters - Device counter (C1), Device Group
+                                        counter (C2) with <span class="ph uicontrol">Unit Type</span>:
+                                            <var class="keyword varname">MByte</var>, <span class="ph uicontrol">Counter
+                                            Type</span>: <var class="keyword varname">Usage</var>,
+                                            <span class="ph uicontrol">Counter Scope</span>:
+                                            <var class="keyword varname">Self</var>, <span class="ph uicontrol">Counter Consumption
+                                            Type</span>: <var class="keyword varname">All</var>.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e648 ">Charging Services</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e654 ">Create two charging services - CS1 and CS2.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e648 ">Bundles</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e654 ">Create two bundles : Bundle1 with fee = 25 and Bundle 2
+                                        with fee = 30 accordingly and associate the charging
+                                        services (CS1 for Bundle1) (CS2 for Bundle2) created.
+                                   </td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e648 ">Account</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e654 ">Create an account.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e648 ">User</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e654 ">Create a user.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e648 ">Group</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e654 ">Create the group with subscription (bundle created) and
+                                        select the <var class="keyword varname">EnterpriseGroupLifecycle1</var>
+                                        created.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e648 ">Device</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d331315e654 ">Create the device with subscription (bundle1 created)
+                                        and link the user and group.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" colspan="2" style="vertical-align:top;" headers="d331315e648 d331315e654 "> Using the <span class="ph uicontrol">Add
+                                            Counter</span> option (that displays once you mouse
+                                        over the created record), add the C1 device counter to
+                                        Device and C2 device group counter to group.</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+</div>
+
+<p class="p">
+<span class="ph uicontrol">Lifecycles (EnterpriseGroupLifecycle1):</span>
+</p>
+
+<div class="fig fignone">
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-lc1_ex2_default.png" height="193" width="814" />
+                </div>
+
+<div class="fig fignone">
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-lc2_ex2_default.png" height="256" width="791" />
+                </div>
+
+</div>
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

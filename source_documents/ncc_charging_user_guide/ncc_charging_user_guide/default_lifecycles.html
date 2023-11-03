@@ -1,0 +1,1248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Default lifecycles" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e179050" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Default lifecycles</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e179050">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Default lifecycles</h1>
+<div class="body conbody">
+        <p class="p">The system provides default ENTITY and PERIOD lifecycles. The default ENTITY lifecycle is
+            provided for all lifecycle entities - devices, users, accounts, groups, and
+            subscriptions. The given list shows the default ENTITY lifecycles provided by the NCC
+            system:</p>
+
+        <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e179050__ul_y5r_d5b_nwb">
+            <li class="li">
+                <p class="p">DefaultSubscriptionLifeCycle</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">DefaultGroupLifeCycle</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">DefaultUserLifeCycle</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">DefaultDeviceLifeCycle</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">DefaultAccountLifeCycle</p>
+
+            </li>
+
+        </ul>
+
+        <p class="p">It is mandatory for a lifecycle entity to have an ENTITY lifecycle associated with it. If
+            a lifecycle entity is configured without a reference to an ENTITY lifecycle, the default
+            ENTITY lifecycle is associated with that entity.</p>
+
+        <p class="p">The system provides three default PERIOD lifecycles as follows: </p>
+
+        <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e179050__ul_z5r_d5b_nwb">
+            <li class="li">DefaultAccountBillingCycle</li>
+
+            <li class="li">DefaultSubscriptionBillingCycle</li>
+
+            <li class="li">DefaultSubscriptionCampaignLifeCycle</li>
+
+        </ul>
+
+        <p class="p">If you do not assign a PERIOD lifecycle to an account or subscription, the system assigns
+            the default PERIOD lifecycle. Note that the system assigns the default PERIOD lifecycle
+            to a subscription only if the bundle, the subscription refers to, defines the billing
+            cycle information.</p>
+
+        <p class="p">The default lifecycles provide basic working functionality and can be used as a basis for
+            custom lifecycles. You can expand the set of states and the set of transitions in the
+            default lifecycles. You can add new states to the set of states and configure new
+            transitions and add them to the set of transitions. However, once a state or a
+            transition is added, it cannot be removed.</p>
+
+        <p class="p"><em class="ph i">DefaultSubcriptionCampaignLifecycle</em> is applicable only for subscription and get
+            assigned by system only if bundle defines campaign related dates that is,
+                <em class="ph i">CampaignStartDate</em> and <em class="ph i">CampaignEndDate</em></p>
+
+        <p class="p">The default lifecycles cannot be deleted or renamed.</p>
+
+<div class="section"><h2 class="title sectiontitle">Configuration of the default lifecycles</h2>
+<p class="p">This section provides information on the configuration of the default lifecycles.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-d1e179050__defaultaccountlifecycle" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>DefaultAccountLifeCycle configuration</span></caption><colgroup><col style="width:36.496350364963504%" /><col style="width:63.503649635036496%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e121">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e127">
+                                <p class="p">Configuration</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e121 ">Name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e127 ">DefaultAccountLifeCycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e121 ">Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e127 ">Object Status Lifecycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e121 ">Applicable to</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e127 ">Account</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e121 ">States</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e127 ">
+                                <p class="p">The set contains the following:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Active</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Inactive</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Removed</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaultstatestable">States configured for default lifecycles</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e121 ">Transitions</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e127 ">
+                                <p class="p">The set contains the following:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Deactivate</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Activate</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Entity Removed Event</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Delete</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Start Cycle</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaulttransitionstable">Transitions configured for default lifecycles</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>DefaultAccountLifeCycle</span>
+                
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-defaultaccountlifecycle_default.png" />
+            </div>
+
+<table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-d1e179050__defaultaccountbillingcycle" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>DefaultAccountBillingCycle configuration</span></caption><colgroup><col style="width:33.44481605351171%" /><col style="width:66.5551839464883%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e282">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e288">
+                                <p class="p">Configuration</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e282 ">name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e288 ">DefaultAccountBillingCycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e282 ">Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e288 ">Bill Cycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e282 ">Applicable to</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e288 ">Account</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e282 ">States</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e288 ">
+                                <p class="p">The set contains the following:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Start</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaultstatestable">States configured for default lifecycles</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e282 ">Transitions</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e288 ">
+                                <p class="p">The set contains the following:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Start Cycle Event</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Repeat Cycle</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaulttransitionstable">Transitions configured for default lifecycles</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>DefaultAccountBillingCycle</span>
+                
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-lc_defaultaccountbillingcycle_default.png" />
+            </div>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>DefaultSubscriptionLifeCycle configuration</span></caption><colgroup><col style="width:31.948881789137378%" /><col style="width:68.05111821086261%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e414">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e420">
+                                <p class="p">Configuration</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e414 ">Name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e420 ">DefaultSubscriptionLifeCycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e414 ">Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e420 ">Object Status Lifecycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e414 ">Applicable to</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e420 ">Subscription</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e414 ">States</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e420 ">
+                                <p class="p">The set contains the following:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Active</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Inactive</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Removed</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaultstatestable">States configured for default lifecycles</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e414 ">Transitions</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e420 ">
+                                <p class="p">The set contains the following:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Deactivate</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Activate</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Entity Removed Event</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Delete</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaulttransitionstable">Transitions configured for default lifecycles</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>DefaultSubscriptionBillingCycle configuration</span></caption><colgroup><col style="width:32.467532467532465%" /><col style="width:67.53246753246754%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e561">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e567">
+                                <p class="p">Configuration</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e561 ">Name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e567 ">DefaultSubscriptionBillingCycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e561 ">Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e567 ">Bill cycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e561 "> Applicable To</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e567 ">Subscription</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e561 ">States</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e567 ">
+                                <p class="p">The set contains state - Start.</p>
+
+                                <p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaultstatestable">States configured for default lifecycles</a>
+                                </p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e561 ">Transitions</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e567 ">
+                                <p class="p">The set contains the following events:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Start Cycle Event</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Repeat Cycle</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaulttransitionstable">Transitions configured for default lifecycles</a>
+                                </p>
+
+                           </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>DefaultSubscriptionBillingCycle </span>
+                
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-lc_defaultaccountbillingcycle_default.png" />
+            </div>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>DefaultGroupLifeCycle configuration</span></caption><colgroup><col style="width:31.948881789137378%" /><col style="width:68.05111821086261%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e683">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e689">
+                                <p class="p">Configuration</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e683 ">Name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e689 ">DefaultGroupLifeCycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e683 ">Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e689 ">Object Status Lifecycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e683 ">Applicable to</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e689 ">Group</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e683 ">States</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e689 ">
+                                <p class="p">The set contains the following:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Active</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Inactive</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Removed</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaultstatestable">States configured for default lifecycles</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e683 ">Transitions</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e689 ">
+                                <p class="p">The set contains the following:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Deactivate</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Activate</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Entity Removed Event</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Delete</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaulttransitionstable">Transitions configured for default lifecycles</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>DefaultUserLifeCycle configuration</span></caption><colgroup><col style="width:31.948881789137378%" /><col style="width:68.05111821086261%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e830">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e836">
+                                <p class="p">Configuration</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e830 ">Name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e836 ">DefaultUserLifeCycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e830 ">Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e836 ">Object Status Lifecycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e830 ">Applicable To</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e836 ">User</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e830 ">States</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e836 ">
+                                <p class="p">The set contains the following:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Active</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Inactive</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Removed</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaultstatestable">States configured for default lifecycles</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e830 ">Transitions</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e836 ">
+                                <p class="p">The set contains the following:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Deactivate</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Activate</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Entity Removed Event</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Delete</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaulttransitionstable">Transitions configured for default lifecycles</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>DefaultUserLifeCycle, DefaultSubscriptionLifeCycle and
+                    DefaultGroupLifeCycle</span>
+                
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-defaultuserlifecycle1_default.jpg" />
+            </div>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>DefaultDeviceLifeCycle configuration</span></caption><colgroup><col style="width:33.33333333333333%" /><col style="width:66.66666666666666%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e986">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e992">
+                                <p class="p">Configuration</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e986 ">Name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e992 ">DefaultDeviceLifeCycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e986 ">Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e992 ">Object Status Lifecycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e986 ">Applicable to</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e992 ">Device</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e986 ">States</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e992 ">
+                                <p class="p">The set contains the following:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Active</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Inactive</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaultstatestable">States configured for default lifecycles</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e986 ">Transitions</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e992 ">
+                                <p class="p">The set contains the following:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Deactivate</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Activate</p>
+
+                                    </li>
+
+                                </ul>
+
+                                <p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaulttransitionstable">Transitions configured for default lifecycles</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<p class="p">The following figure shows the default ENTITY lifecycle for devices.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>DefaultDeviceLifeCycle</span>
+                
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-defaultdevicelifecycle_default.png" />
+            </div>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-d1e179050__table_tvt_n5n_qwb" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>DefaultSubscriptionCampaignLifeCycle configuration</span></caption><colgroup><col style="width:31.948881789137378%" /><col style="width:68.05111821086261%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e1126">
+                                <p class="p">Parameter</p>
+
+                            </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e1132">
+                                <p class="p">Configuration</p>
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1126 ">Name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1132 ">DefaultSubscriptionCampaignLifeCycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1126 ">Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1132 ">Bill Lifecycle</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1126 ">Applicable To</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1132 ">Subscription</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1126 ">States</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1132 ">The set contains the following states <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e179050__ul_e3j_zdk_swb">
+                                    <li class="li">Start</li>
+
+                                    <li class="li">Active</li>
+
+                                    <li class="li">PreActive</li>
+
+                                    <li class="li">Removed</li>
+
+                                </ul>
+<p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaultstatestable">States configured for default lifecycles</a>
+                                </p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1126 ">Transitions</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1132 ">
+                                <p class="p">The set contains the following events:</p>
+
+                                <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e179050__ul_gqw_qvn_qwb">
+                                    <li class="li">Start Cycle Event</li>
+
+                                    <li class="li">Repeat Cycle</li>
+
+                                    <li class="li">OnStart Event</li>
+
+                                    <li class="li">Delete</li>
+
+                                </ul>
+
+                                <p class="p">For more information, see
+                                        <a class="xref" href="default_lifecycles.html#id9yz-09126-ug01-pczza-sp1-d1e179050__defaulttransitionstable">Transitions configured for default lifecycles</a>
+                                </p>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Configuration of states and transitions in default lifecycles</h2>
+<p class="p">The default lifecycles have a set of configured transitions. The configuration of these transitions is described in the following table.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-d1e179050__defaulttransitionstable" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Transitions configured for default lifecycles</span></caption><colgroup><col style="width:17.49408983451537%" /><col style="width:23.995271867612296%" /><col style="width:11.820330969267141%" /><col style="width:11.820330969267141%" /><col style="width:20.685579196217496%" /><col style="width:14.184397163120568%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e1267">
+                                <p class="p">name (Event)</p>
+
+                            </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e1273">
+                                <p class="p">Description</p>
+
+                            </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e1279">
+                                <p class="p">startState</p>
+
+                            </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e1285">
+                                <p class="p">endState</p>
+
+                            </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e1291">
+                                <p class="p">actions</p>
+
+                            </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e1298">
+                                <p class="p">timer</p>
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1267 ">Activate</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1273 ">
+                                <p class="p">This transition is triggered by the event named Activate.</p>
+
+                                <p class="p">The purpose of this transition is to move a lifecycle entity from
+                                    Inactive state to Active state.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1279 ">Inactive</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1285 ">Active</td>
+
+                            <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d140717e1291 "> No action</td>
+
+                            <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d140717e1298 "> No timer</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1267 ">Deactivate</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1273 ">
+                                <p class="p">This transition is triggered by the event named Deactivate. </p>
+
+                                <p class="p">The purpose of this transition is to move a lifecycle entity from
+                                    Active state to Inactive state.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1279 ">Active</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1285 ">Inactive</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1267 ">Entity Removed Event</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1273 ">
+                                <p class="p">This transition is triggered by the event named Entity Removed
+                                    Event.</p>
+
+                                <p class="p">The purpose of this transition is to move a lifecycle entity from
+                                    Inactive state to Removed state.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1279 ">Inactive</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1285 ">Removed</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1267 ">Delete</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1273 ">
+                                <p class="p">This transition is triggered by a timer. Delete transition can
+                                    also be triggered manually, by the event named Delete.</p>
+
+                                <p class="p">The purpose of this transition is to delete a lifecycle
+                                    entity.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1279 ">Removed</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1285 ">Removed</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1291 ">Delete Entity</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1298 ">timer = 24 HOURS</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1267 ">Start Cycle</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1273 ">
+                                <p class="p">This transition is triggered by the event named Start Cycle.</p>
+
+                                <p class="p">The purpose of this transition is to trigger Start Cycle Event in
+                                    the ENTITY lifecycle of an entity to initiate the PERIOD
+                                    lifecycle of the same entity.</p>
+
+                                <p class="p">StartCycle can be applied only to accounts and subscriptions.</p>
+
+                                <p class="p">StartCycle transition is used in DefaultAccountLifeCycle to
+                                    initiate DefaultAccountBillingCycle. StartCycle transition is
+                                    used in DefaultSubscriptionLifeCycle to initiate
+                                    DefaultSubscriptionBillingCycle.</p>
+
+                                <p class="p">StartCycle is an entry transition. It executes immediately and
+                                    only once. StartCycle has higher priority over the transitions
+                                    with a timer greater than zero.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1279 ">Active</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1285 ">Active</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1291 ">Trigger Event Action</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1298 ">timer = 0 SECONDS</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1267 ">Start Cycle Event</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1273 "><p class="p">This transition is triggered by the event named Start Cycle
+                                    Event.</p>
+The purpose of this transition is to initiate the
+                                first cycle in a PERIOD lifecycle.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1279 ">Start</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1285 ">Start</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1291 ">Reset Period Action</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1298 ">No timer</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1267 ">Start Cycle Event</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1273 ">StartCycleEvent in DefaultSubscriptionCampaignLifecycle is used
+                                to move the subscription in <em class="ph i">PreActive</em> state so that it can be
+                                scheduled to get activated at Campaign start date.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1279 ">Start</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1285 ">PreActive</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1291 ">None</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1298 ">0 second</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1267 ">Repeat Cycle</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1273 ">
+                                <p class="p">This transition is triggered by the event named Repeat Cycle.</p>
+
+                                <p class="p">The purpose of this transition is to initiate a subsequent cycle
+                                    in a PERIOD lifecycle.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1279 ">Start</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1285 ">Start</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1291 ">Reset Period Action</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1298 ">
+                                <p class="p">baseDateField of the timer is set to endTime of the account</p>
+
+                                <p class="p">baseDateField = endTime</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1267 ">CampaignEndReachedEvent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1273 ">This transition is triggered by the event named
+                                    <em class="ph i">CampaignEndReachedEvent</em>. <p class="p">The purpose of this
+                                    transition is to move the entity in FINAL state, when campaign
+                                    End date is reached. This event is triggered by
+                                        <em class="ph i">ResetPeriodAction</em>.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1279 ">Active</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1285 ">Removed</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1291 ">None</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1298 ">No timer</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1267 ">OnStartEvent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1273 ">This transition is triggered by the event named
+                                    <em class="ph i">OnStartEvent</em>.<p class="p">The purpose of this transition to
+                                    schedule a timer for making the entity active on Campaign Start
+                                    date.</p>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1279 ">Pre-Active</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1285 ">Active</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1291 ">
+                                <p class="p">RescheduleCampaignDatesAction</p>
+
+                                <p class="p">ResetPeriodAction</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1298 ">
+                                <p class="p"><em class="ph i">baseDateField</em> of the timer is set to campaign start date,
+                                    defined in corresponding bundle <var class="keyword varname">baseDateField =
+                                        campaignStartTime</var></p>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<p class="p">The default lifecycles have a set of configured states. The configuration of these states is described in the following table.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-d1e179050__defaultstatestable" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>States configured for default lifecycles</span></caption><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e1623">name</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e1626">initial</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e1629">barring</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d140717e1632">final</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1623 ">Active</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1626 ">true</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1629 ">false</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1632 ">false</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1623 ">Inactive</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1626 ">false</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1629 ">true</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1632 ">false</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1623 ">Removed</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1626 ">false</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1629 ">true</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1632 ">true</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1623 ">Start</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1626 ">true</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1629 ">false</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1632 ">false</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1623 ">PreActive</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1626 ">false</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1629 ">true</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d140717e1632 ">false</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

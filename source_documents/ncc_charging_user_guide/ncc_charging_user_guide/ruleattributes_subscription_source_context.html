@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="SUBSCRIPTION source context" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="ruleattributes_subscription_source_context" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>SUBSCRIPTION source context</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="ruleattributes_subscription_source_context">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">SUBSCRIPTION source context</h1>
+<div class="body conbody">
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>SUBSCRIPTION source context</span></caption><colgroup><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d224350e42">Attribute name</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d224350e45">Trigger</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d224350e48">Description</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d224350e42 ">Account-Id</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD</td>
+
+                        <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the account id of
+                                subscription.<div class="note" id="ruleattributes_subscription_source_context__note_tvk_5df_4vb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Only the first account of
+                                the subscription is considered for this attribute. If device has
+                                multiple subscriptions, purchased by multiple accounts, then this
+                                attribute is filled by the first fetched account of the
+                                subscription.</div>
+</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">RATING_POST_PROCESSING</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">RESOURCE_POST_PROCESSING</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Activation-Time</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">EDR_PROCESSING</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute indicates the time at which this subscription is
+                            activated.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Bundle-Activation-Type</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute indicates the activation type of the bundle.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" rowspan="9" style="vertical-align:top;" headers="d224350e42 ">Bundle-Id</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD </td>
+
+                        <td class="entry cellrowborder" rowspan="9" style="vertical-align:top;" headers="d224350e48 ">
+                            <p class="p">This attribute provides the bundle Id of subscriptions.</p>
+
+                            <div class="note" id="ruleattributes_subscription_source_context__note_q2j_wvz_f5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> RATING_POST_PROCESSING trigger is supported
+                                only when the <em class="ph i">Dynamic Notification Custom</em> flag is enabled. </div>
+
+                            <div class="note" id="ruleattributes_subscription_source_context__note_gvp_fwz_f5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> THRESHOLD trigger does not support Aggregate
+                                View (AV) functionality.</div>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">APPLICABILITY</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">TARIFF</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">RESOURCE_POST_PROCESSING</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">RATING_POST_PROCESSING</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">CALL_RULE_VARIABLES</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">BUNDLE</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">COUNTER</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Bundle-Rule-Trigger-Type</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">BUNDLE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">
+                            <p class="p">This attribute indicates the type of call or action that triggered
+                                the bundle rule.</p>
+
+                            <div class="p">It can have the following value:<ul class="ul" id="ruleattributes_subscription_source_context__ul_rwf_2gy_qvb">
+                                    <li class="li"><em class="ph i">Non_Diameter_Call</em>: It indicates that bundle rule is
+                                        triggered by calls or actions such as Sy call, Lifecycle or
+                                        other APIs.</li>
+
+                                </ul>
+</div>
+
+                            <div class="note" id="ruleattributes_subscription_source_context__note_zct_hgy_qvb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For details on configuring this attribute,
+                                see <em class="ph i">Special Period Bundle for Device</em>.</div>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Counter-CurrentValue</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the current value of counter.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Counter-EndDate</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the end Date of counter.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Creation-Time</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute indicates the creation time of the
+                            subscription.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Charging-Service</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">SLICING_PROFILE<p class="p">BUNDLE</p>
+<p class="p">APPLICABILITY</p>
+<p class="p">THRESHOLD</p>
+<p class="p">TARIFF</p>
+</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the charging service name (without MVNO) that
+                            is present in the bucket, or counter.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" rowspan="5" style="vertical-align:top;" headers="d224350e42 ">CustomData</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">APPLICABILITY</td>
+
+                        <td class="entry cellrowborder" rowspan="5" style="vertical-align:top;" headers="d224350e48 ">This attribute is used to send custom data value as a
+                            notification variable. It takes custom data attribute as an input
+                                parameter.<p class="p">For example: customData("customData name")</p>
+</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">TARIFF</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">RATING_POST_PROCESSING</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">RESOURCE_POST_PROCESSING</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d224350e42 ">Description</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">RESOURCE_POST_PROCESSING</td>
+
+                        <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the description of
+                            subscription.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Discount-On-Fee</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">
+                            <p class="p">This attribute contains total discount amount applied (through
+                                Discount entity configuration) on fee calculated during the
+                                subscription creation or subscription renewal using its own
+                                lifecycle. This is used in the notification, sent through the
+                                    <em class="ph i">SendNotificationAction</em> in lifecycle framework.</p>
+
+                            <p class="p">If discount type is set to <em class="ph i">Override</em>, then
+                                    <var class="keyword varname">Discount-On-Fee</var> is sent as 0. </p>
+
+                            <div class="note" id="ruleattributes_subscription_source_context__note_bj2_xbr_pvb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This attribute is not applicable or
+                                populated when <var class="keyword varname">Account renewal</var> occurs OR if fee
+                                is deducted using the <em class="ph i">ChargeFeeAction</em> in lifecycle
+                                configuration. <p class="p"><em class="ph i">Default Value: 0</em></p>
+</div>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">End-Time</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE<p class="p">EDR_PROCESSING</p>
+</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute indicates the end time of the subscription.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">First-Applied-Discount</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute is used to differentiate the notification templates,
+                            if discount is applied.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Get-Bucket-Total-Value-By-Type</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD<p class="p">LIFECYCLE_PROFILE</p>
+<p class="p">RATING_POST_PROCESSING</p>
+</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the remaining bucket balance of a bucket that
+                            has the passed key as type of bucket.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Get-Bucket-Total-Value-By-Name</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the remaining bucket balance for a bucket
+                            that has the passed key as name of bucket. It also returns the balance
+                            including carry over balance.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Get-Bucket-Value-By-Type</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD<p class="p">LIFECYCLE_PROFILE</p>
+</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the remaining bucket balance for regular
+                            bucket that has the passed key as type of bucket.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Get-Bucket-Value-By-Name</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the remaining bucket balance for a regular
+                            bucket that has the passed key as name of bucket.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Get-Previous-Bucket-Total-Value-By-Name</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD<p class="p">LIFECYCLE_PROFILE</p>
+</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the previous subscription remaining bucket
+                            balance for a bucket that has the passed key as name of bucket.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Get-Previous-Bucket-Total-Value-By-Type</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD<p class="p">LIFECYCLE_PROFILE</p>
+</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the previous subscription remaining bucket
+                            balance for a bucket that has the passed key as the type of
+                            bucket.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Get-Previous-Bucket-Value-By-Name</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD<p class="p">LIFECYCLE_PROFILE</p>
+</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the previous subscription remaining bucket
+                            balance for a regular bucket that has the passed key as the name of
+                            bucket.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Get-Previous-Bucket-Value-By-Type</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD<p class="p">LIFECYCLE_PROFILE</p>
+</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the previous subscription remaining bucket
+                            balance for a regular bucket that has the passed key as the type of
+                            bucket.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Get-Bucket-Orig-Initial-Value-By-Name</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">
+                            <p class="p">LIFECYCLE_PROFILE</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the original initial value for a bucket that
+                            has the passed key as the name of the bucket.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Get-Bucket-Orig-Initial-Value-By-Type</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">
+                            <p class="p">LIFECYCLE_PROFILE</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the original initial value for a bucket that
+                            has the passed key as the type of the bucket.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Has-Non-Empty-Buckets</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD<p class="p">LIFECYCLE_PROFILE</p>
+</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute checks whether the subscription has non-empty
+                            buckets.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Has-Previous-Non-Empty-Buckets</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD<p class="p">LIFECYCLE_PROFILE</p>
+</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute checks whether the previous subscription has non-empty
+                            buckets.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Is-Bucket-Exhausted-In-CS</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">APPLICABILITY</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute indicates whether the bucket is exhausted in charging
+                            service.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Is-Charge-Missed-Period</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attributes checks whether chargeMissedPeriod in Bundle is
+                            enabled.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Remaining-Renewals</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 "> </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Remaining-Discount-Renewals-Count </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute returns the remaining number of renewal discounts for
+                            a specific discount.<p class="p">This is a comparison and is used to detect last
+                                renewal which has been applied. </p>
+<p class="p">Exception for standalone
+                                discounts must return <em class="ph i">none</em>. </p>
+<p class="p">For <em class="ph i">In-Bundle</em>,
+                                there shall be only one discountInstance for it, so that remaining
+                                renewal count can be returned.</p>
+</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Renewal-Mode</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">EDR_PROCESSING</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute returns the subscription renewal mode.<div class="p">It can return
+                                following enumerated values:<ul class="ul" id="ruleattributes_subscription_source_context__ul_lys_5py_gwb">
+                                    <li class="li"><em class="ph i">RenewalMode_RESET_ONLY</em></li>
+
+                                    <li class="li"><em class="ph i">RenewalMode_BILLING_ONLY</em>
+                                    </li>
+
+                                    <li class="li"><em class="ph i">RenewalMode_ALL</em></li>
+
+                                    <li class="li"><em class="ph i">RenewalMode_NONE</em></li>
+
+                                </ul>
+</div>
+</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">SubscriptionId</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute indicates the Id of the subscription.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" rowspan="10" style="vertical-align:top;" headers="d224350e42 ">Subscriber-Custom-Attribute</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD </td>
+
+                        <td class="entry cellrowborder" rowspan="10" style="vertical-align:top;" headers="d224350e48 ">
+                            <p class="p">This attribute provides the custom data attached with a
+                                subscription.</p>
+
+                            <div class="note" id="ruleattributes_subscription_source_context__note_xkc_gf1_g5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> RATING_POST_PROCESSING trigger is supported
+                                only when the <em class="ph i">Dynamic Notification Custom</em> flag is enabled. </div>
+
+                            <div class="note" id="ruleattributes_subscription_source_context__note_ykc_gf1_g5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> THRESHOLD trigger does not support Aggregate
+                                View (AV) functionality.</div>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 "> APPLICABILITY</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 "> TARIFF</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 "> RESOURCE_POST_PROCESSING</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">RATING_POST_PROCESSING</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 "> CALL_RULE_VARIABLES</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">BUNDLE</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">SUBSCRIBER_POST_PROVISIONING</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">SUBSCRIBER_FAILED_PROVISIONING</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Subscription-Creation-Time</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">EDR_PROCESSING</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute indicates the time when the subscription was created.
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Subscription-End-Time</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">EDR_PROCESSING</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute indicates the end date time of the
+                            subscription.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Subscripiton-Input-Date</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">EDR_PROCESSING</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute specifies the input date for the subscription.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Subscription-Start-Time</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">EDR_PROCESSING</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute indicates the Start date time of the
+                            subscription.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Start-Time</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE<p class="p">EDR_PROCESSING</p>
+</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute indicates the start time of the subscription.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">State-Validity-End-Date</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">SUBSCRIBER_POST_PROVISIONING<p class="p">SUBSCRIBER_POST_TRANSFER</p>
+<p class="p">THRESHOLD</p>
+<p class="p">LIFECYCLE_PROFILE</p>
+</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">
+                            <p class="p">This attribute provides the end date of entity lifecycle attached
+                                with the subscription.</p>
+
+                            <p class="p">This value is null when there is no time configured in the entity
+                                lifecycle state.</p>
+
+                        </td>
+
+                    </tr>
+
+                    
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Total-Fee</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE<p class="p">SUBSCRIBER_POST_PROVISIONING</p>
+</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">
+                            <p class="p">This attribute contains the total fee to be deducted during
+                                subscription creation or subscription renewal made, using its own
+                                lifecycle. This includes applicable discounts, taxes and prorate.
+                                This is used in the notification, sent through
+                                    <em class="ph i">SendNotificationAction</em> in lifecycle framework.</p>
+
+                            <div class="note" id="ruleattributes_subscription_source_context__note_ycz_2cr_pvb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This attribute is not applicable or
+                                populated when <var class="keyword varname">Account renewal</var> occurs OR if fee
+                                is deducted using the <em class="ph i">ChargeFeeAction</em> in lifecycle
+                                configuration. <p class="p"><em class="ph i">Default Value: 0</em></p>
+</div>
+
+                        </td>
+
+                        
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Total-Fee-Missed-Period</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This parameter represents cumulative fee of missing periods of a
+                            periodic subscription, renewed successfully on account recharge. It is
+                            present only when <var class="keyword varname">chargeMissedPeriod</var> is <em class="ph i">true</em>
+                            in corresponding Bundle.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d224350e42 ">Type-Of-Count</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">APPLICABILITY</td>
+
+                        <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d224350e48 ">This attribute indicates the count of subscription type.
+                                <ul class="ul" id="ruleattributes_subscription_source_context__ul_ltf_nyw_ysb">
+                                <li class="li">BOU-Activation-Fee: Indicates BOU activation fee charged for BOU
+                                    Bundle during activation.</li>
+
+                                <li class="li">Usage: Indicates usage cost deducted from main balance or
+                                    bucket. (It is the default value.)</li>
+
+                            </ul>
+</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d224350e42 ">is-Queued-Instance</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD</td>
+
+                        <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d224350e48 ">This attribute checks whether the subscription is queued
+                            or not.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE (Accessible through <strong class="ph b">Send Notification Action</strong>
+                            in Lifecycle)</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d224350e42 ">is-Last-In-Queue</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD</td>
+
+                        <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d224350e48 ">This attribute checks whether the queued subscription is
+                            last in the queue or not.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE (Accessible through <strong class="ph b">Send Notification Action</strong>
+                            in Lifecycle)</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Duration-Days</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">
+                            <p class="p">This attribute provides the remaining subscription validity period in
+                                days.</p>
+
+                            <p class="p">It is used if bundle renewal to report new validity period so that
+                                configured Subscription validity can be reported.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">BundleFeeWithVAT</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">
+                            <p class="p">This attribute provides the value of the configured Service Fee (plus
+                                VAT).</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">BundleRenewalFeeWithVAT</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the value of the configured Service Renewal
+                            Fee (plus VAT). </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Bucket-Initial-Value</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">Displays the configured initial bucket value (of the given
+                            allowance).</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Renewal-Times</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the number of bundle renewals after first
+                            subscription.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Maximum-Renewal</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the configured maximum number of renewals of
+                            the given subscription.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e42 ">Measuring-Unit</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the configured value of Allowance Limit Unit
+                            (Byte, KByte, MByte, Gbyte) of the given allowance of a Subscription.
+                            This is used primarily for data allowances. It may be used for
+                            notification reports bucket initial value (the value is not in Bytes,
+                            but for example, MBytes).</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d224350e42 ">alternateId</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">THRESHOLD</td>
+
+                        <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d224350e48 ">This attribute provides the alternate ID of
+                            subscription.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d224350e45 ">LIFECYCLE_PROFILE</td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

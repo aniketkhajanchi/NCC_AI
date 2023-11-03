@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Pausing all input collection" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="SPS_CDR_Streams_Stream_Overview_pausing_all_kafka_collection" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Pausing all input collection</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="SPS_CDR_Streams_Stream_Overview_pausing_all_kafka_collection">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Pausing all input collection</h1>
+<div class="body conbody">
+                
+    <p class="p">NCC CDR streams accept incoming messages from two channels: Kafka input stream accepts them
+            from Apache Kafka Broker, and in the Reprocessor stream, CG Rejection Collector Node
+            fetches rejected records from the remote server. To protect the system from becoming
+            overloaded, the following three system properties can be monitored by setting thresholds
+            for them:</p>
+
+        <ul class="ul" id="SPS_CDR_Streams_Stream_Overview_pausing_all_kafka_collection__ul_psk_3j5_cmb">
+            <li class="li"><strong class="ph b">Database usage:</strong> This is the size of the used database storage as percentage
+                of the maximum database size limit. The thresholds for database usage are defined in
+                the node parameters of CG Kafka Collector Node and CG Rejection Collector Node.</li>
+
+            <li class="li"><strong class="ph b">Business logic stream queue size:</strong> This is the size of the processing batch
+                queue between Kafka input stream and Business logic stream. The thresholds for
+                Business logic stream queue size are defined in the node parameters of CG Kafka Collector Node
+                and CG Rejection Collector Node.</li>
+
+            <li class="li"><strong class="ph b">Output stream queue size:</strong> This is the size of the processing batch queues
+                between Business logic stream and the output streams, and the queues between the
+                output streams and the Log Distributor stream. The thresholds for combined queue
+                sizes are defined in the node parameters of CG Mapper Node.</li>
+
+        </ul>
+
+                <p class="p">There are three threshold levels that can be defined for each system property –
+                    high, low and clear. If a system property exceeds its low threshold value, an
+                    alert is sent to indicate that the given property is overloaded. After that, if
+                    the value falls below the clear threshold, an information message is sent out to
+                    indicate that the given property value is back to normal again.</p>
+
+                <p class="p">If any of the three properties exceeds its high threshold, CG Kafka Collector Node pauses
+            the polling for new messages from the Kafka egress topic and the Reprocessor stream
+            stops collecting files from the remote server. An alert is sent to indicate that full
+            rejection is in effect. After that, if all three properties fall below their low
+            thresholds, full rejection is stopped, CG Kafka Collector Node resumes polling for new messages,
+            Reprocessor stream resumes file collection, and an information message is sent out.</p>
+
+                <p class="p">The following table describes the threshold levels that can be set to monitor
+            database usage, Business logic stream queue size and Output stream queue size.</p>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="SPS_CDR_Streams_Stream_Overview_pausing_all_kafka_collection__table_xdm_nj5_cmb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Overload protection threshold levels</span></caption><colgroup><col style="width:14.534883720930234%" /><col style="width:39.38953488372093%" /><col style="width:46.075581395348834%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d4928e73">Threshold level</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d4928e76">Action when defined properties reach threshold</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d4928e79">Action when defined properties are back to below threshold</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4928e73 ">Clear</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4928e76 ">-</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4928e79 ">Clears the alert for an individual property if sent.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4928e73 ">Low</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4928e76 ">Raises the alert for an individual property.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4928e79 ">
+                            <p class="p">Kafka input streams resume polling messages from the Apache Kafka
+                                topic, Reprocessor stream resumes file collection.</p>
+
+                            <p class="p">Clears the alert for full rejection when all monitored properties are
+                                under their low thresholds.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4928e73 ">High</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4928e76 ">
+                            <p class="p">Pauses from polling messages from the Apache Kafka topic.</p>
+
+                            <p class="p">Raises an alert (full rejection) if at least one property to monitor
+                                is above its high threshold.</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d4928e79 ">-</td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+            </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

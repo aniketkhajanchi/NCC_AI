@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Configuration stream" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="SPS_CDR_Streams_Stream_Overview_configuration_stream" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Configuration stream</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="SPS_CDR_Streams_Stream_Overview_configuration_stream">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Configuration stream</h1>
+<div class="body conbody">
+                
+                <p class="p">Some configuration options are defined within the Configuration stream or in CGF
+            lookup tables. These configuration options are published to the database by running the
+            Configuration Stream and thereby taken into use in all the other streams.</p>
+
+                <p class="p">The configuration stored in the lookup tables can be maintained through the CGF
+            UI. Every configuration has a lookup table for the configuration draft and a
+            corresponding read-only lookup table for the latest published configuration, currently
+            in use. The name of the published table has prefix P_.</p>
+
+                <p class="p">The configuration stream consists of an HTTP REST Handler Node and three
+            instances of a standalone node, CG Configuration Node.</p>
+
+        <p class="p">Two of the CG Configuration Node instances are used for publishing and reverting
+            configurations. After modifications to draft lookup tables, the node for publishing
+            configurations must be run to take the configuration changes into use. Running the node
+            will attempt to publish all the changed lookup configurations, but before publishing,
+            all the configurations are validated. The publishing proceeds only if all of the
+            configurations are valid. Possible validation errors raise warnings, and the previously
+            configured rules remain in use until CG Configuration Node has been run successfully in
+            publish mode. It is not possible to publish only selected lookup tables. An info message
+            is shown once the node has successfully updated the configuration, unless no changes
+            were needed and therefore no message is shown.</p>
+
+                <p class="p">The second instance of CG Configuration Node can be used for reverting the draft
+            lookup tables back to the current published state. Any changes done in the draft lookup
+            tables are discarded.</p>
+
+        <p class="p">HTTP REST Handler Node  is responsible for adding, deleting, updating, reading and
+            publishing distribution rules by using HTTP calls.</p>
+
+        <p class="p">The Configuration stream also contains a node that can be used for flushing the database
+            when needed. See <a class="xref" href="overview_flushing_the_data.html#SPS_CDR_Streams_Stream_Overview_flushing_the_data">Flushing data</a> for more information.</p>
+
+                <p class="p">CG Configuration Node is a schedulable node, which can be run manually or be
+                    scheduled to run at a certain time. It is recommended to only run the node
+                    manually when needed. The default configurations will be published to the
+                    database automatically when the stream is started for the first time, if no
+                    configurations exist in the database yet.</p>
+
+                <p class="p">The Configuration stream must always be run once before taking a new version of
+                    CDR Streams into use.</p>
+
+        <div class="fig fignone" id="SPS_CDR_Streams_Stream_Overview_configuration_stream__config"><span class="figcap"><span class="fig--title-label">Figure: </span>Example of Configuration stream</span>
+            
+            <img class="image imagecenter break" id="SPS_CDR_Streams_Stream_Overview_configuration_stream__image_m3s_ygz_qsb" src="../images/TI037231.gif" width="454" />
+        </div>
+
+        <div class="section" id="SPS_CDR_Streams_Stream_Overview_configuration_stream__section_xkk_xh5_cmb"><h2 class="title sectiontitle">Scaling</h2>
+            
+            <p class="p">There is no need to scale the Configuration stream.</p>
+
+        </div>
+
+                </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

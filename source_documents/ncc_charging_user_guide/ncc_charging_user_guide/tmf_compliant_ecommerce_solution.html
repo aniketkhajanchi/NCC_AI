@@ -1,0 +1,1139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="TMF-compliant eCommerce API" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="tmf_compliant_ecommerce_solution" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>TMF-compliant eCommerce API</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="tmf_compliant_ecommerce_solution">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">TMF-compliant eCommerce API</h1>
+<div class="body conbody">
+        <p class="p">TMF-compliant eCommerce API supports the following scenarios in NCC:</p>
+
+        <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_tg4_lr5_mwb">
+            <li class="li">Charge the usage of an e-commerce service (<var class="keyword varname">charge</var> request)</li>
+
+            <li class="li">Refund a charged e-commerce usage within a defined time period from its charging
+                    (<var class="keyword varname">historical refund</var> request)</li>
+
+            <li class="li">Refund money for e-commerce usages (<var class="keyword varname">refund</var> request)</li>
+
+            <li class="li">Reserve the usage of an e-commerce service (<var class="keyword varname">reserve</var> request)</li>
+
+            <li class="li">Commit a reserved e-commerce usage within a defined time period from its charging
+                    (<var class="keyword varname">commit</var> request)</li>
+
+            <li class="li">Cancel a reserved e-commerce usage within a defined time period from its charging
+                    (<var class="keyword varname">cancel</var> request)</li>
+
+            <li class="li">Refund, automatically, a reserved e-commerce usage if no request for commit/cancel
+                has been received within a time period from its reservation</li>
+
+            <li class="li">Display all the historical e-commerce usages of a subscriber or a single one
+                    (<var class="keyword varname">display</var> request)</li>
+
+            <li class="li">Delete all the historical e-commerce usages of a subscriber or a single one
+                    (<var class="keyword varname">delete</var> request)</li>
+
+            <li class="li">Insert one or more e-commerce usages into the historical storage of a subscriber
+                    (<var class="keyword varname">insert</var> request)</li>
+
+            <li class="li">Verify whether a subscriber has sufficient credit for an e-commerce usage
+                    (<var class="keyword varname">check Balance</var> request)</li>
+
+        </ul>
+
+        <p class="p">The following four TMF-compliant eCommerce APIs are available in NCC:</p>
+
+        <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_ec1_dw5_mwb">
+            <li class="li">POST /usage</li>
+
+            <li class="li">PATCH /usage</li>
+
+            <li class="li">GET /usage</li>
+
+            <li class="li">DELETE /usage</li>
+
+        </ul>
+
+        <div class="section" id="tmf_compliant_ecommerce_solution__id_1"><h2 class="title sectiontitle">POST /usage ("charge" request)</h2>
+            
+            <p class="p">Use this API to charge the cost of an e-commerce usage in a single step from the
+                applicable monetary resources (balance account and/or secondary balance bucket) in a
+                subscriber profile. The subscriber profile can be identified via its MSISDN, which
+                is available in the input parameter <var class="keyword varname">service.supportingResource</var>
+                with type as <var class="keyword varname">E164</var>.</p>
+
+            <p class="p">The value in the input <var class="keyword varname">usageType</var> identifies the action to execute
+                (that is, <var class="keyword varname">eCommerce Charge</var>).</p>
+
+            <p class="p">The eCommerce usage to be charged is identified via an external identifier, so called
+                    <var class="keyword varname">transactionId</var>, which can be received externally or
+                auto-generated via charging RSV with a configurable format (auto-generation example
+                rule: <em class="ph i">SYSTEM.Generate-UUID concat ";" concat
+                        </em><em class="ph i">ECOMMERCE.service.supportingResource.id<em class="ph i"> concat ";" concat
+                        VARIABLES.Get-Variable ( "ECOM-Amount" )</em></em></p>
+
+            <p class="p">The cost and applied tax percentage can be received directly in the input parameter
+                    <var class="keyword varname">ratedProductUsage</var> or determined internally via a mapping
+                table by using the information received in the input dynamic list
+                    <var class="keyword varname">usageCharacteristic</var> as shown in the following figures:</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="tmf_compliant_ecommerce_solution__table_xhg_531_nwb" class="table" frame="void" border="1" rules="none"><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry nocellnorowborder" style="vertical-align:top;"><img class="image" id="tmf_compliant_ecommerce_solution__image_ug4_lr5_mwb" src="../images/e_com_api1.png" /></td>
+
+                            <td class="entry nocellnorowborder" style="vertical-align:top;"><img class="image" id="tmf_compliant_ecommerce_solution__image_vg4_lr5_mwb" src="../images/e_com_api2.png" /></td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <p class="p">These type of lists are useful to carry information to be written in the generated
+                Charge CDR as it is or mediated via a mapping table as shown in the following
+                figure:</p>
+
+            <p class="p"><a href="../images/e_com_api3.png" class="image"><img class="image scalefit" id="tmf_compliant_ecommerce_solution__image_wg4_lr5_mwb" src="../images/e_com_api3.png" /></a></p>
+
+            <p class="p">In general, such lists can be used to differentiate the relevant information among
+                the different TMF-compliant OpCos.</p>
+
+            <p class="p">The API is rejected in following situations:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_xg4_lr5_mwb">
+                <li class="li">Mandatory input parameters are missed</li>
+
+                <li class="li">Input parameters are received with a wrong value</li>
+
+                <li class="li">The input subscriber is not equipped</li>
+
+                <li class="li">The input subscriber does not have any subscription</li>
+
+                <li class="li">Duplicated charge request is received (only if transaction history is
+                    enabled)</li>
+
+                <li class="li">Available credit in not enough to afford usage cost</li>
+
+                <li class="li">Usage Manager is not yet deployed (only if transaction history is enabled)</li>
+
+            </ul>
+
+            <p class="p">Further customized rejection scenario can be added via charging RSV such as:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_yg4_lr5_mwb">
+                <li class="li">The subscriber typology (prepaid, postpaid, fixed line) is incompatible with the
+                    required eCommerce service type</li>
+
+                <li class="li">eCommerce traffic is barred by current SIM state</li>
+
+                <li class="li">internally determined usage cost and/or tax percentage are wrong</li>
+
+            </ul>
+
+            <p class="p">Once validation is successful, the usage cost is deducted from applicable monetary
+                resources and a Charge CDR is generated for both success and failure.</p>
+
+            <p class="p">The API response contains the quota amount charged on each involved monetary resource
+                and the available remaining credit.</p>
+
+            <p class="p">A new application preference, so called <var class="keyword varname">UM_For_Charge_CDR</var>,
+                controls whether there is the need to store the transaction with the relevant data
+                in historical storage.</p>
+
+            <p class="p">When the application preference is set as <var class="keyword varname">ENABLED</var>, the eCommerce
+                Charge CDR generated at successful charge time is stored in an external memory,
+                called usage database, which is managed via the Usage Manager (UM) micro-service.</p>
+
+            <p class="p">A built-in Aerospike mechanism, called TimeToLive (TTL), is used to implement the
+                retention period for each received/auto-generated <var class="keyword varname">transactionId:</var>
+                at successful eCommerce Charge CDR insertion in Usage database the TTL is set, when the
+                TTL expires a query towards the specific CDR fails although the CDR is still
+                physically stored in the usage database. This allows to make the garbage collection
+                process not synchronized exactly with TTL expiration.</p>
+
+            <p class="p">During API processing the following triggers are instantiated in the given order:</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="tmf_compliant_ecommerce_solution__table_zg4_lr5_mwb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:7.598784194528875%" /><col style="width:37.91793313069909%" /><col style="width:54.483282674772035%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d367534e275">Order</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d367534e278">Triggers</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d367534e281">Notes</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e275 ">1</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e278 ">ECOMMERCE_CALL_ESTABLISHMENT</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e281 ">
+                                <p class="p">This trigger collects and validate the dynamic information
+                                    received in input.</p>
+
+                                <p class="p">Attributes such as <em class="ph i">ECOMMERCE.Read-Usage-Characteristic</em> and
+                                        <em class="ph i">CALL_RESULT.eCommerce-Reject</em> are used respectively to
+                                    read the input dynamic information and reject the API when
+                                    needed.</p>
+
+                                <p class="p">Additionally, the auto-generated <var class="keyword varname">transactionId</var>
+                                    can be made known to API logic via the attribute
+                                        <em class="ph i">CALL_RESULT.Load-Generated-TransactionId</em>.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e275 ">2</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e278 ">APPLICABILITY/RATING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e281 ">This trigger determines the applicable monetary resources and
+                                have the external cost deducted from them. The attribute
+                                    <em class="ph i">RATING.Rate-External-Cost</em> is re-used to make the external
+                                usage cost available to rating engine with charging measurement as
+                                item</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e275 ">3</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e278 ">RATING_POST_PROCESSING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e281 ">
+                                <p class="p">This trigger executes any action needed after usage cost debiting
+                                    such as:</p>
+
+                                <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_ah4_lr5_mwb">
+                                    <li class="li">Adding custom data in the generated Charge CDR via the
+                                        attribute <em class="ph i">CALL_RESULT.Add-CDR</em></li>
+
+                                    <li class="li">Providing the internally determined cost and tax percentage
+                                        to code for including in API response via the attribute
+                                            <em class="ph i">CALL_RESULT.Report-Charged-Amount</em></li>
+
+                                    <li class="li">Providing a notification to subscriber informing it about
+                                        successful eCommerce cost charge via the attributes
+                                            <em class="ph i">NOTIFICATION.Send-Notification</em> and
+                                            <em class="ph i">NOTIFICATION.Notification-Variable</em></li>
+
+                                    <li class="li">Report the available credit remaining on the applicable
+                                        monetary resource in the API response via the attribute
+                                            <em class="ph i">CALL_RESULT.Report-Usage-Characteristic</em></li>
+
+                                    <li class="li">Report the received/auto-generated
+                                            <var class="keyword varname">transactionId</var> in a dedicated
+                                        usageCharacteristic entry in the API response via the
+                                        attribute
+                                        <em class="ph i">CALL_RESULT.Report-Usage-Characteristic</em></li>
+
+                                </ul>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <div class="section" id="tmf_compliant_ecommerce_solution__section_yhj_cg3_3yb"><h2 class="title sectiontitle">POST /usage (“refund” request)</h2>
+            
+            <p class="p">Use this API to refund cost of e-commerce usages from account main-balance in a
+                subscriber profile. The subscriber profile can be identified via its MSISDN, which
+                is available in the input parameter <em class="ph i">service.supportingResource</em> with type as
+                    <var class="keyword varname">E164</var>.</p>
+
+            <p class="p">The value in the input <em class="ph i">usageType</em> identifies the action to execute (that is,
+                    <em class="ph i">eCommerce Refund</em>).</p>
+
+            <p class="p">The <var class="keyword varname">transactionId</var> can be received externally or auto-generated via
+                charging RSV with a configurable format (auto-generation example rule:
+                    <em class="ph i">SYSTEM.Generate-UUID concat ";" concat
+                    </em><em class="ph i">ECOMMERCE.service.supportingResource.id</em><em class="ph i"> concat ";" concat
+                    VARIABLES.Get-Variable ( "ECOM-Amount" )</em>.</p>
+
+            <div class="p">The API is rejected in the following situations:<ul class="ul" id="tmf_compliant_ecommerce_solution__ul_gvw_phj_3yb">
+                    <li class="li">Mandatory input parameters are missed</li>
+
+                    <li class="li">Input parameters are received with a wrong value</li>
+
+                    <li class="li">The input subscriber is not equipped</li>
+
+                    <li class="li">The input subscriber does not have any subscription</li>
+
+                </ul>
+Further customized rejection scenario can be added via charging RSV such as:<ul class="ul" id="tmf_compliant_ecommerce_solution__ul_bzh_5hj_3yb">
+                    <li class="li">The subscriber typology (prepaid, postpaid, fixed line) is incompatible with
+                        the required eCommerce service type</li>
+
+                    <li class="li">eCommerce traffic is barred by current SIM state</li>
+
+                    <li class="li">Internally determined usage cost and/or tax percentage are wrong</li>
+
+                </ul>
+</div>
+
+            <p class="p">Once validation is successful, the usage cost is deducted from the account
+                main-balance and a <em class="ph i">Refund </em>CDR generated for both success and failure.</p>
+
+            <p class="p">The API response contains the quota amount refunded on the main-balance and the
+                available credit remaining.</p>
+
+            <div class="p">During API processing the following triggers are instantiated in the given
+                    order:<table cellpadding="4" cellspacing="0" summary="" id="tmf_compliant_ecommerce_solution__table_ifm_g3j_3yb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:10.660980810234543%" /><col style="width:44.136460554371006%" /><col style="width:45.20255863539446%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d367534e481">Order</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d367534e484">Triggers</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d367534e487">Notes</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e481 ">1</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e484 ">ECOMMERCE_CALL_ESTABLISHMENT</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e487 ">This trigger collects and validate the dynamic information
+                                    received in input.<p class="p">Attributes such as
+                                            <em class="ph i">ECOMMERCE.Read-Usage-Characteristic</em> and
+                                            <em class="ph i">CALL_RESULT.eCommerce-Reject</em> are used
+                                        respectively to read the input dynamic information and
+                                        reject the API when needed.</p>
+Additionally, the
+                                    auto-generated <var class="keyword varname">transactionId</var> can be made
+                                    known to API logic via the attribute
+                                        <em class="ph i">CALL_RESULT.Load-Generated-TransactionId</em>.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e481 ">2</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e484 ">APPLICABILITY/RATING</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e487 ">This trigger determines the applicable monetary resources and
+                                    have the external cost deducted from them. The attribute
+                                        <em class="ph i">RATING.Rate-External-Cost</em> is re-used to make the
+                                    external usage cost available to rating engine with charging
+                                    measurement as item.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e481 ">3</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e484 ">RATING_POST_PROCESSING</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e487 ">This trigger executes any action needed after usage cost
+                                    debiting such as:<ul class="ul" id="tmf_compliant_ecommerce_solution__ul_lc1_s3j_3yb">
+                                        <li class="li">Adding custom data in the generated Refund CDR via the
+                                            attribute <em class="ph i">CALL_RESULT.Add-CDR</em></li>
+
+                                        <li class="li">Providing the internally determined cost and tax
+                                            percentage to code for including in API response via the
+                                            attribute <em class="ph i">CALL_RESULT.Report-Charged-Amount</em></li>
+
+                                        <li class="li">Providing a notification to subscriber informing it
+                                            about successful eCommerce cost refund via the
+                                            attributes <em class="ph i">NOTIFICATION.Send-Notification</em> and
+                                                <em class="ph i">NOTIFICATION.Notification-Variable</em></li>
+
+                                        <li class="li">Report the available credit remaining on the
+                                            main-balance in the API response via the attribute
+                                                <em class="ph i">CALL_RESULT.Report-Usage-Characteristic</em></li>
+
+                                        <li class="li">Report the received/auto-generated
+                                                <var class="keyword varname">transactionId</var> in a dedicated
+                                            usageCharacteristic entry in the API response via the
+                                            attribute
+                                            <em class="ph i">CALL_RESULT.Report-Usage-Characteristic</em></li>
+
+                                    </ul>
+</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+
+        </div>
+
+        <div class="section" id="tmf_compliant_ecommerce_solution__id_2"><h2 class="title sectiontitle">POST /usage (“reserve” request)</h2>
+            
+            <p class="p">Use this API to reserve the cost of an e-commerce usage from the applicable monetary
+                resources (balance account and/or secondary balance bucket) in a subscriber profile. </p>
+
+            <p class="p">Most of the description in POST /usage (<var class="keyword varname">charge</var> request) is also
+                valid for POST /usage (<var class="keyword varname">reserve</var> request) with the following
+                differences:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_bh4_lr5_mwb">
+                <li class="li">The input usageType is <var class="keyword varname">eCommerce Reserve</var></li>
+
+                <li class="li">The <var class="keyword varname">transactionId</var> can be received externally or
+                    auto-generated via charging RSV with a configurable format (auto-generation
+                    example rule: <code class="ph codeph">SYSTEM.Generate-UUID concat ";" concat
+                        ECOMMERCE.service.supportingResource.id concat ";" concat
+                        VARIABLES.Get-Variable ( "ECOM-Amount" )</code>)</li>
+
+                <li class="li">When the <var class="keyword varname">transactionId</var> is neither received nor
+                    auto-generated, the API is rejected</li>
+
+                <li class="li">During reservation, the usage cost is not deducted from applicable monetary
+                    resources but just reserved</li>
+
+                <li class="li">If reservation is successful, then a new ECUR session of type
+                        <var class="keyword varname">eCommerce</var> is opened with ID is equal to the known
+                        <var class="keyword varname">transactionId</var> (received in input or auto-generated)</li>
+
+                <li class="li">The eCommerce Reserve CDR generated when reservation is successful is not stored
+                    in usage database</li>
+
+                <li class="li">The API response contains the quota amount reserved on each involved monetary
+                    resource and the available credit remaining</li>
+
+            </ul>
+
+            <p class="p">At reserve time an item-based or money-based reservation can apply on request
+                basis.</p>
+
+            <p class="p">To avoid too many concurrent eCommerce session ongoing at the same time, use ME
+                application preferences <em class="ph i">Allowed Concurrent eCommerce sessions per Device
+                </em>(refer to <em class="ph i">Global Configuration Guide</em>). While opening a new eCommerce
+                session, if the configured number is exceeded, the API is rejected.</p>
+
+            <p class="p">For <var class="keyword varname">charge</var> request, the ongoing eCommerce session has a retention
+                period. After this period, the corresponding transactions cannot be committed. The
+                retention period (in seconds) can be configured as dedicated quota slicing profile
+                for e-commerce traffic in the <strong class="ph b">Quota Management</strong> section of the SM GUI along
+                with the other quota attributes, as shown in the following example:</p>
+
+            <p class="p"><img class="image" id="tmf_compliant_ecommerce_solution__image_ch4_lr5_mwb" src="../images/e_com_api4.png" /></p>
+
+        </div>
+
+        <div class="section" id="tmf_compliant_ecommerce_solution__section_wyv_ggg_kxb"><h2 class="title sectiontitle">POST /usage (“check balance” request)</h2>
+            
+            <p class="p">Use this API to test the cost of an e-commerce usage can be afforded from the
+                applicable monetary resources (balance account and/or secondary balance bucket) in a
+                subscriber profile. The subscriber profile can be identified via its MSISDN, which
+                is available in the input parameter <em class="ph i">service.supportingResource</em> with type as
+                    <var class="keyword varname">E164</var>.</p>
+
+            <p class="p">The value in the input <em class="ph i">usageType</em> identifies the action to execute (that is,
+                    <em class="ph i">check Balance</em>).</p>
+
+            <p class="p">The <var class="keyword varname">transactionId</var> can be received externally or auto-generated via
+                charging RSV with a configurable format (auto-generation example rule:
+                    <em class="ph i">SYSTEM.Generate-UUID concat ";" concat
+                    </em><em class="ph i">ECOMMERCE.service.supportingResource.id</em><em class="ph i"> concat ";" concat
+                    VARIABLES.Get-Variable ( "ECOM-Amount" )</em>.</p>
+
+            <p class="p">The cost to be tested and applied tax percentage can be received directly in the
+                input parameter <em class="ph i">ratedProductUsage</em> or determined internally via a mapping
+                table by using the information received in the input dynamic list
+                    <em class="ph i">usageCharacteristic</em> as shown in the following figures:</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="tmf_compliant_ecommerce_solution__table_kk4_qhg_kxb" class="table" frame="void" border="1" rules="none"><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry nocellnorowborder" style="vertical-align:top;"><a href="../images/ecom_cost.png" class="image"><img class="image scalefit" id="tmf_compliant_ecommerce_solution__image_xyv_ggg_kxb" src="../images/ecom_cost.png" /></a></td>
+
+                            <td class="entry nocellnorowborder" style="vertical-align:top;"><a href="../images/ecom_tax_per.png" class="image"><img class="image scalefit" id="tmf_compliant_ecommerce_solution__image_yyv_ggg_kxb" src="../images/ecom_tax_per.png" /></a></td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <p class="p">In general, such lists can be used to differentiate the relevant information among
+                the different TMF-compliant OpCos.</p>
+
+            <p class="p">The API is rejected in following situations:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_zyv_ggg_kxb">
+                <li class="li">Mandatory input parameters are missed</li>
+
+                <li class="li">Input parameters are received with a wrong value</li>
+
+                <li class="li">The input subscriber is not equipped</li>
+
+                <li class="li">The input subscriber does not have any subscription</li>
+
+                <li class="li">Available credit is not enough to afford usage cost</li>
+
+            </ul>
+
+            <p class="p">Further customized rejection scenario can be added via charging RSV such as:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_azv_ggg_kxb">
+                <li class="li">The subscriber typology (prepaid, postpaid, fixed line) is incompatible with
+                    eCommerce services</li>
+
+                <li class="li">eCommerce traffic is barred by current SIM state</li>
+
+                <li class="li">internally determined usage cost and/or tax percentage are wrong</li>
+
+            </ul>
+
+            <p class="p">Once validation is successful, the available credit in applicable monetary resources
+                is checked against provided total amount.</p>
+
+            <p class="p">In case it is enough, the generated API response contains the total amount to be
+                tested, the amount quota affordable by each applicable monetary resource and the
+                current available credit.</p>
+
+            <p class="p">No CDR is generated for both success and failure.</p>
+
+            <p class="p">During API processing the following triggers are instantiated in the given order:</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="tmf_compliant_ecommerce_solution__table_bzv_ggg_kxb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:11.641443538998836%" /><col style="width:35.85564610011642%" /><col style="width:52.50291036088475%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d367534e804">Order</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d367534e807">Triggers</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d367534e810">Notes</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e804 ">1</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e807 ">ECOMMERCE_CALL_ESTABLISHMENT</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e810 ">
+                                <p class="p">This trigger collects and validate the dynamic information
+                                    received in input.</p>
+
+                                <p class="p">Attributes such as <em class="ph i">ECOMMERCE.Read-Usage-Characteristic</em> and
+                                        <em class="ph i">CALL_RESULT.eCommerce-Reject</em> are used respectively to
+                                    read the input dynamic information and reject the API when
+                                    needed.</p>
+
+                                <p class="p">Additionally, the auto-generated <var class="keyword varname">transactionId</var>
+                                    can be made known to API logic via the attribute
+                                        <em class="ph i">CALL_RESULT.Load-Generated-TransactionId</em>.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e804 ">2</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e807 ">APPLICABILITY/RATING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e810 ">This trigger determines the applicable monetary resources and
+                                have the external cost deducted from them. The attribute
+                                    <em class="ph i">RATING.Rate-External-Cost</em> is re-used to make the external
+                                usage cost available to rating engine with charging measurement as
+                                item</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e804 ">3</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e807 ">RATING_POST_PROCESSING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e810 ">
+                                <p class="p">This trigger executes any action needed after usage cost debiting
+                                    such as:</p>
+
+                                <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_czv_ggg_kxb">
+                                    <li class="li">· Providing the internally determined cost and tax
+                                        percentage to code for including in API response via the
+                                        attribute <em class="ph i">CALL_RESULT.Report-Charged-Amount</em></li>
+
+                                    <li class="li">· Providing a notification to subscriber informing it about
+                                        successful eCommerce cost charge via the attributes
+                                            <em class="ph i">NOTIFICATION.Send-Notification</em> and
+                                            <em class="ph i">NOTIFICATION.Notification-Variable</em></li>
+
+                                    <li class="li">· Report the available credit remaining on the applicable
+                                        monetary resource in the API response via the attribute
+                                            <em class="ph i">CALL_RESULT.Report-Usage-Characteristic</em></li>
+
+                                    <li class="li">Report the received/auto-generated
+                                            <var class="keyword varname">transactionId</var> in a dedicated
+                                        usageCharacteristic entry in the API response via the
+                                        attribute
+                                        <em class="ph i">CALL_RESULT.Report-Usage-Characteristic</em></li>
+
+                                </ul>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <div class="section" id="tmf_compliant_ecommerce_solution__id_3"><h2 class="title sectiontitle">PATCH /usage ("commit" scenario)</h2>
+            
+            <p class="p">Use this API to commit the cost of an e-commerce usage previously reserved from
+                monetary resources (balance account and/or secondary balance bucket) in a subscriber
+                profile. The subscriber profile can be identified via its MSISDN, which is available
+                in the input parameter <var class="keyword varname">service.supportingResource</var> with type as
+                    <var class="keyword varname">E164</var>.</p>
+
+            <p class="p">The value in the input <var class="keyword varname">usageType</var> identifies the action to execute
+                (that is, <var class="keyword varname">eCommerce Commit</var>).</p>
+
+            <p class="p">The eCommerce usage to be refunded is identified via an external identifier, called
+                    <var class="keyword varname">transactionId</var>, which allows to identify a specific ongoing
+                transaction with the related usage cost to be committed.</p>
+
+            <p class="p">The identifier of the committing transaction can be received externally or
+                auto-generated via charging RSV with a configurable format (auto-generation example
+                rule: <em class="ph i">SYSTEM.Generate-UUID concat ";" concat
+                    </em><em class="ph i">ECOMMERCE.service.supportingResource.id</em><em class="ph i"> concat ";" concat
+                    VARIABLES.Get-Variable ( "ECOM-Amount" )</em>.</p>
+
+            <p class="p">The API is rejected in following scenarios:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_dh4_lr5_mwb">
+                <li class="li">Mandatory input parameters are missed</li>
+
+                <li class="li">Input parameters are received with a wrong value</li>
+
+                <li class="li">The input subscriber is not equipped</li>
+
+                <li class="li">The input subscriber does not have any subscription</li>
+
+                <li class="li">The input transaction is not existing as ECUR ongoing session</li>
+
+                <li class="li">An input amount is received for an item-based reservation</li>
+
+            </ul>
+
+            <p class="p">Further customized rejection scenarios can be added via charging RSV.</p>
+
+            <p class="p">Once validation is successful, the involved monetary resources and the quota amount
+                to be deducted from each of them are derived from the ongoing ECUR session. For
+                successful commit the ongoing ECUR session is closed.</p>
+
+            <p class="p">Commit of amounts different from the reserved one is supported only when the
+                corresponding reservation was money-based.</p>
+
+            <p class="p">A Commit CDR is generated whether commit is successful or not reporting the really
+                deducted amount.</p>
+
+            <p class="p">The CDR contains also the lost amount when the available credit (including reserved
+                amount) is not enough to afford the requested amount.</p>
+
+            <p class="p">The API response contains the quota amount committed on each involved monetary
+                resource.</p>
+
+            <p class="p">During API processing, the following triggers are instantiated in the given
+                order:</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="tmf_compliant_ecommerce_solution__table_eh4_lr5_mwb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:12.004801920768307%" /><col style="width:37.45498199279712%" /><col style="width:50.540216086434576%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d367534e1014">Order</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d367534e1017">Triggers</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d367534e1020">Notes</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e1014 ">1</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e1017 ">ECOMMERCE_CALL_ESTABLISHMENT</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e1020 ">
+                                <p class="p">This trigger collects and validate the dynamic information
+                                    received in input.</p>
+
+                                <p class="p">Attributes such as <em class="ph i">ECOMMERCE.Read-Usage-Characteristic</em> and
+                                        <em class="ph i">CALL_RESULT.eCommerce-Reject</em> are used respectively to
+                                    read the input dynamic information and reject the API when
+                                    needed</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e1014 ">2</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e1017 ">RATING_POST_PROCESSING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e1020 ">
+                                <p class="p">This trigger executes any action needed after usage cost debiting
+                                    such as:</p>
+
+                                <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_fh4_lr5_mwb">
+                                    <li class="li">Adding custom data in the generated Commit CDR via the
+                                        attribute <em class="ph i">CALL_RESULT.Add-CDR</em></li>
+
+                                    <li class="li">Providing a notification to subscriber informing it about
+                                        successful eCommerce cost charge via the attributes
+                                            <em class="ph i">NOTIFICATION.Send-Notification</em> and
+                                            <em class="ph i">NOTIFICATION.Notification-Variable</em></li>
+
+                                    <li class="li">Report the available credit remaining in the applicable
+                                        monetary resource in the API response via the attribute
+                                            <em class="ph i">CALL_RESULT.Report-Usage-Characteristic</em></li>
+
+                                    <li class="li">Report the auto-generated committing
+                                            <var class="keyword varname">transactionId</var> in a dedicated
+                                        usageCharacteristic entry in the API response via the
+                                        attribute
+                                        <em class="ph i">CALL_RESULT.Report-Usage-Characteristic</em></li>
+
+                                </ul>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <div class="section" id="tmf_compliant_ecommerce_solution__id_4"><h2 class="title sectiontitle">PATCH /usage ("cancel" scenario)</h2>
+            
+            <p class="p">Use this API to cancel the item/money based reservation of the usage cost from the
+                monetary resources (balance account and/or secondary balance bucket) in a subscriber
+                profile.</p>
+
+            <p class="p">Most of the description in PATCH /usage (<var class="keyword varname">commit</var> request) is also
+                valid for PATCH /usage (<var class="keyword varname">cancel</var> request) with the following
+                differences:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_gh4_lr5_mwb">
+                <li class="li">The input usageType is <var class="keyword varname">eCommerce Cancel</var></li>
+
+                <li class="li">The identifier of the cancelling transaction can be received externally or
+                    auto-generated via charging RSV with a configurable format (auto-generation
+                    example rule: <em class="ph i">SYSTEM.Generate-UUID concat ";" concat
+                        </em><em class="ph i">ECOMMERCE.service.supportingResource.id</em><em class="ph i"> concat ";" concat
+                        VARIABLES.Get-Variable ( "ECOM-Amount" )</em></li>
+
+                <li class="li">During cancellation, the quota amount is not deducted from applicable monetary
+                    resources but just refunded</li>
+
+                <li class="li">The generated eCommerce Cancel CDR at successful refund time is not stored in
+                    usage database</li>
+
+                <li class="li">The API response contains the quota amount refunded on each involved monetary
+                    resource</li>
+
+                <li class="li">The auto-generated cancelling <var class="keyword varname">transactionId</var> can be reported
+                    in a dedicated usageCharacteristic entry in the API response</li>
+
+            </ul>
+
+            <p class="p">The reserved quota amount is automatically refunded and ongoing ECUR session is
+                closed when retention period expires. A dedicated AuditCancelCDR is generated when
+                this scenario occurs. </p>
+
+        </div>
+
+        <div class="section" id="tmf_compliant_ecommerce_solution__id_5"><h2 class="title sectiontitle">PATCH /usage ("historical refund" scenario)</h2>
+            
+            <p class="p">Use this API to refund the cost of an e-commerce usage previously charged from
+                monetary resources (balance account and/or secondary balance bucket) in a subscriber
+                profile. The subscriber profile can be identified via its MSISDN, which is available
+                in the input parameter <var class="keyword varname">service.supportingResource</var> with type as
+                    <var class="keyword varname">E164</var>.</p>
+
+            <p class="p">The value in the input <var class="keyword varname">usageType</var> identifies the action to execute
+                (that is, <var class="keyword varname">eCommerce Historical Refund</var>).</p>
+
+            <p class="p">Each request has two external identifiers:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_hh4_lr5_mwb">
+                <li class="li"><var class="keyword varname">transactionId</var>: Allows to identify a specific historical
+                    transaction charged in the past together with related usage cost to be
+                    refunded</li>
+
+                <li class="li"><var class="keyword varname">refundingTransId</var>: Allows to identify the transaction asking
+                    for refunding</li>
+
+            </ul>
+
+            <p class="p">The API is rejected in following scenarios:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_ih4_lr5_mwb">
+                <li class="li">Mandatory input parameters are missed</li>
+
+                <li class="li">Input parameters are received with a wrong value</li>
+
+                <li class="li">The input subscriber is not equipped</li>
+
+                <li class="li">The input subscriber does not have any subscription</li>
+
+                <li class="li">The transaction to refund is not existing</li>
+
+                <li class="li">The transaction to refund is owned from a different subscriber</li>
+
+                <li class="li">The transaction to refund was already refunded</li>
+
+                <li class="li">No monetary resource to refund is still subscribed in valid state</li>
+
+                <li class="li">Usage Manager is not yet deployed</li>
+
+            </ul>
+
+            <p class="p">Other customized rejection scenario can be added via charging RSV.</p>
+
+            <p class="p">Once validation is successful, the involved monetary resources and the quota amount
+                to be refunded for each of them are derived from the Charge CDR retrieved from
+                historical storage via the internal API
+                <var class="keyword varname">getCDRsByTransactionId</var>.</p>
+
+            <p class="p">Existing <var class="keyword varname">update/adjustBalance</var> and <var class="keyword varname">adjustBucket</var>
+                is automatically called by API logic to refund the retrieved quota amounts
+                respectively to balance account and secondary balance buckets.</p>
+
+            <p class="p">If a bucket to be refunded is not more subscribed or in final state, the quota amount
+                to be refunded is lost. </p>
+
+            <p class="p">The <var class="keyword varname">HistoricalRefund</var> CDR generated after refund occurred allows to
+                distinguish on whether:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_jh4_lr5_mwb">
+                <li class="li">The whole historically charged cost was refunded
+                        (<code class="ph codeph">listOfMscc/mscc/recordEventResult</code> tag as 00)</li>
+
+                <li class="li">Only a part of the historically charged cost was refunded
+                        (<code class="ph codeph">listOfMscc/mscc/recordEventResult</code> tag as 16)</li>
+
+                <li class="li">The refund was unsuccessful (<code class="ph codeph">listOfMscc/ms cc/recordEventResult</code>
+                    tag as 116)</li>
+
+            </ul>
+
+            <p class="p">To avoid same being transaction refunded multiple times, this CDR is stored in usage
+                database and expires at same date/time as Charge CDR.</p>
+
+            <p class="p">The API response contains the quota amount refunded on each involved monetary
+                resource.</p>
+
+            <p class="p">During API processing the following triggers are instantiated in the given order:</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="tmf_compliant_ecommerce_solution__table_kh4_lr5_mwb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:10.72961373390558%" /><col style="width:37.8755364806867%" /><col style="width:51.39484978540773%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d367534e1299">Order</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d367534e1302">Triggers</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d367534e1305">Notes</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e1299 ">1</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e1302 ">ECOMMERCE_CALL_ESTABLISHMENT</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e1305 ">
+                                <p class="p">This trigger collects and validate the dynamic information
+                                    received in input.</p>
+
+                                <p class="p">Attributes such as <em class="ph i">ECOMMERCE.Read-Usage-Characteristic</em> and
+                                        <em class="ph i">CALL_RESULT.eCommerce-Reject</em> are used respectively to
+                                    read the input dynamic information and reject the API when
+                                    needed.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e1299 ">2</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e1302 ">RATING_POST_PROCESSING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d367534e1305 ">
+                                <p class="p">This trigger executes only the following actions because RE is
+                                    not triggered at all during refund:</p>
+
+                                <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_lh4_lr5_mwb">
+                                    <li class="li">Adding custom data in the generated
+                                            <var class="keyword varname">HistoricalRefund</var> CDR via the
+                                        attribute <em class="ph i">CALL_RESULT.Add-CDR</em></li>
+
+                                    <li class="li">Providing a notification to subscriber informing it about
+                                        successful eCommerce cost refund via the attributes
+                                            <em class="ph i">NOTIFICATION.Send-Notification</em> and
+                                            <em class="ph i">NOTIFICATION.Notification-Variable</em></li>
+
+                                    <li class="li">Report the available credit remaining on the applicable
+                                        monetary resource in the API response via the attribute
+                                            <em class="ph i">CALL_RESULT.Report-Usage-Characteristic</em></li>
+
+                                </ul>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <div class="section" id="tmf_compliant_ecommerce_solution__id_6"><h2 class="title sectiontitle">GET /usage</h2>
+            
+            <p class="p">When an eCommerce event is charged or refunded the generated charge/refund CDR is
+                stored in an external repository called usage database. Use this API to query a single
+                historical eCommerce transaction at a time or all historical transactions owned by a
+                subscriber.</p>
+
+            <p class="p">The historical information retrieved from usage database via internal APIs
+                    <code class="ph codeph">getCDRsByTransactionId</code> (for single query) or
+                    <code class="ph codeph">getCDRsByAccountId</code> (for cumulative query) is then used to
+                recreate the charge/refund CDR in a different ME (each ME has its own usage database). </p>
+
+            <p class="p">Each request has the following:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_mh4_lr5_mwb">
+                <li class="li">The action to execute (that is, <var class="keyword varname">Get eCommerce</var>)</li>
+
+                <li class="li">The subscriber owning the eCommerce transaction(s) to query</li>
+
+                <li class="li">The <var class="keyword varname">transactionId</var> to query (only if a single transaction has
+                    to be queried)</li>
+
+            </ul>
+
+            <p class="p">The API is rejected in following situations:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_oh4_lr5_mwb">
+                <li class="li">Mandatory input parameters are missing</li>
+
+                <li class="li">Input parameters are received with a wrong value</li>
+
+                <li class="li">The input subscriber is not equipped</li>
+
+                <li class="li">The transaction to query is not existing (for single query)</li>
+
+                <li class="li">The transaction to query is owned from a different subscriber (for single
+                    query)</li>
+
+                <li class="li">No historical transactions is owned from input subscriber (for cumulative
+                    query)</li>
+
+                <li class="li">Usage Manager is not yet deployed</li>
+
+            </ul>
+
+            <p class="p">Once validation is successful, the retrieved information on historical transactions
+                is reported and it contains the following information:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_ph4_lr5_mwb">
+                <li class="li">The subscriber owing the transaction</li>
+
+                <li class="li">The UUID of the related CDR object in usage database </li>
+
+                <li class="li">The identifier of the retrieved transaction</li>
+
+                <li class="li">The type of the retrieved transaction (charge or refund)</li>
+
+                <li class="li">The date/time of the retrieved transaction</li>
+
+                <li class="li">The date/time in which the retrieved transaction has been stored in usage
+                    database</li>
+
+                <li class="li">The date/time in which the retrieved transaction expires in usage database</li>
+
+                <li class="li">The cost of the retrieved transaction</li>
+
+                <li class="li">Whether the retrieved transaction has been already refunded (only for
+                        <code class="ph codeph">charge</code> transaction)</li>
+
+                <li class="li">The cost afforded on shadow balance</li>
+
+                <li class="li">The correlated refunding transaction (only for already refunded
+                        <var class="keyword varname">charge</var> transaction)</li>
+
+                <li class="li">The correlated charge transaction (only for <var class="keyword varname">refunding</var>
+                    transaction)</li>
+
+                <li class="li">The name of the default tariff plan</li>
+
+            </ul>
+
+            <p class="p"> The Charging Service name for the default tariff plan</p>
+
+        </div>
+
+        <div class="section" id="tmf_compliant_ecommerce_solution__id_7"><h2 class="title sectiontitle">DELETE /usage</h2>
+            
+            <p class="p">When subscriber is migrated from one ME to another, the historical transactions owned
+                by the subscriber must be deleted from the usage database in the source ME. Use this API
+                to delete a single historical eCommerce transaction at a time or all historical
+                transactions owned by a subscriber in one go.</p>
+
+            <p class="p">Each request has the following:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_qh4_lr5_mwb">
+                <li class="li">The action to execute (that is, <var class="keyword varname">Delete eCommerce</var>)</li>
+
+                <li class="li">The subscriber owning the eCommerce transaction(s) to delete</li>
+
+                <li class="li">The <var class="keyword varname">transactionId</var> to delete (only if a single transaction has
+                    to be deleted)</li>
+
+            </ul>
+
+            <p class="p">The API is rejected in the following situations:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_sh4_lr5_mwb">
+                <li class="li">Mandatory input parameters are missed</li>
+
+                <li class="li">Input parameters are received with a wrong value</li>
+
+                <li class="li">The input subscriber is not equipped</li>
+
+                <li class="li">The transaction to delete does not exist (for single delete)</li>
+
+                <li class="li">The transaction to delete is owned from a different subscriber (for single
+                    delete)</li>
+
+                <li class="li">No historical transactions is owned from input subscriber (for cumulative
+                    delete)</li>
+
+                <li class="li">Usage Manager is not yet deployed</li>
+
+            </ul>
+
+            <p class="p">Once validation is successful, the required historical transactions are deleted from
+                usage database via internal API <var class="keyword varname">deleteCDRsbyTransactionId</var> (for single
+                delete) or <var class="keyword varname">deleteCDRsbyAccountId</var> (for cumulative delete) and a
+                successful acknowledge is returned. </p>
+
+        </div>
+
+        <div class="section" id="tmf_compliant_ecommerce_solution__id_8"><h2 class="title sectiontitle">POST /usage (“create” request)</h2>
+            
+            <p class="p">When subscriber is migrated from one ME to another, the historical transactions owned
+                by the subscriber must be recreated in the usage database in the target ME. Use this API
+                to create a bunch of historical eCommerce transactions owned by a subscriber. Each
+                request has the following information:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_th4_lr5_mwb">
+                <li class="li">The action to execute (that is, <var class="keyword varname">eCommerce Create</var>)</li>
+
+                <li class="li">The subscriber owning the eCommerce transaction(s) to create</li>
+
+                <li class="li">The <var class="keyword varname">transactionIds</var> to create and the related information got
+                    via GET /usage API </li>
+
+            </ul>
+
+            <p class="p">The API is rejected in the following situations:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_wh4_lr5_mwb">
+                <li class="li">Mandatory input parameters are missed</li>
+
+                <li class="li">Input parameters are received with a wrong value</li>
+
+                <li class="li">The input subscriber is not equipped</li>
+
+                <li class="li">The transaction to create already exists</li>
+
+                <li class="li">Usage Manager is not yet deployed</li>
+
+            </ul>
+
+            <p class="p">Once validation is successful, the required historical transactions are created in
+                usage database via internal API <var class="keyword varname">add
+                    </var><var class="keyword varname">CDRsbyTransactionId</var> and a successful acknowledge is
+                returned.</p>
+
+            <p class="p">The following logic applies when creating historical transactions in usage database:</p>
+
+            <ul class="ul" id="tmf_compliant_ecommerce_solution__ul_xh4_lr5_mwb">
+                <li class="li">A not-yet refunded charge transaction is created:<ul class="ul" id="tmf_compliant_ecommerce_solution__ul_hlm_hs1_nwb">
+                        <li class="li">One charge CDR object is created with charged
+                                <var class="keyword varname">transactionId</var>, no refunding
+                                <var class="keyword varname">transactionId</var> and other relevant information</li>
+
+                    </ul>
+</li>
+
+                <li class="li">An already refunded charge transaction is created:<ul class="ul" id="tmf_compliant_ecommerce_solution__ul_ezp_3s1_nwb">
+                        <li class="li">If the identifier of the refunding transaction is not known, two CDR
+                            objects are created:<ul class="ul" id="tmf_compliant_ecommerce_solution__ul_r2j_js1_nwb">
+                                <li class="li">One charge CDR object with charged
+                                        <var class="keyword varname">transactionId</var>, no refunding
+                                        <var class="keyword varname">transactionId</var> and other relevant
+                                    information</li>
+
+                                <li class="li">Add refund CDR object with charged
+                                        <var class="keyword varname">transactionId</var>, no refunding
+                                        <var class="keyword varname">transactionId</var> and other relevant
+                                    information</li>
+
+                            </ul>
+</li>
+
+                        <li class="li">If the identifier of the refunding transaction is known, a CDR object is
+                            created with charged <var class="keyword varname">transactionId</var>, no refunding
+                                <var class="keyword varname">transactionId</var> and other relevant information</li>
+
+                    </ul>
+</li>
+
+                <li class="li">A refunding transaction is created:<ul class="ul" id="tmf_compliant_ecommerce_solution__ul_fhy_js1_nwb">
+                        <li class="li">If the identifier of the refunded transaction is not known, a refund CDR
+                            object is created with no charged <var class="keyword varname">transactionId</var>,
+                            refunding <var class="keyword varname">transactionId</var> and other relevant
+                            information</li>
+
+                        <li class="li">If the identifier of the refunded transaction is known, a refund CDR
+                            object is created with charged <var class="keyword varname">transactionId</var>,
+                            refunding <var class="keyword varname">transactionId</var> and other relevant
+                            information</li>
+
+                    </ul>
+</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

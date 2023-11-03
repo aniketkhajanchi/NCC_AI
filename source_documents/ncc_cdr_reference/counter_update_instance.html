@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="update_counterInstance" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="counter_update_instance" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>update_counterInstance</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="counter_update_instance">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">update_counterInstance</h1>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_bkq_t1b_f3b"><h2 class="title topictitle2" id="ariaid-title2">EDR tags</h2>
+<div class="body conbody">
+            <table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:27.901234567901234%" /><col style="width:47.40740740740741%" /><col style="width:24.69135802469136%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d6891e42">Tag</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d6891e45">Description</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d6891e48">Example</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">counterName</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">Specifies the name of counter.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">TBY121254</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">counterKey</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">Specifies the key of counter. </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">77f12338-6ab5-436b-896a-d91542e2bd41</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">counterType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">Specifies the type of counter selected by the tariff. Possible
+                                values are DEVICE, GROUP, and DEVICE_GROUP.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">USAGE</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">counterUnitType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">Specifies the unit of Counter (Bytes, KB, MB, Minutes, etc.). It
+                                is defined per customer and with type conversion.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">Byte</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">counterKindOfUnit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">Specifies the unit type of Counter. It can be
+                                Unit/Volume/Money/Time which are system defined.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">VOLUME</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">old_counterValue</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">The counter value before update.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">0</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">counterValue</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">The counter value after update. </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">7</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">old_counterUsageLimit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">The usageLimit value before update.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">2000</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">counterUsageLimit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">The usageLimit value after update.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">4000</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">old_capList</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">The CAP IDs before update.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">[CAP5G]</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">capList</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">The CAP IDs after update.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">[CAP3G]</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">old_thresholdProfileGroupIdList</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">The threshold group definition name before update.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">[Threshold5G]</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">thresholdProfileGroupIdList</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">The threshold group definition name after update.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">[Threshold10G]</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">counterSourceId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">Identifier of the source the counter source.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">Device121254</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">adjustAmount</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">The amount by which the current value in base units is
+                                adjusted.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">7</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">adjustMode</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">The adjust mode, that is, INCR or DECR or SET.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">SET</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">counterSource</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">Source of the counter.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">Device</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 "> RecordProperty</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">Record property for device ID information.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">deviceIdentityInfo</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 "> deviceIdentityType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">Device ID type. <p class="p">Valid values: 0 (e164), 1 (iMSI), 2 (sIP-URI),
+                                    3 (nAI), 4 (uSER-PRIVATE), 100 (eXTERNAL-ID), 101 (dEVICE-ID),
+                                    102 (sUPI), 103 (gPSI).</p>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">0</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 "> deviceIdentityValue</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">Value of the device identifier.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">121254000011</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">counterUsgTpgValidityTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">
+                                <div class="p">This tag indicates whether the threshold attached to counter is
+                                    changed temporarily or permanently. It takes following values:-<ul class="ul">
+                                        <li class="li">
+                                            <p class="p">1- means change temporary for that bill cycle</p>
+
+                                        </li>
+
+                                        <li class="li">
+                                            <p class="p">0- means changed permanently</p>
+
+                                        </li>
+
+                                    </ul>
+</div>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">1</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e42 ">counterSourceName </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e45 ">It indicates the name of the counter source. It is dumped only
+                                for device entity.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d6891e48 ">D1</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_bkq_t1b_f4b"><h2 class="title topictitle2" id="ariaid-title3">EDR example</h2>
+<div class="body conbody">
+            <pre class="pre codeblock" id="concept_bkq_t1b_f4b__codeblock_dmm_l2y_lyb"><code>-------------------------------------
+CDR length:                       748
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                        Tag                                                   Data
+RecordType                  0                                      PROVISIONING_RECORD
+invokedBy                   1                                               webService
+invokedMethod               1                                   update_counterInstance
+counterName                 1                                                     ctr1
+counterKey                  1                     071990db-9ebc-4eba-b000-adedcba513f9
+counterType                 1                                                    USAGE
+counterUnitType             1                                                     Byte
+counterKindOfUnit           1                                                   VOLUME
+old_counterValue            1                                                       50
+counterValue                1                                                      100
+counterUsageLimit           1                                                        0
+counterOverageLimit         1                                                        0
+counterUsgTpgValidityTime   1                                                       -1
+counterSourceId             1                                                       D1
+counterSourceName           1                                                       D1
+adjustAmount                1                                                       50
+adjustMode                  1                                                     INCR
+counterSource               1                                                   Device
+backdatedUpdate             1                                                        0
+result                      1                                                  SUCCESS
+correlationID               1     X-CorrelationId:890cf6f5-aa06-4112-aa1e-85bdf301ba4b
+meHostName                  1                                                      ME1
+nccVersion                  1                                              SPS_23_8_R1
+recordId                    1      20230809085542_15dbf9be-0764-4756-a371-19861ae44845
+RecordTimestamp             1                                      09/08/2023 08:55:42</code></pre>
+        </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

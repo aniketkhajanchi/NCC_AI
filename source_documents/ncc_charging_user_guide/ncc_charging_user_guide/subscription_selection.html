@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Subscription selection functionality" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e193639" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Subscription selection functionality</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e193639">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Subscription selection functionality</h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">The subscription selection functionality allows operators to set the order in which the subscriptions must be used for the call. For example, a user has a personal subscription to spotify traffic (that allows to listen to music on a mobile or tablet), a personal data bundle, and a group bundle that allows 2 GB of data from the shared group resources. In this case, the user wants to consume spotify bundle for spotify traffic, followed by group bundle and personal bundle. Operators can define this sequence to consume the resources in the category order entity. Also, the group hierarchy can be parsed top to bottom or vice versa.</p>
+
+<p class="p">The category order is defined per device or per group and is manageable using GUI or API. The individual devices or the devices belonging to several groups are categorized and a priority order is assigned to them. </p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For parameters related to the category order, see <a class="xref" href="service_model.html">Charging configuration (new GUI)</a>.</div>
+
+</div>
+
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_vry_wkl_r4b"><h2 class="title topictitle2" id="ariaid-title2">Additional information</h2>
+<div class="body conbody">
+            <div class="section" id="concept_vry_wkl_r4b__section_vns_3ll_r4b">
+                <p class="p">Following are the important points related to the subscription selection
+                    feature:</p>
+
+                <ul class="ul" id="concept_vry_wkl_r4b__ul_wns_3ll_r4b">
+                    <li class="li">
+                        <p class="p">Operators can define the categories and their order of consumption in the
+                            category order entity. The category order is not a dynamic and
+                            frequently changing entity. We do not recommend the addition of
+                            categories.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">In case, the category order changes:</p>
+
+                        <ul class="ul" id="concept_vry_wkl_r4b__ul_xns_3ll_r4b">
+                            <li class="li">
+                                <p class="p">The new category order is applicable only to new devices.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">No changes are made to the category list of an existing device.
+                                    The existing devices provide the order of all available
+                                    categories in the category order entity during the device
+                                    update.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">Once a device has defined its category order, all the device
+                                    calls are charged based on that order. A device needs to update
+                                    the category order to change the order of charging the
+                                    calls.</p>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">If a device has not specified its own category list, then it has a
+                            complete set of category order.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">If a device is subscribed to a category not listed in the device category
+                            list, then by default, that category is moved at the end of the category
+                            list.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">A device can be subscribed either directly or through a group.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">If a device wants to use an ad-hoc group subscription first or if the
+                            device becomes part of a new group and prefers to use that group
+                            subscription first, then the device category list and the group order at
+                            device level must be updated.</p>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_jmf_skl_r4b"><h2 class="title topictitle2" id="ariaid-title3">Examples</h2>
+<div class="body conbody">
+            <div class="section" id="concept_jmf_skl_r4b__section_qq5_skl_r4b">
+                <p class="p">Following steps provide the configuration details to implement the subscription
+                    selection feature:</p>
+
+                <ol class="ol" id="concept_jmf_skl_r4b__ol_fgx_xkl_r4b">
+                    <li class="li">
+                        <p class="p">To provision multiple categories, update the category order entity to
+                            specify the sequence of category usage. For example,
+                                <var class="keyword varname">Cat2</var>, <var class="keyword varname">Cat3</var>,
+                                <var class="keyword varname">Cat1</var>, <var class="keyword varname">Cat4</var>, and
+                                <var class="keyword varname">DefaultCategoryOrder</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create a charging service based on the following conditions:</p>
+
+                        <ul class="ul" id="concept_jmf_skl_r4b__ul_ggx_xkl_r4b">
+                            <li class="li">
+                                <p class="p">If no other category is associated with the charging service,
+                                    then the DefaultCategoryOrder, created at the time of NCC
+                                    installation, is the only category associated with it.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">If a charging service is created with other categories as well,
+                                    then it can select from one of the available categories
+                                    configured in the category order entity.</p>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create devices based on the following criteria:</p>
+
+                        <ul class="ul" id="concept_jmf_skl_r4b__ul_hgx_xkl_r4b">
+                            <li class="li">
+                                <p class="p">If devices are created without category order, then the entire
+                                    category list, for example, <var class="keyword varname">Cat2</var>,
+                                        <var class="keyword varname">Cat3</var>, <var class="keyword varname">Cat1</var>,
+                                        <var class="keyword varname">Cat4</var>, and
+                                        <var class="keyword varname">DefaultCategoryOrder</var> is copied to the
+                                    device category list.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">If devices are created with category order, then you must define
+                                    the order of all available categories, for example,
+                                        <var class="keyword varname">Cat2</var>, <var class="keyword varname">Cat3</var>,
+                                        <var class="keyword varname">Cat1</var>, <var class="keyword varname">Cat4</var>, and
+                                        <var class="keyword varname">DefaultCategoryOrder</var>.</p>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+            <div class="section" id="concept_jmf_skl_r4b__section_glb_bc5_pnb"><h3 class="title sectiontitle">Example 1: When a device belongs to several groups without group
+                    hierarchy</h3>
+                
+                <p class="p">
+                    <strong class="ph b">Provisioning:</strong>
+                </p>
+
+                <ol class="ol" id="concept_jmf_skl_r4b__ol_hxh_cc5_pnb">
+                    <li class="li">
+                        <p class="p">Associate an iPhone to two groups <var class="keyword varname">Finance</var> and
+                                <var class="keyword varname">HR</var>, which are further associated to several
+                            categories.</p>
+
+                    </li>
+
+                    <li class="li"><p class="p">Associate each charging service with a creation date and priority as
+                            shown in the following figure:</p>
+<img class="image" id="concept_jmf_skl_r4b__image_ixh_cc5_pnb" src="../images/img9yz-09126-ug01-pczza-sp1-subscriptionselectionwithoutpart1_default.png" /><img class="image break" id="concept_jmf_skl_r4b__image_nhh_pcd_ynb" src="../images/example1_cs.png" /></li>
+
+                    <li class="li">
+                        <p class="p">Set the Subscription Selection Order = DEVICE_FIRST in Device entity and
+                            application preference CS Selection Order = ON_CREATION_TIME.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">When a device executes a data call, then the subscriptions are selected
+                            depending on the given factors:</p>
+
+                        <ul class="ul" id="concept_jmf_skl_r4b__ul_kxh_cc5_pnb">
+                            <li class="li">
+                                <p class="p">Category order priority</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">Subscription selection order</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">Charging service priority</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">Charging Service Instance Creation Time (based on application
+                                    preference CS Selection Order = ON_CREATION_TIME)</p>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                </ol>
+
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If all the subscription selection criteria are same, then whichever charging
+                    service instance comes first, is picked first.</div>
+
+                <p class="p">
+                    <strong class="ph b">Result:</strong>
+                </p>
+
+                <p class="p">When the iPhone executes a data call, then the subscriptions are selected in the
+                    given sequence:</p>
+
+                <ol class="ol" id="concept_jmf_skl_r4b__ol_lxh_cc5_pnb">
+                    <li class="li">
+                        <p class="p">As <var class="keyword varname">Category1</var> has the highest priority, it is the first
+                            category to be fetched when a call is executed. <var class="keyword varname">CS1</var>
+                            is the only charging service that belongs to
+                                <var class="keyword varname">Category1</var>. Therefore, <var class="keyword varname">CS1</var>
+                            comes first in ordered charging service list.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <var class="keyword varname">Category2</var> has the second highest priority associated
+                            with only one charging service <var class="keyword varname">CS2</var>. Therefore,
+                                <var class="keyword varname">CS2</var> comes next after <var class="keyword varname">CS1</var> in
+                            the ordered charging service list.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <var class="keyword varname">Category3</var> has the third highest priority. As both
+                                <var class="keyword varname">Finance</var> and <var class="keyword varname">HR</var> groups, and
+                            iPhone have charging service corresponding to
+                                <var class="keyword varname">Category3</var>, the subscription selected order is
+                            considered.</p>
+
+                        <p class="p">Therefore, first Device is considered, followed by Finance Group and then
+                                <var class="keyword varname">HR</var> group since the Subscription Selection Order =
+                            DEVICE_FIRST and Finance Group is associated with Device before
+                                <var class="keyword varname">HR</var> group.</p>
+
+                        <ol class="ol" type="a" id="concept_jmf_skl_r4b__ol_mxh_cc5_pnb">
+                            <li class="li">
+                                <p class="p">For iPhone, <var class="keyword varname">Category3</var> is associated with two
+                                    charging services; <var class="keyword varname">CS7</var> and
+                                        <var class="keyword varname">CS8</var>. As both <var class="keyword varname">CS7</var> and
+                                        <var class="keyword varname">CS8</var> have same charging service priority,
+                                    the order of charging service is decided by the charging service
+                                    instance creation date. Since <var class="keyword varname">CS7</var> charging
+                                    service instance was created before <var class="keyword varname">CS8</var>,
+                                        <var class="keyword varname">CS7</var> charging service is considered
+                                    first.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">For the <var class="keyword varname">Finance</var> group,
+                                        <var class="keyword varname">Category3</var> is associated with two charging
+                                    services; <var class="keyword varname">CS3</var> and <var class="keyword varname">CS4</var>. The
+                                    order of charging service is decided by the charging service
+                                    priority. Therefore, <var class="keyword varname">CS3</var> with higher priority
+                                    is considered first followed by <var class="keyword varname">CS4</var>.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">For <var class="keyword varname">HR</var> group, <var class="keyword varname">Category3</var> is
+                                    associated with two charging services; <var class="keyword varname">CS5</var>
+                                    and <var class="keyword varname">CS6</var>. Since both <var class="keyword varname">CS5</var>
+                                    and <var class="keyword varname">CS6</var> have same charging service priority
+                                    and same charging service instance creation date, whichever
+                                    charging service comes first is picked first.</p>
+
+                            </li>
+
+                        </ol>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The same process, which has been defined for
+                            <var class="keyword varname">Category3</var>, is followed for
+                                <var class="keyword varname">Category4</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <strong class="ph b">Pass 0</strong> of all the charging services are executed first followed
+                            by <strong class="ph b">Pass 1</strong> of all charging services. For example:</p>
+
+                        <ul class="ul" id="concept_jmf_skl_r4b__ul_nxh_cc5_pnb">
+                            <li class="li">
+                                <p class="p">
+                                    <strong class="ph b">Pass 0</strong>: <var class="keyword varname">CS1</var> -&gt;
+                                        <var class="keyword varname">CS2</var> -&gt; <var class="keyword varname">CS7</var> -&gt;
+                                        <var class="keyword varname">CS8</var> -&gt; <var class="keyword varname">CS3</var> -&gt;
+                                        <var class="keyword varname">CS4</var> -&gt; <var class="keyword varname">CS5</var> -&gt;
+                                        <var class="keyword varname">CS6</var> -&gt; <var class="keyword varname">CS9</var> -&gt;
+                                        <var class="keyword varname">CS11</var> -&gt; <var class="keyword varname">CS10</var>
+                                </p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">
+                                    <strong class="ph b">Pass 1</strong>: <var class="keyword varname">CS1</var> -&gt;
+                                        <var class="keyword varname">CS2</var> -&gt; <var class="keyword varname">CS7</var> -&gt;
+                                        <var class="keyword varname">CS8</var> -&gt; <var class="keyword varname">CS3</var> -&gt;
+                                        <var class="keyword varname">CS4</var> -&gt; <var class="keyword varname">CS5</var> -&gt;
+                                        <var class="keyword varname">CS6</var> -&gt; <var class="keyword varname">CS9</var> -&gt;
+                                        <var class="keyword varname">CS11</var> -&gt; <var class="keyword varname">CS10</var>
+                                </p>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+            <div class="section" id="concept_jmf_skl_r4b__section_mdz_dc5_pnb"><h3 class="title sectiontitle">Example 2: When a device belongs to several groups with group
+                    hierarchy</h3>
+                
+                <p class="p">
+                    <strong class="ph b">Provisioning:</strong>
+                </p>
+
+                <ol class="ol" id="concept_jmf_skl_r4b__ol_vlb_jc5_pnb">
+                    <li class="li">
+                        <p class="p">Associate an iPhone device to two groups <var class="keyword varname">Finance</var>,
+                            which is a member of the <var class="keyword varname">Management</var> group and
+                                <var class="keyword varname">Testing</var> group, which is a member of the
+                                <var class="keyword varname">Development</var> group.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Associate all four groups with several categories.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Associate each charging service with a creation date and priority as
+                            shown in the following figure:</p>
+
+                        <div class="p">
+                            <img class="image break" id="concept_jmf_skl_r4b__image_epw_4fd_ynb" src="../images/example2_creationdate.png" />
+                        </div>
+
+                        <img class="image break" id="concept_jmf_skl_r4b__image_yqy_cgd_ynb" src="../images/example2_cs.png" />
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Set the <strong class="ph b">Subscription Selection Order</strong> =
+                                <var class="keyword varname">GROUP_FIRST</var> in Device entity and application
+                            preference <strong class="ph b">CS Selection Order</strong> =
+                                <var class="keyword varname">ON_CREATION_TIME</var>.</p>
+
+                    </li>
+
+                </ol>
+
+                <p class="p">
+                    <strong class="ph b">Result:</strong>
+                </p>
+
+                <p class="p">When the iPhone executes a data call, then the subscriptions are selected in the
+                    given sequence:</p>
+
+                <ol class="ol" id="concept_jmf_skl_r4b__ol_wlb_jc5_pnb">
+                    <li class="li">
+                        <p class="p">As <var class="keyword varname">Category1</var> has the highest priority, it is the first
+                            category to be fetched when a call is executed. <var class="keyword varname">CS1</var>
+                            is the only charging service that belongs to
+                                <var class="keyword varname">Category1</var>. Therefore, <var class="keyword varname">CS1</var>
+                            comes first in ordered charging service list.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <var class="keyword varname">Category2</var> has the second highest priority. As both
+                                <var class="keyword varname">Finance</var> and <var class="keyword varname">Testing</var> groups,
+                            and iPhone have charging service corresponding to
+                                <var class="keyword varname">Category2</var>, the subscription selected order is
+                            considered.</p>
+
+                        <p class="p">Therefore, first <var class="keyword varname">Finance</var> group is considered, followed
+                            by the <var class="keyword varname">Testing</var> group, and then Device since
+                                <strong class="ph b">Subscription Selection Order</strong> = <var class="keyword varname">GROUP_FIRST</var>
+                            and Finance Group is associated with Device before <var class="keyword varname">HR</var>
+                            group.</p>
+
+                        <ol class="ol" type="a" id="concept_jmf_skl_r4b__ol_xlb_jc5_pnb">
+                            <li class="li">
+                                <p class="p">
+                                    <var class="keyword varname">Finance</var> group is part of a hierarchy with
+                                        <var class="keyword varname">Management</var> group as the top node.
+                                    Therefore, <var class="keyword varname">Management</var> group defines the
+                                    traversal order for this hierarchy which in this case is
+                                    top-down. This implies that the subscriptions of
+                                        <var class="keyword varname">Management</var> group comes first followed by
+                                    the subscriptions of <var class="keyword varname">Finance</var> group.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">
+                                    <var class="keyword varname">Management</var> group is associated with two
+                                    charging services; <var class="keyword varname">CS6</var> and
+                                        <var class="keyword varname">CS7</var> from <var class="keyword varname">Category2</var>.
+                                    The order of charging service is decided by the charging service
+                                    priority. Therefore, <var class="keyword varname">CS6</var> with higher priority
+                                    is considered first followed by <var class="keyword varname">CS7</var>.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">
+                                    <var class="keyword varname">Finance</var> group is associated with only one
+                                    charging service <var class="keyword varname">CS8</var> from
+                                        <var class="keyword varname">Category2</var> comes next.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">
+                                    <var class="keyword varname">Testing</var> group is part of a hierarchy with
+                                        <var class="keyword varname">Development</var> group as the top node.
+                                    Therefore, <var class="keyword varname">Development</var> group defines the
+                                    traversal order for this hierarchy which in this case is
+                                    bottom-up. This implies that the subscriptions of
+                                        <var class="keyword varname">Testing</var> group comes first followed by the
+                                    subscriptions of <var class="keyword varname">Development</var> group.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">
+                                    <var class="keyword varname">Testing</var> group is associated with two charging
+                                    services; <var class="keyword varname">CS4</var> and <var class="keyword varname">CS5</var> from
+                                        <var class="keyword varname">Category2</var>. As both <var class="keyword varname">CS4</var>
+                                    and <var class="keyword varname">CS5</var> have same charging service priority,
+                                    the order of charging service is decided by the charging service
+                                    instance creation date. Since <var class="keyword varname">CS4</var> charging
+                                    service instance was created before <var class="keyword varname">CS5</var>,
+                                        <var class="keyword varname">CS4</var> charging service is considered
+                                    first.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">
+                                    <var class="keyword varname">Development</var> group is associated with two
+                                    charging services; <var class="keyword varname">CS2</var> and
+                                        <var class="keyword varname">CS3</var> from <var class="keyword varname">Category2</var>.
+                                    Both <var class="keyword varname">CS2</var> and <var class="keyword varname">CS3</var> charging
+                                    services have same charging service priority and creation date.
+                                    So, whichever comes first is picked first.</p>
+
+                            </li>
+
+                            <li class="li">The iPhone has one CS (CS13). Hence, CS13 is picked next.</li>
+
+                        </ol>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <var class="keyword varname">Category4</var> has the third highest priority and only
+                                <var class="keyword varname">Development</var> group associated with one charging
+                            service <var class="keyword varname">CS9</var> which gets selected next.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <var class="keyword varname">Category3</var> has the next priority and both iPhone and
+                                <var class="keyword varname">Management</var> group have charging services from this
+                            category. The subscription selection order is considered. Here,
+                                <var class="keyword varname">Finance</var> group comes first followed by iPhone.</p>
+
+                        <ol class="ol" type="a" id="concept_jmf_skl_r4b__ol_ylb_jc5_pnb">
+                            <li class="li">
+                                <p class="p">
+                                    <var class="keyword varname">Management</var> group belongs to the hierarchy
+                                    from which <var class="keyword varname">Finance</var> group comes. So,
+                                        <var class="keyword varname">Management</var> group charging service, that
+                                    is, <var class="keyword varname">CS10</var> is picked next.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">iPhone is associated with two charging services;
+                                        <var class="keyword varname">CS11</var> and <var class="keyword varname">CS12</var> from
+                                        <var class="keyword varname">Category3</var>. The next criterion for order
+                                    is considered, that is, charging service priority. Since
+                                        <var class="keyword varname">CS12</var> has higher priority than
+                                        <var class="keyword varname">CS11</var>, <var class="keyword varname">CS12</var> is
+                                    considered first followed by <var class="keyword varname">CS11</var>.</p>
+
+                            </li>
+
+                        </ol>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <strong class="ph b">Pass 0</strong> of all the charging services are executed first followed
+                            by <strong class="ph b">Pass 1</strong> of all charging services. For example:</p>
+
+                        <p class="p">
+                            <strong class="ph b">Pass 0</strong>: <var class="keyword varname">CS1</var> -&gt; <var class="keyword varname">CS6</var> -&gt;
+                                <var class="keyword varname">CS7</var> -&gt; <var class="keyword varname">CS8</var> -&gt;
+                                <var class="keyword varname">CS4</var> -&gt; <var class="keyword varname">CS5</var> -&gt;
+                                <var class="keyword varname">CS2</var> -&gt; <var class="keyword varname">CS3</var> -&gt;
+                                <var class="keyword varname">CS13</var> -&gt; <var class="keyword varname">CS9</var> -&gt;
+                                <var class="keyword varname">CS10</var> -&gt; <var class="keyword varname">CS12</var> -&gt;
+                                <var class="keyword varname">CS11</var>
+                        </p>
+
+                        <p class="p">
+                            <strong class="ph b">Pass 1</strong>: <var class="keyword varname">CS1</var> -&gt; <var class="keyword varname">CS6</var> -&gt;
+                                <var class="keyword varname">CS7</var> -&gt; <var class="keyword varname">CS8</var> -&gt;
+                                <var class="keyword varname">CS4</var> -&gt; <var class="keyword varname">CS5</var> -&gt;
+                                <var class="keyword varname">CS2</var> -&gt; <var class="keyword varname">CS3</var> -&gt;
+                                <var class="keyword varname">CS13</var> -&gt; <var class="keyword varname">CS9</var> -&gt;
+                                <var class="keyword varname">CS10</var> -&gt; <var class="keyword varname">CS12</var> -&gt;
+                                <var class="keyword varname">CS11</var>
+                        </p>
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+            <div class="section" id="concept_jmf_skl_r4b__section_pgb_kc5_pnb"><h3 class="title sectiontitle">Example 3: When a device belongs to several groups and expiry date is used
+                    for sorting</h3>
+                
+                <p class="p">
+                    <strong class="ph b">Provisioning:</strong>
+                </p>
+
+                <ol class="ol" id="concept_jmf_skl_r4b__ol_wbn_nc5_pnb">
+                    <li class="li">
+                        <p class="p">Associate an iPhone to two groups <var class="keyword varname">Group1</var> and
+                                <var class="keyword varname">Group2</var>.</p>
+
+                        <p class="p">Given that <var class="keyword varname">Group1</var> is attached to device before
+                                <var class="keyword varname">Group2</var>. Therefore, sorting of <var class="keyword varname">Group
+                                1</var> is done first followed by <var class="keyword varname">Group2</var>.</p>
+
+                    </li>
+
+                    <li class="li"><p class="p">Set the <strong class="ph b">Subscription Selection Order</strong> =
+                                <var class="keyword varname">GROUP_FIRST</var> in the Device entity and application
+                            preference <strong class="ph b">CS Selection Order</strong> = <var class="keyword varname">ON_END_TIME</var>for
+                            the charging service as shown in the following figure:</p>
+<img class="image" id="concept_jmf_skl_r4b__image_jp4_kc5_pnb" src="../images/img9yz-09126-ug01-pczza-sp1-subscription_sel_expiry1_default.png" /><div class="p">
+                            <img class="image break" id="concept_jmf_skl_r4b__image_tnp_xgd_ynb" src="../images/example3_cs.png" />
+                        </div>
+</li>
+
+                    <li class="li">
+                        <p class="p">When the iPhone executes a data call, then the subscriptions are selected
+                            depending on the given factors:</p>
+
+                        <ul class="ul" id="concept_jmf_skl_r4b__ul_xbn_nc5_pnb">
+                            <li class="li">
+                                <p class="p">Category order priority</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">Subscription selection order</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">Charging service priority</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">Charging service instance expiry date (based on application
+                                    preference <strong class="ph b">CS Selection Order</strong> =
+                                        <var class="keyword varname">ON_END_TIME</var>)</p>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                </ol>
+
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If all the subscription selection criteria are same, then whichever charging
+                    service instance comes first, is picked first.</div>
+
+                <p class="p">
+                    <strong class="ph b">Result:</strong>
+                </p>
+
+                <p class="p">When the iPhone executes a data call, then the subscriptions are selected in the
+                    given sequence:</p>
+
+                <ol class="ol" id="concept_jmf_skl_r4b__ol_ybn_nc5_pnb">
+                    <li class="li">
+                        <p class="p">As <var class="keyword varname">Category1</var> has the highest priority, it is the first
+                            category to be fetched when a call is executed. <var class="keyword varname">CS1</var>
+                            is the only charging service that belongs to
+                                <var class="keyword varname">Category1</var>. Therefore, <var class="keyword varname">CS1</var>
+                            comes first in the charging service list.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <var class="keyword varname">Category2</var> has the second highest priority associated
+                            with only one charging service <var class="keyword varname">CS2</var>. Therefore,
+                                <var class="keyword varname">CS2</var> comes next after <var class="keyword varname">CS1</var> in
+                            the charging service list.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <var class="keyword varname">Category3</var> has the third highest priority.
+                                <var class="keyword varname">CS3</var> and <var class="keyword varname">CS4</var> are sorted first
+                            as per priority because <var class="keyword varname">Group1</var> was attached to device
+                            before <var class="keyword varname">Group2</var>. Since <var class="keyword varname">CS5</var> has
+                            higher priority than <var class="keyword varname">CS6</var>, <var class="keyword varname">CS5</var> is
+                            picked first. <var class="keyword varname">CS7</var> and <var class="keyword varname">CS8</var> are from
+                            device, therefore, sorted at the end of <var class="keyword varname">Category3</var>. As
+                            priority is same, they are sorted based on the expiry date. Since
+                                <var class="keyword varname">CS8</var> expiry is before <var class="keyword varname">CS7</var>,
+                                <var class="keyword varname">CS8</var> is picked first.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <var class="keyword varname">Category4</var> has the fourth highest priority.
+                                <var class="keyword varname">CS11</var> is sorted first. <var class="keyword varname">CS10</var> is
+                            sorted next as per priority in <var class="keyword varname">Group2</var> followed by
+                            device <var class="keyword varname">CS9</var>. This is because,
+                                <var class="keyword varname">Group_First</var> is selected in device and
+                                <var class="keyword varname">Group1</var> was attached to device before
+                                <var class="keyword varname">Group2</var>.</p>
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

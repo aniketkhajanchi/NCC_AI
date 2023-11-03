@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Configuration" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="slicereduction_d0e1980" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Configuration</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="slicereduction_d0e1980">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Configuration</h1>
+<div class="body">
+                <p class="p">Follow the given step to configure slice reduction:</p>
+
+                <ol class="ol" id="slicereduction_d0e1980__ol_vck_qzk_r4b">
+                    <li class="li">
+                        <p class="p">Calculate the delta (D) between current usage (committed quantity +
+                    reserved quantity) and upcoming threshold values.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Apply the <em class="ph i">Slice Allocation Factor (SAF)</em> value on the above delta
+                    (D) value using the <span class="ph uicontrol">Slice Allocation Factor</span> parameter
+                    defined in the quota management (slicing profile) rule.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Compare the above calculated value with the Requested Service Units (RSU)
+                            and identify the smaller value as <em class="ph i">SMIN</em>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Compare the <span class="ph uicontrol">MIN Slice Size</span> or SAS value with
+                                <em class="ph i">SMIN</em> and grant the one with larger value.</p>
+
+                    </li>
+
+                </ol>
+
+            </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

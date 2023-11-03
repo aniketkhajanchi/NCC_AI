@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="ALC-IPv6-Address VSA manipulation under GXCCR context" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-cn01-tczza-d1e14249" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>ALC-IPv6-Address VSA manipulation under GXCCR context</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-cn01-tczza-d1e14249">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">ALC-IPv6-Address VSA manipulation under GXCCR context</h1>
+<div class="body conbody">
+<div class="section"><h2 class="title sectiontitle">Message manipulation for ALC-IPv6-Address VSA</h2>
+<p class="p">The VSA ALC-IPv6-Address can be manipulated under the GXCCR context when you enable the
+                application preference “Support Alc-IPv6-Address on Gx” to allow the Gx session to
+                bind with the ALC-IPv6-Address. This application preference decides whether to bind
+                Gx Session with ALC-IPv6-Address (VSA) present in CCR initial request. If this
+                application preference's value is true and only ALC-IPv6-Address is present in the
+                request all other IP-addresses (that is, IPv4, Framed-IPv6, and
+                Delegated-IPv6-Prefix) are not present, then GX Session binds with ALC-IPv6-Address.
+                Using message manipulation a rule can be authored that will add the
+                Framed-IPv6-Prefix in the CCR that assigns the value from the “ALC-IPv6-Address”
+                VSA. The following are rules that can be created for this type of message
+                manipulation:</p>
+
+<p class="p">Rule to add ALC-IPv6-Address (VSA) in CCR that assigns the value from Framed-IPv6-Prefix</p>
+
+<p class="p">
+<kbd class="ph userinput">GxCCR.ALC-IPv6-Address.Add = GxCCR.Framed-IPv6-Prefix</kbd>
+</p>
+
+<p class="p">Rule to add Framed-IPv6-Prefix in CCR that assigns the value from ALC-IPv6-Address (VSA)</p>
+
+<p class="p">
+<kbd class="ph userinput">GxCCR.Framed-IPv6-Prefix.Add = GxCCR.ALC-IPv6-Address</kbd>
+</p>
+
+<p class="p">The following are other operations for ALC-IPv6-Address under message manipulation:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Rule to add the ALC-IPv6-Address AVP in the message:</p>
+
+<p class="p">
+<kbd class="ph userinput">ALC-IPv6-Address.Add</kbd>
+</p>
+
+</li>
+
+<li class="li">
+<p class="p">Rule to set the ALC-IPv6-Address value:</p>
+
+<p class="p">
+<kbd class="ph userinput">ALC-IPv6-Address.Set</kbd>
+</p>
+
+</li>
+
+<li class="li">
+<p class="p">Rule to set the ALC-IPv6-Address M-Bit in the message:</p>
+
+<p class="p">
+<kbd class="ph userinput">ALC-IPv6-Address.M-Bit</kbd>
+</p>
+
+</li>
+
+<li class="li">
+<p class="p">Rule to set the ALC-IPv6-Address P-Bit in the message:</p>
+
+<p class="p">
+<kbd class="ph userinput">ALC-IPv6-Address.Add.P-Bit</kbd>
+</p>
+
+</li>
+
+<li class="li">
+<p class="p">Rule to set the ALC-IPv6-Address V-Bit in the message:</p>
+
+<p class="p">
+<kbd class="ph userinput">ALC-IPv6-Address.Add.V-Bit</kbd>
+</p>
+
+</li>
+
+<li class="li">
+<p class="p">Rule to remove the ALC-IPv6-Address AVP in the message:</p>
+
+<p class="p">
+<kbd class="ph userinput">ALC-IPv6-Address.Add.Remove</kbd>
+</p>
+
+</li>
+
+<li class="li">
+<p class="p">Rule to remove the value of the ALC-IPv6-Address AVP in the message:</p>
+
+<p class="p">
+<kbd class="ph userinput">ALC-IPv6-Address.Add.Remove-Value</kbd>
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Diameter/HTTP Configuration Guide • P556766-DN1000054969-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

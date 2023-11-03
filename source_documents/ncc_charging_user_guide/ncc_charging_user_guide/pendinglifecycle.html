@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Pending lifecycle renewal" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e28451" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Pending lifecycle renewal</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e28451">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Pending lifecycle renewal</h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">The two types of lifecycle, <em class="ph i">Entity</em> and <em class="ph i">Periodic</em>, supported by NCC can have timer
+                transitions configured with them, which are managed and triggered using audit. If
+                multiple timer transitions are planned to be executed at the same time (for example,
+                multiple subscription renewals planned for midnight or non-business hours), then
+                there is a probability of delay in these timer transitions due to processing delay
+                or audit overload. These delayed timer transitions are referred to as pending
+                lifecycles that can impact the subscriber, which directly depends on the amount of
+                delay.</p>
+
+<p class="p">To resolve the issue faced by a subscriber due to pending lifecycles, as soon as NCC receives an
+                API request or Diameter call for an entity that has a lifecycle pending for renewal,
+                NCC first executes the renewal of these pending lifecycles before processing the
+                Diameter or API request.</p>
+
+<p class="p">For example, if NCC receives a Diameter request for a device and that device has
+                multiple device subscriptions pending for renewal, then these renewals are
+                immediately executed before processing the Diameter request.</p>
+
+<div class="note notice"><div class="noticetitle"><img src="../../web/css/../images/notice.svg" title="notice-icon" class="noteicon" />Notice:</div> 
+<p class="p">It is recommended to avoid any of the complex configuration as the ones mentioned in the following scenarios:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">A single device is a part of multiple groups.</p>
+
+</li>
+
+<li class="li">
+<p class="p">A device or group has subscriptions, which are linked to multiple accounts.</p>
+
+</li>
+
+<li class="li">
+<p class="p">A single account is used to sponsor the subscriptions for multiple devices and all pending device subscriptions are renewed using the account lifecycle.</p>
+
+<div class="p">
+                            <div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e28451__note_k11_jhx_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Nokia recommends to have one-to-one
+                                relationship between device or group and account or vice-versa. The
+                                impact on performance is cumulative in case of one device or group
+                                having a relation with more than one account.</div>
+
+                        </div>
+
+</li>
+
+</ul>
+
+</div>
+<p class="p">The pending lifecycle events are executed in the following sequence:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Pending Entity Lifecycle (ELC) execution of a device, group, account, and subscription.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Pending Periodic Lifecycle (PLC) execution of an account, which is linked to device and group subscriptions.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Pending PLC execution of group subscription.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Pending PLC execution of device subscription.</p>
+
+</li>
+
+</ul>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Additional information</strong></p>
+
+<p class="p">Following are some important points related to the pending lifecycle renewal feature:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">While identifying the pending lifecycle events, the timezone of an account is considered for the time comparison.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Multi-timezone is implemented only for ELC and PLC of an account, which is linked to device and group subscriptions.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The multi-timezone is applicable for both Diameter and provisioning interface.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The <em class="ph i">SendSNR</em> action inside the lifecycle also impacts the performance and its impact depends on the number of devices targeted for the <em class="ph i">SendSNR</em> action.</p>
+
+</li>
+
+<li class="li">
+<p class="p">In case of southbound call, if any trigger is executed and no action is taken but the lifecycle state changes, then there is no EDR or CDR generated.</p>
+
+</li>
+
+<li class="li">
+<p class="p">While configuring a device ELC, if you use the <em class="ph i">Device Attachment Event</em> as timed transition, then it also gets generated during the call and therefore, gets triggered twice.</p>
+
+</li>
+
+<li class="li">
+<p class="p">This feature is only supported through Gy interface and not through PCRF Gx interface.</p>
+
+</li>
+
+<li class="li">
+<p class="p">With entity modification approach in all lifecycle entities, the pending lifecycle trigger feature comes into picture only after one successful transition execution through Audit.</p>
+
+</li>
+
+<li class="li">
+<p class="p">In case of few exception, all triggered entities may be rolled back.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Currently, Audit database is not in same lock as in entity database. Hence, in case of rollback, there may be inconsistency issues between the two.</p>
+
+</li>
+
+                    <li class="li">
+                        <p class="p">When executing the pending lifecycle
+                            renewal logic triggered by the diameter request, if there is an
+                            aggregate view attached to the related device or group, then after the
+                            AV value is reset to an initial value, the threshold rules attached to
+                            this AV will also be evaluated. The thresholds include both the
+                            notification threshold and policy threshold. By this enhancement, for
+                            the AV entity, the behavior of on-call renewal is the same as lifecycle
+                            renewal triggered by TEM. </p>
+
+                    </li>
+
+</ul>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If the Delete Entity/Delete Subscription actions are configured along with time delay and the lifecycle state is not changed, it results in a dangling TEM entry in the database.</div>
+
+</div>
+</div>
+
+<div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e28451__plccntrreset"><h2 class="title sectiontitle">Pending counter reset logic</h2>
+<p class="p">If there are counters pending to be reset in the TEM queue, then these can be added to the execution queue by setting the application preference <strong class="ph b">Pending Lifecycle Renewal</strong> to 1. </p>
+
+<p class="p">If this application preference is set to 1, then NCC checks for whether a counter is pending or
+                not. If it is pending, the counter is reset, threshold is evaluated, and a new entry
+                is made in TEM.</p>
+
+<p class="p">For details about counter reset, see <a class="xref" href="dbwira.html">Data bundles with international roaming access</a>.</p>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">On-call</strong></p>
+
+<p class="p">The following types of counters are considered for on-call pending counter reset:</p>
+<ol class="ol">
+<li class="li">
+<p class="p">Device Counter</p>
+
+</li>
+
+<li class="li">
+<p class="p">Device Subscription Counter</p>
+
+</li>
+
+<li class="li">
+<p class="p">Group Counter</p>
+
+</li>
+
+<li class="li">
+<p class="p">Group Subscription Counter</p>
+
+</li>
+
+<li class="li">
+<p class="p">Device Group Counter</p>
+
+</li>
+
+</ol>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The list of Group and Device is same for both pending lifecycle and counter.</div>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">API</strong></p>
+
+<p class="p">For Device-centric APIs mentioned in <a class="xref" href="pendinglifecycle.html#id9yz-09126-ug01-pczza-sp1-d1e28451__apiPLSR">APIs affected by pending lifecycle renewal</a>, the reset of following pending counters are executed:</p>
+<ol class="ol">
+<li class="li">
+<p class="p">Device Counter</p>
+
+</li>
+
+<li class="li">
+<p class="p">Device Subscription Counter</p>
+
+</li>
+
+<li class="li">
+<p class="p">Device Group Counter</p>
+
+</li>
+
+</ol>
+
+<p class="p">For Group-centric APIs mentioned in <a class="xref" href="pendinglifecycle.html#id9yz-09126-ug01-pczza-sp1-d1e28451__apiPLSR">APIs affected by pending lifecycle renewal</a>, the reset of following pending counters are executed: </p>
+<ol class="ol">
+<li class="li">
+<p class="p">Group Counter</p>
+
+</li>
+
+<li class="li">
+<p class="p">Group Subscription Counter</p>
+
+</li>
+
+</ol>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Example</h2>
+<p class="p">Consider a device <em class="ph i">D1</em> associated with an account <em class="ph i">A1</em> and a group. The device D1 has a pending device subscription <em class="ph i">S1</em>. Also, the group is associated with the account <em class="ph i">A1</em> and pending group subscription <em class="ph i">Sg</em>.</p>
+
+<p class="p">The group is further associated with 9 more devices (<em class="ph i">D2</em>, <em class="ph i">D3</em>,.....<em class="ph i">D10</em>) and account <em class="ph i">A1</em>) and pending device subscription (<em class="ph i">S2</em>, <em class="ph i">S3</em>,.......<em class="ph i">S10</em>) respectively.</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-pending_lifecycle_renewal_default.png" />
+            </div>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Pending lifecycle renewal on receiving a Diameter call for a DEVICE</strong></p>
+
+<p class="p">When NCC receives a Diameter call for the device <em class="ph i">D1</em>, it first triggers pending
+                    ELC of <em class="ph i">D1</em>, group associated with <em class="ph i">D1</em>, <em class="ph i">A1</em>, <em class="ph i">S1</em> and
+                        <em class="ph i">Sg</em> followed by the triggering of pending PLC of <em class="ph i">A1</em>, <em class="ph i">Sg</em>,
+                    and then <em class="ph i">S1</em> before processing the Diameter request.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The pending device subscription (<em class="ph i">S2</em>, <em class="ph i">S3</em>,.......<em class="ph i">S10</em>) of other devices are
+                        triggered only when NCC receives a Diameter call for that
+                        specific device.</div>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Pending lifecycle renewal for a GROUP centric API</strong></p>
+
+<p class="p">When NCC receives an API request for the group, then it first triggers the pending ELC
+                    of that group, <em class="ph i">Sg</em>, and <em class="ph i">A1</em> followed by the triggering of pending
+                    PLC of <em class="ph i">A1</em> and <em class="ph i">Sg</em>.</p>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Pending lifecycle renewal for an ACCOUNT centric API</strong></p>
+
+<p class="p">When NCC receives an API request for the account <em class="ph i">A1</em>, then it first triggers the
+                    pending ELC of <em class="ph i">A1</em>, subscription attached to account (<em class="ph i">S2</em>,
+                    <em class="ph i">S3</em>, ....... <em class="ph i">S10</em>, <em class="ph i">Sg</em>), then <em class="ph i">D1</em>, <em class="ph i">D2</em>, ...,
+                        <em class="ph i">D10</em> and group attached to <em class="ph i">Sg</em>. Next, it executes the renewal of
+                    pending PLCs of account followed by the subscriptions (<em class="ph i">S1</em>, <em class="ph i">S2</em> ...
+                        <em class="ph i">S10</em>, <em class="ph i">Sg</em>) attached to that account.</p>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Pending lifecycle renewal when counters are pending</strong></p>
+<ol class="ol">
+<li class="li">
+<p class="p">Create a counter and attach it with a device whose periodic cycle is for 2 hours. For example, if it is created at 10:00 am and it needs to be reset after 2 hours, then it is reset at 12:00 pm.</p>
+
+</li>
+
+<li class="li">
+<p class="p">However, due to heavy load at 12:00 pm, the counter was not reset.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If a call comes that time from that device then the counter is reset with the call execution and change the next cycle in TEM to 2 pm (12:00 pm + 2 hours).</p>
+
+</li>
+
+</ol>
+
+</div>
+</div>
+
+<div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e28451__apiPLSR"><h2 class="title sectiontitle">APIs affected by pending lifecycle renewal</h2>
+<div class="p">Following APIs trigger the pending lifecycle renewal feature:<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d335756e542">
+                                    <p class="p">SM API</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d335756e548">
+                                    <p class="p">Device centric/ Group centric/ Account centric</p>
+
+                               </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/addDeviceCounter/Counter</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/addDeviceGroupCounter/Counter</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Group centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/addGroupCounter/Counter</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Group centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/removeDeviceCounter/Counter</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/removeDeviceGroupCounter/Counter</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">
+                                    <p class="p">Device centric</p>
+
+                                    <p class="p">Group centric</p>
+
+                               </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/removeGroupCounter/Counter</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Group centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">POST/services/ServiceManager/transferUnits/GiftingService</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">POST/services/ServiceManager/updateTime/LifeCycle</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">
+                                    <p class="p">Device centric</p>
+
+                                    <p class="p">Group centric</p>
+
+                                    <p class="p">Account centric</p>
+
+                               </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/sendSNR/SySession</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">POST/services/ServiceManager/create/SySession</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/update/SySession</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">GET/services/ServiceManager/getData/SySession</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">DELETE/services/ServiceManager/delete/SySession</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">GET/services/ServiceManager/subscriber/getData/AVInstance</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">
+                                    <p class="p">Device centric</p>
+
+                                    <p class="p">Group centric</p>
+
+                               </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/subscriber/update/BucketInstance</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">
+                                    <p class="p">Device centric</p>
+
+                                    <p class="p">Group centric</p>
+
+                               </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">
+                                    GET/services/ServiceManager/subscriber/getData/BucketInstance</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">
+                                    <p class="p">Device centric</p>
+
+                                    <p class="p">Group centric</p>
+
+                               </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">
+                                    GET/services/ServiceManager/subscriber/getData/EntityCounterInstance</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">
+                                    <p class="p">Device centric</p>
+
+                                    <p class="p">Group centric</p>
+
+                               </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">DELETE/services/ServiceManager/subscriber/delete/Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">DELETE/services/ServiceManager/subscriber/delete/Account</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Account centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">DELETE/services/ServiceManager/subscriber/delete/Group</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Group centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">
+                                    PUT/services/ServiceManager/subscriber/updateCustomData/Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">GET/services/ServiceManager/subscriber/getData/Group</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Group centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">
+                                    PUT/services/ServiceManager/subscriber/update/setaccountbalance/Account</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Account centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">GET/services/ServiceManager/subscriber/getData/Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">GET/services/ServiceManager/subscriber/getData/Account</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Account centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">POST/services/ServiceManager/subscriber/create/Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/subscriber/silentModify/Account</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Account centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">
+                                    PUT/services/ServiceManager/subscriber/updateCustomData/Account</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Account centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">
+                                    PUT/services/ServiceManager/subscriber/updateCustomData/Group</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Group centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/subscriber/silentModify/Group</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Group centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/subscriber/update/rename/Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/subscriber/update/rename/Account</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Account centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/subscriber/update/rename/Group</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Group centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/subscriber/update/Group</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Group centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">POST/services/ServiceManager/subscriber/create/Account</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Account centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">
+                                    PUT/services/ServiceManager/subscriber/update/adjustbalance/Account</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Account centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/subscriber/update/Account</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Account centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/subscriber/configure/Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/subscriber/configure/Group</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Group centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">
+                                    PUT/services/ServiceManager/subscriber/update/addadministrator/Account</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Account centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">
+                                    PUT/services/ServiceManager/subscriber/update/removeadministrator/Account</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Account centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/subscriber/silentModify/Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">POST/services/ServiceManager/subscriber/create/Group</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Group centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">PUT/services/ServiceManager/subscriber/update/Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">GET/services/ServiceManager/subscriber/getbyidentity/Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">
+                                    GET/services/ServiceManager/subscriber/getExtendedDevice/Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">POST/services/ServiceManager/subscriber/silentCreate/Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e542 ">DELETE/services/ServiceManager/subscriber/forcedelete/Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d335756e548 ">Device centric</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+
+<p class="p">Following are the use cases for the northbound (provisioning APIs) for this feature:</p>
+<ol class="ol">
+<li class="li">
+<p class="p">
+<strong class="ph b">CREATE</strong>
+</p>
+<ul class="ul">
+<li class="li">
+<p class="p">A <kbd class="ph userinput">CREATE</kbd> request of group, account, or device is triggered from the REST API or GUI.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The reload operation is triggered after creating a group, account, or device.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the pending lifecycle renewal feature is disabled, then the creation is done successfully.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the pending lifecycle renewal feature is enabled, then the creation is done successfully. If there are any other group, account, or device attached to the newly created entity and there are any pending subscriptions to be renewed for them, then the subscription renewal is triggered.</p>
+
+</li>
+
+</ul>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">READ</strong>
+</p>
+<ul class="ul">
+<li class="li">
+<p class="p">A <kbd class="ph userinput">GET</kbd> request of group, account, or device is triggered from the REST API or GUI.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the pending lifecycle renewal feature is disabled, then the get request is executed successfully.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the pending lifecycle renewal feature is enabled, and:</p>
+
+<p class="p">- The <em class="ph i">detailedQuery</em> parameter in the get request is false, then the get request is successfully executed.</p>
+
+<p class="p">- The <em class="ph i">detailedQuery</em> parameter in the get request is true, then the get request is successfully executed. If there are any pending subscriptions to be renewed for the triggering entity, then these pending subscriptions are executed and the get request is replied with fresh data.</p>
+
+</li>
+
+</ul>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">UPDATE</strong>
+</p>
+<ul class="ul">
+<li class="li">
+<p class="p">An <kbd class="ph userinput">UPDATE</kbd> request of group, account, or device is triggered from the REST API or GUI.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the pending lifecycle renewal feature is disabled, then the update request is executed successfully.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the pending lifecycle renewal feature is enabled and there are any pending subscriptions to be renewed for the triggering entity, then the pending subscriptions are executed but the update request fails with an error message <samp class="ph systemoutput">SUBSCRIBER_RELOAD_REQUEST_FAILED:Request can't be performed as data is being refreshed. Request needs to be sent again considering updated data</samp>. This is done because whenever the pending subscriptions are executed, the data is updated in the database. Therefore, executing the update request received brings the data into inconsistent state and thus, it fails.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the pending lifecycle renewal feature is enabled and there are no pending subscriptions to be renewed, then the <kbd class="ph userinput">UPDATE</kbd> request is executed successfully.</p>
+
+</li>
+
+</ul>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">DELETE</strong>
+</p>
+<ul class="ul">
+<li class="li">
+<p class="p">An <kbd class="ph userinput">DELETE</kbd> request of group, account, or device is triggered from the REST API or GUI.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The reload operation is triggered before deleting a group, account, or device.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the pending lifecycle renewal feature is disabled, then the deletion is done successfully.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the pending lifecycle renewal feature is enabled, then the deletion is done successfully. If there are any other group, account, or device attached to the newly created entity and there are any pending subscriptions to be renewed for them, then its subscription renewal is triggered.</p>
+
+</li>
+
+</ul>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">GIFTING API</strong>
+</p>
+<ul class="ul">
+<li class="li">
+<p class="p">A <em class="ph i">Gifting</em> API is triggered from the REST API or GUI.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the pending lifecycle renewal featured is enabled and there are any pending subscriptions to be renewed for the triggering entity and all are executed successfully, then the <em class="ph i">Gifting API</em> request is executed successfully.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the pending lifecycle renewal featured is enabled and there are no pending subscriptions to be renewed, then the <em class="ph i">Gifting</em> API is executed successfully.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If feature is enabled and there are any pending subscriptions to be renewed for the triggering entity but only few are executed successfully, then the <em class="ph i">Gifting API</em> request is failed. If feature is enabled and there are any pending subscriptions to be renewed for the triggering entity but none are executed successfully, then the <em class="ph i">Gifting API</em> is failed.</p>
+
+</li>
+
+</ul>
+
+</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

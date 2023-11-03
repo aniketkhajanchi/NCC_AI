@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Host based routes" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="concept_hb5_1d4_5pb" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Host based routes</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="concept_hb5_1d4_5pb">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Host based routes</h1>
+<div class="body conbody">
+        <p class="p">To view the list of host-based route, click <span class="ph uicontrol">Connectivity</span> → ☰ →
+                <span class="ph uicontrol">DIAMETER ROUTES</span> → <span class="ph uicontrol">Host Based Routes</span>.
+            Click <strong class="ph b">+</strong> to create a new host-based route. </p>
+
+        <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> All Diameter-related configuration areas can also be configured using APIs.</div>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="concept_hb5_1d4_5pb__table_wqj_2d4_5pb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Host Based Routing parameters</span></caption><colgroup><col style="width:19.053876478318003%" /><col style="width:67.80551905387647%" /><col style="width:13.14060446780552%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d27750e63">Parameter</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d27750e66">Description</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d27750e69">Mandatory / Optional</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e63 ">Route Id</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e66 ">
+                            <p class="p">Specify a unique identifier for the route that can be used to
+                                distinguish between multiple routes with the same destination
+                                identity name but different priorities.</p>
+
+                            <p class="p">NCC automatically creates this ID in case no ID is mentioned.
+                                However, if multiple MEs are registered to SM, then SM sends this
+                                data with ID created at the SM side to track the provisioning status
+                                on each ME.</p>
+
+                            <p class="p">If the route name is not specified, then it is auto-generated as a
+                                concatenation of the values in <var class="keyword varname">Next Hop</var>,
+                                    <var class="keyword varname">Destination Identity</var>, and
+                                    <var class="keyword varname">Application</var>.</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e69 ">Mandatory</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e63 ">Description</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e66 ">Specify a description for the Diameter route. </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e69 ">Optional </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e63 ">Next Hop</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e66 ">
+                            <p class="p">Specify the hostname of the server to which NCC has to forward the
+                                incoming message.</p>
+
+                            <p class="p">The valid values are <em class="ph i">host-name</em>, <em class="ph i">diameter-peer</em>, or
+                                    <em class="ph i">FQDN</em>.</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e69 ">Mandatory</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e63 ">Destination realm</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e66 ">
+                            <p class="p">For Diameter destination routes, specify the value which is received
+                                in the <em class="ph i">Destination Host</em> AVP of the incoming message. If NCC
+                                is not directly connected to this peer (to the peer mentioned in
+                                    <em class="ph i">Destination realm</em>), then NCC forwards the message to the
+                                peer specified in <em class="ph i">Next Hop</em>.</p>
+
+                            <p class="p">The asterisk * can be used as a wildcard to match multiple routes for
+                                patterns. NCC uses the highest priority route that matches the
+                                pattern.</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e69 ">Mandatory</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e63 ">Application</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e66 ">
+                            <p class="p">Specify a list of one or more application types to reach a specified
+                                host or realm. Select an application type from the drop-down to add
+                                it to the list.</p>
+
+                            <p class="p">By default, all applications are valid for a route. Keep the field
+                                blank to enable all applications.</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e69 ">Mandatory</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e63 ">Priority</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e66 ">Specify the Diameter route priority.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d27750e69 ">Mandatory </td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+    </div>
+<div class="footer"><hr /><p>Diameter/HTTP Configuration Guide • P556766-DN1000054969-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Reversed TBCD string mapping" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="chf_reversed_tbcd_string_mapping" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Reversed TBCD string mapping</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="chf_reversed_tbcd_string_mapping">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Reversed TBCD string mapping</h1>
+<div class="body conbody">
+        <p class="p">Some input fields are sent from Charging application in TBCD string format, which is
+            essentially an octet string with values 0-9, *, #, a, b, c, and where the characters in
+            every octet have been swapped. For example, octet string 123456 is 214365 as a TBCD
+            string.</p>
+
+        <p class="p">ASN.1 Encoder Node will do the same TBCD mapping automatically based on the ASN.1 schema
+            of those fields, reverting the changes done in Charging application. To get the TBCD
+            strings out correctly, the mapping function needs to revert the mapping done in Charging
+            application and let the ASN.1 Encoder Node redo it.</p>
+
+        <p class="p">For example, an IMSI value coming from Charging application as 21436587 is a TBCD
+            formatted octet string. The mapping code must convert it to 12345678 and ASN.1 Encoder
+            Node will then convert it back to 21436587.</p>
+
+    </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

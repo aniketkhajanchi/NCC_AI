@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Backup and recovery with SFTP" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="backup_and_recovery_with_sftp" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Backup and recovery with SFTP</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="backup_and_recovery_with_sftp">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Backup and recovery with SFTP</h1>
+<div class="body conbody">
+        <p class="p">Follow this procedure to enable backup and recovery with SFTP.</p>
+
+        <div class="section"><h2 class="title sectiontitle">Ensure that the SSH/SFTP connection to the SFTP server is open</h2>
+            
+            <p class="p">Create a service entry file named <span class="ph filepath">cbur_se.yaml</span> on the <span class="ph">NCC</span> cluster using this example format.</p>
+
+            <pre class="pre codeblock language-yml"><code>apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: cbur-sftp-service-entry
+  namespace: btel
+spec:
+  addresses:
+  - &lt;IP_address&gt;
+  exportTo:
+  - .
+  hosts:
+  - backup.sftp.com
+  location: MESH_EXTERNAL
+  ports:
+  - name: sftp-22
+    number: 22
+    protocol: TCP</code></pre>
+            <p class="p">Where namespace is the namespace in which cbur-master is installed.</p>
+
+            <pre class="pre codeblock language-yml"><code>address: FQDN or IP address of the remote SFTP server
+hosts: any random name</code></pre>
+            <p class="p">If an FQDN is used, then a resolution value must be added in the service entry.</p>
+
+            <pre class="pre codeblock language-yml"><code>apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: cbur-sftp-service-entry
+  namespace: btel
+spec:
+  addresses:
+  - &lt;FQDN&gt;
+  exportTo:
+  - .
+  hosts:
+  - backup.sftp.com
+  location: MESH_EXTERNAL
+  resolution: DNS
+  ports:
+  - name: sftp-22
+    number: 22
+    protocol: TCP</code></pre>
+            <p class="p">Run this command to create the service entry:</p>
+
+            <pre class="pre codeblock"><code>kubectl apply -f cbur_se.yaml</code></pre>
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Create a secret specifying the SFTP server configuration</h2>
+            
+            <p class="p">Create a secret file named <span class="ph filepath">cbur_secret.yaml</span> on the <span class="ph">NCC</span> cluster using this example format.</p>
+
+            <pre class="pre codeblock language-yml"><code>apiVersion: v1
+kind: Secret
+metadata:
+  name: cbur-sftp-created-secret
+  namespace: btel
+type: Opaque
+stringData:
+  port: "22"
+  host: "&lt;FQDN_or_IP_address&gt;"
+  mode: "sftp"
+  username: "sftpuser"
+  path: "/home/sftpuser/data"
+  strictHostKeyChecking: "autoadd"
+  hostKey: ""</code></pre>
+            <p class="p">Where namespace is the namespace in which cbur-master is installed.</p>
+
+            <pre class="pre codeblock language-yml"><code>host: FQDN or IP address of the remote SFTP server
+username: SFTP user username
+path: location where SFTP backups is stored
+hostKey: should be blank</code></pre>
+            <p class="p">Run this command to create the secret:</p>
+
+            <pre class="pre codeblock"><code>kubectl apply -f cbur_secret.yaml</code></pre>
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The SFTP user group and directories for storing the backup must have been added on
+                the SFTP server before you create the secret.</div>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> SSH automatically adds a new host key (public key on the SFTP server under
+                    <span class="ph filepath">/etc/ssh</span>) to the user known hosts file when connecting for
+                the first time and SSH refuses to connect to hosts whose host key has
+                changed.</div>
+
+            <div class="note notice"><div class="noticetitle"><img src="../../web/css/../images/notice.svg" title="notice-icon" class="noteicon" />Notice:</div> When the host key of the SFTP server has changed, you must update
+                the secret (the secret name set in <span class="keyword parmname">SSH.credentialName</span> in the
+                cbur-master Helm chart) to add the host key value. This is done on the NCS system.
+                    <p class="p">This updated secret is automatically used by Backup and Recovery to pick up
+                    the new configuration. </p>
+<p class="p">Add the host key (located in the
+                        <span class="ph filepath">/etc/ssh</span> directory of the SFTP server):
+                </p>
+<pre class="pre codeblock language-yml"><code>apiVersion: v1
+kind: Secret
+metadata:
+  name: cbur-sftp-created-secret
+  namespace: btel
+type: Opaque
+stringData:
+ port: "22"
+ host: "&lt;FQDN_or_IP_address&gt;"
+ mode: "sftp"
+ username: "sftpuser"
+ path: "/home/sftpuser/data"
+ strictHostKeyChecking: "autoadd"
+ hostKey: &lt;PUT HOSTKEY here&gt;</code></pre> If the <span class="keyword parmname">hostKey</span>
+                value is not added properly, this alarm message may be seen.
+                <pre class="pre codeblock"><code>Failed to connect to host &lt;ip_address&gt; port 22 with error: Bad host key from server </code></pre></div>
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Perform a Helm upgrade of the Backup and Recovery chart to set the mode as SFTP
+                and pass the name of the secret</h2>
+            
+            <p class="p">Run this command to perform a Helm upgrade.</p>
+
+            <pre class="pre codeblock"><code>helm3 upgrade --install &lt;helm release name of cbur chart&gt; &lt;chart path&gt;
+--reuse-values --set SSH.credentialName=&lt;above created secret name&gt; --set GLOBAL_BACKEND=sftp -n &lt;namespace&gt;</code></pre>
+            <p class="p">Command example:</p>
+
+            <pre class="pre codeblock"><code>helm3 upgrade --install cbur-master CHF_23_5_I18/input-generator-23.5.1-18/charts/cbur-chart-23.5.1-17.tgz
+--reuse-values --set SSH.credentialName=cbur-sftp-created-secret --set GLOBAL_BACKEND=sftp -n btel</code></pre>
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This causes the Backup and Recovery pods to restart and no backup should be
+                scheduled at this time.</div>
+</div>
+
+        <div class="section"><h2 class="title sectiontitle">Update the user key authentication in the remote SFTP server</h2>
+            
+            <p class="p">You must obtain the public key from the secret
+                    <span class="keyword parmname">cburm-ssh-public-key</span> in the cbur-master namespace and add
+                it to the <span class="keyword parmname">~/.ssh/authorized_keys</span> of the SFTP user in the SFTP
+                server.</p>
+
+            <p class="p">Run this command to find the Backup and Recovery master public key.</p>
+
+            <pre class="pre codeblock"><code>kubectl get secret -n &lt;namespace&gt; cburm-ssh-public-key -o jsonpath={.data.ssh_public_key}| base64 -d</code></pre>
+            <p class="p">Where &lt;namespace&gt; is the namespace where the cbur-master is installed.</p>
+
+            <p class="p">Copy the contents of the key and login to the remote SFTP server and paste the key
+                contents in <span class="keyword parmname">~/.ssh/authorized_keys</span> of the SFTP user in the SFTP
+                server.</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The sshd service may need to be restarted after adding the SSH keys on the SFTP
+                server.</div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Run the backup to check the SFTP configuration</h2>
+            
+            <p class="p">For more information on backups, see <cite class="cite">Manual backups</cite> in the
+                    <cite class="cite">Operations, Administration, and Maintenance Guide</cite>.</p>
+
+            <p class="p">The backup folders may look like this in the SFTP server.</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Your contents may differ based on different policies for scheduled backups. Also,
+                the backup permissions may differ depending upon the users and groups that are
+                configured on your SFTP server.</div>
+
+            <pre class="pre codeblock"><code>[sftpuser@endurance sftp]$ ls -latr *
+ig1:
+total 0
+drwxr-xr-x. 5 sftpuser sftp 147 Apr 12 14:59 DEPLOYMENT_ig-admincli
+drwxr-xr-x. 3 sftpuser sftp  51 Apr 12 15:02 STATEFULSET_ckey-ckey
+drwxr-xr-x. 5 sftpuser sftp  92 Apr 12 15:04 .
+drwxr-xr-x. 3 sftpuser sftp  49 Apr 12 15:04 STATEFULSET_ig-csdc
+drwxr-xr-x. 4 sftpuser sftp  29 Apr 12 15:47 ..
+
+btel:
+total 0
+drwxr-xr-x. 3 sftpuser sftp  63 Apr 12 15:29 STATEFULSET_btel-cpro-gen3gppxml
+drwxr-xr-x. 3 sftpuser sftp  60 Apr 12 15:33 STATEFULSET_cmdb-btel-mariadb
+drwxr-xr-x. 5 sftpuser sftp 118 Apr 12 15:41 .
+drwxr-xr-x. 3 sftpuser sftp  59 Apr 12 15:41 DEPLOYMENT_btel-cpro-server
+drwxr-xr-x. 4 sftpuser sftp  29 Apr 12 15:47 ..</code></pre>
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If the SFTP connection is not successful, alarms like this may occur.
+                <pre class="pre codeblock"><code>backup ig-admincli failed with error: Failed to connect to host &lt;ip_address&gt; port 22 with error: Error reading SSH protocol banner</code></pre></div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

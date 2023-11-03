@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Example 1: Service (bundle) reference parameter usage" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="bundref" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Example 1: Service (bundle) reference parameter usage</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="bundref">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Example 1: Service (bundle) reference parameter usage</h1>
+<div class="body">
+<p class="p">When a subscription with reference service (bundle) expires, the linked subscription with aligned
+               service (bundle) also must expire. To achieve this, the following lifecycle
+               configurations are recommended. Note that BOU type service (bundle) for subscription
+               with reference service (bundle) is considered for configuration.</p>
+
+<p class="p">
+               <strong class="ph b">Reference service (bundle) lifecycle:</strong>
+          </p>
+
+<p class="p">Whenever the subscription with reference service (bundle) moves from
+                    <kbd class="ph userinput">Active</kbd> to <kbd class="ph userinput">Preactive</kbd> or any other
+               barred or suspended state, then <kbd class="ph userinput">Trigger Event Action</kbd> is
+               configured with <kbd class="ph userinput">Expire Event</kbd> to check the subscription with
+               aligned service (bundle) and expire it and then expire itself (subscription with
+               reference service). Note that <kbd class="ph userinput">Expire Event</kbd> must be configured
+               in the aligned service (bundle). Ensure that <span class="ph uicontrol">Allow Event
+                    Broadcast</span> is selected.</p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-basebundle1_default.png" />
+          </div>
+
+<div class="note notice"><div class="noticetitle"><img src="../../web/css/../images/notice.svg" title="notice-icon" class="noteicon" />Notice:</div> Ensure that <kbd class="ph userinput">Trigger Event Action</kbd> is configured in all the events that move
+                    the subscription with reference service (bundle) from
+                         <kbd class="ph userinput">Active</kbd> to <kbd class="ph userinput">Preactive</kbd> or
+                    suspended state.</div>
+<p class="p">
+               <span class="ph uicontrol">Aligned (data boost) service lifecycle:</span>
+          </p>
+
+<p class="p">In this, when the <kbd class="ph userinput">ExpireEvent</kbd> gets triggered, the subscription with
+               aligned service moves to <kbd class="ph userinput">Final</kbd> state. The
+                    <kbd class="ph userinput">Final</kbd> state has the configuration to delete it.</p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-databoost_default.png" />
+          </div>
+
+          <div class="p">If the aligned service (DataboostBundle) is configured with the <span class="ph uicontrol">Activation
+                    type</span> as <var class="keyword varname">NORMAL</var> (that is, if aligned service is a
+               normal bundle), then fee deduction during the bundle subscription time has the
+               following priorities:<ol class="ol" id="bundref__ol_jn3_jxt_ysb">
+                    <li class="li">Subscription fee override</li>
+
+                    <li class="li">Bundle rule</li>
+
+                    <li class="li">Bundle fee</li>
+
+               </ol>
+</div>
+
+          <p class="p">During bundle subscription, if the subscription does not have fee override, then the
+               bundle rule is evaluated, if it exists. If the bundle rule does not exist, then the
+               default bundle fee is deducted.</p>
+
+<p class="p">Some of the scenarios related to reference service are as follows:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">
+                         <strong class="ph b">Scenario 1</strong>: Subscription of newly aligned bundle fails if the
+                         reference service is not attached to the Device.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+                         <strong class="ph b">Scenario 2</strong>: Subscription of newly aligned bundle fails if the
+                         reference service is attached to Device but is not active.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+                         <strong class="ph b">Scenario 3</strong>: Subscription of newly aligned bundle fails if the
+                         aligned service has future activation time greater than the reference
+                         subscription expiry time.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+                         <strong class="ph b">Scenario 4</strong>: Aligned bundle expires when the reference service
+                         expires.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+                         <strong class="ph b">Scenario 5</strong>: Subscription instance of newly aligned service aligns to
+                         one with earliest expiry when multiple instances of reference service are
+                         attached to Device.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+                         <strong class="ph b">Scenario 6</strong>: Multiple instances of aligned service aligned to
+                         reference service expire when reference service expires.</p>
+
+</li>
+
+</ul>
+
+<p class="p">
+               <span class="ph uicontrol">Scenario 1: Subscription of newly aligned service (bundle) fails if
+                    reference service (bundle) is not attached to the Device</span>
+          </p>
+
+<p class="p">
+<span class="ph uicontrol">Pre-conditions</span>:</p>
+
+<p class="p">Configure the reference and aligned service (bundle).</p>
+
+<p class="p">Following is the configuration of reference service (bundle):</p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-basebundle_sc1_default.png" />
+          </div>
+
+<p class="p">Following is the configuration of aligned (data boost) service (bundle):</p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-databoost_sc1_default.png" />
+          </div>
+
+<p class="p">Device is not subscribed to reference service (bundle).</p>
+
+<p class="p">
+<span class="ph uicontrol">Flow of events</span>:</p>
+
+<p class="p">Device tries to subscribe to the aligned service (bundle) (DataboostBundle). </p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-device1_sc1_default.png" height="141" width="542" />
+          </div>
+
+<p class="p">The subscription fails with the following error message.</p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-device2_sc1_default.png" />
+          </div>
+
+<p class="p">
+<span class="ph uicontrol">Post-conditions:</span>
+</p>
+
+<p class="p">Subscription to the aligned service (DataboostBundle) fails.</p>
+
+<p class="p">
+               <span class="ph uicontrol">Scenario 2: Subscription of newly aligned bundle fails if the reference
+                    service (bundle) is attached to Device but is not active</span>
+          </p>
+
+<p class="p">
+<span class="ph uicontrol">Pre-conditions:</span>
+</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Base bundle is in <kbd class="ph userinput">PreActive</kbd> state.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Device is updated to subscribe to newly aligned service (bundle). </p>
+
+</li>
+
+</ul>
+
+<p class="p">
+<span class="ph uicontrol">Flow of events:</span>
+</p>
+
+<p class="p">Device tries to subscribe to the aligned service (DataboostBundle). </p>
+
+<p class="p">The subscription fails with the following error message.</p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-error_sc2_default.png" />
+          </div>
+
+<p class="p">
+<span class="ph uicontrol">Post-conditions:</span>
+</p>
+
+<p class="p">Subscription to the aligned service (DataboostBundle) fails.</p>
+
+<p class="p">
+               <span class="ph uicontrol">Scenario 3: Subscription of newly aligned service (bundle) fails if the
+                    referenced service (bundle) has future activation time greater than the
+                    reference subscription expiry time</span>
+          </p>
+
+<p class="p">
+<span class="ph uicontrol">Pre-conditions:</span>
+</p>
+
+<p class="p">Reference service (bundle) is attached to Device and Subscription is in
+                    <kbd class="ph userinput">Active</kbd> state. Expiry time of subscription is 01-07-2020
+               00:00:00.</p>
+
+<p class="p">
+<span class="ph uicontrol">Flow of events:</span>
+</p>
+
+<p class="p">Device tries to subscribe to the aligned service (bundle) having reference to reference service
+               (bundle) with Activation time as 10-07-2020 00:00. </p>
+
+<p class="p">
+<span class="ph uicontrol">Post-conditions:</span>
+</p>
+
+<p class="p">The aligned service (bundle) is not attached to Device and the following error is displayed:</p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-error_default.png" />
+          </div>
+
+<p class="p">
+               <span class="ph uicontrol">Scenario 4: Aligned service (bundle) expires when the reference service
+                    (bundle) expires</span>
+          </p>
+
+<p class="p">
+<span class="ph uicontrol">Pre-conditions:</span>
+</p>
+
+<p class="p">Reference service (bundle) is in <kbd class="ph userinput">Active</kbd> state.</p>
+
+<p class="p">
+<span class="ph uicontrol">Flow of events:</span>
+</p>
+
+<p class="p">Device tries to subscribe to the aligned service (DataboostBundle). The subscription to aligned
+               service (bundle) is successful. </p>
+
+<p class="p">
+<span class="ph uicontrol">Post-conditions:</span>
+</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">As expiration of reference subscription reaches, the subscription with aligned service (bundle)
+                         expires first and then reference subscription expires.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The aligned service (bundle) subscription is moved to <kbd class="ph userinput">Final</kbd> state as per
+                         lifecycle configuration.</p>
+
+</li>
+
+</ul>
+
+<p class="p">
+               <strong class="ph b">Scenario 5: Subscription instance of newly aligned service (bundle) aligns to one
+                    with earliest expiry when multiple instances of reference service (bundle) are
+                    attached to Device</strong>
+          </p>
+
+<p class="p">
+<span class="ph uicontrol">Pre-conditions:</span>
+</p>
+
+<p class="p">Following is the configuration of reference service (BOUBaseBundle). Note that the value of
+                    <span class="ph uicontrol">Service Reference</span> is Null.</p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-base_bundle_default.png" />
+          </div>
+
+<p class="p">Following is the configuration of aligned service (DataboostBundle). Note that the value of
+                    <span class="ph uicontrol">Service Reference</span> has the reference to reference service
+               (BOUBaseBundle). </p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-reference_bundle_default.png" />
+          </div>
+
+<p class="p">Device has two active instances of reference service (bundle) with different expiry time. The
+               first service (bundle) expiry time is 3:14 PM IST and the second one is 3:16 PM IST.
+               There is a difference of two seconds. </p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-device_default.png" height="191" width="778" />
+          </div>
+
+<p class="p">
+<span class="ph uicontrol">Flow of events:</span>
+</p>
+
+<p class="p">Device subscribes to newly aligned service (bundle).</p>
+
+<p class="p">
+<span class="ph uicontrol">Post-conditions:</span>
+</p>
+
+<p class="p">Device makes a call and the reference service (bundle) instance with earlier expiry time expires
+               and moves to <kbd class="ph userinput">PreActive</kbd> state. The aligned service (bundle)
+               instance also expires. </p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-device3_default.png" height="229" width="603" />
+          </div>
+
+<p class="p">
+               <strong class="ph b">Scenario 6: Multiple instances of aligned service (bundle) aligned to reference
+                    service (bundle) expire when reference service (bundle) expires</strong>
+          </p>
+
+<p class="p">
+<span class="ph uicontrol">Pre-conditions:</span>
+</p>
+
+          <p class="p">DeBOU bundle is defined with a 24 hour interval, and data allowance of 500 MB. </p>
+
+<p class="p">Device subscribes to reference service (bundle) and makes a call to move it to
+                    <kbd class="ph userinput">Active</kbd> state.</p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-device_overview_default.png" height="159" width="507" />
+          </div>
+
+<p class="p">Device is updated to add new aligned service (bundle) twice to have multiple instances.</p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-databoost2_default.png" height="189" width="487" />
+          </div>
+
+<p class="p">
+<span class="ph uicontrol">Flow of events:</span>
+</p>
+
+<p class="p">Reference service (bundle) instance expires and moves to <kbd class="ph userinput">PreActive</kbd>
+               state.</p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-device_basebundle_expiry_default.png" height="205" width="492" />
+          </div>
+
+<p class="p">
+<span class="ph uicontrol">Post-conditions:</span>
+</p>
+
+<p class="p">Both the aligned service (bundle) instances also expire and move to <kbd class="ph userinput">Final</kbd>
+               state.</p>
+
+<div class="fig fignone">
+               
+               <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-referenced_bundle_default.png" height="202" width="505" />
+          </div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,1283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Mapping Tables" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e166236" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Mapping Tables</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e166236">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Mapping Tables</h1>
+<div class="body conbody">
+  <p class="p">The mapping tables enables to create read-only tables as ordered lists of keys mapped to
+   ordered lists of values. A mapping provides a lookup that can have multiple input fields (keys)
+   and multiple output fields. A user can have a single key and output field to produce a simple
+   mapping using the same tools as mentioned in the <span class="ph uicontrol">Mapping Tables</span> menu.</p>
+
+  <p class="p">A mapping table defines the input key fields (what it is mapping from), and the output fields
+   (what it is mapping to). The number of input and output fields, and their respective types are
+   assigned by the user. The meaning of the keys and values are customer specific and the meaning of
+   each field is defined using rules. Each call on the mapping tables performs one or more lookups
+   in various tables. The values in one table, can be keys into another table, so tables can be
+   interdependent (one-way).</p>
+
+  <p class="p">NCC supports large list or group mappings used in rules to provide lookups in policy and
+   charging. The mappings are independent of the rules themselves. When data is added to a map, all
+   of the input and output fields must be provided so that when a lookup is done into a map, only an
+   exact match of all input fields (keys) is found. The keys and the combinations of keys in each
+   row must be unique. Multiple entries in mapping tables cannot have the same key value.</p>
+
+  <p class="p">Multiple entries in the mapping table do not have the same key value(s). There can only be one
+   row with the same key values. The row successfully added at the end, with a specific set of keys,
+   is the set of values returned. If you try to add the same row again, it is either blocked or
+   overwrites the previous row.</p>
+
+  <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Click the <em class="ph i">Summary Icon</em> (<img class="image" id="id9yz-09126-ug01-pczza-sp1-d1e166236__image_vpw_4qy_1nb" src="../images/img9yz-09126-ug01-pczza-sp1-distribute_summary_icon_default.png" height="21" width="16" /> ) on the first page of the mapping tables and select <span class="ph uicontrol">Mapping
+    Tables</span>) in the SM GUI, it displays the list of the mapping tables provisioned on
+   different MEs.</div>
+
+  <div class="p">The following options are available while publishing
+   mapping tables:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e166236__ul_xyj_fbh_ysb">
+    <li class="li"><strong class="ph b">Publish To</strong>: This provides a list. Operators can publish to All subscribers and so
+     on.</li>
+
+    <li class="li"><strong class="ph b">Activation Time</strong>: The supported values are as follows:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e166236__ul_yf1_h1h_ysb">
+      <li class="li"><strong class="ph b">Activate Now</strong>: If this is selected, then the charging logic is activated
+       immediately.</li>
+
+      <li class="li"><strong class="ph b">Schedule Activation</strong>: Operators can schedule activation to a future time using this
+       option.</li>
+
+     </ul>
+</li>
+
+   </ul>
+</div>
+
+  <div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e166236__section_e1b_fpj_rwb"><h2 class="title sectiontitle">Importing and exporting multiple mapping tables</h2>
+   
+   <p class="p">Mapping table data can be exported using the SM GUI to a csv file. This can be further used
+    for importing to another NCC system running the same software version.</p>
+
+   <p class="p">From SM GUI on the Mapping tables page, select one or more mapping table items and click the
+     <strong class="ph b">export</strong> icon. On the target system GUI, in the same Mapping tables page, click
+     <strong class="ph b">import</strong> and select the file. </p>
+
+   <p class="p">If multiple mapping tables are exported at once, the downloaded file is in zip format,
+    containing multiple csv files. To import multiple mapping tables at once, you can either import
+    multiple csv files or one zip file containing one csv file or multiple csv files.</p>
+
+   <p class="p">Upon import, if a mapping table already exists and is published, then it is imported as a new
+    draft version of the same mapping table. If a mapping table exists and is not active, then an
+    error is returned. Mapping tables that do not already exist are created but have to be published
+    separately.</p>
+
+   <div class="p">While importing a mapping table, if only one csv file, or a zip file with only one csv file is
+    imported, then the basic details, as shown in the following image, must be provided:<div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e166236__fig_enr_gwy_lyb">
+     <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e166236__image_rzm_hwy_lyb" height="144" src="../images/basic_details_mapping_table.PNG" width="288" />
+    </div>
+The basic details can be configured to provide different details for the imported csv
+    file. It is mandatory to configure the basic details. </div>
+
+   <div class="p">The following table describes the basic details to be provided while importing a single csv
+     file:<table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-d1e166236__table_gpp_5vy_lyb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Basic details for importing a single csv file</span></caption><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e131">Parameter</th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e134">Description</th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e131 ">Table Name</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e134 ">Specifies the name of the mapping table.</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e131 ">Description</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e134 ">Specifies a description for the mapping table.</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e131 ">Version Name</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e134 ">Specifies a version for the mapping table being imported.<div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e166236__note_rwm_lwy_lyb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+          If Version Name parameter is not provided, then NCC generates the parameter value with the
+          following format: <code class="ph codeph">import_&lt;datetime string&gt;</code></div>
+</td>
+
+       </tr>
+
+      </tbody>
+</table>
+<div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e166236__note_w1j_twy_lyb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div>  Basic details are available to be configured only when a
+     single csv file or a zip file with only one csv file is imported.</div>
+</div>
+
+   <p class="p">A file called <var class="keyword varname">config.json</var> is generated upon exporting a mapping table. It
+    contains the definitions and structure of the exported mapping table.</p>
+
+   <p class="p">While importing a mapping table, the <var class="keyword varname">config.json</var> file can also be imported
+    along with the csv files. </p>
+
+   <p class="p">It is optional to import <var class="keyword varname">config.json</var> file. However, if
+     <var class="keyword varname">config.json</var> file is imported along with csv files, then a csv file that is
+    not included in the <var class="keyword varname">config.json</var> file, cannot be imported.</p>
+
+   <p class="p">If a mapping table is defined in the <var class="keyword varname">config.json</var> file but the corresponding
+    csv file is not included while importing the mapping table, then that mapping table cannot be
+    imported.</p>
+
+  </div>
+
+<div class="section"><h2 class="title sectiontitle">Prefixes support in mapping tables</h2>
+<p class="p">The prefix matching feature allows a user to provision a mapping table having keys with different
+    Regex or IP subnet pattern. For example, abc * or 123.247.32*. During a network call, AVPs are
+    passed as keys are matched with keys provisioned with these patterns. This feature allows to
+    provision a mapping table with less number of entries when different set of AVPs lead to the
+    same set of values.</p>
+
+<p class="p">NCC determines the zone for data calls based on MCC, MNC, and SGSN IP address received
+    in the CCR message using rule and mapping table configuration. To minimize the issues of
+    handling huge data and complex configuration, the charging and policy supports the following
+    prefixes or wildcard characters in the mapping tables:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">* (0 to n occurrence)</p>
+
+</li>
+
+<li class="li">
+<p class="p">? (Single characters)</p>
+
+</li>
+
+<li class="li">
+<p class="p">[-] (Range)</p>
+
+</li>
+
+<li class="li">
+<p class="p">(|) OR</p>
+
+</li>
+
+<li class="li">
+<p class="p">{n} where n is the number of occurrences</p>
+
+</li>
+
+<li class="li">
+<p class="p">[^] Not operator</p>
+
+</li>
+
+</ul>
+
+<p class="p">For information on how to provision prefix matching in a mapping table, see the <em class="ph i">Pattern
+     Type</em> definition in the <a class="xref" href="new_topics/versioning_mapping_tables.html#versioning_mapping_tables__Mappingtableconfig2">Configuration</a> section.</p>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example of mapping table provisioned without prefix</strong></p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e285">
+         <p class="p">Key</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e291">
+         <p class="p">Value</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e285 ">40410</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e291 ">INDIA</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e285 ">40411</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e291 ">INDIA</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e285 ">40412</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e291 ">INDIA</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e285 ">30301</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e291 ">SINGAPORE</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e285 ">30302</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e291 ">SINGAPORE</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e285 ">30303</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e291 ">SINGAPORE</td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Using Regex pattern</span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e374">
+         <p class="p">Key</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e380">
+         <p class="p">Value</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e374 ">4041?</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e380 ">INDIA</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e374 ">3030*</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e380 ">SINGAPORE</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e374 ">*</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e380 ">ASIA</td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example of mapping table provisioned without prefix</strong></p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e440">
+         <p class="p">Key</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e446">
+         <p class="p">Value</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e440 ">10.23.29.112</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e446 ">INDIA</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e440 ">10.23.29.255</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e446 ">INDIA</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e440 ">10.23.29.19</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e446 ">INDIA</td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Using IP subnet pattern</span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e501">
+         <p class="p">Key</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e507">
+         <p class="p">Value</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e501 ">10.23.29.0/24</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e507 ">INDIA</td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+</div>
+</div>
+
+  <div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e166236__section_rbx_vh2_4vb"><h2 class="title sectiontitle">Data validation in mapping table</h2>
+   
+   <p class="p">NCC provides the functionality to validate the mapping table entries. While saving the entries
+    of type rate, counter, notification template, or bucket, NCC checks if the entry is of the same
+    type.</p>
+
+   <p class="p">The supported values for keys and values are as follows:</p>
+
+   <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e166236__ul_ntg_tqc_svb">
+    <li class="li">Keys: STRING (default), REGEX_PATTERN, INTEGER, FLOAT, BOOLEAN, TIME, DATE, DATETIME,
+     IP_SUBNET_PATTERN, RATE, COUNTER, BUCKET and NOTIFICATION_TEMPLATE.</li>
+
+    <li class="li">Values: STRING (default), INTEGER, FLOAT, BOOLEAN, TIME, DATE, DATETIME, RATE, COUNTER,
+     BUCKET and NOTIFICATION_TEMPLATE.</li>
+
+   </ul>
+
+   <p class="p">Note the following points about data validation in mapping table:</p>
+
+   <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e166236__ul_otg_tqc_svb">
+    <li class="li">IP_SUBNET_PATTERN can accept both IPv4 and IPv6 IPs.</li>
+
+    <li class="li">If the operator attempts to save an alphabetical character in an integer entry, then NCC
+     rejects the action. The entry cannot be saved.</li>
+
+    <li class="li">Rate: If the rate name is invalid (that is, rate is not provisioned), then the entry cannot
+     be saved.</li>
+
+    <li class="li">Counter: If the counter name is invalid (that is, counter is not provisioned), then the
+     entry cannot be saved.</li>
+
+    <li class="li">Bucket: If the bucket name is invalid (that is, bucket is not provisioned), then the entry
+     cannot be saved.</li>
+
+    <li class="li">Notification Template: If the Notification Template name is invalid (that is, Notification
+     Template is not provisioned), then the entry cannot be saved.</li>
+
+    <li class="li">The syntax of BOOLEAN, TIME, DATE, DATETIME types are as follows:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e166236__ul_ln3_rpy_svb">
+      <li class="li">BOOLEAN: <var class="keyword varname">true</var> or <var class="keyword varname">false</var>. It is case insensitive. Any
+       combination of capital and small letters is accepted.</li>
+
+      <li class="li">TIME: <var class="keyword varname">hh:mm:ss</var></li>
+
+      <li class="li">DATE: <var class="keyword varname">yyyy/mm/dd</var></li>
+
+      <li class="li">DATETIME: <var class="keyword varname">yyyy/mm/dd hh:mm:ss</var></li>
+
+     </ul>
+</li>
+
+   </ul>
+
+   <div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e166236__note_whm_fff_tvb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If mapping table entry validation fails, then error responses are
+    generated. For details on error messages, see <em class="ph i">Error Messages</em> guide.</div>
+
+  </div>
+
+<div class="section"><h2 class="title sectiontitle">Using mapping values in rules</h2>
+   <p class="p">When you have defined the keys and values in the mapping tables, you can use them in various
+    rule scenarios by providing functions to get the value required in the rule. For example:</p>
+
+   <kbd class="ph userinput">QOS_MANAGEMENT.Max-Requested-Bandwidth-UL = ComplexMap.Get-Row-Long("abc",
+    1)</kbd>
+   <p class="p">In the above case, <em class="ph i">ComplexMap.Get-Row-Long("abc", 1)</em> is the function for a specific
+    value and type. The following functions are available by type to get values from a mapping
+    tableping table:</p>
+<ul class="ul">
+    <li class="li">
+     <p class="p">
+      <em class="ph i">Load-Row</em>: If the row is successfully loaded, then this function returns an output as
+       <var class="keyword varname">TRUE</var> else <var class="keyword varname">FALSE</var>. This function takes a row from the
+      specified mapping table (specified my <em class="ph i">mapName</em>) that matches a list of keys and places
+      it in the <em class="ph i">ComplexMap context</em> under the <em class="ph i">rowLabel</em>. Going forward, the individual
+      values in that entry are referenced by <em class="ph i">rowLabel</em> and index value.</p>
+
+     <p class="p">The usage is defined as follows:</p>
+
+     <ul class="ul">
+      <li class="li"><kbd class="ph userinput">ComplexMap.Load-Row-1Key(String mapName, String key1, String
+        rowLabel)</kbd>
+      </li>
+
+      <li class="li"><kbd class="ph userinput">ComplexMap.Load-Row-2Key(String mapName, String key1,String key2, String
+        rowLabel)</kbd>
+      </li>
+
+      <li class="li">...</li>
+
+      <li class="li"><kbd class="ph userinput">ComplexMap.Load-Row-10Key(String mapName, String key1,..., String key10, String
+        rowLabel)</kbd>
+      </li>
+
+     </ul>
+
+     <p class="p">The source context is ComplexMap and the parameters are defined in the following way:</p>
+
+     <ul class="ul">
+      <li class="li"><em class="ph i">mapName</em>: The name of the ComplexMap from which you want to load the row. </li>
+
+      <li class="li"><em class="ph i">keys</em>: The list of key strings that make up the row.</li>
+
+      <li class="li"><em class="ph i">rowlLabel</em>: A label used by other functions to reference the row.  Ensure you make
+       this globally unique if, within the same rule invocation, you are manipulating multiple rows
+       in the same or different mapping tables. You assign the rowLabel in the same manner as a
+       variable: <kbd class="ph userinput">get (Key1, Key2, value...)(rowlabelName)</kbd>
+      </li>
+
+     </ul>
+
+    </li>
+
+    <li class="li"><em class="ph i">Get-Row-Integer</em>: This returns the value from <em class="ph i">rowlLabel</em> row at
+      <em class="ph i">valueIndex</em> index as an integer. The row is loaded using the <em class="ph i">Load-Row</em> function
+     before executing this command. <em class="ph i">Get-Row-Integer</em> converts the underlying string
+     representation into the integer. The integer must be a integer parsed and within the specified
+      range.<p class="p">A row index of 0 refers to the first value in the table and the usage is defined in
+      the following way:</p>
+<p class="p">
+      <kbd class="ph userinput">ComplexMap.Get-Row-Integer(String “rowLabel”, Integer “valueIndex”)</kbd>
+     </p>
+<p class="p">The source context is ComplexMap and the following parameters are defined:</p>
+<ul class="ul">
+      <li class="li"><em class="ph i">rowlLabel</em>: The label assigned to the row when using the <em class="ph i">Load-Row</em>
+       function. </li>
+
+      <li class="li"><em class="ph i">valueIndex</em>: The column in the row where the value is stored.</li>
+
+      <li class="li">For the supported value type, the value(s) must be analyzed in accordance with the following:<p class="p">
+        <a class="xref" href="https://docs.oracle.com/javase/7/docs/api/java/lang/long.html" target="_blank" rel="noopener noreferrer">https://docs.oracle.com/javase/7/docs/api/java/lang/long.html</a>
+       </p>
+</li>
+
+     </ul>
+</li>
+
+    <li class="li"><em class="ph i">Get-Row-String</em>: This returns the value from a <em class="ph i">rowlLabel</em> row at
+      <em class="ph i">valueIndex</em> index as a string. The row is loaded using the <em class="ph i">Load-Row</em> function
+     before executing this command. <em class="ph i">Get-Row-String</em> converts the underlying string
+     representation into the StringValueType.<p class="p">A row index of 0 refers to the first value in the
+      table and the usage is defined in the following way:</p>
+<p class="p">
+      <kbd class="ph userinput">ComplexMap.Get-Row-String(String “rowLabel”, Integer “valueIndex”)</kbd>
+     </p>
+<p class="p">The source context is ComplexMap and the following parameters are defined:</p>
+<ul class="ul">
+      <li class="li">
+       <p class="p">
+        <em class="ph i">rowlLabel</em>: The label assigned to the row when using the <em class="ph i">Load-Row</em>
+        function. </p>
+
+      </li>
+
+      <li class="li">
+       <p class="p">
+        <em class="ph i">valueIndex</em>: The column in the row where the value is stored.</p>
+
+      </li>
+
+     </ul>
+</li>
+
+    <li class="li"><em class="ph i">Get-Row-Boolean</em>: This returns the value from a <em class="ph i">rowlLabel</em> row at
+      <em class="ph i">valueIndex</em> index as <var class="keyword varname">True</var> or <var class="keyword varname">False</var>. The row is
+     loaded using the <em class="ph i">Load-Row</em> function before executing this command. <em class="ph i">Get-Row-Boolean</em>
+     converts the underlying string representation into the EnumValueType (BooleanEnum).<p class="p">A row
+      index of 0 refers to the first value in the table and the usage is defined in the following
+      way:</p>
+<p class="p">
+      <kbd class="ph userinput">ComplexMap.Get-Row-Boolean(String “rowLabel”, Integer “valueIndex”)</kbd>
+     </p>
+<p class="p">The source context is ComplexMap and the following parameters are defined:</p>
+<ul class="ul">
+      <li class="li"><em class="ph i">rowlLabel</em>: The label assigned to the row when using the <em class="ph i">Load-Row</em>
+       function. </li>
+
+      <li class="li"><em class="ph i">valueIndex</em>: The column in the row where the value is stored.</li>
+
+     </ul>
+</li>
+
+    <li class="li"><em class="ph i">Get-Row-Decimal</em>: This returns the value from a <em class="ph i">rowlLabel</em> row at
+      <em class="ph i">valueIndex</em> index as a decimal. The row is loaded using the <em class="ph i">Load-Row</em> function
+     before executing this command. <em class="ph i">Get-Row-Decimal</em> converts the underlying string
+     representation into the DecimalValueType.<p class="p">A row index of 0 refers to the first value in the
+      table and the usage is defined in the following way:</p>
+<p class="p">
+      <kbd class="ph userinput">ComplexMap.Get-Row-Decimal(String “rowLabel”, Integer “valueIndex”)</kbd>
+     </p>
+<p class="p">The source context is ComplexMap and the following parameters are defined:</p>
+<ul class="ul">
+      <li class="li"><em class="ph i">rowlLabel</em>: The label assigned to the row when using the <em class="ph i">Load-Row</em>
+       function. </li>
+
+      <li class="li"><em class="ph i">valueIndex</em>: The column in the row where the value is stored.</li>
+
+      <li class="li">For the supported value type, the value(s) must be analyzed in accordance with the following:<p class="p">
+        <a class="xref" href="https://docs.oracle.com/javase/7/docs/api/java/lang/double.html" target="_blank" rel="noopener noreferrer">https://docs.oracle.com/javase/7/docs/api/java/lang/double.html</a>
+       </p>
+</li>
+
+     </ul>
+</li>
+
+    <li class="li">
+     <p class="p">
+      <em class="ph i">Get-Row-IPAddress</em>: This returns the value from a <em class="ph i">rowlLabel</em> row at
+       <em class="ph i">valueIndex</em> index as an IP address in the supported IPv4 or IPv6 format. The row is
+      loaded using the <em class="ph i">Load-Row</em> function before executing this
+       command. <em class="ph i">Get-Row-IPAddress</em> converts the underlying string representation into the
+      IPAddressValueType.</p>
+
+     <p class="p">A row index of 0 refers to the first value in the table and the usage is defined in the
+      following way:</p>
+
+     <p class="p">
+      <kbd class="ph userinput">ComplexMap.Get-Row-IP_AddressValueType(String “rowLabel”, Integer
+       “valueIndex”)</kbd>
+     </p>
+
+     <p class="p">The source context is ComplexMap and the following parameters are defined:</p>
+
+     <ul class="ul">
+      <li class="li"><em class="ph i">rowlLabel</em>: The label assigned to the row when using the <em class="ph i">Load-Row</em>
+       function.</li>
+
+      <li class="li"><em class="ph i">valueIndex</em>: The column in the row where the value is stored.</li>
+
+     </ul>
+
+    </li>
+
+    <li class="li"><em class="ph i">Get-Row-Input-Key</em>: This returns the comma separated keys from the row label. These
+     keys are loaded during the <em class="ph i">Load-Row</em> function for fetching the data from a mapping table.
+     These keys serve as input for the <em class="ph i">Load-Row</em> function.<p class="p">The usage is defined as
+      follows:</p>
+<p class="p">
+      <kbd class="ph userinput">COMPLEX_MAP.Get-Row-Input-Key(String "rowLabel" )</kbd>
+     </p>
+</li>
+
+    <li class="li"><em class="ph i">Get-Row-Input-Key-By-Index</em>: This returns the only a specific key fetched with the
+     help of <em class="ph i">keyIndex</em>. This key is loaded during the <em class="ph i">Load-Row</em> function for fetching
+     the data from a mapping table.<p class="p">The usage is defined as follows:</p>
+<p class="p">
+      <kbd class="ph userinput">COMPLEX_MAP.Get-Row-Input-Key-By-Index (String "rowLabel", Integer keyIndex
+       )</kbd>
+     </p>
+<p class="p">A key index of 0 refers to the first key.</p>
+</li>
+
+    <li class="li"><em class="ph i">Get-Row-Key</em>: For complex pattern, type <var class="keyword varname">REGEX_PATTERN</var> or
+      <var class="keyword varname">IP_SUBNET_PATTERN</var>, this returns the mapping table row keys with which the
+     provided input keys are matched (using regular expression algorithm or IP subnet matching).
+     This key is loaded during the <em class="ph i">Load-Row</em> function for fetching the data from a mapping
+      table.<p class="p">The usage is defined as follows:</p>
+<p class="p">
+      <kbd class="ph userinput">COMPLEX_MAP.Get-Row-Key ( String "rowLabel" )</kbd>
+     </p>
+</li>
+
+    <li class="li"><em class="ph i">Get-Row-Key-By-Index</em>: For complex pattern, type <var class="keyword varname">REGEX_PATTERN</var> or
+      <var class="keyword varname">IP_SUBNET_PATTERN</var>, this returns only a specific key fetched by providing
+     the <em class="ph i">keyIndex</em>. This key is loaded during the <em class="ph i">Load-Row</em> function for fetching the
+     data from a mapping table.<p class="p">The usage is defined as follows:</p>
+<p class="p">
+      <kbd class="ph userinput">COMPLEX_MAP.Get-Row-Key-By-Index (String "rowLabel", Integer "keyIndex"
+       )</kbd>
+     </p>
+<p class="p">A key index of 0 refers to the first key.</p>
+</li>
+
+   </ul>
+
+  </div>
+
+<div class="section"><h2 class="title sectiontitle">Mapping table examples</h2>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Setting the upload and download bandwidth for a session example</strong></p>
+
+<p class="p">Based on a <em class="ph i">Device Type</em> and <em class="ph i">Carrier</em>, set the upload and download bandwidth for the session whether the SPR device information contains the following custom data:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">
+<em class="ph i">Key1</em> = <em class="ph i">CUSTOM_ATTRIBUTE_NAME</em> = <var class="keyword varname">Carrier</var>, <em class="ph i">value</em> = <var class="keyword varname">nameOfCarrier</var>
+</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<em class="ph i">Key2</em> = <em class="ph i">CUSTOM_ATTRIBUTE_NAME</em> = <var class="keyword varname">Device</var>, value = <var class="keyword varname">nameOfCarrier</var>
+</p>
+
+</li>
+
+</ul>
+
+<p class="p">The <span class="ph uicontrol">CarrierDeviceMappingTable</span> table is considered to define a mapping
+     table. For reference, see the <a class="xref" href="mapping_tables.html#id9yz-09126-ug01-pczza-sp1-d1e166236__carrierdevicemappingtable">CarrierDeviceMappingTable example</a>.</p>
+<ul class="ul">
+<li class="li">
+<p class="p">The header row, indicates your meaning for each field.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The first two columns in the example define the key for the row. <var class="keyword varname">abc+xyz</var> is the key for row 1.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The last four columns in the example define the value for the row. <var class="keyword varname">lteAPN,2000,2000,abc-xyz-LTE</var> is the value for the row.</p>
+
+</li>
+
+<li class="li">
+<p class="p">In a given table, each row must consist of exactly n keys (where n can be between 1 and N).</p>
+
+</li>
+
+<li class="li">
+<p class="p">In a given table, each row must consist of exactly m values (where m can be between 1 and M).</p>
+
+</li>
+
+</ul>
+
+<table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-d1e166236__carrierdevicemappingtable" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>CarrierDeviceMappingTable example</span></caption><colgroup><col /><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1172">
+         <p class="p">Carrier </p>
+
+         <p class="p">(Key_1)</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1181">
+         <p class="p">Device Type </p>
+
+         <p class="p">(Key_2)</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1190">
+         <p class="p">APN</p>
+
+         <p class="p">(Value 0)</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1199">
+         <p class="p">Upload Bandwidth</p>
+
+         <p class="p">(Value 1)</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1208">
+         <p class="p">Download Bandwidth</p>
+
+         <p class="p">(Value 2)</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1218">
+         <p class="p">CDR</p>
+
+         <p class="p">(Value 3)</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1172 ">abc</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1181 ">xyz</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1190 ">lteAPN</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1199 ">2000</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1208 ">2000</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1218 ">abc-xyz-LTE</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1172 ">MNO</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1181 ">xyz</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1190 ">lteAPN</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1199 ">3000</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1208 ">3000</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1218 ">MNO-xyz-LTE</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1172 ">MNO</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1181 ">BB</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1190 ">3G-APN</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1199 ">2000</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1208 ">2000</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1218 ">MNO-BB-3G</td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+<p class="p">You can create the following rule to accomplish:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Loading the row into the ComplexMap context, under the label <var class="keyword varname">bandwidthSelectionRow</var>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Set the <var class="keyword varname">Max-Requested-Bandwidth-UL</var> value in the <em class="ph i">QOS_MANAGEMENT</em> result context to have the value from the second values column.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Set the <var class="keyword varname">Max-Requested-Bandwidth-DL</var> value in the <em class="ph i">QOS_MANAGEMENT</em> result context to have the value from the third values column.</p>
+
+</li>
+
+</ul>
+
+<p class="p">In this example, the row is loaded into the ComplexMap context, under the
+      <em class="ph i">bandwidthSelectionRow</em> rowLabel. Then in the second step, set the
+      <var class="keyword varname">Max-Requested-Bandwidth-UL</var> value in the QOS_MANAGEMENT result context, to
+     have the value from the second values column. Then in the third step, set the
+     Max-Requested-Bandwidth-UL and DL values in the QOS_MANAGEMENT result context, to have the
+     values from the values column.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1360">
+         <p class="p">If...</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1366">
+         <p class="p">Then...</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1360 ">
+         <kbd class="ph userinput">ComplexMap.Load-Row("CarrierDeviceMappingTable", "abc", "xyz”)",
+          "bandwidthSelectionRow")</kbd>
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1366 ">
+         <kbd class="ph userinput">QOS_MANAGEMENT.Max-Requested-Bandwidth-UL =
+          ComplexMap.Get-Row-Long("bandwidthSelectionRow", 1)</kbd>
+         <kbd class="ph userinput">QOS_MANAGEMENT.Max-Requested-Bandwidth-DL =
+          ComplexMap.Get-Row-Long("bandwidthSelectionRow", 2)</kbd>
+       </td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+</div>
+<div class="sectiondiv"><p class="p"><strong class="ph b">Simple mapping example </strong></p>
+<p class="p">Based on a simple mapping, you can map a keyword
+     to one or more fields (as a row) or list of rows. For example, the keyword France could be
+     associated with a single or a list of MCCs. From the time that association is made, the rules
+     engine recognizes this keyword in a way that the user can type location =
+     France.</p>
+<p class="p">Consider the following table named <var class="keyword varname">EuropeTable</var> as one you
+     might use to define a simple map. In this example, if the AVP value in the Gx CCR message
+     matches, the map lookup results in the following way:</p>
+<p class="p">
+     <em class="ph i">Called-Station-ID</em> = <var class="keyword varname">lteAPN</var> in the CCR which matches mapping table
+     lookup result.</p>
+
+    <kbd class="ph userinput">GX.3GPP-User-Location-Info.User-Location-Identity-Type[SAI].MCC = 208 which also
+     matches the map lookup result.</kbd>
+    <p class="p">With this result, the example then assigns the following QoS value to the session via the CCA
+     response:</p>
+
+    <kbd class="ph userinput">Max-Requested-Bandwidth-UL = 3000</kbd>
+    <kbd class="ph userinput">Max-Requested-Bandwidth-DL = 3000</kbd>
+    <p class="p">rowLabel: APN-MCCSelectionRow</p>
+
+    <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>EuropeTable example</span></caption><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1453">
+         <p class="p">Country </p>
+
+         <p class="p">(Key 1)</p>
+
+        </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1462">
+         <p class="p">APN</p>
+
+         <p class="p">(Value 0)</p>
+
+        </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1471">
+         <p class="p">MCC</p>
+
+         <p class="p">(Value 1)</p>
+
+        </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1480">
+         <p class="p">CDR</p>
+
+         <p class="p">(Value 2)</p>
+
+        </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1453 ">France</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1462 ">lteAPN</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1471 ">208</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1480 ">France-LTE</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1453 ">Germany</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1462 ">lteAPN</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1471 ">262</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1480 ">Germany-LTE</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1453 ">Italy</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1462 ">lteAPN</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1471 ">222</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1480 ">Italy-LTE</td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+    <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1554">
+         <p class="p">If...</p>
+
+        </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1560">
+         <p class="p">Then...</p>
+
+        </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1554 ">
+         <kbd class="ph userinput"> ComplexMap.Load-Row(“EuropeTable”, “France”, “APN-MCCSelectionRow”) = true and
+          Gx.Called-Station-ID = ComplexMap.Get-Row-String("APN-MCCSelectionRow ", 0)and
+          GX.3GPP-User-Location-Info.User-Location-Identity-Type[SAI].MCC =
+          ComplexMap.Get-Row-String("APN-MCCSelectionRow", 1)</kbd>
+        </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1560 ">
+         <kbd class="ph userinput">Max-Requested-Bandwidth-UL = 3000</kbd>
+         <kbd class="ph userinput">QOS_MANAGEMENT.Max-Requested-Bandwidth-DL = 3000</kbd>
+        </td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+   </div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Mapping two keywords to one or more fields example</strong></p>
+
+<p class="p">Based on a mapping table, you can map two keywords to one or more fields (as a row) or list of rows. For example, with Key1 equal to MCCMNC, and Key2 equal to callSubType, each row could be associated with values that map a specific rate to a specific country. From the time that association is made, the rules engine recognizes this keyword in a way that allows the user to type in the MCCMNC + callSubType to retrieve the rate charged for a specific country. The map is as follows:</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Rate by country</span></caption><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1620">
+         <p class="p">MCCMNC</p>
+
+         <p class="p">Key1</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1629">
+         <p class="p">callSubType</p>
+
+         <p class="p">Key2</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1638">
+         <p class="p">Rate</p>
+
+         <p class="p">Value1</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1647">
+         <p class="p">Country</p>
+
+         <p class="p">Value2</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1620 ">322124</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1629 ">VOLTE</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1638 ">rate1 </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1647 ">Germany</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1620 ">456234 </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1629 ">VOLTE</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1638 ">rate1 </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1647 ">USA</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1620 ">456122 </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1629 ">VOLTE</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1638 ">rate2 </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1647 ">Canada</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1620 ">322124</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1629 ">PS-Data</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1638 ">rate1 </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1647 ">Germany</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1620 ">456234</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1629 ">PS-Data</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1638 ">rate1 </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1647 ">USA</td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example for reference-based map</strong></p>
+
+<p class="p">Following is the example of reference-based map (<var class="keyword varname">REFMAP</var>, version = v1) with version v1:</p>
+<ol class="ol">
+<li class="li">Create a device.</li>
+
+<li class="li">Create string based device custom data <var class="keyword varname">CD_APN</var>.</li>
+
+<li class="li">Create two mapping tables <var class="keyword varname">APN_1</var> and <var class="keyword varname">QOS_1</var> (non-referenced
+      based maps).</li>
+
+<li class="li">Create reference based mapping table with name <var class="keyword varname">REFMAP</var> with version v1. Here
+      the values <var class="keyword varname">QOS_1</var> and <var class="keyword varname">APN_1</var> are the map names or
+      reference of existing maps created above.<table cellpadding="4" cellspacing="0" summary="" class="table" width="90%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>APN_1 example</span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+         <tr class="row">
+          <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1797">Key1</th>
+
+          <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1800">Value1</th>
+
+         </tr>
+
+        </thead>
+<tbody class="tbody">
+         <tr class="row">
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1797 ">APNNAME</td>
+
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1800 ">auto_apn</td>
+
+         </tr>
+
+         <tr class="row">
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1797 ">APNEPC</td>
+
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1800 ">apnEpc</td>
+
+         </tr>
+
+        </tbody>
+</table>
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="90%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>QOS_1 example</span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+         <tr class="row">
+          <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1842">Key1</th>
+
+          <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1845">Value1</th>
+
+         </tr>
+
+        </thead>
+<tbody class="tbody">
+         <tr class="row">
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1842 ">BR_DL</td>
+
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1845 ">4500</td>
+
+         </tr>
+
+        </tbody>
+</table>
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="90%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>REFMAP example</span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+         <tr class="row">
+          <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1878">
+           <p class="p">Key1</p>
+
+          </th>
+
+          <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1884">
+           <p class="p">Value1</p>
+
+          </th>
+
+         </tr>
+
+        </thead>
+<tbody class="tbody">
+         <tr class="row">
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1878 ">QOS</td>
+
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1884 ">QOS_1</td>
+
+         </tr>
+
+         <tr class="row">
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1878 ">APN</td>
+
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1884 ">APN_1</td>
+
+         </tr>
+
+        </tbody>
+</table>
+</li>
+
+<li class="li">Create an RSV and create two rule variables <var class="keyword varname">APNGROUP</var> and
+       <var class="keyword varname">QOSGOUP</var> in the <em class="ph i">QOS_MANAGEMENT</em> trigger.<table cellpadding="4" cellspacing="0" summary="" class="table" width="90%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>APNGROUP</span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+         <tr class="row">
+          <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1941">If...</th>
+
+          <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1944">Then...</th>
+
+         </tr>
+
+        </thead>
+<tbody class="tbody">
+         <tr class="row">
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1941 ">COMPLEX_MAP.Load-Row-1Key ( "REFMAP", "APN", "REFMAPROWS" ) =
+           BooleanEnum_TRUE</td>
+
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1944 ">COMPLEX_MAP.Get-Row-String ( "REFMAPROWS", 0)</td>
+
+         </tr>
+
+        </tbody>
+</table>
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="90%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>QOSGOUP</span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+         <tr class="row">
+          <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1977">If...</th>
+
+          <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e1980">Then...</th>
+
+         </tr>
+
+        </thead>
+<tbody class="tbody">
+         <tr class="row">
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1977 ">COMPLEX_MAP.Load-Row-1Key ( "REFMAP", "QOS", "REFMAPROWS" ) =
+           BooleanEnum_TRUE</td>
+
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e1980 ">COMPLEX_MAP.Get-Row-String ( "REFMAPROWS", 0)</td>
+
+         </tr>
+
+        </tbody>
+</table>
+<img class="image" src="../images/img9yz-09126-ug01-pczza-sp1-reference_based_map_example_default.png" />
+      <p class="p">Above rule variables fetch mapping tables <var class="keyword varname">APN_1</var> and
+        <var class="keyword varname">QOS_1</var> from reference map <var class="keyword varname">REFMAP</var>.</p>
+
+     </li>
+
+<li class="li">Add two rule groups <var class="keyword varname">RT_APN</var> and <var class="keyword varname">RT_QOS</var> with the following
+      condition <var class="keyword varname">RT_APN</var> using the above rule variables. <table cellpadding="4" cellspacing="0" summary="" class="table" width="90%" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+         <tr class="row">
+          <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e2038">If...</th>
+
+          <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e2041">Then...</th>
+
+         </tr>
+
+        </thead>
+<tbody class="tbody">
+         <tr class="row">
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e2038 ">COMPLEX_MAP.Load-Row-1Key (@APNGROUP, "APNNAME", "setapn" ) = BooleanEnum_TRUE and
+           GX_MSG_SESSION.Called-Station-ID = COMPLEX_MAP.Get-Row-String ( "setapn", 0)</td>
+
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e2041 ">SPR_DEVICE.Custom-Data-Add ( "CD_APN", COMPLEX_MAP.Get-Row-String ( "setapn", 0 )
+           )</td>
+
+         </tr>
+
+        </tbody>
+</table>
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="90%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>RT_QOS</span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+         <tr class="row">
+          <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e2074">If...</th>
+
+          <th class="entry cellrowborder" style="vertical-align:top;" id="d396323e2077">Then...</th>
+
+         </tr>
+
+        </thead>
+<tbody class="tbody">
+         <tr class="row">
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e2074 ">COMPLEX_MAP.Load-Row-1Key ( @QOSGROUP, "BR_DL", "setqos" ) =
+           BooleanEnum_TRUE</td>
+
+          <td class="entry cellrowborder" style="vertical-align:top;" headers="d396323e2077 ">DSC.APN-Aggregate-Max-Bitrate-DL = COMPLEX_MAP.Get-Row-Long ( "setqos", 0 )
+          </td>
+
+         </tr>
+
+        </tbody>
+</table>
+<img class="image" src="../images/img9yz-09126-ug01-pczza-sp1-mapping_table_rule_example_default.png" />
+     </li>
+
+<li class="li">Trigger GX call and see the custom data is attached to the device and QOS is updated as given in
+      mapping table.<p class="p">If user has to make any modifications in the map <var class="keyword varname">REFMAP</var>,
+       then the user can clone new version of same map (REFMAP,version:v2) make the changes,
+       provision it on selected ME without any change on RSV.</p>
+</li>
+
+</ol>
+
+</div>
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

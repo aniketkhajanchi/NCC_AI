@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Generic RAR Throttling per PGW" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="concept_p4f_qr5_z4b" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Generic RAR Throttling per PGW</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="concept_p4f_qr5_z4b">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Generic RAR Throttling per PGW</h1>
+<div class="body conbody">
+        <p class="p">Currently NCC does not control the count of outbound Request(RAR) sent across the GW and
+            on cases where bulk outbound request are done that can make the GW unstable.</p>
+
+        <div class="p">So flexibility is included to NCC which gives the throttling on outbound requests, that
+            defines the limit by which NCC governs control for outbound request and prevents the GW
+            from being bombarded.<table cellpadding="4" cellspacing="0" summary="" id="concept_p4f_qr5_z4b__table_od4_yr5_z4b" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters in OutboundConfig</span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d375638e45">Property Name</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d375638e48">Property Description</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d375638e45 ">RAR Scheduler Rate / Notify Scheduler Rate</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d375638e48 ">This shows the number of RARs/Notify to be sent in 1 sec. If this
+                                value is 0, it means throttling is disabled. If the value is greater
+                                than 0 and less than and equal to 99999, it means that the
+                                throttling is enabled.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d375638e45 ">RAR Pacing factor / Notify Pacing factor</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d375638e48 ">
+                                <p class="p">This determines the pacing at which RAR / Notify is throttled.
+                                    This decides how many RAR / Notify is sent in 1 burst and the
+                                    time interval between two consecutive bursts. </p>
+
+                                <p class="p">Number of RAR / Notify in 1 burst = (RAR / Notify Scheduler Rate)
+                                    / (RAR / Notify Pacing factor)</p>
+
+                                <div class="p">Time interval between two consecutive bursts (in milliseconds) =
+                                    1000 / (RAR / Notify) Pacing factor<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This is the tuning
+                                        parameter, hence its value must not be too large (the
+                                        recommended value is 1 to 10). Default value is
+                                    1.</div>
+</div>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d375638e45 ">RAR Polling interval / Notify Polling Interval</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d375638e48 ">This parameter is used to define the RAR / Notify message
+                                timeout. This value is in milliseconds.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d375638e45 ">RAR Throttling Category List / Notify Throttling Category
+                                List</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d375638e48 ">This contains the list of categories on which throttling is
+                                applied like AUDIT, PROVISIONING and ON_CALL. Default value is
+                                PROVISIONING.</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+</div>
+
+        <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+            <ol class="ol" id="concept_p4f_qr5_z4b__ol_ht3_cy5_z4b">
+                <li class="li">Rate of <em class="ph i">rar</em> or <em class="ph i">notify</em> on each app node = (<em class="ph i">rarSchedularRate</em>
+                    / <em class="ph i">notifySchedularRate</em> configured) or number of active node .</li>
+
+                <li class="li">If any calculation ends up with the floating point number, then the fractional
+                    part is discarded. For example: [<var class="keyword varname">10.4 = 10, 0.4 = 1, 100.9999 =
+                        100</var> and so on ] </li>
+
+            </ol>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Applying device attachment event for the specific traffic scenarios" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="dev_attach_event_sp_traffic" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Applying device attachment event for the specific traffic scenarios</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="dev_attach_event_sp_traffic">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Applying device attachment event for the specific traffic scenarios</h1>
+<div class="body conbody">
+        <p class="p">By default, device attachment is triggered by all types of traffic. This feature enables
+            the operator to trigger device attachment lifecycle event based on specific traffic
+            scenarios described as follows: </p>
+
+        <ul class="ul" id="dev_attach_event_sp_traffic__ul_ply_wq2_tpb">
+            <li class="li">For PS charging: 32251@3gpp.org (GY)</li>
+
+            <li class="li">For IMS charging: 32260@3gpp.org. <p class="p">The following sub-types are also
+                    supported:</p>
+<ul class="ul" id="dev_attach_event_sp_traffic__ul_uj4_br2_tpb">
+                    <li class="li">IMS-MOC: Role of Node = 0</li>
+
+                    <li class="li">IMS-MTC: Role of Node = 1</li>
+
+                    <li class="li">IMS-FWD: Role of Node = 2 or 0 and MMTel Service Type = 6</li>
+
+                </ul>
+</li>
+
+            <li class="li">For MMS charging: 32270@3gpp.org</li>
+
+            <li class="li">For SMS charging: 32274@3gpp.org</li>
+
+        </ul>
+
+        <div class="section" id="dev_attach_event_sp_traffic__section_jhw_3w2_tpb"><h2 class="title sectiontitle">Rule configuration</h2>
+            
+            <div class="sectiondiv"><strong class="ph b">Source context</strong><p class="p">The Device life cycle state can be configured in the
+                    condition attribute <var class="keyword varname">Entity-LifeCycle_State</var> in the
+                        <var class="keyword varname">GY_PRE_PROCESSING</var> trigger and
+                        <var class="keyword varname">SPR_DEVICE</var> result context. The lifecycle event is
+                    triggered only if the Device is in <var class="keyword varname">pre-active</var>
+                state.</p>
+</div>
+            <div class="sectiondiv"><strong class="ph b">Result context</strong><p class="p">The action attribute
+                        <var class="keyword varname">Trigger-Life-Cycle-Event</var> is available for the triggers
+                        <var class="keyword varname">GY_PRE_PROCESSING</var> and
+                        <var class="keyword varname">RESOURCE_POST_PROCESSING</var>, in the result contexts
+                        <var class="keyword varname">GY_PRE_PROCESSING</var> and
+                        <var class="keyword varname">RESOURCE_POST_PROCESSING</var>, respectively. The value of this
+                    attribute can be set to a custom string based on the configured condition. It is
+                    available only for Device life cycle. The following table provides some example
+                    usages of the attribute:</p>
+<table cellpadding="4" cellspacing="0" summary="" id="dev_attach_event_sp_traffic__table_ppc_jw2_tpb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:30.177514792899412%" /><col style="width:29.585798816568047%" /><col style="width:40.23668639053255%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d154687e113">Trigger</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d154687e116">Result context</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d154687e119">Example</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d154687e113 ">GY_PRE_PROCESSING</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d154687e116 ">GY_PRE_PROCESSING</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d154687e119 ">GY_PRE_PROCESSING.Trigger-Life-Cycle-Event ("activateDevice",
+                                    TriggerLifeCycleEntityTypeAsDevice_DEVICE)</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d154687e113 ">RESOURCE_POST_PROCESSING</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d154687e116 ">RESOURCE_POST_PROCESSING</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d154687e119 ">RESOURCE_POST_PROCESSING.Trigger-Life-Cycle-Event
+                                    ("activateAccount",
+                                    TriggerLifeCycleEntityTypeAsAccount_ACCOUNT)</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

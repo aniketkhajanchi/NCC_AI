@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Special handling for active/passive pods" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="Bookmark24" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Special handling for active/passive pods</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="Bookmark24">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Special handling for active/passive pods</h1>
+<div class="body conbody">
+    <p class="p">NCC has some special pods that must operate with all traffic going through a single pod at a
+      time. In these cases, NCC uses a 1+1 active/passive architecture. A single pod is considered
+      active and takes all of the traffic. A second pod sits ready to accept requests if anything
+      happens to the first pod.</p>
+
+    <p class="p">Pods store regular health updates that are monitored to trigger promotion of the standby pod
+      to active. There can be a brief period after an active pod fails before the standby pod is
+      promoted. Each pod reports its status every two seconds and switches the active service after
+      three seconds with no response.</p>
+
+    <p class="p">The IOHD and centralmanagement pods use this pattern.</p>
+
+    <p class="p">IOHD handles diameter calls. Its ability to accept incoming calls is tied to the
+      centralmanagement pod. Kubernetes liveness probes return false if the IOHD pod has problems.
+      The Kubernetes readiness probes return false if the centralmanagement pod finds that any
+      dependent pods have problems. This results in the IOHD possibly being healthy and reporting
+      true for the liveness probe so the pod is not taken away. This same IOHD pod may say its
+      readiness probe is false because some downstream pods have issues, causing Kubernetes to stop
+      sending traffic to the pod.</p>
+
+    <p class="p">The active IOD updates its status in Aerospike every two seconds. The standby IOHD monitors
+      that record and takes over if the active IOD hasn’t updated for three seconds. Then the
+      Diameter stack gets started on the new active IOHD pod and it takes up to 10 seconds for it to
+      become ready and start accepting connection requests and traffic. Timing and network flows
+      beyond that are dependent on the connected Packet Gateways (PGWs), including how frequently
+      they try to re-establish connections and resume sending traffic to that NCC system. Some PGW
+      may be sending retries or even first attempts to the mate NCC during the IOHD failover. That
+      NCC tries to establish a Diameter connection to the recovered NCC and forwards traffic to it
+      for its primary subscribers.</p>
+
+    <p class="p">Generally PGWs can be configured to retry to the mate NCC. However, if the primary route is
+      down, there must be at least a secondary destination for CCR-I (realm, no destination host),
+      i.e. primary destination is NCC1 and secondary destination is NCC2. Sometimes realm routing is
+      configured to be round robin between both NCCs. There must also be a secondary route for each
+      NCC destination host via the other NCC. i.e. NCC1 is an adjacent host for PGW1, but PGW1
+      should have an alternate route to NCC1 via NCC2. Then if a CCR-U/T request has a DH = NCC1 but
+      there is no connection to NCC1, the PGW automatically sends to NCC2, thinking it is a path to
+      NCC1. If NCC1 is down, NCC2 just processes the request. If NCC1 is In-Service (which NCC2 can
+      determine from either the HTTP or the Diameter heartbeat), then NCC2 forwards the request to NCC1
+      if a Diameter connection is available. If no such connection is available (for example, during
+      an IOHD switchover in progress on the In-Service NCC1), then the request is rejected.</p>
+
+  </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

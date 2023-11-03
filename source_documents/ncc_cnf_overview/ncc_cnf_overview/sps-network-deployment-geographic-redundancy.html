@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Geographic redundancy in network deployments" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9YZ-09018-UG00-PCZZA-d1e8183" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Geographic redundancy in network deployments</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9YZ-09018-UG00-PCZZA-d1e8183">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Geographic redundancy in network deployments</h1>
+<div class="body conbody">
+        <p class="p">For more information on network deployments, see <a class="xref" href="network_deployment.html">Network deployment</a>.</p>
+
+        <div class="section" id="id9YZ-09018-UG00-PCZZA-d1e8183__section_cdy_ht3_nlb"><h2 class="title sectiontitle">Independent pairs of ME subsystems</h2>
+            
+            <p class="p">In networks deploying the Independent pairs of ME subsystems model, the operator’s
+                network is responsible for routing all incoming traffic to the proper pair of ME
+                subsystems. The ME subsystem receiving the incoming message can then determine
+                whether it is serving as the current active home for the subscriber or device of
+                that message, or whether it needs to forward the message to the other ME subsystem
+                in the pair. The index mapping tables used for site routing are limited in scope to
+                only the subscribers / devices in that particular ME subsystem pair.</p>
+
+            <div class="p">This figure shows independent pairs of ME subsystems. <div class="fig fignone" id="id9YZ-09018-UG00-PCZZA-d1e8183__fig_bc1_llz_cmb"><span class="figcap"><span class="fig--title-label">Figure: </span>Independent pairs of ME subsystems</span>
+                    
+                    <img class="image imagecenter break" id="id9YZ-09018-UG00-PCZZA-d1e8183__image_cc1_llz_cmb" src="images/cnf_overview_Independent-ME-pairs.GIF" height="185" width="369" />
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Networked pairs of ME subsystems</h2>
+            
+            <p class="p">In networks deploying the Networked pairs of ME subsystems model, the operator’s
+                network can route incoming messages to any of the ME subsystems. The ME subsystem
+                receiving the incoming message can then determine whether it is serving as the
+                current active home for the subscriber or device of that message, or whether it
+                needs to forward the message to another ME subsystem in the network. In this
+                deployment model, every ME subsystem can forward a message to any other ME subsystem
+                in the network, not limited to just the other ME subsystem in this pair. This
+                simplifies the responsibilities of the operator’s routing.</p>
+
+            <p class="p">An NCC network deployment can have multiple pairs of ME subsystems. Each pair
+                contains one data partition and device/group/account data is replicated only within
+                that particular pair. Traffic failover always occurs only within that particular
+                pair. The global mapping tables on the ME subsystem contain the data for all ME
+                subsystems in the entire network, not just for this pair. In this way, a call can
+                land on any ME subsystem in any pair and it is correctly routed to the active ME
+                subsystem for that device. So, while the device/group/account data is replicated
+                only within the single pair of ME subsystems, the global mapping tables are N-way
+                replicated between all ME subsystems. With this NCC architecture, there is no need
+                for external network routers. This architecture also allows devices to roam between
+                regions and have their transactions always routed back to the home ME subsystem,
+                regardless of which ME subsystem pair received the transaction from the roaming
+                device.</p>
+
+            <p class="p">With networked pairs, similar to independent pairs, the majority of data is
+                replicated only within that particular ME subsystem pair. The difference is that
+                with networked pairs, the index mapping tables used for site routing to the
+                currently active home ME subsystem, is replicated amongst all ME subsystems in the
+                network. Thus, if there are six ME subsystems in the network, this index mapping
+                data is six-way replicated across all of them. An update by any one of the ME
+                subsystems is replicated to all others.</p>
+
+            <div class="p">This figure shows networked pairs of ME subsystems. <div class="fig fignone" id="id9YZ-09018-UG00-PCZZA-d1e8183__fig_a2t_ms5_cmb"><span class="figcap"><span class="fig--title-label">Figure: </span>Networked pairs of ME subsystems</span>
+                    
+                    <img class="image imagecenter break" id="id9YZ-09018-UG00-PCZZA-d1e8183__image_b2t_ms5_cmb" src="images/cnf_overview_networked-ME-pairs.GIF" height="185" width="287" />
+                </div>
+</div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

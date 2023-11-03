@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="task" />
+<meta name="DC.title" content="Installing CCTF on NCS" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="installing_cctf_on_bcmt" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Installing CCTF on NCS</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="installing_cctf_on_bcmt">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Installing CCTF on NCS</h1>
+<div class="body taskbody">
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div>
+            <p class="p">This procedure describes how to install CCTF on Nokia Container Services (NCS).</p>
+
+            <p class="p">Execute the following commands from the Kubernetes NCS control node as
+                    <code class="ph codeph">root</code>.</p>
+
+        </div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">Create an override file <code class="ph codeph">cctf-overrides.yaml</code> with the given
+                    content:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>cat &lt;&lt;EOF &gt; cctf-overrides.yaml
+threeButtonsAPI:
+  enabled: true
+storageSize: "2Gi"
+controller:
+  config:
+    proxy-body-size: 100m
+EOF</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Get the CCTF Helm chart (part of the NCC delivery).</span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Install CCTF with name <code class="ph codeph">cctf</code> in namespace
+                    <code class="ph codeph">cctf</code>, and with the values defined in the override file (in step
+                    1):</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>helm install cctf-&lt;version&gt;.tgz --name cctf --namespace cctf -f cctf-overrides.yaml</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Verify the installation:</span>
+                <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol type="a" class="ol substeps" id="installing_cctf_on_bcmt__substeps_hfd_bb2_r4b">
+                    <li class="li substep substepexpand">
+                        <span class="ph cmd">Check that the CCTF pod exists in the <code class="ph codeph">cctf</code>
+                            namespace:</span>
+                        <div class="itemgroup info">
+                            <pre class="pre codeblock"><code>kubectl get pods -n cctf</code></pre>
+                            <p class="p">Example output:</p>
+
+                            <pre class="pre codeblock"><code>NAME                            READY   STATUS    RESTARTS   AGE
+cctf-cctf-5f8df9b7bd-f2b6g      2/2     Running   0          82s
+cctf-cmdbmariadb-mariadb-0      1/1     Running   0          82s
+cctf-jenkins-6c7dc784b9-4w6mp   1/1     Running   0          82s</code></pre>
+                        </div>
+                    </li>
+
+                    <li class="li substep substepexpand">
+                        <span class="ph cmd">Check that the CCTF service exists in the <code class="ph codeph">cctf</code>
+                            namespace:</span>
+                        <div class="itemgroup info">
+                            <pre class="pre codeblock"><code>kubectl get svc -n cctf</code></pre>
+                            <p class="p">Example output:</p>
+
+                            <pre class="pre codeblock"><code>NAME                     TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+cctf-cctf                ClusterIP   10.254.247.193   &lt;none&gt;        80/TCP,443/TCP   94s
+cctf-cmdbmariadb-mysql   ClusterIP   10.254.78.154    &lt;none&gt;        3306/TCP         94s
+cctf-jenkins             ClusterIP   10.254.90.123    &lt;none&gt;        8080/TCP         94s
+cctf-jenkins-agent       ClusterIP   10.254.129.60    &lt;none&gt;        50000/TCP        94s
+</code></pre>
+                        </div>
+                    </li>
+
+                </ol>
+
+            </li>
+</ol>
+
+    </div>
+<div class="footer"><hr /><p>DevOps Guide • P556766-DN1000055058-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

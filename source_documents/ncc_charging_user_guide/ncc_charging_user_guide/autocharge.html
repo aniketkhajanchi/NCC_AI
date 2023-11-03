@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Auto-charge notification" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-autocharge" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Auto-charge notification</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-autocharge">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Auto-charge notification</h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">This feature provides the functionality to automatically recharge or renew a device or group when <em class="ph i">subscription is about to expire</em> or <em class="ph i">subscription is about to empty</em>:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">In case of <em class="ph i">subscription is about to expire</em> scenario, when the <em class="ph i">Send Notification</em>
+                        action triggers in the lifecycle of a device or group, then NCC checks the
+                        special custom data in the device or group to decide which <em class="ph i">Notification
+                            Template ID</em> is being sent. The notification template should include
+                            <em class="ph i">DeviceId</em> or <em class="ph i">GroupID</em>, <em class="ph i">Notification Template ID</em>, and
+                            <em class="ph i">Bundle ID</em>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Similarly, for the <em class="ph i">subscription is about to empty</em> scenario, the threshold for a device or
+                        group is configured for a desired value and when the threshold triggers, NCC
+                        checks the special custom data in the device or group to decide which
+                            <em class="ph i">Notification Template ID</em> is being sent. The notification template
+                        should include <em class="ph i">DeviceId</em> or <em class="ph i">GroupID</em>, <em class="ph i">Notification Template
+                            ID</em>, and <em class="ph i">Bundle ID</em>.</p>
+
+</li>
+
+</ul>
+
+<p class="p">The auto-charge notification is sent by NCC to the third-party entity through notification of
+                http type, which is configured in the Notification Server for notification template
+                used for the auto-charge feature. On receiving the auto-charge notification for a
+                group, the third-party entity performs some set of steps to attach a new bundle to
+                the group using template feature.</p>
+
+<p class="p">For example, <em class="ph i">ACNotifSetting</em> is a custom data attribute of the group or the device. Its
+                value is enabled when the auto-charge feature is enabled. If the
+                    <em class="ph i">ACNotifSetting</em> is enabled, then NCC sends auto-charge notification
+                template. Otherwise, NCC sends expiry notification template.</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-autocharge__table_lhl_vwl_r4b" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Notification variables for sending auto-charge notification</span></caption><colgroup><col style="width:20%" /><col style="width:31.37724550898204%" /><col style="width:24.550898203592812%" /><col style="width:11.976047904191617%" /><col style="width:12.095808383233534%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d181037e125">
+                                <p class="p">Variable name</p>
+
+                            </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d181037e131">
+                                <p class="p">Description</p>
+
+                            </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d181037e137">
+                                <p class="p">Format</p>
+
+                            </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d181037e143">
+                                <p class="p">Count</p>
+
+                            </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d181037e149">
+                                <p class="p">Mandatory/ Optional</p>
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d181037e125 ">SubscriberCD</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d181037e131 ">This parameter is populated by the custom data associated with a
+                                device or group, which is filled by the operator provisioning
+                                system.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d181037e137 ">
+                                <p class="p">Alphanumeric characters (a to z, A to Z, 0 to 9), hyphen,
+                                    underscore, @</p>
+
+                                <p class="p">This parameter supports a maximum of 20 characters.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d181037e143 ">1</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d181037e149 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d181037e125 ">ShareID</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d181037e131 ">This parameter indicates the <em class="ph i">GroupID</em> linked to the
+                                subscription.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d181037e137 ">
+                                <p class="p">Alphanumeric characters (a to z, A to Z, 0 to 9), hyphen,
+                                    underscore</p>
+
+                                <p class="p">This parameter supports a maximum of 30 characters.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d181037e143 ">1</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d181037e149 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d181037e125 ">AutoChargePlanName</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d181037e131 ">This parameter indicates the string read from the group custom
+                                data that is filled by the operator provisioning system.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d181037e137 ">This parameter supports a maximum of 15 characters.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d181037e143 ">1</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d181037e149 ">Mandatory</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+</div>
+
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_n2l_ywl_r4b"><h2 class="title topictitle2" id="ariaid-title2">Sending auto-charge notification - Threshold</h2>
+<div class="body conbody">
+            <div class="section" id="concept_n2l_ywl_r4b__section_ncp_zwl_r4b">
+                <p class="p">To send the notification using threshold, the configuration is first defined at
+                    the <span class="ph uicontrol">Aggregate View</span> under the <span class="ph uicontrol">Platform &amp;
+                        Common</span> . This <span class="ph uicontrol">Aggregate View</span>
+                    configuration is further attached to a group or device.</p>
+
+            </div>
+
+            <div class="section" id="concept_n2l_ywl_r4b__section_ynf_1xl_r4b"><h3 class="title sectiontitle">Example for sending auto-charge notification when device subscription is
+                    about to expire</h3>
+                
+                <p class="p">Consider a device that executes a threshold action (<em class="ph i">SendNotification</em>) when
+                    the <em class="ph i">Aggregate View</em> associated with the device and the auto-charge feature
+                    is enabled for the device.</p>
+
+                <div class="sectiondiv">
+                    <p class="p">
+                        <strong class="ph b">Configuration:</strong>
+                    </p>
+
+                    <ol class="ol" id="concept_n2l_ywl_r4b__ol_ocp_zwl_r4b">
+                        <li class="li"><p class="p">Create three custom data as shown in the following figure:</p>
+<img class="image" id="concept_n2l_ywl_r4b__image_pcp_zwl_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-auto-charge_feature_custom_data_use_case1_default.png" height="65" width="698" />
+                        </li>
+
+                        <li class="li"><p class="p">Create a threshold profile group, which is set to
+                                    <em class="ph i">ABSOLUTE_FROM_END</em> with <em class="ph i">SendNotification</em> action and
+                                three notification variables (<em class="ph i">ShareID</em>, <em class="ph i">SubcscriberCD</em>,
+                                and <em class="ph i">AutoChargePlanName</em>) as shown in the following
+                                figure:</p>
+<img class="image" id="concept_n2l_ywl_r4b__image_qcp_zwl_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-auto-charge_feature_threshold_config_use_case1_default.png" height="145" width="614" />
+                        </li>
+
+                        <li class="li"><p class="p">Attach this threshold profile group to the <em class="ph i">Aggregate View</em> as
+                                shown in the following figure:</p>
+<img class="image" id="concept_n2l_ywl_r4b__image_rcp_zwl_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-auto-charge_feature_aggregate_view_use_case1_default.png" />
+                        </li>
+
+                        <li class="li"><p class="p">Attach this <em class="ph i">Aggregate View</em> to the device with the following
+                                two subscriptions:</p>
+<ol class="ol" type="a" id="concept_n2l_ywl_r4b__ol_scp_zwl_r4b">
+                                <li class="li">
+                                    <p class="p"><var class="keyword varname">Subscription1</var> for <var class="keyword varname">Bkt1=20
+                                            bytes</var></p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p"><var class="keyword varname">Subscription2</var> for <var class="keyword varname">Bkt2=70
+                                            bytes</var></p>
+
+                                </li>
+
+                            </ol>
+<img class="image" id="concept_n2l_ywl_r4b__image_tcp_zwl_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-auto-charge_feature_device_config_use_case1_default.png" />
+                        </li>
+
+                    </ol>
+
+                </div>
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_sn3_xvl_r4b"><h2 class="title topictitle2" id="ariaid-title3">Sending auto-charge notification - lifecycle</h2>
+<div class="body conbody">
+            <div class="section" id="concept_sn3_xvl_r4b__section_wxm_zvl_r4b"><h3 class="title sectiontitle">Example for sending auto-charge notification when subscription is about to
+                    expire</h3>
+                
+                <p class="p">This scenario is performed to verify the notification parameter on REST API when
+                    the <em class="ph i">SendNotification</em> action is configured on a subscription periodic
+                    lifecycle with bundle about to expire and auto-charge functionality enabled on
+                    device configurable custom data.</p>
+
+            </div>
+
+            <div class="section" id="concept_sn3_xvl_r4b__section_hfx_xvl_r4b">
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Configuration:</strong></p>
+
+                    <ol class="ol" id="concept_sn3_xvl_r4b__ol_ifx_xvl_r4b">
+                        <li class="li">
+                            <p class="p">Create three custom data, namely <em class="ph i">ACNotifSetting</em>,
+                                    <em class="ph i">GroupID</em>, and <em class="ph i">AutoChargePlan</em>.</p>
+
+                        </li>
+
+                        <li class="li"><p class="p">Create a periodic lifecycle with about to expire and with
+                                    <em class="ph i">SendNotification</em> action and rule with custom data
+                                attribute to enable the auto-charge feature and notification
+                                variables as shown in the following figure:</p>
+<img class="image" id="concept_sn3_xvl_r4b__image_jfx_xvl_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-auto-charge_feature_lifecycle_config_use_case2_default.png" height="315" width="778" />
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create a bundle with periodic lifecycle.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">The auto-charge notification can be either sent to a device or a
+                                group or both performing either of the following steps:</p>
+
+                            <ul class="ul" id="concept_sn3_xvl_r4b__ul_kfx_xvl_r4b">
+                                <li class="li"><p class="p">Create a device with the three custom data attributes that
+                                        were created in the first step.</p>
+<img class="image" id="concept_sn3_xvl_r4b__image_lfx_xvl_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-auto-charge_feature_lifecycle_config2_default.png" height="249" width="770" />
+                                </li>
+
+                                <li class="li"><p class="p">Create a group with the three custom data attributes that
+                                        were created in the first step.</p>
+<img class="image" id="concept_sn3_xvl_r4b__image_mfx_xvl_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-auto-charge_feature_lifecycle_group_config_default.png" height="246" width="769" />
+                                </li>
+
+                                <li class="li"><p class="p">The following rule is used for sending the auto-charge
+                                        notification for device and group in the same rule, where
+                                            <em class="ph i">ACNotifiSetting</em>, <em class="ph i">DeviceID</em>, and
+                                            <em class="ph i">AutoChargePlanName</em> are the custom data on a
+                                        group. The <em class="ph i">SendNotification</em> action is used on the
+                                        custom parameters on as per the context type either device
+                                        or group:</p>
+<img class="image" id="concept_sn3_xvl_r4b__image_nfx_xvl_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-auto-charge_feature_lifecycle_group_and_device_default.png" height="299" width="689" />
+                                    <p class="p">The <em class="ph i">Custom-Data-Add</em>, <em class="ph i">Custom-Data-Add-Immediate</em>,
+                                            <em class="ph i">Custom-Data-Update</em>, <em class="ph i">Custom-Data-Remove</em>,
+                                        and <em class="ph i">Custom-Data-Remove-Immediate</em> as shown in the
+                                        following figure are also supported as custom parameters for
+                                        a device or group:</p>
+<img class="image" id="concept_sn3_xvl_r4b__image_ofx_xvl_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-auc_custom_data_default.png" height="252" width="812" />
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Attach a bundle to the device or group to create a subscription.</p>
+
+                        </li>
+
+                    </ol>
+
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Verification:</strong></p>
+
+                    <ol class="ol" id="concept_sn3_xvl_r4b__ol_pfx_xvl_r4b">
+                        <li class="li">
+                            <p class="p">Verify whether auto-charge notification is sent with the notification
+                                variables when the subscription is about to expire. NCC should send
+                                the auto-charge notification to the operator provisioning system
+                                using notification of http type configured in the Notification
+                                Server for notification template used for auto-charge feature.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Verify whether auto-charge notification is sent for REST
+                                notification.</p>
+
+                        </li>
+
+                    </ol>
+
+                </div>
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

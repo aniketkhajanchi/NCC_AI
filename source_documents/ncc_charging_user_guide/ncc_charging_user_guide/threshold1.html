@@ -1,0 +1,1270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Threshold profile groups (Thresholds)" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-threshold1" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Threshold profile groups (Thresholds)</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-threshold1">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Threshold profile groups (Thresholds)</h1>
+<div class="body conbody">
+  <p class="p">Threshold is the usage definition or aggregate view boundary or limit applied to a counter,
+   bucket, or main account balance with a set of associated actions executed upon crossing that
+   boundary or limit.</p>
+
+  <p class="p">A threshold profile must contain at least one-threshold profile in it. A threshold profile must
+   contain at least one threshold in it.</p>
+
+  <p class="p">The threshold information is defined in a single <span class="ph uicontrol">Threshold Profile</span>
+   table. Threshold is embedded within the threshold profile which in turn is embedded within the
+   threshold profile.</p>
+
+  <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> A bucket or counter or AV can refer to zero or more threshold profile of the same unit
+   type.</div>
+
+  <p class="p">If there is an over commit, the threshold gets executed twice. This happens when the extra over
+   commit amount is more than the gap to the next threshold value. </p>
+
+  <p class="p">When a threshold is reached, NCC performs either one or a combination of the following
+   actions:</p>
+
+  <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_rlt_bnn_gqb">
+   <li class="li">
+    <p class="p">
+     <var class="keyword varname">Notification-Stop</var>: This action notifies to stop using the resource and
+     switch to the next resource.</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">
+     <var class="keyword varname">Notification-Continue</var>: This action notifies to continue using the same
+     resource.</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">
+     <var class="keyword varname">Notification-Reject</var>: This action notifies and rejects the call.</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">
+     <var class="keyword varname">Reject</var>: This action rejects the call.</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">
+     <var class="keyword varname">Send-SNR</var>: This action notifies to send SNR. The value should be SendSNR.</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">
+     <var class="keyword varname">Send-Notification</var>: This action notifies to send notification to the
+     configured device.</p>
+
+   </li>
+
+  </ul>
+
+  <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+      <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_txp_hnn_1tb">
+        <li class="li">NCC does not read or evaluate threshold actions for direct debit requests.</li>
+
+        <li class="li">SNR is not supported for Account
+          threshold.</li>
+
+      </ul>
+
+    </div>
+
+  <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_slt_bnn_gqb"><span class="figcap"><span class="fig--title-label">Figure: </span>Example for threshold</span>
+      
+      
+      <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_tlt_bnn_gqb" src="../images/img9yz-09126-ug01-pczza-sp1-example_for_threshold_default.png" />
+    </div>
+
+  <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Operators define the thresholds.</div>
+
+  <p class="p">For the preceding example, the threshold profile is defined as follows:</p>
+
+  <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_ult_bnn_gqb">
+   <li class="li">
+    <p class="p">
+     <em class="ph i">Threshold profile group 1</em>: It contains Threshold profile 1, Threshold profile 2, and
+     Threshold profile 3. The unit type is volume.</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">
+     <em class="ph i">Threshold profile 1</em>: It is an absolute type profile that contains the Threshold 1 with a
+     value of 400 MB from bucket. The unit is in MB.</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">
+     <em class="ph i">Threshold profile 2</em>: It is an absolute type profile that contains Threshold 2 with a
+     value of 1 GB from the bucket. The unit is in GB.</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">
+     <em class="ph i">Threshold profile 3</em>: It is a percentage type profile that contains two thresholds -
+     Threshold 3 and Threshold 4.</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">
+     <em class="ph i">Threshold 3</em>: It is defined with a value of 80%.</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">
+     <em class="ph i">Threshold 4</em>: It is defined with a value of 100%.</p>
+
+   </li>
+
+  </ul>
+
+  <p class="p">The bucket of 5 GB refers to the Threshold profile group 1.</p>
+
+<div class="section"><h2 class="title sectiontitle">Configuration</h2>
+<p class="p">Log into SM GUI, navigate to <span class="ph uicontrol">Charging → ☰ → Threshold Profile Groups</span>. To
+        define a new threshold, click 
+        <img class="image" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_mcy_sxt_mqb" src="../images/hybrid_gui/new_button.png" height="54" width="104" /> to add the basic details and profile configuration as described
+        in the given table:</p>
+
+<div class="sectiondiv">
+        <p class="p"><strong class="ph b">Basic details</strong></p>
+
+        <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Basic details for threshold profile  groups</span></caption><colgroup><col style="width:13.94700139470014%" /><col style="width:47.69874476987447%" /><col style="width:21.89679218967922%" /><col style="width:16.457461645746164%" /></colgroup><thead class="thead" style="text-align:left;">
+              <tr class="row">
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d125610e233">Parameter</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d125610e236">Description</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d125610e239">Options</th>
+
+                <th class="entry cellrowborder" style="vertical-align:top;" id="d125610e242">Mandatory/Optional</th>
+
+              </tr>
+
+            </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e233 ">Name</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e236 ">The parameter indicates the name of the threshold profile.</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e239 ">String</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e242 ">Mandatory</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e233 ">Applicable to</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e236 ">
+                  <p class="p">Indicates the allowance/balance to which the threshold profile is applicable
+                    to. Following are the valid values: </p>
+
+                  <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_g3b_nqz_zsb">
+                    <li class="li">Allowances and metering</li>
+
+                    <li class="li">Account main balances</li>
+
+                    <li class="li">Account loan balances</li>
+
+                  </ul>
+
+                </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e239 ">Enum</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e242 ">Mandatory</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e233 ">Type</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e236 ">
+                  <p class="p">This parameter indicates whether the type of threshold such as Data, Time,
+                    Money, Unit.</p>
+
+                </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e239 ">Select the required type from the drop-down list.</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e242 ">Mandatory</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e233 ">Description</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e236 ">This parameter provides details related to the threshold profile
+                  entity.</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e239 ">String</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e242 ">Optional</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e233 ">Applicability Condition</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e236 ">This parameter allows you to provide applicability condition for the
+                  threshold profile group. This condition is evaluated before applying the threshold
+                  profile group.</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e239 ">-</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e242 ">-</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e233 ">Reservation Threshold</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e236 ">
+                  <p class="p">This parameter indicates whether the threshold must be triggered in case of
+                    reservation.</p>
+
+                  <p class="p">The default value is False.</p>
+
+                  <p class="p">Note the following important points related to this parameter:</p>
+
+                  <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_imm_54f_3qb">
+                    <li class="li">
+                      <p class="p">Threshold flags like Milestone, Policy based are set to false in case
+                        Reservation flag is set.</p>
+
+                    </li>
+
+                    <li class="li">
+                      <p class="p">Reservation Threshold is applicable only for Bucket entity currently. This
+                        kind of threshold is not allowed to be attached with any other entity like
+                        Counter/Account/AV/UCS.</p>
+
+                    </li>
+
+                    <li class="li">
+                      <p class="p">Reservation Threshold flag set has similar implementation in reservation
+                        call, as of thresholds with reservation flag unset in commit call. They are
+                        also reset during bucket reset/renew.</p>
+
+                    </li>
+
+                  </ul>
+
+                </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e239 ">Select this check box if you want to trigger the threshold in case of
+                  reservation.</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e242 ">Optional</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e233 ">OCS Policy Threshold</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e236 ">
+                  <p class="p">This parameter indicates whether the threshold is a policy threshold or
+                    not.</p>
+
+                  <p class="p">Select this check box to indicate a policy threshold.</p>
+
+                  <p class="p">Deselect the check box to indicate it is not a policy threshold. However, if
+                    the flag is <var class="keyword varname">False</var> and <em class="ph i">Threshold Rule Action</em> is
+                      <em class="ph i">Send-SNR</em>, then the system forces the user to set the flag to
+                      <var class="keyword varname">true</var> and then threshold is treated as a policy
+                    threshold.</p>
+
+                  <p class="p">If a Threshold Profile has two thresholds at same value, then the
+                      <var class="keyword varname">Send-SNR</var> action for the second threshold at that value is
+                    considered to get the signaling state.</p>
+
+                </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e239 ">Select this check box to indicate a policy threshold.</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e242 ">Optional</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e233 ">Dynamic Milestone Flag</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e236 ">
+                  <p class="p">This parameter indicates the milestone, which is a percentage type threshold
+                    when this parameter is true with the empty rule container.</p>
+
+                  <p class="p">The parameter value is dependent on either of the following conditions:</p>
+
+                  <ul class="ul">
+                    <li class="li">
+                      <p class="p">
+                        <var class="keyword varname">True</var>: If the flag is <var class="keyword varname">True</var>, then the
+                        threshold profile is used as a milestone. Select this check box to indicate
+                        the threshold profile group is used as a milestone.</p>
+
+                    </li>
+
+                    <li class="li">
+                      <p class="p">
+                        <var class="keyword varname">False</var>: If the flag is <var class="keyword varname">False</var>, then the
+                        threshold profile group is not used as a milestone. Deselect this check box
+                        to indicate the threshold profile is not used as a milestone.</p>
+
+                    </li>
+
+                  </ul>
+
+                  <div class="p">
+                    <div class="note" id="id9yz-09126-ug01-pczza-sp1-threshold1__note_bg1_wgx_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This flag is only used for dynamic milestone
+                      feature, which overrides the slicing reduction function if it is turned on. If
+                      the Dynamic Milestone feature is not used, keep it as False to avoid impact to
+                      the slicing reduction function.</div>
+
+                  </div>
+
+                </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e239 ">Select this check box to indicate the threshold profile is used as a
+                  milestone.</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e242 ">Optional</td>
+
+              </tr>
+
+            </tbody>
+</table>
+
+      </div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Profile configuration - Percentage</strong></p>
+
+<p class="p">Multiple percentage thresholds can be configured in a percentage threshold profile. Applicability
+          condition can be provided at the percentage threshold profile group level. Rules (both
+          applicability conditions and actions) can be defined at the threshold level. If multiple
+          percentage thresholds are defined, then you can change their priority order using the up ( 
+          <img class="image" src="../images/hybrid_gui/up.png" /> ) and down ( 
+          <img class="image" src="../images/hybrid_gui/down.png" /> ). These symbols appear at the top-right
+          corner of the threshold pane.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Percentage profile - summary and applicability condition</span>
+          
+          
+          <img class="image break" src="../images/percentageprofile_thresholds.PNG" />
+        </div>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters for percentage profile</span></caption><colgroup><col style="width:34.96503496503497%" /><col style="width:65.03496503496503%" /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d125610e525">
+         <p class="p">Parameter</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d125610e531">
+         <p class="p">Description</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e525 ">Applicability Condition</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e531 ">You can define applicability conditions for the percentage threshold profile. This
+         plays an important role in the threshold profile selection. If the applicability conditions
+         are not met, the threshold profile is not considered.</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" colspan="2" style="vertical-align:top;" headers="d125610e525 d125610e531 "> Select Type <span class="ph uicontrol">PERCENTAGE</span>  and
+         click <strong class="ph b">+THRESHOLD</strong> to add the first (or more) percentage values associated with the
+         threshold profile group.</td>
+
+       </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e525 ">Name</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e531 ">The parameter indicates the name of the threshold profile.</td>
+
+              </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e525 ">Value (%)*</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e531 ">This parameter indicates the percentage associated with the threshold profile.</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e525 ">Recurring</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e531 ">This parameter indicates whether the threshold is recurring.</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e525 ">Rule (conditions and actions)</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e531 ">
+         <p class="p">This parameter allows you to provide the rule (both applicability condition and action)
+          for the threshold.</p>
+
+         <p class="p">Click <span class="ph uicontrol">ADD RULE</span> to add another rule for the threshold.</p>
+
+       </td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Profile configuration - Absolute</strong></p>
+
+<p class="p">Multiple absolute thresholds can be configured in an absolute threshold profile. Applicability
+          condition can be provided at the absolute threshold profile group level. Rules (both
+          applicability conditions and actions) can be defined at the threshold level. If multiple
+          absolute thresholds are defined, then you can change their priority order using the up ( 
+          <img class="image" src="../images/hybrid_gui/up.png" /> ) and down ( 
+          <img class="image" src="../images/hybrid_gui/down.png" /> ) symbols. These symbols appear at the
+          top-right corner of the threshold pane.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Absolute profile - summary and applicability condition</span>
+          
+          <img class="image break" src="../images/tpg_absoluteprofile.PNG" />
+        </div>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Absolute profile configuration - threshold details</span>
+          
+          
+          <img class="image break" src="../images/absolute_fromstart.PNG" />
+        </div>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters for absolute profile</span></caption><colgroup><col style="width:29.622980251346497%" /><col style="width:17.953321364452425%" /><col style="width:52.42369838420108%" /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" colspan="2" style="vertical-align:top;" id="d125610e658">
+         <p class="p">Parameter</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d125610e664">
+         <p class="p">Description</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" colspan="2" style="vertical-align:top;" headers="d125610e658 "> Applicability Condition</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e664 ">
+         <p class="p">You can define applicability conditions for the absolute threshold profile. If the
+          applicability conditions are not met, the threshold profile is not considered.</p>
+
+         <div class="p">
+                    <div class="note" id="id9yz-09126-ug01-pczza-sp1-threshold1__note_jvc_rjx_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The applicability condition is relevant only for
+                      Policy.</div>
+
+                  </div>
+
+       </td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d125610e658 d125610e664 "> Click <span class="ph uicontrol">ABSOLUTE FROM START</span> to
+         add the first (or more) absolute start threshold values associated with the threshold
+         profile group.</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" rowspan="7" style="vertical-align:top;" headers="d125610e658 "> Absolute From Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e658 ">Name</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e664 ">The parameter indicates the name of the threshold profile.</td>
+
+       </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e658 ">Value*</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e664 ">This parameter indicates the absolute value of to mark the beginning of
+                  threshold defined in the given type.</td>
+
+              </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e658 ">Type*</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e664 ">
+         <p class="p">This parameter indicates the unit of the absolute threshold.</p>
+
+                  <div class="p">
+                    <table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-threshold1__simpletable_qz5_bkh_hwb" class="simpletable simpletableborder"><col style="width:50%" /><col style="width:50%" /><thead><tr class="sthead">
+                        <th style="vertical-align:bottom;text-align:left;" id="d125610e738" class="stentry">Type of values</th>
+
+                        <th style="vertical-align:bottom;text-align:left;" id="d125610e741" class="stentry">Valid values</th>
+
+                      </tr>
+</thead><tbody><tr class="strow">
+                        <td style="vertical-align:top;" headers="d125610e738" class="stentry">Time</td>
+
+                        <td style="vertical-align:top;" headers="d125610e741" class="stentry">Second, Day, Minute, Hour</td>
+
+                      </tr>
+<tr class="strow">
+                        <td style="vertical-align:top;" headers="d125610e738" class="stentry">Data</td>
+
+                        <td style="vertical-align:top;" headers="d125610e741" class="stentry">KByte, GByte, MByte, Byte</td>
+
+                      </tr>
+<tr class="strow">
+                        <td style="vertical-align:top;" headers="d125610e738" class="stentry">Money</td>
+
+                        <td style="vertical-align:top;" headers="d125610e741" class="stentry">Money, Cent, Euro</td>
+
+                      </tr>
+<tr class="strow">
+                        <td style="vertical-align:top;" headers="d125610e738" class="stentry">Unit</td>
+
+                        <td style="vertical-align:top;" headers="d125610e741" class="stentry">Unit</td>
+
+                      </tr>
+</tbody></table>
+
+                  </div>
+
+       </td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e658 ">Recurring*</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e664 ">This parameter indicates whether the threshold is recurring.<div class="p">Recurring threshold
+                    can be defined as a range. For example, if a recurring threshold of 10€ is
+                    configured to be applicable between 50€ (Range from) and 100€ (Range to), then
+                    the applicable thresholds are 60€, 70€, 80€, 90€ and 100€ thresholds.<div class="note" id="id9yz-09126-ug01-pczza-sp1-threshold1__note_nfd_k3f_rwb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> <em class="ph i">Range from</em> value is not included whereas <em class="ph i">Range
+                        to</em> value is included.</div>
+</div>
+<p class="p">If multiple steps of a recurrent
+                    threshold are reached in the same transaction, then the actions from the last
+                    threshold are executed.</p>
+<p class="p">If multiple TPGs or the same TPG with different
+                    thrshold profiles have overlapping ranges, then threshold from both the ranges
+                    is executed.</p>
+</td>
+
+       </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e658 ">Range from (optional)</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e664 ">
+                  <p class="p">This parameter is available only when Recurring is enabled. It indicates the
+                    recurring threshold start range. It is not included in the range.</p>
+
+                  <div class="p">
+                    <div class="note" id="id9yz-09126-ug01-pczza-sp1-threshold1__note_w3v_tkb_rwb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Updating recurring threshold values is not
+                      supported. </div>
+
+                  </div>
+
+                </td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e658 ">Range to (optional)</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e664 ">This parameter is available only when Recurring is enabled. It indicates the
+                  recurring threshold end range. It is included in the range.<p class="p">If <em class="ph i">Range from</em>
+                    parameter is not defined but <em class="ph i">Range to</em> parameter is defined, then <em class="ph i">Range
+                      from</em> is 0. If <em class="ph i">Range to</em> is not defined but <em class="ph i">Range from</em> is
+                    defined, then <em class="ph i">Range to</em> is infinite.</p>
+<div class="note" id="id9yz-09126-ug01-pczza-sp1-threshold1__note_y52_5kb_rwb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Updating recurring threshold values is not supported. </div>
+</td>
+
+              </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e658 ">Rule (conditions and actions)</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e664 ">
+         <p class="p">This parameter provides the rule (both applicability condition and action) for the
+          threshold.</p>
+
+         <p class="p">Click <span class="ph uicontrol">ADD ROW</span> to add another rule for the threshold.</p>
+
+       </td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d125610e658 d125610e664 ">
+         <p class="p">Click <span class="ph uicontrol">ABSOLUTE FROM END</span> to add the first (or more absolute end
+          threshold values associated with the threshold profile group).</p>
+
+       </td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d125610e658 "> Absolute From End</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e658 ">Name</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e664 ">The parameter indicates the name of the threshold profile.</td>
+
+       </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e658 ">Value*</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e664 ">This parameter indicates the absolute value of to mark the beginning of
+                  threshold defined in the given type.</td>
+
+              </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e658 ">Type*</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e664 ">
+         <p class="p">This parameter indicates the unit of the absolute threshold.</p>
+
+                  <div class="p">
+                    <table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-threshold1__simpletable_dp3_rkh_hwb" class="simpletable simpletableborder"><col style="width:50%" /><col style="width:50%" /><thead><tr class="sthead">
+                        <th style="vertical-align:bottom;text-align:left;" id="d125610e926" class="stentry">Type of values</th>
+
+                        <th style="vertical-align:bottom;text-align:left;" id="d125610e929" class="stentry">Valid values</th>
+
+                      </tr>
+</thead><tbody><tr class="strow">
+                        <td style="vertical-align:top;" headers="d125610e926" class="stentry">Time</td>
+
+                        <td style="vertical-align:top;" headers="d125610e929" class="stentry">Second, Day, Minute, Hour</td>
+
+                      </tr>
+<tr class="strow">
+                        <td style="vertical-align:top;" headers="d125610e926" class="stentry">Data</td>
+
+                        <td style="vertical-align:top;" headers="d125610e929" class="stentry">KByte, GByte, MByte, Byte</td>
+
+                      </tr>
+<tr class="strow">
+                        <td style="vertical-align:top;" headers="d125610e926" class="stentry">Money</td>
+
+                        <td style="vertical-align:top;" headers="d125610e929" class="stentry">Money, Cent, Euro</td>
+
+                      </tr>
+<tr class="strow">
+                        <td style="vertical-align:top;" headers="d125610e926" class="stentry">Unit</td>
+
+                        <td style="vertical-align:top;" headers="d125610e929" class="stentry">Unit</td>
+
+                      </tr>
+</tbody></table>
+
+                  </div>
+
+       </td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e658 ">Rule (conditions and actions)</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e664 ">
+         <p class="p">This parameter allows you to provide the rule (both applicability condition and action)
+          for the threshold.</p>
+
+         <p class="p">Click <span class="ph uicontrol">ADD ROW</span> to add another rule for the threshold.</p>
+
+       </td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d125610e658 d125610e664 ">
+         <div class="note" id="id9yz-09126-ug01-pczza-sp1-threshold1__note_q5f_ptl_wqb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> <span class="ph uicontrol">Absolute from End</span> threshold type can be
+          referenced in the custom counters, and metering limits.</div>
+
+       </td>
+
+       </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d125610e658 "> Percentage</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e658 ">Name</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e664 ">Name of the threshold.</td>
+
+              </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e658 ">Value</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e664 ">This parameter indicates the absolute value.  Money is the only unit type supported
+                  for this profile.<p class="p">Threshold value can be defined for both main balance and
+                    overage limit. The value defined for the overage limit is used to evaluate
+                    threshold rules and actions, if configured. </p>
+</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e658 ">Rule (conditions and actions)</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e664 ">
+                  <p class="p">This parameter provides the rule (both applicability condition and action) for
+                    the threshold.</p>
+
+                  <p class="p">Click <span class="ph uicontrol">ADD ROW</span> to add another rule for the threshold.</p>
+
+                </td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Profile configuration - both absolute and percentage</strong></p>
+
+<p class="p">The following figure displays a scenario where both percentage and absolute thresholds are defined. The top tow panes display the thresholds defined along with applicability conditions for percentage and absolute threshold profiles. The priority order for the absolute and percentage threshold profiles can be swapped using the ⇅ symbol.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Both absolute and percentage profile - summary and applicability condition</span>
+          
+          
+          <img class="image break" src="../images/absoluteandpercentage.PNG" height="400" width="483" />
+        </div>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Actions associated with a threshold profile</h2>
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:37.03703703703704%" /><col style="width:62.962962962962955%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d125610e1083">
+        <p class="p">Action</p>
+
+      </th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d125610e1089">
+        <p class="p">Description</p>
+
+      </th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e1083 ">Create</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e1089 ">Used to create the threshold profile entity in database by providing the mandatory
+        and optional parameters.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e1083 ">Read</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e1089 ">Used to display the threshold profile entity data fetched from database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e1083 ">ThresholdProfileGroupExists</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e1089 ">Used to check if the ThresholdProfileGroup exists in database for the given Id.
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e1083 ">Update</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e1089 ">Used to update a particular threshold profile entity in database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e1083 ">Delete</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d125610e1089 ">Used to delete a particular threshold profile entity from database.</td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> These actions are valid for internal purposes only. It is not accessible through the SM GUI
+    for operators.</div>
+
+</div>
+
+  <div class="section" id="id9yz-09126-ug01-pczza-sp1-threshold1__section_qz3_nqj_1rb"><h2 class="title sectiontitle">Evaluation of thresholds with reject action on step fee</h2>
+      
+      <div class="sectiondiv"><p class="p">This feature provides the capability to evaluate single, or multiple thresholds
+          having Reject/Notification-Reject action on the step fee. </p>
+Call is rejected, and a
+        notification is sent to the subscriber in the following cases:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_qsx_1ps_1rb">
+          <li class="li">If there is a request for reservation from step bucket when a step cost counter's
+            reject threshold is crossed, and the step bucket's current step is fully utilized
+            (bucket's CurrentValue = 0), then reservation is not possible as counter's existing
+            threshold is already crossed. A notification is triggerred that informs the subscriber
+            about the same.</li>
+
+          <li class="li">When a step cost counter's reject threshold is not crossed, and the step bucket's
+            current step is fully utilized (bucket's CurrentValue = 0), then step up is not possible
+            as the DeltaValue (Reject) &lt; NextStepFee. A notification is triggerred that informs
+            the subscriber about the same. In this case NCC rejects the consumption with the result
+            code 4012.</li>
+
+        </ul>
+<div class="p">The following application preferences must be set to <var class="keyword varname">true</var> for
+          this feature to work:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_ynm_h2q_1rb">
+            <li class="li"><span class="ph uicontrol">Granularity Skip for Low Balance</span></li>
+
+            <li class="li"><span class="ph uicontrol">Step-Up at Commit</span></li>
+
+            <li class="li"><span class="ph uicontrol">Use first all Steps</span></li>
+
+          </ul>
+<em class="ph i">EDR Generator</em>, and <em class="ph i">Notification and EDR Logging Enabled</em> flags are set
+          to <var class="keyword varname">true</var>.</div>
+<p class="p">NCC does not check the upcoming threshold action reject
+          for over-commit scenarios. Hence, the same base functionality of slice reduction on over
+          commit is not applicable to upcoming Spending limit applied on Step Fee being accumulated
+          in the counter.</p>
+<strong class="ph b">Example:</strong> Cost Counter is crossed in case of over-commit scenario
+        even when cost counter reaches Notification-Reject threshold on step fee that is charged for
+        the step bucket. <p class="p"><strong class="ph b">Charging step configuration: </strong></p>
+<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_vpr_xwv_srb">
+          <li class="li">step size = 1000</li>
+
+          <li class="li">step size = 800 step fee = 24</li>
+
+          <li class="li">step size = 200 step fee = 16</li>
+
+        </ul>
+<p class="p"><strong class="ph b">Threshold Profile Group (TPG):</strong></p>
+Absolute From Start (ABS) at 35 with
+        Notification-Reject action.<p class="p">Multi-bundle cost counter, Usage Limit (ULI) 35 with Threshold
+          Profile Group. </p>
+<p class="p"><strong class="ph b">Execution:</strong></p>
+<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_fkw_dxv_srb">
+          <li class="li">CCR(I) RSU = 1000 Expected outcome: step = 1, cost counter = 0, GSU = 1000.</li>
+
+          <li class="li">CCR(U1) USU = 1000, RSU = 800. Expected outcome: step = 1, cost counter = 0, GSU =
+            800. </li>
+
+          <li class="li">CCR(U2) USU = 900, RSU = 100. Expected outcome: step = 3, cost counter = 40, GSU=100. </li>
+
+          <li class="li">CCR(T) USU=100. </li>
+
+        </ul>
+<p class="p"><strong class="ph b">Expected outcome:</strong>
+        </p>
+<p class="p">Bucket consumed = 2000, Cost Counter = 40 (Cost Counter value crossed Usage Limit of
+          35)</p>
+<div class="sectiondiv"><strong class="ph b">Points to be noted</strong><ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_en3_4ks_1rb">
+            <li class="li">This is applicable for SCUR (Gy/NCHF /IMS) related calls.</li>
+
+            <li class="li">This feature works only when Step-up at commit is <var class="keyword varname">true</var>.</li>
+
+            <li class="li">Threshold limit is applied to a multi-bundle counter, or subscription counter. </li>
+
+            <li class="li">Multi-bundle counters can accumulate the usage, or cost consumed from multiple
+              bundles that are subscribed by the device. However, if the bundle subscriptions are at
+              group level or hierarchy level, then the multi-bundle counter does not accumulate any
+              usage, and cost consumed from multiple bundles subscribed by the group.</li>
+
+            <li class="li">
+              <p class="p"><span class="ph uicontrol">Absolute from End</span> threshold does not apply any threshold
+                limit or actions of hard-stop/soft-stop on the counter of cost-type consumption,
+                which specifically accumulate the Step Fee of the Step Bucket.</p>
+
+            </li>
+
+          </ul>
+</div></div>
+    </div>
+
+    <div class="section" id="id9yz-09126-ug01-pczza-sp1-threshold1__section_qxn_2ct_1rb"><h2 class="title sectiontitle">Examples</h2><strong class="ph b">Example 1: When multiple thresholds
+        are crossed at reservation and Notification–Reject has been reached for the step fee, then
+        call is rejected with result code 4012 and a notification is sent. </strong><div class="p">Charging step
+          configuration:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_mkz_r2q_1rb">
+          <li class="li">step size = 1000</li>
+
+          <li class="li">step size = 800 step fee = 24</li>
+
+          <li class="li">step size = 200 step fee = 16</li>
+
+        </ul>
+</div>
+<p class="p">Threshold Profile Group: <span class="ph uicontrol">Absolute From
+        Start</span></p>
+<p class="p">Multi-bundle counter, Usage Limit = 35 with Threshold Profile
+        Group.</p>
+<p class="p">Data bucket of 100 bytes.</p>
+<p class="p">Bundle1: ChargingStep1 with tariff as
+        step.</p>
+<p class="p">Bundle3: Multi-bundle cost counter</p>
+<p class="p"> Bundle4: Data Bucket</p>
+<p class="p">Device1:
+        Bundle1, Bundle3, and Bundle4 are attached to the device</p>
+<div class="p"><strong class="ph b">Exceution:</strong><ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_pwm_hll_1rb">
+          <li class="li">CCR(I) RSU = 1000MB, <p class="p">Expecte outcome: step=1, cost counter=0, GSU=1000.</p>
+</li>
+
+          <li class="li">CCR(U1) USU = 1000MB, RSU = 800MB, <p class="p">Expected outcome: step = 1, cost counter = 0,
+              GSU = 800.</p>
+</li>
+
+          <li class="li">CCR(U2) USU = 800MB, RSU=10Byte<p class="p">Expecte outcome: step=2, cost counter=24, result
+              code=4012. Notification is sent for reject</p>
+</li>
+
+          <li class="li">CCR(T) with no MSCC tag. <p class="p">Expected outcome: Bucket consumed=1800, cost
+              counter=24</p>
+</li>
+
+        </ul>
+<div class="note" id="id9yz-09126-ug01-pczza-sp1-threshold1__note_mtr_zls_1rb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> When the step bucket is fully consumed, and the reject
+          threshold is reached for step fee on cost counters, even if the device has another data
+          bucket available, the data bucket is not consumed, and the result code 4012 is
+          sent.</div>
+</div>
+<p class="p"><strong class="ph b">Example 2: Call is rejected with result code 4012, and the cost
+          counter reaches Notification-Reject threshold on step fee that is charged for the step
+          bucket. Verify that notification is sent both for continue and reject.</strong></p>
+<div class="p">Charging
+        step configuration:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_a2h_hdq_1rb">
+          <li class="li">step size = 1000</li>
+
+          <li class="li">step size = 800 step fee = 26</li>
+
+          <li class="li">step size = 200 step fee = 15 </li>
+
+        </ul>
+</div>
+<p class="p">Threshold Profile Group (TPG): ABS at 26 with Notification-Continue action, and
+        at 35 with Notification-Reject action.</p>
+<p class="p">Multi-bundle cost counter, Usage Limit (ULI) 35
+        with Threshold Profile Group.</p>
+<div class="p"><strong class="ph b">Execution:</strong><ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_kmn_wdq_1rb">
+          <li class="li">CCR(I) RSU = 1000<p class="p">Expected outcome: step = 1, cost counter = 0, GSU = 1000</p>
+</li>
+
+          <li class="li">CCR(U1) USU = 1000, RSU = 800<p class="p">Expected outcome: step = 1, cost counter = 0, GSU =
+              800</p>
+</li>
+
+          <li class="li">CCR(U2) USU = 800, RSU = 10<p class="p">Expected outcome: step = 2, cost counter = 26, result
+              code=4012. Notification is sent both for continue and reject.</p>
+</li>
+
+          <li class="li">CCR(T) with no MSCC tag.<p class="p">Expected outcome: Bucket consumed = 1800, cost counter =
+              26</p>
+</li>
+
+        </ul>
+<div class="note" id="id9yz-09126-ug01-pczza-sp1-threshold1__note_xbc_2jl_1rb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The first notification (continue) is sent in commit, and
+          the second notification (Reject) is sent in reservation.</div>
+</div>
+<p class="p"><strong class="ph b">Example 3: When
+          the Notification-reject threshold on Step-fee has already been crossed, then for next
+          reservation, call is rejected with result code 4012, and a notification is
+        sent.</strong></p>
+<p class="p">Complex map is configured with the multi-bundle counter's name. The number
+        of times a notification can be sent is 2. </p>
+<div class="p">Charging step configuration:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_zsv_ngq_1rb">
+          <li class="li">step size = 1000</li>
+
+          <li class="li">step size = 800 step fee = 24</li>
+
+          <li class="li">step size = 200 step fee = 16</li>
+
+        </ul>
+</div>
+<p class="p">Threshold Profile Group: Percentage</p>
+<p class="p">Multi-Bundle Counter, Usage Limit = 40
+        with Threshol Profile Group.</p>
+<p class="p">Data bucket of 100 bytes.</p>
+<p class="p">Bundle1: ChargingStep1
+        with tariff as bucket.</p>
+<p class="p">Bundle3: Multi-bundle cost counter</p>
+<p class="p"> Bundle4: Data
+        Bucket</p>
+<p class="p">Device1: Bundle1, Bundle3, and Bundle4 are attached to the
+          device</p>
+<div class="p"><strong class="ph b">Execution:</strong><ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_zzk_ntl_1rb">
+          <li class="li">CCR(I) RSU = 1000 <p class="p">Expected outcome: step = 1, cost counter = 0, GSU = 1000</p>
+</li>
+
+          <li class="li">CCR(U1) USU = 1000, RSU = 800 <p class="p">Expected outcome: step = 1, cost counter = 0, GSU =
+              800</p>
+</li>
+
+          <li class="li">CCR(U2) USU = 800, RSU = 150<p class="p">Expected outcome: Step = 2, cost counter = 24, GSU =
+              150. Notification is sent for continue</p>
+</li>
+
+          <li class="li">CCR(U3) USU = 150, RSU = 50<p class="p">Expected outcome: step = 3, cost counter = 40, GSU = 50.
+              Notification is sent for reject</p>
+</li>
+
+          <li class="li">CCR(U4) USU = 50, RSU = 10<p class="p">Expected outcome: step = 3, cost counter = 40, result
+              code = 4012</p>
+</li>
+
+          <li class="li">CCR(T) with no MSCC tag. <p class="p">Expected outcome: Bucket consumed = 2000, cost counter =
+              40. Notification is not sent for reject as it is already sent.</p>
+<div class="note" id="id9yz-09126-ug01-pczza-sp1-threshold1__note_fqh_24s_1rb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> In case the counter threshold is reached but the data is
+              available in the bucket, when the bucket is exausted in the next update, if any
+              further reservation is done, then only the result code 4012 is sent. </div>
+</li>
+
+          <li class="li">CCR(I2) RSU=1000, result code= 4012. Notification is sent for reject.</li>
+
+          <li class="li">CCR(T2) with no MSCC tag.</li>
+
+          <li class="li">CCR(I3) RSU=1000, result code = 4012. Notification is not sentt as the number of times
+            a notification has to be sent is configured as two.</li>
+
+          <li class="li">CCR(T3) with no MSCC tag.</li>
+
+        </ul>
+</div>
+</div>
+
+    <div class="section" id="id9yz-09126-ug01-pczza-sp1-threshold1__section_imn_2ct_1rb">
+      <div class="p"><strong class="ph b">Configuration to trigger Notification</strong>:<ol class="ol" id="id9yz-09126-ug01-pczza-sp1-threshold1__ol_scb_fft_yqb">
+          <li class="li">Complex Map:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_s45_fft_yqb">
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_wgf_bkt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_jjc_33t_1rb" height="192" src="../images/complexmap_trigger_notification1.jpg" width="576" />
+                </div>
+
+              </li>
+
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_xy1_bkt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_c5z_33t_1rb" height="96" src="../images/complexmap_trigger_notification2.jpg" width="576" />
+                </div>
+
+              </li>
+
+            </ul>
+</li>
+
+          <li class="li">Threshold Profile group:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_gmd_sft_yqb">
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_hjw_1kt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_bpl_k3t_1rb" height="96" src="../images/tpg_trigger_notification1.jpg" width="576" />
+                </div>
+
+              </li>
+
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_wvs_1kt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_otg_l3t_1rb" height="192" src="../images/tpg_trigger_notification2.jpg" width="576" />
+                </div>
+
+              </li>
+
+            </ul>
+</li>
+
+          <li class="li">Multi-Bundle counter:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_w5h_4gt_yqb">
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_lp4_1kt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_tdt_m3t_1rb" height="192" src="../images/multi_bundle_counter_trigger_notifi.jpg" width="576" />
+                </div>
+
+              </li>
+
+            </ul>
+</li>
+
+          <li class="li">Tiered Allowance:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_vdf_sgt_yqb">
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_sqk_1kt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_sn5_v3t_1rb" height="192" src="../images/ta_trigger_notification.jpg" width="576" />
+                </div>
+
+              </li>
+
+            </ul>
+</li>
+
+          <li class="li">Charging logic:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_j5j_dht_yqb">
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_nbg_1kt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_czz_w3t_1rb" height="192" src="../images/cl_trigger_notification.jpg" width="576" />
+                </div>
+
+              </li>
+
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_y1b_1kt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_pbt_x3t_1rb" height="192" src="../images/cl_trigger_notification2.jpg" width="576" />
+                </div>
+
+              </li>
+
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_r1x_zjt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_wtp_bjt_1rb" height="192" src="../images/cl_trigger_notification3.jpg" width="576" />
+                </div>
+
+              </li>
+
+            </ul>
+</li>
+
+          <li class="li">Allowance Limit:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_pm2_pht_yqb">
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_ess_zjt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_pzh_hjt_1rb" height="96" src="../images/allowance_limit_trigger_notification1.jpg" width="576" />
+                </div>
+
+              </li>
+
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_dk4_zjt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_sg1_3jt_1rb" height="192" src="../images/allowance_limit_trigger_notification2.jpg" width="576" />
+                </div>
+
+              </li>
+
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_kwj_zjt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_mn4_jjt_1rb" height="192" src="../images/allowance_limit_trigger_notification3.jpg" width="576" />
+                </div>
+
+              </li>
+
+            </ul>
+</li>
+
+          <li class="li">Bundle:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_qdq_b3t_yqb">
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_jv2_zjt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_lhw_kjt_1rb" height="192" src="../images/bundle_trigger_notification.jpg" width="576" />
+                </div>
+
+              </li>
+
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_ng1_zjt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_j3d_5jt_1rb" height="192" src="../images/bundle_trigger_notification2.jpg" width="576" />
+                </div>
+
+              </li>
+
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_nlv_yjt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_b3z_5jt_1rb" height="192" src="../images/bundle_trigger_notification3.jpg" width="576" />
+                </div>
+
+              </li>
+
+            </ul>
+</li>
+
+          <li class="li">Device:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_blv_k3t_yqb">
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_qy4_yjt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_j32_wjt_1rb" height="192" src="../images/device_trigger_notification.jpg" width="576" />
+                </div>
+
+              </li>
+
+              <li class="li">
+                <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-threshold1__fig_pnc_yjt_1rb">
+                  <img class="image break" id="id9yz-09126-ug01-pczza-sp1-threshold1__image_l1l_xjt_1rb" height="192" src="../images/device_trigger_notification2.jpg" width="576" />
+                </div>
+
+              </li>
+
+            </ul>
+</li>
+
+        </ol>
+</div>
+
+    </div>
+
+    <div class="section" id="id9yz-09126-ug01-pczza-sp1-threshold1__section_fgx_pct_1rb"><h2 class="title sectiontitle">Additional information</h2>
+      
+      <div class="p">
+        <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-threshold1__ul_x24_tdt_yqb">
+          <li class="li">Notification is triggerred only when the threshold is configured by
+              <em class="ph i">THRESHOLD.Threshold-Trigger-Type = ThresholdTriggerType_RESERVATION</em>. With this
+            configuration, the existing notification in the commit is also triggered on the
+            threshold crossing . However, in case of CCR-U, if the commit value crosses the
+            threshold, and there is an RSU as well, then only one notification is triggered.</li>
+
+          <li class="li">If the threshold is not configured by <em class="ph i">THRESHOLD.Threshold-Trigger-Type =
+              ThresholdTriggerType_RESERVATION</em>, then only the existing notification in commit is
+            triggered on the threshold crossing.</li>
+
+          <li class="li">Notification is not triggered in cases where any reservation (partial or complete) is
+            done from the step bucket.</li>
+
+          <li class="li">Min slice is not considered in case of step bucket when step size is less than
+            Min-Slice and bulk step-up is not performed.</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

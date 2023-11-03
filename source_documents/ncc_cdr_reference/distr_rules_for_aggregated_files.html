@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Distribution rules for aggregated files" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="distr_rules_for_aggregated_files" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Distribution rules for aggregated files</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="distr_rules_for_aggregated_files">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Distribution rules for aggregated files</h1>
+<div class="body conbody">
+        <p class="p">Distribution rules define where specific output records are sent. One record can be sent
+            to multiple outputs if needed. The destination of the output record depends on the type
+            of output it has configured. Records can be sent to files, where they are divided into
+            different file groups, or they can be sent to a Kafka topic.</p>
+
+        <p class="p">Aggregation output files consist of final and partial files. Final and partial files are
+            distributed to different destinations (directory/Kafka topic).</p>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="distr_rules_for_aggregated_files__table_o5f_tcs_1qb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Distribution rules for aggregation output files</span></caption><colgroup><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" rowspan="2" style="vertical-align:top;" id="d97983e53">Description</th>
+
+                        <th class="entry cellrowborder" rowspan="2" style="vertical-align:top;" id="d97983e56">Criteria</th>
+
+                        <th class="entry cellrowborder" colspan="2" style="vertical-align:top;" id="d97983e59">Destination: File</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d97983e62">Destination: Kafka </th>
+
+                    </tr>
+
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d97983e68">Directory</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d97983e71">File group</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d97983e74">Topic</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d97983e53 ">Final aggregated records for CDR GY session</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d97983e56 ">EL_AGGREGATED = true</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d97983e59 d97983e68 ">CDR/GY/FINAL</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d97983e59 d97983e71 ">.CDR.GY.FINAL</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d97983e62 d97983e74 ">cdr-gy-final</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d97983e53 ">Partial records for CDR GY session</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d97983e56 ">EL_PARTIAL = true</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d97983e59 d97983e68 ">CDR/GY/PARTIAL</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d97983e59 d97983e71 ">.CDR.GY.PARTIAL</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d97983e62 d97983e74 ">cdr-gy-partial</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d97983e53 ">Failed partial records according to failure on root resultCode value
+                            for CDR GY session</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d97983e56 ">EL_FAILED_PARTIAL = true</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d97983e59 d97983e68 ">
+                            <p class="p">CDR/GY/FAILED_PARTIAL</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d97983e59 d97983e71 ">
+                            <p class="p">.CDR/GY/FAILED_PARTIAL</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d97983e62 d97983e74 ">
+                            <p class="p">cdr-gy-failed-partial</p>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+    </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

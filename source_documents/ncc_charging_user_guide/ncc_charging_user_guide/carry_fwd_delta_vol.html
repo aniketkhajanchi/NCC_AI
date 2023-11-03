@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Carrying forward delta volume from before BCR/CS to after BCR/CS" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="carry_fwd_delta_vol" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Carrying forward delta volume from before BCR/CS to after BCR/CS</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="carry_fwd_delta_vol">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Carrying forward delta volume from before BCR/CS to after BCR/CS</h1>
+<div class="body conbody">
+        <p class="p">In Gy calls if usage granularity is used, after rounding the usage delta volume is
+            calculated as the difference between rounding volume and the actual volume coming from
+            the network to consume. This delta volume is re-used in the next CCR of the call.  </p>
+
+        <p class="p">By default, if BCR/TTC occurs during a Gy call, delta volume calculated before BCR/TTC is
+            not carry forwarded to the usage after BCR or CS change. </p>
+
+        <p class="p">To carry forward delta volume calculated before BCR/CS to the usage after BCR or CS
+            change, set the application preference <strong class="ph b">Rounding Units At TTC</strong> to
+                <var class="keyword varname">ENABLED_FOR_GY_N40</var>. Refer to the <em class="ph i">Global Configuration
+                Guide</em> for details.</p>
+
+        <p class="p">In case of bundle expiry at BCR/TTC, delta volume is not carried forward. Usage after TTC
+            is discarded. The discarded units (after adjusting lost volume) is presented in the
+                <var class="keyword varname">lostVolume</var> tag in the CDR.</p>
+
+        <p class="p"><strong class="ph b">Example:</strong></p>
+
+        <p class="p">Consider a granularity of 1 MB.</p>
+
+        <ol class="ol" id="carry_fwd_delta_vol__ol_itz_dgq_5vb">
+            <li class="li">USU reported in CCR-U is 5.2 MB.<ol class="ol" type="a" id="carry_fwd_delta_vol__ol_eq4_2gq_5vb">
+                    <li class="li">After applying the granularity factor, 6 MB is committed.</li>
+
+                    <li class="li">Delta volume = 6 – 5.2 = 0.8 MB.</li>
+
+                </ol>
+</li>
+
+            <li class="li">In the next CCR-U, USU reported is 5.3 MB.<ol class="ol" type="a" id="carry_fwd_delta_vol__ol_o1g_3gq_5vb">
+                    <li class="li">After adjusting the delta volume of previous CCR-U, 5.3 – 0.8 MB = 4.5 MB is
+                        considered for charging. </li>
+
+                    <li class="li">After applying the granularity factor, 5 MB is committed.</li>
+
+                    <li class="li">Delta volume = 5 – 4.5 = 0.5 MB.</li>
+
+                </ol>
+</li>
+
+            <li class="li">In CCR-T, USU reported is 6.1 MB.<ol class="ol" type="a" id="carry_fwd_delta_vol__ol_r2t_pgq_5vb">
+                    <li class="li">After adjusting the delta volume of previous CCR-U, 6.1 – 0.5 MB = 5.6 MB is
+                        considered for charging.</li>
+
+                    <li class="li">After applying the granularity factor, 6 MB is committed.</li>
+
+                    <li class="li"> Delta volume = 6 – 5.6 = 0.4 MB.</li>
+
+                </ol>
+</li>
+
+        </ol>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

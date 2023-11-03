@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="task" />
+<meta name="DC.title" content="Rolling back Istio to the previous version" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="rolling_back_istio" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Rolling back Istio to the previous version</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="rolling_back_istio">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Rolling back Istio to the previous version</h1>
+<div class="body taskbody">
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div>
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> During rollback, traffic may be impacted. You may want to divert all of the
+                traffic on the corresponding geographic site to prevent interruption.</div>
+</div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">Perform the Helm rollback commands or use any orchestrator tool to rollback the
+                    Istio charts to the previous version in the reverse order in which the charts
+                    were upgraded.</span>
+                <div class="itemgroup info">If you used the <span class="ph filepath">install-charts.sh</span> to upgrade Istio, state
+                    files of the upgrade were created in the <span class="ph filepath">input-generator</span>
+                    directory. These files are used for rollback order of charts.</div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Restart the application pods once they are running normally.</span>
+                <div class="itemgroup info">Application pods with Istio sidecar installed must be restarted to roll back
+                    the sidecar Istio version.</div>
+                <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol type="a" class="ol substeps">
+                    <li class="li substep substepexpand">
+                        <span class="ph cmd">Navigate to the <span class="ph uicontrol">Pod Restart</span> section of each
+                            namespace worksheet in your <span class="ph filepath">Inputs.xlsx</span> file.</span>
+                    </li>
+
+                    <li class="li substep substepexpand">
+                        <span class="ph cmd">Edit the <span class="ph uicontrol">Restart Counter</span> value in each worksheet
+                            and increase the value by one digit.</span>
+                        <div class="itemgroup info">For example: if the current value is <code class="ph codeph">restart1</code>, change
+                            the value to <code class="ph codeph">restart2</code>.</div>
+                    </li>
+
+                    <li class="li substep substepexpand">
+                        <span class="ph cmd">Update the API Compatibility of each system to the previous version
+                            .</span>
+                    </li>
+
+                    <li class="li substep substepexpand">
+                        <span class="ph cmd">Perform a backup of the state files.</span>
+                    </li>
+
+                    <li class="li substep substepexpand">
+                        <span class="ph cmd">Regenerate the Helm inputs.</span>
+                    </li>
+
+                    <li class="li substep substepexpand">
+                        <span class="ph cmd">Upgrade each Helm chart with the new inputs.</span>
+                    </li>
+
+                </ol>
+
+            </li>
+</ol>
+
+    </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

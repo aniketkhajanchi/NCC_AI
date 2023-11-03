@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Exporting and importing a service (bundle)" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="bundles_exporting_and_importing_a_bundle" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Exporting and importing a service (bundle)</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="bundles_exporting_and_importing_a_bundle">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Exporting and importing a service (bundle)</h1>
+<div class="body">
+<p class="p">You can export a service (bundle) from an existing NCC environment along with its associated
+            entities and import it to the same or another NCC environment. This is primarily used to
+            export bundles from test to live NCC environments.</p>
+
+<p class="p">Following entities are imported or exported along with the service (bundle) during the service
+            (bundle) import or export:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Logics (Charging services)</p>
+
+</li>
+
+<li class="li">
+<p class="p">Usage control services</p>
+
+</li>
+
+<li class="li">
+<p class="p">Threshold profiles</p>
+
+</li>
+
+<li class="li">
+<p class="p">Lifecycles</p>
+
+</li>
+
+<li class="li">
+<p class="p">Taxation </p>
+
+</li>
+
+<li class="li">
+<p class="p">Allowance limits (buckets), metering limit (counters), unit, and tariff rules within logics
+                    (charging services)</p>
+
+</li>
+
+<li class="li">
+<p class="p">Any embedded rules in logics (charging service), usage control service, threshold profiles</p>
+
+</li>
+
+</ul>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Any entities referenced from within the embedded rules (for example, rate used in tariff rule)
+            are not considered as child objects of the service (bundle). These entities are not
+            imported or exported with the service (bundle) when the <var class="keyword varname">Import</var> or
+                <var class="keyword varname">Export</var> action is performed. In the target NCC, you must create
+            and provision any entity referenced from within any embedded rule.</div>
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

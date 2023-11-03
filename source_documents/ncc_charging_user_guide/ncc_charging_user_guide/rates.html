@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Rates" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e148204" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Rates</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e148204">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Rates</h1>
+<div class="body conbody">
+  <p class="p">Rate defines the amount of currency to be charged for each unit of consumption by a call. For
+   example, 0.05 United States dollars is charged for 1 SMS.</p>
+
+  <p class="p">The rate entity defines the rating conversion parameters and the type of the resource allocated
+   or reported. Rate is applied to a single unit type or type of consumption resource such as time,
+   volume, and unit. It can define the type of resource or consumption for which it applies.</p>
+
+  <p class="p">It is recommended not to change the rate/tax in between calls when the session is ongoing.</p>
+
+  <p class="p">The rate entity allows operators to define the following:</p>
+
+  <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e148204__ul_vys_5mn_gqb">
+   <li class="li">
+    <p class="p">Define granularity of rating</p>
+
+    <p class="p">For example, the rate is expressed as 5 KB for 0.25 United States dollars. However, beyond
+     this rate, it is important to identify the granularity of the charge. The granularity may be of
+     a different quantity than that expressed in the rate. In this example, the granularity may be
+     512 bytes or 1/10 of 5 KB.</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">Define a step rate.</p>
+
+    <p class="p">For example, 0.05 United States dollars for the first 100 MB, and 0.03 United States dollars
+     after that.</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">Perform one of the following actions for step-rate entity:</p>
+
+    <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e148204__ul_wys_5mn_gqb">
+     <li class="li">
+      <p class="p">Define the step-rate entry duration in the units being rated.</p>
+
+     </li>
+
+     <li class="li">
+      <p class="p">Define unlimited number of steps in one rate.</p>
+
+     </li>
+
+    </ul>
+
+   </li>
+
+  </ul>
+
+<div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e148204__r1"><h2 class="title sectiontitle">Configuration</h2>
+<p class="p">This section describes the parameters to define a rate charged against a call.</p>
+
+<p class="p">Log into the new GUI, navigate to <span class="ph uicontrol">Charging</span> → ≡ → <span class="ph uicontrol">Rate
+     Management</span> → <span class="ph uicontrol">Rates</span>. To define a new rate, click 
+    <img class="image" id="id9yz-09126-ug01-pczza-sp1-d1e148204__image_h3r_nbx_2qb" src="../images/hybrid_gui/new_button.png" height="54" width="104" /> and add the basic details as described in the given table:</p>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Basic Details</strong></p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters for rate</span></caption><colgroup><col style="width:16.97792869269949%" /><col style="width:40.57724957555178%" /><col style="width:19.354838709677416%" /><col style="width:23.089983022071305%" /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d181811e129">Parameter</th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d181811e132">Description</th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d181811e135">Options</th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d181811e138">Mandatory/Optional</th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e129 ">Name</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e132 ">This parameter indicates the name of the rate entity.</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e135 ">String</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e138 ">Mandatory</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e129 ">Description</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e132 ">This parameter is the description of rate.</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e135 ">String</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e138 ">Optional</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e129 ">Rate Unit</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e132 ">This parameter indicates the unit in which the quantity and duration is specified
+         within the tiered allowance (charging steps).</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e135 ">
+         <p class="p">Select the required rate type from the predefined rate types in the drop-down list.</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e138 ">Mandatory</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e129 ">Apply taxation</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e132 ">When selected applies tax to the service fee.</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e135 ">Boolean</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e138 ">Optional</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e129 ">Tax ID</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e132 ">ID of a taxation profile. This drop-down is available only when Apply taxation is
+         selected.</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e135 ">Enum</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e138 ">Optional</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e129 ">Charge tax</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e132 ">This parameter indicates whether applied tax is included to the fee/cost or not.
+         Available options are: <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e148204__ul_fbm_pfl_nwb">
+          <li class="li"><em class="ph i">On top of the fee</em>: When selected, tax is applied over and above cost/fee.</li>
+
+          <li class="li"><em class="ph i">Included to the fee</em>: When selected, it is considered that fee/cost provided in
+           configuration contains tax amount in it.</li>
+
+         </ul>
+<em class="ph i">Default value: On top of the fee</em></td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e135 ">Boolean</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e138 ">Optional</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d181811e129 d181811e132 d181811e135 d181811e138 "><strong class="ph b">Rate Steps</strong><p class="p">Define the amount of currency to be
+          charged for each unit of consumption.</p>
+</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e129 ">Activation Fee</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e132 ">This parameter indicates the cost applied at the initial connection setup of the
+         call.</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e135 ">Big decimal</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e138 ">Optional</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d181811e129 d181811e132 d181811e135 d181811e138 ">
+         <p class="p">To define the rate entity for a tiered allowance (charging service), select one of the
+          following values from the <span class="ph uicontrol">Step Type</span> drop-down list:</p>
+
+         <ul class="ul">
+          <li class="li">
+           <p class="p">
+            <var class="keyword varname">Fixed fee</var>
+           </p>
+
+          </li>
+
+          <li class="li">
+           <p class="p">
+            <var class="keyword varname">Rate per unit</var>
+           </p>
+
+          </li>
+
+         </ul>
+
+         <p class="p">Then, define the given parameters:</p>
+
+       </td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d181811e129 d181811e132 d181811e135 d181811e138 ">Click <span class="ph uicontrol">+ADD STEP</span> to add a new
+         step.</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e129 ">Default Fixed Fee</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e132 ">This parameter indicates the cost to be charged for the quantity specified in the
+         step. It is enabled when <strong class="ph b">Fixed fee</strong> is selected for <strong class="ph b">Step type</strong>.</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e135 ">Big decimal</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e138 ">Mandatory</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e129 ">Default rate per unit</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e132 ">This parameter indicates the cost to be charged for the quantity specified in the
+         step. It is enabled when <strong class="ph b">Rate per unit</strong> is selected for <strong class="ph b">Step type</strong>.</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e135 ">Big decimal</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e138 ">Mandatory</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e129 ">Default Step Size</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e132 ">This parameter indicates the minimum duration for which the call is charged.</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e135 ">Big decimal</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e138 ">Mandatory</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e129 ">Charging Granularity</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e132 ">This parameter indicates the unit in which the granularity is specified within the
+         charging steps.</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e135 ">
+         <p class="p">Select the required granularity level from the predefined granularity levels in the
+          drop-down list.</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e138 ">Mandatory</td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+</div>
+</div>
+
+<div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e148204__example"><h2 class="title sectiontitle">Examples</h2>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 1: Normal cost</strong></p>
+
+<p class="p">Rate to define a normal step type to charge 1 Euro for every 10 MB usage</p>
+<ol class="ol">
+<li class="li">
+<p class="p">For first 100 MB consumption, 1 Euro is charged per 10 MB usage.</p>
+
+</li>
+
+<li class="li">
+<p class="p">For the remaining part of the call, 0.5 Euro is charged per 10 MB usage.</p>
+
+</li>
+
+</ol>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 2: Fixed cost</strong></p>
+
+<p class="p">Rate to define a normal step type to charge 0.025 Euro for every 10 MB usage for first 100 MB and then deduct Fixed cost = 10 Euro for 50 MB; remaining call is charged with 0.50 Euro for every 10 MB usage</p>
+<ol class="ol">
+<li class="li">
+<p class="p">For first 100 MB consumption, 0.25 Euro is charged per 10 MB usage.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Fixed cost of 10 Euro is deducted for 50 MB.</p>
+
+</li>
+
+<li class="li">
+<p class="p">For the remaining part of the call, 0.50 Euro is charged again per 10 MB usage.</p>
+
+</li>
+
+</ol>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Actions associated with rate</h2>
+   
+   <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:28.818443804034583%" /><col style="width:71.18155619596543%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d181811e480">
+        <p class="p">Action</p>
+
+      </th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d181811e486">
+        <p class="p">Description</p>
+
+      </th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e480 ">Create</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e486 ">Creates a rate entity in the database by providing the <span class="ph uicontrol">Name</span>,
+         <span class="ph uicontrol">chargingSteps</span>, and <span class="ph uicontrol">Connection Cost</span>
+        parameters.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e480 ">Read</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e486 ">Displays the rate object. For this operation, a <span class="ph uicontrol">Rate Name</span> is
+        required.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e480 ">Update</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e486 ">Updates the rate entity except <span class="ph uicontrol">Rate ID</span> or <span class="ph uicontrol">Rate
+         Name</span>.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e480 ">Delete</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d181811e486 ">Deletes a rate entity from database. For this operation, a <span class="ph uicontrol">Rate
+         Name</span> is required.</td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+   <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> These actions are valid for internal purposes only and cannot be accessed using the SM
+     GUI.</div>
+
+  </div>
+
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_nzx_1cp_bqb"><h2 class="title topictitle2" id="ariaid-title2">Voice consumption charged from a Bucket of Unit type</h2>
+<div class="body conbody">
+   <p class="p">Voice consumption can be charged from a Bucket of Unit type. Operators can use bucket of
+    generic units (that is, Unit type) to be charged for Voice related usage.</p>
+
+   <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For NCC rating computation, the unit type of the resource should be same as per requested
+    service unit type (RSU). Only Bucket of Unit type can be charged for the seconds reported in
+    Voice Call, where the requested service unit type is TIME.</div>
+
+   <div class="section" id="concept_nzx_1cp_bqb__section_f5h_h1p_bqb"><h3 class="title sectiontitle">Example</h3><p class="p"><strong class="ph b">Scenario</strong></p>
+<p class="p">Consider that a
+     Device has two subscriptions. The higher priority subscription has a charging from Bucket with
+     32 generic charging units, with Rate of 15 cost/min, and granularity of 60 sec and the lower
+     priority Charging Service (CS) has a Charging from main balance with Rate 0.09 cost/min and
+     granularity of 15 sec. The Account Balance is set to 10.</p>
+<p class="p"><strong class="ph b">Execution</strong></p>
+<p class="p">Execute
+     an IMS call for a duration of 130 sec.</p>
+<p class="p"><strong class="ph b">Expected behavior</strong></p>
+<ul class="ul" id="concept_nzx_1cp_bqb__ul_pl2_wr4_bqb">
+     <li class="li">For the 120 seconds the consumption should be done from the Bucket and 30 generic
+      convertible units should be consumed from it (as the Rate is of 15 units/sec with granularity
+      of 60 sec), leaving 2 generic units in the bucket.</li>
+
+     <li class="li">For the remaining 10 seconds, it should be covered from the Account and as the granularity
+      of the Rate is 15 sec. Therefore (15*0.09€/60 = 0.025 €) 0.03 € is deducted.</li>
+
+    </ul>
+<p class="p"><strong class="ph b">Pre-conditions</strong></p>
+<ol class="ol" id="concept_nzx_1cp_bqb__ol_ql2_wr4_bqb">
+     <li class="li">Create the rates as follows:<div class="fig figborder" id="concept_nzx_1cp_bqb__fig_acn_zz4_bqb">
+       <a href="../images/ratex1.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_bgv_dt4_bqb" src="../images/ratex1.png" /></a>
+      </div>
+<div class="fig figborder" id="concept_nzx_1cp_bqb__fig_dgk_yz4_bqb">
+       <a href="../images/ratex2.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_sl2_wr4_bqb" src="../images/ratex2.png" /></a>
+      </div>
+</li>
+
+     <li class="li">Create a charging service with Charging from Bucket with previously created Rate of
+      15units/sec and granularity of 60 sec: <div class="fig figborder" id="concept_nzx_1cp_bqb__fig_evy_xz4_bqb">
+       <a href="../images/ratex3.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_ul2_wr4_bqb" src="../images/ratex3.png" /></a>
+      </div>
+<div class="fig figborder" id="concept_nzx_1cp_bqb__fig_ntm_xz4_bqb">
+       <a href="../images/ratex4.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_vl2_wr4_bqb" src="../images/ratex4.png" /></a>
+      </div>
+<div class="fig figborder" id="concept_nzx_1cp_bqb__fig_bxc_xz4_bqb">
+       <a href="../images/ratex5.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_wl2_wr4_bqb" src="../images/ratex5.png" /></a>
+      </div>
+</li>
+
+     <li class="li">Attach the created CS to a Bundle: <div class="fig figborder" id="concept_nzx_1cp_bqb__fig_csr_wz4_bqb">
+       <a href="../images/ratex6.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_yl2_wr4_bqb" src="../images/ratex6.png" /></a>
+      </div>
+</li>
+
+     <li class="li">Create another CS Charging from main balance with Rate of 0.09cost/min and granularity of
+      15 sec. The Priority of this CS is less than the priority of the previously created CS:<div class="fig figborder" id="concept_nzx_1cp_bqb__fig_kkg_wz4_bqb">
+       <a href="../images/ratex7.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_am2_wr4_bqb" src="../images/ratex7.png" /></a>
+      </div>
+<div class="fig figborder" id="concept_nzx_1cp_bqb__fig_gjw_vz4_bqb">
+       <a href="../images/ratex8.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_bm2_wr4_bqb" src="../images/ratex8.png" /></a>
+      </div>
+</li>
+
+     <li class="li">Create another bundle with the lower priority CS created.<div class="fig figborder" id="concept_nzx_1cp_bqb__fig_qjj_vz4_bqb">
+       <a href="../images/ratex9.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_dm2_wr4_bqb" src="../images/ratex9.png" /></a>
+      </div>
+</li>
+
+     <li class="li">Create a Device and Attach the 2 Bundles created and the account as subscription to the
+      device, and set the Account Balance as 10. <div class="fig figborder" id="concept_nzx_1cp_bqb__fig_ert_5z4_bqb">
+       <a href="../images/ratex10.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_fm2_wr4_bqb" src="../images/ratex10.png" /></a>
+      </div>
+</li>
+
+    </ol>
+<p class="p"><strong class="ph b">Post-conditions</strong></p>
+After execution of IMS call for the duration of 130 sec, the
+    Bucket is left with two Generic Units and the Account Balance is 9.97.<div class="fig figborder" id="concept_nzx_1cp_bqb__fig_amf_5z4_bqb">
+     <a href="../images/ratex11.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_im2_wr4_bqb" src="../images/ratex11.png" /></a>
+    </div>
+</div>
+
+   <div class="section" id="concept_nzx_1cp_bqb__section_iqn_wpz_lxb"><h3 class="title sectiontitle">Versioning for rate</h3>
+    
+    <p class="p">Versioning of a charging logic is available for Rate component update. When publishing a new
+     version of charging logic (with Rate component values update), the new version impacts all the
+     relevant subscriptions (per charging logic) with corresponding new Rate values. </p>
+
+    <p class="p"><em class="ph i">When Bundle and CL versioning is ON:</em></p>
+
+    <p class="p">The Rate component can be versioned by overriding the values and save them in CL versioned
+     entity. The Rate component in the charging logic can be:</p>
+
+    <ul class="ul" id="concept_nzx_1cp_bqb__ul_ibt_tkw_nxb">
+     <li class="li"><var class="keyword varname">Global Override for Rate - No</var> - Default value (currently). Updating the
+      Rate component (not in CL context) values impact all the subscriptions immediately (not
+      related to version type).</li>
+
+     <li class="li"><var class="keyword varname">Global Override for Rate - Yes</var> - The CL /Rate component can be editable
+      as part of versioning and impacts the relevant subscriptions (per version type).<div class="note" id="concept_nzx_1cp_bqb__note_ax2_kvg_4xb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The Rate component can be replaced in the CL (this is considered per
+       version type).</div>
+</li>
+
+     <li class="li">Supporting all types of versioning: Immediately, Next BCR, Protect, Patch versioning and
+      Emergency fix (for Next BCR and protect)</li>
+
+     <li class="li">Supporting CL / Rate versioning for late calls</li>
+
+     <li class="li">Supporting CL / Rate versioning for rerating</li>
+
+     <li class="li">Any rate entity can be changed</li>
+
+     <li class="li">Keeping the current rating functionality (no change)</li>
+
+    </ul>
+
+    <p class="p"><em class="ph i">When Bundle and CL versioning is OFF</em> (consider backward compatibility):</p>
+
+    <ul class="ul" id="concept_nzx_1cp_bqb__ul_kbt_tkw_nxb">
+     <li class="li">Any change in the Rate component (not in the CL) impacts the existing subscriptions
+      immediately. </li>
+
+    </ul>
+
+   </div>
+
+   <div class="section" id="concept_nzx_1cp_bqb__section_tw2_dyg_4xb"><h3 class="title sectiontitle">Versioning during a call</h3>
+    
+    <p class="p">Rate component can be versioned by overriding the values and saving them in charging logic
+     versioned entity as an embedded object instead of keeping it as reference.</p>
+
+    <ul class="ul" id="concept_nzx_1cp_bqb__ol_ygk_dyg_4xb">
+     <li class="li">On Version change and version Type is <span class="keyword apiname">Immediate</span> → follow charging logic
+      versioning </li>
+
+     <li class="li">On Version change and version Type is <span class="keyword apiname">BCR</span>→ follow charging logic
+      versioning</li>
+
+     <li class="li">On Version change and version Type is <span class="keyword apiname">Protected</span> → follow charging logic
+      versioning</li>
+
+    </ul>
+
+   </div>
+
+   <div class="section" id="concept_nzx_1cp_bqb__section_fsc_4zg_4xb"><h3 class="title sectiontitle">Scenarios: Versioning for rate</h3>
+    
+   </div>
+
+   <div class="section" id="concept_nzx_1cp_bqb__section_k3v_r4h_4xb"><p class="p"><strong class="ph b">Versioning OFF</strong></p>
+<em class="ph i">Adding a Rate component (not
+     editable) to a CL:</em><ul class="ul" id="concept_nzx_1cp_bqb__ul_kt5_zzg_4xb">
+     <li class="li">Create a Rate component (<var class="keyword varname">$5/1MB, Step Size 5MB, Fixed Fee $10</var>)</li>
+
+     <li class="li">Create a Charging Logic</li>
+
+     <li class="li">Add the Rate component to the CL - not editable <div class="div"><strong class="ph b">Expected results</strong>: The rate in
+       the CL cannot be modified.</div></li>
+
+    </ul>
+</div>
+
+   <div class="section" id="concept_nzx_1cp_bqb__section_of1_1qh_4xb">
+    <p class="p"><strong class="ph b">Versioning ON</strong></p>
+
+    <p class="p"><em class="ph i">Adding a Rate component (editable) to a CL:</em></p>
+
+    <ul class="ul" id="concept_nzx_1cp_bqb__ul_gyq_qzg_4xb">
+     <li class="li">Create a Rate component, Rate1 (<var class="keyword varname">$5/1MB, Step Size 5MB, Fixed Fee
+      $10</var>)</li>
+
+     <li class="li">Create a Charging Logic (charging logic v1.0)</li>
+
+     <li class="li">Add the Rate component to the CL - now editable<div class="div"><strong class="ph b">Expected results</strong>: Values for
+       rate are editable, and can be updated.</div><em class="ph i">Change the Rate component (outside the CL) -
+       it is editable and impacting the existing subscriptions.</em></li>
+
+     <li class="li">Update Rate1 (with charging logic v2.0) component (<var class="keyword varname">$5/1MB, Step Size 10MB, Fixed
+       Fee $15, Charging Granularity 0</var>)</li>
+
+     <li class="li">Publish Charging logic v2.0 with Rate 1 updated values. <em class="ph i">Charging logic v1.0 becomes
+       obsolete, and Charging logic v2.0 , Active</em>. </li>
+
+    </ul>
+
+   </div>
+
+   <div class="section">
+    <div class="div">
+     <div class="fig fignone" id="concept_nzx_1cp_bqb__fig_tpb_cqh_4xb"><span class="figcap"><span class="fig--title-label">Figure: </span>Charging logic when versioning is OFF</span>
+      
+      <a href="../images/hybrid_gui/rate_wov.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_vr3_2qh_4xb" src="../images/hybrid_gui/rate_wov.png" /></a>
+     </div>
+
+     <div class="fig fignone" id="concept_nzx_1cp_bqb__fig_yyn_gqh_4xb"><span class="figcap"><span class="fig--title-label">Figure: </span>Versioning enabled in SM Preferences</span>
+      
+      <img class="image break" id="concept_nzx_1cp_bqb__image_zyn_gqh_4xb" height="384" src="../images/hybrid_gui/enable_versioning.png" width="672" />
+     </div>
+
+     <div class="fig fignone" id="concept_nzx_1cp_bqb__fig_uhp_gqh_4xb"><span class="figcap"><span class="fig--title-label">Figure: </span>Charging logic is editable (versioning enabled)</span>
+      
+      <a href="../images/hybrid_gui/cl_editable.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_vhp_gqh_4xb" src="../images/hybrid_gui/cl_editable.png" /></a>
+     </div>
+
+     <div class="fig fignone" id="concept_nzx_1cp_bqb__fig_tkq_gqh_4xb"><span class="figcap"><span class="fig--title-label">Figure: </span>Global override of values</span>
+      
+      <a href="../images/hybrid_gui/global_override.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_ukq_gqh_4xb" src="../images/hybrid_gui/global_override.png" /></a>
+     </div>
+
+     <div class="fig fignone" id="concept_nzx_1cp_bqb__fig_h2r_gqh_4xb"><span class="figcap"><span class="fig--title-label">Figure: </span>Version 1 published (Obsolete, with 2 steps)</span>
+      
+      <a href="../images/hybrid_gui/version1.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_i2r_gqh_4xb" src="../images/hybrid_gui/version1.png" /></a>
+     </div>
+
+     <div class="fig fignone" id="concept_nzx_1cp_bqb__fig_ayr_gqh_4xb"><span class="figcap"><span class="fig--title-label">Figure: </span>Version 2 - Active, with modified values, additional steps, updated charging
+       granularity</span>
+      
+      <a href="../images/hybrid_gui/version2.png" class="image"><img class="image break scalefit" id="concept_nzx_1cp_bqb__image_byr_gqh_4xb" src="../images/hybrid_gui/version2.png" /></a>
+     </div>
+
+    </div>
+   </div>
+
+  </div>
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

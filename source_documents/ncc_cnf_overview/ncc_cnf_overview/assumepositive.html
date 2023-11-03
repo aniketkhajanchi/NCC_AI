@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Assume Positive streams" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="assumepositive" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Assume Positive streams</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="assumepositive">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Assume Positive streams</h1>
+<div class="body conbody">
+        <p class="p">Assume Positive (AP) is a feature required for handling situations where the CHF goes
+            down or is unavailable. Assume Positive is typically implemented in the network elements
+            to facilitate the allocation of temporary quota for a data or call session in case of
+            temporary errors in CHF. If the CHF overall infrastructure does not respond or returns
+            an error, PGW, SMF, or IMS can allocate temporary traffic allowance to avoid traffic
+            blocking. If a session with the CHF cannot be restored later, network elements generate
+            Assume Positive logs, which the CHF collects periodically  reprocesses out of
+            session.</p>
+
+        <div class="fig fignone" id="assumepositive__fig_tch_23b_vpb"><span class="figcap"><span class="fig--title-label">Figure: </span>Assume Positive architecture </span>
+            
+        </div>
+
+        <div class="fig fignone" id="assumepositive__fig_ylm_n3b_vpb">
+            <img class="image imagecenter break" id="assumepositive__image_cmy_g3b_vpb" src="images/Assume_positive_streams.gif" height="403" width="462" />
+        </div>
+
+        <p class="p">In NCC CGF, Assume Positive functionality is handled by two main streams - Assume
+            Positive collector stream and Assume Positive handler stream. Additionally, the Assume
+            Positive input stream picks up records that Assume Positive handler stream is not able
+            to process. Finally, the Business logic stream can map the Assume Positive disposition
+            logs as generic records. For more information, see</p>
+
+        <ul class="ul" id="assumepositive__ul_j4p_zxf_wpb">
+            <li class="li"><a class="xref" href="ap_collection_stream.html#ap_collection_stream">Assume Positive collector stream</a></li>
+
+            <li class="li"><a class="xref" href="ap_handler_stream.html#ap_handler_stream">Assume Positive handler stream</a></li>
+
+            <li class="li"><a class="xref" href="ap_input_stream.html#ap_input_stream">Kafka disposition log collector stream</a></li>
+
+            <li class="li"><a class="xref" href="mapping_ap_records.html#mapping_ap_records">Mapping Assume Positive records</a>.</li>
+
+        </ul>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

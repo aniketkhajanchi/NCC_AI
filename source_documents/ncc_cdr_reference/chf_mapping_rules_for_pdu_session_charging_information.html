@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Mapping rules for PDU session charging information in CHF records (V15)" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="chf_mapping_rules_for_pdu_session_charging_information" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Mapping rules for PDU session charging information in CHF records (V15)</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="chf_mapping_rules_for_pdu_session_charging_information">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Mapping rules for PDU session charging information in CHF records (V15)</h1>
+<div class="body conbody">
+        <table cellpadding="4" cellspacing="0" summary="" id="chf_mapping_rules_for_pdu_session_charging_information__table_ebm_kvb_l4b" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Mapping rules for PDU session charging information in CHF records (V15)</span></caption><colgroup><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d128112e42">Output field name</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d128112e45">Input field name</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d128112e48">Conversion rule for NCHFChargingRecord (5G)</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">
+                            <p class="p">pDUSessionChargingID</p>
+
+                            <p class="p">(mandatory)</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.pDUSessionChargingID</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">Validate that the input is of type integer and raise a warning if it
+                                is not.</p>
+
+                            <ul class="ul" id="chf_mapping_rules_for_pdu_session_charging_information__ul_m55_qvb_l4b">
+                                <li class="li">min = 0 </li>
+
+                                <li class="li">max = 4294967295</li>
+
+                            </ul>
+
+                            <p class="p">If input does not exist or is not valid, raise a warning and do not
+                                map.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">userIdentifier.iSDN-E164</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.userIdentifier</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">Direct mapping.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">
+                            <p class="p">userEquipmentInfo.subscriberEquipmentNumberType</p>
+
+                            
+                            <p class="p">userEquipmentInfo.subscriberEquipmentNumberData</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">
+                            <p class="p">&lt;parent&gt;.userEquipmentInfo.subscriberEquipmentNumberType</p>
+
+                            
+                            <p class="p">&lt;parent&gt;.userEquipmentInfo.subscriberEquipmentNumberData</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Add userEquipmentInfo if at least one of the input fields exist.</p>
+
+                            <p class="p">Direct mapping:</p>
+
+                            <p class="p">[userEquipmentType, subscriberEquipmentNumberType] -&gt;
+                                subscriberEquipmentNumberType</p>
+
+                            <p class="p">If input does not exist or is not a valid integer, use the default
+                                value: 1 (mAC).</p>
+
+                            <p class="p">[userEquipmentValue, subscriberEquipmentNumberData] -&gt;
+                                subscriberEquipmentNumberData</p>
+
+                            <p class="p">If it has an uneven number of characters, add an F in the end. After
+                                that, verify that the value is a valid octet string and raise a </p>
+
+                            <p class="p">If input does not exist or is not valid, use the default value:
+                                101010110938</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">userLocationInformation</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.userLocationInformation</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping. </p>
+
+                            <p class="p">If the input has an uneven number of characters, add F at the
+                                end.</p>
+
+                            <p class="p">Verify that the thereby received value is a valid octet string. Raise
+                                a warning and do not map if it is not.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">userRoamerInOut</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.userRoamerInOut</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping:</p>
+
+                            <p class="p">0-&gt;0 </p>
+
+                            <p class="p">1-&gt;1</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">
+                            <p class="p">presenceReportingAreaInfo</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;. presenceReportingAreaInfo</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">See <a class="xref" href="chf_mapping_rules_for_presence_reporting_info.html#chf_mapping_rules_for_presence_reporting_info">Mapping rules for presence reporting info in CHF records (V15)</a> with presenceReportingAreaInfo as parent. </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">
+                            <p class="p">pDUSessionId</p>
+
+                            <p class="p">(mandatory)</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.pDUSessionId</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping. </p>
+
+                            <p class="p">Validate that the value exists and is between 0 and 255. Raise a
+                                warning and do not map if it is not.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">
+                            <p class="p">networkSliceInstanceID.sST</p>
+
+                            <p class="p">(mandatory, if networkSliceInstanceID exists)</p>
+
+                            
+                            <p class="p">networkSliceInstanceID.sD</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">
+                            <p class="p">&lt;parent&gt;.networkSliceInstanceID.sST</p>
+
+                            
+                            <p class="p">&lt;parent&gt;.networkSliceInstanceID.sD</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping:</p>
+
+                            <p class="p">sST -&gt; sST</p>
+
+                            <p class="p">Validate that the value is between 0 and 255 and raise a warning if
+                                it is not.</p>
+
+                            <p class="p">If input does not exist or is not valid, use the default value: 0</p>
+
+                            <p class="p">sD -&gt; sD</p>
+
+                            <p class="p">The input should be three octets long. Add more zeros to the end, if
+                                it is not. If there are too many octets, take only the first ones. </p>
+
+                            <p class="p">After that, verify that the input is a valid octet string. Raise a
+                                warning and do not map if it is not.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">pDUType</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.pDUType</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">Validate that the input is of type integer. Raise a warning and do
+                                not map if it is not.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">sSCMode</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.sSCMode</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">Validate that the input is of type integer. Raise a warning and do
+                                not map if it is not.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">sUPIPLMNIdentifier</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.sUPIPLMNIdentifier</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">Verify that the input is a valid three octet long octet string. Raise
+                                a warning and do not map if it is not </p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">servingNetworkFunctionID.ServingNetworkFunctionID*</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.servingNodeIDs.servingNetworkFunctionID</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">See <a class="xref" href="3mapping_rules_for_serving_network_function_id.html#CHF_mapping_rules_for_serving_network_function_id">Mapping rules for serving network function ID in CHF records (V15)</a> with servingNetworkFunctionID as parent. </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">rATType</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.rATType</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">Validate that the value is between 0 and 255. Raise a warning and do
+                                not map if it is not.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">dataNetworkNameIdentifier</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.dataNetworkNameIdentifier</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">If the value has more than 63 characters, take the first 63
+                                characters.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">pDUAddress</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.pDUAddress</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">See  <a class="xref" href="chf_mapping_rules_for_pdu_address.html#chf_mapping_rules_for_pdu_address">Mapping rules for PDU address in CHF records (V15)</a>with pDUAddress as parent. </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">authorizedQoSInformation</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.authorizedQoSInformation</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">See <a class="xref" href="chf_mapping_rules_for_qos_information.html#chf_mapping_rules_for_qos_information">Mapping rules for QoS Information in CHF records (V15)</a> with authorizedQoSInformation as parent.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">uETimeZone</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.uETimeZone</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">The input should be two octets long. Add more zeros to the end, if it
+                                is not. If there are too many octets, take only the first ones.</p>
+
+                            <p class="p">After that, verify that the input is a valid octet string. Raise a
+                                warning and do not map if it is not.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">pDUSessionstartTime</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.pDUSessionstartTime</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">Convert input to timestamp, see <a class="xref" href="date_conversion_to_compact_utctime_format.html#date_conversion_to_compact_utctime_format">Date conversion to compact UTCTime format</a>. Raise a warning and do not map if the input is not valid.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">pDUSessionstopTime</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.pDUSessionStopTime</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">Convert input to timestamp, see <a class="xref" href="date_conversion_to_compact_utctime_format.html#date_conversion_to_compact_utctime_format">Date conversion to compact UTCTime format</a>. Raise a warning and do not map if the input is not valid.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">diagnostics</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.diagnostics</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">Direct mapping.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">chargingCharacteristics</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.chargingCharacteristics</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">Direct mapping. Input should be two octets long. Add more zeros to
+                                the end, if it is not. If there are too many octets, take only the
+                                first ones.</p>
+
+                            <p class="p">Verify that the input is a valid two octet long octet string. Raise a
+                                warning and do not map if it is not. </p>
+
+                            <p class="p">If the input does not exist, use the default value: 0 </p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">chChSelectionMode</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.chChSelectionMode</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping:</p>
+
+                            <p class="p">0-&gt; 3 (homeDefault)</p>
+
+                            <p class="p">1-&gt;4 (roamingDefault)</p>
+
+                            <p class="p">2-&gt; 5 (visitingDefault)</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">threeGPPPSDataOffStatus</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;. threeGPPPSDataOffStatus</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">Direct mapping from integer to integer.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">rANSecondaryRATUsageReport</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.rANSecondaryRATUsageReport</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">See <a class="xref" href="chf_mapping_rules_for_ransecondaryratusagereport.html#chf_mapping_rules_for_ransecondaryratusagereport">Mapping rules for rANSecondaryRATUsageReport in CHF records (V15)</a>.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">subscribedQoSInformation</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.subscribedQoSInformation</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">See <a class="xref" href="chf_mapping_rules_for_subscribedqosinformation.html#chf_mapping_rules_for_subscribedqosinformation">Mapping rules for subscribedQoSInformation in CHF records (V15)</a>.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">authorizedSessionAMBR</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.authorizedSessionAMBR authorizedSessionAMBR</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">Direct mapping.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">
+                            <p class="p">authorizedSessionAMBR.ambrUL</p>
+
+                            <p class="p">(mandatory, if authorizedSessionAMBR exists)</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.authorizedSessionAMBR*. ambrUL</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">If the input has an uneven number of characters, add a zero in front.
+                                After that, verify that the value is a valid octet string. Raise a
+                                warning and do not map if it is not.</p>
+
+                            <p class="p">If the input does not exist, use the default value: 0.0tbps</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">
+                            <p class="p">authorizedSessionAMBR.ambrDL</p>
+
+                            <p class="p">(mandatory, if authorizedSessionAMBR exists)</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.authorizedSessionAMBR*. ambrDL</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">If the input has an uneven number of characters, add a zero in front.
+                                After that, verify that the value is a valid octet </p>
+
+                            <p class="p">If the input does not exist, use the default value: 0.0tbps</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">subscribedSessionAMBR</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.subscribedSessionAMBR</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">Direct mapping. </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">
+                            <p class="p">subscribedSessionAMBR.ambrUL</p>
+
+                            <p class="p">(mandatory, if subscribedSessionAMBR exists)</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.subscribedSessionAMBR. ambrUL</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">If the input has an uneven number of characters, add a zero in front.
+                                After that, verify that the value is a valid octet. </p>
+
+                            <p class="p">If the input does not exist, use the default value: 0.0tbps </p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">
+                            <p class="p">subscribedSessionAMBR.ambrDL</p>
+
+                            <p class="p">(mandatory, if subscribedSessionAMBR exists)</p>
+
+                        </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.subscribedSessionAMBR. ambrDL</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">If the input has an uneven number of characters, add a zero in front.
+                                After that, verify that the value is a valid octet. </p>
+
+                            <p class="p">If the input does not exist, use the default value: 0.0tbps </p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">servingCNPLMNID</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.servingCNPlmnId</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">Verify that the input is a valid three octet long octet string. Raise
+                                a warning and do not map if it is not. </p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">sUPIunauthenticatedFlag</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.sUPIunauthenticatedFlag</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Included only if sUPIunauthenticatedFlag exists and value is 1
+                                (true). Otherwise do not include.</p>
+
+                            <p class="p">The value can be anything as it will be encoded to null.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e42 ">dNNSelectionMode</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e45 ">&lt;parent&gt;.dNNSelectionMode</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128112e48 ">
+                            <p class="p">Direct mapping:</p>
+
+                            <p class="p">0-&gt; 0 (uEorNetworkProvidedSubscriptionVerified)</p>
+
+                            <p class="p">1-&gt; 1 (uEProvidedSubscriptionNot Verified)</p>
+
+                            <p class="p">2-&gt;2 (networkProvidedSubscriptionNot Verified)</p>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+    </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

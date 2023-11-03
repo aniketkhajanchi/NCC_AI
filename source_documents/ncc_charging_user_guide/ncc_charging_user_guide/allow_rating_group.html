@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Allow configured rating group flow during TOD" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="allow_rating_group" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Allow configured rating group flow during TOD</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="allow_rating_group">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Allow configured rating group flow during TOD</h1>
+<div class="body conbody">
+        <p class="p">This feature allows usage and counting of data during TOD restriction using a new rating
+            group. When a Gy/N40 transaction subscriber first comes inside TOD restriction, OCS
+            sends an SNR or N28_Notify to the PCF using the new TOD PCID and <strong class="ph b">Inside</strong> PC
+            Status. The PCF installs a new charging rule and a new RG to track usage during TOD. CHF
+            allocates the usage for new RG during TOD restriction until there is any other UC
+            restriction than TOD, is applied. </p>
+
+        <p class="p">When a Gy/N40 transaction for a subscriber first comes after TOD restriction period is
+            over, CHF sends another SNR or N28_Notify to the PCF with the TOD PCID and
+                <strong class="ph b">Outside</strong> PC status, triggering the PCF to modify the rule. This feature is not
+            applicable for re-rating/non real-time charging interface. It is applicable to 4G/5G
+            data calls.</p>
+
+        <p class="p">The status of the TOD Policy counter changes to <strong class="ph b">Inside</strong> or <strong class="ph b">Outside</strong> only when
+            a Gy/N40 request enters or exits Time of Day window. For example, if a SLR/N28_Subscribe
+            request comes inside the TOD time-frame, but Gy/N40 request is not yet received inside
+            the TOD frame, the status for Policy Counter ID is still sent as <strong class="ph b">Outside</strong> in the
+            SLA/N28_Subscribe response.</p>
+
+        <div class="p">
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For the feature to work, you must configure all the configurations noted below
+                along with the feature flag <strong class="ph b">Allow Rating Group flow during TimeOfDay</strong> set to
+                1.</div>
+
+        </div>
+
+        <div class="section" id="allow_rating_group__section_lq1_byn_rrb"><h2 class="title sectiontitle">Configuration for TOD allowed RGs, TOD PCID and status values</h2>
+            
+            <p class="p">The <strong class="ph b">TOD Allowed RGs</strong> are the rating groups for which there will be a successful
+                grant even inside the TOD time-frame. Thus, TOD restrictions are not applied to
+                these RGs during 4G or 5G calls but other UC restrictions will still be applied. </p>
+
+            <div class="p">The <strong class="ph b">TOD Policy Counter ID</strong> is the policy counter ID used to send status of the
+                TOD Policy counter. It can have the following status:<ul class="ul" id="allow_rating_group__ul_rpx_yf4_rrb">
+                    <li class="li"><strong class="ph b">TOD Inside Policy Counter Status</strong>: This is the status communicated to
+                        PCF when the last Gy/N40 call is received inside the TimeOf Day window.</li>
+
+                    <li class="li"><strong class="ph b">TOD Outside Policy Counter Status</strong>: This is the status communicated to
+                        PCF when the last Gy/N40 call is received outside the TimeOf Day
+                        window.</li>
+
+                    <li class="li"><strong class="ph b">TOD Not Applicable Policy Counter Status</strong>: This is the status
+                        communicated to PCF when the Gy/N40 call lands and there is no UC TimeOfDay
+                        configured in the subscription. Also, during a Gy/N40 call, if a Sy Session
+                        exists for the device which contains the configured TOD Policy Counter ID
+                        with <strong class="ph b">Inside</strong> or <strong class="ph b">Outside</strong>, but the feature flag is disabled, an
+                        SNR/N28_Notify is generated which sends the status configured in the TOD Not
+                        Applicable Policy Counter Status. It effectively cancels the status of TOD
+                        PCID at PCF, as the feature is now disabled.</li>
+
+                </ul>
+</div>
+
+            <p class="p">If all the values are correctly configured, the current applicable TOD Policy Counter
+                ID and its status is communicated to PCF over the Sy/N28 Interface.</p>
+
+            <p class="p">To configure, log into the SM GUI, go to <span class="ph uicontrol">Charging Configuration &gt; Global
+                    Configuration</span>. See the sample values added in the following
+                screen:</p>
+
+            <img class="image imagecenter break" id="allow_rating_group__image_tj3_sd4_rrb" src="../images/tod_allowed.png" height="373" width="841" />
+        </div>
+
+        <div class="section" id="allow_rating_group__section_gy5_xws_vrb"><h2 class="title sectiontitle">Rule to check if UC is subscribed</h2>
+            
+            <p class="p">An <strong class="ph b">isUCSubs</strong> rule is added to the SPR_DEVICE to validate if the UC subscription
+                is present. It takes either True or False value. Different actions get triggered
+                based on the rule. </p>
+
+            <div class="p">
+                <pre class="pre codeblock"><code>SPR_DEVICE.isUCSubs=BooleanEnum_TRUE/BooleanEnum_FALSE</code></pre>
+            </div>
+
+            <p class="p">Following is the rule applied to BOU bundle to validate if UC is present:</p>
+
+            <img class="image imagecenter break" id="allow_rating_group__image_cgh_zct_vrb" src="../images/rule_spssol608.png" />
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

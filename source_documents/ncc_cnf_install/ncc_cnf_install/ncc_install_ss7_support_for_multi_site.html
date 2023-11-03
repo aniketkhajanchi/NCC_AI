@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="NCC SS7 support for multi-system" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="ncc_install_ss7_support_for_multi_site" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>NCC SS7 support for multi-system</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="ncc_install_ss7_support_for_multi_site">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1"><span class="ph">NCC</span> SS7 support for multi-system</h1>
+<div class="body conbody">
+        <p class="p"><span class="ph">NCC</span> SS7 supports multi-system deployment where each system
+            is receiving SS7 traffic and provisioning is handled by one system at a time. <span class="ph">NCC</span> SS7 supports one IG, 1+1 (one IG pair), and 2+2 (two
+            IGs + two MEs) configurations.</p>
+
+        <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The SS7 installation for all supported deployments is the same.</div>
+
+        <div class="fig fignone">
+            <img class="image break" id="ncc_install_ss7_support_for_multi_site__image_onx_jvt_xrb" height="286" src="images/ncc_install_ss7_multisite.png" width="491" />
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Spreadsheet for Input generator</h2>
+            
+            <p class="p">Prepare the spreadsheet for the input-generator as described in <a class="xref" href="input_generator_tool.html">Input generator</a>.</p>
+
+            <p class="p">In the Common worksheet, set the <code class="ph codeph">MariaDB Simplex</code> value to
+                    <code class="ph codeph">false</code> to enable geo-redundancy for MariaDB.</p>
+
+            <p class="p">If SS7 needs to be installed, enable the SS7 parameter. Set <code class="ph codeph">1</code> for
+                the original primary system and <code class="ph codeph">2</code> for the secondary system.</p>
+
+            <p class="p">The primary SM system is also primary system SS7 and the secondary SM system is
+                secondary for SS7.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">MariaDB data center support</h2>
+            
+            <p class="p">MariaDB supports up to four data centers. When configuring more than two data
+                centers, the configuration involves a multi-primary (or multi-source) replication
+                scheme (each data center primary is a secondary to two or more alternate data
+                centers).</p>
+
+            <p class="p">For this reason, the geo-redundancy configuration in the
+                    <span class="ph filepath">values.yaml</span> file changed from a single remote configuration
+                to a list of remote sites which must be named. The system names are used to name the
+                replication connections to each remote system.</p>
+
+            <p class="p">In <span class="ph">NCC</span> SS7, MariaDB has local redundancy as pods are
+                deployed with cluster-type primary-secondary. Mated system is used in case of a
+                complete failure of MariaDB in the primary system. PSMF POD is deployed in all
+                sites, but the provisioning interface is available in only one system at a time. In
+                each system, PSMF is deployed in active/standby mode.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">EM support</h2>
+            
+            <p class="p">Each system is managed by its own EM. PSMF can communicate with the other system’s EM
+                node. Each system has its own point code. The service entry is defined for the EM
+                port to communicate with the EM of another system.</p>
+
+            <p class="p">EM maintains the configuration files in its PVC volume and Backup and Recovery is
+                used for EM to backup and restore configuration files, if required.</p>
+
+            <p class="p"><span class="ph">NCC</span> SS7 supports up to four partition IDs in the
+                database so that four endpoints can be defined for EM.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Other PODs</h2>
+            
+            <p class="p">Application PODs handle the traffic of their own sites and they do not distribute the
+                traffic across the system. Log and metric events are collected for each system.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Multi-data center restore</h2>
+            
+            <p class="p">In a multi-data center configuration, when replication fails between data centers and
+                the binary logs on the primary data center are too out of date to allow replication
+                to bring the data centers back in sync, a Backup and Recovery solution is not
+                appropriate since only the database directory is copied, not the SQL statements that
+                may affect replication. When this happens, the secondary data center must be
+                restored from the primary data center. Make sure that the issues which caused the
+                data center replication to fail are resolved before performing this activity.</p>
+
+            <p class="p">This sequence of commands (without kubectl specific syntaxes) can be used.</p>
+
+            <ol class="ol" id="ncc_install_ss7_support_for_multi_site__ol_pnx_jvt_xrb">
+                <li class="li">Run this command to determine which node in the primary data center is the
+                    primary node. <pre class="pre codeblock"><code># maxadmin list servers</code></pre>
+                </li>
+
+                <li class="li">Backup the database on the primary node of dc1.
+                    <pre class="pre codeblock"><code># /usr/bin/mariadb_db_backup --backup --file /mariadb/dc1-backup.tgz</code></pre>
+                </li>
+
+                <li class="li">On the secondary data center to be restored (dc2), disable MaxScale on the
+                    MaxScale node to prevent it from performing recovery actions while the restore
+                    is in progress. The <code class="ph codeph">--stop-slave</code> argument stops replication on
+                    the primary node.
+                    <pre class="pre codeblock"><code># /usr/bin/maxscale_adm --disable --stop-slave</code></pre>
+                </li>
+
+                <li class="li">Copy the <span class="ph filepath">dc1-backup.tgz</span> file (created in step 2) to the
+                        <span class="ph filepath">/mariadb/</span> directory on each dc2 node.</li>
+
+                <li class="li">Run this command to begin the database restore operation on each database node
+                    of dc2 using the backup from dc1.
+                    <pre class="pre codeblock"><code># /usr/bin/mariadb_db_backup --restore --file /mariadb/dc1-backup.tgz</code></pre>
+                </li>
+
+                <li class="li">Run this command to enable MaxScale on dc2's MaxScale node.
+                    <pre class="pre codeblock"><code># /usr/bin/maxscale_adm –enable</code></pre>
+                </li>
+
+                <li class="li">Make sure the cluster comes back up as expected after MaxScale is restarted.
+                    <pre class="pre codeblock"><code># maxadmin list servers</code></pre>
+                </li>
+
+            </ol>
+</div>
+
+    </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Generating separate metrics for total CDR and EDR count" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="generating_separate_metrics_for_cdr_and_edr_count" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Generating separate metrics for total CDR and EDR count</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="generating_separate_metrics_for_cdr_and_edr_count">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Generating separate metrics for total CDR and EDR count</h1>
+<div class="body conbody">
+        <div class="p">The business logic stream counter <span class="ph uicontrol">EventCount_total</span> enables the
+            generation of separate total counts for CDR and for EDR output records over a 5-minute
+            interval, with these tags: <ul class="ul" id="generating_separate_metrics_for_cdr_and_edr_count__ul_ztd_vj4_5tb">
+                <li class="li">recordType<ul class="ul" id="generating_separate_metrics_for_cdr_and_edr_count__ul_sx4_xj4_5tb">
+                        <li class="li">CDR</li>
+
+                        <li class="li">EDR</li>
+
+                        <li class="li">total</li>
+
+                    </ul>
+</li>
+
+                <li class="li">output<ul class="ul" id="generating_separate_metrics_for_cdr_and_edr_count__ul_fxd_ck4_5tb">
+                        <li class="li">FILE</li>
+
+                        <li class="li">KAFKA</li>
+
+                    </ul>
+</li>
+
+            </ul>
+</div>
+
+        <p class="p">To configure the types of records that are counted into CDR and EDR total counts, edit CG
+            Mapper Node parameters as listed in the following table. Note that any record type not
+            defined in the node parameters is regarded as a generic record and counted into total (a
+            count of CDRs, EDRs and generic records).</p>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="generating_separate_metrics_for_cdr_and_edr_count__table_dwz_13d_c5b" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>CG Mapper Node parameters for EventCount_total</span></caption><colgroup><col style="width:20%" /><col style="width:40%" /><col style="width:40%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d59092e78">Node parameter</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d59092e81">Description</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d59092e84">Default value</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d59092e78 "><code class="ph codeph">CDRsRecordTypes</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d59092e81 ">Defines the record types that are counted into the total of CDRs, as
+                            a comma-separated list. </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d59092e84 "><code class="ph codeph">chargingFunctionRecord</code></td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d59092e78 "><code class="ph codeph">EDRsRecordTypes</code></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d59092e81 ">Defines the record types that are counted into the total of EDRs, as
+                            a comma-separated list. </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d59092e84 "><code class="ph codeph">renewAccountRecord,renewSubscriptionRecord,resetAccountRecord,resetSubscriptionRecord,checkBalanceRecord,debitAmountRecord,getUCBalanceRecord</code></td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+        <p class="p">For more details on the counter, see the <cite class="cite">Metrics Spreadsheet</cite>.</p>
+
+        <div class="section" id="generating_separate_metrics_for_cdr_and_edr_count__section_mww_cjd_c5b"><h2 class="title sectiontitle">Restrictions</h2>
+            
+            <ul class="ul" id="generating_separate_metrics_for_cdr_and_edr_count__ul_u3s_4jd_c5b">
+                <li class="li">The KPIs for total counts of CDRs and EDRs are not available until the records
+                    have been sent.</li>
+
+                <li class="li">It is not possible to reset Prometheus counters to zero every five minutes.
+                    However, you can work around this restriction by executing this query: <pre class="pre codeblock" id="generating_separate_metrics_for_cdr_and_edr_count__codeblock_t4d_lx4_5tb"><code>floor(increase (KPI) [5m]))</code></pre>
+                    <p class="p">The KPI may give an incorrect value at the beginning of starting the stream
+                        and if the stream has been stopped for 5 minutes and is restarted.</p>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

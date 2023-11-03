@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Source contexts" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e31080" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Source contexts</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e31080">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Source contexts</h1>
+<div class="body conbody">
+<div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e31080__section_jhr_v4b_xrb"><h2 class="title sectiontitle">Source contexts for charging</h2>
+            
+            <p class="p">Source Contexts are grouped by the data they provide and provide a place where Rules
+                can get data to make conditions and populate values from results. The contexts are
+                different for the Charging and Policy application types; however, the Diameter
+                Request provides common contexts across NCC. </p>
+
+            <p class="p">The source context provides data about the specific context for use during rules
+                evaluation and the various Source Contexts are available specific to the assigned
+                Rule Sets. For example, if your Rule Set has access to the Gy-Message source context
+                for a Rule Set, you can make rules with conditions or results that depend on Gy
+                message information. </p>
+
+            <p class="p">Source contexts provide input attributes to the rule engine for evaluation of
+                criteria. This section describes the source contexts for charging.</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The dictionary only supports attributes for the <em class="ph i">PS-Information</em> AVP at this
+                time. Any of the PS-Information attributes can be selected in the rules editor by
+                source context.</div>
+
+            <div class="note caution"><div class="cautiontitle"><img src="../../web/css/../images/caution.svg" title="caution-icon" class="noteicon" />CAUTION:</div> When a rule is created, modified, removed, or loaded, it takes a
+                minimum of 30 seconds to load the RSV. For any action that updates the rules (for
+                example, a TPG value is updated from 10 to 20, an action is updated, or a Tariff
+                Rule action is modified), the changes take effect after ~30 seconds. Operators must
+                wait for this time interval (30 seconds), to consider the change for feature
+                implementation/execution.</div>
+
+        </div>
+
+        <div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e31080__section_tnr_v4b_xrb"><h2 class="title sectiontitle">Diameter Request source context for common rule engine plugin</h2>
+            
+            <p class="p">To support the primary Diameter message routing functions of NCC, the NCC rule engine
+                creates message context objects, which provide a flexible framework for Diameter
+                message representation and manipulation. The message context is a wrapper around a
+                Diameter message and makes the Diameter AVPs for a message type available in the
+                same hierarchical structure as defined in the relevant standards document for the
+                Diameter application. </p>
+
+            <p class="p">The Diameter Request source context encapsulates the common AVPs that any Diameter
+                request can contain, for example, Origin-Host or Route-Record. When NCC receives a
+                Diameter Request message, the rule engine is first invoked to execute the generic
+                Diameter Request rule set, which makes the message available as a source context so
+                that you can write rules that apply to many or all Diameter request message types.
+                For example, if you wanted to change the value of the destination-host AVP for all
+                request messages, you would write the rule in the Diameter Request rule set.</p>
+
+            <p class="p">Once the rule tables for the generic Diameter Request rule have been evaluated, the
+                NCC rule engine is invoked a second time with the rule set that matches the specific
+                request type (for example, the Gy CCR). </p>
+
+            <p class="p">After evaluating the rule tables for both the generic Diameter Request and
+                application message-specific rule sets, NCC checks to see whether the Result-Code or
+                the Experimental-Result-code attributes of the Diameter Answer are populated,
+                indicating that the request has been answered. If so, NCC responds to the request
+                with a Diameter Answer after invoking the rule engine on the response. Otherwise,
+                NCC forwards the request. </p>
+
+        </div>
+
+        <div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e31080__section_khr_v4b_xrb">
+            <table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-d1e31080__table_lhr_v4b_xrb" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Source contexts for charging</span></caption><colgroup><col style="width:26.7379679144385%" /><col style="width:26.7379679144385%" /><col style="width:46.524064171122994%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d428590e90">Source context</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d428590e93">Applicable triggers</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d428590e96">Description</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">BUCKET</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">SLICING_PROFILE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context can be used to select the algorithm for the call,
+                                for example, Dynamic Slice Algorithm.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">BUNDLE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p">RESOURCE_POST_PROCESSING</p>
+
+                                <p class="p">BUNDLE</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context is used for BOU type of bundles.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">CALL_COMMON</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">APPLICABILITY<p class="p">BUNDLE</p>
+<p class="p">CALL_RULE_VARIABLES</p>
+<p class="p">COUNTER</p>
+<p class="p">TARIFF</p>
+<p class="p">THRESHOLD</p>
+<p class="p">SLICING_PROFILE</p>
+<p class="p">GY_CREDIT_REQUEST</p>
+<p class="p">GY_POST_PROCESSING</p>
+<p class="p">RATING_POST_PROCESSING</p>
+<p class="p">UC_PROCESSING</p>
+<p class="p">GY_PRE_PROCESSING</p>
+<p class="p">SMS_CALL_ESTABLISHMENT</p>
+<p class="p">SMS_CALL_TERMINATION</p>
+<p class="p">MMS_CALL_ESTABLISHMENT</p>
+<p class="p">MMS_CALL_TERMINATION</p>
+<p class="p">IMS_CALL_ESTABLISHMENT</p>
+<p class="p">IMS_CALL_MODIFICATION</p>
+<p class="p">IMS_CALL_TERMINATION</p>
+<p class="p">RESOURCE_PRE_SORTING</p>
+<p class="p">RESOURCE_POST_PROCESSING</p>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context provides the NCC rule engine with access to
+                                attributes used in triggers evaluated by rating or call control
+                                module for any call.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">COMPLEX_MAP</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">All Triggers</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context is used for converting the Complex Map operations
+                                into provisioned generic bindings and handling returned
+                                values.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">CONVERSION</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">All Triggers</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context is used in all triggers for conversions, for
+                                example, boolean to enum, string to double, and so on.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">COUNTERINFO</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">COUNTER</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context exposes the attributes of the Counter under
+                                evaluation to the rules engine.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">ECOMMERCE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p">APPLICABILITY</p>
+
+                                <p class="p">BUNDLE</p>
+
+                                <p class="p">CALL_RULE_VARIABLES</p>
+
+                                <p class="p">COUNTER</p>
+
+                                <p class="p">TARIFF</p>
+
+                                <p class="p">RATING_POST_PROCESSING</p>
+
+                                <p class="p">RESOURCE_POST_PROCESSING</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context is used for the Ecommerce Calls.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">GLOBAL</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">GY_PRE_PROCESSING<p class="p">RESOURCE_PRE_SORTING</p>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context provides the global-level checks on attributes.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">GY_MESSAGE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p">APPLICABILITY</p>
+
+                                <p class="p">BUNDLE</p>
+
+                                <p class="p">CALL_RULE_VARIABLES</p>
+
+                                <p class="p">COUNTER</p>
+
+                                <p class="p">TARIFF</p>
+
+                                <p class="p">THRESHOLD</p>
+
+                                <p class="p">SLICING_PROFILE</p>
+
+                                <p class="p">GY_CREDIT_REQUEST</p>
+
+                                <p class="p">GY_PRE_PROCESSING</p>
+
+                                <p class="p">GY_POST_PROCESSING</p>
+
+                                <p class="p">GY_SESSION_ESTABLISHMENT</p>
+
+                                <p class="p">GY_SESSION_MODIFICATION</p>
+
+                                <p class="p">GY_SESSION_TERMINATION</p>
+
+                                <p class="p">RATING_POST_PROCESSING</p>
+
+                                <p class="p">RESOURCE_POST_PROCESSING</p>
+
+                                <p class="p">SMS_CALL_ESTABLISHMENT</p>
+
+                                <p class="p">SMS_CALL_TERMINATION</p>
+
+                                <p class="p">MMS_CALL_ESTABLISHMENT</p>
+
+                                <p class="p">MMS_CALL_TERMINATION</p>
+
+                                <p class="p">IMS_CALL_ESTABLISHMENT</p>
+
+                                <p class="p">IMS_CALL_MODIFICATION</p>
+
+                                <p class="p">IMS_CALL_TERMINATION</p>
+
+                                <p class="p">NCHF_CHARGING_CALL_ESTABLISHMENT</p>
+
+                                <p class="p">NCHF_CHARGING_CALL_MODIFICATION</p>
+
+                                <p class="p">NCHF_CHARGING_CALL_TERMINATION</p>
+
+                                <p class="p">SNA_MANAGEMENT</p>
+
+                                <p class="p">SY_SESSION_ESTABLISHMENT</p>
+
+                                <p class="p">SY_SESSION_MODIFICATION</p>
+
+                                <p class="p">UC_PROCESSING</p>
+
+                                <p class="p">DEVICE_NOT_FOUND</p>
+
+                                <p class="p">RESOURCE_PRE_SORTING</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context contains command level Gy message attributes.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">GyCCR</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p">APPLICABILITY</p>
+
+                                <p class="p">GY_CREDIT_REQUEST</p>
+
+                                <p class="p">IMS_CALL_ESTABLISHMENT</p>
+
+                                <p class="p">IMS_CALL_MODIFICATION</p>
+
+                                <p class="p">IMS_CALL_TERMINATION</p>
+
+                                <p class="p">SLICING PROFILE</p>
+
+                                <p class="p">THRESHOLD</p>
+
+                                <p class="p">GY_PRE_PROCESSING</p>
+
+                                <p class="p">DEVICE_NOT_FOUND</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context provides the NCC rule engine with access to AVPs.
+                                This context is used to report the credit control service
+                                information received for Gy, VoLTE, SMS, and MMS requests. It is for
+                                use in rules.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">IMS_SERVICE_INFO</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p">APPLICABILITY</p>
+
+                                <p class="p">BUNDLE</p>
+
+                                <p class="p">CALL_RULE_VARIABLES</p>
+
+                                <p class="p">COUNTER</p>
+
+                                <p class="p">TARIFF</p>
+
+                                <p class="p">THRESHOLD</p>
+
+                                <p class="p">IMS_CALL_ESTABLISHMENT</p>
+
+                                <p class="p">IMS_CALL_MODIFICATION</p>
+
+                                <p class="p">IMS_CALL_TERMINATION</p>
+
+                                <p class="p">RATING_POST_PROCESSING</p>
+
+                                <p class="p">RESOURCE_POST_PROCESSING</p>
+
+                                <p class="p">GY_CREDIT_REQUEST</p>
+
+                                <p class="p">GY_PRE_PROCESSING</p>
+
+                                <p class="p">GY_POST_PROCESSING</p>
+
+                                <p class="p">RESOURCE_PRE_SORTING</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context contains context information for the IMS calls.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">LOAN_REQUEST</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p">LOAN_PRE_PROCESSING</p>
+
+                                <p class="p">LOAN_PRE_PROCESSING</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context contains the <em class="ph i">LoanRequest</em> attributes that are
+                                used as a condition in rules.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">NCHF_CHARGING_MESSAGE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p">CALL_RULE_VARIABLES</p>
+
+                                <p class="p">NCHF_CHARGING_CALL_ESTABLISHMENT</p>
+
+                                <p class="p">NCHF_CHARGING_CALL_MODIFICATION</p>
+
+                                <p class="p">NCHF_CHARGING_CALL_TERMINATION</p>
+
+                                <p class="p">RESOURCE_POST_PROCESSING</p>
+
+                                <p class="p">RESOURCE_PRE_SORTING</p>
+
+                                <p class="p">GY_PRE_PROCESSING</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context is used for 5G calls.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">NUMBER_PORTABILITY</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">All Triggers</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context holds special data for the users.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">POLICY_COUNTER_STATUS_CHANGE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">POLICY_COUNTER_STATUS_CHANGE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context can be used to send
+                                    <em class="ph i">Policy-Counter-Status-Change</em> notification upon the policy
+                                counter status change, regardless of the Sy session.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">PROPERTIES</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">All Triggers</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context can be used to check the system environment related
+                                data, for example, Get System property.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">RATING_POST_PROCESSING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p">GY_POST_PROCESSING</p>
+
+                                <p class="p">RATING_POST_PROCESSING</p>
+
+                                <p class="p">THRESHOLD</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context contains the context information required for
+                                rating post processing such as call common context, SPR device,
+                                subscription, threshold.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">RESOURCE_POST_PROCESSING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">RESOURCE_POST_PROCESSING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context is evaluated on COMMIT of every resource, such as
+                                bucket, counter, main account balance, and <em class="ph i">NoCharge.</em></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">SERVICE_INFO</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p"> APPLICABILITY </p>
+
+                                <p class="p">CALL_RULE_VARIABLES</p>
+
+                                <p class="p"> GY_POST_PROCESSING</p>
+
+                                <p class="p"> RATING_POST_PROCESSING</p>
+
+                                <p class="p"> RESOURCE_POST_PROCESSING</p>
+
+                                <p class="p"> TARIFF</p>
+
+                                <p class="p"> THRESHOLD</p>
+
+                                <p class="p"> SLICING_PROFILE</p>
+
+                                <p class="p"> BUNDLE</p>
+
+                                <p class="p"> COUNTER</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context provides the NCC rule engine with access to the call
+                                sub-type information.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">SESSION_PARAMETERS</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p"> RESOURCE_POST_PROCESSING</p>
+
+                                <p class="p"> RATING_POST_PROCESSING</p>
+
+                                <p class="p"> APPLICABILITY</p>
+
+                                <p class="p">CALL_RULE_VARIABLES</p>
+
+                                <p class="p"> TARIFF</p>
+
+                                <p class="p"> GY_PRE_PROCESSING</p>
+
+                                <p class="p"> GY_SESSION_MODIFICATION</p>
+
+                                <p class="p"> GY_SESSION_TERMINATION</p>
+
+                                <p class="p"> IMS_CALL_MODIFICATION</p>
+
+                                <p class="p"> IMS_CALL_TERMINATION</p>
+
+                                <p class="p">MMS_CALL_TERMINATION</p>
+
+                                <p class="p">SMS_CALL_TERMINATION</p>
+
+                                <p class="p">NCHF_CHARGING_CALL_MODIFICATION</p>
+
+                                <p class="p">NCHF_CHARGING_CALL_TERMINATION</p>
+
+                                <p class="p">RESOURCE_PRE_SORTING</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context provides the NCC rule engine with access to a
+                                session specific information.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">SNA_MANAGEMENT</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">SNA_MANAGEMENT</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context is used to send notification parameters, TCP/IP
+                                notifications sent from the NS.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">SPR_ACCOUNT</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">SUBSCRIBER_PRE_PROVISIONING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context provides the account information.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">SPR_DEVICE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p">APPLICABILITY</p>
+
+                                <p class="p">BUNDLE</p>
+
+                                <p class="p">COUNTER</p>
+
+                                <p class="p">TARIFF</p>
+
+                                <p class="p">THRESHOLD</p>
+
+                                <p class="p">SLICING_PROFILE</p>
+
+                                <p class="p">GY_CREDIT_REQUEST</p>
+
+                                <p class="p">GY_PRE_PROCESSING</p>
+
+                                <p class="p">GY_POST_PROCESSING</p>
+
+                                <p class="p">GY_SESSION_ESTABLISHMENT</p>
+
+                                <p class="p">GY_SESSION_MODIFICATION</p>
+
+                                <p class="p">GY_SESSION_TERMINATION</p>
+
+                                <p class="p">RATING_POST_PROCESSING</p>
+
+                                <p class="p">RESOURCE_POST_PROCESSING</p>
+
+                                <p class="p">SMS_CALL_ESTABLISHMENT</p>
+
+                                <p class="p">SMS_CALL_TERMINATION</p>
+
+                                <p class="p">MMS_CALL_ESTABLISHMENT</p>
+
+                                <p class="p">MMS_CALL_TERMINATION</p>
+
+                                <p class="p">IMS_CALL_ESTABLISHMENT</p>
+
+                                <p class="p">IMS_CALL_MODIFICATION</p>
+
+                                <p class="p">IMS_CALL_TERMINATION</p>
+
+                                <p class="p">NCHF_CHARGING_CALL_ESTABLISHMENT</p>
+
+                                <p class="p">NCHF_CHARGING_CALL_MODIFICATION</p>
+
+                                <p class="p">NCHF_CHARGING_CALL_TERMINATION</p>
+
+                                <p class="p">SNA_MANAGEMENT</p>
+
+                                <p class="p">SNR_RESULT</p>
+
+                                <p class="p">SUBSCRIBER_PRE_PROVISIONING</p>
+
+                                <p class="p">SY_SESSION_ESTABLISHMENT</p>
+
+                                <p class="p">SY_SESSION_MODIFICATION</p>
+
+                                <p class="p">UC_PROCESSING</p>
+
+                                <p class="p">CALL_RULE_VARIABLES</p>
+
+                                <p class="p">GY_MESSAGE</p>
+
+                                <p class="p">RESOURCE_PRE_SORTING</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context provides device specific details to the NCC rule
+                                engine.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">SPR_DEVICE_NEW</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">SUBSCRIBER_PRE_PROVISIONING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context provides information of the Device Entity attributes
+                                that are going to be changed in an API operation (or after the
+                                change).</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">SPR_GROUP</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p">APPLICABILITY</p>
+
+                                <p class="p">TARIFF</p>
+
+                                <p class="p">GY_POST_PROCESSING</p>
+
+                                <p class="p">RATING_POST_PROCESSING</p>
+
+                                <p class="p">RESOURCE_POST_PROCESSING</p>
+
+                                <p class="p">SLICING_PROFILE</p>
+
+                                <p class="p">THRESHOLD</p>
+
+                                <p class="p">CALL_RULE_VARIABLES</p>
+
+                                <p class="p">GY_PRE_PROCESSING</p>
+
+                                <p class="p">GY_CREDIT_REQUEST</p>
+
+                                <p class="p">COUNTER</p>
+
+                                <p class="p">UC_PROCESSING</p>
+
+                                <p class="p">BUNDLE</p>
+
+                                <p class="p">RESOURCE_PRE_SORTING</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context contains the group information.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">SUBSCRIBER_PROVISIONING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">SUBSCRIBER_PRE_PROVISIONING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context provides subscription information at the time of
+                                evaluation of provisioning request which arrived from upstream
+                                system.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">SUBSCRIPTION</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p">RATING_POST_PROCESSING</p>
+
+                                <p class="p">RESOURCE_POST_PROCESSING</p>
+
+                                <p class="p">THRESHOLD</p>
+
+                                <p class="p">LIFECYCLE</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context provides subscription specific details to the NCC
+                                rule engine.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">SY_COUNTER</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p"> SNR_RESULT</p>
+
+                                <p class="p">SNA_MANAGEMENT</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context provides the NCC rule engine with access to the
+                                policy counter status information from the existing Sy session and
+                                from rating evaluation.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">SY_COUNTER_EVAL</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">SNR_RESULT</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context evaluates the current policy counter status against
+                                the previous status. Using this context, the NCC rule engine can
+                                determine whether the policy counter status has changed or not.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">SY_MESSAGE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p">SY_SESSION_ESTABLISHMENT</p>
+
+                                <p class="p"> SY_SESSION_MODIFICATION</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context provides the NCC rule engine with access to data
+                                from an incoming Sy SLR message.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">SYSTEM</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">All Triggers</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context can be used to check the system-related data, for
+                                example, Site -id, Host-Id, Time, and so on.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">THRESHOLD_PROFILE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">
+                                <p class="p">THRESHOLD</p>
+
+                                <p class="p">BUNDLE</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context provides the NCC rule engine with access to the
+                                threshold specific information.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">UC</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">UC_PROCESSING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context exposes the attributes of the usage control under
+                                evaluation to the rules engine.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e90 ">VARIABLES</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e93 ">All Triggers</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d428590e96 ">This context can be used for supporting the rule
+                                variables.</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

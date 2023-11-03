@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Traffic routing over multiple networks" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="traffic_routing_over_multiple_networks" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Traffic routing over multiple networks</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="traffic_routing_over_multiple_networks">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Traffic routing over multiple networks</h1>
+<div class="body conbody">
+        <p class="p">Some operators have multiple Wide Area Networks (WANs) to enable separation of different
+            types of traffic over different WANs. The various WANs might have specific purposes and
+            might have different performance characteristics relative to bandwidth, latency, quality
+            of service, and so on.</p>
+
+        <p class="p">NCC supports deployment into these network environments and can be configured to flexibly
+            receive and route its different traffic types over different networks based on
+            configured target FQDNs.</p>
+
+        <p class="p">NCC routing to other NCC systems and other external network elements is configured with
+            FQDNs. The translation of FQDN to IP address (and which WAN) is the responsibility of
+            the operator’s CaaS that NCC is deployed into. The CaaS provides the needed routing and
+            IP infrastructure.</p>
+
+        <div class="section" id="traffic_routing_over_multiple_networks__section_ewr_pwg_yqb"><h2 class="title sectiontitle">Ingress traffic</h2>
+            
+            <p class="p">For ingress traffic, NCC listens for traffic at the FQDNs that are configured for
+                each of these three types of traffic:</p>
+
+            <ul class="ul" id="traffic_routing_over_multiple_networks__ul_fwr_pwg_yqb">
+                <li class="li"><strong class="ph b">Call processing traffic</strong><ul class="ul" id="traffic_routing_over_multiple_networks__ul_gwr_pwg_yqb">
+                        <li class="li">4G Diameter and 5G HTTP</li>
+
+                        <li class="li">Site routing of 4G or 5G traffic from the initial NCC to the home NCC
+                            for a subscriber</li>
+
+                        <li class="li">Diameter heartbeats between NCC systems</li>
+
+                        <li class="li">Database replication between NCC systems</li>
+
+                        <li class="li">IMS traffic from Legacy Core network via NCC SS7</li>
+
+                        <li class="li">Diameter heartbeats between NCC instances and SS7 diameter peers</li>
+
+                        <li class="li">Database replication between two SS7 instances</li>
+
+                    </ul>
+
+                </li>
+
+                <li class="li"><strong class="ph b">OAM traffic</strong><ul class="ul" id="traffic_routing_over_multiple_networks__ul_hwr_pwg_yqb">
+                        <li class="li">GUI access to NCC and SS7</li>
+
+                        <li class="li">SFTP of metrics files and CDR files from NCC</li>
+
+                        <li class="li">Various GUIs on NCC systems authenticating to the User and Role
+                            Management in the SM subsystem</li>
+
+                        <li class="li">HTTP heartbeats between NCC systems</li>
+
+                    </ul>
+</li>
+
+                <li class="li"><strong class="ph b">Provisioning traffic</strong><ul class="ul" id="traffic_routing_over_multiple_networks__ul_iwr_pwg_yqb">
+                        <li class="li">Provisioning from northbound systems</li>
+
+                        <li class="li">Provisioning from SM subsystem to other SM or ME subsystems</li>
+
+                    </ul>
+
+                </li>
+
+            </ul>
+
+            <p class="p">If an operator has only one or two of the above three types of WANs, an operator can
+                configure the same FQDNs to be the same across different traffic types. (For
+                example, the same FQDN could be used for both OAM and Provisioning traffic).</p>
+
+            <p class="p">An operator might need to assign to NCC more than one FQDN for each of the three
+                traffic types above. NCC can accommodate this in its configuration (in Input
+                Generator) by allowing a comma-separated list of FQDNs for each of the above traffic
+                types. For example, if an operator has separate WANs for 4G and 5G traffic, an
+                operator would list multiple FQDNs for the Call Processing traffic entry and NCC
+                will listen on all of them.</p>
+
+            <p class="p">FQDNs are configured in the Input Generator spreadsheet. Each NCC system has its own
+                tab in the Input Generator spreadsheet. The FQDNs that a given NCC system will
+                listen on are listed in that instance's tab.</p>
+
+            <p class="p">Note that the Input Generator has two sets of rows for each of the three traffic
+                types. One set is used for TLS traffic and the other is used for mTLS traffic. This
+                enables different operators to configure NCC as per their network approach for TLS
+                vs. mTLS.</p>
+
+        </div>
+
+        <div class="section" id="traffic_routing_over_multiple_networks__section_jwr_pwg_yqb"><h2 class="title sectiontitle">Egress traffic</h2>
+            
+            <p class="p">There are two categories of egress traffic leaving NCC – traffic to other NCC systems
+                and traffic to other external (non-NCC) network elements such as PGW, SMF, alarm
+                manager, and so on.</p>
+
+            <p class="p"><strong class="ph b">Routing to other NCC systems</strong></p>
+
+            <p class="p">When NCC system A needs to send a message to NCC system B, it looks up the FQDN
+                parameters configured in the Input Generator in the tab for target NCC B, to see its
+                list of FQDNs for the given traffic type. If there are multiple FQDNs configured for
+                that traffic type, then the first FQDN in the list is used as the egress target.</p>
+
+            <p class="p">All NCC egress traffic to other NCC systems fall into one of the three traffic types
+                outlined in this section.</p>
+
+            <p class="p"><strong class="ph b">Routing to other external network elements</strong></p>
+
+            <p class="p">Routing to other external network elements is controlled by separate configurable
+                parameters for each of those target destinations. Therefore, there is no specific
+                constraint on which network or how many networks might be used across the various
+                external network elements. Operators configure NCC with FQDNs for each of the
+                various external network elements.</p>
+
+            <div class="p">Examples of configurable parameters for egress traffic to other targets: <ul class="ul" id="traffic_routing_over_multiple_networks__ul_mwr_pwg_yqb">
+                    <li class="li">Prometheus remote write URL</li>
+
+                    <li class="li">CVEA collector FQDN</li>
+
+                    <li class="li">Diameter peers</li>
+
+                    <li class="li">SNMP notification targets</li>
+
+                    <li class="li">Charging notification targets</li>
+
+                </ul>
+</div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

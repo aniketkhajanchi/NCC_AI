@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Zoning And Roaming Mapping Error Messages" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="idbbeb97b8-ae91-446c-8630-a36341c8df44" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Zoning And Roaming Mapping Error Messages</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="idbbeb97b8-ae91-446c-8630-a36341c8df44">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Zoning And Roaming Mapping Error Messages</h1>
+<div class="body conbody"><p class="p">This table describes the zoning and roaming mapping error messages that the NCC may generate.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Zoning and Roaming Mapping error messages</span></caption><colgroup><col style="width:16.666666666666664%" /><col style="width:21.428571428571427%" /><col style="width:30.952380952380953%" /><col style="width:30.952380952380953%" /></colgroup><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:top;" id="d28241e40">Number</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d28241e42">Message</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d28241e44">HTTP Error Code</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d28241e47">Description</th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e40 ">ZONINGANDROAMINGMAPPING_00001</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e42 ">MCCMNC and Address are missing.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e47 ">The MCCMNC and Address, one of them must not be empty.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e40 ">ZONINGANDROAMINGMAPPING_00002</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e42 ">Invalid MCCMNC.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e47 ">The MCCMNC is invalid.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e40 ">ZONINGANDROAMINGMAPPING_00003</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e42 ">The MCCMNC is duplicated.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e47 ">The MCCMNC is already used by the record with id "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e40 ">ZONINGANDROAMINGMAPPING_00004</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e42 ">The address is duplicated.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e47 ">The address is already used by the record with id "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e40 ">ZONINGANDROAMINGMAPPING_00005</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e42 ">Invalid Address.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e47 ">The value of Address is not valid. It must be in the format of "type{0}value", and the type must be among "{1}" with uppercase letters.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e40 ">ZONINGANDROAMINGMAPPING_00006</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e42 ">Invalid Ipv6 Address.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e47 ">The value of Ipv6 "{0}" is not valid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e40 ">ZONINGANDROAMINGMAPPING_00007</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e42 ">Invalid Ipv4 Address.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e47 ">The value of Ipv4 "{0}" is not valid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e40 ">ZONINGANDROAMINGMAPPING_00008</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e42 ">NetworkType and zones are missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e47 ">The networkType and zones, one of them must not be empty.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e40 ">ZONINGANDROAMINGMAPPING_00009</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e42 ">One of zones is empty.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e47 ">Zone cannot be empty.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e40 ">ZONINGANDROAMINGMAPPING_00010</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e42 ">Country is a blank string.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d28241e47 ">Country can be empty but cannot be a blank string.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="footer"><hr /><p>Error Messages • P556766-DN1000055003-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

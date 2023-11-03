@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Global time configuration (other than BCR)" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e23189" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Global time configuration (other than BCR)</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e23189">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Global time configuration (other than BCR)</h1>
+<div class="body conbody">
+<div class="section"><h2 class="title sectiontitle">Configuring TTC time</h2>
+<p class="p">A operator can configure the <span class="ph uicontrol">Tariff-Time-Change</span>, which is an optional parameter wherein the time is aligned with the timezone of an account of the first subscription of the device (if available). Otherwise, it considers the default timezone.</p>
+
+<p class="p">Apart from the start time, end time or validity time, or activation time associated with the subscription, the TTC time can also be specified. This TTC time is configured either using Gy pre-processing of rules or through the rules of bundle definition. However, if a particular device does not have its own subscription and consumes data from the group subscription, then the default system timezone is mapped with the TTC time configured in rules.</p>
+
+<div class="p">The time specified in the <span class="ph uicontrol">Tariff-Time-Change</span> parameter is in hour:min:sec
+                for the 24-hour format as shown in the following figure:<div class="fig fignone">
+                    
+                    <img class="image break" height="144" src="../images/img9yz-09126-ug01-pczza-sp1-capture_ttc_default.png" width="384" />
+                </div>
+</div>
+
+<p class="p">The global TTC can be configured in system for the purpose of segregating the data consumed by the devices in the required time frame. For example, if daily data consumed by a device is required, then global TTC can be configured as the midnight time. In case, validity time for the granted units to the device crosses the midnight, then the TTC is configured and sent to the gateway leading to multiple USUs sent by the gateway in the form of before and after midnight usage. The system generates two CDRs one for before TTC usage and another after TTC usage. The before usage CDR has an attribute named <span class="ph uicontrol">tariffTimeChange</span> and using the same information, the data from before usage can be aggregated to the previous day.</p>
+
+<p class="p">
+<strong class="ph b">Precondition:</strong> For the following table, TTC time is enabled in the Gy pre-processing of rules.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Different times used for TTC computation</span></caption><colgroup><col style="width:40.48582995951418%" /><col style="width:59.51417004048584%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d399309e76">
+                                <p class="p">Supported TTC times</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d399309e82">
+                                <p class="p">Comments</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e76 ">TTC time (Tariff-Time-Change) of Gy pre-processing</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e82 ">This refers to the global TTC time configured as the
+                                    <span class="ph uicontrol">Tariff-Time-Change</span> in Gy pre-processing
+                                rules.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e76 ">End time of subscription</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e82 ">This time refers only to those subscriptions, which are used for
+                                reservation.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e76 ">Start time of subscription</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e82 ">This time refers to all subscriptions.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e76 ">Future activation subscriptions</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e82 ">This refers to the future activation time of all subscriptions
+                                irrespective of their applicability conditions.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e76 ">TTC time (Tariff-Time-Change) in bundle rules</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e82 ">This refers to the time configured as the
+                                    <span class="ph uicontrol">Tariff-Time-Change</span> only in bundle rules
+                                and considered for the subscriptions used in reservation.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e76 ">Entity lifecycle state validity time</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e82 ">If current state in the entity lifecycle of the resource (from
+                                where reservation is done) has a validity time less than the BCR
+                                time of resource (from periodic lifecycle), then TTC is not set and
+                                instead validity time of the state is set as <span class="ph uicontrol">Validity
+                                    Time</span> in CCA.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e76 ">Multiple TTC times
+                                (Tariff-Time-Change-Multiple) of Gy pre-processing</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e82 ">This refers to the multiple tariff change time points configured
+                                as the Tariff-Time-Change-Multiple in GY_PRE_PROCESSING
+                                rule.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e76 ">Multiple TTC times
+                                (Tariff-Time-Change-Multiple) of bundle rules</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e82 ">This refers to the multiple tariff change time points configured
+                                as the Tariff-Time-Change-Multiple in bundle rules and considered
+                                for all the subscriptions which may be used in the call.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e76 ">End time of Account</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e82 ">This time refers to period lifecycle of account, which is linked
+                                to subscription and is used for reservation.</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<p class="p">The final TTC time is the nearest time to the Diameter call found after sorting all the times mentioned in the above table.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The TTC time is configured by the <span class="ph uicontrol">Tariff-Time-Change</span> and
+                    <span class="ph uicontrol">Tariff-Time-Change-Multiple</span> attributes in the RSV or
+                bundle rules. The <span class="ph uicontrol">Tariff-Time-Change-Multiple</span> is a list of
+                TTC time where as <span class="ph uicontrol">Tariff-Time-Change</span> is only one TTC time.
+                The TTC time mentioned in rules is in the format of <kbd class="ph userinput">hh:mm:ss</kbd>
+                from the GUI and configured in 24-hour format. The time conversion is described in
+                the following table:</div>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d399309e219">
+                                <p class="p">TTC time in rules GUI</p>
+
+                                <p class="p">Hours:Mintues:Seconds</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d399309e228">
+                                <p class="p">Saved in milliseconds in the database as LongValue
+                                    (milliseconds)</p>
+
+                                <p class="p">(Hour *3600 + Minutes * 60 + Seconds) * 1000</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e219 ">14:22:33</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e228 ">
+                                <p class="p">51753000</p>
+
+                                <p class="p">For example; ((14*3600 + 22*60 + 33)*1000)</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e219 ">00:00:00</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e228 ">0</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e219 ">01:22:00</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d399309e228 ">4920000</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">EXAMPLE</strong></p>
+
+<p class="p">
+                    <strong class="ph b">Preconditions:</strong> Bob makes a data call at <kbd class="ph userinput">2018/7/25
+                        9:30:00</kbd>. There is one subscription <var class="keyword varname">Sub1</var> at
+                    device level, and two subscriptions <var class="keyword varname">Sub3</var> and
+                        <var class="keyword varname">Sub4</var> at group level. The validity time is 7200 seconds
+                    from the quota management (quota management (slicing profile)).
+                    Global TTC time configures in the RSV is <kbd class="ph userinput">9:40:00</kbd>.</p>
+<ul class="ul">
+<li class="li">
+<p class="p">
+<var class="keyword varname">Sub1</var> is a monthly renewed subscription with start time set as <kbd class="ph userinput">2018/6/25 10:00:00</kbd> and end time set as <kbd class="ph userinput">2018/7/25 10:00:00</kbd>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<var class="keyword varname">Sub3</var> is a one-time (non-renewable) subscription with start time set as <kbd class="ph userinput">2018/7/18 09:55:00</kbd> and end time set as <kbd class="ph userinput">2018/ 7/25 09:55:00</kbd>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<var class="keyword varname">Sub4</var> is in the barred state and its future activation time is <kbd class="ph userinput">2018/7/25 10:40:00</kbd>.</p>
+
+</li>
+
+</ul>
+
+<p class="p">
+<strong class="ph b">Post-conditions:</strong>
+</p>
+<ul class="ul">
+<li class="li">
+<p class="p">If <var class="keyword varname">Sub1</var> and <var class="keyword varname">Sub3</var> are used for the quota reservation, then the end time of <var class="keyword varname">Sub1</var> and <var class="keyword varname">Sub3</var>, and activation time of <var class="keyword varname">Sub4</var>, and global TTC time configured are used for TTC calculation.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<kbd class="ph userinput">2018/7/25 9:40:00</kbd> (Global TTC time) &lt; <kbd class="ph userinput">2018/7/25 09:55:00</kbd> (end time of <var class="keyword varname">Sub3</var>) &lt; <kbd class="ph userinput">2018/7/25 10:00:00</kbd> (end time of <var class="keyword varname">Sub1</var>) &lt; <kbd class="ph userinput">2018/7/25 10:40:00</kbd> (activation time of <var class="keyword varname">Sub4</var>):</p>
+
+<p class="p">TTC is set to <kbd class="ph userinput">2018/7/25 09:40:00</kbd> (Global TTC configured in the RSV) and VT (from second TTC of <kbd class="ph userinput">9:55</kbd>) and VT is set to 1500 seconds.</p>
+
+</li>
+
+</ul>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Global TTC time in RSV</h2>
+<p class="p">The TTC time configured in the RSV rules or bundle rules is considered before any change that may happen in the subscription BCR or activation time. Under those scenarios, next update of the Diameter call provides data usages before or after the TTC time configured in the rules even when there is no change in the subscription validity.</p>
+
+<p class="p">
+<strong class="ph b">Precondition:</strong> The <strong class="ph b">Is-TTC-Enabled</strong> flag is set to <var class="keyword varname">true</var>.</p>
+
+<p class="p">In the rule group of the <em class="ph i">GY_PRE_PROCESSING</em> trigger, the global TTC time is configured as the <span class="ph uicontrol">Tariff-Time-Change</span>. The data type of the <span class="ph uicontrol">Tariff-Time-Change</span> is <var class="keyword varname">TimeOfDayValueType</var> and it is represented in 24-hours format (hh:mm:ss) as shown in the following figure:</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-global_ttc_time_in_rsv_default.png" />
+            </div>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">TTC calculation</strong></p>
+
+<p class="p">During quota allocation, the global TTC time configured in the Gy pre-processing, the end time or <em class="ph i">Subscription Current State Validity Time</em> of the subscriptions used in quota reservation, or the TTC configured in bundle rules, which are associated with subscription used for quota reservation is checked and the start time or the future activation time is retrieved from all subscriptions and corresponding groups. The start time, end time, future activation time, TTC configured in bundle rules, and global TTC time are sorted, which are later than the call start time and within the VT to get the nearest time and second nearest time. If the subscription does not attach to any period lifecycle, then the associated account period lifecycle start time or end time is used.</p>
+
+<p class="p">While calculating TTC, the global TTC time configured as the <span class="ph uicontrol">Tariff-Time-Change</span> in RSV is considered and timezone for this time is aligned with the timezone of account of first device subscription (if there is only group subscription and no device subscription is available, then default time zone is considered).</p>
+
+<p class="p">If the global TTC time is configured as the <span class="ph uicontrol">Tariff-Time-Change</span> in RSV, then while calculating TTC, this time is considered as the upcoming time of next 24 hours. For example:</p>
+<ol class="ol">
+<li class="li">
+<p class="p">If the global TTC time configured as the <span class="ph uicontrol">Tariff-Time-Change</span> in RSV is <kbd class="ph userinput">11:10:10</kbd> and call time is <kbd class="ph userinput">11:30:00 on 2018/12/21</kbd>, then TTC is <kbd class="ph userinput">11:10:10 of 2018/12/22</kbd> (assuming it is within the VT range).</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the global TTC time configured as the <span class="ph uicontrol">Tariff-Time-Change</span> in RSV is <kbd class="ph userinput">11:10:10</kbd> and call time is <kbd class="ph userinput">11:00:00 on 2018/12/21</kbd>, then TTC is <kbd class="ph userinput">11:10:10 of 2018/12/21</kbd> (assuming it is within the VT range).</p>
+
+</li>
+
+</ol>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example</strong></p>
+
+<p class="p">
+<strong class="ph b">Preconditions:</strong> Bob makes a data call at <kbd class="ph userinput">11:00:00 on 2018/11/21</kbd>.</p>
+<ul class="ul">
+<li class="li">
+<p class="p">There is a subscription <var class="keyword varname">Sub1</var> at device level.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The validity time is 86400 seconds in quota management (slicing profile).</p>
+
+</li>
+
+<li class="li">
+<p class="p">The global TTC time configured as the <span class="ph uicontrol">Tariff-Time-Change</span> in RSV is <kbd class="ph userinput">11:10:10</kbd>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<var class="keyword varname">Sub1</var> is a monthly renewed subscription with start time set as <kbd class="ph userinput">2018/11/21 10:00:00</kbd> and end time set as <kbd class="ph userinput">2018/12/21 10:00:00</kbd>.</p>
+
+</li>
+
+</ul>
+
+<p class="p">
+<strong class="ph b">Post-conditions:</strong>
+</p>
+<ul class="ul">
+<li class="li">
+<p class="p">If <var class="keyword varname">Sub1</var> is used for the quota reservation, then the end time of <var class="keyword varname">Sub1</var> and global TTC time are used for TTC calculation.</p>
+
+</li>
+
+<li class="li">
+<p class="p">After sorting, <kbd class="ph userinput">2018/11/21 11:10:10</kbd> (configured in RSV as global TTC) &lt; <kbd class="ph userinput">2018/12/21 10:00:00</kbd> (end time of <var class="keyword varname">Sub1</var>).</p>
+
+<p class="p">TTC is set to <kbd class="ph userinput">2018/11/21 11:10:10</kbd> and VT is set to 86400 seconds.</p>
+
+</li>
+
+</ul>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">TTC in bundle rules</h2>
+<p class="p">The TTC time can also be configured in the bundle rules (<em class="ph i">BUNDLE.Tariff-Time-Change</em>) and this time is considered in the TTC time computation only when TTC is enabled in RSV and same subscriptions (having TTC time configured in bundle rules) are used for reservation.</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-ttc_time_in_bundle_rules_default.png" />
+            </div>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example</strong></p>
+
+<p class="p">
+<strong class="ph b">Preconditions:</strong> Bob makes a data call at <kbd class="ph userinput">2018/7/25 9:30:00</kbd>.</p>
+<ul class="ul">
+<li class="li">
+<p class="p">There are two subscriptions <var class="keyword varname">Sub1</var> and <var class="keyword varname">Sub2</var> at device level.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The validity time is 7200 seconds from the quota management (slicing profile).</p>
+
+</li>
+
+<li class="li">
+<p class="p">The bundle TTC time configures in the bundle rules of <var class="keyword varname">Sub1</var> is <kbd class="ph userinput">9:40:00</kbd>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<var class="keyword varname">Sub1</var> is a monthly renewed subscription with start time set as <kbd class="ph userinput">2018/6/25 10:00:00</kbd> and end time set as <kbd class="ph userinput">2018/7/25 10:00:00</kbd>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<var class="keyword varname">Sub2</var> is a monthly renewed subscription with start time set as <kbd class="ph userinput">2018/6/25 10:00:00</kbd> and end time set as <kbd class="ph userinput">2018/7/25 11:00:00</kbd>.</p>
+
+</li>
+
+</ul>
+
+<p class="p">
+<strong class="ph b">Post-conditions:</strong>
+</p>
+<ul class="ul">
+<li class="li">
+<p class="p">If <var class="keyword varname">Sub1</var> and <var class="keyword varname">Sub2</var> are used for the quota reservation, then the end time of <var class="keyword varname">Sub1</var>, the end time of <var class="keyword varname">Sub2</var>, and bundle TTC time are used for TTC calculation.</p>
+
+</li>
+
+<li class="li">
+<p class="p">After sorting, <kbd class="ph userinput">2018/7/25 9:40:00</kbd> (configured in bundle rule) &lt; <kbd class="ph userinput">2018/7/25 10:00:00</kbd> (end time of <var class="keyword varname">Sub1</var>) &lt; <kbd class="ph userinput">2018/7/25 11:00:00</kbd> (end time of <var class="keyword varname">Sub2</var>).</p>
+
+<p class="p">TTC is set to <kbd class="ph userinput">2018/7/25 09:40:00</kbd> and VT is set to 1800 seconds.</p>
+
+</li>
+
+</ul>
+
+</div>
+</div>
+
+<div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e23189__VTadjustment"><h2 class="title sectiontitle">VT adjustment</h2>
+<p class="p">If the global TTC is configured, and TTC and VT adjustment are also provided, then the validity time may be adjusted close to the global TTC leading to increase in traffic around TTC.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+<span class="ph uicontrol">tariffTimeChange</span> attribute is present for before tariff time change usage CDRs and it is the same value, which was sent in the previous request (CCA message send to the <em class="ph i">TTC</em> AVP (considering which gateway sends the USU for before and after data usage). This attribute is useful in aggregating the data consumed by the device within a given duration. If this attribute is present in CDR, then units committed from a bucket or account is considered first to be consumed before considering the <span class="ph uicontrol">tariffTimeChange</span> value.</div>
+
+<p class="p">Refer to <a class="xref" href="ttchandling.html#id9yz-09126-ug01-pczza-sp1-ttchandling__VTandTTC">VT and TTC calculation</a> for more information.</p>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

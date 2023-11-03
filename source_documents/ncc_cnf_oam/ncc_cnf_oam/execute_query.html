@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Execute-query script" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="execute_query" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Execute-query script</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="execute_query">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Execute-query script</h1>
+<div class="body conbody">
+        <div class="section"><h2 class="title sectiontitle">Description</h2>
+            
+            <p class="p">This script can be run from any path and performs these operations:</p>
+
+            <ul class="ul" id="execute_query__ul_gpj_5vm_swb">
+                <li class="li">fetchDevicesToRehome: Used for fetch devices based on matching criteria.</li>
+
+                <li class="li">listQueryOperations: Used to list all running queries and their corresponding
+                    status.</li>
+
+                <li class="li">cancelQueryOperations: Used to cancel any or all running queries and dump their
+                    status.</li>
+
+                <li class="li">setCorePoolSize: Used to set number of executing threads.</li>
+
+                <li class="li">getThreadPoolStats: Used to dump the thread statistics.</li>
+
+            </ul>
+
+            <div class="p">There are three matching criteria based on which a list of devices could be fetched
+                and saved in multiple files each having a maximum device limit of up to 10,000. If
+                more than one criteria is provided, the results are returned based on an AND
+                operation between them. Devices can be fetched:<ul class="ul" id="execute_query__ul_jpj_5vm_swb">
+                    <li class="li">based on one single custom data and its value. Multiple values can be
+                        provided, but multiple custom data can not be provided.</li>
+
+                    <li class="li">based on range and type. Only IMSI and E164 types are supported.</li>
+
+                    <li class="li">based on siteId or/and siteName.</li>
+
+                </ul>
+</div>
+
+            <p class="p">If custom data matching criteria is given, the tool can only be run from the ME
+                subsystem admincli. If custom data matching criteria is not given, devices can also
+                be fetched from the Service Manager admincli.</p>
+
+            <p class="p">The number of devices to be dump can be controlled by using the
+                    <code class="ph codeph">limitOutput</code> option. For example, if the search query returns
+                one million devices and you just want to view 100,000, the JSON query should include
+                    <code class="ph codeph">"limitOutput" : 100000,</code>.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Syntax</h2>
+            
+            <div class="p">
+                <pre class="pre codeblock"><code>execute-query.sh [-h] [-d JSON_DATA] [-i JSON_FILE] [-s n] [-u n] [-f]</code></pre>
+            </div>
+
+            <div class="p">
+                <table cellpadding="4" cellspacing="0" summary="" id="execute_query__table_kmm_45q_cmb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%" /><col style="width:66.66666666666666%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d66884e104">Option</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d66884e107">Description</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d66884e104 "><code class="ph codeph">No arguments</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d66884e107 ">Displays usage/help information.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d66884e104 "><code class="ph codeph">-h or -?</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d66884e107 ">Displays usage/help information.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d66884e104 "><code class="ph codeph">-d JSON_DATA</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d66884e107 ">Run the query with JSON data as input.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d66884e104 "><code class="ph codeph">i JSON_FILE</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d66884e107 ">Run the query with a JSON file as input.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d66884e104 "><code class="ph codeph">-s n</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d66884e107 ">Used to set the number of executing threads for Aerospike.
+                                    The default value is <code class="ph codeph">5</code>.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d66884e104 "><code class="ph codeph">-u n</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d66884e107 ">Used to set number of executing threads for UDF. The default
+                                    value is <code class="ph codeph">5</code>.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d66884e104 "><code class="ph codeph">-f</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d66884e107 ">By default, you cannot use the dump folder where dump data
+                                    already exists. Use this option to overwrite that
+                                    function.</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Examples</h2>
+            
+            <pre class="pre codeblock"><code>Example 1.  Fetch and Dump Devices: Meanings of each attribute mentioned in JSON_DATA input is self-explanatory from its name.
+    execute_query.sh -d '{
+      "operation": "fetchDevicesToRehome",
+      "matchingCriteria": {
+        "customData": {
+          "key": "IMSGROUPID",
+          "valIn": [
+            "41"
+          ]
+        },
+        "range": {
+          "type": "imsi",
+          "start": "4041110000000000",
+          "end": "40411100001000000"
+        },
+        "site": {
+          "siteId": "1",
+          "siteName": "me5"
+        }
+      },
+    "drainResultTo": "/opt/tpa/dump/ActivityNaming/data/dump.json",
+    "limitOutput" : 100000, 
+}'
+ 
+    Output: The output keeps showing on the screen until completed.
+    {"id":"1091836968","status":"running","startTime":1678110104999,"returnCode":0,"additionalMessages":[],"exception":"None","fetchedRecords":2000}
+    {"id":"1091836968","status":"running","startTime":1678110104999,"returnCode":0,"additionalMessages":[],"exception":"None","fetchedRecords":8000}
+    ...
+     
+Example 2. List currently running quries:
+ 
+    execute_query.sh -d '{"operation": "listQueryOperations"}'
+  
+    Output:
+    {"1711600846":{"id":"1711600846","status":"running","startTime":1678110218299,"returnCode":0,"additionalMessages":[],"exception":"None","fetchedRecords":37931},"1091836968":           {"id":"1091836968","status":"running","startTime":1678110104999,"returnCode":0,"additionalMessages":[],"exception":"None","fetchedRecords":174956}}
+ 
+Example 3. Cancel currently running quries:
+ 
+    execute_query.sh -d '{"operation": "cancelQueryOperations", "id":"221958126"}'
+ 
+Example 4. Set number of Aerospike threads (this should not be more than 500):
+ 
+    execute_query.sh -s 200
+     
+    Output:
+    java.util.concurrent.ThreadPoolExecutor@5986dc11[Running, pool size = 200, active threads = 200, queued tasks = 711, completed tasks = 13435458]
+ 
+Example 6. Set number of UDF threads (this should not be more than 32):
+ 
+    execute_query.sh -u 32
+ 
+    Output:
+    java.util.concurrent.ThreadPoolExecutor@7947b080[Running, pool size = 32, active threads = 32, queued tasks = 168, completed tasks = 20212729]
+ 
+Example 7. Set number of Aerospike and UDF threads along with fetch query where query is written in a JSON file named query.json:
+ 
+    execute_query.sh -s 20 -u 200 -i query.json
+     
+    Output:    
+    java.util.concurrent.ThreadPoolExecutor@7947b080[Running, pool size = 32, active threads = 32, queued tasks = 168, completed tasks = 23161200]java.util.concurrent.ThreadPoolExecutor@5986dc11[Running, pool size = 200, active threads = 200, queued tasks = 508, completed tasks = 15435159]
+ 
+    {"id":"443983074","status":"running","startTime":1678111228953,"returnCode":0,"additionalMessages":[],"exception":"None","fetchedRecords":1000}
+    {"id":"443983074","status":"running","startTime":1678111228953,"returnCode":0,"additionalMessages":[],"exception":"None","fetchedRecords":3507}
+    {"id":"443983074","status":"running","startTime":1678111228953,"returnCode":0,"additionalMessages":[],"exception":"None","fetchedRecords":5513}
+    {"id":"443983074","status":"running","startTime":1678111228953,"returnCode":0,"additionalMessages":[],"exception":"None","fetchedRecords":7741}</code></pre></div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

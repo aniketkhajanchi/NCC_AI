@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Tiered Rates" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="tiered_rates" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Tiered Rates</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="tiered_rates">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Tiered Rates</h1>
+<div class="body conbody">
+        <p class="p">NCC provides the functionality to rate and charge the utilities such as water,
+            electricity, and gas. A smart meter collects the usage from each system and sends it to
+            the Nokia data refinery (DR). DR processes the usage information and builds diameter
+            request which is sent to NCC using Immediate Event Charging (IEC) request.</p>
+
+        <p class="p">The smart meter can be prepaid or postpaid. For postpaid meters, one reading is received
+            by the end of the month whereas for prepaid meters, a reading is received every 6
+            hours.</p>
+
+        <p class="p">Tiered Rate defines tiered or step-based tariff for smart meter charging.</p>
+
+        <div class="section" id="tiered_rates__section_tjd_zn5_rvb"><h2 class="title sectiontitle">Configuration</h2>
+            
+            <div class="p">Log into the new GUI and navigate to <span class="ph uicontrol">Charging → ☰ → Rate Management →
+                    Tiered Rates</span>. To define a new tiered rate, click <img class="image break" id="tiered_rates__image_yt4_l45_rvb" src="../images/hybrid_gui/new_button.png" /> and provide the details as described in the following
+                    table.<table cellpadding="4" cellspacing="0" summary="" id="tiered_rates__table_enk_m45_rvb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Tiered rates configuration</span></caption><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d166468e65">Parameter</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d166468e68">Description</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d166468e71">Options</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d166468e74">Mandatory/ Optional</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e65 ">Name</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e68 ">This parameter indicates the unique name for the tiered
+                                    rate.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e71 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e74 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e65 ">Description</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e68 ">Description for the tiered rate.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e71 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e74 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e65 ">Type</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e68 ">This parameter indicates the type of tiered rate. It can take
+                                    the following values:<ul class="ul" id="tiered_rates__ul_spf_xp5_rvb">
+                                        <li class="li">Unit</li>
+
+                                        <li class="li">Data</li>
+
+                                        <li class="li">Money</li>
+
+                                        <li class="li">Time</li>
+
+                                    </ul>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e71 ">Enum</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e74 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e65 ">Unit</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e68 ">This parameter indicates the unit type.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e71 ">Enum</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e74 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d166468e65 d166468e68 d166468e71 d166468e74 "><strong class="ph b">Tiers</strong><p class="p">At least one tier
+                                        definition is mandatory.</p>
+</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e65 ">Tier name</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e68 ">This parameter describes the name of the tier.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e71 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e74 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e65 ">From</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e68 ">This parameter indicates the start value of the step.
+                                        <em class="ph i">From</em> value for the first step of the tier must be
+                                        0.<p class="p">If at least one step is configured, then <em class="ph i">From</em>
+                                        value of the next step is the <em class="ph i">to</em> value of the
+                                        previous step.</p>
+<p class="p"><em class="ph i">From</em> value must be less than the
+                                        value of <em class="ph i">to</em>. </p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e71 ">Integer</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e74 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e65 ">Rate</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e68 ">This parameter defines the rate at which charging is done for
+                                    1 unit. It is the primary rate</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e71 ">Integer</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e74 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e65 ">Total fee</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e68 ">This parameter defines the fee for each step.<p class="p">Total fee is
+                                        incremental. That is, total fee value of a step should be
+                                        greater than that of the previous step.</p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e71 ">Integer</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e74 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e65 ">Secondary rate</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e68 ">This parameter defines the secondary rate for charging per
+                                    unit.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e71 ">Integer</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e74 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e65 ">to</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e68 ">This parameter indicates the end value of the
+                                            step.<p class="p"><em class="ph i">to</em> value should be unspecified for last
+                                        step of last tier.</p>
+<p class="p"><em class="ph i">to</em> value should be greater
+                                        than <em class="ph i">From</em> value.</p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e71 ">Integer</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d166468e74 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d166468e65 d166468e68 d166468e71 d166468e74 ">Click <span class="ph uicontrol">STEP</span> to
+                                    add a new step.</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+
+            <div class="sectiondiv"><strong class="ph b">Creating a Charging Logic with Tiered Rate</strong><div class="p">The following
+                    configuration takes effect while creating a Charging Logic with Tiered Rate:<div class="fig fignone" id="tiered_rates__fig_vrw_1tn_tvb">
+                        <img class="image break" id="tiered_rates__image_xrg_3tn_tvb" height="192" src="../images/charging_logic_tr.png" width="480" />
+                    </div>
+</div>
+<div class="p">When a tiered rate is referred in Charging Logic in the NCC GUI,
+                    then the following rules are automatically added in tariff pass of the Charging
+                        Logic:<ul class="ul" id="tiered_rates__ul_ac1_ggd_tvb">
+                        <li class="li"><em class="ph i">RATING.Tiered-Rate ( "Tiered-Rate-Name", "Target")</em></li>
+
+                        <li class="li"><em class="ph i">Rating.Counter-Selection = Counter-Name</em>
+                        </li>
+
+                    </ul>
+<div class="fig fignone" id="tiered_rates__fig_o44_htn_tvb">
+                        <img class="image break" id="tiered_rates__image_dtz_dtn_tvb" height="192" src="../images/tariff_rules_tr.png" width="480" />
+                    </div>
+</div>
+</div>
+            <div class="p">Note the following points about Tiered Rate:<ul class="ul" id="tiered_rates__ul_g3x_chd_tvb">
+                    <li class="li">Only one Tier should be referred during creating/updating Charging Logic.
+                            <div class="note" id="tiered_rates__note_krn_jkx_5vb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Referring multiple tiered rates in a
+                            Charging Logic can result in validation failure or unexpected call
+                            behavior.</div>
+</li>
+
+                    <li class="li">Tiered rate is also supported for secondary balances.</li>
+
+                    <li class="li">All the rules are mandatory for tiered rate to function as expected.</li>
+
+                    <li class="li">This feature becomes non-functional if both Rate and Tiered Rate are present
+                        in rules.</li>
+
+                    <li class="li">At least a single Tier is mandatory in a Tiered Rate.</li>
+
+                    <li class="li">Versioning is not supported in Tiered Rates. Changes to the tiered rates are
+                        effective immediately.</li>
+
+                    <li class="li">Name, Type, and Unit parameters should not be updated. Validation rejects any
+                        such request.</li>
+
+                    <li class="li">Monthly fee is treated as bundle fee or renewal fee.</li>
+
+                    <li class="li">Total fees should be defined in incremental order.</li>
+
+                </ul>
+</div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

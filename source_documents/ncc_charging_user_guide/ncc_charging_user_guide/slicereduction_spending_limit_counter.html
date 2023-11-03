@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Spending limit counter" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="section_jh3_2df_bpb" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Spending limit counter</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="section_jh3_2df_bpb">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Spending limit counter </h1>
+<div class="body">
+            
+            <p class="p">NCC supports slice reduction functionality for direct debit (reservation) and ECUR
+                calls with call type SMS and MMS. During reservation, this facilitates operators to
+                stop SMS/MMS when the threshold value defined in the spending limit counter is
+                reached. </p>
+
+            <div class="p">Note the following assumptions:<ul class="ul" id="section_jh3_2df_bpb__ul_yjl_rdf_bpb">
+                    <li class="li">Applicable to decentralized calls only.</li>
+
+                <li class="li">For direct debit (SMS) and ECUR (MMS), the specific service unit is always
+                    1.</li>
+
+                <li class="li">Over commit scenarios are not handled, that is, service specific unit = 1 in
+                    initial, service unit = 2 in terminate.</li>
+
+                <li class="li">The SMS/MMS type of calls consume from the main balance account.</li>
+
+                <li class="li">SMS-MO is direct debit and SMS-MT, MMS-MO, MMS-MT are ECUR.</li>
+
+                <li class="li">TTC on SMS/MMS is not handled.</li>
+
+                    <li class="li">The threshold actions <strong class="ph b">Reject</strong> and <strong class="ph b">Notification-Reject</strong> can only
+                        be used to limit the counter at a specific value. If <strong class="ph b">Stop</strong> or
+                            <strong class="ph b">Notification-Stop</strong> is used, then the counter limit can be
+                        crossed.</li>
+
+                    <li class="li">In this quota management (slicing profile), define SAF parameter to
+                    enable slice reduction. SAF must be 100 only since in certain cases operator
+                    wants either full RSU or nothing (zero). </li>
+
+                    <li class="li">Min-Slice must not be defined, that is, it must be 0.</li>
+
+                    <li class="li">Notification is sent at COMMIT only, that is, for ECUR call at
+                        CCR-Terminate.</li>
+
+                </ul>
+</div>
+
+            <p class="p"><strong class="ph b">Example</strong>: Consider the following example to understand the slice reduction for
+                spending limit counter.</p>
+
+            <div class="p"><strong class="ph b">Scenario</strong>: Consider that the spending limit is 20 and Notification-Continue is
+                defined at 50% and Notification-Reject is applied at 100%. When an SMS ECUR call is
+                executed, NCC performs the following logic:<ul class="ul" id="section_jh3_2df_bpb__ul_jgq_thf_bpb">
+                    <li class="li">When the counter value reaches 10, then notification is sent and call
+                        continues.</li>
+
+                    <li class="li">When the counter value reaches 19.6, then the call is rejected as the
+                        defined rate is 0.5.</li>
+
+                </ul>
+</div>
+
+            <p class="p"><strong class="ph b">Pre-conditions</strong>:</p>
+
+            <ol class="ol" id="section_jh3_2df_bpb__ol_ks1_g3f_bpb">
+                <li class="li">Create a rate as follows:<table cellpadding="4" cellspacing="0" summary="" id="section_jh3_2df_bpb__table_lbs_jlf_bpb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Rate</span></caption><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e119">Field</th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e122">Value</th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e119 ">Name</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e122 ">Rate_Unit</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e119 ">Rate Type</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e122 ">Unit</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e119 ">Granularity Level</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e122 ">Unit</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" colspan="2" style="vertical-align:top;" headers="d157839e119 d157839e122 ">For the next</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e119 ">Type</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e122 ">NORMAL</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e119 ">Total Quantity</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e122 ">0 unit</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e119 ">Cost/Quantity</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e122 ">0.2/1 unit</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e119 ">Step Size</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e122 ">1 unit</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+</li>
+
+                <li class="li">Create a threshold with Notification-Continue at 50% and Notification-Reject
+                    action at 100%.<table cellpadding="4" cellspacing="0" summary="" id="section_jh3_2df_bpb__table_htx_hmf_bpb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Threshold</span></caption><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e219">Field</th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e222">Value</th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e219 ">Group Name</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e222 ">TPG_1</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e219 ">Application Type</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e222 ">CHARGING</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e219 ">Kind of Unit</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e222 ">MONEY</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e219 ">Reservation Threshold</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e222 ">false</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e219 ">OCS Policy Threshold</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e222 ">false</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e219 ">Dynamic Milestone Flag</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e222 ">false</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e219 ">Description</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e222 ">Absolutefromstart</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+<img class="image break" id="section_jh3_2df_bpb__image_dql_g3g_bpb" src="../images/sms_mms_th1.png" /><img class="image imageleft break" id="section_jh3_2df_bpb__image_nxj_5mf_bpb" src="../images/sms_mms_th2.png" /></li>
+
+                <li class="li">Create a counter (Group counter) with the previously defined threshold having
+                    ULI value as 20.<table cellpadding="4" cellspacing="0" summary="" id="section_jh3_2df_bpb__table_ed2_knf_bpb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Counter</span></caption><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e315">Field</th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e318">Value</th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e315 ">Counter Name</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e318 ">Group_Counter</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e315 ">Counter Consumption Type</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e318 ">ALL</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e315 ">Usage Limit</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e318 ">20</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e315 ">Unit Type</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e318 ">Money</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e315 ">Threshold Profile Group IDs</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e318 ">TPG_1</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e315 ">Counter Consumption List</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e318 ">N/A</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e315 ">Counter Type</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e318 ">COST</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e315 ">Align Granularity</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e318 ">TRUE</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e315 ">Overage Limit</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e318 ">0</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e315 ">Counter Scope</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e318 ">HIERARCHY</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e315 ">OCS Policy Counter</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e318 ">false</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e315 ">Overage Threshold Profile Group IDs</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e318 ">N/A</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+</li>
+
+                <li class="li">Create a charging service with charging from main balance. Apply two tariffs. In
+                    the first tariff, MSCC with service identifier 0 is applied and external rate of
+                    0.1 is applied. In the second tariff, MSCC with service identifier 1 is applied
+                    and external rate of 0.5 is applied.<table cellpadding="4" cellspacing="0" summary="" id="section_jh3_2df_bpb__table_r5p_tlf_bpb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Charging Service</span></caption><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e455">Field</th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e458">Value</th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e455 ">Name</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e458 ">CS_1</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e455 ">Priority</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e458 ">1</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e455 ">Category</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e458 ">DefaultCategory</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+<img class="image break" id="section_jh3_2df_bpb__image_wty_ylf_bpb" src="../images/sms_mms_cs.png" /></li>
+
+                <li class="li">Create a bundle with the previously defined charging service and subscribe this
+                    bundle to a Group.<table cellpadding="4" cellspacing="0" summary="" id="section_jh3_2df_bpb__table_qrk_1mf_bpb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Bundle</span></caption><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e513">Field</th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e516">Value</th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e513 ">Name</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e516 ">Bundle</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e513 ">Fee</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e516 ">0</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e513 ">Charging Service List</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e516 ">CS_1</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e513 ">Bundle Activation Type</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e516 ">NORMAL</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+</li>
+
+                <li class="li">Create an Account with main balance 100.<table cellpadding="4" cellspacing="0" summary="" id="section_jh3_2df_bpb__table_tnq_5nf_bpb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Account</span></caption><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e580">Field</th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e583">Value</th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e580 ">Account ID</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e583 ">Account</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e580 ">Account Type</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e583 ">PREPAID</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e580 ">Hour of Day</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e583 ">0</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e580 ">Day of Week</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e583 ">SUNDAY</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e580 ">Day of Month</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e583 ">2</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e580 ">Overage Limit</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e583 ">999999999</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e580 ">Without Reservation</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e583 ">100</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e580 ">With Reservation</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e583 ">100</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+</li>
+
+                <li class="li">Create a Group and attach the device to the Group and attach the Group counter
+                    to the Group that is created.<table cellpadding="4" cellspacing="0" summary="" id="section_jh3_2df_bpb__table_bn2_wpf_bpb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Device</span></caption><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e683">Field</th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e686">Value</th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e683 ">Name</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e686 ">device</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e683 ">Identifier Type</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e686 ">E164</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e683 ">Identifier</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e686 ">12345678</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e683 ">Day Light Saving</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e686 ">false</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e683 ">Device Type</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e686 ">NORMAL</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e683 ">Allow Overage</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e686 ">true</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e683 ">Sy/Nchf OCS Enabled</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e686 ">false</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" colspan="2" style="vertical-align:top;" headers="d157839e683 d157839e686 "><strong class="ph b">Associations</strong></td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e683 ">Subscription Index</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e686 ">Group_First</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e683 ">Category List</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e686 ">DefaultCategory</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e683 ">Groups</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e686 ">Group</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+<table cellpadding="4" cellspacing="0" summary="" id="section_jh3_2df_bpb__table_r2s_dpf_bpb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Group</span></caption><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e808">Field</th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e811">Value</th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e808 ">ID</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e811 ">Group</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e808 ">Name</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e811 ">Group</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e808 ">Traversal Order</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e811 ">TOP_DOWN</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e808 ">Devices</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e811 ">device</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e808 ">Entity Name</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e811 ">DefaultGroupLifecycle</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e808 ">Entity State</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e811 ">Active</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" colspan="2" style="vertical-align:top;" headers="d157839e808 d157839e811 "><strong class="ph b">Subscriptions</strong></td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e808 ">Bundle Name</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e811 ">Bundle</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e808 ">Account Name</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e811 ">Account</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e808 ">Entity State</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e811 ">Active</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+<img class="image imageleft break" id="section_jh3_2df_bpb__image_ulb_5pf_bpb" src="../images/group_counter_to_group.png" height="281" width="878" /></li>
+
+                <li class="li">In the quota management (slicing profile) entity, define the Slice
+                Allocation Factor (SAF) as 100 as follows:<table cellpadding="4" cellspacing="0" summary="" id="section_jh3_2df_bpb__table_txv_tkf_bpb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Quota management (slicing profile)</span></caption><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e928">Field</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d157839e931">Value</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e928 ">Profile Name</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e931 ">default_profile</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e928 ">Slice Size</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e931 ">10</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e928 ">Quota Holding Time</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e931 ">10</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e928 ">Validity Time</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e931 ">100</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e928 ">Ignore Reserved Quota</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d157839e931 ">NO</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+<img class="image break" id="section_jh3_2df_bpb__image_xxk_hlf_bpb" src="../images/slice_reduction_sms_mms.png" /></li>
+
+            </ol>
+
+            <p class="p"><strong class="ph b">Post-conditions</strong>:</p>
+
+            <ol class="ol" id="section_jh3_2df_bpb__ol_dkd_4jf_bpb">
+                <li class="li">When the SMSMO ECUR call for service identifier 0 is executed, the counter value
+                    is updated to 0.1.</li>
+
+                <li class="li">The Group counter is updated through update/EntityCounterInstance API with value
+                    9.8. The counter value becomes 9.9.</li>
+
+                <li class="li">When another SMSMO ECUR call for service identifier 0 is executed, the Group
+                    counter value becomes 10.0 and threshold of 50% is reached and notification is
+                    sent.</li>
+
+                <li class="li">The Group counter is updated through update/EntityCounterInstance API with value
+                    9.6. The counter value becomes 19.6.</li>
+
+                <li class="li">When another SMSMO ECUR call for service identifier 1 is executed, the call
+                    fails with result code 4012 since the threshold is applied at 100%, that is, ULI
+                    is 20.</li>
+
+            </ol>
+
+        </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

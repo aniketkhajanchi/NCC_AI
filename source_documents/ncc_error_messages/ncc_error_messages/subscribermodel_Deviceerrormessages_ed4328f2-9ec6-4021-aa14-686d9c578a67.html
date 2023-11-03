@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Device Error Messages" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="ided4328f2-9ec6-4021-aa14-686d9c578a67" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Device Error Messages</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="ided4328f2-9ec6-4021-aa14-686d9c578a67">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Device Error Messages</h1>
+<div class="body conbody"><p class="p">This table describes the Device error messages that the NCC may generate.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Device error messages</span></caption><colgroup><col style="width:16.666666666666664%" /><col style="width:21.428571428571427%" /><col style="width:30.952380952380953%" /><col style="width:30.952380952380953%" /></colgroup><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:top;" id="d15285e40">Number</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d15285e42">Message</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d15285e44">HTTP Error Code</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d15285e47">Description</th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">#DEVICE_00012</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device associated to multiple groups in the same hierarchy.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">DEVICE_00012. # Devices cannot be associated to multiple groups in the same hierarchy.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00001</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device is missing.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device is mandatory.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00002</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device identity required.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device must include at least one unique identity.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00003</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device identity is incomplete.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">A device identity must contain both an identity type and a value.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00004</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Invalid device identity format.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">"{0}" is not a valid value for identity type "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00005</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Duplicate device identity type.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Identity type "{0}" is unique. It can only contain one value associated to the device.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00006</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device identity already used.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Another device already exists with identity "{0}" = "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00007</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device owner does not exist.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">The provided owner does not exist in the database.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00008</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Group(s) does/do not exist.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">The provided group(s) with id(s) "{0}" does/do not exist in the database.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00009</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device does not exist.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Could not fetch the device with id "{0}".</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00010</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Duplicate group membership.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">A device cannot be a member of a group multiple times.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00011</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Invalid device subscription index value.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device subscription index value should be less than or equal to the total number of group associations.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00013</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device not associated to group.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device with id "{0}" is not associated to group with id "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00014</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Duplicate Category not allowed in Device.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Category "{0}" is duplicate in Category List. Duplicate category not allowed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00015</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Invalid Input in Category List.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">One or more NULL/Empty input present in Category List.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00016</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device Category List should only contain all Categories defined in DefaultCategoryOrder.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">There is a category mismatch between Device CategoryList and DefaultCategoryOrder.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00017</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">"DefaultCategory" should be present in CategoryList of Device.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">"DefaultCategory" should be present in CategoryList of Device.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00018</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Counter List must be empty at the time of device creation</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Counter List must be empty at the time of device creation.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00019</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Counter List must be empty or same as List already in DB at the time of device Update</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Counter List Modification not allowed. Counter List must be empty or same as listed already in the database at the time of device Update.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00020</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Duplicate counter, counter already in list.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Duplicate counter not allowed; counter reference already in list.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00021</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Counter not attached to device.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Counter "{1}" not attached to Device "{0}", remove failed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00022</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Invalid Time Zone "{0}".</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Invalid Time Zone "{0}". Format should be +NN:NN / -NN:NN. Value should be valid GMT timezone.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00023</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Invalid Start Day or Stop Day.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Invalid Start Day or Stop Day.</td>
+</tr>
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00024</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Invalid Start Time or Stop Time.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Invalid Start Time or Stop Time.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00025</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Overlapping time interval.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Overlapping time interval.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00026</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Could not match non-unique identity.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Subscription ID of type "{0}" and value "{1}" maps to more than one device in the database.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00027</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Could not match identity.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Subscription ID of type "{0}" and value "{1}" does not exist.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00028</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Duplicate non-unique identity.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Non-unique identity of type "{0}" and value "{1}" has already been provisioned.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00029</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Duplicate unique identity.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Unique identity of type "{0}" and value "{1}" has already been provisioned. Subscription ID of type "{0}" and value "{1}" does not exist.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00030</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">No devices match given identities.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">No devices were found containing given identities.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00031</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Active report list must be empty at the time of device creation.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Active report list must be empty at the time of device creation.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00032</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Active report list modification is not allowed.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Active report list modification is not allowed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00033</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">AVInstance not attached with Device.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">AVInstance not attached with Device.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00034</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">AVInstances does not exist.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">AVInstances does not exist.</td>
+</tr>
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00035</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Duplicate unique identity.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Unique identity of type "{0}" and value "{1}" has already been provisioned.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00036</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Same Old and New Device Name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Old and new Device Name must be different.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00037</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">NULL Old and New Device Name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Old and new Device Name cannot be NULL.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00038</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Invalid device id.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">The id of the device is invalid.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00039</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Cannot rename normal device.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Cannot update the name of normal device. Only unknown device can be renamed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00040</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">No such Device available on LDAP Server.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">No such Device available on LDAP server.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00041</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device could not be fetched from LDAP Server.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device could not be fetched from LDAP server.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00042</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device already provisioned with given Identities.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device already provisioned with given Identities.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00043</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Notification Language "{0}" does not exist.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Notification Language "{0}" does not exist.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00044</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device Identity mismatch.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device {0} does not contain identity {1} with value {2}.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00045</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device Identity type not found.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device {0} does not contain identity {1}.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00046</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Multiple Identity found.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device {0} contains more than one identity with type {1}</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00047</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Maximum Subscription Limit : {0} is reached for Device</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Maximum Subscription Limit : {0} is reached for Device.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00048</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Invalid Start time and end time .</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">EmergencyDetail Start time must be earlier than End time or greater than 0 or should be equals to 13 digit(epoch time in ms) for device : {0}.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00049</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">EmergencyDetail Start or End time cannot be null.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Start time or End time cannot be null .</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00050</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device attach limit reached.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Limit crossed for number of Devices that can be attached in a Group.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00051</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Invalid time zone ID.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">The timezone ID "{0}" must be one of the following: "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00055</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">No subscriptions attached to device.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">No subscriptions attached to device with id "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00056</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device cannot be updated.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Request can't be performed as data is being refreshed. Request needs to be sent again considering updated data.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00057</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device reload failed.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Could not reload pending lifecycles for device with id "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00058</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device reload failed.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Could not reload pending lifecycles for "{0}".</td>
+</tr>
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00059</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device Patch validation failed due to Notification Profile id not exist.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Request can't be performed as the Notification Profile provided in request does not exist in DB.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00060</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Add Device to Group Error.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Error occurred while adding Device: "{0}" to Group: "{1} due to: {2}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00061</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Remove Device from Group Error.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Error occurred while removing Device: "{0}" from Group: "{1} due to: {2}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00062</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Mated Site Error</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Mated Site Address not found.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00063</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device already associated to group.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device with id "{0}" is already associated to group with id "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00064</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device lock error.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Unable to acquire lock on Device: "{0}".</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00065</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Group lock error.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Unable to acquire lock on Group: "{0}" while adding Device: "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00066</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Storing history failed</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Number of histories passed ({0}) are greater than the maximum number of histories ({1})</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00067</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Maximum Limit: {0} is reached for Queued Subscription</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Maximum Limit: {0} is reached for Queued Subscription</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00068</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device associated to group.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device with id "{0}" is associated to group. So re-homing is not allowed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00069</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">The oldValue {2} with identityType {1} is not found in Device {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device "{0}" does not contain the old identity "{1}" with value "{2}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00070</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">The newValue {2} with identityType {1} already exists in Device {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device "{0}" already contain the new identity "{1}" with value "{2}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00071</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device not found by identities.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device not found by identities "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00072</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Multiple devices found by identities.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Multiple Devices found by identities "{0}"</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00073</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device Id and identities not present in request.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device Id and identities not present in request"</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00074</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Device does not exist.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device does not exist"</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00075</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Old Device Id Required.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Old Device Id is required"</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00076</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">New Device Id Required.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">New Device Id is required"</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00077</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Rejecting request because of no action (rehome/change identities/custom data) required.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Rejecting request because of no action (rehome/change identities/custom data) required for device id/identities "{0}"</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00078</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Group(s) does/do not exist.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">The provided group(s) with groupName(s) "{0}" does/do not exist in the database.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00079</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Multiple Identifiers of same type are present.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Device: {0} has multiple identities of type: {1} in request.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00080</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Multiple Identifiers of same type are present in Update Action.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Update not allowed as Device: {0} has multiple identities of type: {1} in request which mismatch with the Device Identities already present in the database.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">DEVICE_00081</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Duplicate device identity value.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">System Preference \'Enforce device identities Uniqueness\' is {0}. So, device identity {1}:{2} is not allowed as it is already present in Device Id: {3}.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e40 ">SUBSCRIBER_00082</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e42 ">Subscriber Primary site is online.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d15285e47 ">Subscriber: {0} primary site: {1} is online.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="footer"><hr /><p>Error Messages • P556766-DN1000055003-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

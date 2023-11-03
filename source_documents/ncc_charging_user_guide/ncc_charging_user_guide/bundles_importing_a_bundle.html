@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Importing a service (bundle)" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="bundles_importing_a_bundle" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Importing a service (bundle)</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="bundles_importing_a_bundle">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Importing a service (bundle)</h1>
+<div class="body">
+<p class="p">To import a service (bundle), click the <span class="ph uicontrol">Import</span> button at the top-right
+      corner of the <span class="ph uicontrol">Services</span> window. A pop-up window appears (see <a class="xref" href="#bundles_importing_a_bundle__bundleimport">Service (bundle) import pop-up window</a>) that allows you to browse
+      to the existing service (bundle) file. Click the <span class="ph uicontrol">Import</span> button to
+      import the service (bundle) along with its associations.</p>
+
+<div class="fig fignone" id="bundles_importing_a_bundle__bundleimport"><span class="figcap"><span class="fig--title-label">Figure: </span>Service (bundle) import pop-up window</span>
+   
+   <img class="image break" src="../images/import_multiple_services.PNG" />
+  </div>
+
+    <p class="p">Individual services can be imported in <em class="ph i">.json</em> file format. </p>
+
+    <div class="p">Multiple services can be imported together using a zip file with multiple <em class="ph i">.json</em> files.
+      When the zip file with multiple <em class="ph i">.json</em> files is imported, a pop-up window appears (see
+        <a class="xref" href="#bundles_importing_a_bundle__fig_qhy_jsf_mxb">Service (bundle) import configurations pop-up window</a>). The pop-up window
+      has details of the individual service and its components. <div class="fig fignone" id="bundles_importing_a_bundle__fig_qhy_jsf_mxb"><span class="figcap"><span class="fig--title-label">Figure: </span>Service (bundle) import configurations pop-up window</span>
+        
+        <img class="image break" id="bundles_importing_a_bundle__image_m5m_msf_mxb" height="240" src="../images/imported_service_configuration.PNG" width="480" />
+      </div>
+</div>
+
+    <p class="p">When you import a service (bundle), associated entities are created in the destination NCC in
+      case those entities are not already present. However, if one or more entities are already
+      present in the destination NCC, then the behavior depends on the <span class="ph uicontrol">Import
+        Action</span> configured while importing the services.</p>
+
+    <div class="p"><span class="ph uicontrol">Import Action</span> can be set to either of the following values:<ul class="ul" id="bundles_importing_a_bundle__ul_lqn_mjg_mxb">
+        <li class="li"><span class="ph uicontrol">Skip</span>:If <span class="ph uicontrol">Import Action</span> is set to this
+          value, then entities from the destination NCC are used.</li>
+
+        <li class="li"><span class="ph uicontrol">Override</span>: If <span class="ph uicontrol">Import Action</span> is set to this
+          value, then entities from the source NCC are overwritten on the destination NCC.</li>
+
+      </ul>
+</div>
+
+    
+<p class="p">The service (bundle) name is unique in an NCC environment. However, if the destination NCC
+      already has a service (bundle) with the same name, then to overwrite the bundle in the
+      destination NCC, set <span class="ph uicontrol">Import Action</span> to <span class="ph uicontrol">Override</span>
+      the import configurations pop-up window.</p>
+
+  <p class="p">During service (bundle) import, if the service (bundle) already exists in NCC and is
+   provisioned, then the <em class="ph i">.json</em> service (bundle) file being imported must contain definitions
+   of all the sub-entities.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> When versioning is enabled and a service (bundle) is imported together with its referenced
+   charging-logics, those charging-logics are automatically published to MEs. This is done to
+   satisfy a restriction that a charging-logic cannot reference an unpublished
+   charging-logic.</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

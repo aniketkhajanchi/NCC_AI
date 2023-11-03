@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Default NCC Backup and Recovery objects" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="default_brpolicy_objects" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Default NCC Backup and Recovery objects</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="default_brpolicy_objects">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Default <span class="ph">NCC</span> Backup and Recovery objects</h1>
+<div class="body conbody">
+        <p class="p">The table below shows a list of <span class="ph">NCC</span> Backup and Recovery policies in an <span class="ph">NCC</span> deployment when
+            <span class="ph">NCC</span> Backup and Recovery is enabled.</p>
+
+        <p class="p">The names of the <span class="ph">NCC</span> Backup and Recovery objects follow the pattern
+                <code class="ph codeph">&lt;ReleaseName&gt;-&lt;ChartName&gt;</code> unless a
+                <code class="ph codeph">fullnameOverride</code> has been specified for the chart at install time
+            in the override values YAML file. In that case, the <span class="ph">NCC</span> Backup and Recovery policy name
+            will be the value assigned to the <code class="ph codeph">fullnameOverride</code> property.</p>
+
+        <p class="p">One exception is the name of the <span class="ph">NCC</span> Backup and Recovery policy object for MariaDB, which
+            also has the suffix <code class="ph codeph">-mariadb</code>.</p>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="default_brpolicy_objects__table_urn_jym_vrb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:12.5%" /><col style="width:12.5%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d70345e86">Component</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d70345e89">Chart name</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d70345e92">Release name example</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d70345e95">BrPolicy name example</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d70345e98">Data backed up</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e86 ">admincli</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e89 ">admincli</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e92 ">*-admincli</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e95 ">*-admincli</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e98 ">Aerospike data</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e86 ">csdc</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e89 ">csdc</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e92 ">*-csdc</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e95 ">*-csdc</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e98 ">etcd configuration data</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e86 ">ckey</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e89 ">ckey</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e92 ">ckey</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e95 ">*ckey-ckey</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e98 ">secret</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e86 ">cmdb</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e89 ">cmdb</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e92 ">ckey-cmdb</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e95 ">*ckey-cmdb-mariadb</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e98 ">User and Role Management authentication configuration</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e86 ">btel cmdb</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e89 ">cmdb</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e92 ">*-cmdb</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e95 ">*cmdb-*-mariadb</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e98 ">Metrics Viewer configuration data and cnot alarms</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e86 ">ss7 cmdb</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e89 ">cmdb</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e92 ">*- ss7cmdb</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e95 ">*-ss7cmdb-mariadb</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e98 ">SS7 data</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e86 ">cpro</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e89 ">cpro</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e92 ">*-cpro</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e95 ">*-cpro-server</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e98 ">Prometheus metric data</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e86 ">gen3gppxml</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e89 ">cpro-gen3gppxml</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e92 ">cpro-gen3gppxml</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e95 ">*cpro-gen3gppxml</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d70345e98 ">gen3gppxml data that is waiting to be retrieved by ftp</td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+        <div class="p">When looking for details of an <span class="ph">NCC</span> Backup and Recovery policy, or history of past backups,
+            or restore operations for a specific component or release, use these commands on a
+            control node. <pre class="pre codeblock"><code># Set the following to the appropriate value, for example:
+NAMESPACE=&lt;namespace&gt;
+                    
+# Find the desired BrPolicy name:
+kubectl get brpolices.cbur.csf.nokia.com -n $NAMESPACE
+
+#Example output:
+# NAME                    AGE
+# ckey-ckey               23h
+# ckey-cmdb-mariadb       23h
+# btel-gen3gppxml         162m
+# cmdb-mariadb            162m
+# cpro-server             162m
+# grafana                 162m
+# sps-btel-sps-admincli   11m
+# sps-csdc                11m
+
+# Use the BrPolicy name to see details
+# For example:
+BR_POLICY_NAME=ckey-cmdb-mariadb
+                    
+# This command gives information about the current cronJob specs, if scheduled backups are enbled or disabled, and Backup History data.
+kubectl describe brpolices.cbur.csf.nokia.com $BR_POLICY_NAME $NAMESPACE</code></pre>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

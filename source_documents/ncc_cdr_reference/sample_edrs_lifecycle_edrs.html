@@ -1,0 +1,3327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Sample EDRs" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="concept_i3m_3y5_23b" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Sample EDRs</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="concept_i3m_3y5_23b">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Sample EDRs</h1>
+<div class="body conbody">
+        <p class="p">This section provides sample lifecycle EDRs for different scenarios.</p>
+
+    </div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_ivh_kgd_cmb"><h2 class="title topictitle2" id="ariaid-title2">Subscription is created</h2>
+<div class="topic concept nested2" aria-labelledby="ariaid-title3" id="concept_ask_1gd_cmb"><h3 class="title topictitle3" id="ariaid-title3">Using lifecycle (add Subscription action)</h3>
+<div class="body conbody">
+                <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       539
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                   Tag                                   Data
+RecordType             0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider        1                                    MVNO1
+invokedBy              1                              WebServices
+invokedMethod          1                      create_subscription
+entityLifeCycleState   1                                   Active
+bundleName             1                            test_bundle_3
+bundleActivationType   1                                   NORMAL
+accountType            1                                 PRE_PAID
+timeZoneId             1                            Europe/London
+accountId              1                              44123456789
+accountELCState        1                                   Active
+accountPLCState        1                                    Start
+deviceId               1                              test_device
+subscriptionId         1     f20cab9c-0e51-4504-9197-32aa5418860b
+fee                    1                                        5
+activationTime         1                      22/12/2022 10:45:00
+result                 1                                  Success
+timeStamp              1                      22/12/2022 10:45:23
+RecordTimestamp        1                      22/12/2022 10:45:23
+  RecordProperty       0                               bucketInfo
+  bucketName           1                              test_bucket
+  bucketUnitType       1                                    MByte
+  bucketKindOfUnit     1                                   VOLUME
+  bucketBalanceBefore  1                                104857600
+  bucketBalanceAfter   1                                104857600
+  carryOverBucket      1                                    false
+  RecordProperty       0                              counterInfo
+  counterName          1                             test_counter
+  counterKey           1     cfd68ee3-b9d9-4977-a6e8-1e5ea488a428
+  counterScope         1                                      ALL
+  counterType          1                                    USAGE
+  counterUnitType      1                                    MByte
+  counterKindOfUnit    1                                   VOLUME
+  counterValueBefore   1                                        0
+  counterValueAfter    1                                        0</code></pre>
+            </div>
+</div>
+<div class="topic concept nested2" aria-labelledby="ariaid-title4" id="concept_dxm_32d_cmb"><h3 class="title topictitle3" id="ariaid-title4">Using GUI</h3>
+<div class="body conbody">
+                <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       1318
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                   Tag                                   Data
+RecordType             0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider        1                                    MVNO1
+invokedBy              1                              WebServices
+invokedMethod          1                      create_subscription
+bundleName             1                             Bundle118068
+bundleActivationType   1                                   NORMAL
+accountId              1                            Account118068
+deviceId               1                             Device118068
+subscriptionId         1     bca2a361-6a4f-4049-a7b8-e7829217f48b
+fee                    1                                253.89585
+activationTime         1                      10/06/2022 08:00:01
+result                 1                                  Success
+timeStamp              1                      10/06/2022 08:00:01
+RecordTimestamp        1                      10/06/2022 02:30:01
+  RecordProperty       0                             discountInfo
+  discountDefName      1                           Discount118068
+  discountInstanceId   1     d93a88e7-5a53-46ad-9f1f-7813f06f04a2
+  bundleFeeBefore      1                                500.00000
+  bundleFeeAfter       1                                299.35000
+  discountType         1                               PERCENTAGE
+  discountValue        1                                    40.13
+  startDateTime        1                      30/04/2022 16:10:33
+  endDateTime          1                      10/08/2022 07:44:15
+  RecordProperty       0                             discountInfo
+  discountDefName      1                           Discount118068
+  discountInstanceId   1     c7ffaca5-f6e8-4b17-a7c9-822a1b94fe35
+  bundleFeeBefore      1                                299.35000
+  bundleFeeAfter       1                                269.02585
+  discountType         1                               PERCENTAGE
+  discountValue        1                                    10.13
+  startDateTime        1                      30/04/2022 16:10:33
+  endDateTime          1                      15/08/2022 07:44:15
+  RecordProperty       0                             discountInfo
+  discountDefName      1                           Discount118068
+  discountInstanceId   1     a6250d24-0ad4-4a0a-b3b9-ea708d89926e
+  bundleFeeBefore      1                                269.02585
+  bundleFeeAfter       1                                253.89585
+  discountType         1                                 ABSOLUTE
+  discountValue        1                                    15.13
+  startDateTime        1                      30/04/2022 16:10:33
+  endDateTime          1                      15/07/2022 07:44:15
+  RecordProperty       0                               bucketInfo
+  bucketName           1                              test_bucket
+  bucketUnitType       1                                    MByte
+  bucketKindOfUnit     1                                   VOLUME
+  bucketBalanceBefore  1                                104857600
+  bucketBalanceAfter   1                                104857600
+  carryOverBucket      1                                    false
+  RecordProperty       0                              counterInfo
+  counterName          1                             test_counter
+  counterKey           1     cfd68ee3-b9d9-4977-a6e8-1e5ea488a428
+  counterScope         1                                      ALL
+  counterType          1                                    USAGE
+  counterUnitType      1                                    MByte
+  counterKindOfUnit    1                                   VOLUME
+  counterValueBefore   1                                        0
+  counterValueAfter    1                                        0</code></pre>
+            </div>
+</div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title5" id="concept_d3w_4fc_cmb"><h2 class="title topictitle2" id="ariaid-title5">Subscription is added</h2>
+<div class="body conbody">
+            <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       764
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                     Tag                                   Data
+RecordType               0                         LIFECYCLE_RECORD
+recordId                 1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider          1                                    MVNO1
+invokedBy                1                    AddSubscriptionAction
+triggeredEntityType      1                             Subscription
+triggeredEntityId        1     89ff634b-82af-4c51-bb85-2726949cbea5
+transitionName           1                          AddSubscription
+transitionStartState     1                                   Active
+entityLifeCycleName      1             DefaultSubscriptionLifeCycle
+periodicLifeCycleName    1              BundlePLC_BOU_ASA_SPSA3-411
+result                   1                                  Success
+timeStamp                1                      18/05/2022 14:07:38
+RecordTimestamp          1                      18/05/2022 08:37:38
+  RecordProperty         0          subscriptionAddedBySubscription
+  subscriptionId         1     1b5aa1c6-5799-4633-a8af-c4050dc5fbf8
+  fee                    1                                        2
+  entityLifeCycleName    1            BundleELC_Databoost_SPSA3-411
+  bundleName             1                          Bundle2_0300413
+  bundleActivationType   1                                   NORMAL
+  alignBundleId          1                          Bundle1_0300413
+  accountID              1                          Account10300413
+  deviceId               1                           Device10300413
+  result                 1                                  Success</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title6" id="concept_jyn_nfc_cmb"><h2 class="title topictitle2" id="ariaid-title6">Subscription addition failed</h2>
+<div class="body conbody">
+            <p class="p">The value of the tag <var class="keyword varname">reason</var> = 30 indicates <var class="keyword varname">Usage Limit
+                    Exceeded</var>.</p>
+
+            <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       808
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                    Tag                                   Data
+RecordType              0                         LIFECYCLE_RECORD
+recordId                1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+invokedBy               1                    AddSubscriptionAction
+triggeredAtTime         1                      28/03/2022 19:08:28
+triggeredEntityType     1                             Subscription
+triggeredEntityId       1     5cef1c8d-9c57-4d27-9a1e-eee37340f306
+transitionName          1                          AddSubscription
+transitionStartState    1                                   Active
+entityLifeCycleName     1             DefaultSubscriptionLifeCycle
+periodicLifeCycleName   1             30DaysRenewalLC_subscription
+result                  1                                     Fail
+reason                  1                                       30
+bundleName              1                         Task2_Service2_A
+bundleActivationType    1                                   NORMAL
+accountType             1                                 PRE_PAID
+timeZoneId              1                                      EST
+accountID               1                           Account_1_14_A
+accountName             1                           Account_1_14_A
+accountELCState         1                                   Active
+accountPLCState         1                                    Start
+deviceId                1                            Device_1_14_A
+deviceName              1                            Device_1_14_A
+timeStamp               1                      28/03/2022 19:08:28
+meHostName              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                            
+nccVersion              1                              SPS_22_3_R1
+RecordTimestamp         1                      28/03/2022 19:08:28</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title7" id="concept_v1v_bsx_v4b"><h2 class="title topictitle2" id="ariaid-title7">Subscription addition was partially successful</h2>
+<div class="body conbody">
+            <p class="p">This EDR is generated if both success and failure are available in one action. The
+                final result is <var class="keyword varname">Success</var>.</p>
+
+            <pre class="pre codeblock"><code>
+--------------------------------------
+CDR length:                       1709
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                     Tag                                   Data
+RecordType               0                         LIFECYCLE_RECORD
+recordId                 1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider          1                                    MVNO1
+invokedBy                1                    AddSubscriptionAction
+triggeredAtTime          1                      04/03/2022 15:01:11
+triggeredEntityType      1                                  Account
+triggeredEntityId        1                          account10000332
+transitionName           1                     AddSubscriptionEvent
+transitionStartState     1                                   Active
+entityLifeCycleName      1                AccountEntityLifeCycle617
+periodicLifeCycleName    1               DefaultAccountBillingCycle
+result                   1                                  Success
+timeStamp                1                      04/03/2022 15:01:12
+meHostName               1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                  
+nccVersion               1                              SPS_21_3_R1
+RecordTimestamp          1                      04/03/2022 15:01:12
+  RecordProperty         0              subscriptionsAddedByAccount
+  bundleName             1                          Bundle_Free_617
+  bundleActivationType   1                                   NORMAL
+  bundleVersion          1                                        0
+  accountType            1                                 PRE_PAID
+  timeZoneId             1                                      IST
+  accountId              1                          account10000332
+  accountELCState        1                                   Active
+  accountPLCState        1                                    Start
+  groupID                1                                G10000332
+  result                 1                                     Fail
+  reason                 1                                       20
+  maxBundleInstances     1                                        1
+  RecordProperty         0              subscriptionsAddedByAccount
+  entityLifeCycleState   1                                   Active
+  bundleName             1                          Bundle_Free_617
+  bundleActivationType   1                                   NORMAL
+  bundleVersion          1                                        0
+  accountType            1                                 PRE_PAID
+  timeZoneId             1                                      IST
+  accountId              1                          account10000332
+  accountELCState        1                                   Active
+  accountPLCState        1                                    Start
+  deviceId               1                           device10000332
+  result                 1                                  Success
+  subscriptionId         1     0ebc18fb-c563-4d9d-9302-25ddfdbe2d5c
+  fee                    1                                       20
+  entityLifeCycleName    1             DefaultSubscriptionLifeCycle
+  RecordProperty         0              subscriptionsAddedByAccount
+  entityLifeCycleState   1                                   Active
+  bundleName             1                          Bundle_Free_617
+  bundleActivationType   1                                   NORMAL
+  bundleVersion          1                                        0
+  accountType            1                                 PRE_PAID
+  timeZoneId             1                                      IST
+  accountId              1                          account10000332
+  accountELCState        1                                   Active
+  accountPLCState        1                                    Start
+  deviceId               1                          device210000332
+  result                 1                                  Success
+  subscriptionId         1     45973621-5b7d-48b1-8251-c793026e7e9f
+  fee                    1                                       20
+  entityLifeCycleName    1             DefaultSubscriptionLifeCycle
+</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title8" id="concept_ppp_kfc_cmb"><h2 class="title topictitle2" id="ariaid-title8">Subscription is renewed via Account</h2>
+<div class="body conbody">
+            <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       2070
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                             Tag                                   Data
+RecordType                       0                         LIFECYCLE_RECORD
+recordId                         1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider                  1                                    MVNO1
+periodicLifeCycleName            1          AccountRenewPeriodLC_40456_4hrs
+entityLifeCycleName              1                  DefaultAccountLifeCycle
+triggeredEntityId                1                             Account40550
+timeZoneId                       1                                      IST
+accountType                      1                                POST_PAID
+entityLifeCycleState             1                                   Active
+accountBalanceBeforeRenew        1                                     60.0
+invokedBy                        1                  RenewSubscriptionAction
+transitionStartState             1                                    Start
+triggeredAtTime                  1                      27/08/2022 14:29:56
+transitionName                   1                              RepeatCycle
+result                           1                                  Success
+triggeredEntityType              1                                  Account
+accountBalanceAfterRenew         1                                     40.0
+triggeredBy                      1                                  ON_CALL
+timeStamp                        1                      27/08/2022 14:30:58
+RecordTimestamp                  1                      27/08/2022 09:00:58
+  RecordProperty                 0     subscriptionsRenewedByAccountRenewal
+  periodicLifeCycleName          1          DefaultSubscriptionBillingCycle
+  remainingRenewals              1                                        0
+  reason                         1                                       12
+  entityLifeCycleName            1            OneShotSubscriptionLifeCycle1
+  prevBillCycleEndTime           1                      27/08/2022 18:00:00
+  maxRenewals                    1                                        0
+  entityLifeCycleState           1                                  Removed
+  deviceId                       1                              Device40550
+  prevBillCycleStartTime         1                      27/08/2022 14:27:37
+  bundleActivationType           1                                   NORMAL
+  result                         1                                     Fail
+  bundleName                     1                    Bundle_DataBoost40550
+  subscriptionId                 1     097496cc-c6d0-47bf-af20-19331bdf8f0f
+  subscriptionRenewalMode        1                                     NONE
+  alternateId                    1                     12345678901234567890
+    RecordProperty               0                              counterInfo
+    counterKindOfUnit            1                                   VOLUME
+    counterValueBefore           1                                        0
+    counterUnitType              1                                     Byte
+    counterKey                   1     9e4b17f0-d108-4ca5-a987-93160ecb84fc
+    counterScope                 1                             SUBSCRIPTION
+    counterValueAfter            1                                        0
+    counterType                  1                                    USAGE
+    counterPolicySignalState     1                              unthrottled
+    counterName                  1                                 TBY40550
+    RecordProperty               0                         listOfCustomData
+    sourceType                   1                                   Device
+      RecordProperty             0                           customDataInfo
+      customDataValue            1                                    User1
+      customDataName             1                           UserIdentifier
+      RecordProperty             0                           customDataInfo
+      customDataValue            1                                    12345
+      customDataName             1                            DeviceCustom2
+    RecordProperty               0                     listOfSubscriptionID
+      RecordProperty             0                           subscriptionId
+      subscriptionIdData         1                                 40550999
+      subscriptionIdType         1                                        1
+      RecordProperty             0                           subscriptionId
+      subscriptionIdData         1                          40550@nokia.com
+      subscriptionIdType         1                                        3
+      RecordProperty             0                           subscriptionId
+      subscriptionIdData         1                                 40550999
+      subscriptionIdType         1                                        0
+  RecordProperty                 0     subscriptionsRenewedByAccountRenewal
+  remainingRenewals              1                                        9
+  entityLifeCycleName            1             DefaultSubscriptionLifeCycle
+  prevBillCycleEndTime           1                      27/08/2022 18:00:00
+  maxRenewals                    1                                       10
+  fee                            1                                       20
+  entityLifeCycleState           1                                   Active
+  deviceId                       1                              Device40550
+  prevBillCycleStartTime         1                      27/08/2022 14:27:37
+  bundleActivationType           1                                   NORMAL
+  result                         1                                  Success
+  subscriptionOnlyRenewalFee     1                                       20
+  bundleName                     1                       Bundle_DoMore40550
+  subscriptionId                 1     5ee48d74-c5ce-42c3-a00f-4451254b900e
+  subscriptionRenewalMode        1                                     NONE
+  subscriptionRenewalFeeSource   1                               BUNDLE_FEE
+    RecordProperty               0                              counterInfo
+    counterKindOfUnit            1                                   VOLUME
+    counterValueBefore           1                                       40
+    counterUnitType              1                                     Byte
+    counterKey                   1     1f8a4cef-49ad-4661-a312-550bbc8ac6dc
+    counterScope                 1                             MULTI_BUNDLE
+    counterValueAfter            1                                        0
+    counterType                  1                                    USAGE
+    counterPolicySignalState     1                                      LOW
+    counterName                  1                                 ABY40550
+    RecordProperty               0                         listOfCustomData
+    sourceType                   1                                   Device
+      RecordProperty             0                           customDataInfo
+      customDataValue            1                                    12345
+      customDataName             1                            DeviceCustom2
+      RecordProperty             0                           customDataInfo
+      customDataValue            1                                    User1
+      customDataName             1                           UserIdentifier
+    RecordProperty               0                              counterInfo
+    counterKindOfUnit            1                                   VOLUME
+    counterValueBefore           1                                       10
+    counterUnitType              1                                     Byte
+    counterKey                   1     3aff2077-f712-4f66-bab8-123fa74fc21c
+    counterScope                 1                             SUBSCRIPTION
+    counterValueAfter            1                                        0
+    counterType                  1                                    USAGE
+    counterPolicySignalState     1                              unthrottled
+    counterName                  1                                 TBY40550
+    RecordProperty               0                     listOfSubscriptionID
+      RecordProperty             0                           subscriptionId
+      subscriptionIdData         1                                 40550999
+      subscriptionIdType         1                                        1
+      RecordProperty             0                           subscriptionId
+      subscriptionIdData         1                                 40550999
+      subscriptionIdType         1                                        0
+      RecordProperty             0                           subscriptionId
+      subscriptionIdData         1                          40550@nokia.com
+      subscriptionIdType         1                                        3
+    RecordProperty               0                              counterInfo
+    counterKindOfUnit            1                                     TIME
+    counterValueBefore           1                                    12908
+    counterUnitType              1                                   Minute
+    counterKey                   1     23483708-7634-48ee-bf63-4896c5556216
+    counterScope                 1                             SUBSCRIPTION
+    counterValueAfter            1                                        0
+    counterType                  1                                    USAGE
+    counterName                  1                                 CBY40550</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title9" id="concept_hkf_cbs_h5b"><h2 class="title topictitle2" id="ariaid-title9">Subscription is renewed via Account considering renewal priority</h2>
+<div class="body conbody">
+            <pre class="pre codeblock" id="concept_hkf_cbs_h5b__codeblock_ikf_cbs_h5b"><code>
+--------------------------------------
+CDR length:                       2977
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                             Tag                                                  Data
+RecordType                       0                                        LIFECYCLE_RECORD
+invokedBy                        1                                 RenewSubscriptionAction
+triggeredEntityType              1                                                 Account
+triggeredEntityId                1                                                      A1
+transitionName                   1                                   AccountRechargedEvent
+transitionStartState             1                                               SUSPENDED
+entityLifeCycleName              1                                 DefaultAccountLifeCycle
+triggeredBy                      1                                                   EVENT
+triggeredAtTime                  1                                     22/07/2022 15:44:33
+periodicLifeCycleName            1                                          AccountPLC3831
+accountType                      1                                                PRE_PAID
+timeZoneId                       1                                            Asia/Kolkata
+entityLifeCycleState             1                                                  Active
+accountBalanceBeforeRenew        1                                                    25.0
+accountBalanceAfterRenew         1                                                     0.0
+result                           1                                                 Success
+timeStamp                        1                                     22/07/2022 15:44:33
+meHostName                       1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                            
+nccVersion                       1                                             SPS_22_7_R1
+recordId                         1     20220722101433_346f4c77-7fe0-436a-8c64-228352a989da
+RecordTimestamp                  1                                     22/07/2022 15:44:33
+  RecordProperty                 0                  subscriptionsActivatedByAccountRenewal
+  subscriptionId                 1                    3ba38fff-4511-4d9f-bb84-0be85ee23a3f
+  entityLifeCycleName            1                            MandatorySubscriptionELC3831
+  entityLifeCycleState           1                                                   START
+  prevBillCycleStartTime         1                                     22/07/2022 15:37:30
+  prevBillCycleEndTime           1                                     22/08/2022 15:00:00
+  bundleName                     1                                   MandatoryBundle2_3831
+  bundleActivationType           1                                                  NORMAL
+  maxRenewals                    1                                                      10
+  remainingRenewals              1                                                      10
+  subscriptionRenewalMode        1                                                    NONE
+  renewalPriority                1                                                       0
+  fee                            1                                                      10
+  subscriptionRenewalFeeSource   1                                              BUNDLE_FEE
+  subscriptionOnlyRenewalFee     1                                                      10
+  deviceId                       1                                                      D1
+  deviceName                     1                                                      D1
+  result                         1                                                 Success
+    RecordProperty               0                                             counterInfo
+    counterName                  1                                            Counter13831
+    counterKey                   1                    56965937-bc54-4ce6-ae8d-fe7a478b4955
+    counterScope                 1                                            SUBSCRIPTION
+    counterType                  1                                                   USAGE
+    counterUnitType              1                                                    Byte
+    counterKindOfUnit            1                                                  VOLUME
+    alignGranularity             1                                                    TRUE
+    counterValueBefore           1                                                       0
+    counterValueAfter            1                                                       0
+  RecordProperty                 0                  subscriptionsSuspendedByAccountRenewal
+  subscriptionId                 1                    8fc8a86e-788a-4e4f-9b10-57061cd1fa52
+  entityLifeCycleName            1                                       OptionalBundleELC
+  entityLifeCycleState           1                                                Inactive
+  prevBillCycleStartTime         1                                     22/07/2022 15:37:30
+  prevBillCycleEndTime           1                                     22/08/2022 15:00:00
+  bundleName                     1                                    OptionalBundle1_3831
+  bundleActivationType           1                                                  NORMAL
+  maxRenewals                    1                                                      10
+  remainingRenewals              1                                                      10
+  subscriptionRenewalMode        1                                                    NONE
+  renewalPriority                1                                                       1
+  fee                            1                                                       5
+  deviceId                       1                                                      D1
+  deviceName                     1                                                      D1
+  result                         1                                                    Fail
+  reason                         1                                                       0
+  RecordProperty                 0                    subscriptionsRenewedByAccountRenewal
+  subscriptionId                 1                    ed9335f6-e785-47cf-9613-53feb487d18e
+  entityLifeCycleName            1                            MandatorySubscriptionELC3831
+  entityLifeCycleState           1                                                   START
+  prevBillCycleStartTime         1                                     22/07/2022 15:37:30
+  prevBillCycleEndTime           1                                     22/08/2022 15:00:00
+  bundleName                     1                                   MandatoryBundle1_3831
+  bundleActivationType           1                                                  NORMAL
+  maxRenewals                    1                                                      10
+  remainingRenewals              1                                                       9
+  subscriptionRenewalMode        1                                                    NONE
+  renewalPriority                1                                                       0
+  fee                            1                                                      15
+  subscriptionRenewalFeeSource   1                                              BUNDLE_FEE
+  subscriptionOnlyRenewalFee     1                                                      15
+  deviceId                       1                                                      D1
+  deviceName                     1                                                      D1
+  result                         1                                                 Success
+    RecordProperty               0                                             counterInfo
+    counterName                  1                                            Counter13831
+    counterKey                   1                    d918126d-ec51-44ff-9b01-bce8b54eaa9a
+    counterScope                 1                                            SUBSCRIPTION
+    counterType                  1                                                   USAGE
+    counterUnitType              1                                                    Byte
+    counterKindOfUnit            1                                                  VOLUME
+    alignGranularity             1                                                    TRUE
+    counterValueBefore           1                                                       0
+    counterValueAfter            1                                                       0
+</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title10" id="concept_xmr_hgc_cmb"><h2 class="title topictitle2" id="ariaid-title10">Subscription renewal failed</h2>
+<div class="topic concept nested2" aria-labelledby="ariaid-title11" id="concept_n3f_jfc_cmb"><h3 class="title topictitle3" id="ariaid-title11">Renewal failed</h3>
+<div class="body conbody">
+                <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       396
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                    Tag                       Data
+RecordType              0             LIFECYCLE_RECORD
+recordId                1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                        MVNO1
+invokedBy               1      RenewSubscriptionAction
+triggeredEntityType     1                      Account
+triggeredEntityId       1                 Account80708
+transitionName          1                  RepeatCycle
+transitionStartState    1                       Active
+entityLifeCycleName     1      DefaultAccountLifeCycle
+periodicLifeCycleName   1     AccountPeriodicLC_795681
+accountType             1                     PRE_PAID
+result                  1                         Fail
+reason                  1                            0
+timeStamp               1          19/02/2022 04:34:00
+RecordTimestamp         1          19/02/2022 11:04:00</code></pre>
+            </div>
+</div>
+<div class="topic concept nested2" aria-labelledby="ariaid-title12" id="concept_tmp_gfc_cmb"><h3 class="title topictitle3" id="ariaid-title12">Failed due to subscription lifecycle</h3>
+<div class="body conbody">
+                <p class="p">When max renewal for the Subscription Lifecycle with Renew Subscription action
+                    reaches, for that subscription the result is fail and the reason is 12
+                    (indicates MAX_RENEWAL_REACHED) in the CDR. All the Buckets/Counters for that
+                    Subscription are also generated. The Max Renewals indicates the maximum number
+                    of time a Subscription can be renewed.</p>
+
+                <p class="p">The value of the tag <var class="keyword varname">reason</var> = 30 indicates <var class="keyword varname">Usage
+                        Limit Exceeded</var>. </p>
+
+                <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       1120
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                        Tag                                   Data
+RecordType                  0                         LIFECYCLE_RECORD
+recordId                    1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+invokedBy                   1                  RenewSubscriptionAction
+triggeredEntityType         1                             Subscription
+triggeredEntityId           1     01d5432f-05be-4134-a834-c7a67fcb1cab
+transitionName              1                              RepeatCycle
+transitionStartState        1                                   Active
+entityLifeCycleName         1             DefaultSubscriptionLifeCycle
+triggeredBy                 1                                    EVENT
+triggeredAtTime             1                      28/03/2022 18:45:24
+periodicLifeCycleName       1             30DaysRenewalLC_subscription
+accountType                 1                                 PRE_PAID
+timeZoneId                  1                                      EST
+accountID                   1                           Account_1_16_A
+accountName                 1                           Account_1_16_A
+accountELCState             1                                   Active
+accountPLCState             1                                    Start
+prevBillCycleStartTime      1                      28/03/2022 18:45:20
+prevBillCycleEndTime        1                      15/04/2022 10:30:00
+entityLifeCycleState        1                                   Active
+bundleName                  1                         Task2_Service2_A
+bundleActivationType        1                                   NORMAL
+accountBalanceBeforeRenew   1                                     30.0
+accountBalanceAfterRenew    1                                     30.0
+maxRenewals                 1                                Unlimited
+remainingRenewals           1                                Unlimited
+subscriptionRenewalMode     1                             BILLING_ONLY
+deviceId                    1                            Device_1_16_A
+deviceName                  1                            Device_1_16_A
+result                      1                                     Fail
+reason                      1                                       30
+timeStamp                   1                      28/03/2022 18:45:24
+meHostName                  1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                            
+nccVersion                  1                              SPS_22_3_R1
+RecordTimestamp             1                      28/03/2022 18:45:24</code></pre>
+            </div>
+</div>
+<div class="topic concept nested2" aria-labelledby="ariaid-title13" id="concept_cvg_cfc_cmb"><h3 class="title topictitle3" id="ariaid-title13">Failed due to account lifecycle</h3>
+<div class="body conbody">
+                <p class="p">When max renewal for the Account Lifecycle with Renew Subscription action has
+                    reached, for that subscription the result is fail and the reason is 12
+                    (indicates MAX_RENEWAL_REACHED) in the CDR. All the Buckets/Counters for that
+                    Subscription are also generated. The Max Renewals indicates the maximum number
+                    of time a Subscription can be renewed. </p>
+
+                <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       1704
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                        Tag                                   Data
+RecordType                  0                         LIFECYCLE_RECORD
+recordId                    1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider             1                                    MVNO1
+invokedBy                   1                  RenewSubscriptionAction
+triggeredEntityType         1                                  Account
+triggeredEntityId           1                                    ICICI
+transitionName              1                              RepeatCycle
+transitionStartState        1                                    Start
+entityLifeCycleName         1                  DefaultAccountLifeCycle
+triggeredBy                 1                                    AUDIT
+periodicLifeCycleName       1                                AccountLC
+accountType                 1                                 PRE_PAID
+accountBalanceBeforeRenew   1                                      0.0
+accountBalanceAfterRenew    1                                      0.0
+result                      1                                     Fail
+reason                      1                                        6
+timeStamp                   1                      23/03/2022 18:10:07
+RecordTimestamp             1                      23/03/2022 12:40:07
+  RecordProperty            0     subscriptionsRenewedByAccountRenewal
+  subscriptionId            1     27ff3905-6051-4c1b-bb03-08d3f4f6f4ce
+  entityLifeCycleName       1             DefaultSubscriptionLifeCycle
+  bundleName                1                                     Bun2
+  bundleActivationType      1                                   NORMAL
+  maxRenewals               1                                        0
+  remainingRenewals         1                                        0
+  subscriptionRenewalMode   1                                     NONE
+  deviceId                  1                                    Nokia
+  result                    1                                     Fail
+  reason                    1                                       12
+    RecordProperty          0                               bucketInfo
+    bucketName              1                                  Bucket2
+    bucketUnitType          1                                    GByte
+    bucketKindOfUnit        1                                   VOLUME
+    bucketBalanceBefore     1                             107374182400
+    bucketBalanceAfter      1                             107374182400
+    carryOverBucket         1                                    false
+    RecordProperty          0                               bucketInfo
+    bucketName              1                                  Bucket1
+    bucketUnitType          1                                    GByte
+    bucketKindOfUnit        1                                   VOLUME
+    bucketBalanceBefore     1                             107374182400
+    bucketBalanceAfter      1                             107374182400
+    carryOverBucket         1                                    false
+    RecordProperty          0                              counterInfo
+    counterName             1                                 Counter1
+    counterKey              1     df3c7161-4f6e-4991-a839-6279e8a9108e
+    counterType             1                                     COST
+    counterUnitType         1                                    GByte
+    counterKindOfUnit       1                                   VOLUME
+    counterValueBefore      1                                        0
+    counterValueAfter       1                                        0
+  RecordProperty            0     subscriptionsRenewedByAccountRenewal
+    RecordProperty          0                              counterInfo
+    counterName             1                             MultiCounter
+    counterKey              1     d828e6a9-badb-402a-a0e2-6f0990b7e3f2
+    counterType             1                                    USAGE
+    counterUnitType         1                                    GByte
+    counterKindOfUnit       1                                   VOLUME
+    counterValueBefore      1                                        0
+    counterValueAfter       1                                        0</code></pre>
+            </div>
+</div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title14" id="concept_ewb_bfc_cmb"><h2 class="title topictitle2" id="ariaid-title14">Subscription is reset</h2>
+<div class="body conbody">
+            <pre class="pre codeblock"><code>CDR for Device:
+-------------------------------------
+CDR length:                       971
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                    Tag                                   Data
+RecordType              0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                                    MVNO1
+invokedBy               1                  ResetSubscriptionAction
+triggeredEntityType     1                             Subscription
+triggeredEntityId       1     f887b292-6068-44e4-a87c-033bf611bad3
+transitionName          1                              RepeatCycle
+transitionStartState    1                                    Start
+entityLifeCycleName     1             DefaultSubscriptionLifeCycle
+triggeredBy             1                                    AUDIT
+periodicLifeCycleName   1            SubscriptionResetLC_85038_90s
+bundleName              1                             Bundle189875
+bundleActivationType    1                                   NORMAL
+accountID               1                             Account89875
+deviceId                1                              device89875
+result                  1                                  Success
+timeStamp               1                      18/07/2022 08:41:12
+RecordTimestamp         1                      18/07/2022 03:11:12
+  RecordProperty        0                               bucketInfo
+  bucketName            1                             Bucket189875
+  bucketUnitType        1                                     Byte
+  bucketKindOfUnit      1                                   VOLUME
+  bucketBalanceBefore   1                                     4800
+  bucketBalanceAfter    1                                     5000
+  carryOverBucket       1                                    false
+  RecordProperty        0                              counterInfo
+  counterName           1                            Counter189875
+  counterKey            1     6f517d77-80c4-4ab1-844b-b5a5281460db
+  counterType           1                                    USAGE
+  counterUnitType       1                                     Byte
+  counterKindOfUnit     1                                   VOLUME
+  counterValueBefore    1                                      200
+  counterValueAfter     1                                        0
+
+                   ----------------------------
+                   ----------------------------
+CDR for Group:
+-------------------------------------
+CDR length:                       969
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                    Tag                                   Data
+RecordType              0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                                    MVNO1
+invokedBy               1                  ResetSubscriptionAction
+triggeredEntityType     1                             Subscription
+triggeredEntityId       1     13022119-5516-4bd1-89dd-2a3f5c801beb
+transitionName          1                              RepeatCycle
+transitionStartState    1                                    Start
+entityLifeCycleName     1             DefaultSubscriptionLifeCycle
+triggeredBy             1                                    AUDIT
+periodicLifeCycleName   1            SubscriptionResetLC_85038_90s
+bundleName              1                             Bundle289875
+bundleActivationType    1                                   NORMAL
+accountId               1                             Account89875
+groupID                 1                               Group89875
+result                  1                                  Success
+timeStamp               1                      18/07/2022 08:41:13
+RecordTimestamp         1                      18/07/2022 03:11:13
+  RecordProperty        0                               bucketInfo
+  bucketName            1                             Bucket289875
+  bucketUnitType        1                                     Byte
+  bucketKindOfUnit      1                                   VOLUME
+  bucketBalanceBefore   1                                     4600
+  bucketBalanceAfter    1                                     5000
+  carryOverBucket       1                                    false
+  RecordProperty        0                              counterInfo
+  counterName           1                            Counter289875
+  counterKey            1     80dc8f86-a8a8-4b7a-ba89-399c31a1b750
+  counterType           1                                    USAGE
+  counterUnitType       1                                     Byte
+  counterKindOfUnit     1                                   VOLUME
+  counterValueBefore    1                                      400
+  counterValueAfter     1                                        0
+</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title15" id="concept_k55_z2c_cmb"><h2 class="title topictitle2" id="ariaid-title15">Subscription reset failed</h2>
+<div class="body conbody">
+            <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       509
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                    Tag                                   Data
+RecordType              0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                                    MVNO1
+invokedBy               1                  ResetSubscriptionAction
+triggeredEntityType     1                             Subscription
+triggeredEntityId       1     d42f6cd7-2f10-42e1-9a0c-34e8754cd297
+transitionName          1                         RepeatCycleEvent
+transitionStartState    1                                    Start
+entityLifeCycleName     1              SubscriptionEntityLifeCycle
+periodicLifeCycleName   1                   SubscriptionResetCycle
+bundleName              1                              Bundle70424
+bundleActivationType    1                                   NORMAL
+accountId               1                             Account70424
+deviceName              1                             Device270424
+result                  1                                     Fail
+reason                  1                                        3
+timeStamp               1                      2018/10/09 11:48:39
+RecordTimestamp         1                      09/10/2018 06:18:39</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title16" id="concept_hzr_v2c_cmb"><h2 class="title topictitle2" id="ariaid-title16">Subscription is deleted</h2>
+<div class="topic concept nested2" aria-labelledby="ariaid-title17" id="concept_wzk_52c_cmb"><h3 class="title topictitle3" id="ariaid-title17">Example 1: Invoked by DeleteSubscriptionAction</h3>
+<div class="body conbody">
+                <pre class="pre codeblock"><code>------------------------------------- 
+CDR length:                       539 
+Release ID | Version ID:          7|2 
+Data record format | TS number:   1|7 
+Release identifier extension:       0 
+Name                   Tag                                   Data 
+RecordType             0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a 
+serviceProvider        1                                    MVNO1
+invokedBy              1                 DeleteSubscriptionAction
+triggeredEntityType    1                             Subscription
+triggeredEntityId      1     aad51792-3fa8-4b89-9e27-1b16f52a271e
+transitionName         1                       RemoveSubscription
+transitionStartState   1                                   Active
+entityLifeCycleName    1              test_subscription_Lifecycle
+subscriptionId         1     aad51792-3fa8-4b89-9e27-1b16f52a271e
+entityLifeCycleState   1                                  Removed 
+bundleName             1                            test_bundle_3
+bundleActivationType   1                                   NORMAL
+accountType            1                                 PRE_PAID
+timeZoneId             1                            Europe/London
+accountID              1                              44123456789
+accountELCState        1                                   Active
+accountPLCState        1                                    Start
+deviceId               1                              test_device
+accountType            1                                 PRE_PAID
+accountBalanceBefore   1                                      0.0
+accountBalanceAfter    1                                      0.0
+result                 1                                  Success 
+timeStamp              1                      22/12/2022 10:45:23 
+RecordTimestamp        1                      22/12/2022 10:45:23
+  RecordProperty       0                               bucketInfo
+  bucketName           1                              test_bucket
+  bucketUnitType       1                                    MByte
+  bucketKindOfUnit     1                                   VOLUME
+  bucketBalanceBefore  1                                104857600
+  bucketBalanceAfter   1                                104857600
+  carryOverBucket      1                                    false
+  RecordProperty       0                              counterInfo
+  counterName          1                             test_counter
+  counterKey           1     cfd68ee3-b9d9-4977-a6e8-1e5ea488a428
+  counterScope         1                                      ALL
+  counterType          1                                    USAGE
+  counterUnitType      1                                    MByte
+  counterKindOfUnit    1                                   VOLUME
+  counterValueBefore   1                                        0
+  counterValueAfter    1                                        0</code></pre>
+            </div>
+</div>
+<div class="topic concept nested2" aria-labelledby="ariaid-title18" id="concept_t23_r2c_cmb"><h3 class="title topictitle3" id="ariaid-title18">Example 2: Invoked by web service</h3>
+<div class="body conbody">
+                <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       1460
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                         Tag                                   Data
+RecordType                   0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider              1                                    MVNO1
+invokedBy                    1                              WebServices
+invokedMethod                1                      deletedSubscription
+entityLifeCycleName          1     SubscriptionEntityLifeCycleSPSA3-221
+periodicLifeCycleName        1          DefaultSubscriptionBillingCycle
+subscriptionId               1     1ef324ca-2593-401d-95b7-974129af487e
+bundleName                   1                           Bundle20300252
+bundleActivationType         1                                   NORMAL
+accountId                    1                           Account0300252
+deviceId                     1                            Device0300252
+accountType                  1                                 PRE_PAID
+accountBalanceBefore         1                                 86.40725
+accountBalanceAfter          1                                 86.40725
+result                       1                                  Success
+timeStamp                    1                      25/03/2022 15:05:16
+RecordTimestamp              1                      25/03/2022 09:35:16
+  RecordProperty             0                               bucketInfo
+  bucketName                 1                           Bucket10300252
+  bucketUnitType             1                                     Byte
+  bucketKindOfUnit           1                                   VOLUME
+  bucketBalanceBefore        1                                       70
+  bucketBalanceAfter         1                                       70
+  carryOverBucket            1                                    false
+  RecordProperty             0                               bucketInfo
+  bucketName                 1                           Bucket10300252
+  bucketUnitType             1                                     Byte
+  bucketKindOfUnit           1                                   VOLUME
+  bucketBalanceBefore        1                                        0
+  bucketBalanceAfter         1                                        0
+  carryOverBucket            1                                     true
+  RecordProperty             0                              counterInfo
+  counterName                1                          Counter20300252
+  counterKey                 1     0029cebe-ef18-412d-9875-8d0585edfd53
+  counterType                1                                    USAGE
+  counterUnitType            1                                     Byte
+  counterKindOfUnit          1                                   VOLUME
+  counterValueBefore         1                                       30
+  counterValueAfter          1                                       30
+  counterPolicySignalState   1                                 RemoveIt
+  RecordProperty             0                              counterInfo
+  counterName                1                          Counter10300252
+  counterKey                 1     03d63396-8574-497c-8cee-ce01d3ac436d
+  counterType                1                                    USAGE
+  counterUnitType            1                                     Byte
+  counterKindOfUnit          1                                   VOLUME
+  counterValueBefore         1                                       30
+  counterValueAfter          1                                       30
+  counterPolicySignalState   1                                      LOW</code></pre>
+            </div>
+</div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title19" id="concept_a5v_p2c_cmb"><h2 class="title topictitle2" id="ariaid-title19">Lifecycle is deleted</h2>
+<div class="body conbody">
+            <pre class="pre codeblock"><code>-------------------------------------
+EDR length:                       282
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       4
+Name                   Tag                                   Data
+RecordType             0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider        1                                    MVNO1
+invokedBy              1                             DeleteEntity
+triggeredEntityType    1                             Subscription
+triggeredEntityId      1     a9845942-95ee-4f65-829f-e3dcfd171f8f
+transitionName         1                                   Delete
+transitionStartState   1                                  Removed
+timeStamp              1                      20/07/2018 08:16:41
+result                 1                                  Success
+RecordTimestamp        1                      20/07/2018 14:46:41</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title20" id="concept_vsk_42c_cmb"><h2 class="title topictitle2" id="ariaid-title20">Fee is charged</h2>
+<div class="body conbody">
+            <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       1256
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                      Tag                                                   Data
+RecordType                0                                         LIFECYCLE_RECORD
+invokedBy                 1                                          ChargeFeeAction
+triggeredEntityType       1                                             Subscription
+triggeredEntityId         1                     6c9431cb-021c-4722-9a70-a518f826d91a
+transitionName            1                                 SubscriptionRenewedEvent
+correlationId             1     X-CorrelationId:1f159eb5-6979-4e20-aeff-e658bc1d8c30
+transitionStartState      1                                                   Active
+entityLifeCycleName       1                             DefaultSubscriptionLifeCycle
+triggeredBy               1                                                    EVENT
+triggeredAtTime           1                                      30/11/2022 18:59:28
+periodicLifeCycleName     1                                              LC_CFA_3692
+accountType               1                                                 PRE_PAID
+timeZoneId                1                                            Asia/Calcutta
+accountID                 1                                              Account3705
+accountName               1                                              Account3705
+accountELCState           1                                                   Active
+accountPLCState           1                                                    Start
+entityLifeCycleState      1                                                   Active
+bundleName                1                                     Bundle_PLCwithCF3692
+bundleActivationType      1                                                   NORMAL
+deviceId                  1                                               Device3705
+deviceName                1                                               Device3705
+fee                       1                                                     5.00
+result                    1                                                  Success
+timeStamp                 1                                      30/11/2022 18:59:28
+meHostName                1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                             
+nccVersion                1                                              SPS_23_0_R1
+recordId                  1      20221130132928_7ff8be0a-b8f9-42c4-8141-7201774b3004
+RecordTimestamp           1                                      30/11/2022 18:59:28
+  RecordProperty          0                                    additionalBalanceInfo
+  chargingServiceName     1                                                  SB13692
+  usageType               1                                        SECONDARY_BALANCE
+  usedAs                  1                                                      FEE
+    RecordProperty        0                                               bucketInfo
+    bucketName            1                                                CBkt13692
+    bucketInstanceId      1                     0e000c4a-9397-4aee-b341-f5d3ded40538
+    bucketBalanceBefore   1                                                       30
+    bucketBalanceAfter    1                                                       25</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title21" id="concept_xgy_l2c_cmb"><h2 class="title topictitle2" id="ariaid-title21">Fee could not be charged</h2>
+<div class="body conbody">
+            <p class="p">Fee could not be charged, charging failed due to insufficient funds.</p>
+
+            <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       625
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                    Tag                                   Data
+RecordType              0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                                    MVNO1
+invokedBy               1                          ChargeFeeAction
+triggeredEntityType     1                             Subscription
+triggeredEntityId       1     448b1a79-15b1-4666-8a4b-b4cbab6134ed
+transitionName          1                      CallActivationEvent
+transitionStartState    1                                PreActive
+entityLifeCycleName     1             DefaultSubscriptionLifeCycle
+periodicLifeCycleName   1                  BundleLC_Periodic_79568
+accountID               1                     PersonalAccount80699
+bundleName              1                     Personal_Bundle80699
+bundleActivationType    1                               ON_SESSION
+deviceId                1                            DeviceId80699
+fee                     1                                      9.9
+discountPercentage      1                                        1
+discountOnFee           1                                      0.1
+result                  1                                     Fail
+reason                  1                                        0
+timeStamp               1                      20/02/2022 02:52:58
+RecordTimestamp         1                      20/02/2022 09:22:58</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title22" id="concept_wnz_sdc_cmb"><h2 class="title topictitle2" id="ariaid-title22">Subscription is emptied</h2>
+<div class="body conbody">
+            <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       1376
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                    Tag                                   Data
+RecordType              0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                                    MVNO1
+invokedBy               1                  EmptySubscriptionAction
+triggeredEntityType     1                             Subscription
+triggeredEntityId       1     676d2531-c9e7-4376-b1e2-b4c895d148e0
+transitionName          1                       ExpireSubscription
+transitionStartState    1                                    Start
+entityLifeCycleName     1              SubscriptionEntityLifeCycle
+triggeredBy             1                                    EVENT
+periodicLifeCycleName   1          SubscriptionRenewLC_85038_1Days
+bundleName              1                             Bundle189980
+bundleActivationType    1                                   NORMAL
+accountID               1                             account89980
+deviceId                1                              device89980
+result                  1                                  Success
+timeStamp               1                      17/07/2022 15:01:44
+RecordTimestamp         1                      17/07/2022 09:31:44
+  RecordProperty        0                               bucketInfo
+  bucketName            1                             Bucket189980
+  bucketUnitType        1                                     Byte
+  bucketKindOfUnit      1                                   VOLUME
+  bucketBalanceBefore   1                                      500
+  bucketBalanceAfter    1                                        0
+  carryOverBucket       1                                    false
+  RecordProperty        0                               bucketInfo
+  bucketName            1                             Bucket289980
+  bucketUnitType        1                                     Byte
+  bucketKindOfUnit      1                                   VOLUME
+  bucketBalanceBefore   1                                      300
+  bucketBalanceAfter    1                                        0
+  carryOverBucket       1                                    false
+  RecordProperty        0                              counterInfo
+  counterName           1                            Counter189980
+  counterKey            1     e8b76789-aa9a-46a5-890d-304bef218927
+  counterType           1                                    USAGE
+  counterUnitType       1                                     Byte
+  counterKindOfUnit     1                                   VOLUME
+  counterValueBefore    1                                        0
+  counterValueAfter     1                                        0
+  RecordProperty        0                              counterInfo
+  counterName           1                            Counter289980
+  counterKey            1     94f1a46c-ada8-4a89-9024-63bdfd8a7df0
+  counterType           1                                    USAGE
+  counterUnitType       1                                     Byte
+  counterKindOfUnit     1                                   VOLUME
+  counterValueBefore    1                                        0
+  counterValueAfter     1                                        0</code></pre>
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The tags previousStepUpTime, currentStepUpTime, currentStep, previousStep appear
+                only for step bucket.</div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title23" id="concept_aq5_qcj_zpb"><h2 class="title topictitle2" id="ariaid-title23">Queued subscription is activated</h2>
+<div class="body conbody">
+            <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       869
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                     Tag                                   Data
+RecordType               0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider          1                                    MVNO1
+invokedBy                1                 ActivateQueuedSubsAction
+triggeredEntityType      1                                   Device
+triggeredEntityId        1                                       D1
+transitionName           1        AddSubscriptionActionSuccessEvent
+transitionStartState     1                                   Active
+entityLifeCycleName      1                          CustomDeviceLC3
+triggeredBy              1                                    EVENT
+triggeredAtTime          1                      12/02/2022 10:38:06
+timeStamp                1                      12/02/2022 10:38:17
+accountId                1                            Account118068
+deviceId                 1                             Device118068
+meHostName               1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                               
+nccVersion               1                              SPS_21_3_R1
+RecordTimestamp          1                      12/02/2022 10:38:17
+  RecordProperty         0             queuedSubscriptionActivation
+  subscriptionId         1     886409aa-ead9-4d8f-99f6-e6b7c43c8658
+  queueId                1                                       Q1
+  entityLifeCycleState   1                                 Inactive
+  bundleName             1                                  Bundle5
+  bundleActivationType   1                                   NORMAL
+  bundleVersion          1                                        0
+  RecordProperty         0             queuedSubscriptionActivation
+  subscriptionId         1     58083ab8-cb39-4787-8ac8-96fd8858dace
+  queueId                1                                       Q2
+  entityLifeCycleState   1                                 Inactive
+  bundleName             1                                  Bundle6
+  bundleActivationType   1                                   NORMAL
+  bundleVersion          1                                        0
+</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title24" id="concept_h2y_qdc_cmb"><h2 class="title topictitle2" id="ariaid-title24">Lifecycle billing cycle is calculated</h2>
+<div class="topic concept nested2" aria-labelledby="ariaid-title25" id="concept_lsw_4dc_cmb"><h3 class="title topictitle3" id="ariaid-title25">Example: When Account’s billing cycle is reset</h3>
+<div class="body conbody">
+                <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       562
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                     Tag                              Data
+RecordType               0                    LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider          1                               MVNO1
+invokedBy                1                   ResetPeriodAction
+triggeredEntityType      1                             Account
+triggeredEntityId        1                        Account40550
+transitionName           1                         RepeatCycle
+transitionStartState     1                               Start
+entityLifeCycleName      1             DefaultAccountLifeCycle
+triggeredBy              1                             ON_CALL
+triggeredAtTime          1                 27/08/2022 14:29:56
+periodicLifeCycleName    1     AccountRenewPeriodLC_40456_4hrs
+accountType              1                           POST_PAID
+timeZoneId               1                                 IST
+entityLifeCycleState     1                              Active
+billingCycleSource       1                             Account
+hourOfDay                1                                   0
+dayOfMonth               1                                   1
+dayOfWeek                1                              MONDAY
+startTime                1                 27/08/2022 18:00:00
+endTime                  1                 27/08/2022 22:00:00
+prevBillCycleStartTime   1                 27/08/2022 18:00:00
+prevBillCycleEndTime     1                 27/08/2022 22:00:00
+timeStamp                1                 27/08/2022 14:29:56
+RecordTimestamp          1                 27/08/2022 08:59:56</code></pre>
+            </div>
+</div>
+<div class="topic concept nested2" aria-labelledby="ariaid-title26" id="concept_mfv_jdc_cmb"><h3 class="title topictitle3" id="ariaid-title26">Example: When Subscription’s billing cycle is reset</h3>
+<div class="body conbody">
+                <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       658
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                    Tag                                Data
+RecordType              0                      LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                                 MVNO1
+invokedBy               1                     ResetPeriodAction
+triggeredEntityType     1                          Subscription
+triggeredEntityId       1  0f7940db-0552-4963-824b-39f0f136e5bd
+transitionName          1              SubscriptionRenewedEvent
+transitionStartState    1                                 Renew
+entityLifeCycleName     1            SubscriptionLifeCycle72269
+periodicLifeCycleName   1        SubscriptionYearLifeCycle72269
+bundleName              1                           Bundle72976
+bundleActivationType    1                                NORMAL
+deviceId                1                           Device72976
+accountId               1        Account72976||cc10000000598401
+billingCycleSource      1                                BUNDLE
+activationTime          1                   31/09/2022 12:00:00
+hourOfDay               1                                    11
+dayOfMonth              1                                    31
+dayOfWeek               1                                SUNDAY
+startTime               1                   31/10/2022 12:00:00
+endTime                 1                   31/10/2022 12:00:00
+timeStamp               1                   31/10/2022 12:00:00
+RecordTimestamp         1                   30/10/2022 18:30:00</code></pre>
+            </div>
+</div>
+<div class="topic concept nested2" aria-labelledby="ariaid-title27" id="concept_nz1_hdc_cmb"><h3 class="title topictitle3" id="ariaid-title27">Example: When Subscription’s billing cycle is reset (for ON_SESSION bundle with
+                no billing cycle)</h3>
+<div class="body conbody">
+                <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       613
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                    Tag                                   Data
+RecordType              0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                                    MVNO1
+invokedBy               1                        ResetPeriodAction
+triggeredEntityType     1                             Subscription
+triggeredEntityId       1     b8f25bab-7687-4ed4-a04e-6bcc0c1e3516
+transitionName          1              ChargeFeeActionSuccessEvent
+transitionStartState    1                                PreActive
+entityLifeCycleName     1             DefaultSubscriptionLifeCycle
+periodicLifeCycleName   1                  BundleLC_Periodic_79568
+bundleName              1                     Personal_Bundle80637
+bundleActivationType    1                               ON_SESSION
+deviceId                1                            DeviceId80637
+accountId               1                     PersonalAccount80637
+startTime               1                      21/02/2022 02:30:21
+endTime                 1                      22/02/2022 02:30:21
+timeStamp               1                      21/02/2022 02:30:21
+RecordTimestamp         1                      21/02/2022 09:00:21</code></pre>
+            </div>
+</div>
+<div class="topic concept nested2" aria-labelledby="ariaid-title28" id="concept_xqr_d1k_1qb"><h3 class="title topictitle3" id="ariaid-title28">Example: Cancel and reset period action</h3>
+<div class="body conbody">
+                <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       722
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                    Tag                           Data
+RecordType              0                 LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                            MVNO1
+invokedBy               1       CancelAndResetPeriodAction
+triggeredEntityType     1                          Account
+triggeredEntityId       1                  Account_0027869
+transitionName          1                     Re-calculate
+transitionStartState    1                            Start
+entityLifeCycleName     1          DefaultAccountLifeCycle
+triggeredBy             1                            EVENT
+triggeredAtTime         1              22/06/2022 10:17:34
+periodicLifeCycleName   1     AccountRenewPeriodLC_20Days1
+accountType             1                         PRE_PAID
+timeZoneId              1                              IST
+entityLifeCycleState    1                           Active
+billingCycleSource      1                          Account
+hourOfDay               1                                5
+dayOfMonth              1                               23
+dayOfWeek               1                          TUESDAY
+startTime               1              22/06/2022 10:17:34
+endTime                 1              12/07/2022 05:00:00
+timeStamp               1              22/06/2022 10:17:34
+meHostName              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                    
+nccVersion              1                      SPS_21_6_R1
+RecordTimestamp         1              22/06/2022 10:17:34</code></pre>
+            </div>
+</div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title29" id="concept_vgm_2dc_cmb"><h2 class="title topictitle2" id="ariaid-title29">Plan is changed</h2>
+<div class="body conbody">
+            <p class="p">When a plan is changed, the invoke method in the CDR is
+                    <var class="keyword varname">change_bundle</var>. Data for both the old bundle and new bundle
+                are also generated.</p>
+
+            <pre class="pre codeblock"><code>CDR length:                       2012
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                  Tag                                   Data
+RecordType            0                         LIFECYCLE_RECORD
+recordId              1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider       1                                    MVNO1
+invokedBy             1                  RenewSubscriptionAction
+invokedMethod         1                            change_bundle
+RecordProperty        1                                oldBundle
+subscriptionId        1     d5321d6d-b49d-4ee3-b671-b71136e7a76c
+bundleName              1                           Bundle173782
+bundleFee             1                                       10
+maxRenewals           1                                       10
+remainingRenewals     1                                       10
+RecordProperty        1                      chargingServiceInfo
+chargingService       1                                 CS173782
+RecordProperty        1                               bucketInfo
+bucketInstanceId      1     7f439f1a-c844-4270-83e1-cb0b2461cc69
+bucketId              1                             Bucket173782
+reUnitTypeId          1                                     Byte
+initialValue          1                                      100
+currentValue          1                                       90
+carryOver             1                                    false
+renewalPeriodMode     1                               ONE_PERIOD
+consumptionPriority   1                           REGULAR_BUCKET
+RecordProperty        1                               bucketInfo
+bucketInstanceId      1     6ddd5407-5b4b-4e15-af06-8f0630780138
+bucketId              1                             Bucket173782
+reUnitTypeId          1                                     Byte
+initialValue          1                                        0
+currentValue          1                                        0
+carryOver             1                                     true
+RecordProperty        1                              counterInfo
+counterName           1                            Counter173782
+counterKey            1     3b915b7c-15a1-45c6-96c8-4ee96de5fdea
+counterType           1                                    USAGE
+counterUnitType       1                                     Byte
+counterValue          1                                        0
+changeType            1                          NEXT_BILL_CYCLE
+carryOverIncluded     1                                     true
+RecordProperty        1                                newBundle
+subscriptionId        1     c2473347-0951-48c6-8630-7e06fc94b94a
+bundleName            1                             Bundle273782
+bundleFee             1                                       25
+maxRenewals           1                                       10
+remainingRenewals     1                                       10
+RecordProperty        1                      chargingServiceInfo
+chargingService       1                                 CS273782
+RecordProperty        1                               bucketInfo
+bucketInstanceId      1     53c665c6-f630-4fed-9fbf-ac46ceea5ed3
+bucketId              1                             Bucket273782
+reUnitTypeId          1                                     Byte
+initialValue          1                                      500
+currentValue          1                                      500
+carryOver             1                                    false
+renewalPeriodMode     1                               ONE_PERIOD
+consumptionPriority   1                           REGULAR_BUCKET
+RecordProperty        1                               bucketInfo
+bucketInstanceId      1     b1bb50fe-5182-45f0-929b-035987341d66
+bucketId              1                             Bucket273782
+reUnitTypeId          1                                     Byte
+initialValue          1                                       90
+currentValue          1                                       90
+carryOver             1                                     true
+RecordProperty        1                              counterInfo
+counterName           1                            Counter273782
+counterKey            1     5f7383af-31ca-428c-a1ea-94424a911ac5
+counterType           1                                    USAGE
+counterUnitType       1                                     Byte
+counterValue          1                                        0
+result                1                                  SUCCESS
+generationTimestamp   1                      04/12/2018 14:01:48
+RecordTimestamp       1                      04/12/2018 08:31:48</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title30" id="concept_zhq_cdc_cmb"><h2 class="title topictitle2" id="ariaid-title30">Account reset was successful</h2>
+<div class="body conbody">
+            <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       508
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                        Tag                      Data
+RecordType                  0            LIFECYCLE_RECORD
+recordId                    1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider             1                       MVNO1
+invokedBy                   1          ResetAccountAction
+triggeredEntityType         1                     Account
+triggeredEntityId           1        PersonalAccount76839
+transitionName              1     ResetAccountEventActive
+transitionStartState        1                      Active
+correlationId               1      X-CorrelationId:a401f0b1-e5d2-40fd-942d-d6e6bd4c600d      
+entityLifeCycleName         1     DefaultAccountLifeCycle
+periodicLifeCycleName       1     AccountPeriodicLC_76839
+accountType                 1                    PRE_PAID
+resetValue                  1                           0
+accountBalanceBeforeReset   1                        12.0
+accountBalanceAfterReset    1                           0
+result                      1                     Success
+timeStamp                   1         04/02/2022 12:26:51
+RecordTimestamp             1         04/02/2022 06:56:51</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title31" id="concept_olz_1dc_cmb"><h2 class="title topictitle2" id="ariaid-title31">Account reset failed</h2>
+<div class="body conbody">
+            <pre class="pre codeblock"><code>CDR length:                       537
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                        Tag                              Data
+RecordType                  0                    LIFECYCLE_RECORD
+recordId                    1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider             1                               MVNO1
+invokedBy                   1                  ResetAccountAction
+triggeredEntityType         1                             Account
+triggeredEntityId           1                PersonalAccount76839
+transitionName              1     ResetAccountEventActiveToBarred
+transitionStartState        1                              Active
+entityLifeCycleName         1             DefaultAccountLifeCycle
+triggeredBy             1                          AUDIT
+periodicLifeCycleName       1             AccountPeriodicLC_76839
+accountType                 1                            PRE_PAID
+resetValue                  1                              -192.8
+accountBalanceBeforeReset   1                               -92.8
+accountBalanceAfterReset    1                               -92.8
+result                      1                                Fail
+reason                      1                                  10
+timeStamp                   1                 04/02/2022 12:54:25
+RecordTimestamp             1                 04/02/2022 07:24:25</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title32" id="concept_kzv_wcc_cmb"><h2 class="title topictitle2" id="ariaid-title32">Subscription is renewed (for post-paid)</h2>
+<div class="body conbody">
+            <pre class="pre codeblock"><code>CDR length: 869
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                             Tag             Data
+RecordType                       0              LIFECYCLE_RECORD
+recordId                         1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider                  1                         MVNO1
+invokedBy                        1       RenewSubscriptionAction
+triggeredEntityType              1                       Account
+triggeredEntityId                1         PersonalAccount768612
+transitionName                   1        RenewSubscriptionEvent
+transitionStartState             1                        Active
+entityLifeCycleName              1       DefaultAccountLifeCycle
+periodicLifeCycleName            1       AccountPeriodicLC_76839
+accountType                      1                     POST_PAID
+result                           1                       Success
+timeStamp                        1            04/02/2022 01:16:21
+RecordTimestamp                  1            04/02/2022 07:46:21
+  RecordProperty                 0  subscriptionsRenewedByAccountRenewal
+  subscriptionId                 1  dec38c2d-b0c1-4ed2-9a58-7d5e1d91bb51
+  entityLifeCycleName            1    DefaultSubscriptionLifeCycle
+  bundleName                     1           Personal_Bundle768612
+  bundleActivationType           1                          NORMAL
+  maxRenewals                    1                       Unlimited
+  remainingRenewals              1                       Unlimited
+  subscriptionRenewalMode        1                            NONE
+  fee                            1                               0
+  subscriptionRenewalFeeSource   1                      BUNDLE_FEE
+  subscriptionOnlyRenewalFee     1                               0
+  feePerDevice                   1                               0
+  deviceId                       1                  DeviceId768612
+  result                         1                         Success</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title33" id="concept_els_33c_cmb"><h2 class="title topictitle2" id="ariaid-title33">Expired entity is deleted</h2>
+<div class="topic concept nested2" aria-labelledby="ariaid-title34" id="concept_uhk_m3c_cmb"><h3 class="title topictitle3" id="ariaid-title34">Entity deleted by Account</h3>
+<div class="body conbody">
+                <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       1326
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                    Tag                                   Data
+RecordType              0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                                    MVNO1
+invokedBy               1                DeleteExpiredEntityAction
+triggeredEntityType     1                                  Account
+triggeredEntityId       1                            Account218128
+transitionName          1                            DeleteExpired
+transitionStartState    1                                    Start
+entityLifeCycleName     1                  DefaultAccountLifeCycle
+triggeredBy             1                                    EVENT
+periodicLifeCycleName   1        AccountPeriodLifeCycle_SPSA18-6_2
+accountType             1                                 PRE_PAID
+result                  1                                  Success
+timeStamp               1                      16/06/2022 17:55:14
+RecordTimestamp         1                      16/06/2022 12:25:14
+  RecordProperty        0                   EntityDeletedByAccount
+  entityType            1                         DiscountInstance
+  entityId              1     da217fb0-ca7e-48da-b57d-2db4874679bf
+  interval              1                                        0
+  discountDefName       1                           Discount118128
+  deviceId              1                             Device318128
+  bundleName            1                             Bundle118128
+  startDateTime         1                      16/06/2022 16:23:23
+  endDateTime           1                      16/06/2022 17:44:23
+  RecordProperty        0                   EntityDeletedByAccount
+  entityType            1                         DiscountInstance
+  entityId              1     64f8354e-dc33-4238-a4bf-19d85517d094
+  interval              1                                        0
+  discountDefName       1                           Discount118128
+  deviceId              1                             Device318128
+  bundleName            1                             Bundle118128
+  startDateTime         1                      16/06/2022 16:23:23
+  endDateTime           1                      16/06/2022 17:44:23
+  RecordProperty        0                   EntityDeletedByAccount
+  entityType            1                         DiscountInstance
+  entityId              1     841555cc-81cf-4204-a35b-d38c3d97bba9
+  interval              1                                        0
+  discountDefName       1                           Discount218128
+  deviceId              1                             Device318128
+  bundleName            1                             Bundle218128
+  startDateTime         1                      16/06/2022 16:23:23
+  endDateTime           1                      16/06/2022 17:44:23</code></pre>
+            </div>
+</div>
+<div class="topic concept nested2" aria-labelledby="ariaid-title35" id="concept_pt3_q3c_cmb"><h3 class="title topictitle3" id="ariaid-title35">Entity deleted by Device</h3>
+<div class="body conbody">
+                <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       1070
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                   Tag                                   Data
+RecordType             0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider        1                                    MVNO1
+invokedBy              1                DeleteExpiredEntityAction
+triggeredEntityType    1                                   Device
+triggeredEntityId      1                             Device118128
+transitionName         1                            DeleteExpired
+transitionStartState   1                                   Active
+entityLifeCycleName    1                 DeviceLifeCycle_SPSA18-6
+triggeredBy            1                                    EVENT
+result                 1                                  Success
+timeStamp              1                      16/06/2022 17:47:51
+RecordTimestamp        1                      16/06/2022 12:17:51
+  RecordProperty       0                    EntityDeletedByDevice
+  entityType           1                         DiscountInstance
+  entityId             1     d4c16ec1-5453-4da7-bd68-75a960254da7
+  interval             1                                        0
+  discountDefName      1                           Discount118128
+  startDateTime        1                      16/06/2022 16:23:13
+  endDateTime          1                      16/06/2022 17:44:13
+  RecordProperty       0                    EntityDeletedByDevice
+  entityType           1                         DiscountInstance
+  entityId             1     0a912abb-4646-48b2-9f89-285e27d71f4b
+  interval             1                                        0
+  discountDefName      1                           Discount118128
+  startDateTime        1                      16/06/2022 16:23:13
+  endDateTime          1                      16/06/2022 17:44:13
+  RecordProperty       0                    EntityDeletedByDevice
+  entityType           1                         DiscountInstance
+  entityId             1     c37c272d-ff79-46af-8c35-5b0ac11c2588
+  interval             1                                        0
+  discountDefName      1                           Discount218128
+  startDateTime        1                      16/06/2022 16:23:13
+  endDateTime          1                      16/06/2022 17:44:13
+</code></pre>
+            </div>
+</div>
+<div class="topic concept nested2" aria-labelledby="ariaid-title36" id="concept_ohm_t3c_cmb"><h3 class="title topictitle3" id="ariaid-title36">Entity deleted by Group</h3>
+<div class="body conbody">
+                <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       1063
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                   Tag                                   Data
+RecordType             0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider        1                                    MVNO1
+invokedBy              1                DeleteExpiredEntityAction
+triggeredEntityType    1                                    Group
+triggeredEntityId      1                               Group18128
+transitionName         1                            DeleteExpired
+transitionStartState   1                                   Active
+entityLifeCycleName    1                  GroupLifeCycle_SPSA18-6
+triggeredBy            1                                    EVENT
+result                 1                                  Success
+timeStamp              1                      16/06/2022 17:47:53
+RecordTimestamp        1                      16/06/2022 12:17:53
+  RecordProperty       0                     EntityDeletedByGroup
+  entityType           1                         DiscountInstance
+  entityId             1     2ca5dd1b-558c-4beb-94a0-f1b417a5c890
+  interval             1                                        0
+  discountDefName      1                           Discount118128
+  startDateTime        1                      16/06/2022 16:23:38
+  endDateTime          1                      16/06/2022 17:44:38
+  RecordProperty       0                     EntityDeletedByGroup
+  entityType           1                         DiscountInstance
+  entityId             1     e419bdd0-268c-4922-b71b-527bf29c7f54
+  interval             1                                        0
+  discountDefName      1                           Discount118128
+  startDateTime        1                      16/06/2022 16:23:38
+  endDateTime          1                      16/06/2022 17:44:38
+  RecordProperty       0                     EntityDeletedByGroup
+  entityType           1                         DiscountInstance
+  entityId             1     3dabf9d2-a03c-453e-a0e1-74311419f18b
+  interval             1                                        0
+  discountDefName      1                           Discount218128
+  startDateTime        1                      16/06/2022 16:23:38
+  endDateTime          1                      16/06/2022 17:44:38
+</code></pre>
+            </div>
+</div>
+<div class="topic concept nested2" aria-labelledby="ariaid-title37" id="concept_jqp_w3c_cmb"><h3 class="title topictitle3" id="ariaid-title37">Entity deleted by Subscription</h3>
+<div class="body conbody">
+                <pre class="pre codeblock"><code>
+--------------------------------------
+CDR length:                       1222
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                    Tag                                   Data
+RecordType              0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider        1                                    MVNO1
+invokedBy               1                DeleteExpiredEntityAction
+triggeredEntityType     1                             Subscription
+triggeredEntityId       1     9946559d-1ca2-4721-9f0f-4303daca8030
+transitionName          1                          StartCycleEvent
+transitionStartState    1                                    start
+entityLifeCycleName     1             DefaultSubscriptionLifeCycle
+triggeredBy             1                                    EVENT
+triggeredAtTime         1                      26/07/2022 17:26:28
+periodicLifeCycleName   1                                       LC
+entityLifeCycleState    1                                   Active
+bundleName              1                                       b1
+deviceId                1                                       D1
+result                  1                                  Success
+timeStamp               1                      26/07/2022 17:26:28
+RecordTimestamp         1                      26/07/2022 11:56:28
+  RecordProperty        0              entityDeletedBySubscription
+  entityType            1                         discountInstance
+  entityId              1     691a0fcb-ddac-49b9-a416-22cc922c1417
+  interval              1                                        0
+  discountDefName       1                                       D1
+  startDateTime         1                      26/07/2022 17:11:16
+  endDateTime           1                      26/07/2022 17:13:00
+  RecordProperty        0              entityDeletedBySubscription
+  entityType            1                         discountInstance
+  entityId              1     35943b25-2058-43d3-904f-833c4e42d5f8
+  interval              1                                        0
+  discountDefName       1                                       D1
+  startDateTime         1                      26/07/2022 17:11:16
+  endDateTime           1                      26/07/2022 17:25:00
+  RecordProperty        0              entityDeletedBySubscription
+  entityType            1                         discountInstance
+  entityId              1     b3757c17-757e-49bf-ba26-383bf087192e
+  interval              1                                        0
+  discountDefName       1                                       D1
+  startDateTime         1                      26/07/2022 17:11:16
+  endDateTime           1                      26/07/2022 17:25:00</code></pre>
+            </div>
+</div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title38" id="concept_amt_rdf_1qb"><h2 class="title topictitle2" id="ariaid-title38">Account is frozen</h2>
+<div class="body conbody">
+            <div class="section" id="concept_amt_rdf_1qb__section_lfc_n2f_1qb"><h3 class="title sectiontitle">ELC</h3>
+                
+                <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       629
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                    Tag                            Data
+RecordType              0                  LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                             MVNO1
+invokedBy               1               FreezeAccountAction
+triggeredEntityType     1                           Account
+triggeredEntityId       1             ACCOUNT1_SPSA6-932-02
+transitionName          1           SubscriptionFrozenEvent
+transitionStartState    1                            Active
+entityLifeCycleName     1     Account_ELC_with_FreezeAction
+triggeredBy             1                             EVENT
+triggeredAtTime         1               21/06/2022 13:41:46
+periodicLifeCycleName   1        DefaultAccountBillingCycle
+accountID               1             ACCOUNT1_SPSA6-932-02
+accountType             1                          PRE_PAID
+accountBalanceBefore    1                             200.0
+accountBalanceAfter     1                             200.0
+timeStamp               1               21/06/2022 13:41:46
+meHostName              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                      
+nccVersion              1                       SPS_21_6_R1
+RecordTimestamp         1               21/06/2022 13:41:46
+</code></pre>
+            </div>
+
+            <div class="section" id="concept_amt_rdf_1qb__section_s5d_m2f_1qb"><h3 class="title sectiontitle">PLC</h3>
+                
+                <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       625
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                    Tag                            Data
+RecordType              0                  LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                             MVNO1
+invokedBy               1               FreezeAccountAction
+triggeredEntityType     1                           Account
+triggeredEntityId       1             ACCOUNT1_SPSA6-932-03
+transitionName          1           SubscriptionFrozenEvent
+transitionStartState    1                             Start
+entityLifeCycleName     1           DefaultAccountLifeCycle
+triggeredBy             1                             EVENT
+triggeredAtTime         1               21/06/2022 13:41:50
+periodicLifeCycleName   1     Account_PLC_with_FreezeAction
+accountID               1             ACCOUNT1_SPSA6-932-03
+accountType             1                          PRE_PAID
+accountBalanceBefore    1                             200.0
+accountBalanceAfter     1                             200.0
+timeStamp               1               21/06/2022 13:41:50
+meHostName              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                      
+nccVersion              1                       SPS_21_6_R1
+RecordTimestamp         1               21/06/2022 13:41:50
+</code></pre>
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title39" id="concept_rn2_22f_1qb"><h2 class="title topictitle2" id="ariaid-title39">Device is frozen</h2>
+<div class="body conbody">
+            <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       479
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                   Tag                            Data
+RecordType             0                  LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider        1                             MVNO1
+invokedBy              1                FreezeDeviceAction
+triggeredEntityType    1                            Device
+triggeredEntityId      1              DEVICE1_SPSA6-932-01
+transitionName         1                 CustomDeviceEvent
+transitionStartState   1                            Active
+entityLifeCycleName    1     Device_ELC_with_FreezeActions
+triggeredBy            1                             EVENT
+triggeredAtTime        1               21/06/2022 13:41:10
+deviceId               1              DEVICE1_SPSA6-932-01
+timeStamp              1               21/06/2022 13:41:10
+meHostName             1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                      
+nccVersion             1                       SPS_21_6_R1
+RecordTimestamp        1               21/06/2022 13:41:10</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title40" id="concept_dmg_22f_1qb"><h2 class="title topictitle2" id="ariaid-title40">Subscription is frozen</h2>
+<div class="body conbody">
+            <div class="section" id="concept_dmg_22f_1qb__section_tq5_t2f_1qb"><h3 class="title sectiontitle">ELC</h3>
+                
+                <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       2500
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                    Tag                                   Data
+RecordType              0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                                    MVNO1
+invokedBy               1                 FreezeSubscriptionAction
+triggeredEntityType     1                             Subscription
+triggeredEntityId       1     e93e3878-eba0-43d7-9f29-de0b4f9167b8
+transitionName          1                        DeviceFrozenEvent
+transitionStartState    1                                   Active
+entityLifeCycleName     1       Subscription_ELC_with_FreezeAction
+triggeredBy             1                                    EVENT
+triggeredAtTime         1                      21/06/2022 13:41:55
+periodicLifeCycleName   1          DefaultSubscriptionBillingCycle
+bundleName              1              Bundle_with_ELCFreezeAction
+bundleActivationType    1                                   NORMAL
+accountID               1                    ACCOUNT1_SPSA6-932-04
+accountType             1                                 PRE_PAID
+accountBalanceBefore    1                                    200.0
+accountBalanceAfter     1                                    200.0
+deviceId                1                     DEVICE1_SPSA6-932-04
+timeStamp               1                      21/06/2022 13:41:55
+meHostName              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                             
+nccVersion              1                              SPS_21_6_R1
+RecordTimestamp         1                      21/06/2022 13:41:55
+  RecordProperty        0                              counterInfo
+  counterName           1                              CounterTime
+  counterKey            1     6e91f141-2a36-48de-90cd-2138233bf5af
+  counterType           1                                    USAGE
+  counterUnitType       1                                   Minute
+  counterKindOfUnit     1                                     TIME
+  alignGranularity      1                                     TRUE
+  counterValueBefore    1                                        0
+  counterValueAfter     1                                        0
+  RecordProperty        0                              counterInfo
+  counterName           1                             CounterMoney
+  counterKey            1     ea250955-3022-4f51-9ab3-4d9c0a62ba34
+  counterType           1                                     COST
+  counterUnitType       1                                     Euro
+  counterKindOfUnit     1                                    MONEY
+  alignGranularity      1                                     TRUE
+  counterValueBefore    1                                        0
+  counterValueAfter     1                                        0
+  RecordProperty        0                               bucketInfo
+  bucketName            1                               BucketUnit
+  bucketUnitType        1                                     Unit
+  bucketKindOfUnit      1                                     UNIT
+  bucketBalanceBefore   1                                      333
+  bucketBalanceAfter    1                                      333
+  carryOverBucket       1                                    false
+  RecordProperty        0                               bucketInfo
+  bucketName            1                              BucketMoney
+  bucketUnitType        1                                     Euro
+  bucketKindOfUnit      1                                    MONEY
+  bucketBalanceBefore   1                                    44400
+  bucketBalanceAfter    1                                    44400
+  carryOverBucket       1                                    false
+  RecordProperty        0                               bucketInfo
+  bucketName            1                             BucketVolume
+  bucketUnitType        1                                    MByte
+  bucketKindOfUnit      1                                   VOLUME
+  bucketBalanceBefore   1                                232783872
+  bucketBalanceAfter    1                                232783872
+  carryOverBucket       1                                    false
+  RecordProperty        0                               bucketInfo
+  bucketName            1                               BucketTime
+  bucketUnitType        1                                   Minute
+  bucketKindOfUnit      1                                     TIME
+  bucketBalanceBefore   1                                     6660
+  bucketBalanceAfter    1                                     6660
+  carryOverBucket       1                                    false
+  RecordProperty        0                              counterInfo
+  counterName           1                            CounterVolume
+  counterKey            1     627be4be-cf68-4124-bf82-d9b3bf8ee001
+  counterType           1                                    USAGE
+  counterUnitType       1                                    MByte
+  counterKindOfUnit     1                                   VOLUME
+  alignGranularity      1                                     TRUE
+  counterValueBefore    1                                        0
+  counterValueAfter     1                                        0
+  RecordProperty        0                              counterInfo
+  counterName           1                              CounterUnit
+  counterKey            1     67588921-6713-41a3-9625-4557c77718b1
+  counterType           1                                    USAGE
+  counterUnitType       1                                     Unit
+  counterKindOfUnit     1                                     UNIT
+  alignGranularity      1                                     TRUE
+  counterValueBefore    1                                        0
+  counterValueAfter     1                                        0</code></pre>
+            </div>
+
+            <div class="section" id="concept_dmg_22f_1qb__section_ltk_52f_1qb"><h3 class="title sectiontitle">PLC</h3>
+                
+                <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       2496
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                    Tag                                   Data
+RecordType              0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                                    MVNO1
+invokedBy               1                 FreezeSubscriptionAction
+triggeredEntityType     1                             Subscription
+triggeredEntityId       1     5373d6d7-9fe7-4f61-ac1c-f8173ccaf7c9
+transitionName          1                        DeviceFrozenEvent
+transitionStartState    1                                    Start
+entityLifeCycleName     1             DefaultSubscriptionLifeCycle
+triggeredBy             1                                    EVENT
+triggeredAtTime         1                      21/06/2022 13:42:01
+periodicLifeCycleName   1       Subscription_PLC_with_FreezeAction
+bundleName              1              Bundle_with_PLCFreezeAction
+bundleActivationType    1                                   NORMAL
+accountID               1                    ACCOUNT1_SPSA6-932-05
+accountType             1                                 PRE_PAID
+accountBalanceBefore    1                                    200.0
+accountBalanceAfter     1                                    200.0
+deviceId                1                     DEVICE1_SPSA6-932-05
+timeStamp               1                      21/06/2022 13:42:01
+meHostName              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                             
+nccVersion              1                              SPS_21_6_R1
+RecordTimestamp         1                      21/06/2022 13:42:01
+  RecordProperty        0                              counterInfo
+  counterName           1                            CounterVolume
+  counterKey            1     0319e5dd-aecb-4c52-9424-d3afab2dae8f
+  counterType           1                                    USAGE
+  counterUnitType       1                                    MByte
+  counterKindOfUnit     1                                   VOLUME
+  alignGranularity      1                                     TRUE
+  counterValueBefore    1                                        0
+  counterValueAfter     1                                        0
+  RecordProperty        0                               bucketInfo
+  bucketName            1                               BucketUnit
+  bucketUnitType        1                                     Unit
+  bucketKindOfUnit      1                                     UNIT
+  bucketBalanceBefore   1                                      333
+  bucketBalanceAfter    1                                      333
+  carryOverBucket       1                                    false
+  RecordProperty        0                               bucketInfo
+  bucketName            1                             BucketVolume
+  bucketUnitType        1                                    MByte
+  bucketKindOfUnit      1                                   VOLUME
+  bucketBalanceBefore   1                                232783872
+  bucketBalanceAfter    1                                232783872
+  carryOverBucket       1                                    false
+  RecordProperty        0                               bucketInfo
+  bucketName            1                              BucketMoney
+  bucketUnitType        1                                     Euro
+  bucketKindOfUnit      1                                    MONEY
+  bucketBalanceBefore   1                                    44400
+  bucketBalanceAfter    1                                    44400
+  carryOverBucket       1                                    false
+  RecordProperty        0                              counterInfo
+  counterName           1                              CounterTime
+  counterKey            1     ece2e9fe-840a-44a9-a5db-a161e77fcc50
+  counterType           1                                    USAGE
+  counterUnitType       1                                   Minute
+  counterKindOfUnit     1                                     TIME
+  alignGranularity      1                                     TRUE
+  counterValueBefore    1                                        0
+  counterValueAfter     1                                        0
+  RecordProperty        0                               bucketInfo
+  bucketName            1                               BucketTime
+  bucketUnitType        1                                   Minute
+  bucketKindOfUnit      1                                     TIME
+  bucketBalanceBefore   1                                     6660
+  bucketBalanceAfter    1                                     6660
+  carryOverBucket       1                                    false
+  RecordProperty        0                              counterInfo
+  counterName           1                              CounterUnit
+  counterKey            1     0e34894c-06ef-4aa6-8caf-47b139b2f9d8
+  counterType           1                                    USAGE
+  counterUnitType       1                                     Unit
+  counterKindOfUnit     1                                     UNIT
+  alignGranularity      1                                     TRUE
+  counterValueBefore    1                                        0
+  counterValueAfter     1                                        0
+  RecordProperty        0                              counterInfo
+  counterName           1                             CounterMoney
+  counterKey            1     c93d50b4-b90a-4b47-b2c9-565b6dd96c42
+  counterType           1                                     COST
+  counterUnitType       1                                     Euro
+  counterKindOfUnit     1                                    MONEY
+  alignGranularity      1                                     TRUE
+  counterValueBefore    1                                        0
+  counterValueAfter     1                                        0
+</code></pre>
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title41" id="concept_bnj_vff_1qb"><h2 class="title topictitle2" id="ariaid-title41">Freeze Subscriptions Action - ELC</h2>
+<div class="body conbody">
+            <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       486
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                   Tag                            Data
+RecordType             0                  LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider        1                             MVNO1
+invokedBy              1         FreezeSubscriptionsAction
+triggeredEntityType    1                            Device
+triggeredEntityId      1              DEVICE1_SPSA6-932-01
+transitionName         1                 CustomDeviceEvent
+transitionStartState   1                            Active
+entityLifeCycleName    1     Device_ELC_with_FreezeActions
+triggeredBy            1                             EVENT
+triggeredAtTime        1               21/06/2022 13:41:10
+deviceId               1              DEVICE1_SPSA6-932-01
+timeStamp              1               21/06/2022 13:41:10
+meHostName             1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                      
+nccVersion             1                       SPS_21_6_R1
+RecordTimestamp        1               21/06/2022 13:41:10</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title42" id="concept_rdh_22f_1qb"><h2 class="title topictitle2" id="ariaid-title42">Account is unfrozen</h2>
+<div class="body conbody">
+            <div class="section" id="concept_rdh_22f_1qb__section_g53_dgf_1qb"><h3 class="title sectiontitle">ELC</h3>
+                
+                <pre class="pre codeblock"><code>CDR length:                       592
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                    Tag                         Data
+RecordType              0               LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                          MVNO1
+invokedBy               1          UnfreezeAccountAction
+triggeredEntityType     1                        Account
+triggeredEntityId       1                 Account_064292
+transitionName          1      SubscriptionUnfrozenEvent
+transitionStartState    1                         Frozen
+entityLifeCycleName     1                      Account_E
+triggeredBy             1                          EVENT
+triggeredAtTime         1            21/06/2022 13:14:18
+periodicLifeCycleName   1     DefaultAccountBillingCycle
+accountID               1                 Account_064292
+accountType             1                       PRE_PAID
+accountBalanceBefore    1                            0.0
+accountBalanceAfter     1                            0.0
+timeStamp               1            21/06/2022 13:14:18
+meHostName              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                      
+nccVersion              1                    SPS_21_6_R1
+RecordTimestamp         1            21/06/2022 13:14:18
+</code></pre>
+            </div>
+
+            <div class="section" id="concept_rdh_22f_1qb__section_cys_dgf_1qb"><h3 class="title sectiontitle">PLC</h3>
+                
+                <pre class="pre codeblock"><code>CDR length:                       595
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                    Tag                        Data
+RecordType              0              LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                         MVNO1
+invokedBy               1         UnfreezeAccountAction
+triggeredEntityType     1                       Account
+triggeredEntityId       1              Account_06445095
+transitionName          1     SubscriptionUnfrozenEvent
+transitionStartState    1                        Frozen
+entityLifeCycleName     1       DefaultAccountLifeCycle
+triggeredBy             1                         EVENT
+triggeredAtTime         1           21/06/2022 13:24:39
+periodicLifeCycleName   1                   Accounttest
+accountID               1              Account_06445095
+accountType             1                      PRE_PAID
+accountBalanceBefore    1                           0.0
+accountBalanceAfter     1                           0.0
+timeStamp               1           21/06/2022 13:24:39
+meHostName              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                     
+nccVersion              1                   SPS_21_6_R1
+RecordTimestamp         1           21/06/2022 13:24:39
+</code></pre>
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title43" id="concept_prh_22f_1qb"><h2 class="title topictitle2" id="ariaid-title43">Device is unfrozen</h2>
+<div class="body conbody">
+            <pre class="pre codeblock"><code>CDR length:                       442
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                   Tag                   Data
+RecordType             0         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider        1                    MVNO1
+invokedBy              1     UnfreezeDeviceAction
+triggeredEntityType    1                   Device
+triggeredEntityId      1            Device_064292
+transitionName         1           UnfreezeDevice
+transitionStartState   1                   Frozen
+entityLifeCycleName    1               Devicetest
+triggeredBy            1                    EVENT
+triggeredAtTime        1      21/06/2022 13:14:18
+deviceId               1            Device_064292
+timeStamp              1      21/06/2022 13:14:18
+meHostName             1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                
+nccVersion             1              SPS_21_6_R1
+RecordTimestamp        1      21/06/2022 13:14:18
+</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title44" id="concept_tzg_jgf_1qb"><h2 class="title topictitle2" id="ariaid-title44">Subscription is unfrozen</h2>
+<div class="body conbody">
+            <div class="section" id="concept_tzg_jgf_1qb__section_kcq_ks3_swb"><h3 class="title sectiontitle">Modified Campaign dates are adapted via RescheduleCampaignDatesAction</h3>
+                
+                <div class="p">
+                    <pre class="pre codeblock" id="concept_tzg_jgf_1qb__codeblock_u4d_ms3_swb"><code>--------------------------------------
+CDR length:                       1116
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                    Tag                                                   Data
+RecordType              0                                         LIFECYCLE_RECORD
+invokedBy               1                            RescheduleCampaignDatesAction
+triggeredEntityType     1                                             Subscription
+triggeredEntityId       1                     7dabf928-e173-4d81-9928-9fb50021dd76
+transitionName          1                                             OnStartEvent
+correlationId           1     X-CorrelationId:b5cf91d2-4225-4eae-abd1-ab389223424d
+transitionStartState    1                                                PreActive
+triggeredBy             1                                                    AUDIT
+triggeredAtTime         1                                      05/03/2023 10:48:00
+entityLifeCycleName     1                             DefaultSubscriptionLifeCycle
+entityLifeCycleState    1                                                   Active
+campaignOldStartDate    1                                      05/03/2023 10:48:00
+campaignOldEndDate      1                                      30/03/2023 10:39:00
+campaignNewStartDate    1                                      05/03/2023 10:57:00
+campaignNewEndDate      1                                      30/03/2023 10:39:00
+transitionRescheduled   1                                                     true
+periodicLifeCycleName   1                     DefaultSubscriptionCampaignLifeCycle
+bundleName              1                                                  bundle2
+bundleActivationType    1                                                   NORMAL
+accountType             1                                                 PRE_PAID
+timeZoneId              1                                                      UTC
+accountID               1                                                 account1
+accountName             1                                                 account1
+deviceId                1                                                  device1
+deviceName              1                                                  device1
+result                  1                                                  Success
+recordId                1      20230305104800_21503c1f-92c7-46fc-bddb-dc866695026e
+timeStamp               1                                      05/03/2023 10:48:00
+meHostName              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                                    
+nccVersion              1                                              SPS_23_2_R1
+RecordTimestamp         1                                      05/03/2023 10:48:00
+</code></pre>
+                </div>
+
+            </div>
+
+            <div class="section" id="concept_tzg_jgf_1qb__section_b1w_mgf_1qb"><h3 class="title sectiontitle">ELC</h3>
+                
+                <pre class="pre codeblock"><code>CDR length:                       1254
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                    Tag                                   Data
+RecordType              0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                                    MVNO1
+invokedBy               1               UnfreezeSubscriptionAction
+triggeredEntityType     1                             Subscription
+triggeredEntityId       1     7ffc9629-7f59-4d3b-9c7f-ccd68838afcb
+transitionName          1                      DeviceUnfrozenEvent
+transitionStartState    1                                   Freeze
+entityLifeCycleName     1                              SubLCEntity
+triggeredBy             1                                    EVENT
+triggeredAtTime         1                      21/06/2022 13:14:18
+periodicLifeCycleName   1          DefaultSubscriptionBillingCycle
+bundleName              1                               Bundle_BC1
+bundleActivationType    1                                   NORMAL
+accountID               1                           Account_064292
+accountType             1                                 PRE_PAID
+accountBalanceBefore    1                                      0.0
+accountBalanceAfter     1                                      0.0
+deviceId                1                            Device_064292
+timeStamp               1                      21/06/2022 13:14:18
+meHostName              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                
+nccVersion              1                              SPS_21_6_R1
+RecordTimestamp         1                      21/06/2022 13:14:18
+  RecordProperty        0                               bucketInfo
+  bucketName            1                                 Bucket11
+  bucketUnitType        1                                   Second
+  bucketKindOfUnit      1                                     TIME
+  bucketPLCName         1                               Bucket_PLC
+  bucketPLCState        1                                   Active
+  bucketBalanceBefore   1                                      100
+  bucketBalanceAfter    1                                      100
+  carryOverBucket       1                                    false
+  RecordProperty        0                              counterInfo
+  counterName           1                                counter11
+  counterKey            1     cc242913-6353-43ac-9a5a-9ad7ab9a4324
+  counterType           1                                    USAGE
+  counterUnitType       1                                   Second
+  counterKindOfUnit     1                                     TIME
+  counterPLCName        1                              Counter_PLC
+  counterPLCState       1                                   Active
+  alignGranularity      1                                     TRUE
+  counterValueBefore    1                                        0
+  counterValueAfter     1                                        0
+</code></pre>
+            </div>
+
+            <div class="section" id="concept_tzg_jgf_1qb__section_etw_ngf_1qb"><h3 class="title sectiontitle">PLC</h3>
+                
+                <pre class="pre codeblock"><code>CDR length:                       1249
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                    Tag                                   Data
+RecordType              0                         LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider         1                                    MVNO1
+invokedBy               1               UnfreezeSubscriptionAction
+triggeredEntityType     1                             Subscription
+triggeredEntityId       1     58a441a6-cb8e-405a-b779-91f5c4a96890
+transitionName          1                      DeviceUnfrozenEvent
+transitionStartState    1                                   Frozen
+entityLifeCycleName     1             DefaultSubscriptionLifeCycle
+triggeredBy             1                                    EVENT
+triggeredAtTime         1                      21/06/2022 13:24:39
+periodicLifeCycleName   1                                    Sup_p
+bundleName              1                               Bundle_BC2
+bundleActivationType    1                                   NORMAL
+accountID               1                         Account_06445095
+accountType             1                                 PRE_PAID
+accountBalanceBefore    1                                      0.0
+accountBalanceAfter     1                                      0.0
+deviceId                1                          Device_06445095
+timeStamp               1                      21/06/2022 13:24:39
+meHostName              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                
+nccVersion              1                              SPS_21_6_R1
+RecordTimestamp         1                      21/06/2022 13:24:39
+  RecordProperty        0                              counterInfo
+  counterName           1                                counter11
+  counterKey            1     3e4b338d-fc4c-4b0d-9108-08b9ea2a3e2e
+  counterType           1                                    USAGE
+  counterUnitType       1                                   Second
+  counterKindOfUnit     1                                     TIME
+  counterPLCName        1                              Counter_PLC
+  counterPLCState       1                                   Active
+  alignGranularity      1                                     TRUE
+  counterValueBefore    1                                        0
+  counterValueAfter     1                                        0
+  RecordProperty        0                               bucketInfo
+  bucketName            1                                 Bucket11
+  bucketUnitType        1                                   Second
+  bucketKindOfUnit      1                                     TIME
+  bucketPLCName         1                               Bucket_PLC
+  bucketPLCState        1                                   Active
+  bucketBalanceBefore   1                                      100
+  bucketBalanceAfter    1                                      100
+  carryOverBucket       1                                    false</code></pre>
+            </div>
+
+        </div>
+<div class="topic concept nested2" aria-labelledby="ariaid-title45" id="concept_hjg_qkf_1qb"><h3 class="title topictitle3" id="ariaid-title45">Unfreeze subscriptions action - ELC</h3>
+<div class="body conbody">
+                <pre class="pre codeblock"><code>CDR length:                       449
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                   Tag                          Data
+RecordType             0                LIFECYCLE_RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+serviceProvider        1                           MVNO1
+invokedBy              1     UnfreezeSubscriptionsAction
+triggeredEntityType    1                          Device
+triggeredEntityId      1                   Device_064292
+transitionName         1                  UnfreezeDevice
+transitionStartState   1                          Frozen
+entityLifeCycleName    1                      Devicetest
+triggeredBy            1                           EVENT
+triggeredAtTime        1             21/06/2022 13:14:18
+deviceId               1                   Device_064292
+timeStamp              1             21/06/2022 13:14:18
+meHostName             1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                       
+nccVersion             1                     SPS_21_6_R1
+RecordTimestamp        1             21/06/2022 13:14:18</code></pre>
+            </div>
+</div>
+<div class="topic concept nested2" aria-labelledby="ariaid-title46" id="concept_omg_w2v_ysb"><h3 class="title topictitle3" id="ariaid-title46">AddEDR action</h3>
+<div class="body conbody">
+                <div class="note" id="concept_omg_w2v_ysb__note_wxv_tl4_zsb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> In the following sample, tags:
+                        <var class="keyword varname">Queue1D1</var> and <var class="keyword varname">Queue1D2</var> come from rules
+                    configuration, defined in <var class="keyword varname">AddEDRAction</var>.</div>
+
+                <pre class="pre codeblock" id="concept_omg_w2v_ysb__codeblock_ekg_chv_ysb"><code>CDR length:                       495
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                 Tag	                              Data
+RecordType            0	                    LIFECYCLE RECORD
+recordId               1 20220324110447_70df8c5d-16ce-4f71-a108-4f9980082b1a
+invokedBy             1	                        AddEDRAction
+triggeredEntityType   1	                        Subscription
+triggeredEntityId     1	51af4522-73b7-4ec9-bOdf-4Ø9521c3bd27
+transitionName        1	                         AddEDRevent
+transitionStartState  1	                            Inactive
+transitionEndState    1	                              Active
+entityLifeCycleName   1	         Subscription_ELC_AddEDR_658
+triggeredBy           1	                               EVENT
+result                1	                             Success
+Queue1D1              1	                                3896
+Queue1D2              1	                                3897
+timeStamp             1	                          09/03/2022
+meHostName            1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr	                               
+nccVersion            1	                         SPS_21_3_RI
+RecordTimestarp       1	                 09/03/2022 00:31:17</code></pre>
+            </div>
+</div>
+<div class="topic concept nested2" aria-labelledby="ariaid-title47" id="concept_nt5_5yg_ptb"><h3 class="title topictitle3" id="ariaid-title47">ResetLoanAction</h3>
+<div class="body conbody">
+                <pre class="pre codeblock" id="concept_nt5_5yg_ptb__codeblock_nqw_lxv_tvb"><code>SET (3 elem)
+  [0] (16 byte) LIFECYCLE_RECORD
+  [1] (15 elem)
+    SEQUENCE (2 elem)
+      [0] (9 byte) invokedBy
+      [1] (15 byte) ResetLoanAction
+    SEQUENCE (2 elem)
+      [0] (19 byte) triggeredEntityType
+      [1] (7 byte) Account
+    SEQUENCE (2 elem)
+      [0] (17 byte) triggeredEntityId
+      [1] (11 byte) Account3692
+    SEQUENCE (2 elem)
+      [0] (14 byte) transitionName
+      [1] (10 byte) ResetEvent
+    SEQUENCE (2 elem)
+      [0] (13 byte) correlationId
+      [1] (52 byte) X-CorrelationId:a401f0b1-e5d2-40fd-942d-d6e6bd4c600d
+    SEQUENCE (2 elem)
+      [0] (20 byte) transitionStartState
+      [1] (5 byte) Start
+    SEQUENCE (2 elem)
+      [0] (19 byte) entityLifeCycleName
+      [1] (23 byte) DefaultAccountLifeCycle
+    SEQUENCE (2 elem)
+      [0] (11 byte) triggeredBy
+      [1] (5 byte) EVENT
+    SEQUENCE (2 elem)
+      [0] (15 byte) triggeredAtTime
+      [1] (19 byte) 07/12/2022 22:23:37
+    SEQUENCE (2 elem)
+      [0] (21 byte) periodicLifeCycleName
+      [1] (30 byte) AccountPLCWithResetAction_3676
+    SEQUENCE (2 elem)
+      [0] (9 byte) timeStamp
+      [1] (19 byte) 07/12/2022 22:23:37
+    SEQUENCE (2 elem)
+      [0] (10 byte) meHostName
+      [1] (7 byte) naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr
+    SEQUENCE (2 elem)
+      [0] (10 byte) nccVersion
+      [1] (11 byte) SPS_23_0_R1
+    SEQUENCE (2 elem)
+      [0] (8 byte) recordId
+      [1] (51 byte) 20221207165337_442ceb9b-2bbf-4104-a497-374955631b25
+    SEQUENCE (2 elem)
+      [0] (15 byte) RecordTimestamp
+      [1] (19 byte) 07/12/2022 22:23:37
+  [2] (2 elem)
+    SEQUENCE (2 elem)
+      [0] (11 byte) accountInfo
+      [1] (11 elem)
+        SEQUENCE (2 elem)
+          [0] (9 byte) accountID
+          [1] (11 byte) Account3692
+        SEQUENCE (2 elem)
+          [0] (11 byte) accountType
+          [1] (8 byte) PRE_PAID
+        SEQUENCE (2 elem)
+          [0] (10 byte) timeZoneId
+          [1] (13 byte) Asia/Calcutta
+        SEQUENCE (2 elem)
+          [0] (18 byte) accountStateBefore
+          [1] (6 byte) Active
+        SEQUENCE (2 elem)
+          [0] (12 byte) accountState
+          [1] (6 byte) Active
+        SEQUENCE (2 elem)
+          [0] (16 byte) availableBalance
+          [1] (4 byte) 0.00
+        SEQUENCE (2 elem)
+          [0] (15 byte) loanStateBefore
+          [1] (6 byte) OPT_IN
+        SEQUENCE (2 elem)
+          [0] (14 byte) loanStateAfter
+          [1] (7 byte) INITIAL
+        SEQUENCE (2 elem)
+          [0] (28 byte) totalLoanRemainingDebtBefore
+          [1] (4 byte) 3.45
+        SEQUENCE (2 elem)
+          [0] (27 byte) totalLoanRemainingDebtAfter
+          [1] (4 byte) 0.00
+        SEQUENCE (2 elem)
+          [0] (11 byte) Eligibility
+          [1] (8 byte) Eligible
+    SEQUENCE (2 elem)
+      [0] (8 byte) loanInfo
+      [1] (5 elem)
+        SEQUENCE (2 elem)
+          [0] (6 byte) loanId
+          [1] (3 byte) IOU
+        SEQUENCE (2 elem)
+          [0] (16 byte) loanAmountBefore
+          [1] (4 byte) 3.00
+        SEQUENCE (2 elem)
+          [0] (15 byte) loanAmountAfter
+          [1] (4 byte) 0.00
+        SEQUENCE (2 elem)
+          [0] (10 byte) serviceFee
+          [1] (4 byte) 0.45
+        SEQUENCE (2 elem)
+          [0] (13 byte) remainingDebt
+          [1] (4 byte) 0.00</code></pre>
+            </div>
+</div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title48" id="concept_ibd_d3k_swb"><h2 class="title topictitle2" id="ariaid-title48">Normal bundle renewal via Account- PLC</h2>
+<div class="body conbody">
+            <pre class="pre codeblock" id="concept_ibd_d3k_swb__codeblock_rcb_23k_swb"><code>SET (3 elem)
+  [0] (16 byte) LIFECYCLE_RECORD
+  [1] (21 elem)
+    SEQUENCE (2 elem)
+      [0] (9 byte) invokedBy
+      [1] (23 byte) RenewSubscriptionAction
+    SEQUENCE (2 elem)
+      [0] (19 byte) triggeredEntityType
+      [1] (7 byte) Account
+    SEQUENCE (2 elem)
+      [0] (17 byte) triggeredEntityId
+      [1] (9 byte) Account34
+    SEQUENCE (2 elem)
+      [0] (14 byte) transitionName
+      [1] (16 byte) RepeatCycleEvent
+    SEQUENCE (2 elem)
+      [0] (13 byte) correlationId
+      [1] (52 byte) X-CorrelationId:fb76d484-570a-4591-8516-f2256c7c2f58
+    SEQUENCE (2 elem)
+      [0] (20 byte) transitionStartState
+      [1] (6 byte) Starts
+    SEQUENCE (2 elem)
+      [0] (19 byte) entityLifeCycleName
+      [1] (23 byte) DefaultAccountLifeCycle
+    SEQUENCE (2 elem)
+      [0] (11 byte) triggeredBy
+      [1] (5 byte) EVENT
+    SEQUENCE (2 elem)
+      [0] (15 byte) triggeredAtTime
+      [1] (19 byte) 08/02/2023 00:15:37
+    SEQUENCE (2 elem)
+      [0] (21 byte) periodicLifeCycleName
+      [1] (10 byte) Acc_PLC_34
+    SEQUENCE (2 elem)
+      [0] (11 byte) accountType
+      [1] (8 byte) PRE_PAID
+    SEQUENCE (2 elem)
+      [0] (10 byte) timeZoneId
+      [1] (12 byte) Asia/Kolkata
+    SEQUENCE (2 elem)
+      [0] (20 byte) entityLifeCycleState
+      [1] (6 byte) Active
+    SEQUENCE (2 elem)
+      [0] (25 byte) accountBalanceBeforeRenew
+      [1] (5 byte) 456.0
+    SEQUENCE (2 elem)
+      [0] (24 byte) accountBalanceAfterRenew
+      [1] (6 byte) 427.15
+    SEQUENCE (2 elem)
+      [0] (6 byte) result
+      [1] (7 byte) Success
+    SEQUENCE (2 elem)
+      [0] (9 byte) timeStamp
+      [1] (19 byte) 08/02/2023 00:15:37
+    SEQUENCE (2 elem)
+      [0] (10 byte) meHostName
+      [1] (10 byte) naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr
+    SEQUENCE (2 elem)
+      [0] (10 byte) nccVersion
+      [1] (11 byte) SPS_23_2_R1
+    SEQUENCE (2 elem)
+      [0] (8 byte) recordId
+      [1] (51 byte) 20230207184537_de011f58-a568-4b1c-9ea8-adfd05143d90
+    SEQUENCE (2 elem)
+      [0] (15 byte) RecordTimestamp
+      [1] (19 byte) 08/02/2023 00:15:37
+  [2] (4 elem)
+    SEQUENCE (3 elem)
+      [0] (21 byte) additionalBalanceInfo
+      [1] (3 elem)
+        SEQUENCE (2 elem)
+          [0] (19 byte) chargingServiceName
+          [1] (7 byte) SB13400
+        SEQUENCE (2 elem)
+          [0] (9 byte) usageType
+          [1] (17 byte) SECONDARY_BALANCE
+        SEQUENCE (2 elem)
+          [0] (6 byte) usedAs
+          [1] (3 byte) FEE
+      [2] (1 elem)
+        SEQUENCE (2 elem)
+          [0] (10 byte) bucketInfo
+          [1] (4 elem)
+            SEQUENCE (2 elem)
+              [0] (10 byte) bucketName
+              [1] (9 byte) CBkt13400
+            SEQUENCE (2 elem)
+              [0] (16 byte) bucketInstanceId
+              [1] (36 byte) 48cf3f2e-2ae2-4cb6-95b1-233e4d94828a
+            SEQUENCE (2 elem)
+              [0] (19 byte) bucketBalanceBefore
+              [1] (50 byte) 18.64999999999999857891452847979962825775146484375
+            SEQUENCE (2 elem)
+              [0] (18 byte) bucketBalanceAfter
+              [1] (1 byte) 0
+    SEQUENCE (3 elem)
+      [0] (21 byte) additionalBalanceInfo
+      [1] (3 elem)
+        SEQUENCE (2 elem)
+          [0] (19 byte) chargingServiceName
+          [1] (7 byte) SB13400
+        SEQUENCE (2 elem)
+          [0] (9 byte) usageType
+          [1] (17 byte) SECONDARY_BALANCE
+        SEQUENCE (2 elem)
+          [0] (6 byte) usedAs
+          [1] (3 byte) FEE
+      [2] (1 elem)
+        SEQUENCE (2 elem)
+          [0] (10 byte) bucketInfo
+          [1] (4 elem)
+            SEQUENCE (2 elem)
+              [0] (10 byte) bucketName
+              [1] (9 byte) CBkt13400
+            SEQUENCE (2 elem)
+              [0] (16 byte) bucketInstanceId
+              [1] (36 byte) 7e1e521b-3ab3-4226-91c6-aa4627b296eb
+            SEQUENCE (2 elem)
+              [0] (19 byte) bucketBalanceBefore
+              [1] (2 byte) 50
+            SEQUENCE (2 elem)
+              [0] (18 byte) bucketBalanceAfter
+              [1] (1 byte) 0
+    SEQUENCE (3 elem)
+      [0] (21 byte) additionalBalanceInfo
+      [1] (3 elem)
+        SEQUENCE (2 elem)
+          [0] (19 byte) chargingServiceName
+          [1] (7 byte) SB23400
+        SEQUENCE (2 elem)
+          [0] (9 byte) usageType
+          [1] (17 byte) SECONDARY_BALANCE
+        SEQUENCE (2 elem)
+          [0] (6 byte) usedAs
+          [1] (3 byte) FEE
+      [2] (1 elem)
+        SEQUENCE (2 elem)
+          [0] (10 byte) bucketInfo
+          [1] (4 elem)
+            SEQUENCE (2 elem)
+              [0] (10 byte) bucketName
+              [1] (9 byte) CBkt23400
+            SEQUENCE (2 elem)
+              [0] (16 byte) bucketInstanceId
+              [1] (36 byte) ab79cc60-bde5-4e2a-94c6-61199b237d12
+            SEQUENCE (2 elem)
+              [0] (19 byte) bucketBalanceBefore
+              [1] (1 byte) 7
+            SEQUENCE (2 elem)
+              [0] (18 byte) bucketBalanceAfter
+              [1] (1 byte) 0
+    SEQUENCE (3 elem)
+      [0] (36 byte) subscriptionsRenewedByAccountRenewal
+      [1] (19 elem)
+        SEQUENCE (2 elem)
+          [0] (14 byte) subscriptionId
+          [1] (36 byte) 842c7d75-6c5f-4305-aa1a-b86fa6765deb
+        SEQUENCE (2 elem)
+          [0] (19 byte) entityLifeCycleName
+          [1] (28 byte) DefaultSubscriptionLifeCycle
+        SEQUENCE (2 elem)
+          [0] (20 byte) entityLifeCycleState
+          [1] (6 byte) Active
+        SEQUENCE (2 elem)
+          [0] (22 byte) prevBillCycleStartTime
+          [1] (19 byte) 08/02/2023 00:09:53
+        SEQUENCE (2 elem)
+          [0] (20 byte) prevBillCycleEndTime
+          [1] (19 byte) 16/04/2023 00:00:00
+        SEQUENCE (2 elem)
+          [0] (10 byte) bundleName
+          [1] (16 byte) BundleMulti13400
+        SEQUENCE (2 elem)
+          [0] (20 byte) bundleActivationType
+          [1] (6 byte) NORMAL
+        SEQUENCE (2 elem)
+          [0] (11 byte) maxRenewals
+          [1] (2 byte) 10
+        SEQUENCE (2 elem)
+          [0] (17 byte) remainingRenewals
+          [1] (1 byte) 9
+        SEQUENCE (2 elem)
+          [0] (23 byte) subscriptionRenewalMode
+          [1] (4 byte) NONE
+        SEQUENCE (2 elem)
+          [0] (15 byte) renewalPriority
+          [1] (1 byte) 0
+        SEQUENCE (2 elem)
+          [0] (3 byte) fee
+          [1] (8 byte) 95.00000
+        SEQUENCE (2 elem)
+          [0] (28 byte) subscriptionRenewalFeeSource
+          [1] (11 byte) RENEWAL_FEE
+        SEQUENCE (2 elem)
+          [0] (26 byte) subscriptionOnlyRenewalFee
+          [1] (3 byte) 100
+        SEQUENCE (2 elem)
+          [0] (10 byte) taxationID
+          [1] (10 byte) taxId13400
+        SEQUENCE (2 elem)
+          [0] (14 byte) totalTaxAmount
+          [1] (8 byte) 9.500000
+        SEQUENCE (2 elem)
+          [0] (8 byte) deviceId
+          [1] (8 byte) Device34
+        SEQUENCE (2 elem)
+          [0] (10 byte) deviceName
+          [1] (8 byte) Device34
+        SEQUENCE (2 elem)
+          [0] (6 byte) result
+          [1] (7 byte) Success
+      [2] (4 elem)
+        SEQUENCE (2 elem)
+          [0] (10 byte) bucketInfo
+          [1] (7 elem)
+            SEQUENCE (2 elem)
+              [0] (10 byte) bucketName
+              [1] (18 byte) AllowanceMoney3400
+            SEQUENCE (2 elem)
+              [0] (14 byte) bucketUnitType
+              [1] (5 byte) Money
+            SEQUENCE (2 elem)
+              [0] (16 byte) bucketKindOfUnit
+              [1] (5 byte) MONEY
+            SEQUENCE (2 elem)
+              [0] (19 byte) bucketBalanceBefore
+              [1] (5 byte) 20.00
+            SEQUENCE (2 elem)
+              [0] (18 byte) bucketBalanceAfter
+              [1] (5 byte) 20.00
+            SEQUENCE (2 elem)
+              [0] (15 byte) carryOverBucket
+              [1] (5 byte) false
+            SEQUENCE (2 elem)
+              [0] (22 byte) secondaryCostCommitted
+              [1] (4 byte) 0.00
+        SEQUENCE (2 elem)
+          [0] (10 byte) bucketInfo
+          [1] (7 elem)
+            SEQUENCE (2 elem)
+              [0] (10 byte) bucketName
+              [1] (16 byte) AllowanceSMS3400
+            SEQUENCE (2 elem)
+              [0] (14 byte) bucketUnitType
+              [1] (4 byte) Unit
+            SEQUENCE (2 elem)
+              [0] (16 byte) bucketKindOfUnit
+              [1] (4 byte) UNIT
+            SEQUENCE (2 elem)
+              [0] (19 byte) bucketBalanceBefore
+              [1] (3 byte) 400
+            SEQUENCE (2 elem)
+              [0] (18 byte) bucketBalanceAfter
+              [1] (3 byte) 400
+            SEQUENCE (2 elem)
+              [0] (15 byte) carryOverBucket
+              [1] (5 byte) false
+            SEQUENCE (2 elem)
+              [0] (22 byte) secondaryCostCommitted
+              [1] (4 byte) 0.00
+        SEQUENCE (2 elem)
+          [0] (10 byte) bucketInfo
+          [1] (7 elem)
+            SEQUENCE (2 elem)
+              [0] (10 byte) bucketName
+              [1] (17 byte) AllowanceData3400
+            SEQUENCE (2 elem)
+              [0] (14 byte) bucketUnitType
+              [1] (4 byte) Byte
+            SEQUENCE (2 elem)
+              [0] (16 byte) bucketKindOfUnit
+              [1] (6 byte) VOLUME
+            SEQUENCE (2 elem)
+              [0] (19 byte) bucketBalanceBefore
+              [1] (3 byte) 200
+            SEQUENCE (2 elem)
+              [0] (18 byte) bucketBalanceAfter
+              [1] (3 byte) 200
+            SEQUENCE (2 elem)
+              [0] (15 byte) carryOverBucket
+              [1] (5 byte) false
+            SEQUENCE (2 elem)
+              [0] (22 byte) secondaryCostCommitted
+              [1] (4 byte) 0.00
+        SEQUENCE (2 elem)
+          [0] (12 byte) discountInfo
+          [1] (6 elem)
+            SEQUENCE (2 elem)
+              [0] (15 byte) discountDefName
+              [1] (12 byte) Discount1234
+            SEQUENCE (2 elem)
+              [0] (18 byte) discountInstanceId
+              [1] (36 byte) d75c9e1f-55a0-44fd-825c-1163d00353f5
+            SEQUENCE (2 elem)
+              [0] (16 byte) renewalFeeBefore
+              [1] (9 byte) 100.00000
+            SEQUENCE (2 elem)
+              [0] (15 byte) renewalFeeAfter
+              [1] (8 byte) 95.00000
+            SEQUENCE (2 elem)
+              [0] (12 byte) discountType
+              [1] (8 byte) ABSOLUTE
+            SEQUENCE (2 elem)
+              [0] (13 byte) discountValue
+              [1] (1 byte) 5</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title49" id="concept_gnm_q3k_swb"><h2 class="title topictitle2" id="ariaid-title49">Normal bundle renewal via Subscription PLC</h2>
+<div class="body conbody">
+            <pre class="pre codeblock" id="concept_gnm_q3k_swb__codeblock_eqm_r3k_swb"><code>SET (3 elem)
+  [0] (16 byte) LIFECYCLE_RECORD
+  [1] (42 elem)
+    SEQUENCE (2 elem)
+      [0] (9 byte) invokedBy
+      [1] (23 byte) RenewSubscriptionAction
+    SEQUENCE (2 elem)
+      [0] (19 byte) triggeredEntityType
+      [1] (12 byte) Subscription
+    SEQUENCE (2 elem)
+      [0] (17 byte) triggeredEntityId
+      [1] (36 byte) 63fea819-68f6-4543-a809-37130ae9a48b
+    SEQUENCE (2 elem)
+      [0] (14 byte) transitionName
+      [1] (11 byte) RepeatCycle
+    SEQUENCE (2 elem)
+      [0] (13 byte) correlationId
+      [1] (52 byte) X-CorrelationId:beed435e-a39b-4345-b2b6-2ca52bc1f01c
+    SEQUENCE (2 elem)
+      [0] (20 byte) transitionStartState
+      [1] (5 byte) Start
+    SEQUENCE (2 elem)
+      [0] (19 byte) entityLifeCycleName
+      [1] (28 byte) DefaultSubscriptionLifeCycle
+    SEQUENCE (2 elem)
+      [0] (11 byte) triggeredBy
+      [1] (5 byte) EVENT
+    SEQUENCE (2 elem)
+      [0] (15 byte) triggeredAtTime
+      [1] (19 byte) 07/02/2023 23:04:17
+    SEQUENCE (2 elem)
+      [0] (21 byte) periodicLifeCycleName
+      [1] (15 byte) Bundle_PLC_3500
+    SEQUENCE (2 elem)
+      [0] (11 byte) accountType
+      [1] (8 byte) PRE_PAID
+    SEQUENCE (2 elem)
+      [0] (10 byte) timeZoneId
+      [1] (13 byte) Asia/Calcutta
+    SEQUENCE (2 elem)
+      [0] (9 byte) accountID
+      [1] (9 byte) Account35
+    SEQUENCE (2 elem)
+      [0] (11 byte) accountName
+      [1] (9 byte) Account35
+    SEQUENCE (2 elem)
+      [0] (15 byte) accountELCState
+      [1] (6 byte) Active
+    SEQUENCE (2 elem)
+      [0] (15 byte) accountPLCState
+      [1] (5 byte) Start
+    SEQUENCE (2 elem)
+      [0] (22 byte) prevBillCycleStartTime
+      [1] (19 byte) 07/02/2023 22:59:20
+    SEQUENCE (2 elem)
+      [0] (20 byte) prevBillCycleEndTime
+      [1] (19 byte) 10/02/2023 00:00:00
+    SEQUENCE (2 elem)
+      [0] (20 byte) entityLifeCycleState
+      [1] (6 byte) Active
+    SEQUENCE (2 elem)
+      [0] (20 byte) periodLifeCycleState
+      [1] (5 byte) Renew
+    SEQUENCE (2 elem)
+      [0] (14 byte) subscriptionId
+      [1] (36 byte) 63fea819-68f6-4543-a809-37130ae9a48b
+    SEQUENCE (2 elem)
+      [0] (10 byte) bundleName
+      [1] (16 byte) BundleMulti13500
+    SEQUENCE (2 elem)
+      [0] (20 byte) bundleActivationType
+      [1] (6 byte) NORMAL
+    SEQUENCE (2 elem)
+      [0] (25 byte) accountBalanceBeforeRenew
+      [1] (5 byte) 456.0
+    SEQUENCE (2 elem)
+      [0] (24 byte) accountBalanceAfterRenew
+      [1] (6 byte) 427.15
+    SEQUENCE (2 elem)
+      [0] (11 byte) maxRenewals
+      [1] (2 byte) 10
+    SEQUENCE (2 elem)
+      [0] (17 byte) remainingRenewals
+      [1] (1 byte) 9
+    SEQUENCE (2 elem)
+      [0] (23 byte) subscriptionRenewalMode
+      [1] (3 byte) ALL
+    SEQUENCE (2 elem)
+      [0] (15 byte) renewalPriority
+      [1] (1 byte) 0
+    SEQUENCE (2 elem)
+      [0] (3 byte) fee
+      [1] (9 byte) 104.50000
+    SEQUENCE (2 elem)
+      [0] (28 byte) subscriptionRenewalFeeSource
+      [1] (11 byte) RENEWAL_FEE
+    SEQUENCE (2 elem)
+      [0] (26 byte) subscriptionOnlyRenewalFee
+      [1] (3 byte) 100
+    SEQUENCE (2 elem)
+      [0] (10 byte) taxationID
+      [1] (10 byte) taxId13500
+    SEQUENCE (2 elem)
+      [0] (14 byte) totalTaxAmount
+      [1] (8 byte) 9.500000
+    SEQUENCE (2 elem)
+      [0] (8 byte) deviceId
+      [1] (8 byte) Device35
+    SEQUENCE (2 elem)
+      [0] (10 byte) deviceName
+      [1] (8 byte) Device35
+    SEQUENCE (2 elem)
+      [0] (6 byte) result
+      [1] (7 byte) Success
+    SEQUENCE (2 elem)
+      [0] (9 byte) timeStamp
+      [1] (19 byte) 07/02/2023 23:04:17
+    SEQUENCE (2 elem)
+      [0] (10 byte) meHostName
+      [1] (10 byte) naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr
+    SEQUENCE (2 elem)
+      [0] (10 byte) nccVersion
+      [1] (11 byte) SPS_23_2_R1
+    SEQUENCE (2 elem)
+      [0] (8 byte) recordId
+      [1] (51 byte) 20230207173417_8e722a3d-4d51-4719-b981-eb9c6ef90795
+    SEQUENCE (2 elem)
+      [0] (15 byte) RecordTimestamp
+      [1] (19 byte) 07/02/2023 23:04:17
+  [2] (7 elem)
+    SEQUENCE (3 elem)
+      [0] (21 byte) additionalBalanceInfo
+      [1] (3 elem)
+        SEQUENCE (2 elem)
+          [0] (19 byte) chargingServiceName
+          [1] (7 byte) SB13500
+        SEQUENCE (2 elem)
+          [0] (9 byte) usageType
+          [1] (17 byte) SECONDARY_BALANCE
+        SEQUENCE (2 elem)
+          [0] (6 byte) usedAs
+          [1] (3 byte) FEE
+      [2] (1 elem)
+        SEQUENCE (2 elem)
+          [0] (10 byte) bucketInfo
+          [1] (4 elem)
+            SEQUENCE (2 elem)
+              [0] (10 byte) bucketName
+              [1] (9 byte) CBkt13500
+            SEQUENCE (2 elem)
+              [0] (16 byte) bucketInstanceId
+              [1] (36 byte) e29ae738-9e83-47dd-a235-77d0c690280b
+            SEQUENCE (2 elem)
+              [0] (19 byte) bucketBalanceBefore
+              [1] (50 byte) 18.64999999999999857891452847979962825775146484375
+            SEQUENCE (2 elem)
+              [0] (18 byte) bucketBalanceAfter
+              [1] (1 byte) 0
+    SEQUENCE (3 elem)
+      [0] (21 byte) additionalBalanceInfo
+      [1] (3 elem)
+        SEQUENCE (2 elem)
+          [0] (19 byte) chargingServiceName
+          [1] (7 byte) SB13500
+        SEQUENCE (2 elem)
+          [0] (9 byte) usageType
+          [1] (17 byte) SECONDARY_BALANCE
+        SEQUENCE (2 elem)
+          [0] (6 byte) usedAs
+          [1] (3 byte) FEE
+      [2] (1 elem)
+        SEQUENCE (2 elem)
+          [0] (10 byte) bucketInfo
+          [1] (4 elem)
+            SEQUENCE (2 elem)
+              [0] (10 byte) bucketName
+              [1] (9 byte) CBkt13500
+            SEQUENCE (2 elem)
+              [0] (16 byte) bucketInstanceId
+              [1] (36 byte) c242075f-c481-4778-968b-28fc401b01c6
+            SEQUENCE (2 elem)
+              [0] (19 byte) bucketBalanceBefore
+              [1] (2 byte) 50
+            SEQUENCE (2 elem)
+              [0] (18 byte) bucketBalanceAfter
+              [1] (1 byte) 0
+    SEQUENCE (3 elem)
+      [0] (21 byte) additionalBalanceInfo
+      [1] (3 elem)
+        SEQUENCE (2 elem)
+          [0] (19 byte) chargingServiceName
+          [1] (7 byte) SB23500
+        SEQUENCE (2 elem)
+          [0] (9 byte) usageType
+          [1] (17 byte) SECONDARY_BALANCE
+        SEQUENCE (2 elem)
+          [0] (6 byte) usedAs
+          [1] (3 byte) FEE
+      [2] (1 elem)
+        SEQUENCE (2 elem)
+          [0] (10 byte) bucketInfo
+          [1] (4 elem)
+            SEQUENCE (2 elem)
+              [0] (10 byte) bucketName
+              [1] (9 byte) CBkt23500
+            SEQUENCE (2 elem)
+              [0] (16 byte) bucketInstanceId
+              [1] (36 byte) 361a1b9c-9c90-4d6e-b13b-16c2deea34bc
+            SEQUENCE (2 elem)
+              [0] (19 byte) bucketBalanceBefore
+              [1] (1 byte) 7
+            SEQUENCE (2 elem)
+              [0] (18 byte) bucketBalanceAfter
+              [1] (1 byte) 0
+    SEQUENCE (2 elem)
+      [0] (10 byte) bucketInfo
+      [1] (7 elem)
+        SEQUENCE (2 elem)
+          [0] (10 byte) bucketName
+          [1] (18 byte) AllowanceMoney3500
+        SEQUENCE (2 elem)
+          [0] (14 byte) bucketUnitType
+          [1] (5 byte) Money
+        SEQUENCE (2 elem)
+          [0] (16 byte) bucketKindOfUnit
+          [1] (5 byte) MONEY
+        SEQUENCE (2 elem)
+          [0] (19 byte) bucketBalanceBefore
+          [1] (5 byte) 20.00
+        SEQUENCE (2 elem)
+          [0] (18 byte) bucketBalanceAfter
+          [1] (5 byte) 20.00
+        SEQUENCE (2 elem)
+          [0] (15 byte) carryOverBucket
+          [1] (5 byte) false
+        SEQUENCE (2 elem)
+          [0] (22 byte) secondaryCostCommitted
+          [1] (4 byte) 0.00
+    SEQUENCE (2 elem)
+      [0] (10 byte) bucketInfo
+      [1] (7 elem)
+        SEQUENCE (2 elem)
+          [0] (10 byte) bucketName
+          [1] (16 byte) AllowanceSMS3500
+        SEQUENCE (2 elem)
+          [0] (14 byte) bucketUnitType
+          [1] (4 byte) Unit
+        SEQUENCE (2 elem)
+          [0] (16 byte) bucketKindOfUnit
+          [1] (4 byte) UNIT
+        SEQUENCE (2 elem)
+          [0] (19 byte) bucketBalanceBefore
+          [1] (3 byte) 400
+        SEQUENCE (2 elem)
+          [0] (18 byte) bucketBalanceAfter
+          [1] (3 byte) 400
+        SEQUENCE (2 elem)
+          [0] (15 byte) carryOverBucket
+          [1] (5 byte) false
+        SEQUENCE (2 elem)
+          [0] (22 byte) secondaryCostCommitted
+          [1] (4 byte) 0.00
+    SEQUENCE (2 elem)
+      [0] (10 byte) bucketInfo
+      [1] (7 elem)
+        SEQUENCE (2 elem)
+          [0] (10 byte) bucketName
+          [1] (17 byte) AllowanceData3500
+        SEQUENCE (2 elem)
+          [0] (14 byte) bucketUnitType
+          [1] (4 byte) Byte
+        SEQUENCE (2 elem)
+          [0] (16 byte) bucketKindOfUnit
+          [1] (6 byte) VOLUME
+        SEQUENCE (2 elem)
+          [0] (19 byte) bucketBalanceBefore
+          [1] (3 byte) 200
+        SEQUENCE (2 elem)
+          [0] (18 byte) bucketBalanceAfter
+          [1] (3 byte) 200
+        SEQUENCE (2 elem)
+          [0] (15 byte) carryOverBucket
+          [1] (5 byte) false
+        SEQUENCE (2 elem)
+          [0] (22 byte) secondaryCostCommitted
+          [1] (4 byte) 0.00
+    SEQUENCE (2 elem)
+      [0] (12 byte) discountInfo
+      [1] (6 elem)
+        SEQUENCE (2 elem)
+          [0] (15 byte) discountDefName
+          [1] (11 byte) Discount135
+        SEQUENCE (2 elem)
+          [0] (18 byte) discountInstanceId
+          [1] (36 byte) 01d3fad4-85f3-4d71-b556-90efd4675743
+        SEQUENCE (2 elem)
+          [0] (16 byte) renewalFeeBefore
+          [1] (9 byte) 100.00000
+        SEQUENCE (2 elem)
+          [0] (15 byte) renewalFeeAfter
+          [1] (8 byte) 95.00000
+        SEQUENCE (2 elem)
+          [0] (12 byte) discountType
+          [1] (8 byte) ABSOLUTE
+        SEQUENCE (2 elem)
+          [0] (13 byte) discountValue
+          [1] (1 byte) 5</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title50" id="concept_bcc_whk_swb"><h2 class="title topictitle2" id="ariaid-title50">Renew Secondary Balance Subscription Action via Account PLC</h2>
+<div class="body conbody">
+            <pre class="pre codeblock" id="concept_bcc_whk_swb__codeblock_gsq_xhk_swb"><code>SET (3 elem)
+  [0] (16 byte) LIFECYCLE_RECORD
+  [1] (21 elem)
+    SEQUENCE (2 elem)
+      [0] (9 byte) invokedBy
+      [1] (39 byte) RenewSecondaryBalanceSubscriptionAction
+    SEQUENCE (2 elem)
+      [0] (19 byte) triggeredEntityType
+      [1] (7 byte) Account
+    SEQUENCE (2 elem)
+      [0] (17 byte) triggeredEntityId
+      [1] (9 byte) Account32
+    SEQUENCE (2 elem)
+      [0] (14 byte) transitionName
+      [1] (16 byte) RepeatCycleEvent
+    SEQUENCE (2 elem)
+      [0] (13 byte) correlationId
+      [1] (52 byte) X-CorrelationId:ed9d7276-9a94-45f4-9b27-58d6f3b6c36e
+    SEQUENCE (2 elem)
+      [0] (20 byte) transitionStartState
+      [1] (6 byte) Starts
+    SEQUENCE (2 elem)
+      [0] (19 byte) entityLifeCycleName
+      [1] (23 byte) DefaultAccountLifeCycle
+    SEQUENCE (2 elem)
+      [0] (11 byte) triggeredBy
+      [1] (5 byte) EVENT
+    SEQUENCE (2 elem)
+      [0] (15 byte) triggeredAtTime
+      [1] (19 byte) 08/02/2023 11:39:37
+    SEQUENCE (2 elem)
+      [0] (21 byte) periodicLifeCycleName
+      [1] (12 byte) Acc_PLC_copy
+    SEQUENCE (2 elem)
+      [0] (11 byte) accountType
+      [1] (8 byte) PRE_PAID
+    SEQUENCE (2 elem)
+      [0] (10 byte) timeZoneId
+      [1] (12 byte) Asia/Kolkata
+    SEQUENCE (2 elem)
+      [0] (20 byte) entityLifeCycleState
+      [1] (6 byte) Active
+    SEQUENCE (2 elem)
+      [0] (25 byte) accountBalanceBeforeRenew
+      [1] (5 byte) 456.0
+    SEQUENCE (2 elem)
+      [0] (24 byte) accountBalanceAfterRenew
+      [1] (5 byte) 366.9
+    SEQUENCE (2 elem)
+      [0] (6 byte) result
+      [1] (7 byte) Success
+    SEQUENCE (2 elem)
+      [0] (9 byte) timeStamp
+      [1] (19 byte) 08/02/2023 11:39:37
+    SEQUENCE (2 elem)
+      [0] (10 byte) meHostName
+      [1] (3 byte) naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr
+    SEQUENCE (2 elem)
+      [0] (10 byte) nccVersion
+      [1] (11 byte) SPS_23_2_R1
+    SEQUENCE (2 elem)
+      [0] (8 byte) recordId
+      [1] (51 byte) 20230208060937_ac6fd9c2-6e08-4e97-a2b8-db1af2ac82f9
+    SEQUENCE (2 elem)
+      [0] (15 byte) RecordTimestamp
+      [1] (19 byte) 08/02/2023 11:39:37
+  [2] (1 elem)
+    SEQUENCE (3 elem)
+      [0] (36 byte) subscriptionsRenewedByAccountRenewal
+      [1] (19 elem)
+        SEQUENCE (2 elem)
+          [0] (14 byte) subscriptionId
+          [1] (36 byte) a892b8b2-a9dc-4bd6-b6d9-036c7468bde5
+        SEQUENCE (2 elem)
+          [0] (19 byte) entityLifeCycleName
+          [1] (28 byte) DefaultSubscriptionLifeCycle
+        SEQUENCE (2 elem)
+          [0] (20 byte) entityLifeCycleState
+          [1] (6 byte) Active
+        SEQUENCE (2 elem)
+          [0] (22 byte) prevBillCycleStartTime
+          [1] (19 byte) 08/02/2023 11:30:58
+        SEQUENCE (2 elem)
+          [0] (20 byte) prevBillCycleEndTime
+          [1] (19 byte) 16/04/2023 00:00:00
+        SEQUENCE (2 elem)
+          [0] (10 byte) bundleName
+          [1] (13 byte) SBBundle13200
+        SEQUENCE (2 elem)
+          [0] (20 byte) bundleActivationType
+          [1] (6 byte) NORMAL
+        SEQUENCE (2 elem)
+          [0] (11 byte) maxRenewals
+          [1] (2 byte) 10
+        SEQUENCE (2 elem)
+          [0] (17 byte) remainingRenewals
+          [1] (1 byte) 9
+        SEQUENCE (2 elem)
+          [0] (23 byte) subscriptionRenewalMode
+          [1] (4 byte) NONE
+        SEQUENCE (2 elem)
+          [0] (15 byte) renewalPriority
+          [1] (1 byte) 0
+        SEQUENCE (2 elem)
+          [0] (3 byte) fee
+          [1] (8 byte) 81.00000
+        SEQUENCE (2 elem)
+          [0] (28 byte) subscriptionRenewalFeeSource
+          [1] (11 byte) RENEWAL_FEE
+        SEQUENCE (2 elem)
+          [0] (26 byte) subscriptionOnlyRenewalFee
+          [1] (2 byte) 90
+        SEQUENCE (2 elem)
+          [0] (10 byte) taxationID
+          [1] (10 byte) taxId13200
+        SEQUENCE (2 elem)
+          [0] (14 byte) totalTaxAmount
+          [1] (8 byte) 8.100000
+        SEQUENCE (2 elem)
+          [0] (8 byte) deviceId
+          [1] (8 byte) Device32
+        SEQUENCE (2 elem)
+          [0] (10 byte) deviceName
+          [1] (8 byte) Device32
+        SEQUENCE (2 elem)
+          [0] (6 byte) result
+          [1] (7 byte) Success
+      [2] (2 elem)
+        SEQUENCE (2 elem)
+          [0] (10 byte) bucketInfo
+          [1] (7 elem)
+            SEQUENCE (2 elem)
+              [0] (10 byte) bucketName
+              [1] (9 byte) CBkt13200
+            SEQUENCE (2 elem)
+              [0] (14 byte) bucketUnitType
+              [1] (5 byte) Money
+            SEQUENCE (2 elem)
+              [0] (16 byte) bucketKindOfUnit
+              [1] (5 byte) MONEY
+            SEQUENCE (2 elem)
+              [0] (19 byte) bucketBalanceBefore
+              [1] (5 byte) 18.65
+            SEQUENCE (2 elem)
+              [0] (18 byte) bucketBalanceAfter
+              [1] (5 byte) 50.00
+            SEQUENCE (2 elem)
+              [0] (15 byte) carryOverBucket
+              [1] (5 byte) false
+            SEQUENCE (2 elem)
+              [0] (22 byte) secondaryCostCommitted
+              [1] (4 byte) 0.00
+        SEQUENCE (2 elem)
+          [0] (12 byte) discountInfo
+          [1] (6 elem)
+            SEQUENCE (2 elem)
+              [0] (15 byte) discountDefName
+              [1] (12 byte) Discount3232
+            SEQUENCE (2 elem)
+              [0] (18 byte) discountInstanceId
+              [1] (36 byte) e743e688-f1d3-4759-aebd-3dc361d5ea37
+            SEQUENCE (2 elem)
+              [0] (16 byte) renewalFeeBefore
+              [1] (8 byte) 90.00000
+            SEQUENCE (2 elem)
+              [0] (15 byte) renewalFeeAfter
+              [1] (8 byte) 81.00000
+            SEQUENCE (2 elem)
+              [0] (12 byte) discountType
+              [1] (10 byte) PERCENTAGE
+            SEQUENCE (2 elem)
+              [0] (13 byte) discountValue
+              [1] (2 byte) 10</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title51" id="concept_a33_33k_swb"><h2 class="title topictitle2" id="ariaid-title51">Renew Secondary Balance Subscription Action via Subscription PLC</h2>
+<div class="body conbody">
+            <pre class="pre codeblock" id="concept_a33_33k_swb__codeblock_s5z_n3k_swb"><code>SET (3 elem)
+  [0] (16 byte) LIFECYCLE_RECORD
+  [1] (42 elem)
+    SEQUENCE (2 elem)
+      [0] (9 byte) invokedBy
+      [1] (39 byte) RenewSecondaryBalanceSubscriptionAction
+    SEQUENCE (2 elem)
+      [0] (19 byte) triggeredEntityType
+      [1] (12 byte) Subscription
+    SEQUENCE (2 elem)
+      [0] (17 byte) triggeredEntityId
+      [1] (36 byte) 37f2bbff-109f-4fe1-a431-7efde0de9c11
+    SEQUENCE (2 elem)
+      [0] (14 byte) transitionName
+      [1] (16 byte) RepeatCycleEvent
+    SEQUENCE (2 elem)
+      [0] (13 byte) correlationId
+      [1] (52 byte) X-CorrelationId:88c0df5c-b54c-4fdb-8717-2072294ad7f1
+    SEQUENCE (2 elem)
+      [0] (20 byte) transitionStartState
+      [1] (5 byte) Start
+    SEQUENCE (2 elem)
+      [0] (19 byte) entityLifeCycleName
+      [1] (28 byte) DefaultSubscriptionLifeCycle
+    SEQUENCE (2 elem)
+      [0] (11 byte) triggeredBy
+      [1] (5 byte) EVENT
+    SEQUENCE (2 elem)
+      [0] (15 byte) triggeredAtTime
+      [1] (19 byte) 08/02/2023 11:14:19
+    SEQUENCE (2 elem)
+      [0] (21 byte) periodicLifeCycleName
+      [1] (19 byte) SecBalRenewPLC_3300
+    SEQUENCE (2 elem)
+      [0] (11 byte) accountType
+      [1] (8 byte) PRE_PAID
+    SEQUENCE (2 elem)
+      [0] (10 byte) timeZoneId
+      [1] (12 byte) Asia/Kolkata
+    SEQUENCE (2 elem)
+      [0] (9 byte) accountID
+      [1] (9 byte) Account33
+    SEQUENCE (2 elem)
+      [0] (11 byte) accountName
+      [1] (9 byte) Account33
+    SEQUENCE (2 elem)
+      [0] (15 byte) accountELCState
+      [1] (6 byte) Active
+    SEQUENCE (2 elem)
+      [0] (15 byte) accountPLCState
+      [1] (5 byte) Start
+    SEQUENCE (2 elem)
+      [0] (22 byte) prevBillCycleStartTime
+      [1] (19 byte) 08/02/2023 11:08:36
+    SEQUENCE (2 elem)
+      [0] (20 byte) prevBillCycleEndTime
+      [1] (19 byte) 12/02/2023 00:00:00
+    SEQUENCE (2 elem)
+      [0] (20 byte) entityLifeCycleState
+      [1] (6 byte) Active
+    SEQUENCE (2 elem)
+      [0] (20 byte) periodLifeCycleState
+      [1] (5 byte) Renew
+    SEQUENCE (2 elem)
+      [0] (14 byte) subscriptionId
+      [1] (36 byte) 37f2bbff-109f-4fe1-a431-7efde0de9c11
+    SEQUENCE (2 elem)
+      [0] (10 byte) bundleName
+      [1] (13 byte) SBBundle13300
+    SEQUENCE (2 elem)
+      [0] (20 byte) bundleActivationType
+      [1] (6 byte) NORMAL
+    SEQUENCE (2 elem)
+      [0] (25 byte) accountBalanceBeforeRenew
+      [1] (5 byte) 456.0
+    SEQUENCE (2 elem)
+      [0] (24 byte) accountBalanceAfterRenew
+      [1] (5 byte) 366.9
+    SEQUENCE (2 elem)
+      [0] (11 byte) maxRenewals
+      [1] (2 byte) 10
+    SEQUENCE (2 elem)
+      [0] (17 byte) remainingRenewals
+      [1] (1 byte) 9
+    SEQUENCE (2 elem)
+      [0] (23 byte) subscriptionRenewalMode
+      [1] (3 byte) ALL
+    SEQUENCE (2 elem)
+      [0] (15 byte) renewalPriority
+      [1] (1 byte) 0
+    SEQUENCE (2 elem)
+      [0] (3 byte) fee
+      [1] (8 byte) 89.10000
+    SEQUENCE (2 elem)
+      [0] (28 byte) subscriptionRenewalFeeSource
+      [1] (11 byte) RENEWAL_FEE
+    SEQUENCE (2 elem)
+      [0] (26 byte) subscriptionOnlyRenewalFee
+      [1] (2 byte) 90
+    SEQUENCE (2 elem)
+      [0] (10 byte) taxationID
+      [1] (10 byte) taxId13300
+    SEQUENCE (2 elem)
+      [0] (14 byte) totalTaxAmount
+      [1] (8 byte) 8.100000
+    SEQUENCE (2 elem)
+      [0] (8 byte) deviceId
+      [1] (8 byte) Device33
+    SEQUENCE (2 elem)
+      [0] (10 byte) deviceName
+      [1] (8 byte) Device33
+    SEQUENCE (2 elem)
+      [0] (6 byte) result
+      [1] (7 byte) Success
+    SEQUENCE (2 elem)
+      [0] (9 byte) timeStamp
+      [1] (19 byte) 08/02/2023 11:14:19
+    SEQUENCE (2 elem)
+      [0] (10 byte) meHostName
+      [1] (3 byte) naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr
+    SEQUENCE (2 elem)
+      [0] (10 byte) nccVersion
+      [1] (11 byte) SPS_23_2_R1
+    SEQUENCE (2 elem)
+      [0] (8 byte) recordId
+      [1] (51 byte) 20230208054419_abe6ce21-f124-4f7c-8974-6f8159c5217f
+    SEQUENCE (2 elem)
+      [0] (15 byte) RecordTimestamp
+      [1] (19 byte) 08/02/2023 11:14:19
+  [2] (2 elem)
+    SEQUENCE (2 elem)
+      [0] (10 byte) bucketInfo
+      [1] (7 elem)
+        SEQUENCE (2 elem)
+          [0] (10 byte) bucketName
+          [1] (9 byte) CBkt13300
+        SEQUENCE (2 elem)
+          [0] (14 byte) bucketUnitType
+          [1] (5 byte) Money
+        SEQUENCE (2 elem)
+          [0] (16 byte) bucketKindOfUnit
+          [1] (5 byte) MONEY
+        SEQUENCE (2 elem)
+          [0] (19 byte) bucketBalanceBefore
+          [1] (5 byte) 18.65
+        SEQUENCE (2 elem)
+          [0] (18 byte) bucketBalanceAfter
+          [1] (5 byte) 50.00
+        SEQUENCE (2 elem)
+          [0] (15 byte) carryOverBucket
+          [1] (5 byte) false
+        SEQUENCE (2 elem)
+          [0] (22 byte) secondaryCostCommitted
+          [1] (4 byte) 0.00
+    SEQUENCE (2 elem)
+      [0] (12 byte) discountInfo
+      [1] (6 elem)
+        SEQUENCE (2 elem)
+          [0] (15 byte) discountDefName
+          [1] (13 byte) Discount20033
+        SEQUENCE (2 elem)
+          [0] (18 byte) discountInstanceId
+          [1] (36 byte) 8ba8ecb0-316e-4014-b2bc-e1cae19e2945
+        SEQUENCE (2 elem)
+          [0] (16 byte) renewalFeeBefore
+          [1] (8 byte) 90.00000
+        SEQUENCE (2 elem)
+          [0] (15 byte) renewalFeeAfter
+          [1] (8 byte) 81.00000
+        SEQUENCE (2 elem)
+          [0] (12 byte) discountType
+          [1] (10 byte) PERCENTAGE
+        SEQUENCE (2 elem)
+          [0] (13 byte) discountValue
+          [1] (2 byte) 10</code></pre>
+        </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

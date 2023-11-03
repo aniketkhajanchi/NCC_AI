@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="TRANSFER source context" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="transfer_source_context" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>TRANSFER source context</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="transfer_source_context">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">TRANSFER source context</h1>
+<div class="body conbody">
+        <div class="p">
+            <table cellpadding="4" cellspacing="0" summary="" id="transfer_source_context__table_qts_4jh_rwb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>TRANSFER source context</span></caption><colgroup><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d143654e44">Attribute name</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d143654e47">Trigger</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d143654e50">Description</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e44 ">Is-Partial</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e47 ">
+                                <p class="p">SUBSCRIBER_PRE_TRANSFER</p>
+
+                                <p class="p">SUBSCRIBER_POST_TRANSFER</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e50 "> </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e44 ">Is-Receiver</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e47 ">
+                                <p class="p">SUBSCRIBER_PRE_TRANSFER</p>
+
+                                <p class="p">SUBSCRIBER_POST_TRANSFER</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e50 ">This attribute returns a boolean value. If the current agent type
+                                is from the receiver, then this attribute returns
+                                    <var class="keyword varname">true</var>. Else, it returns
+                                    <var class="keyword varname">false</var>.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e44 ">Is-Sender</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e47 ">
+                                <p class="p">SUBSCRIBER_PRE_TRANSFER</p>
+
+                                <p class="p">SUBSCRIBER_POST_TRANSFER</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e50 ">This attribute returns a boolean value. If the current agent type
+                                is from the sender, then this attribute returns
+                                    <var class="keyword varname">true</var>. Else, it returns
+                                    <var class="keyword varname">false</var>.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e44 ">Is-Retry</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e47 ">
+                                <p class="p">SUBSCRIBER_PRE_TRANSFER</p>
+
+                                <p class="p">SUBSCRIBER_POST_TRANSFER</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e50 ">If the activity type of the transfer request is retry, then this
+                                attribute returns <var class="keyword varname">true</var>. Else, it returns
+                                    <var class="keyword varname">fasle</var>. This attribute is used for handling
+                                rollback requests.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e44 ">Is-Rollback</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e47 ">
+                                <p class="p">SUBSCRIBER_PRE_TRANSFER</p>
+
+                                <p class="p">SUBSCRIBER_POST_TRANSFER</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e50 ">If the activity type of the transfer request is rollback, then
+                                this attribute returns <var class="keyword varname">true</var>. Else, it returns
+                                    <var class="keyword varname">fasle</var>. This attribute is used for handling
+                                rollback requests.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e44 ">Transfer-Unit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e47 ">
+                                <p class="p">SUBSCRIBER_PRE_TRANSFER</p>
+
+                                <p class="p">SUBSCRIBER_POST_TRANSFER</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e50 ">This attribute identifies the type of unit sent in the
+                                    <em class="ph i">TransferBucket</em> API. It can have the following values:<ul class="ul" id="transfer_source_context__ul_nnq_32l_jyb">
+                                    <li class="li">TIME</li>
+
+                                    <li class="li">VOLUME</li>
+
+                                    <li class="li">MONEY</li>
+
+                                    <li class="li">UNIT</li>
+
+                                </ul>
+ Units (basic or derived) must be defined in NCC.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e44 ">Transfer-Fee</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e47 ">
+                                <p class="p">SUBSCRIBER_PRE_TRANSFER</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e50 ">This attribute defines the transfer fee.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e44 ">Transfer-Amount</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e47 ">
+                                <p class="p">SUBSCRIBER_PRE_TRANSFER</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e50 ">This attribute defines the transfer amount.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e44 ">Time-Start-Of-Today-TZ</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e47 ">
+                                <p class="p">SUBSCRIBER_PRE_TRANSFER</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e50 ">This attribute defines the start of the day time.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e44 ">Current-Date-Time-TZ</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e47 ">
+                                <p class="p">SUBSCRIBER_PRE_TRANSFER</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d143654e50 ">This attribute defines the current date time.</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

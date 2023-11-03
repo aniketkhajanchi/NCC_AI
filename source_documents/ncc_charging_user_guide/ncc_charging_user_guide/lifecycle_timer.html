@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Lifecycle timer extension" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e187839" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Lifecycle timer extension</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e187839">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Lifecycle timer extension</h1>
+<div class="body conbody">
+        <p class="p">This feature is used to reschedule the current scheduled transitions in the lifecycle
+            entities. These scheduled transitions can be in both Entity and Period lifecycle of the
+            entities. The <kbd class="ph userinput">Validity Time</kbd> parameter is added to all the
+            lifecycle related entities. It denotes the current transition’s validity time in the
+            entity lifecycle of these entities. This is a read only parameter and is not set/updated
+            in the create/update requests of lifecycle entities. It is only set internally by
+            lifecycle state transitions.</p>
+
+        <p class="p">At top-up (or at provisioning request), the validity of a subscription may need extension
+            by a certain number of days. When a user phone is unavailable (gone for repair), the
+            validity of units is extended by the number of days the user phone is not available,
+            instead of being reset.</p>
+
+        <p class="p">
+            <span class="ph uicontrol">Example</span>: Bob subscribes to a subscription on 1st July and its
+            valid for 30 days (30th of July). After 10 days, a provisioning request is made to
+            extend the validity for 15 days (valid till 14th August). This is done using the REST
+            API.</p>
+
+        <div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e187839__note_ij5_35b_nwb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Prorating is not considered for this feature.</div>
+
+<div class="section"><h2 class="title sectiontitle">REST API details</h2>
+<p class="p">Operators can use the <em class="ph i">UpdateTime</em> REST API to adjust the end time and validity time of lifecycle of a given entity. It is recommended to use this API for shared onetime non-periodic type of subscription. The <em class="ph i">UpdateTime</em> API is enhanced to consider the timezone ID of an account while updating the end date of a subscription.</p>
+
+<p class="p">The API has the following inputs:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Entity Type (Account/Subscription/Device/Group/User)</p>
+
+</li>
+
+<li class="li">
+<p class="p">Entity Id (AccountID/BundleID/DeviceID/GroupID/UserID)</p>
+
+</li>
+
+<li class="li">
+<p class="p">LifeCycleEntityType (Entity/Periodic)</p>
+
+</li>
+
+<li class="li">
+<p class="p">Subscription Entity Type (Device/Group) → Mandatory when <em class="ph i">Entity Type</em> is <var class="keyword varname">SUBSCRIPTION_TYPE</var>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Subscription Entity ID (DeviceID/GroupID) → Mandatory when <em class="ph i">Entity Type</em> is <var class="keyword varname">SUBSCRIPTION_TYPE</var>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Entity Instance Id (Subscription Instance ID) → It is the subscription instance ID which is needed if multiple instance of same bundle exists within a given device/group. This parameter is optional.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Adjust Mode (INCR/DECR/SET)</p>
+
+</li>
+
+<li class="li">
+<p class="p">Adjust Period Unit Type (Hour/Day/Week/Month/Year)  → All types supported by Lifecycle are supported. Note that it does not support Second and Minute Unit Type.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Adjust Period Value (absolute value of a given type)</p>
+
+</li>
+
+<li class="li">
+<p class="p">New Date (Applicable only for SET option) -&gt; For this field, seconds, for example, Mar 26, 2019 05:28:50 cannot be given in this format. The value of this parameter can be in this format - <span class="ph uicontrol">Mar 26, 2019 05:28 PM</span>.</p>
+
+</li>
+
+</ul>
+
+<p class="p">If the Adjust Mode is equal to <kbd class="ph userinput">SET</kbd>, then endtime/validity time = current Time + Adjust period Value. With <kbd class="ph userinput">SET</kbd> option, if <kbd class="ph userinput">Adjust Period Value</kbd> and <kbd class="ph userinput">New Date</kbd> both the parameters are provided, then <kbd class="ph userinput">New Date</kbd> parameter is considered.</p>
+
+<p class="p">If this API is used with Periodic subscription, then Endtime for current bill cycle is adjusted,
+                but next renewal cycle again synchronizes the subscription with bill cycle as
+                defined in account. For example, the bill cycle is on 5th of each month. Current
+                date of subscription is 30th July with Endtime as 04/08/2018 23:59:59. Using this
+                API, Endtime of this is updated to 10/08/2018 23:59:59. On next renewal (which is on
+                updated Endtime), the new Endtime is set as 04/09/2018 23:59:59.</p>
+
+            <p class="p">Endtime of the subscription in PLC cannot be updated via updateTime/Lifecycle API if
+                there is no end-time based scheduling. Without the scheduling event, the API throws
+                the following error: SMAPI_00001 (End time based transition is not scheduled
+                currently.) </p>
+
+<p class="p">The given period is checked with respect to the current time. For the Entity lifecycle, Validity time is only modified if the current state of a lifecycle has any current validity time available. The modification to Endtime and Validity Time updates the corresponding update in the TEM module.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The DECR or SET operation can make the new scheduled time less than or very close to the
+                current system time. Therefore, considering the TEM scanner interval time for
+                scheduling tasks and other system processing time under load and other conditions,
+                it is recommended to add a buffer/delta time to the current system time. The New
+                time = Current time + Delta. The default value of delta is 60 seconds. You can
+                configure the delta using the System parameter - <kbd class="ph userinput">Scheduled transition
+                    time update buffer interval (in seconds)</kbd>.</div>
+
+<p class="p">For more details regarding the API, see the <em class="ph i">Service Manager API Reference</em> document.</p>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Implementing slice reduction feature in centralized calls" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="section_vjg_szk_r4b" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Implementing slice reduction feature in centralized calls</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="section_vjg_szk_r4b">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Implementing slice reduction feature in centralized calls</h1>
+<div class="body">
+                
+                <p class="p">Consider the following points when slice reduction feature is applied to the
+                    centralized charging call:</p>
+
+                <ul class="ul" id="section_vjg_szk_r4b__ul_wjg_szk_r4b">
+                    <li class="li">
+                        <p class="p">This feature is applicable only when both <span class="ph uicontrol">Slice Allocation
+                        Factor</span> and <span class="ph uicontrol">MIN Slice Size</span> parameters are
+                    present in the quota management (slicing profile) object rule
+                    provisioned.</p>
+
+                        <p class="p">However, if <em class="ph i">DYNAMIC_ALGO_2</em> is used, then <span class="ph uicontrol">MIN Slice
+                                Size</span> passed to the <em class="ph i">DYNAMIC_ALGO_2</em> is considered.
+                            If this feature is not configured with <em class="ph i">DYNAMIC_ALGO_2</em>, then the
+                                <em class="ph i">MIN Slice Size</em> is considered as <var class="keyword varname">0</var> by
+                            default. If both <em class="ph i">DYNAMIC_ALGO_2</em> and <span class="ph uicontrol">MIN Slice
+                                Size</span> is configured, then preference is given to the
+                                <span class="ph uicontrol">MIN Slice Size</span> configured by the
+                                <em class="ph i">DYNAMIC_ALGO_2</em>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">If no quota management (slicing profile) rule is provisioned in
+                    the slicing profile object, then the <em class="ph i">DefaultAction</em> is considered.</p>
+
+                        <p class="p">However, if both <span class="ph uicontrol">Slice Allocation Factor</span> and
+                                <span class="ph uicontrol">MIN Slice Size</span> parameters are present in the
+                            default actions object rule, then execute the slice reduction
+                            feature.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">If the threshold value or cap limit is not defined, then the default
+                                <span class="ph uicontrol">MIN Slice Size</span> is always considered in cases
+                            where the RSU is less than the <span class="ph uicontrol">MIN Slice Size</span>
+                            parameter value.</p>
+
+                    </li>
+
+                </ul>
+
+        <p class="p"><strong class="ph b">Example:</strong> Consider the following example for understanding the slice reduction
+            feature implementation.</p>
+
+        <ol class="ol" id="section_vjg_szk_r4b__ol_xjg_szk_r4b">
+            <li class="li">
+                <p class="p">Assume that there is a user with a subscription of 2 GB with a notification
+                    defined at 80% threshold (1638 MB) and a <samp class="ph systemoutput">Send-SNR</samp>
+                    action defined at 100% (2048 MB).</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">The slice size (granted service units) calculated by the centralized slicing is
+                    50 MB.</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">The current usage of the user is 1550 MB.</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">When a CCR-U is received from PGW with USU = 50 MB, the current usage of the user
+                    becomes 1600 MB. The allocation of another 50 MB at reservation crosses the
+                    notification threshold defined at 80%.</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">The slice size is calculated as per the slice reduction feature logic. Let us
+                    consider that the slice size comes to be 38 MB and the same is set as GSU in CCA
+                    sent to the PGW.</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">When a CCR-U is received from PGW with USU = 38 MB, the current usage of the user
+                    becomes 1638 MB. It reaches to 80% of usage threshold and thus, a notification
+                    is sent to the user.</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">A couple of more CCR and CCA messages are exchanged between the PGW and OCS node.
+                    At a given point of time, the current usage of user becomes 1950 MB.</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">When a CCR-U is received from PGW with USU = 50 MB, the current usage of the user
+                    becomes 2000 MB. The allocation of another 50 MB at reservation crosses the
+                        <samp class="ph systemoutput">Send-SNR</samp> threshold defined at 100%.</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">The slice size is calculated as per the slice reduction feature logic. Let us
+                    consider the slice size comes to be 48 MB and the same is set as GSU in CCA sent
+                    to the PGW.</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">When a CCR-U is received from PGW with USU = 48 MB, the current usage of the user
+                    becomes 2048 MB. It reaches to 100% of usage threshold, a
+                        <samp class="ph systemoutput">Send-SNR</samp> action is performed and the data
+                    consumption speed is degraded.</p>
+
+            </li>
+
+        </ol>
+
+            </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

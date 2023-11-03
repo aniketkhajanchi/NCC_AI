@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="network-status" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="TPA_heartbeatStatus" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>network-status</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="TPA_heartbeatStatus">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">network-status</h1>
+<div class="body conbody">
+        <div class="section" id="TPA_heartbeatStatus__section_myf_zks_nlb"><h2 class="title sectiontitle">Description</h2>
+            
+            <p class="p">This tool retrieves the heartbeat status and partition status hosted on the ME
+                subsystems.</p>
+
+            <p class="p">Heartbeat periodically polls each member in the community over the OAM network. ME
+                subsystems poll each other over Diameter with the same information to increase
+                reliability, as well. Heartbeat uses the Monitoring Service to determine the local
+                system status when polled. Heartbeat only communicates the local member's status; it
+                does not compute the state or monitor any subsystems itself.</p>
+
+            <div class="p">By default, ME subsystems exchange heartbeats with all other ME subsystems in the
+                network. If the <span class="ph uicontrol">Segregated ME Heartbeats</span> parameter in the
+                Input Generator is set to <span class="keyword parmname">true</span>, then ME subsystems exchange
+                heartbeats only with the other ME subsystems in their XDR peer group (for example,
+                ME pair).<div class="note" id="TPA_heartbeatStatus__note_ytd_dpk_wwb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> On standalone ME systems, if
+                        <span class="ph uicontrol">Segregated ME Heartbeats</span> is set to
+                        <code class="ph codeph">true</code>, then network-status only displays the status of the
+                    ME subsystems in its own XDR peer group (for example, ME pair). If there are
+                    multiple pairs of ME subsystems, their status is not displayed since heartbeats
+                    are not exchanged with those other pairs.</div>
+</div>
+
+            <p class="p">The tool has the capability to show the partition information of data on the ME
+                subsystems. The tool assumes all systems have the same topological view, and it
+                displays the available database partition on the ME subsystem and its status (either
+                IN_SERVICE or OUT_OF_SERVICE).</p>
+
+            <p class="p">Create the Diameter Peers by using the <span class="ph">NCC</span> GUI for
+                Diameter heartbeat traffic to go on between ME subsystems. For details about how to
+                create Diameter Peers, see the <cite class="cite">Diameter/HTTP Configuration Guide</cite>.</p>
+
+            <div class="p">Once created, peers may be distributed in one of these ways.<ul class="ul" id="TPA_heartbeatStatus__ul_tn1_zpp_wpb">
+                    <li class="li">Create peer for system 2 and distribute to system 1 only.</li>
+
+                    <li class="li">Create peer for system 1 and distribute to system 2 only.</li>
+
+                </ul>
+</div>
+
+            <p class="p">Refer to the <cite class="cite">Diameter/HTTP Configuration Guide</cite> for more details.</p>
+
+        </div>
+
+        <div class="section" id="TPA_heartbeatStatus__section_pnk_1ls_nlb"><h2 class="title sectiontitle">Syntax</h2>
+            
+            <div class="p">
+                <pre class="pre codeblock"><code>network-status [&lt;port&gt;] [-p] [-h or -?]</code></pre>
+                <table cellpadding="4" cellspacing="0" summary="" id="TPA_heartbeatStatus__table_h5s_bls_nlb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d7570e106">Option</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d7570e109">Description</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder confluenceTd" rowspan="1" style="vertical-align:top;" headers="d7570e106 "><code class="ph codeph">No
+                                        arguments</code></td>
+
+                                <td class="entry cellrowborder confluenceTd" rowspan="1" style="vertical-align:top;" headers="d7570e109 ">Displays the status
+                                    of the local system and the status of the remote systems that
+                                    are declared in the network topology.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder confluenceTd" rowspan="1" style="vertical-align:top;" headers="d7570e106 "><code class="ph codeph">[port]</code></td>
+
+                                <td class="entry cellrowborder confluenceTd" rowspan="1" style="vertical-align:top;" headers="d7570e109 ">The port on which the
+                                    Central Management pod is listening. Default: 8080</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder confluenceTd" rowspan="1" style="vertical-align:top;" headers="d7570e106 "><code class="ph codeph">-h or
+                                        -?</code></td>
+
+                                <td class="entry cellrowborder confluenceTd" rowspan="1" style="vertical-align:top;" headers="d7570e109 ">Displays usage/help
+                                    information.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder confluenceTd" rowspan="1" style="vertical-align:top;" headers="d7570e106 "><code class="ph codeph">-p</code></td>
+
+                                <td class="entry cellrowborder confluenceTd" rowspan="1" style="vertical-align:top;" headers="d7570e109 ">Displays the status
+                                    of the available database partition that is hosted on ME
+                                    subsystems that are declared in the network topology.</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+        </div>
+
+        <div class="section" id="TPA_heartbeatStatus__section_vd2_qwf_mnb"><h2 class="title sectiontitle">Output Example</h2>
+            
+        </div>
+
+        <div class="section" id="TPA_heartbeatStatus__section_bpm_2ls_nlb">
+            <div class="p">This example shows the tool run with the <code class="ph codeph">-p</code> option, and the
+                accompanying table describes the tool's output. For more information about
+                heartbeat, see <a class="xref" href="monitoring_network_status.html">Monitoring Network Status</a>.<pre class="pre codeblock"><code>Software Version: SPS_21_3_R1 (SPS_21_3_I75)
+Date: Tue Apr  6 07:31:08 UTC 2021
+
+Partition Status:
+
+Component [ME] Site [sps-me13] Site ID [13] Service status [IN_SERVICE] Partition [(P) spspd13 (IS), (S) spspd14, (T) spspd11]
+Component [ME] Site [sps-me11] Site ID [11] Service status [OUT_OF_SERVICE] Partition [(P) spspd11 (OOS), (S) spspd12 (OOS), (T) spspd13 (OOS)]
+Component [ME] Site [sps-me14] Site ID [14] Service status [IN_SERVICE] Partition [(P) spspd14 (IS), (S) spspd13, (T) spspd12]
+Component [ME] Site [sps-me12] Site ID [12] Service status [IN_SERVICE] Partition [(P) spspd12 (IS), (S) spspd11 (IS), (T) spspd14]</code></pre></div>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="TPA_heartbeatStatus__table_xq5_ryn_wmb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Output Explanation</span></caption><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d7570e196">Parameter</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d7570e199">Description</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d7570e196 "><code class="ph codeph">Software Version: SPS_21_3_R1
+                                (SPS_21_3_I75)</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d7570e199 ">Displays the software version. </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d7570e196 "><code class="ph codeph">Date: Tue Apr 6 07:31:08 UTC 2021</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d7570e199 ">Date and time at which the command was run.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d7570e196 "><code class="ph codeph">Component [ME] Site [&lt;Site Name&gt;] Site ID [&lt;Site
+                                    Id&gt;] Service status [IN_SERVICE] Partition [(P)
+                                    spspd&lt;Partition Id&gt; (IS), (S) spspd&lt;Partition Id&gt; (IS),
+                                    (T) spspd&lt;Partition Id&gt;]</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d7570e199 ">Displays the subsystem service status, available database
+                                partitions in the ME subsystem, and the status of each partition.
+                                Possible values are:<ul class="ul" id="TPA_heartbeatStatus__ul_zxs_5mg_1qb">
+                                    <li class="li"><code class="ph codeph">(P)</code> - If the partition is Primary on that
+                                        ME</li>
+
+                                    <li class="li"><code class="ph codeph">(S)</code> - If the partition is Secondary on that
+                                        ME</li>
+
+                                    <li class="li"><code class="ph codeph">(T)</code> - If the partition is Tertiary on that
+                                        ME</li>
+
+                                    <li class="li"><code class="ph codeph">(IS)</code> - If the Partition is IN_SERVICE on
+                                        that ME</li>
+
+                                    <li class="li"><code class="ph codeph">(OOS)</code> - If the Partition is OUT_OF_SERVICE
+                                        on that ME.</li>
+
+                                    <li class="li"><code class="ph codeph">&lt;No Info after the Partition&gt;</code> - The
+                                        active partition that is present on that ME subsystem in
+                                        this system but IN_SERVICE on the ME subsystem in some other
+                                        system.</li>
+
+                                </ul>
+</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <div class="p">This example shows the expected output for the network-status tool run in a network
+                deployment with two systems (sps-me1 and sps-me2) hosting one partition (spspd1) -
+                Normal Geo Deployment (Active -
+                Active).<pre class="pre codeblock"><code>Component [ME] Site [sps-me1] Site ID [1] Service status [IN_SERVICE] Partition [(P) spspd1 (IS)]
+Component [ME] Site [sps-me2] Site ID [2] Service status [IN_SERVICE] Partition [(S) spspd1 (IS)]</code></pre></div>
+
+            <div class="p">This example shows the expected output for the network-status tool run in a network
+                deployment with two systems (sps-me1 and sps-me2) hosting two partitions (spspd1 and
+                spspd2).<pre class="pre codeblock"><code>Component [ME] Site [sps-me1] Site ID [1] Service status [IN_SERVICE] Partition [(P) spspd1 (IS), (S) spspd2]
+Component [ME] Site [sps-me2] Site ID [2] Service status [IN_SERVICE] Partition [(P) spspd2 (IS), (S) spspd1]</code></pre></div>
+
+            <p class="p">This example shows the expected output for the network-status tool run in a network
+                deployment with four systems (sps-me11, sps-me12, sps-me13 and sps-me14) hosting
+                three partitions each.</p>
+
+            <div class="p">
+                <pre class="pre codeblock"><code>Component [ME] Site [sps-me11] Site ID [11] Service status [OUT_OF_SERVICE] Partition [(P) spspd11 (OOS), (S) spspd12 (OOS), (T) spspd13 (OOS)]
+Component [ME] Site [sps-me12] Site ID [12] Service status [IN_SERVICE] Partition [(P) spspd12 (IS), (S) spspd11 (IS), (T) spspd14]
+Component [ME] Site [sps-me13] Site ID [13] Service status [IN_SERVICE] Partition [(P) spspd13 (IS), (S) spspd14, (T) spspd11]
+Component [ME] Site [sps-me14] Site ID [14] Service status [IN_SERVICE] Partition [(P) spspd14 (IS), (S) spspd13, (T) spspd12]</code></pre>
+            </div>
+
+        </div>
+
+        <div class="section" id="TPA_heartbeatStatus__section_prz_fkx_bnb"><h2 class="title sectiontitle">Error message</h2>
+            
+            <p class="p">This error message might occur in the tool's output. </p>
+
+            <pre class="pre codeblock"><code>Software Version: SPS_21_3_R1 (SPS_21_3_I75)
+Date: Tue Apr  6 07:31:08 UTC 2021
+ 
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html;charset=utf-8"/&gt;
+&lt;title&gt;Error 404 Not Found&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;&lt;h2&gt;HTTP ERROR 404 Not Found&lt;/h2&gt;
+&lt;table&gt;
+&lt;tr&gt;&lt;th&gt;URI:&lt;/th&gt;&lt;td&gt;/services/monitoring/network-status/status/&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th&gt;STATUS:&lt;/th&gt;&lt;td&gt;404&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th&gt;MESSAGE:&lt;/th&gt;&lt;td&gt;Not Found&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th&gt;SERVLET:&lt;/th&gt;&lt;td&gt;org.apache.felix.http.base.internal.DispatcherServlet-18499dc&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+ 
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+            <p class="p">This error means that the ID did not find the web service at the URL. The error might
+                happen only when in the middle of a software upgrade, probably due to a failed or
+                in-progress upgrade. </p>
+
+            <p class="p">To avoid the error, run the network-status tool several minutes later after the Helm
+                install or upgrade completes, when the central management (CM) pods are upgraded and
+                running on the new load. If the upgrade is successful and all CM pods are up on the
+                new version, the error does not occur.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

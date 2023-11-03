@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="task" />
+<meta name="DC.title" content="Pushing images to a customer repository" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="pushing_images_to_a_customer_repository" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Pushing images to a customer repository</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="pushing_images_to_a_customer_repository">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Pushing images to a customer repository</h1>
+<div class="body taskbody">
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div>
+            <div class="p">This procedure provides instructions on how to upload <span class="ph">NCC</span> and <span class="ph">NCC</span> SS7 images to a
+                customer repository. The example script in this procedure does the equivalent of the
+                following for every Docker tar file in the directory:<ol class="ol" id="pushing_images_to_a_customer_repository__ol_y1g_4td_q4b">
+                    <li class="li">Loads the
+                            file.<p class="p">Example:</p>
+<pre class="pre codeblock"><code>docker load &lt; node_exporter_v1.0.1-2.tar</code></pre><p class="p">where
+                                <span class="ph filepath">node_exporter_v1.0.1-2.tar</span> is a file to push to
+                            a registry.</p>
+</li>
+
+                    <li class="li">Tags the
+                        file.<p class="p">Example:</p>
+<pre class="pre codeblock"><code>docker image tag csf-docker-delivered.repo.lab.pl.alcatel-lucent.com/cpro/registry4/node_exporter:v1.0.1-2 abc.com/cpro/registry4/node_exporter:v1.0.1-2</code></pre></li>
+
+                    <li class="li">Pushes the file to the
+                            registry.<p class="p">Example:</p>
+<pre class="pre codeblock"><code>docker push example.com/cpro/registry4/node_exporter:v1.0.1-2</code></pre><p class="p">where
+                                <code class="ph codeph">example.com</code> is the FQDN of the registry.</p>
+</li>
+
+                </ol>
+</div>
+
+        </div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">On your Linux workstation, go to the directory with all the Docker
+                    images.</span>
+                <div class="itemgroup info">
+                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Your workstation might use a non-Linux system like Windows.</div>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Perform the equivalent of what this example script does.</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>#Set the repo to the customers repository
+
+for dockerImage in *.tar;
+do
+    echo "Processing $dockerImage ";
+    #import the docker image, it will output its full repo/name/tag information
+    loadResult=`docker load &lt; $dockerImage`
+ 
+    fullTag=`echo $loadResult | cut -d " " -f3`
+ 
+    #tag the docker image in your machine's docker for the target customer repository
+    docker image tag ${fullTag} ${TARGET_REPO}/${fullTag}
+  
+    #push the newly tagged image to the customer repository
+    docker push ${TARGET_REPO}/${fullTag}
+done</code></pre>
+                </div>
+            </li>
+</ol>
+
+    </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

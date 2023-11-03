@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Flushing data" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="SPS_CDR_Streams_Stream_Overview_flushing_the_data" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Flushing data</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="SPS_CDR_Streams_Stream_Overview_flushing_the_data">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Flushing data</h1>
+<div class="body conbody">
+    <p class="p">If necessary, the Redis database can be emptied in a controlled manner by executing the
+      FLUSH_DATA instance of CG Configuration Node in the Configuration stream. </p>
+
+    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> While the node provides two modes of flushing data: immediate flush and flushing of
+      completed sessions, only immediate flush, which is the default option, should be used, because
+      flushing of completed sessions is an obsolete option in a NCC system.</div>
+
+    <p class="p">Immediate flush stops all incoming traffic, triggers session timeout for all the sessions
+      currently in the database and processes the sessions normally, so the records end up in the
+      correct CDR files. During immediate flush, Kafka input stream stops consuming incoming
+      messages. </p>
+
+    <p class="p">Flush mode is configured with CG Configuration Node parameter <code class="ph codeph">FlushMode</code>, and
+      flushing is done by executing the node.</p>
+
+    <p class="p">When the flushing finishes and the database is empty, input streams do not start accepting
+      incoming traffic automatically. Instead, CG Configuration Node must be run again, with node
+      parameter <code class="ph codeph">FlushMode</code> set to <code class="ph codeph">None</code>, after which incoming
+      traffic is accepted again.</p>
+
+    <p class="p">For more detailed instructions on flushing, see the <cite class="cite">Operations, Administration and
+        Maintenance Guide</cite> in the NCC documentation set.</p>
+
+  </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

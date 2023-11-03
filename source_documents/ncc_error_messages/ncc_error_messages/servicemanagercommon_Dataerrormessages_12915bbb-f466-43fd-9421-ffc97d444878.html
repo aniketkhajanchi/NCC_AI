@@ -1,0 +1,1257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Data Error Messages" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id12915bbb-f466-43fd-9421-ffc97d444878" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Data Error Messages</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id12915bbb-f466-43fd-9421-ffc97d444878">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Data Error Messages</h1>
+<div class="body conbody"><p class="p">This table describes the data error messages that the 5780 DSC may generate.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Data error messages</span></caption><colgroup><col style="width:16.666666666666664%" /><col style="width:21.428571428571427%" /><col style="width:30.952380952380953%" /><col style="width:30.952380952380953%" /></colgroup><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:top;" id="d130432e40">Number</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d130432e42">Message</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d130432e44">HTTP Error Code</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d130432e47">Description</th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00001</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Type is a mandatory field.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">Custom Data Type is a mandatory field.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00002</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Value is a mandatory field.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">Value is a mandatory field, and must be between 1 and 256000 characters.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00003</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Value is too long.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">Value must be between 1 and 256000 characters.</td>
+</tr>
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00004</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Invalid value.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">The value [type={0}, value="{1}"] is not valid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00005</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Invalid primary OCS URI.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">The URI "{0}" is not valid.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00006</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Invalid secondary OCS URI.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">The URI "{0}" is not valid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00007</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Invalid primary OFCS URI.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">The URI "{0}" is not valid.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00008</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Invalid secondary OFCS value.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">The URI "{0}" is not valid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00009</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Lists must have at least one value.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">Lists must have at least one value.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00010</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Unsupported type for list.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">The type {0} is not supported for lists.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00011</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Format is a mandatory field.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">Format is a mandatory field.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00012</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Value is a mandatory field.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">Value is a mandatory field when the format is Custom.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00013</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Direction is a mandatory field.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">Direction is a mandatory field when the format is Queue or Rate.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00014</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Queue ID is a mandatory field.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">Queue ID is a mandatory field when the format is Queue.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00015</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Unsupported format.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">The format {0} is not supported.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00016</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Mismatched enum types in list.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">A list of enum values may only contain values from a single enum type.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00017</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Referenced object was not found.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">The referenced object "{0} is in use ".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00018</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Invalid primary CHF URI.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">The URI "{0}" is not valid.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00019</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Invalid secondary CHF URI.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">The URI "{0}" is not valid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00020</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">TDF Rules must have at least one value.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">At least one ADC rule must be configured in attribute AddTdfRules.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00021</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Invalid RSV value in rule name [name = {2}]</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">The value of attribute [name={0}] in action name [name = {1}] is not valid. It should not be empty or contain spaces. Only Alphanumeric value, Special chars (-), (_), (.), (#), (:) are accepted.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00022</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Invalid RSV value in rule name [name = {2}]</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">The value of attribute [name={0}] in action name [name = {1}] is not a valid Diameter FQDN.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">GV_00023</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">ADC rules are configured without TDF-Id in action name [name= {0}].</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">ADC rules must be configured with TDF-Id in action name [name= {0}] in rule name [name= {1}].</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00002</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Charging/QoS rule definition list.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00004</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing rule table list.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00005</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing rule set list.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00007</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing default actions list for rule set {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00008</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing rule table precedence list for rule set {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00009</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing rule table name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00010</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing rule table schedule name for rule table {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00011</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing rule list for rule table {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00013</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Missing rule name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00015</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing condition list for rule {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00016</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing action list for rule {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00018</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Action Name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00024</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing precedence for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00025</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing metering method for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00026</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing rating group for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00027</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing reporting level for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00028</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing online for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00029</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing offline for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00030</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing AF charging identifier for Charging/QoS rule</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00031</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing service identifier for Charging/QoS rule</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00032</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing flow status for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00034</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing QCI for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00035</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing GBR-DL for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00036</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing GBR-UL for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00037</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing MRB-DL for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00038</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing MRB-UL for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000388</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Guaranteed bit rate DL for Radius Qos Queue Id {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000389</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Guaranteed bit rate UL for Radius Qos Queue Id {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00039</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing priority level for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000390</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Max requested bandwidth DL for</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000391</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Max requested bandwidth UL for</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000392</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Committed burst size DL for Radius Qos Queue Id {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000393</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Committed burst size UL for Radius Qos Queue Id {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000394</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Maximum burst size DL for Radius Qos Queue Id {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000395</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Maximum burst size UL for Radius Qos Queue Id {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000396</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Wrr weight DL for Radius Qos Queue Id {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000397</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Wrr weight UL for Radius Qos Queue Id {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000398</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Queue Id for Radius Qos Queue.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000399</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Policer Id for Radius Qos Policer.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00040</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing pre-emption capability for Charging/QoS rule</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing sub egress rate limit for rule Definition</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000403</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Arbiter Name for Radius Qos Arbiter.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000404</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Arbiter rate limit DL for Radius Qos Arbiter.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000405</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Arbiter rate limit UL for Radius Qos Arbiter.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000406</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Guaranteed bit rate DL for Radius Qos Policer Id {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000407</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Guaranteed bit rate UL for Radius</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000408</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Max requested bandwidth DL for</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000409</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Max requested bandwidth UL for</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00041</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing pre-emption vulnerability for Charging/QoS rule</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000410</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Committed burst size DL for Radius</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000411</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Committed burst size UL for</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000412</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Maximum burst size DL for Radius Qos Policer Id {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000413</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Maximum burst size UL for Radius Qos Policer Id {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000414</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Radius Qos Policer Id Cannot be empty.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000415</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Radius Qos Queue Id Cannot be empty.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00042</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing monitoring key for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000439</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing sponsor identity for rule definition</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_000440</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing application service provider identity for rule definition</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00076</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Unknown rule table [name={0}] used in rule set [type={1}].</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00082</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Rule set name missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00083</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Rule table name missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00084</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Charging/QoS rule definition name missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00085</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Charging/QoS rule definition type missing for [name={0}].</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00163</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing charging rule name for Charging/QoS rule</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00165</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing enabled flag for rule [name={0}].</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00166</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Name missing for action.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00276</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing rule description [key={0}].</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00330</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing parameter list for action {0}.{1}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00331</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Action parameter name missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00333</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Top-level table flag missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00334</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing top-level table flag.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00339</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Condition container operator field missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00340</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing condition container operator field.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00341</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing condition container condition list.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00342</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing condition container sub-container list.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00343</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Criteria source context type field missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00344</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing criteria source context type.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00345</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Criteria name field missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00346</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing criteria name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00347</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing criteria argument list.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00348</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Condition comparison operator field missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00349</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing condition comparison operator.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00350</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing condition value.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00351</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing condition value argument list.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00352</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing condition adjustment operator.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00353</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing condition adjustment value list.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00354</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Adjustment value missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00355</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing adjustment value.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00356</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing adjustment value argument list.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00357</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Attribute argument name field missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00358</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing attribute argument name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00359</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Attribute argument value field missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00361</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Value type field missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00362</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing value type.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00363</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Value content field missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00365</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Action parameter data field missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00367</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing action parameter data argument list.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00368</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing action parameter adjustment operator.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00369</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing action parameter adjustment value list.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00373</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing argument value argument list.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00374</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing time configuration for rule definition [name={0}].</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00375</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing flow configuration for rule definition [name={0}].</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00376</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Rule definition time config information name missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00377</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing rule definition time config name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00379</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing actions for time config [name={0}].</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00380</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing action for time config [name={0}].</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00381</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Rule definition flow config information name missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00382</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing rule definition flow config name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00384</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing actions for flow config [name={0}].</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00386</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing TDF Application Identifier for Charging rule</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00387</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Mute Notification for Charging rule</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00401</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Radius Queue configuration for rule definition</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00402</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Radius Policer configuration for rule definition</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00430</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Rule definition VSA configuration information name missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00431</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing rule definition VSA configuration name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00433</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing actions for VSA configuration [name={0}].</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00435</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing VSA configuration for rule definition [name={0}].</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00436</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing redirect support for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00437</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing redirect address type for Charging/QoS rule</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00438</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing redirect server address for Charging/QoS rule</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00442</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing rule variable list.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00443</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Rule variable name missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00445</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing rule set type list for rule variable {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00446</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Value type is missing for rule variable {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00447</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing value type for rule variable {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00448</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing default value for rule variable {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00449</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing variable evaluation list for rule variable {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00450</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Missing rule variable evaluation name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00452</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing rule variable evaluation description [name={0}].</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00453</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing enabled flag for rule variable evaluation [name={0}].</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00454</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing condition list for rule variable evaluation {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00455</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Value is missing for rule variable evaluation {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00457</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing description for rule variable {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00458</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing is Kbps for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00459</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing qosId for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00460</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing qnc for Charging/QoS rule definition {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00490</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Conditional Policy Information list.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00491</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Conditional Policy Information [name={0}] is not unique.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00492</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Conditional Policy Information name missing.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00493</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Conditional Policy Information name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">IMPORT_493.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00494</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing APN Aggregate Max Bitrate DL for Conditional</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00495</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing APN Aggregate Max Bitrate UL for Conditional</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00496</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Extended APN AMBR DL for Conditional</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00497</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Extended APN AMBR UL for Conditional</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00498</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Execution Time for Conditional</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00499</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing QCI for Conditional Policy Information {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00501</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Priority Level for Conditional Policy Information</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00502</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Pre-emption-Capability for Conditional Policy</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00503</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing Pre-emption-Vulnerability for Conditional</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00504</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing ConditionalApnAggMaxBr for Conditional Policy</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00505</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing ConditionalApnAggMaxBr for Conditional Policy</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00506</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing ConditionalApnAggMaxBrDL for Conditional Policy</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00507</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing ConditionalApnAggMaxBrUL for Conditional Policy</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00508</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing ConditionalExtendedApnAmbrDL for Conditional Policy</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00509</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing ConditionalExtendedApnAmbrUL for Conditional Policy</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00510</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing IpCanTypes for Conditional Policy Information {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00511</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing IpCanType for Conditional Policy Information {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00512</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing RatTypes for Conditional Policy Information {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 "> </td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">IMPORT_00513</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Error parsing RatType for Conditional Policy Information {0}.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">IMPORT_00511.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">INVALID_RSV_NAME</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Invalid RSV name</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">Name of the RSV should be alphanumeric</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">INVALID_RSV_START_TIME</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Duplicate RSV start time</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">RSV can't have the same start time of another RSV.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">INVALID_RSV_VALUE</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Invalid RSV value</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">The value of attribute [name={0}] is not valid. It should not be empty or contain spaces.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">INVALID_RULE_TABLE</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">No rule tables defined to be imported</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">RSV without Rule Tables is considered as empty. The RSV cannot be imported.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">INVALID_RULE_VARIABLE</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">No rule variable defined to be imported</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">RSV without Rule Variable is considered as empty. The RSV cannot be imported.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">NOT_ACTIVATED_RSV</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">RSV not activated</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">400</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">Patch should be created only for Active or previous Active RSV.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">PATCHED_RSV</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Patched RSV</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">400</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">Patched RSV can not be updated or activated again.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">PATCH_NOT_SUPPORTED</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Patch Rsv not supported</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">Create or listing patches RSV supported only for charging and recharge.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">RULEAPI_ERR_0025</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">RSV state not RELEASED</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">Rule System Version state should be either in RELEASE or ACTIVE state</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">RULEAPI_ERR_0027</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">Only distributed RSV can be activated or undistributed</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">Only distributed Rule System Version can be activated or undistributed</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">RULEAPI_ERR_0029</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">RSV cannot be deleted from ME</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">404</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">RSV cannot be deleted from ME, please refer to ME log</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">RULEAPI_ERR_0030</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">RSV cannot be activated on ME</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">RSV cannot be activated on ME, please refer to ME log</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">RULEAPI_ERR_0031</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">RSV cannot be deactivated on ME</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">404</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">RSV cannot be deactivated on ME, please refer to ME log</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">RULEAPI_ERR_0032</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">RSV cannot be distributed to ME</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">404</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">failure to communicate with ME</td>
+</tr>
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">SM_DRAFT_RSV_OVERWRITE_ERRCODE</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">RSV not in draft</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">There is an RSV with the same name and not in DRAFT state. Only RSV in DRAFT state can be overwritten</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e40 ">SM_RSV_DELETE_OPERATION_FAILURE_ERRCODE</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e42 ">RSV is in use</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e44 ">400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d130432e47 ">RSV cannot be deleted, as it is used in Policy(s).</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="footer"><hr /><p>Error Messages • P556766-DN1000055003-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

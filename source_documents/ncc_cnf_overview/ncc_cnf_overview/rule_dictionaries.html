@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Rule Engine concepts" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="rule_dictionaries" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Rule Engine concepts</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="rule_dictionaries">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Rule Engine concepts</h1>
+<div class="body conbody">
+        <p class="p">This section describes the concepts used by the Rule Engine.</p>
+
+        <div class="section" id="rule_dictionaries__section_rdy_b1t_4lb"><h2 class="title sectiontitle">Rule</h2>
+            
+            <p class="p">A Rule is a row in the Rule Group comprised of a set of Rule Conditions and a set of
+                Rule Actions. The rule has a precedence that determines its unique order in the rule
+                group evaluation. Rules are executed if and only if all its conditions are met. The
+                results sent to the invoking module, if all the conditions are met, contain a list
+                of actions (what to do) to be executed by the application module.</p>
+
+            <p class="p">A Rule is made up of an optional set of logical conditions (criteria attributes) and
+                a set of attribute results (action attributes) constructed as If-Then statements. If
+                no conditions are provided, then the results are included. If there are one or more
+                conditions, then the results are only included if the Rule evaluates to true. For
+                example, a rule can be created that says if the subscriber's category is gold, then
+                send a notification. If the subscriber’s category is not gold, the notification is
+                not sent.</p>
+
+            <p class="p">A Rule can use attributes provided to the trigger to make its conditions and use
+                those values to build the results. Multiple conditions in the rule can be combined
+                with either AND or OR logical operators. Multiple actions are separated by the AND
+                logical operator.</p>
+
+            <p class="p">When evaluating the Rule, only the conditions specified in the Rule instance are
+                considered by the Rule Engine (for example, any unfilled attributes from the Rule
+                Group Definition are considered to be matched/wildcarded). When a Rule is invoked,
+                all of its actions are taken together as a whole. The first matched Rule from the
+                table whose conditions have been met is executed. After that Rule Group evaluation
+                terminates, the next Rule Group belonging to a trigger is evaluated.</p>
+
+            <p class="p">The attributes are provided in a Source Context. The results of a Rule are put into a
+                Result Context.</p>
+
+        </div>
+
+        <div class="section" id="rule_dictionaries__section_f2d_p1t_4lb"><h2 class="title sectiontitle">Source Context</h2>
+            
+            <p class="p">Source Contexts provide a scope to rules that can be applied in particular contexts.
+                The source context provides data about the specific context for use during rules
+                evaluation and the various Source Contexts are available specific to the assigned
+                Rule Sets. For example, if a Rule Set has access to the Gy-Message source context
+                for a Rule Set, rules can be created with conditions or results that depend on
+                Gy-Message information.</p>
+
+        </div>
+
+        <div class="section" id="rule_dictionaries__section_lyy_s1t_4lb"><h2 class="title sectiontitle">Result Context</h2>
+            
+            <p class="p">A Result Context is a collection of result attributes produced by running the Rule
+                Set through the Rule Engine. The Rule Engine places the results into the appropriate
+                result context based on the description provided by the action attribute's
+                description. All the results are provided into an object called a Decision Result,
+                which has a set of Result Contexts. The application code needs to look in the
+                appropriate result context for the action attributes it needs to operate on.</p>
+
+            <p class="p">The Action Attribute can be configured for the rule by determining the Result Context
+                Type and attribute name.</p>
+
+        </div>
+
+        <div class="section" id="rule_dictionaries__section_ezy_v1t_4lb"><h2 class="title sectiontitle">Rule Groups</h2>
+            
+            <p class="p">A Rule Group is a grouping of related Rules that can be run as a logical group. A
+                Rule Group is usually associated with one or more Triggers. Rule groups can be used
+                in one or more triggers to optimize rules and consistency across different
+                operations. Only the applicable rule criteria are allowed in a rule group based on
+                the source context and the trigger to which the rule group belongs. Then, only the
+                rule actions applicable to those criteria and triggers can be configured. </p>
+
+            <p class="p">Rule groups are configured and applied as parent-child sets related by a rule set.
+                The parent-child set of rule groups and pointing the action to another rule group,
+                rules can be grouped into numerous child rule groups whose actions are run when the
+                correct conditions are met. </p>
+
+        </div>
+
+        <div class="section" id="rule_dictionaries__section_vfq_y1t_4lb"><h2 class="title sectiontitle">Triggers</h2>
+            
+            <p class="p">A trigger is an event that occurs on a system and starts an evaluation. Rule groups
+                are combined within a particular trigger to increase execution speed for the rules
+                that are relevant to the specific event. Each session type has its own trigger
+                allowing for customization based on specific session type attributes. Some triggers
+                run at multiple events and can use and modify attributes that are common between the
+                events. This reduces the duplication of rules for each event type.</p>
+
+            <p class="p">The rules are organized by trigger and are used to separate the rule base. The
+                triggers improve efficiency by grouping common sets of decisions to facilitate
+                configuration. Triggers determine when the associated rule groups are analyzed and
+                provide filtering for the options available when rules are configured. That is,
+                specific rule criteria and action options appear and can be selected for each
+                trigger type.</p>
+
+        </div>
+
+        <div class="section" id="rule_dictionaries__section_w31_t2z_4lb"><h2 class="title sectiontitle">Rule dictionaries</h2>
+            
+            <p class="p">The dictionary files are XML files containing the definition of all the source
+                contexts, usable attributes, result contexts, and action attributes in the active
+                Rule System Version (RSV) instance. They also contain the definitions of the rule
+                sets and the definitions of some rule variables. Each application has its own
+                dictionary just as each application has its own RSV.</p>
+
+            <p class="p">These rule dictionaries are supported in NCC Charging:</p>
+
+            <ul class="ul" id="rule_dictionaries__ul_l4v_mps_4lb">
+                <li class="li">
+                    <p class="p">Charging Common Rule Attribute Dictionary </p>
+
+                    <p class="p">This dictionary lists all of the attributes that the NCC Charging can manage.
+                        The Charging Common Rule Attribute Dictionary defines the attributes that
+                        are available for creating a charging rule, the context in which they are
+                        used, and the direction of the attribute.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Charging Custom Rule Attribute Dictionary</p>
+
+                    <p class="p">This dictionary is configurable. Customers use the
+                        ChargingCustomRuleAttributeDictionary.xml file to add attributes or
+                        customize attributes. The structure of the Charging Custom Rule Attribute
+                        Dictionary is the same as the Charging Common Rule Attribute Dictionary.</p>
+
+                </li>
+
+            </ul>
+
+            <p class="p">For more information on Charging rule dictionaries, see the <cite class="cite">Charging User
+                    Guide</cite>. NCC supports a separate Recharge Attribute Dictionary. For more
+                information, see the <cite class="cite">Recharge User Guide.</cite></p>
+
+        </div>
+
+        <div class="section" id="rule_dictionaries__section_zqf_kbt_4lb"><h2 class="title sectiontitle">Conditions and actions</h2>
+            
+            <p class="p">NCC provides a set of supported attributes in the system’s application-specific rule
+                dictionaries, along with the ability to add other attributes that might have been
+                created by customers or other vendors in custom dictionaries, which feed the
+                auto-complete functionality when composing the rules.</p>
+
+            <div class="p">For rule editor provisioning, the Triggers, Rule Groups and the Rules are configured
+                by using the rule editor that is available on the Rule System Version. The rule
+                editor window that is part of each selection box requires the full rule syntax
+                (if/then) statement as this figure shows. <div class="fig fignone" id="rule_dictionaries__fig_vvt_mv5_cmb"><span class="figcap"><span class="fig--title-label">Figure: </span>Rule syntax in rule editor</span>
+                    
+                    <img class="image imagecenter break" id="rule_dictionaries__image_wvt_mv5_cmb" src="images/cnf_overview_rule-syntax-in-rule-editor.gif" height="180" width="289" />
+                </div>
+
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The example syntax in this figure is shown for illustration purposes only and
+                    should not be used. The exact rule syntax can be found in the <cite class="cite">Charging
+                        User Guide</cite>.</div>
+</div>
+
+            <p class="p">All attributes are defined in rule attribute dictionaries using XML. Rules are
+                constructed in a simple format whereby the conditions result in an action.</p>
+
+            <p class="p">There are two types of attributes, Criteria and Action. A Criteria Attribute is used
+                in conditions. An Action Attribute is used in results. Condition criteria
+                definitions include a source context and attribute. Action attribute definitions
+                include a result context and action attribute. </p>
+
+            <div class="p">This figure shows the rule authoring process. <div class="fig fignone" id="rule_dictionaries__fig_vbr_gv5_cmb"><span class="figcap"><span class="fig--title-label">Figure: </span>Rule authoring process</span>
+                    
+                    <img class="image imagecenter break" id="rule_dictionaries__image_wbr_gv5_cmb" src="images/cnf_overview_rule-authoring-process.GIF" height="314" width="430" />
+                </div>
+</div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Bulk re-home script" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="bulk_re_home" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Bulk re-home script</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="bulk_re_home">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Bulk re-home script</h1>
+<div class="body conbody">
+        <div class="section"><h2 class="title sectiontitle">Description</h2>
+            
+            <p class="p">The Bulk Re-home script is used to re-home devices (profiles) in bulk from one ME
+                subsystem to another within the same or different geographic region. This script
+                uses the same API to re-home a single device, only in bulk. This script maps the
+                query builder inputs to form HTTP requests and send them in parallel to the SM
+                system and get the response back. The requests are broken into batches and processed
+                in parallel. Then, the re-homing call is evaluated by this script to see if it was
+                successful or not by using the resilience framework. The resilience framework is
+                responsible for managing all processes and creating a batch for each status (in
+                progress, success, failed, canceled, timeout). This script also supports the
+                rollback, retry, stop, and continue mechanism.</p>
+
+            <p class="p">The script is located in the <span class="ph filepath">/opt/tpa/bin</span> directory of the SM
+                admincli pod. You can run it from any directory on the admincli pod of the SM
+                system.</p>
+
+        </div>
+
+        <div class="section" id="bulk_re_home__section_g3b_d2m_cmb"><h2 class="title sectiontitle">Syntax</h2>
+            
+            <div class="p">
+                <pre class="pre codeblock"><code>rehome [-h] -d DATA_DIR [-r] [-s] [-a] [-t THREADS] [-l LOGLEVEL]</code></pre>
+            </div>
+
+            <div class="p">
+                <table cellpadding="4" cellspacing="0" summary="" id="bulk_re_home__table_kmm_45q_cmb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%" /><col style="width:66.66666666666666%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d5036e65">Option</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d5036e68">Description</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e65 "><code class="ph codeph">No arguments</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e68 ">Displays usage/help information.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e65 "><code class="ph codeph">-h or -?</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e68 ">Displays usage/help information.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e65 "><code class="ph codeph">-d DATA_DIR, --data_dir DATA_DIR</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e68 ">The data source folder containing the input files used to
+                                    ingest the input data.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e65 "><code class="ph codeph">-r, --rollback</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e68 ">Rollback successfully executed re-home APIs.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e65 "><code class="ph codeph">-s, --statistics</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e68 ">Display script statistics.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e65 "><code class="ph codeph">-a, --abort</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e68 ">Stop the running re-home script.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e65 "><code class="ph codeph">-t THREADS, --threads THREADS</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e68 ">The number of threads to be used for parallel request
+                                    execution.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e65 "><code class="ph codeph">-l LOGLEVEL, --logLevel LOGLEVEL</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d5036e68 ">Determines the logging mode. The valid values are:<ul class="ul">
+                                        <li class="li"><code class="ph codeph">ERROR</code></li>
+
+                                        <li class="li"><code class="ph codeph">WARNING</code></li>
+
+                                        <li class="li"><code class="ph codeph">INFO</code></li>
+
+                                        <li class="li"><code class="ph codeph">DEBUG</code></li>
+
+                                        <li class="li"><code class="ph codeph">CRITICAL</code></li>
+
+                                    </ul>
+<p class="p">The default value is
+                                    <code class="ph codeph">WARNING</code>.</p>
+</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Configuration details</h2>
+            
+            <p class="p">You must configure these files in the DATA_DIR directory.</p>
+
+            <div class="p"><span class="ph filepath">config.yaml</span>:
+                <pre class="pre codeblock language-yml"><code>threads: &lt;3&gt;
+request:
+    protocol: http://
+    sm_fqdn: &lt;SM_REST_IP&gt;:&lt;SM_REST_PORT&gt;/&lt;sm_fqdn&gt;
+    username: smadmin
+    password: &lt;base64 encoded password&gt;
+    api_timeout: 10</code></pre></div>
+
+            <div class="p"><span class="ph filepath">rehome.json</span>:
+                <pre class="pre codeblock language-json"><code>{
+    "customData":{
+        "entry" : [
+            {
+                "key": "IMSGROUPID",
+                "value": {
+                    "type":"STRING",
+                    "value":"&lt;value1&gt;"
+                }
+            }
+        ]
+    },
+    "includeSessionData":true,
+    "targetMEName": "&lt;value2&gt;",
+    "entityType":"Device"
+}</code></pre></div>
+
+            <div class="p"><span class="ph filepath">rollback.json</span>:
+                <pre class="pre codeblock language-json"><code>{
+    "customData":{
+        "entry" : [
+            {
+                "key": "IMSGROUPID",
+                "value": {
+                    "type":"STRING",
+                    "value":"&lt;original_value&gt;"
+                }
+            }
+        ]
+    },
+    "includeSessionData":true,
+    "entityType":"Device"
+}</code></pre></div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Logs</h2>
+            
+            <div class="p">
+                <ul class="ul" id="bulk_re_home__ul_sjg_r2n_swb">
+                    <li class="li">Logs are generated in the provided <span class="ph filepath">DATA_DIR</span> directory
+                        with a default level of <code class="ph codeph">WARNING</code>.</li>
+
+                    <li class="li">The log file (<span class="ph filepath">rehome.log</span>) has a maximum size of 25MB.
+                        Once the maximum is reached the file is rolled and the backup count is 99
+                        files maximum.</li>
+
+                    <li class="li">Logging is presented in this format: %(asctime)s %(levelname)s:
+                        %(filename)s:%(lineno)s: %(message)s<ul class="ul" id="bulk_re_home__ul_tjg_r2n_swb">
+                            <li class="li">For example, <code class="ph codeph">2023-01-23 13:07:40,690 DEBUG:
+                                    FileNormalizer.py:14: File Normalization
+                                Initialized</code></li>
+
+                        </ul>
+</li>
+
+                    <li class="li">These are the logging modes:<ul class="ul" id="bulk_re_home__ul_ujg_r2n_swb">
+                            <li class="li">DEBUG - Covers the repeated step's execution.</li>
+
+                            <li class="li">INFO - Message for major execution result for each device, process
+                                started/stopped, statistics presentation.</li>
+
+                            <li class="li">WARNING - Execution log of status API for unknown records.</li>
+
+                            <li class="li">ERROR - Validation errors and other error scenarios.</li>
+
+                            <li class="li">CRITICAL - Only for retry attempt exhausted.</li>
+
+                        </ul>
+</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Statistics</h2>
+            
+            <div class="p">This is the file structure for statistics: <pre class="pre codeblock"><code>DATA_DIR
+|-data
+|    |-0_dump.json
+|    |-1_dump.json
+|    |-...
+|    |-...
+|    |-...
+|    `-n_dump.json
+|-config.yaml
+|-rehome.json
+|-rollback.json
+|-rehome.pid
+|-rehome.log
+`-run
+    |-0_dump.success and/or 0_dump.&lt;attemptNo&gt;.fail and/or 0_dump.&lt;attemptNo&gt;.unknown
+    |-0_dump.&lt;attemptNo&gt;.&lt;q/inprogress/done&gt; and/or 0_dump.&lt;attemptNo&gt;.skip
+      &lt;and&gt;
+    |-0_dump.rollback.success and/or 0_dump.rollback.&lt;attemptNo&gt;.fail and/or 0_dump.rollback.&lt;attemptNo&gt;.unknown
+    |-0_dump.rollback.&lt;attemptNo&gt;.&lt;q/inprogress/done&gt; and/or 0_dump.rollback.&lt;attemptNo&gt;.skip
+    |-...
+    |-...
+    |-...
+    |-n_dump.success and/or n_dump.&lt;attemptNo&gt;.fail and/or n_dump.&lt;attemptNo&gt;.unknown
+    |-n_dump.&lt;attemptNo&gt;.&lt;q/inprogress/done&gt; and/or n_dump.&lt;attemptNo&gt;.skip
+      &lt;and&gt;
+    |-n_dump.rollback.success and/or n_dump.rollback.&lt;attemptNo&gt;.fail and/or n_dump.rollback.&lt;attemptNo&gt;.unknown
+    `-n_dump.rollback.&lt;attemptNo&gt;.&lt;q/inprogress/done&gt; and/or n_dump.rollback.&lt;attemptNo&gt;.skip</code></pre></div>
+
+            <div class="p">Console statistics are printed every few seconds while the script is running.
+                Re-running the script only prints the statistics one time.
+                <pre class="pre codeblock"><code>{
+  "time_diff": "30",
+  "state": "&lt;Running-Spooling/Running-Batch/Stopped/Finished&gt;",
+  "phase": "&lt;Rehome/Rehome-Retry/Rollback/Rollback-Retry&gt;",
+  "rehome": {
+    "total": 45,
+    "processed": 45,
+    "success": 5,
+    "failure": 10,
+    "unknown": 0,
+    "skip": 30
+  },
+  "rollback": {
+    "total": 5,
+    "processed": 5,
+    "success": 5,
+    "failure": 0,
+    "unknown": 0
+  }
+}</code></pre></div>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The data presented is for reference only and varies with actual statistics.</div>
+
+            <ol class="ol" id="bulk_re_home__ol_izd_lgn_swb">
+                <li class="li">The script completes without Interruption:<ol class="ol" type="a" id="bulk_re_home__ol_jzd_lgn_swb">
+                        <li class="li">100 .json files in DATA_DIR/data folder, each file having 1000 records
+                            (eg. 0_dump.json, 1_dump.json, and so on.).</li>
+
+                        <li class="li">After Normalization - DATA_DIR/run folder, 100 .q files will be
+                            generated, each having 1000 records (eg. 0_dump.1.q, 1_dump.1.q, and so
+                            on.).</li>
+
+                        <li class="li">Once Process Start - DATA_DIR/run folder, any one .q file will be picked
+                            and extension will be renamed to .inprogress (eg. 0_dump.1.q to
+                            0_dump.1.inprogress).</li>
+
+                        <li class="li">Based on the API Result - DATA_DIR/run folder, .timeout, .fail and
+                            .success file will be generated (eg. 0_dump.1.timeout, 0_dump.1.fail and
+                            0_dump.success) (Note: for .success file you do not have any attempt
+                            No.)</li>
+
+                        <li class="li">After All Timeout/Unknown Records processed - DATA_DIR/run folder,
+                            .inprogress file is renamed to .done (eg. 0_dump.1.inprogress to
+                            0_dump.1.done).</li>
+
+                    </ol>
+</li>
+
+                <li class="li">The script started again after completion:<ol class="ol" type="a" id="bulk_re_home__ol_kzd_lgn_swb">
+                        <li class="li">.inprogress or .q file is not present in DATA_DIR/run folder.</li>
+
+                        <li class="li">&lt;filename&gt;.&lt;attemptNo&gt;.fail files are presents and are renamed to
+                            &lt;filename&gt;.(&lt;attemptNo&gt;+1).q files.</li>
+
+                        <li class="li">Step 1.c, 1.d and 1.e are run.</li>
+
+                    </ol>
+</li>
+
+                <li class="li">The script was interrupted and started again:<ol class="ol" type="a" id="bulk_re_home__ol_lzd_lgn_swb">
+                        <li class="li">One or more .q and .inprogress files are present in DATA_DIR/run
+                            folder.</li>
+
+                        <li class="li">.inprogress file records are checked first and execute API for
+                            unprocessed records only with step 1.d and 1.e.</li>
+
+                        <li class="li">Step 1.c, 1.d and 1.e are run.</li>
+
+                    </ol>
+</li>
+
+                <li class="li">Rollback started after Re-home script completes:<ol class="ol" type="a" id="bulk_re_home__ol_mzd_lgn_swb">
+                        <li class="li">One or more .success files are present in DATA_DIR/run folder.</li>
+
+                        <li class="li">&lt;filename&gt;.success files are copied to
+                            &lt;filename&gt;.rollback.1.q.</li>
+
+                        <li class="li">Step 1.c, 1.d and 1.e are run.</li>
+
+                    </ol>
+</li>
+
+                <li class="li">Rollback started after Re-home script interruption:<ol class="ol" type="a" id="bulk_re_home__ol_nzd_lgn_swb">
+                        <li class="li">One or more .q and .inprogress files are present in DATA_DIR/run
+                            folder.</li>
+
+                        <li class="li">.q files is moved to .cancel file.</li>
+
+                        <li class="li">Processed records from .inprogress file are moved to .done while
+                            unprocessed records are moved to .skip file</li>
+
+                        <li class="li">Step 4.b and 4.c are run.</li>
+
+                    </ol>
+</li>
+
+                <li class="li">Rollback was interrupted and started again:<ol class="ol" type="a" id="bulk_re_home__ol_ozd_lgn_swb">
+                        <li class="li">One or more .q and .inprogress files are present in DATA_DIR/run
+                            folder.</li>
+
+                        <li class="li">.inprogress file records are checked first and execute API for
+                            unprocessed records only with step 1.d and 1.e.</li>
+
+                        <li class="li">Step 1.c, 1.d and 1.e are run.</li>
+
+                    </ol>
+</li>
+
+                <li class="li">Rollback started again after completion:<ol class="ol" type="a" id="bulk_re_home__ol_pzd_lgn_swb">
+                        <li class="li">.inprogress or .q file are not be present in DATA_DIR/run folder.</li>
+
+                        <li class="li">&lt;filename&gt;.rollback.&lt;attemptNo&gt;.fail files are present and renamed
+                            to &lt;filename&gt;.rollback.(&lt;attemptNo&gt;+1).q files.</li>
+
+                        <li class="li">Step 1.c, 1.d and 1.e are run.</li>
+
+                    </ol>
+</li>
+
+            </ol>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Important points for rollback</h2>
+            
+            <p class="p">Based on the failure causes, rollback is chosen as a final decision, which can be
+                immediate or after a day. Even if you want to rehome from the previous data dump,
+                you can do so from distinct directories because it will be like starting a fresh
+                rehoming migration window.</p>
+
+            <p class="p">The above baseline concept is used to determine the chronological order of execution
+                of rehome, retries, and rollback. Retries of rehome/rollback is possible based on
+                files with extension .fail .done, etc. with these commands:</p>
+
+            <ul class="ul" id="bulk_re_home__ul_ffp_dcw_4xb">
+                <li class="li">rehome -d,</li>
+
+                <li class="li">rehome -d (for retry on failures)</li>
+
+                <li class="li">rehome -r,</li>
+
+                <li class="li">rehome -r (for retry on failures)</li>
+
+            </ul>
+
+            <p class="p">Also, the rehome script works on the data available in the
+                    <span class="ph filepath">/rehomingActivityFolder</span> directory. Rehoming attempts to
+                move data from source to destination ME subsystem. In the event of a rollback, the
+                dump files are modified to move data from the destination ME subsystem to the source
+                ME as a one-way one-time action in a single rehome migration window, ensuring that
+                no data is corrupted.</p>
+
+            <p class="p">It is highly recommended to take data dump again after completing one migration flow,
+                as there may be new devices created on the source ME subsystem that meet the
+                matching criteria. However, if you wish to perform rehoming on old data, follow the
+                procedure in the Bulk re-home script to perform rehoming from the new folder
+                structure.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

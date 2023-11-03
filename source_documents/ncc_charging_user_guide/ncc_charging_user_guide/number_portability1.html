@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="NUMBER_PORTABILITY source context" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="number_portability1" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>NUMBER_PORTABILITY source context</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="number_portability1">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">NUMBER_PORTABILITY source context</h1>
+<div class="body conbody">
+        <div class="p">
+            <table cellpadding="4" cellspacing="0" summary="" id="number_portability1__table_nps_sdx_v4b" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>NUMBER_PORTABILITY source context</span></caption><colgroup><col style="width:23.148148148148152%" /><col style="width:43.75000000000001%" /><col style="width:33.101851851851855%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d395572e44">Attribute name</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d395572e47">Trigger</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d395572e50">Description</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e44 ">External-MNP-Query</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">
+                                <p class="p">IMS_CALL_ESTABLISHMENT</p>
+
+                                <p class="p">MMS_CALL_ESTABLISHMENT</p>
+
+                                <p class="p">SMS_CALL_ESTABLISHMENT</p>
+
+                                <p class="p">GY_PRE_PROCESSING</p>
+
+                                <p class="p">GY_CREDIT_REQUEST</p>
+
+                                <p class="p">GY_POST_PROCESSING</p>
+
+                                <p class="p">RESOURCE_PRE_SORTING </p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e50 ">This attribute queries external MNP server through the REST API
+                                to get the routing number for a specified B-number.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" rowspan="18" style="vertical-align:top;" headers="d395572e44 ">Get-Record</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">IMS_CALL_ESTABLISHMENT</td>
+
+                            <td class="entry cellrowborder" rowspan="18" style="vertical-align:top;" headers="d395572e50 ">This attribute returns the map entry fetched from
+                                the database.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">IMS_CALL_MODIFICATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">IMS_CALL_TERMINATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">SMS_CALL_ESTABLISHMENT</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">SMS_CALL_TERMINATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">MMS_CALL_ESTABLISHMENT</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">MMS_CALL_TERMINATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">GY_PRE_PROCESSING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">GY_SESSION_ESTABLISHMENT</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">GY_SESSION_MODIFICATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">GY_SESSION_TERMINATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">TARIFF</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">RATING_POST_PROCESSING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">APPLICABILITY</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">RESOURCE_PRE_SORTING </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" rowspan="18" style="vertical-align:top;" headers="d395572e44 ">Get-Value</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">IMS_CALL_ESTABLISHMENT</td>
+
+                            <td class="entry cellrowborder" rowspan="18" style="vertical-align:top;" headers="d395572e50 ">This attribute provides id for the number
+                                portability entry table.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">IMS_CALL_MODIFICATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">IMS_CALL_TERMINATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">SMS_CALL_ESTABLISHMENT</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">SMS_CALL_TERMINATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">MMS_CALL_ESTABLISHMENT</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">MMS_CALL_TERMINATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">GY_PRE_PROCESSING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">GY_SESSION_ESTABLISHMENT</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">GY_SESSION_MODIFICATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">GY_SESSION_TERMINATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">TARIFF</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">RATING_POST_PROCESSING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">APPLICABILITY</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">RESOURCE_PRE_SORTING </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" rowspan="18" style="vertical-align:top;" headers="d395572e44 ">Subscriber-Is-Present</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">IMS_CALL_ESTABLISHMENT</td>
+
+                            <td class="entry cellrowborder" rowspan="18" style="vertical-align:top;" headers="d395572e50 ">
+                                <p class="p">This attribute returns Boolean values for whether the subscriber
+                                    is present in NCC. The attribute has the following arguments: </p>
+
+                                <ul class="ul" id="number_portability1__ul_isz_tvq_vqb">
+                                    <li class="li">CalledParty_STRING: A valid IMSI/MSISDN (E.164)/NAI/SIP URI
+                                        string for the device.</li>
+
+                                    <li class="li">IndexOfType_ENUM: Indicates the type for the value provided:
+                                        IMSI, MSISDN, NAI, SIP URI, etc.</li>
+
+                                </ul>
+
+                                <p class="p">If the value belongs to a saved device it returns
+                                        <var class="keyword varname">true</var>. Otherwise, it returns
+                                        <var class="keyword varname">false</var>.</p>
+
+                                <div class="note" id="number_portability1__note_jhg_tng_ptb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                                    <ul class="ul" id="number_portability1__ul_fxm_b2s_vqb">
+                                        <li class="li">NR is also supported. </li>
+
+                                        <li class="li">GPSI is mapped to E164. If GSPI is needed, operator can
+                                            provide it without providing type. </li>
+
+                                        <li class="li">SUPI is mapped to IMSI or NAI (depending on its form).
+                                            So, if SUPI is required, either IMSI or NAI format is
+                                            used.</li>
+
+                                    </ul>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">IMS_CALL_MODIFICATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">IMS_CALL_TERMINATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">SMS_CALL_ESTABLISHMENT</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">SMS_CALL_TERMINATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">MMS_CALL_ESTABLISHMENT</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">MMS_CALL_TERMINATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">NCHF_CHARGING_CALL_ESTABLISHMENT</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">NCHF_CHARGING_CALL_MODIFICATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">NCHF_CHARGING_CALL_TERMINATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">GY_PRE_PROCESSING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">GY_SESSION_ESTABLISHMENT</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">GY_SESSION_MODIFICATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">GY_SESSION_TERMINATION</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">TARIFF</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">RATING_POST_PROCESSING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">APPLICABILITY</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d395572e47 ">RESOURCE_PRE_SORTING </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

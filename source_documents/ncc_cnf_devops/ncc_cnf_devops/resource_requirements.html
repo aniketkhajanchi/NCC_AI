@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Resource requirements" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="resource_requirements" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Resource requirements</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="resource_requirements">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Resource requirements</h1>
+<div class="body conbody">
+        <div class="section" id="resource_requirements__section_dwz_yjk_tnb"><h2 class="title sectiontitle">CPU and memory</h2>
+            
+            <p class="p">The following table presents recommended resource requirements for a single CCTF
+                instance.</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="resource_requirements__table_ux1_fkk_tnb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>CPU and memory recommendations</span></caption><colgroup><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d13971e55">PODs</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d13971e58">CPU Request</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d13971e61">CPU Limit</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d13971e64">Memory Request</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d13971e67">Memory Limit</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e55 ">CCTF Pod</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e58 ">1</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e61 ">1</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e64 ">1Gi</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e67 ">2Gi</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e55 ">Jenkins Master Pod</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e58 ">2</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e61 ">2</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e64 ">1Gi</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e67 ">2Gi</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e55 ">DB Pod</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e58 ">1</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e61 ">1</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e64 ">1Gi</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e67 ">1Gi</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="5" style="vertical-align:top;" headers="d13971e55 d13971e58 d13971e61 d13971e64 d13971e67 ">Jenkins Slave Pod</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e55 ">cctftool </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e58 ">2000m</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e61 ">2000m</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e64 ">1Gi</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e67 ">4Gi</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e55 ">jnlp</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e58 ">1000m</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e61 ">1000m</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e64 ">512Mi</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e67 ">512Mi</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e55 ">exec-env</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e58 ">2000m</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e61 ">2000m</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e64 ">1Gi</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e67 ">16Gi</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <p class="p">For these resources:</p>
+
+            <ul class="ul" id="resource_requirements__ul_jdr_xkk_tnb">
+                <li class="li">CPU/Memory Request - pod is scheduled/started if there are available resources
+                    in the host.</li>
+
+                <li class="li">CPU/Memory Limit - pod is destroyed if it exceeds the limit. Normally, it can be
+                    treated as a safeguard in case of a memory/CPU issue. No need to pre-allocate
+                    all of those resources.</li>
+
+                <li class="li">Jenkins Slave Pod consists of three containers (cctftool, jnlp and exec-env).
+                    The table presents the resource requirements for each container
+                        separately.<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> In this CCTF version, CPU requests and limits for these
+                        Jenkins Slave Pod containers need to be presented in the given format (for
+                        example, 2000m).</div>
+</li>
+
+                <li class="li">For CPU, 1000m equals 1 CPU core.</li>
+
+                <li class="li">All of the values specified in <a class="xref" href="#resource_requirements__table_ux1_fkk_tnb">CPU and memory recommendations</a> can be set
+                    through a <code class="ph codeph">values.yaml</code> or <code class="ph codeph">parameters.yaml</code> file
+                    in a <code class="ph codeph">spstests-&lt;version&gt;.tar.gz</code> test package.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="section" id="resource_requirements__section_bms_fmk_tnb"><h2 class="title sectiontitle">Storage</h2>
+            
+            <p class="p">By default, a single CCTF instance has the following storage requirements.</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="resource_requirements__table_h4v_4mk_tnb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Storage requirements</span></caption><colgroup><col style="width:16.666666666666664%" /><col style="width:16.666666666666664%" /><col style="width:66.66666666666666%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d13971e254">POD</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d13971e257">Storage(PVC)</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d13971e260">Data Stored</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d13971e254 ">CCTF</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e257 ">160G*</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e260 ">
+                                <p class="p">All test packages and test logs. Can be set by:</p>
+
+                                <p class="p"><code class="ph codeph">--set storageSize='xGi'</code></p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e257 ">2G</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e260 ">
+                                <p class="p">Backup &amp; restore data of Jenkins master. Default is the same
+                                    as Jenkins master PVC. Can be set by:</p>
+
+                                <p class="p"><code class="ph codeph">--set jenkins.Persistence.Size='xGi'</code>, or
+                                        <code class="ph codeph">--set cbur.storageSize='xGi'</code> if the user
+                                    wants a different size from Jenkins master.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e254 ">Jenkins master</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e257 ">2G</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e260 ">
+                                <p class="p">Jenkins home. Can be set by:</p>
+
+                                <p class="p"><code class="ph codeph">--set jenkins.Persistence.Size='xGi'</code></p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e254 ">DB</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e257 ">2G + 2G</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d13971e260 ">
+                                <p class="p">Database table for <code class="ph codeph">test/lab/job/project/usr</code>. Can
+                                    be set by:</p>
+
+                                <p class="p"><code class="ph codeph">--set
+                                        cmdbmariadb.mariadb.persistence.size='xGi',cmdbmariadb.mariadb.persistence.backup.size='xGi'</code></p>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <p class="p">*The minimum storage size for all test packages and test logs is 10G. The recommended
+                storage size is 160G. One test run generates about 1G logs.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>DevOps Guide • P556766-DN1000055058-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="SS7 value definitions for a custom YAML file" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="ss7_definitions_for_an_overrides_yaml_file" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>SS7 value definitions for a custom YAML file</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="ss7_definitions_for_an_overrides_yaml_file">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">SS7 value definitions for a custom YAML file</h1>
+<div class="body conbody">
+        <p class="p">This section describes how to define the SS7 Helm values that you need to override in the
+            SS7 custom YAML file.</p>
+
+        <p class="p">These are the definitions for the <code class="ph codeph">ss7fep0</code>, <code class="ph codeph">ss7fep1</code>,
+                <code class="ph codeph">ss7fep2</code>, <code class="ph codeph">ss7fep3</code>, <code class="ph codeph">ss7cmdb</code>,
+                <code class="ph codeph">ss7dh</code>, <code class="ph codeph">ss7psmf</code>, and <code class="ph codeph">ss7soap</code> Helm
+            charts.</p>
+
+        <pre class="pre codeblock"><code>ss7fep0:
+  primarySCTPIPPool: "&lt;P-IP&gt;"
+  secondarySCTPIPPool: "&lt;S-IP&gt;"
+  custom:
+  deployment:
+    annotations:
+	k8s.v1.cni.cncf.io/networks: '[{"name": "ipvlan-conf1","ips": ["&lt;IP&gt;/&lt;SUBNETMASK&gt;"],"interface": "macvlan1"},{"name": "ipvlan-conf2","ips": ["&lt;IP&gt;/&lt;SUBNETMASK&gt;"],"interface": "macvlan2"}]'
+</code></pre>
+        <pre class="pre codeblock"><code>ss7fep1:
+  primarySCTPIPPool: "&lt;P-IP&gt;"
+  secondarySCTPIPPool: "&lt;S-IP&gt;"
+  custom:
+    deployment:
+      annotations:
+	  k8s.v1.cni.cncf.io/networks: '[{"name": "ipvlan-conf1","ips": ["&lt;IP&gt;/&lt;SUBNETMASK&gt;"],"interface": "macvlan1"},{"name": "ipvlan-conf2","ips": ["&lt;IP&gt;/&lt;SUBNETMASK&gt;"],"interface": "macvlan2"}]'
+</code></pre>
+        <pre class="pre codeblock"><code>ss7fep2:
+  primarySCTPIPPool: "&lt;P-IP&gt;"
+  secondarySCTPIPPool: "&lt;S-IP&gt;"
+  custom:
+    deployment:
+      annotations:
+	  k8s.v1.cni.cncf.io/networks: '[{"name": "ipvlan-conf1","ips": ["&lt;IP&gt;/&lt;SUBNETMASK&gt;"],"interface": "macvlan1"},{"name": "ipvlan-conf2","ips": ["&lt;IP&gt;/&lt;SUBNETMASK&gt;"],"interface": "macvlan2"}]'
+</code></pre>
+        <pre class="pre codeblock"><code>ss7fep3:
+  primarySCTPIPPool: "&lt;P-IP&gt;"
+  secondarySCTPIPPool: "&lt;S-IP&gt;"
+  custom:
+    deployment:
+      annotations:
+	  k8s.v1.cni.cncf.io/networks: '[{"name": "ipvlan-conf1","ips": ["&lt;IP&gt;/&lt;SUBNETMASK&gt;"],"interface": "macvlan1"},{"name": "ipvlan-conf2","ips": ["&lt;IP&gt;/&lt;SUBNETMASK&gt;"],"interface": "macvlan2"}]'
+</code></pre>
+        <p class="p">where:</p>
+
+        <ul class="ul" id="ss7_definitions_for_an_overrides_yaml_file__ul_vns_l3v_1rb">
+            <li class="li">
+                <p class="p"><code class="ph codeph">primarySCTPIPPool</code> provides the IP address for the primary
+                    external interface for the FEP pod. This IP address is a pre-created virtual IP
+                    address and the same IP must be used to create the external interface via Multus
+                    network-attachment-definition (that is, NAD).</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p"><code class="ph codeph">secondarySCTPIPPool</code> provides the IP address for a secondary
+                    external interface the for FEP pod. This IP address is a pre-created virtual IP
+                    address and the same IP must be used to create the external interface via Multus
+                    network-attachment-definition (that is, NAD).</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p"><code class="ph codeph">name</code> is the name of the pre-created
+                    network-attachment-definition.</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">Each <code class="ph codeph">IP</code> is the pre-created virtual IP address that are to be
+                    allocated to pod to create the external interface. The provided IP must be
+                    corresponding to NAD.</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p"><code class="ph codeph">interface</code> is the interface name to which provided IP must be
+                    allocated. The value must be <code class="ph codeph">macvlan1</code> and
+                        <code class="ph codeph">macvlan2</code> only. For information on how to choose IPs that
+                    are added as interface in a pod, see section <a class="xref" href="ip_configuration_for_multus.html">Finding IP addresses to configure in Multus</a>.</p>
+
+            </li>
+
+        </ul>
+
+        <p class="p">This is the definition for the <code class="ph codeph">ss7em</code> Helm chart.</p>
+
+        <pre class="pre codeblock"><code>ss7em:
+  primarySCTPIPPool: ["&lt;P-IP1&gt;","&lt;P-IP2&gt;","&lt;P-IP3&gt;","&lt;P-IP4&gt;"]
+  secondarySCTPIPPool: ["&lt;S-IP1&gt;","&lt;S-IP2&gt;","&lt;S-IP3&gt;","&lt;S-IP4&gt;"]
+</code></pre>
+        <p class="p">where:</p>
+
+        <p class="p"><code class="ph codeph">primarySCTPIPPool</code> and <code class="ph codeph">secondarySCTPIPPool</code> are the same
+            pools of IPs that are passed in <code class="ph codeph">ss7fep</code> helms, with the
+                <code class="ph codeph">primarySCTPIPPool</code> and <code class="ph codeph">secondarySCTPIPPool</code>
+            parameters.</p>
+
+        <p class="p">The IPs must be passed to the <code class="ph codeph">ss7em</code> Helm chart in this array format. </p>
+
+        <pre class="pre codeblock"><code>secondarySCTPIPPool: [“index-0”,”index-1”,”index-2”,”index-3”]</code></pre>
+        <p class="p">where:</p>
+
+        <ul class="ul" id="ss7_definitions_for_an_overrides_yaml_file__ul_nmz_1jv_1rb">
+            <li class="li"><code class="ph codeph">index-0</code> is the IP provided in <code class="ph codeph">secondarySCTPIPPool</code>
+                of <code class="ph codeph">ss7fep0</code>.</li>
+
+            <li class="li"><code class="ph codeph">index-1</code> is the IP provided in <code class="ph codeph">secondarySCTPIPPool</code>
+                of <code class="ph codeph">ss7fep1</code>.</li>
+
+            <li class="li"><code class="ph codeph">index-2</code> is the IP provided in <code class="ph codeph">secondarySCTPIPPool</code>
+                of <code class="ph codeph">ss7fep2</code>.</li>
+
+            <li class="li"><code class="ph codeph">index-3</code> is the IP provided in <code class="ph codeph">secondarySCTPIPPool</code>
+                of <code class="ph codeph">ss7fep3</code>.</li>
+
+        </ul>
+
+        <p class="p">Example:</p>
+
+        <pre class="pre codeblock"><code>primarySCTPIPPool: ["10.11.148.154","10.11.148.153"]
+secondarySCTPIPPool: ["10.11.148.152","10.11.148.151"]
+</code></pre>
+        <div class="p">where:<ul class="ul" id="ss7_definitions_for_an_overrides_yaml_file__ul_aww_gjv_1rb">
+                <li class="li"><code class="ph codeph">["10.11.148.154","10.11.148.153"]</code> are the IPs defined in
+                        <code class="ph codeph">primarySCTPIPPool</code>.</li>
+
+                <li class="li"><code class="ph codeph">["10.11.148.152","10.11.148.151"]</code> are the IPs defined in
+                        <code class="ph codeph">secondarySCTPIPPool</code>.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Configuring SS7 values for CMDB, DH, PSMF, and SOAP Helm charts</h2>
+            
+            <p class="p">The <code class="ph codeph">ss7cmdb</code> chart does not have the capability to ignore custom
+                annotations, if the <code class="ph codeph">multus</code> flag is set to
+                <code class="ph codeph">false</code>.</p>
+
+            <div class="p">To disable multus set the <code class="ph codeph">multus:enabled</code> value to
+                    <code class="ph codeph">false</code> or leave the custom annotations value blank as shown in
+                this example: <pre class="pre codeblock"><code>custom:
+   pod:
+     annotations: {}</code></pre></div>
+
+            <div class="p">If multus is enabled, you can edit and verify custom annotations.
+                <pre class="pre codeblock"><code>For CMDB:
+custom:
+   pod:
+     annotations: 
+         k8s.v1.cni.cncf.io/networks: &lt;NAD_namespace&gt;/&lt;NAD_name&gt;
+                
+For DH, PSMF, and SOAP:
+custom:
+   deployment:
+     annotations: 
+         k8s.v1.cni.cncf.io/networks: &lt;NAD_namespace&gt;/&lt;NAD_name&gt;</code></pre></div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

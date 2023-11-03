@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="task" />
+<meta name="DC.title" content="Rolling back to a deployment that does not support non-privileged ports" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="rollback_non_privileged_ports" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Rolling back to a deployment that does not support non-privileged ports</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="rollback_non_privileged_ports">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Rolling back to a deployment that does not support non-privileged ports</h1>
+<div class="body taskbody">
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div>
+            <p class="p">If a deployment that uses non-privileged ports has to be rolled back to a previous
+                software version that does not support non-privileged ports, it must first be rolled
+                back to use privileged ports.</p>
+
+        </div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">Update the User and Role Management realms</span>
+                <div class="itemgroup info"><p class="p">If the original Valid Redirect URIs (with privileged ports) were deleted
+                        after transitioning to non-privileged ports, manually update the Valid
+                        Redirect URIs for all of the updated clients in the User and Role Management
+                        realms, to add the same URLs as the existing ones, but without the port
+                        suffix. The same must be done for Web Origins.</p>
+
+                    <p class="p">This is necessary because there is no way to automatically update an existing
+                        User and Role Management realm. For more information on updating User and
+                        Role Management realms, see <a class="xref" href="privileged_ports_to_non_privileged_ports.html">Transitioning from privileged ports to non-privileged ports</a>.</p>
+</div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Perform a Helm rollback to the previous revision (or whichever the revision was
+                    after upgrading using
+                    <code class="ph codeph">incoming-allow-both-outgoing-privileged</code>).</span>
+                <div class="itemgroup info">After the rollback, the system accepts traffic on both privileged and
+                    non-privileged ports. These are the Helm charts to rollback: <ul class="ul">
+                        <li class="li">citm-ingress</li>
+
+                        <li class="li">shared-istio-gateway</li>
+
+                        <li class="li">cist-istio-gateway</li>
+
+                    </ul>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Once all of the systems are rolled back to the previous revision, perform
+                    another helm rollback of each system to the previous revision (or whichever
+                    revision it was before the transition started, which had <code class="ph codeph">HTTP Ports For
+                        External Communication</code> set to <code class="ph codeph">privileged</code>).</span>
+                <div class="itemgroup info">After the rollback, the system issues requests by using privileged ports but
+                    still accepts traffic on both non-privileged ports (for requests coming from
+                    systems not rolled back yet) and privileged ports. These Helm charts that must
+                    be rolled back: <ul class="ul">
+                        <li class="li">chf-resource</li>
+
+                        <li class="li">servicemanager (only for SM systems)</li>
+
+                        <li class="li">kiali</li>
+
+                        <li class="li">cvea</li>
+
+                        <li class="li">servicemanager</li>
+
+                        <li class="li">bssc-ifd</li>
+
+                        <li class="li">calm</li>
+
+                        <li class="li">cnot</li>
+
+                        <li class="li">cpro-grafana</li>
+
+                        <li class="li">cpro</li>
+
+                    </ul>
+
+                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                        <p class="p">(For ME systems) The CGF (DR) chart does not support the
+                                <span class="keyword parmname">reimport_on_upgrade</span> flag during rollback. This
+                            flag is required to re-import the realm when the port number for the
+                            User and Role Management connection is changed. Perform an upgrade of
+                            the CGF (DR) chart, with the overrides generated by setting the <span class="keyword parmname">HTTP
+                                Ports For External Communication</span> value to
+                                <code class="ph codeph">incoming-allow-both-outgoing-privileged</code>.</p>
+
+                        <p class="p">If the dr upgrade is not completed immediately after
+                            the chf-resource upgrade, the dr-ui pod might become unstable (after
+                            losing the connection to User and Role Management because the service
+                            entry changed). The dr-ui pod must be restarted after the dr upgrade by
+                            running a <code class="ph codeph">kubectl scale</code> command to set the replicas for
+                                <span class="keyword parmname">statefulset dr-ui</span> to 0 and then back to 1. This
+                            does not affect CDR processing.</p>
+
+                    </div>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Once all of the systems have been rolled back, perform one last rollback on
+                    each system to the previous revision (or whichever revision it was before the
+                    transition started, which had <code class="ph codeph">HTTP Ports For External
+                        Communication</code> set to <code class="ph codeph">privileged</code>.</span>
+                <div class="itemgroup info">Once a system is rolled back, it will not accept traffic on non-privileged
+                    ports anymore. These Helm charts need to be rolled back: <ul class="ul">
+                        <li class="li">citm-ingress</li>
+
+                        <li class="li">shared-istio-gateway</li>
+
+                        <li class="li">cist-istio-gateway</li>
+
+                    </ul>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Once the deployment has been rolled back to use privileged ports, the Helm
+                    rollback to the previous software version can be performed.</span>
+            </li>
+</ol>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

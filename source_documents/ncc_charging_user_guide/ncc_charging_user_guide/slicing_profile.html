@@ -1,0 +1,932 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Quota Management (Slicing Profile)" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-slicing_profile" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Quota Management (Slicing Profile)</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-slicing_profile">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Quota Management (Slicing Profile)</h1>
+<div class="body conbody">
+  <p class="p">Quota management is the primary object used in the dynamic slicing and it works in
+   centralized mode of rating and charging. When the reservation unit is not provided by PGW, the
+   slice to be reserved is computed either statically or dynamically according to the quota
+   management profile configured.</p>
+
+  <p class="p"> By default, the name of the quota management is <span class="ph filepath">default_profile</span>,
+   provisioned by the user as per the dynamic slicing feature.</p>
+
+  <p class="p">For information on slice reduction, see the <a class="xref" href="slicereduction.html">Slice reduction</a> section.</p>
+
+<div class="section"><h2 class="title sectiontitle">Configuration</h2><p class="p">Log into the SM GUI, and navigate to
+     <span class="ph uicontrol">Charging</span> → ☰ → <span class="ph uicontrol">Catalog Rules</span> → <span class="ph uicontrol">Quota
+     Management</span>. To define a new quota management, click <img class="image" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__image_h3r_nbx_2qb" src="../images/hybrid_gui/new_button.png" height="54" width="104" /> to add the basic details as described in the given table.</p>
+<table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__table_p4p_1dq_sqb" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters for quota management</span></caption><colgroup><col style="width:17.146433041301627%" /><col style="width:56.570713391739666%" /><col style="width:12.51564455569462%" /><col style="width:13.76720901126408%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e79">Parameter</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e82">Description</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e85">Options</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e88">Mandatory/Optional</th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e79 ">Profile Name</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e82 ">This parameter indicates a unique name to identify the quota management
+        profile.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e85 ">String</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e88 ">Mandatory</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e79 ">Slice Size (Bytes)</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e82 ">
+        <p class="p">This parameter indicates the static size of slice in bytes.</p>
+
+        <p class="p">The value of this parameter is always greater than zero.</p>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e85 ">Long</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e88 ">Mandatory</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e79 ">Quota Holding Time (s)</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e82 ">
+        <p class="p">This parameter indicates the value of the quota holding time in seconds and controls the
+         time the session remains in the idle state in the network. </p>
+
+        <p class="p">The value of this parameter is always greater than zero.</p>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e85 ">Long</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e88 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e79 ">Validity Time (s)</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e82 ">
+        <p class="p">This parameter indicates the value of the validity time in seconds, controls the time the
+         quota remains active in the network, and controls the effective allocation of resources. </p>
+
+        <p class="p">The value of this parameter is always greater than zero.</p>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e85 ">Long</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e88 ">Mandatory</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e79 ">Ignore Reserved Quota</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e82 ">
+        <p class="p">This parameter determines whether reservation quota needs to be considered in slice
+         reduction logic or not. It can have one of the following values:</p>
+
+        <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__ul_q4p_1dq_sqb">
+         <li class="li">
+          <p class="p">
+           <var class="keyword varname">No:</var> Reserved quota is not ignored during slice allocation or reduction
+           mechanism.</p>
+
+         </li>
+
+         <li class="li">
+          <p class="p">
+           <var class="keyword varname">Counter</var>: For <em class="ph i">No-Charge</em>, the reserved quota is ignored and
+           during slice allocation or reduction, the current value is considered.</p>
+
+         </li>
+
+        </ul>
+
+        <p class="p">Default value of this parameter is <var class="keyword varname">No</var>.</p>
+
+        <div class="p">
+         <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Counter value is only applicable for <em class="ph i">No-Charge</em>. This logic is not applicable
+          when quota is allocated from bucket or main balance charging as they are not generally
+          allowed to go negative.</div>
+
+        </div>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e85 ">Drop-down list</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e88 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e79 ">Security Domain</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e82 ">This parameter indicates the security domain associated with the quota management
+        profile. Select the required security domain from the predefined security domains in the
+        drop-down list.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e85 ">Drop-down list</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e88 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d219499e79 d219499e82 d219499e85 d219499e88 ">
+        <span class="ph uicontrol">Slicing Configuration</span>
+       </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d219499e79 ">
+        <span class="ph uicontrol">Default Actions</span>
+       </td>
+
+       <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d219499e82 d219499e85 d219499e88 "> Contains the pre-configured and pre-provisioned
+        values:</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d219499e82 d219499e85 d219499e88 ">
+        <img class="image" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__image_r4p_1dq_sqb" src="../images/img9yz-09126-ug01-pczza-sp1-default_actions_slicing_profile_default.png" />
+       </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d219499e79 d219499e82 d219499e85 d219499e88 ">Click <span class="ph uicontrol">NEW RULE</span> to define one or
+        more rules. To add details for <em class="ph i">DYNAMIC_SLICE</em>, press
+         <span class="ph uicontrol">CTRL+spacebar</span>, select <em class="ph i">DYNAMIC_SLICE</em> to get the parameters as
+        described in <a class="xref" href="#id9yz-09126-ug01-pczza-sp1-slicing_profile__table_uy2_11q_sqb1">Attributes available for DYNAMIC_SLICE result context</a>.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e79 ">Rule Name</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e82 ">This parameter indicates the name of the condition based customized rule.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e85 ">String</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e88 ">Optional</td>
+
+      </tr>
+
+     </tbody>
+</table>
+<strong class="ph b">Setting a default quota management:</strong><p class="p">To set a quota management as
+    default, click <img class="image" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__image_izd_wtf_wrb" src="../images/gear_qmf.PNG" height="26" width="26" /> icon and select a profile from the <span class="ph uicontrol">Default profile</span>
+    drop-down list.</p>
+<div class="p">Points to be noted:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__ul_xjg_knz_vrb">
+     <li class="li">It is not possible to set a quota management that is not provisioned to any ME as a
+      default profile on SM.</li>
+
+     <li class="li">When a quota management is provisioned to an ME, its name is checked against the
+      default profile on SM. If both are the same, then the ME`s default quota management is
+      also updated. </li>
+
+     <li class="li">A quota management that is chosen to be the default profile and is provisioned on
+      at least one ME, cannot be deleted or withdrawn unless another profile is selected to be
+      default on that ME.</li>
+
+    </ul>
+<div class="note" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__note_ml2_jcz_vrb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Only one profile can be used as a default profile at a
+     time.</div>
+</div>
+<table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__table_uy2_11q_sqb1" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Attributes available for DYNAMIC_SLICE result context</span></caption><colgroup><col style="width:17.146433041301627%" /><col style="width:56.570713391739666%" /><col style="width:12.51564455569462%" /><col style="width:13.76720901126408%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e358">Attribute</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e361">Description</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e364">Type</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e367">Mandatory/Optional</th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e358 ">Algo-Name</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e361 ">
+        <p class="p">This parameter indicates the name of the algorithm you want to configure based on
+         configurable conditions, such as <var class="keyword varname">BASIC_ALGO</var>,
+          <var class="keyword varname">BUCKET_ALGO</var>, and <var class="keyword varname">DYNAMIC_ ALGO</var>.</p>
+
+        <p class="p">It is applicable to customized rule.</p>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e364 ">String</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e367 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d219499e358 d219499e361 d219499e364 d219499e367 "><img class="image" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__image_xy2_11q_sqb" src="../images/img9yz-09126-ug01-pczza-sp1-sp_algo_default.png" />
+       </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e358 ">Select-Algo</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e361 "><p class="p">This parameter allows you to select the <em class="ph i">DYNAMIC_ALGO_2</em> for calculating the
+         slice size. It uses the parameters of <em class="ph i">DYNAMIC_ALGO</em> along with two additional
+         optional parameters named <span class="ph uicontrol">Min Slice Size</span> and <span class="ph uicontrol">Max Slice
+          Size</span>. </p>
+<p class="p">It is applicable to customized rule and parameterized algorithm
+         with Min and Max slice.</p>
+<p class="p">Format is:</p>
+
+        <kbd class="ph userinput">DYNAMIC_SLICE.Select-Algo(AlgoName, Min slice size, Max slice size)</kbd>
+        <p class="p">Example:<kbd class="ph userinput">DYNAMIC_SLICE.Select-Algo(“DYNAMIC_ALGO_2”, 500, 5000)</kbd>
+        </p>
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+         <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__ul_yy2_11q_sqb">
+          <li class="li">
+           <p class="p">Both <span class="ph uicontrol">Min Slice Size</span> and <span class="ph uicontrol">Max Slice Size</span>
+            parameters are optional. If both <span class="ph uicontrol">Min Slice Size</span> and
+             <span class="ph uicontrol">Max Slice Size</span> parameters are not provided, then algorithm
+            behaves like <em class="ph i">DYNAMIC_ALGO</em>.</p>
+
+          </li>
+
+          <li class="li">
+           <p class="p">If both <span class="ph uicontrol">Select-Algo</span> and <span class="ph uicontrol">Algo-Name</span> are
+            configured in the rule, then preference is given to
+            <span class="ph uicontrol">Select-Algo</span>.</p>
+
+          </li>
+
+          <li class="li">
+           <p class="p">If <span class="ph uicontrol">Max Slice Size</span> is not configured and <span class="ph uicontrol">Min Slice
+             Size</span> is configured, then the <span class="ph uicontrol">Max Slice Size</span> is the
+            initial bucket value.</p>
+
+          </li>
+
+         </ul>
+
+        </div>
+</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e364 ">String</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e367 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e358 ">Max-Number-Of-Devices-In-Group</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e361 ">
+        <p class="p">This parameter determines the maximum number of devices with rating group. For any
+         device, the maximum number of lines with respect to rating group is 10. It is applicable to
+         customized rule/default actions.</p>
+
+        <p class="p">Consider the following points while configuring this parameter:</p>
+
+        <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__ul_zy2_11q_sqb">
+         <li class="li">
+          <p class="p">The number of rating group that a device can support should be considered. For example,
+           if there are 4 devices in a group and each device creates a session from two different
+           rating groups, then number of lines is 4 * 2 = 8.</p>
+
+         </li>
+
+         <li class="li">
+          <p class="p">The maximum number of device a group can have and the number of session a device can
+           create related to different MSCC. Otherwise, the algorithm computes slice with
+           errors.</p>
+
+         </li>
+
+        </ul>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e364 ">Long</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e367 ">Mandatory</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e358 ">Min-Slice-Size</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e361 ">
+        <p class="p">This parameter indicates the minimum slice size defined for the quota management.
+         The value is defined in bytes and applicable for Granted Service Units (GSU) of volume
+         type. </p>
+
+        <p class="p">The value must not be negative and not in decimal. It is applicable to customized
+         rule.</p>
+
+        <div class="p">
+         <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The minimum value is 0 and the maximum value is 9223372036854775807.</div>
+
+        </div>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e364 ">Long</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e367 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e358 ">Max-Slice-Size</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e361 ">
+        <p class="p">This parameter indicates the maximum slice size defined for the quota management.
+         The value is defined in bytes and applicable for GSU of volume type. This value must not be
+         negative and in decimal.</p>
+
+        <div class="p">
+         <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The minimum value is 0 and the maximum value is 9223372036854775807. 0 value is
+          considered as not configured.</div>
+
+        </div>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e364 ">Long</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e367 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e358 ">Quota-Holding-Time</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e361 ">This parameter indicates the value of the quota holding time in seconds and controls
+        the time the session remains in the idle state in the network. It is applicable to
+        customized rule or default actions. When the value of this parameter is 0, QHT is sent to
+        the network.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e364 ">Long</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e367 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e358 ">Slice-Allocation-Factor</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e361 ">
+        <p class="p">This parameter indicates the value calculated on the delta between the current usage and
+         threshold value. </p>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e364 ">Long</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e367 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e358 ">Slice-size</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e361 ">
+        <p class="p">This parameter indicates a static size of slice in bytes. It is applicable to customized
+         rule/default actions. The value of this parameter must always be greater than zero.</p>
+
+        <p class="p">This parameter must be included in the rules when configured without algorithms
+          <em class="ph i">Dynamic_Algo</em> or <em class="ph i">Dynamic_Algo_2</em>.</p>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e364 ">Long</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e367 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e358 ">Validity-Time</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e361 ">
+        <p class="p">This parameter indicates the value of the validity time in seconds, controls the time the
+         quota remains active in the network, and controls the effective allocation of resources
+         (dynamic slice allocation). It is applicable to customized rule. </p>
+
+        <p class="p">The value of this parameter is always greater than zero. If defined as zero, then
+         fallback is to default action or values in quota management.</p>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e364 ">Long</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e367 ">Mandatory</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cell-norowborder" style="vertical-align:top;" headers="d219499e358 ">Volume-Quota-Threshold</td>
+
+       <td class="entry cell-norowborder" style="vertical-align:top;" headers="d219499e361 ">
+        <p class="p">This parameter is applicable to data (volume) call, supported for both centralized and
+         decentralized calls. It can be used when certain quantity (volume only) is reserved and
+         granted in CCA. It is applicable to customized rule.</p>
+
+        <p class="p">The value of VQT can be configured in percentage and calculated on the granted volume
+         quota sent in CCA, such as 90%. If the VQT value is 0 or after calculation the VQT value is
+         0, then it is not sent in CCA.</p>
+
+        <p class="p">The value of VQT can also be configured as fixed value. If the
+          <em class="ph i">Volume-Quota-Threshold-Algo</em> is configured as <var class="keyword varname">FIXED_ADD_IN_GSU</var>,
+         then the <em class="ph i">Volume-Quota-Threshold</em> parameter in quota management rule specifies
+         the absolute value used to set the AVP in CCA message sent back to the network.</p>
+
+        <div class="p">
+         <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> It is recommended to keep the VQT percentage value as higher as possible so that it
+          does not increase TPS.</div>
+
+        </div>
+
+        <p class="p">If VQT value after calculation is greater than 4,294,967,295, then 4,294,967,295 is set
+         as VQT value. This is according to the specification of <em class="ph i">Volume-Quota-Threshold</em> AVP
+         which is of type unsigned32 and maximum value allowed is 4,294,967,295.</p>
+
+        <p class="p">The value of this parameter is in the range of 0 to 100.</p>
+
+       </td>
+
+       <td class="entry cell-norowborder" style="vertical-align:top;" headers="d219499e364 "> Long</td>
+
+       <td class="entry cell-norowborder" style="vertical-align:top;" headers="d219499e367 "> Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d219499e358 d219499e361 d219499e364 d219499e367 ">
+        <img class="image" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__image_az2_11q_sqb" src="../images/img9yz-09126-ug01-pczza-sp1-vqt_default.png" />
+        <p class="p">The VQT parameter can be configured in both default action and rule. </p>
+</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cell-norowborder" style="vertical-align:top;" headers="d219499e358 ">Volume-Quota-Threshold-Algo</td>
+
+       <td class="entry cell-norowborder" style="vertical-align:top;" headers="d219499e361 ">
+        <p class="p">This parameter is added in the quota management rule under <em class="ph i">Dynamic_Slice</em>
+         and can have one of the following values:</p>
+
+        <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__ul_bz2_11q_sqb">
+         <li class="li">
+          <p class="p">
+           <var class="keyword varname">FIXED_ADD_IN_GSU</var>: When configured as
+            <var class="keyword varname">FIXED_ADD_IN_GSU</var>, then the
+            <span class="ph uicontrol">Volume-Quota-Threshold</span> parameter in quota management rule
+           specifies the absolute value used to set AVP in CCA message sent back to the network. It
+           is added to the derived quota amount to determine the GSU value when GSU is not a final
+           slice.</p>
+
+         </li>
+
+         <li class="li">
+          <p class="p">
+           <var class="keyword varname">PERCENTAGE</var>: When configured as <var class="keyword varname">PERCENTAGE</var>, the
+            <span class="ph uicontrol">Volume-Quota-Threshold</span> parameter value in quota management
+           profile rule is configured in <em class="ph i">%</em> and calculated on the granted volume quota sent in
+           CCA message.</p>
+
+         </li>
+
+        </ul>
+
+        <p class="p">By default, the value of this action attribute is set as <var class="keyword varname">PERCENTAGE</var> to
+         achieve the existing slice reduction functionality.</p>
+
+        <p class="p">This parameter is also defined per MSCC or rating group. Depending on the type of
+         algorithm used, the<span class="ph uicontrol"> Volume-Quota-Threshold</span> parameter is calculated
+         and sent back to the network in CCA message.</p>
+
+       </td>
+
+       <td class="entry cell-norowborder" style="vertical-align:top;" headers="d219499e364 "> Long</td>
+
+       <td class="entry cell-norowborder" style="vertical-align:top;" headers="d219499e367 "> Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d219499e358 d219499e361 d219499e364 d219499e367 ">
+        <img class="image" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__image_cz2_11q_sqb" src="../images/img9yz-09126-ug01-pczza-sp1-volume-quota-threshold-algo_default.png" />
+       </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e358 ">MIN-TTC</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e361 ">
+        <p class="p">This parameter indicates the minimum tariff time change value in seconds.</p>
+
+        <p class="p">If this parameter is not configured, then it is treated as 0.</p>
+
+        <p class="p">If <span class="ph uicontrol">MIN-TTC</span> is greater than <span class="ph uicontrol">MIN-TTC</span>, then
+          <span class="ph uicontrol">MIN-TTC</span> value is ignored and treated as 0. It is applicable to
+         customized rule.</p>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e364 ">Long</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e367 ">Optional</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e358 ">MIN-VT</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e361 ">
+        <p class="p">This parameter indicates the minimum validity time in seconds.</p>
+
+        <p class="p">If this parameter is not configured, then it is treated as 0. It is applicable to
+         customized rule.</p>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e364 ">Long</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e367 ">Optional</td>
+
+      </tr>
+
+     </tbody>
+</table>
+</div>
+
+  <div class="section" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__section_exl_tcq_sqb"><h2 class="title sectiontitle">Consumption speed configuration</h2><p class="p">The condition
+    attribute <var class="keyword varname">CALL_COMMON.Consumption-Speed</var> is available to calculate consumption
+    speed for a call. When NCC receives a charging signal, it calculates the consumption speed using
+    the timestamp of the previous charging signal as follows:</p>
+<span class="keyword cmdname">Consumption speed =
+    Reported quota usage in last slice/Total duration for last slice</span><p class="p">The following table
+    demonstrates sample rule for configuration based on consumption speed.</p>
+<table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__table_hwx_wfq_sqb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Sample rule for configuring consumption speed</span></caption><colgroup><col style="width:17.482517482517483%" /><col style="width:59.79020979020979%" /><col style="width:22.72727272727273%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e901">Default actions/ New rule name</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e904">Rule</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e907">Information</th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e901 ">Default Actions</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e904 ">Add the following action to existing actions: <var class="keyword varname">DYNAMIC_SLICE.Validity-Time =
+         36000</var></td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e907 ">VT1 = 36000</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e901 ">Rule1</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e904 "><var class="keyword varname">if CALL_COMMON.Consumption-Speed &gt;= 291 and CALL_COMMON.Consumption-Speed
+         &lt; 1456 then DYNAMIC_SLICE.Validity-Time = 28800</var></td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e907 ">Speed1 = 1456<p class="p">VT2 = 28800</p>
+</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e901 ">Rule2</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e904 "><var class="keyword varname">if CALL_COMMON.Consumption-Speed &gt;= 1456 and CALL_COMMON.Consumption-Speed
+         &lt; 2912 then DYNAMIC_SLICE.Validity-Time = 21600</var></td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e907 ">-</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e901 ">Rule3</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e904 "><var class="keyword varname">if CALL_COMMON.Consumption-Speed &gt;= 2912 and CALL_COMMON.Consumption-Speed
+         &lt; 11650 then DYNAMIC_SLICE.Validity-Time = 18000</var></td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e907 ">Speed2= 11650<p class="p">VT3 = 18000</p>
+</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e901 ">Rule4</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e904 "><var class="keyword varname">if CALL_COMMON.Consumption-Speed &gt;= 11650 and CALL_COMMON.Consumption-Speed
+         &lt; 6553600 then DYNAMIC_SLICE.Validity-Time = 10800</var></td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e907 ">-</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e901 ">Rule5</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e904 "><var class="keyword varname">if CALL_COMMON.Consumption-Speed &gt;= 6553600 then DYNAMIC_SLICE.Validity-Time
+         = 3600</var></td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e907 ">-</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e901 ">Rule6</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e904 "><var class="keyword varname">GY_PRE_PROCESSING.Is-TTC-Enabled = True and
+         GY_PRE_PROCESSING.Tariff-Time-Change = 00:00:00</var></td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e907 ">Use this when the quota management returns a different VT based on the
+        calculated consumption speed.</td>
+
+      </tr>
+
+     </tbody>
+</table>
+</div>
+
+<div class="section" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__additionalinfo"><h2 class="title sectiontitle">Additional information</h2>
+<p class="p">Following are noteworthy points:</p>
+<ul class="ul">
+<li class="li"><em class="ph i">DYNAMIC_SLICE.Select-Algo</em> has higher priority than <em class="ph i">DYNAMIC_SLICE.Algo-Name</em>.</li>
+
+<li class="li">Rules are evaluated one-by-one, first one to be evaluated to true is picked up and algorithm
+     defined in the actions are used for slicing. </li>
+
+<li class="li">If none of the dynamic quota management rules are matched, then the slicing logic
+     processes the <em class="ph i">DefaultAction</em>.</li>
+
+<li class="li">The <em class="ph i">DefaultAction</em> is picked only when any of the rule defined is not true and if the
+      <em class="ph i">DefaultAction</em> is also not valid, then static values defined at entity level are picked
+     for processing. Therefore, static values have least priority.</li>
+
+<li class="li">If <em class="ph i">DYNAMIC_ALGO_2</em> is defined without the optional parameters of <span class="ph uicontrol">Min Slice
+      Size</span> and <span class="ph uicontrol">Max Slice Size</span>, then it works same as
+      <em class="ph i">DYNAMIC_ALGO</em>.</li>
+
+<li class="li">The <span class="ph uicontrol">Select-Algo</span> configuration is not case-sensitive.</li>
+
+<li class="li">In case of decentralized charging, if the <em class="ph i">Algo-Name</em> is <var class="keyword varname">DYNAMIC_ALGO</var> or
+      <var class="keyword varname">DYNAMIC_ALGO_2</var> in the quota management object rule, then the
+      <em class="ph i">DefaultAction</em> is executed as per the configuration.</li>
+
+<li class="li">In case of centralized charging, it is recommended not to configure the <em class="ph i">DefaultAction</em>
+     with <span class="ph uicontrol">Algo-Name</span>. If configured, then the <span class="ph uicontrol">Algo-Name</span>
+     is ignored.</li>
+
+<li class="li">In case of centralized charging, do not configure VT as 0 in the quota management rule.
+     If VT is 0, then it is not considered as NOK scenario and the final value is read from the
+     quota management, bypassing the processing of <em class="ph i">DefaultAction</em>.</li>
+
+<li class="li">In case of centralized charging, for non-IMS and non-volume buckets, if a rule is configured in
+     the quota management, then that rule is executed. If the Dynamic Algo is configured in
+     the rule or if a rule is not configured, then default profile action is considered. </li>
+
+</ul>
+
+   <div class="p">The following table provides information about the valid and invalid configurations for the
+    Select-Algo parameter. <table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-slicing_profile__table_vyg_23q_sqb" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Select-Algo configuration</span></caption><colgroup><col style="width:51.37931034482759%" /><col style="width:20.96551724137931%" /><col style="width:7.999999999999999%" /><col style="width:6.896551724137931%" /><col style="width:12.758620689655173%" /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e1132">Algo configuration</th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e1135">Algo-Name</th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e1138">Min</th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e1141">Max</th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e1144">Valid/Invalid</th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1132 ">DYNAMIC_SLICE.Select-Algo ( "DYNAMIC_ALGO_2", 1, 1024)</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1135 ">DYNAMIC_ALGO_2</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1138 ">1</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1141 ">1024</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1144 ">Valid</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1132 ">DYNAMIC_SLICE.Select-Algo ( "Dynamic_algo_2", , 1024 )</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1135 ">Dynamic_algo_2</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1138 ">NA</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1141 ">1024</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1144 ">Valid</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1132 ">DYNAMIC_SLICE.Select-Algo ( "DYNAMIC_ALGO_2", 1 , )</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1135 ">DYNAMIC_ALGO_2</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1138 ">1</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1141 ">NA</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1144 ">Valid</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1132 ">DYNAMIC_SLICE.Select-Algo ( "Dynamic_Algo_2", 1, 1024 )</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1135 ">Dynamic_algo_2</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1138 ">1</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1141 ">1024</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1144 ">Valid</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1132 ">DYNAMIC_SLICE.Select-Algo ( "DYNAMIC_ALGO_2" )</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1135 ">DYNAMIC_ALGO_2</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1138 ">NA</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1141 ">NA</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1144 ">Valid</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1132 ">DYNAMIC_SLICE.Select-Algo ( "Dynamic_Algo_2" )</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1135 ">Dynamic_algo_2</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1138 ">NA</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1141 ">NA</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1144 ">Valid</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1132 ">DYNAMIC_SLICE.Select-Algo ( "DYNAMIC_ALGO_2" , 1500 , 24 )</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1135 ">DYNAMIC_ALGO_2_</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1138 ">1500</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1141 ">24</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1144 ">Invalid</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1132 ">DYNAMIC_SLICE.Select-Algo ( "DYNAMIC_ALGO_2" , 500 , 500)</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1135 ">DYNAMIC_ALGO_2_</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1138 ">500</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1141 ">500</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1144 ">Invalid</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" colspan="5" style="vertical-align:top;" headers="d219499e1132 d219499e1135 d219499e1138 d219499e1141 d219499e1144 "> For the preceding two invalid scenarios, algorithm
+         is not executed but the algorithm rule slice size is returned. If a rule slice size is not
+         configured, then it gets picked from the entity slice size.</td>
+
+       </tr>
+
+      </tbody>
+</table>
+</div>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If <span class="ph uicontrol">Min Slice Size</span> or <span class="ph uicontrol">Max Slice Size</span> is
+    configured as zero, then it is considered as no minimum or maximum slice configured.</div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Actions associated with a quota management </h2>
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:35.21126760563381%" /><col style="width:64.7887323943662%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e1331">
+        <p class="p">Action</p>
+
+      </th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d219499e1337">
+        <p class="p">Description</p>
+
+      </th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1331 ">Create</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1337 ">Creates a quota management entity in the database by providing the mandatory
+        and optional parameters.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1331 ">Read</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1337 ">Displays the quota management entity data fetched from database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1331 ">Update</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1337 ">Updates a particular quota management entity in database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1331 ">Delete</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d219499e1337 ">Deletes a particular quota management entity from database. This operation is
+        not recommended.</td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> These actions are valid for internal purposes only and cannot be accessed using the SM
+    GUI.</div>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

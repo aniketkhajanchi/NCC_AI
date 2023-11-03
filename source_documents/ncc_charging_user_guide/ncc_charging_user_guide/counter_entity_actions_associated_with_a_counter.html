@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Actions associated with custom counter and metering limit" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="counter_entity_actions_associated_with_a_counter" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Actions associated with custom counter and metering limit</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="counter_entity_actions_associated_with_a_counter">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Actions associated with custom counter and metering limit</h1>
+<div class="body">
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:41.49377593360995%" /><col style="width:58.50622406639003%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d428305e37">
+        <p class="p">Action</p>
+
+      </th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d428305e43">
+        <p class="p">Description</p>
+
+      </th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e37 ">Create</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e43 ">Used to create a custom counter entity or metering limit in database by providing the
+       mandatory and optional parameters.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e37 ">Read</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e43 ">Used to display the custom counter or metering limit entity per the data retrieved
+       from database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e37 ">Update</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e43 ">Used to update a particular custom counter or metering limit entity in
+       database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e37 ">Delete</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e43 ">Used to delete a particular custom counter or metering limit entity from
+       database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e37 ">AddCounterToDevice</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e43 ">Used to add a custom counter to a device.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e37 ">AddDeviceCounterToGroup</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e43 ">
+        <p class="p">Used to add a new attribute, such as <em class="ph i">List&lt;string&gt;deviceIds</em> as an input.</p>
+
+        <p class="p">The counters are created only for those devices passed as input in deviceIds and counter
+         definition ID is not added in the counter list available at group level.</p>
+
+        <div class="p">
+        <div class="note" id="counter_entity_actions_associated_with_a_counter__note_ymc_vww_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Check that the device is a part of the required
+         hierarchy.</div>
+
+       </div>
+
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e37 ">AddGroupCounterToGroup</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e43 ">Used to add a group counter to a group.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e37 ">CreateCounterWhileAddingDeviceToGroup</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e43 ">Used to create the EntityCounterInstances for a device when it is added to the
+        existing group hierarchy having device group counters.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e37 ">DeleteCounterWhileDeletingDevice</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e43 ">Used to delete both the device counters and device group counters.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e37 ">DeleteCounterWhileDeletingGroup</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e43 ">Used to be executed before group delete. It deletes both group counters and device
+        group counters.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e37 ">DeleteCounterWhileRemovingDeviceFromGroup</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e43 ">Used to delete entity counter instances when device is removed from group.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e37 ">DeleteCounterWhileRemovingGroupFromGroup</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e43 ">Used to delete entity counter instances when group is removed from group.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e37 ">RemoveCounterFromDevice</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e43 ">Used to remove a counter from a device.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e37 ">RemoveDeviceCounterFromGroup</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e43 ">Used to remove a device counter from a group.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e37 ">RemoveGroupCounterFromGroup</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d428305e43 ">Used to remove a group counter from a group.</td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> These actions are valid for internal purposes only. It is not accessible through the SM GUI
+   for operators.</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

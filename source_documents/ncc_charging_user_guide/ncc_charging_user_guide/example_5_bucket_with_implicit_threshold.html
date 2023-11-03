@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Example 5: Bucket with implicit threshold" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="example_5_bucket_with_implicit_threshold" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Example 5: Bucket with implicit threshold</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="example_5_bucket_with_implicit_threshold">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Example 5: Bucket with implicit threshold</h1>
+<div class="body">
+        <p class="p">During slice reduction if no upcoming threshold is present for bucket then the implicit
+            threshold of 100% is used to compute the delta. This example explains this scenario:</p>
+
+        <p class="p"><strong class="ph b">Preconditions:</strong>
+        </p>
+
+        <ol class="ol" id="example_5_bucket_with_implicit_threshold__ol_opt_wxq_vqb">
+            <li class="li">Quota management (slicing profile): min slice size = 5 B, slice size = 1024,
+                and Slice Allocation Factor (SAF) = 10%.</li>
+
+            <li class="li">There is Cap at 50 B with Send-RAR action. Cap is applied on the counter.</li>
+
+            <li class="li">There is a Bucket having initial value of 5000 B.</li>
+
+        </ol>
+
+        <p class="p"><strong class="ph b">Execution:</strong>
+        </p>
+
+        <ol class="ol" id="example_5_bucket_with_implicit_threshold__ol_ugk_xxq_vqb">
+            <li class="li">Execute a SCUR call.</li>
+
+            <li class="li">For CCR-I, execute a centralized call in which granted units = 5 B.</li>
+
+            <li class="li">For CCR-U, execute a call with USU = 60 B, granted units = 494 B.</li>
+
+            <li class="li">The current value of bucket = 4940 B (5000 – 60); the delta is 4940 B</li>
+
+            <li class="li">After applying SAF = 10%, the value becomes 494 B; therefore, the granted units are
+                494 B.</li>
+
+        </ol>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

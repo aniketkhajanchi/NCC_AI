@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Defining renewal priority of subscriptions" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="defining_renweal_order_of_subscriptions_associated_with_an_account" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Defining renewal priority of subscriptions</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="defining_renweal_order_of_subscriptions_associated_with_an_account">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Defining renewal priority of subscriptions</h1>
+<div class="body conbody">
+        <p class="p">A subscription can either align to the funding account for its periodic renewal or have
+            its own periodic renewal. When the account is renewed, the subscriptions linked with the
+            account are renewed randomly. There is no order in which the subscriptions are
+            processed. If the renewal fee is configured, then the cumulative fee is calculated for
+            all the linked subscriptions, and the subscriptions are renewed successfully only if the
+            account balance is sufficient for their renewal.</p>
+
+        <p class="p">This feature allows the renewal of subscriptions to be processed in a controlled manner
+            by defining the renewal priority. The renewal priority of the bundles can be configured
+            using <em class="ph i">Renewal Priority</em> parameter in the Service (Bundle) entity. It defines the
+            order in which a subscription is renewed. </p>
+
+        <p class="p"><em class="ph i">Renewal Priority</em> parameter is also used to configure a bundle as mandatory or
+            optional bundle. Bundles with <em class="ph i">Renewal Priority</em> value as 0 are mandatory bundles.
+            Bundles with non-zero <em class="ph i">Renewal Priority</em> are optional bundles. </p>
+
+        <p class="p">The optional bundles are not renewed if a mandatory bundle funded by the same account is
+            suspended, or the account balance is insufficient to fund their renewal. If multiple
+            mandatory bundles are subscribed by the same account, and if any of them is suspended,
+            then none of the mandatory or optional bundles are renewed until the account balance is
+            sufficient to fund all the mandatory bundles. </p>
+
+        <div class="p">Renewal priority can be configured for subscriptions without their own period lifecycle
+            (that is, subscriptions which renew at the account BCR) and with their own period
+                lifecycle.<div class="note" id="defining_renweal_order_of_subscriptions_associated_with_an_account__note_u3c_mxv_25b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For details on configuring <em class="ph i">Renewal
+                    Priority</em> parameter, see <a class="xref" href="bundles_basic_details.html">Basic Details</a>.</div>
+</div>
+
+        <div class="p">The application preference <em class="ph i">Controlled Renewal Sequence</em> is used to enable the
+            functionality to define renewal priority for subscriptions. This functionality can be
+            enabled for all subscriptions (with or without their own period lifecyle) or only for
+            subscriptions without their own period lifecycle.<div class="note" id="defining_renweal_order_of_subscriptions_associated_with_an_account__note_wtv_yzd_cyb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For more
+                details on <em class="ph i">Controlled Renewal Sequence</em>, see section <em class="ph i">Managed Element
+                    application preferences</em> in the <em class="ph i">Global Configuration Guide</em>.</div>
+</div>
+
+        <p class="p"><strong class="ph b">Renewal priority for subscriptions</strong></p>
+
+        <p class="p">If there are no suspended mandatory bundles, then the optional bundles are renewed as
+            follows:</p>
+
+        <ol class="ol" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ol_wkw_db2_c5b">
+            <li class="li">Subscriptions are renewed in the order of their renewal priority (that is, suspended
+                subscription with higher priority is renewed first).<p class="p">If the subscription renewal
+                    fee is less than the main balance, then the subscription is renewed successfully
+                    and the next subscription in the priority sequence is considered for
+                    renewal.</p>
+<p class="p">If the available main balance is insufficient to fund the
+                    subscription renewal, then renewal fails and the next subscription in the
+                    priority sequence is considered for renewal. </p>
+<p class="p">Subscriptions that are not
+                    renewed due to insufficient account main balance are renewed upon next TopUp or
+                    when the main balance is sufficient to fund their renewal.</p>
+</li>
+
+            <li class="li">If there are multiple optional bundles with the same renewal priority, then they are
+                renewed based on the subscription creation time. Subscriptions with an earlier
+                creation time have higher priority and are renewed first. Subscriptions having same
+                renewal priority and creation time are renewed randomly.</li>
+
+        </ol>
+
+        <div class="p">
+            <div class="note" id="defining_renweal_order_of_subscriptions_associated_with_an_account__note_c2f_vvj_gyb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                <p class="p">If the renewal of mandatory bundles fails, then the renewal of other bundles is
+                    halted until the account balance is sufficient to fund the renewal of suspended
+                    mandatory bundles. </p>
+
+                <p class="p">If the functionality of halting the renewal of lower priority bundles due to
+                    higher priority bundles being suspended is not required, then it is recommended
+                    to not configure the bundles as mandatory bundles (that is, do not set the
+                        <em class="ph i">Renewal Priority</em> parameter to <var class="keyword varname">0</var>). </p>
+
+            </div>
+
+            <div class="note" id="defining_renweal_order_of_subscriptions_associated_with_an_account__note_jqw_fb2_c5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> It is not mandatory to categorize bundles as mandatory
+                bundles. All the bundles associated with an account can be categorized as optional
+                bundles and they are renewed according to their renewal priority.</div>
+
+        </div>
+
+        
+        <p class="p"><strong class="ph b">Versioning:</strong></p>
+
+        <ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_xkw_db2_c5b">
+            <li class="li">When versioning is enabled, updating the <em class="ph i">Renewal Priority</em> for a bundle is
+                applicable for the new version creation as well as the backdated update (That is,
+                updating the latest published version). In this case, the existing subscriptions are
+                updated with new renewal priority as per the versioning configuration. That is, if
+                configured as <em class="ph i">IMMEDIATE</em>, then the applicable subscriptions are updated with
+                the new renewal priority upon first network event. If configured to update at next
+                BCR, then the applicable subscriptions are updated with new renewal priority at the
+                upcoming BCR</li>
+
+            <li class="li">When entity versioning is not enabled, updates to the <em class="ph i">Renewal Priority</em> are
+                not applied to the existing subscriptions. Updates are applied to subscriptions that
+                are created after the bundle has been updated.</li>
+
+        </ul>
+
+        <div class="section" id="defining_renweal_order_of_subscriptions_associated_with_an_account__section_xxr_lb2_c5b"><h2 class="title sectiontitle">Configuration</h2>
+            
+            <p class="p">The application preference <em class="ph i">Controlled Renewal Sequence</em> is used to enable the
+                functionality to control the renewal sequence of the subscriptions. </p>
+
+            <p class="p">This application preference can take the following values:</p>
+
+            <div class="p">
+                <ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_qqq_5zd_c5b">
+                    <li class="li"><em class="ph i">VIA_ACCOUNT</em>: If this value is configured, then the subscriptions are
+                        renewed as per their renewal priority governed by account renewal. In this
+                        case, the subscription renewal priority is applicable only to subscriptions
+                        without their own period lifecycle.</li>
+
+                    <li class="li"><em class="ph i">ALL_SUBSCRIPTIONS</em>: If this value is configured, then subscriptions
+                        are renewed as per their renewal priority. This functionality is applicable
+                        for all subscriptions (with or without their own period lifecyle).</li>
+
+                    <li class="li"><em class="ph i">DISABLED</em>: If this value is configured, then the existing behavior of
+                        subscription renewal is applicable (that is, either all subscriptions are
+                        renewed or no subscription is renewed).</li>
+
+                </ul>
+
+            </div>
+
+            <p class="p">For details on configuring the application preference <em class="ph i">Controlled Renewal
+                    Sequence</em>, see <em class="ph i">ME application preferences</em> section in <em class="ph i">Global
+                    Configuration Guide</em>.</p>
+
+        </div>
+
+        <div class="section" id="defining_renweal_order_of_subscriptions_associated_with_an_account__section_crj_td2_c5b"><h2 class="title sectiontitle">Examples</h2>
+            
+            <div class="sectiondiv"><strong class="ph b">Use case 1</strong>:<p class="p">Configuration:</p>
+<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_x32_mhp_g5b">
+                    <li class="li">Application preference <em class="ph i">Controlled Renewal Sequence</em> is set to
+                            <var class="keyword varname">VIA_ACCOUNT</var>.</li>
+
+                    <li class="li">Application preference <em class="ph i">Allow bundle addition to accounts with
+                            insufficient balance</em> is enabled.</li>
+
+                    <li class="li">Account A1 is linked with following subscriptions for a single device:<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_y32_mhp_g5b">
+                            <li class="li">Subscription S1 to a mandatory bundle B1 (that is, bundle renewal
+                                priority order = 0) with bundle fee of $40. B1 does not have any
+                                periodic lifecycle. The entity lifecycle is configured in such a way
+                                that when it moves to the suspended state, the device is also
+                                barred, blocking all usage.</li>
+
+                            <li class="li">Subscription S2 to a mandatory bundle B2 (that is, bundle renewal
+                                priority order = 0) with bundle fee of $10. It does not have any
+                                periodic lifecycle.</li>
+
+                            <li class="li">Subscription S3 to an optional bundle B3 with a bundle renewal
+                                priority of 1 and bundle fee of $10. This bundle has its own period
+                                lifecycle and renews every 30 days.</li>
+
+                            <li class="li">Subscription S4 to an optional bundle B4 with a bundle renewal
+                                priority of 2 and bundle fee of $5. This bundle has its own period
+                                lifecycle and renews every 30 days.</li>
+
+                        </ul>
+</li>
+
+                </ul>
+<p class="p">Current State:</p>
+<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_z32_mhp_g5b">
+                    <li class="li">All 4 subscriptions are in <em class="ph i">Active</em> state.</li>
+
+                    <li class="li">Next renewal date of S3 is occurring before the next BCR date of the
+                        account.</li>
+
+                    <li class="li">Next renewal date of S4 is occurring after the next BCR date of the
+                        account.</li>
+
+                    <li class="li">The current balance of the account is $50.</li>
+
+                </ul>
+<p class="p">Execution:</p>
+<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_aj2_mhp_g5b">
+                    <li class="li">On renewal event of subscription S3, it is renewed successfully. Its renewal
+                        fee (that is, $10) is deducted from the account balance. Therefore, the
+                        available balance is $40.</li>
+
+                    <li class="li">When the account BCR occurs, both the mandatory subscriptions (S1 and S2)
+                        move to suspended state because the current account balance is insufficient
+                        to fund their renewal. Due to its failure to renew, S1's transition of its
+                        entity lifecycle to the suspended state triggers an action barring usage for
+                        the device.</li>
+
+                    <li class="li">The final renewal EDR includes information of both the subscriptions, S1 and
+                        S2. </li>
+
+                    <li class="li">On renewal event of S4, its renewal fails as both the mandatory
+                        subscriptions are suspended and account balance is insufficient to renew all
+                        the mandatory subscriptions. A <em class="ph i">Subscription Renewal Failed</em> EDR is
+                        generated for the S4 with the code <em class="ph i">mandatory bundle suspended</em>.</li>
+
+                    <li class="li">On next renewal event of S3, its renewal fails as both the mandatory
+                        subscriptions are suspended. A <em class="ph i">Subscription Renewal Failed</em> EDR is
+                        generated for S3 with a reason code <em class="ph i">mandatory bundle suspended</em>.</li>
+
+                    <li class="li">Bundle B1 is subscribed again creating Subscription S5. Account Balance (40)
+                        is sufficient for the bundle purchase, but since mandatory subscriptions S1
+                        and S2 are suspended, subscription S5 is created in suspended state. Account
+                        balance remains the same ($40).</li>
+
+                    <li class="li">Account is recharged with an additional $55, resulting in a total balance as
+                        $95. This recharge triggers the following logic:<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_bj2_mhp_g5b">
+                            <li class="li">Mandatory subscriptions (S1 and S2) are successfully renewed, and
+                                mandatory subscription (S5) is successfully activated. Account
+                                balance is reduced to $5.<ol class="ol" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ol_cj2_mhp_g5b">
+                                    <li class="li">On successful renewal/activation of mandatory subscriptions,
+                                        the account BCR start date is aligned to the recharge date
+                                        so that the next renewal occurs after the period defined in
+                                        account PLC, from the recharge date.</li>
+
+                                    <li class="li">As a result of mandatory subscription moving to the active
+                                        state, its entity lifecycle triggers unbarring access to the
+                                        device so that usage is again allowed.</li>
+
+                                    <li class="li">Since subscription S5 is activated for the first time after
+                                        creation, there is no impact on <em class="ph i">remainingRenewals</em>
+                                        parameter for this subscription.</li>
+
+                                    <li class="li">After successful renewal, success EDR is generated. The
+                                        final renewal EDR includes information on all three
+                                        subscriptions which were renewed succesfuly. The information
+                                        of subscriptions S1 and S2 is dumped under
+                                            <em class="ph i">subscriptionsRenewedByAccountRenewal</em>, while
+                                        subscription S5 information is dumped under
+                                            <em class="ph i">subscriptionsActivatedByAccountRenewal</em> as this
+                                        subscription becomes active for first time through account
+                                        renewal.</li>
+
+                                </ol>
+</li>
+
+                            <li class="li">S3 is not renewed as account current balance (that is, $5) is
+                                insufficient to fund its renewal fee of $10.</li>
+
+                            <li class="li">S4 is renewed successfully and the account available balance is
+                                reduced to zero. Also, S4 is updated so that its next renewal occurs
+                                30 days from the recharge date.</li>
+
+                        </ul>
+</li>
+
+                    <li class="li">After 1 day, A1 is recharged again with an additional $10, resulting in
+                        successful renewal of S3. S3 is updated so that its next renewal occurs 30
+                        days from the recharge date.</li>
+
+                </ul>
+<div class="p">
+                    <div class="note" id="defining_renweal_order_of_subscriptions_associated_with_an_account__note_mzs_lmp_g5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For details on EDR, see <em class="ph i">CDR/EDR Reference
+                            Guide</em>.</div>
+
+                </div>
+</div>
+            <div class="sectiondiv"><strong class="ph b">Use case 2</strong>:<p class="p">Configuration:</p>
+<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_xt5_13p_g5b">
+                    <li class="li">NCC is on an older release.</li>
+
+                    <li class="li">Account A1 is linked with following subscriptions for a single device:<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_yt5_13p_g5b">
+                            <li class="li">Subscription S1 to bundle B1 with bundle fee as $40. B1 does not
+                                have any periodic lifecycle. Entity lifecycle is configured in such
+                                a way that when it moves to the suspended state, the device is also
+                                barred, blocking all usage.</li>
+
+                            <li class="li">Subscription S2 to bundle B2 with bundle fee of $5. B2 does not have
+                                any periodic lifecycle and it renews upon funding monthly BCR of the
+                                account.</li>
+
+                            <li class="li">Subscription S3 to bundle B3 with bundle fee of $10. This bundle has
+                                its own period lifecycle and renews every 30 days.</li>
+
+                        </ul>
+</li>
+
+                </ul>
+<p class="p">Current State:</p>
+<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_zt5_13p_g5b">
+                    <li class="li">All 3 subscriptions are in <em class="ph i">Active</em> state.</li>
+
+                    <li class="li">The current balance of the account is $45.</li>
+
+                    <li class="li">NCC is upgraded to release which contains this feature deployment.</li>
+
+                    <li class="li">Application preference <em class="ph i">Controlled Renewal Sequence</em> is set to
+                            <em class="ph i">DISABLED</em>.</li>
+
+                    <li class="li">Entity Versioning is enabled.</li>
+
+                    <li class="li">The entity lifecycle of mandatory subscriptions is updated.<div class="note" id="defining_renweal_order_of_subscriptions_associated_with_an_account__note_hgz_dnp_g5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For details on recommended lifecyle configuration
+                            for this feature, see <a class="xref" href="lifecycle_configuration_for_defining_bundle_renewal_priority.html">Lifecycle configuration</a>.</div>
+</li>
+
+                </ul>
+<p class="p">Execution:</p>
+<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_a55_13p_g5b">
+                    <li class="li">Upon NCC release upgrade, the bundles (B1, B2 and B3) become mandatory
+                        bundles and their bundle renewal priority order is set to 0.</li>
+
+                    <li class="li">Assuming that the mandatory bundle should not have its own PLC, bundle b3 is
+                        updated by the external system to have a non-zero bundle renewal priority to
+                        make it optional. </li>
+
+                    <li class="li">Application preference <em class="ph i">Controlled Renewal Sequence</em> is set to
+                            <var class="keyword varname">VIA_ACCOUNT</var>.</li>
+
+                    <li class="li">After the upgrade and update, there are two mandatory bundles (B1 and B2)
+                        and one optional bundle B3.</li>
+
+                    <li class="li">From this point of execution, the behavior described in <em class="ph i">Use Case 1</em> is
+                        followed.</li>
+
+                </ul>
+</div>
+            <div class="sectiondiv"><strong class="ph b">Use case 3</strong>: <div class="p">Configuration:<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_gkm_vzl_hyb">
+                        <li class="li">Application preference <em class="ph i">Controlled Renewal Sequence</em> is set to
+                                <var class="keyword varname">ALL_SUBSCRIPTIONS</var>.</li>
+
+                        <li class="li">Device is created.</li>
+
+                        <li class="li">Pre-paid Account is created with a balance of 30 € and an overage-limit
+                            of 0 €.</li>
+
+                        <li class="li">The following subscriptions are subscribed to the Device associated with
+                            the pre-paid account:<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_xpr_31m_hyb">
+                                <li class="li">S1 (<em class="ph i">Bundle001</em>) with a renewal fee of 10 €.</li>
+
+                                <li class="li">S2 (<em class="ph i">Bundle002</em>) with a renewal fee 10 €.</li>
+
+                            </ul>
+</li>
+
+                        <li class="li">Subscriptions S1 and S2 have their own PLC. </li>
+
+                        <li class="li">Subscription S1 has higher renewal priority.</li>
+
+                    </ul>
+Current state:<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_v41_ttm_hyb">
+                        <li class="li">Subscriptions S1 and S2 are in <em class="ph i">Active</em> state.</li>
+
+                        <li class="li">The renewal time of both S1 and S2 is same.</li>
+
+                        <li class="li">After the subscriptions S1 and S2 subscribe to the Device, the remaining
+                            pre-paid account balance is 10 €.</li>
+
+                    </ul>
+Execution:<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_d5n_ttm_hyb">
+                        <li class="li"><em class="ph i">Renew Subscription Action</em> is triggered:<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_hpc_25m_hyb">
+                                <li class="li">At the time of subscription renewal, subscription S1 is renewed
+                                    first as it has higher renewal priority. </li>
+
+                                <li class="li">After the subscription renewal, the remaining pre-paid account
+                                    balance is 0 €.</li>
+
+                                <li class="li">Subscription S2 is considered for renewal as it is next in the
+                                    sequence of renewal priority. </li>
+
+                                <li class="li">Subscription renewal of S2 fails as the account balance is
+                                    insufficient, and S2 moves into <em class="ph i">Suspended</em> state.</li>
+
+                            </ul>
+</li>
+
+                        <li class="li">At the time of next subscription renewal, S1 also moves to
+                                <em class="ph i">Suspended</em> state as the account balance is insufficient to
+                            fund the renewal of S1. Both S1 and S2 are in <em class="ph i">Suspended</em>
+                            state.</li>
+
+                        <li class="li">Account recharge:<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_jhx_45m_hyb">
+                                <li class="li">The Account is recharged with 10 €. Upon recharge, the account
+                                    balance is sufficient to fund the renewal of subscription S1. S1
+                                    is considered for renewal as it has higher renewal priority.
+                                    Upon successful renewal, subscription S1 moves from
+                                        <em class="ph i">Suspended</em> state to <em class="ph i">Active</em> state.</li>
+
+                                <li class="li">The Account is recharged again with 10 €. Upon recharge, the
+                                    subscription S2 is considered for renewal and it is renewed
+                                    successfully. S2 moves from <em class="ph i">Suspended</em> state to
+                                        <em class="ph i">Active</em> state.</li>
+
+                            </ul>
+</li>
+
+                    </ul>
+</div>
+</div>
+        </div>
+
+        <div class="section" id="defining_renweal_order_of_subscriptions_associated_with_an_account__section_j2v_ghp_g5b"><h2 class="title sectiontitle">Important points</h2>
+            
+            <div class="p">Note the following important points about this feature:<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_tmy_3c2_c5b">
+                    <li class="li">This feature is applicable when subscriptions are renewed either through the
+                        TEM logic or on call (that is, pending lifecycle renewal).</li>
+
+                    <li class="li">If this feature is enabled, and the application preference <code class="ph codeph">Enable
+                            Randomization Of BCR When No Active Session</code> is set to
+                            <var class="keyword varname">true</var>, then while adding the random factor to TEM
+                        events, the subscription with higher priority is scheduled before the lower
+                        priority TEM events. <div class="note" id="defining_renweal_order_of_subscriptions_associated_with_an_account__note_y2v_d5l_hyb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                            <ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_ow4_4jh_3yb">
+                                <li class="li">This functionality is applicable only to subscriptions with
+                                    their own PLC.</li>
+
+                                <li class="li">For details on enabling randomization of BCR for devices without
+                                    active data sessions, see <a class="xref" href="randomization_of_the_bcr_tem_timers_for_devices_without_active_data_sessions.html">BCR TEM timer randomization for devices without active data sessions</a>.</li>
+
+                            </ul>
+
+                        </div>
+</li>
+
+                    <li class="li">At the time of renewal, the fee is deducted immediately only when the
+                        account is pre-paid. In case of post-paid accounts, the application
+                        preference <em class="ph i">Deduct Postpaid Fee Flag</em> should be configured to have
+                        similar functionality.</li>
+
+                    <li class="li">With this feature deployment, all bundles become mandatory by default.
+                        Hence, if this feature is enabled, then all bundles configured with their
+                        own renewal should be modified to optional bundles.</li>
+
+                    <li class="li">The functionality to define the subscription renewal priority is not
+                        supported in Template.</li>
+
+                    <li class="li">This feature is applicable only for device.</li>
+
+                    <li class="li">If multiple subscriptions are funded through the same account, then the
+                        renewal priority is considered only for the subscriptions whose renewal is
+                        governed through account lifecycle. Other subscriptions which are renewed
+                        through their own lifecycle are not considered.<div class="note" id="defining_renweal_order_of_subscriptions_associated_with_an_account__note_osv_p4l_hyb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This functionality is applicable only when the application preference
+                                <em class="ph i">Controlled Renewal Sequence</em> is set to
+                            <em class="ph i">VIA_ACCOUNT</em>.</div>
+</li>
+
+                    <li class="li">If the device has multiple subscriptions out of which only one is mandatory,
+                        and currently in suspended state, then it should not be deleted. If it is
+                        deleted, then the device (which is also in barred state) cannot transition
+                        to active state again. The device can only be activated by external
+                        provisioning API.<div class="note" id="defining_renweal_order_of_subscriptions_associated_with_an_account__note_j1x_lpp_g5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This is valid only if lifecycle
+                            is configured to bar the device on mandatory subscription
+                            suspension.</div>
+</li>
+
+                    <li class="li">Account renewal upon subscription deletion happens only when the
+                        subscription is deleted from the database, and not through deletion API
+                        execution (which moves the subscription to final state).</li>
+
+                    <li class="li">If the subscription is suspended because of insufficient balance at the time
+                        of its creation, then it is activated through account renewal by
+                            default.<div class="note" id="defining_renweal_order_of_subscriptions_associated_with_an_account__note_an4_spp_g5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This is valid if <em class="ph i">Allow bundle
+                                addition to accounts with insufficient balance</em> feature is
+                            enabled. For more details on <em class="ph i">Allow bundle addition to accounts with
+                                insufficient balance</em>, see <a class="xref" href="allow_bundles_to_be_added_to_accounts_with_insufficient_balance_to_fund_their_subscription_fee.html">Allow bundle addition to accounts with insufficient balance</a>.</div>
+</li>
+
+                    <li class="li">If an optional bundle with a periodic lifecycle has the parameter
+                            <em class="ph i">Formatted Input Date</em> set, and the optional bundle moves from
+                        suspended state to active upon account recharge, then consider the following
+                            scenarios:<ul class="ul" id="defining_renweal_order_of_subscriptions_associated_with_an_account__ul_vmy_3c2_c5b">
+                            <li class="li">If the <em class="ph i">Formatted Input Date</em> has a non-zero minute value, then
+                                the <em class="ph i">Formatted Input Date</em> value is updated to the current
+                                recharge time (including the current hour and current minute).</li>
+
+                            <li class="li">If the <em class="ph i">Formatted Input Date</em> has a zero minute value and a
+                                non-zero hour value, then the <em class="ph i">Formatted Input Date</em> value is
+                                updated to the current recharge date with hours (with minutes value
+                                set to zero).</li>
+
+                            <li class="li">If the <em class="ph i">Formatted Input Date</em> has both zero hour and zero
+                                minutes value, then the <em class="ph i">Formatted Input Date</em> value is updated
+                                to the current recharge date (with hours and minutes values set to
+                                zero).</li>
+
+                        </ul>
+</li>
+
+                    <li class="li">If the mandatory bundles are renewed successfully but renewal of optional
+                        bundles fails because of insufficient balance, then account renewal is
+                        considered to be successful.<div class="note" id="defining_renweal_order_of_subscriptions_associated_with_an_account__note_ttz_y4l_hyb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This functionality
+                            is applicable only when the application preference <em class="ph i">Controlled Renewal
+                                Sequence</em> is set to <em class="ph i">VIA_ACCOUNT</em>.</div>
+</li>
+
+                    <li class="li">The <em class="ph i">AccountRechargeEvent</em> should be configured in account and bundle
+                        lifecycles, so that when the account is recharged successfully, the
+                        suspended bundles are renewed based on the available account balance, and
+                        account and subscription BCR date is updated based on the current renewal
+                        date and time.. </li>
+
+                    <li class="li">Renewal fee of the subscription should be same as bundle fee that is defined
+                        at the time of creating the subscription. The <em class="ph i">RenewSubscriptionAction</em>
+                        configured in account and subscription lifecycles does not define any other
+                        renewal fee.</li>
+
+                    <li class="li">EDR enhancements done under the scope of this feature are applicable only
+                        for generic schema. There is no change/adoption at DR.</li>
+
+                    <li class="li">If an inactive mandatory bundle is changed to optional bundle using change
+                        plan, then the device remains in the inactive state, and account remains in
+                        the suspended state.</li>
+
+                    <li class="li">Updating anything through provisioning on bundle (for example, fee or
+                        renewal priority) does not trigger lifecycle transition defining the account
+                        renewal or the device barring/unbarring changes.</li>
+
+                </ul>
+</div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

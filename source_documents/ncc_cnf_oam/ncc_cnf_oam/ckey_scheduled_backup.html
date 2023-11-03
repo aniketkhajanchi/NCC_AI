@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="User and Role Management scheduled backup" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="ckey_scheduled_backup" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>User and Role Management scheduled backup</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="ckey_scheduled_backup">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">User and Role Management scheduled backup</h1>
+<div class="body conbody">
+        <p class="p">The scheduled backups for User and Role Management and its MariaDB are enabled by
+            default. After installing User and Role Management, scheduled backups may be disabled.
+            For more information, see <a class="xref" href="enable_or_disable_scheduled_backups.html">Scheduled backups</a>.</p>
+
+        <p class="p">The default schedules for the cron jobs that performs scheduled backups for ckey-ckey and
+            ckey-cmdb-mariadb are set to the same value: "0 0 * * *" which means daily at
+            midnight.</p>
+
+        <div class="section" id="ckey_scheduled_backup__section_wm4_xs4_wmb"><h2 class="title sectiontitle">Update schedules for scheduled backups</h2>
+            
+            <p class="p">To update the cronJob schedules defined at install time for either one of the NCC
+                Backup and Recovery policies created by User and Role Management, a helm upgrade must
+                be performed, providing the new value for the cronJob schedules, and reusing old
+                values for all other properties.</p>
+
+            <p class="p">Once updated, the scheduled backups must be enabled. For more information, see <a class="xref" href="enable_or_disable_scheduled_backups.html">Scheduled backups</a> .</p>
+
+            
+            
+            <pre class="pre codeblock"><code># For example, this Helm upgrade will change the schedules to run the backup for ckey-ckey daily at 4am.
+# As autoEnableCron and autoUpdateCron are set to true, the changes are immediately effective.
+helm upgrade ckey ckey-chart-*.tgz -n $NAMESPACE --set cbur.cronSpec="0 4 * * *",cbur.autoEnableCron=true,cbur.autoUpdateCron=true --reuse-values --no-hooks --wait --timeout=1200
+            
+# As another example, this Helm upgrade changes the schedules in the policy to run the backup for ckey-cmdb daily at 3am.
+helm upgrade ckey-cmdb cmdb-chart-*.tgz -n $NAMESPACE --set cbur.cronSpec="0 3 * * *",cbur.autoEnableCron=true,cbur.autoUpdateCron=true --reuse-values --no-hooks --wait --timeout=1200
+            </code></pre>
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The restore of  User and Role Management MariaDB data by using backup and restore
+                should only be performed in deployments that do not enable geo_redundancy. If
+                geo_redundancy is enabled, the data on one site can be restored from a replicated
+                site. For more information, see <a class="xref" href="web_sso_data_recovery.html">Web SSO data recovery</a>.</div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

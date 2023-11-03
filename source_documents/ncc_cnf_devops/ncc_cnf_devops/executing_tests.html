@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Executing tests" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="executing_tests" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Executing tests</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="executing_tests">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Executing tests</h1>
+<div class="body conbody">
+        <p class="p">The overall status of the X-button test package is displayed under the defined test group
+            buttons, indicating:</p>
+
+        <ul class="ul" id="executing_tests__ul_qpz_bvb_s4b">
+            <li class="li"><em class="ph i">Ready to Run</em> - Any of the buttons can be clicked to trigger a new execution
+                job.</li>
+
+            <li class="li"><em class="ph i">Running &lt;test suite&gt;</em> - A test execution job is in progress.</li>
+
+        </ul>
+
+        <p class="p">An execution job can be triggered if the status is 'Ready to Run'. The following figure
+            presents an example of it.</p>
+
+        <div class="fig fignone" id="executing_tests__fig_i3y_rwb_s4b"><span class="figcap"><span class="fig--title-label">Figure: </span>'Ready to Run' status</span>
+            
+            <img class="image break" id="executing_tests__image_ubx_h3k_v4b" src="../images/cnf_devops_three_button_ready_to_run.png" width="302" />
+        </div>
+
+        <p class="p">Only one execution job is allowed at a time for an X-button test package. When the user
+            clicks any of the blue buttons, the status changes to 'Running &lt;test suite&gt;' and all
+            buttons are greyed out. The following figure presents an example of it with a 'Running
+            Regression' status.</p>
+
+        <div class="fig fignone" id="executing_tests__fig_asn_vyf_wnb"><span class="figcap"><span class="fig--title-label">Figure: </span>'Running' status with the buttons greyed out</span>
+            
+            <img class="image break" id="executing_tests__image_usb_xmk_v4b" src="../images/cnf_devops_three_button_running.png" width="302" />
+        </div>
+
+        <p class="p">When the running job completes, all buttons turn to normal. The user can now check the
+            report and log of the latest run for each button by clicking the associated
+                <span class="ph uicontrol">REPORT</span> button. For more information on checking reports and
+            logs, see <a class="xref" href="checking_reports_and_logs.html">Checking reports and logs</a>.</p>
+
+        <p class="p">The <span class="ph uicontrol">Execution Results</span> view lists the history of all execution
+            jobs, for example, the overall status, buttons they belong to, and the time when they
+            have been executed. For more information, see <a class="xref" href="execution_job_history.html">Execution job history</a>.</p>
+
+    </div>
+<div class="footer"><hr /><p>DevOps Guide • P556766-DN1000055058-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

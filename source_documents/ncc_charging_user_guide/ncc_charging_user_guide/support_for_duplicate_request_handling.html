@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Duplicate request handling" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="support_for_duplicate_request_handling" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Duplicate request handling</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="support_for_duplicate_request_handling">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Duplicate request handling</h1>
+<div class="body conbody">
+        <div class="section" id="support_for_duplicate_request_handling__section_qgp_pwr_t4b">
+            <p class="p">Before this feature, PGW or TAS supported the <em class="ph i">Assume positive functionality</em>
+                for both Gy and Ro Diameter sessions in case no response is received from the CHF
+                router. When this occurs for a CCR-U transaction, the subsequent CCR-U or CCR-T
+                transaction may include an additional usage but uses the same
+                    <em class="ph i">CC-Request-Number</em>. If the original transaction was not received at the
+                CHF router, then the normal processing is applied and cumulative usage is processed
+                for the device.</p>
+
+            <p class="p">However, in cases where the original transaction was received at the CHF router, but
+                the CCA response was lost, this feature requires the CHF router to apply the delta
+                usage between the usage originally reported in the first transaction and the larger
+                value reported in the <strong class="ph b">duplicate</strong> transaction received later on. This requires
+                the CHF router to save the latest usage received per Diameter session, per rating
+                group, and the associated <em class="ph i">CHF-Request-Number</em> in case a duplicate
+                    <em class="ph i">CHF-Request-Number</em> is received later on.</p>
+
+            <p class="p">Also, this information regarding the last Diameter transaction ID and usage per
+                rating group is maintained for sessions terminated on the CHF router, which allows
+                for duplicate transactions received later, including <em class="ph i">Assume Positive
+                    Reconciliation</em> transactions sent from the Drouter. This is further checked
+                for delta usage reported in duplicate transactions for sessions that are no longer
+                active on the CHF router.</p>
+
+            <p class="p">For more information on <em class="ph i">Assume Positive Reconciliation</em> feature, see the <a class="xref" href="assume_positive.html">Assume positive functionality</a>.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="sps-status" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="sps_status_Copy" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>sps-status</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="sps_status_Copy">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">sps-status</h1>
+<div class="body conbody">
+        <div class="section" id="sps_status_Copy__section_pjq_g2r_nlb"><h2 class="title sectiontitle">Description</h2>
+            
+            <p class="p">This tool displays composite status information for an <span class="ph">NCC</span> system. The information includes the system name and the status of all installed
+                subsystems. For each subsystem, each type of service in that subsystem is then
+                listed, indicating how many instances are configured and which ones have a status of
+                UP or DOWN.</p>
+
+            <p class="p">This tool may be run on the admincli pod in any <span class="ph">NCC</span>
+                system. Output will differ based on the installed subsystems.</p>
+
+        </div>
+
+        <div class="section" id="sps_status_Copy__section_orf_kgr_nlb"><h2 class="title sectiontitle">Syntax</h2>
+            
+            <pre class="pre codeblock"><code>sps-status [-h][-j]</code></pre>
+            <table cellpadding="4" cellspacing="0" summary="" id="sps_status_Copy__table_fmx_lgr_nlb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d47905e63">Option</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d47905e66">Description</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e63 "><code class="ph codeph">No arguments</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e66 ">Displays usage/help information.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e63 "><code class="ph codeph">-h</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e66 ">Displays usage/help information.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e63 "><code class="ph codeph">-j</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e66 ">This option outputs status in JSON form.</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <div class="section" id="sps_status_Copy__section_fzk_v34_mnb"><h2 class="title sectiontitle">Output Examples</h2>
+            
+            <div class="p">Example on an <span class="ph">NCC</span> with an ME subsystem: <pre class="pre codeblock"><code>Site Name: SPS-ME-1
+Component ME:
+State       UP
+MOOS        false      
+Active SM   SPS-ME-1
+
+--------------------------------------------------------------------------------------------------------------------------------
+Service             State   Vital   Mode         Instances                                                Composing States         
+--------------------------------------------------------------------------------------------------------------------------------
+AEROSPIKE CLUSTER   UP      true    STANDALONE                                                                   
+CHARGING            UP      true    NPLUSK       me-charging-689d4475c4-75ztm: UP                         aerospike client: UP     
+                                                                                                          charging: UP             
+                                                                                                          ltm client: UP           
+                                                 me-charging-689d4475c4-jsfwg: UP                         aerospike client: UP     
+                                                                                                          charging: UP             
+                                                                                                          ltm client: UP           
+DIAMETERIO          UP      true    ONEPLUSONE   me-iohd-0: UP (STANDBY)                                  aerospike client: UP     
+                                                                                                          diameterio: UP (STANDBY) 
+                                                                                                          traffic to nodes: UP     
+                                                 me-iohd-1: UP (ACTIVE)                                   aerospike client: UP     
+                                                                                                          diameterio: UP (ACTIVE)  
+                                                                                                          traffic to nodes: UP     
+KAFKA               UP      true    STANDALONE                                                                   
+LTM                 UP      true    ONEPLUSONE   me-centralmanagement-0: UP (STANDBY)                     aerospike client: UP     
+                                                                                                          ltm: UP (STANDBY)        
+                                                 me-centralmanagement-1: UP (ACTIVE)                      aerospike client: UP     
+                                                                                                          ltm: UP (ACTIVE)         
+NOTIFICATION        UP      false   NPLUSK       me-notification-5d88cd966b-68qfn: UP                     aerospike client: UP     
+                                                                                                          notification: UP         
+                                                 me-notification-5d88cd966b-jppt8: UP                     aerospike client: UP     
+                                                                                                          notification: UP         
+POLICY              UP      true    NPLUSK       me-charging-689d4475c4-75ztm: UP                         aerospike client: UP     
+                                                                                                          ltm client: UP           
+                                                                                                          policy: UP               
+                                                 me-charging-689d4475c4-jsfwg: UP                         aerospike client: UP     
+                                                                                                          ltm client: UP           
+                                                                                                          policy: UP               
+PROVISIONING        UP      false   NPLUSK       me-provisioning-747fd789dd-4gg8m: UP (smSync: TIMED_OUT) aerospike client: UP     
+                                                                                                          ltm client: UP           
+                                                                                                          provisioning: UP         
+                                                 me-provisioning-747fd789dd-mmbvj: UP (smSync: OK)        aerospike client: UP     
+                                                                                                          ltm client: UP           
+                                                                                                          provisioning: UP         
+ROLLBACK            UP      true    ONEPLUSONE   me-centralmanagement-0: UP (STANDBY)                     aerospike client: UP     
+                                                                                                          rollback: UP (STANDBY)   
+                                                 me-centralmanagement-1: UP (ACTIVE)                      aerospike client: UP     
+                                                                                                          rollback: UP (ACTIVE)    
+TEM                 UP      true    ONEPLUSONE   me-centralmanagement-0: UP (STANDBY)                     aerospike client: UP     
+                                                                                                          ltm client: UP           
+                                                                                                          tem: UP (STANDBY)        
+                                                 me-centralmanagement-1: UP (ACTIVE)                      aerospike client: UP     
+                                                                                                          ltm client: UP           
+                                                                                                          tem: UP (ACTIVE)         
+TRSCHEDULER         UP      true    ONEPLUSONE   me-centralmanagement-0: UP (STANDBY)                     aerospike client: UP     
+                                                                                                          trscheduler: UP (STANDBY)
+                                                 me-centralmanagement-1: UP (ACTIVE)                      aerospike client: UP     
+                                                                                                          trscheduler: UP (ACTIVE) 
+XDR                 UP      true    STANDALONE                                                                   
+--------------------------------------------------------------------------------------------------------------------------------
+</code></pre>
+                <table cellpadding="4" cellspacing="0" summary="" id="sps_status_Copy__table_vqq_5k4_mnb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Output on an <span class="ph">NCC</span> with an ME
+                        subsystem</span></caption><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d47905e138">Line</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d47905e141">Description</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e138 "><code class="ph codeph">Date: Thu Oct 29 17:40:37 UTC 2020</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e141 ">Date and time at which the command was executed.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e138 "><code class="ph codeph">Site Name: SPS-ME-1</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e141 ">This displays the name for this <span class="ph">NCC</span> system.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e138 "><code class="ph codeph">Component ME:</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e141 ">This displays the subsystem for which the status is
+                                    collected.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e138 "><code class="ph codeph">State UP </code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e141 ">This displays the composite state for this subsystem. This is
+                                    the state that is used by the heartbeat mechanism for
+                                    communicating status with others in the network. Possible values
+                                    are UP or DOWN.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e138 "><code class="ph codeph">Active SM SPS-ME-1</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e141 ">This displays the name of the active SM subsystem serving
+                                    this ME subsystem.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e138 ">
+                                    <pre class="pre codeblock"><code>-----------------------------------------------------------------------------------------------------------------
+Service             State   Vital   Mode         Instances                              Composing States         
+-----------------------------------------------------------------------------------------------------------------
+AEROSPIKE CLUSTER   UP      true    STANDALONE                                                                   
+CHARGING            UP      true    NPLUSK       me-charging-689d4475c4-75ztm: UP       aerospike client: UP     
+                                                                                        charging: UP             
+                                                                                        ltm client: UP           
+.
+.
+.
+
+XDR                 UP      true    STANDALONE                                                                   
+-----------------------------------------------------------------------------------------------------------------
+</code></pre>
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d47905e141 ">The summary table shows the composite state for each service,
+                                    as well as the total configured instances, and the number that
+                                    are UP and DOWN. Each header
+                                            describes:<p class="p"><code class="ph codeph">Service</code>: The type of
+                                        service. A service may have multiple instances in the
+                                        system, configured as STANDALONE, ONEPLUSONE, or
+                                            NPLUSK.</p>
+<p class="p"><code class="ph codeph">State</code>: Displays the state
+                                        for this service. Possible values are UP or
+                                            DOWN.</p>
+<p class="p"><code class="ph codeph">Vital</code>: States whether or
+                                        not the service is required; each service is described as
+                                        vital or not,.Vital indicates a problem with the service
+                                        will put the subsystem
+                                            out-of-service.</p>
+<p class="p"><code class="ph codeph">Mode</code>: States
+                                        whether the pods in this service are configured as
+                                        STANDALONE, 1+1, or N+K.</p>
+<p class="p"><code class="ph codeph">Instances</code>:
+                                        Identifies each pod instance, whether it is UP or DOWN, and
+                                        for 1+1 configurations, displays whether it is the Active or
+                                        Standby. The ACTIVE/ACTIVE and STANDBY/STANDBY instance for
+                                        SM NPLUSK configuration shows whether the SM subsystem is
+                                        acting as the Primary or Secondary. This information is not
+                                        used by the SM GUI or Provisioning which are ACTIVE/ACTIVE
+                                        without any primary designation.</p>
+<div class="p">For the PROVISIONING
+                                        service, the <code class="ph codeph">smSync</code> value provides
+                                        additional information. The possible values are:<ul class="ul" id="sps_status_Copy__ul_dnz_sh5_jyb">
+                                            <li class="li">PENDING (in progress)</li>
+
+                                            <li class="li">OK (completed successfully)</li>
+
+                                            <li class="li">TIMED_OUT (failsafe if the SM system does not
+                                                initiate the provisioning operation when the ME
+                                                subsystem comes up)</li>
+
+                                            <li class="li">WAITING (for SM system to initiate the
+                                                provisioning)</li>
+
+                                        </ul>
+</div>
+<code class="ph codeph">Composing States</code>: Composing states
+                                    are taken from multiple monitoring jobs to detect some soft
+                                    failure scenarios at the pod level. These soft failure scenarios
+                                    impact the ability to provide adequate service. If there are any
+                                    pod-based composite statuses in the monitored items that are
+                                    DOWN, then the instance status will also be DOWN. These
+                                    composite states provide insight as to what actions are required
+                                    to recover the pod and allow <span class="ph">NCC</span> to
+                                    provide adequate service. These composing states include:<ul class="ul" id="sps_status_Copy__ul_ixr_5ds_nlb">
+                                        <li class="li">whether the service is UP or DOWN</li>
+
+                                        <li class="li">whether the Aerospike client is UP or DOWN</li>
+
+                                        <li class="li">whether the LTM client is UP or DOWN <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Whether the
+                                                service instance status is UP or DOWN does not have
+                                                a direct impact on whether the subsystem is
+                                                in-service. However, if there are enough instances
+                                                that are DOWN, the subsystem status will eventually
+                                                be DOWN or out-of-service as well.</div>
+
+                                        </li>
+
+                                    </ul>
+
+                                    
+                                    
+                                    
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+            <div class="p">Example on an <span class="ph">NCC</span> with an SM
+                subsystem:<pre class="pre codeblock"><code>Component SM:
+State     UP
+GeoRole   ACTIVE
+
+----------------------------------------------------------------------------------------------------------
+Service            State  Vital   Mode         Instances                                Composing States
+----------------------------------------------------------------------------------------------------------
+AEROSPIKE CLUSTER  UP     true    STANDALONE
+CKEY               UP     true    STANDALONE                                            ckey: UP
+                                                                                        cmdb: UP
+KAFKA              UP     true    STANDALONE
+LTM                UP     true    ONEPLUSONE   ig-centralmanagement-0: UP (ACTIVE)      aerospike client: UP
+                                                                                        ltm: UP (ACTIVE)
+                                               ig-centralmanagement-1: UP (STANDBY)     aerospike client: UP
+                                                                                        ltm: UP (STANDBY)
+SM                 UP     true    NPLUSK       ig-servicemanager-548f4db98b-9vpdb: UP   aerospike client: UP
+                                                                                        ltm client: UP
+                                                                                         sm: UP
+TRSCHEDULER        UP     true    ONEPLUSONE   ig-centralmanagement-0: UP (ACTIVE)      aerospike client: UP
+                                                                                        trscheduler: UP (ACTIVE)
+                                               ig-centralmanagement-1: UP (STANDBY)     aerospike client: UP
+                                                                                        trscheduler: UP (STANDBY)
+XDR                UP     true    STANDALONE
+----------------------------------------------------------------------------------------------------------
+
+Service state queried from 'ig-centralmanagement-service.ig1.svc.cluster.local'.
+
+Admin Down Nodes:
+
+Node registry queried from 'ig-centralmanagement-service.ig1.svc.cluster.local'.</code></pre></div>
+
+            <div class="p">
+                <table cellpadding="4" cellspacing="0" summary="" id="sps_status_Copy__table_brv_s44_mnb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Output on an <span class="ph">NCC</span> with the SM
+                        subsystem</span></caption><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d47905e307">Line</th>
+
+                                <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d47905e310">Description</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d47905e307 "><code class="ph codeph">Component SM:</code></td>
+
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d47905e310 ">Indicates that this is for the SM subsystem.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d47905e307 "><code class="ph codeph">State UP</code>
+                                </td>
+
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d47905e310 ">This displays the composite state for this subsystem. This is
+                                    the state that is used by the heartbeat mechanism for
+                                    communicating status with others in the network. Possible values
+                                    are UP or DOWN.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d47905e307 "><code class="ph codeph">GeoRole ACTIVE</code></td>
+
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d47905e310 ">This displays whether or not this subsystem is
+                                    ACTIVE.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d47905e307 ">
+                                    <pre class="pre codeblock"><code>-----------------------------------------------------------------------------------------------------------------
+Service             State   Vital   Mode         Instances                              Composing States         
+-----------------------------------------------------------------------------------------------------------------
+AEROSPIKE CLUSTER   UP      true    STANDALONE                                                                   
+   
+.
+.
+.
+
+XDR                 UP      true    STANDALONE                                                                   
+-----------------------------------------------------------------------------------------------------------------
+</code></pre>
+                                </td>
+
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d47905e310 ">Table headers. Each header
+                                            indicates:<p class="p"><code class="ph codeph">Service</code> The type of
+                                        service. A service may have multiple instances in the
+                                        system, configured as STANDALONE, ONEPLUSONE, or NPLUSK. The
+                                        summary table shows the composite state for each service, as
+                                        well as the total configured instances, and the number that
+                                        are UP and DOWN.</p>
+<p class="p"><code class="ph codeph">State</code> This displays
+                                        the composite state for this subsystem. This is the state
+                                        that is used by the heartbeat mechanism for communicating
+                                        status with others in the network. Possible values are UP or
+                                        DOWN.</p>
+<p class="p"><code class="ph codeph">Vital</code> states whether or not the
+                                        service is required; each service is described as vital
+                                        (true) or not (false). Vita indicates a problem with the
+                                        service will put the subsystem
+                                            out-of-service.</p>
+<p class="p"><code class="ph codeph">Mode</code> states
+                                        whether the pods in this service are configured as
+                                        STANDALONE, ONEPLUSONE, or
+                                            NPLUSK.</p>
+<p class="p"><code class="ph codeph">Instances</code> Identifies the
+                                        instance, whether it is up or down, for NPLUSK displays
+                                        Active/Active, or Standby/Standby, and for 1+1
+                                        configurations, displays whether it is the Active or
+                                        Standby.</p>
+<div class="p"><code class="ph codeph">Composing States</code>
+                                        <ul class="ul" id="sps_status_Copy__ul_ar3_c2s_nlb">
+                                            <li class="li">Composing states are taken from multiple monitoring
+                                                jobs to detect some soft failure scenarios at the
+                                                pod level. These soft failure scenarios impact the
+                                                ability to provide adequate service. If there are
+                                                any pod-based composite statuses in the monitored
+                                                items that are DOWN, then the instance status will
+                                                also be DOWN. These composite states provide insight
+                                                as to what actions are required to recover the pod
+                                                and allow <span class="ph">NCC</span> to
+                                                provide adequate service. These composing states can
+                                                  include:<ul class="ul" id="sps_status_Copy__ul_bnw_rks_nlb">
+                                                  <li class="li">whether the service is UP or DOWN</li>
+
+                                                  <li class="li">whether the Aerospike client is UP or
+                                                  DOWN</li>
+
+                                                  <li class="li">whether the LTM client is UP or DOWN</li>
+
+                                                </ul>
+</li>
+
+                                        </ul>
+</div>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

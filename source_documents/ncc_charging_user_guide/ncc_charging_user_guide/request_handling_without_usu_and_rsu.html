@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Handling update request without USU/RSU" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="request_handling_without_usu_and_rsu" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Handling update request without USU/RSU</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="request_handling_without_usu_and_rsu">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Handling update request without USU/RSU</h1>
+<div class="body conbody">
+        <div class="section" id="request_handling_without_usu_and_rsu__section_f2v_35h_s5b"><h2 class="title sectiontitle">Request without RSU</h2>
+            
+            <p class="p">In a 5G environment, a trigger causing the SMF to report usage for one rating group
+                (RG) may cause the SMF to also piggy-back locally stored UUCs (with a
+                TriggerCategory of DEFERRED_REPORT) for another RG in the same update. However, the
+                previously allocated quota for the SMF may not be exhausted for this RG, and a new
+                quota allocation may not be needed. </p>
+
+            <p class="p">So the MUU does NOT include the requestedUnit IE. The CHF can record the reported
+                usage and reduce the remaining outstanding allocated quota for the RG, while NOT
+                allocating any new quota (that is, no MUI is expected in the response). By not
+                allocating new quota additional traffic between the SMF and UPF can be avoided.</p>
+
+            <p class="p">If the ME application preference <em class="ph i">Skip New Quota When No RequestUnit</em> is set to
+                    <var class="keyword varname">true</var>, then usage reported in UUCs is recorded in update
+                transaction and new quota is not allocated if the SMF does not include the
+                requestedUnit within the MUU.</p>
+
+            <p class="p">Also if there is no RSU <em class="ph i">AND</em> the reported usage for the flow is includes a
+                TriggerType of FINAL, then any remaining allocated quota for the flow is canceled
+                (that is, any remaining reservation is canceled).</p>
+
+        </div>
+
+        <div class="section" id="request_handling_without_usu_and_rsu__section_arb_35h_s5b"><h2 class="title sectiontitle">Request without USU</h2>
+            
+            <p class="p">There are scenarios where an SMF can store a number of UUCs for an N40 session for
+                TriggerCategory of DEFERRED_REPORT (for example, CHANGE_OF_UE_PRESENCE_IN and
+                PRESENCE_REPORTING_AREA). When the SMF sends an update to the CHF, it sends all the
+                stored UUCs and then request new quota in the final update message. In the final
+                update, the SMF requests quota for all active data flows (that is, irrespective of
+                whether it included any UUCs in the last update transaction or not). Therefore it is
+                possible (depending on the distribution of UUCs across RGs) that in the last update
+                transaction for transfer of all the UUCs to the CHF, one or more of the active RGs
+                may not include any UUCs within their MUU that includes a requestedUnit IE. </p>
+
+            <p class="p">If the ME application preference <em class="ph i">Allow N40 request Without UUC</em> is set to
+                    <var class="keyword varname">true</var>, CHF can allow new quota in this case even if no usage
+                is reported for the MUU. </p>
+
+            <p class="p">If the ME application preference <em class="ph i">Allow N40 request Without UUC</em> is set to
+                    <var class="keyword varname">false</var>, there is currently outstanding quota for the flow, and
+                no UUCs are included within the MUU, then the CHF returns the result code
+                    <var class="keyword varname">RATING_FAILED</var>.</p>
+
+        </div>
+
+        <div class="section" id="request_handling_without_usu_and_rsu__section_tlv_zth_s5b"><h2 class="title sectiontitle">Work flow for request without USU/RSU</h2>The
+            following table describes the result for update/terminate request for various
+            combinations of presence/absence of USU and RSU. <table cellpadding="4" cellspacing="0" summary="" id="request_handling_without_usu_and_rsu__table_fkk_rsh_s5b" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Update request without USU/RSU - various combinations</span></caption><colgroup><col style="width:12.200956937799043%" /><col style="width:11.961722488038278%" /><col style="width:12.79904306220096%" /><col style="width:32.6555023923445%" /><col style="width:30.38277511961723%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d166180e108">RSU</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d166180e111">USU</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d166180e114">Request type</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d166180e117">Response</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d166180e120">CDR</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e108 ">Present</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e111 ">Present</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e114 ">Update</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e117 ">Response with MUU and granted units.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e120 ">CDR with requested and consumed units</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e108 ">Absent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e111 ">Present</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e114 ">Update</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e117 ">No MUU in response for RG without RSU.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e120 ">MUU and UUC present in CDR no reservation info</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e108 ">Absent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e111 ">Absent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e114 ">Update</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e117 ">No MUU in response for RG without RSU and USU</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e120 ">MUU missing in CDR for RG without UUC and RSU</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e108 ">Present</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e111 ">Absent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e114 ">Update</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e117 ">MUU in response for grated units</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e120 ">MUU in CDR without UUC</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e108 ">Absent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e111 ">Absent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e114 ">Terminate</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e117 ">No MUU in response for RG without USU</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d166180e120 ">MUU missing in CDR for RG without UUC</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+</div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

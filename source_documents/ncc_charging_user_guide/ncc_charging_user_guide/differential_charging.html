@@ -1,0 +1,984 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Differential charging for IMS calls" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e8295" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Differential charging for IMS calls</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e8295">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Differential charging for IMS calls</h1>
+<div class="body conbody">
+<p class="p">This section provides information about various scenarios for differential charging in IMS calls.</p>
+
+<div class="section"><h2 class="title sectiontitle">Charging based on called party/calling party</h2>
+<p class="p">Calling Party number (CLG) and Called Party number (CLD) for a VoLTE calls are identified as
+    specified in the following table. Based on this, rules can be configured to set the calling
+    and/or called party. Differential charging can be configured based on the CLG/CLD set in
+    rules.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>CLG and CLD for different call types</span></caption><colgroup><col style="width:13.661202185792348%" /><col style="width:42.349726775956285%" /><col style="width:43.98907103825137%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e52">Call type</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e55">CLG</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e58">CLD</th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e52 ">MOC</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e55 ">Subscription-Id/Subscription-Id-Data</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e58 ">Service-Information/IMS-Information/Called-Party-Address</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e52 ">MTC</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e55 ">
+        <div class="p">Service-Information/IMS-Information/Calling-Party-Address <div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e8295__note_nmn_bxw_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If
+           <em class="ph i">Calling-Party-Address</em> AVP appears multiple times, then the first one in the
+          request is used for processing.</div>
+</div>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e58 ">Subscription-Id/Subscription-Id-Data</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e52 ">FWD</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e55 ">
+        <div class="p">Service-Information/IMS-Information/Calling-Party-Address<div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e8295__note_kk3_cxw_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For
+          call forwarding, the actual calling party is provided by this AVP, but the charging party
+          is taken from <em class="ph i">Subscription-Id/Subscription-Id-Data</em>.</div>
+</div>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e58 ">Service-Information/IMS-Information/Called-Party-Address</td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Example of CLG/CLD based charging</span>
+    
+    <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e8295__image_jdx_l3z_jyb" height="288" src="../images/clg_cld_based_charging.JPG" width="288" />
+   </div>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Parsing CLG/CLD to E164 format</strong></p>
+
+<p class="p">If the incoming calling part address/called party addresses is in SIP/TEL format, then it must be converted to E164 format using rules.</p>
+
+<p class="p">For calling party address, the <var class="keyword varname">CALL_COMMON.Calling-Party</var> condition is used to do the parsing. It takes the value from the <em class="ph i">Calling-Party-Address</em> AVP.</p>
+
+<p class="p">For called party address, the <var class="keyword varname">CALL_COMMON.Called-Party</var> condition is used to do the parsing. It takes the value from the <em class="ph i">Called-Party-Address</em> AVP.</p>
+
+<p class="p">When the value in SIP/TEL format is converted to E164 format, the escape codes (+, -, and leading zeros) are removed from the number. Following are some examples of parsing:</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:77.57847533632287%" /><col style="width:22.421524663677133%" /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e171">
+         <p class="p">SIP/TEL URI</p>
+
+        </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e177">
+         <p class="p">Parsed E164 value</p>
+
+        </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e171 ">sip:+919958882103;rn=9918872101@Nokia.host;npri=888878798</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e177 ">919958882103</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e171 ">tel:+919958882103;rn=9918872101@Nokia.host;npri=888878798</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e177 ">919958882103</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e171 ">sip:+915559343211;rn=9918872103@Nokia.host;npri=888878798</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e177 ">915559343211</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e171 ">tel:+915559343211;rn=9918872103@Nokia.host;npri=888878798</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e177 ">915559343211</td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> From the SIP/TEL URI, the value between the first colon (:) and the first semicolon (;) is picked for parsing. If '@' appears before semicolon (;), then the value between the first colon (:) and '@' is picked for parsing.</div>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Charging based on call sub-type</h2>
+<p class="p">Identification of call sub-type (MOC, MTC, or FWD) is done through rules based on the following logic:</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:80.62015503875969%" /><col style="width:19.37984496124031%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e250">AVP</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e253">Call sub-type</th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e250 ">Service-Information &gt; IMS-Information &gt; Role-Of-Node = 0</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e253 ">MOC</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e250 ">Service-Information &gt; IMS-Information &gt; Role-Of-Node = 1</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e253 ">MTC</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e250 ">
+        <p class="p">Service-Information &gt; IMS-Information &gt; Role-Of-Node = 2</p>
+
+        <p class="p">or</p>
+
+        <p class="p">Service-Information &gt; IMS-Information &gt; Role-Of-Node = 0 and Service-Information
+         &gt; MMTel-Information &gt; Supplemantary-Service &gt; MMTel-SService-Type=6</p>
+
+       </td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e253 ">FWD</td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+<p class="p">The examples in the following figures demonstrate rules and tariff configuration for call sub-type based charging.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Example: IMS rules for call sub-type</span>
+    
+    <img class="image break" height="288" src="../images/img9yz-09126-ug01-pczza-sp1-imsrulecallsubtype_default.png" width="480" />
+   </div>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Example: Tariff configuration for call sub-type</span>
+    
+    <img class="image break" height="192" src="../images/img9yz-09126-ug01-pczza-sp1-tariffcallsybtype_default.png" width="576" />
+   </div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Charging based on call time</h2>
+<p class="p">Charging for IMS calls based on call time is done through rules. The <em class="ph i">Service-Information &gt; IMS-Information &gt; SIP-Request-Timestamp</em> AVP is used for time-based charging in IMS calls.</p>
+
+<p class="p">If the <em class="ph i">SIP-Request-Timestamp</em> AVP is available, then the event timestamp is set with this value.</p>
+
+<p class="p">If the <em class="ph i">SIP-Request-Timestamp</em> AVP is missing, then the event timestamp is set from the value of the <em class="ph i">Event-Timestamp</em> AVP. If the <em class="ph i">Event-Timestamp</em> AVP is also missing, then the current platform time is used.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Sample rule for call-time-based charging</span>
+    
+    <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e8295__image_mqv_mpv_dyb" height="288" src="../images/img9yz-09126-ug01-pczza-sp1-f-calltimecharging_default1.PNG" width="576" />
+    <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e8295__image_frs_npv_dyb" height="288" src="../images/img9yz-09126-ug01-pczza-sp1-f-calltimecharging_default2.PNG" width="576" />
+   </div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">First call for a device</h2>
+<p class="p">In the device entity, the <span class="ph uicontrol">isFirstCallDone</span> variable determines whether a call is the first call for a device. For the first call, this parameter can be set to <var class="keyword varname">true</var>. For subsequent calls, this parameter remains <var class="keyword varname">false</var>.</p>
+
+<p class="p">
+<strong class="ph b">Charging based on first call</strong>
+</p>
+
+<p class="p">Differential charging for the first call for a device can be configured using the <span class="ph uicontrol">isFirstCall</span> variable in the <var class="keyword varname">SPR_DEVICE</var> source context. The <span class="ph uicontrol">SPR_DEVICE.isFirstCall</span> variable returns <var class="keyword varname">true</var> for the first call. For subsequent calls, this variable returns <var class="keyword varname">false</var>.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Example: Tariff formula for differential charging based on first call</span>
+    
+    <img class="image break" height="288" src="../images/img9yz-09126-ug01-pczza-sp1-diffchargingfstcall_default.png" width="576" />
+   </div>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Sending notification for the first call</strong></p>
+
+<p class="p">To send the notification for the first call for a device, rule in the threshold is as below:</p>
+<ol class="ol">
+<li class="li">Navigate to <strong class="ph b">Charging → ☰ → Threshold profiles</strong>.</li>
+
+<li class="li">Create a new charging threshold or update an existing one.</li>
+
+<li class="li">In the applicability condition, provide the following condition and continue to the next step:<p class="p">
+       <samp class="ph systemoutput">SPR_DEVICE.Is-First-Call = true</samp>
+      </p>
+</li>
+
+<li class="li">
+      <p class="p">Configure rule for an absolute start threshold as follows:</p>
+<img class="image" height="192" src="../images/img9yz-09126-ug01-pczza-sp1-notiffirstcall_default.png" width="576" />
+     </li>
+
+<li class="li">Configure a rule in charging service as follows:<img class="image break" height="192" src="../images/img9yz-09126-ug01-pczza-sp1-notiffirstcall2_default.png" width="480" />
+     </li>
+
+</ol>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Destination-based charging</h2>
+<div class="sectiondiv"><p class="p"><strong class="ph b">Charging based on onnet or offnet IMS calls</strong></p>
+<p class="p">Differential charging for
+     onnet and offnet IMS calls can be done through rules, using the <em class="ph i">IMS_SERVICE_INFO</em> source
+     context. This source context is available for the following triggers:</p>
+<ul class="ul">
+     <li class="li">IMS_CALL_ESTABLISHMENT </li>
+
+     <li class="li">IMS_CALL_MODIFICATION </li>
+
+     <li class="li">APPLICABILITY </li>
+
+     <li class="li">TARIFF </li>
+
+    </ul>
+<p class="p">The following condition is used to check whether a call is onnet or offnet.</p>
+
+    <samp class="ph systemoutput">IMS_SERVICE_INFO.Is-OnNet = true</samp>
+    <p class="p">The default number of starting digits for this condition is 6. That is, if the starting six
+     digits of the calling and called numbers are the same, then they are considered as onnet.
+     Otherwise, they are considered as offnet.</p>
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> +/- and leading zeroes are not considered as
+     starting digits.</div>
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Examples: Onnet or offnet based on CLG and CLD</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e503">CLG</th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e506">CLD</th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e509">Onnet or offnet</th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e503 ">tel:+919999955555</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e506 ">tel:+919999954321</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e509 ">Onnet</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e503 ">tel:+919999955555</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e506 ">tel:-919999954321</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e509 ">Onnet</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e503 ">+529999955555</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e506 ">0529999954321</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e509 ">Onnet</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e503 ">+529999955555</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e506 ">0000529999954321</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e509 ">Onnet</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e503 ">+21669999955555</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e506 ">+66219999944321</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e509 ">Offnet</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e503 ">+9999955555</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e506 ">-9999944321</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e509 ">Offnet</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e503 ">+9999955555</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e506 ">09999944321</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e509 ">Offnet</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e503 ">+19999955555</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e506 ">00009999944321</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e509 ">Offnet</td>
+
+       </tr>
+
+      </tbody>
+</table>
+The default number of starting digits can be changed using the condition shown in the
+    following example: <samp class="ph systemoutput">IMS_SERVICE_INFO.Is-OnNet-Explicit-Check (3) =
+     true</samp>
+    <p class="p">The syntax for this context is <samp class="ph systemoutput">IMS_SERVICE_INFO.Is-OnNet-Explicit-Check
+      ("Calling_Party_STRING", Called_Party_STRING", Digits_For_Prefix_LONG)</samp>.
+     However, <samp class="ph systemoutput">Calling_Party_STRING</samp> and
+      <samp class="ph systemoutput">Called_Party_STRING</samp> are optional.</p>
+<p class="p">The following figure
+     provides an example rule for destination-based charging. </p>
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Example: Rule configuration for destination-based charging - onnet or offnet IMS
+      calls</span>
+     
+     <img class="image break" height="288" src="../images/img9yz-09126-ug01-pczza-sp1-isonnetoffnet_default.png" width="576" />
+    </div>
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Charging based on onnet or offnet SMS and MMS calls</strong></p>
+
+<p class="p">Differential charging for onnet and offnet SMS and MMS calls can be done through rules, using the <em class="ph i">GY_MESSAGE</em> source context.</p>
+
+<p class="p">The following conditions are used to check whether an SMS or MMS is onnet or offnet:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">
+<samp class="ph systemoutput">GY_MESSAGE.Is-OnNet = True/False</samp>
+</p>
+
+<p class="p">This value is taken from the <em class="ph i">Subscriber-Id</em> and <em class="ph i">Recipient-Address</em> AVPs.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<samp class="ph systemoutput">GY_MESSAGE.Is-OnNet-Explicit-Check ( "Calling_Party_STRING", Called_Party_STRING", Digits_For_Prefix_LONG ) = True/False</samp>
+</p>
+
+</li>
+
+</ul>
+
+<p class="p">Similar to IMS calls, for SMS and MMS also, the default number of starting digits for this condition is 6. That is, if the starting six digits of the calling and called numbers are the same, then they are considered as onnet. Otherwise, they are considered as offnet.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> +/- and leading zeroes are not considered as starting digits.</div>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Example: Tariff configuration for destination-based charging - onnet or offnet SMS or
+      MMS calls</span>
+     
+     <img class="image break" height="288" src="../images/img9yz-09126-ug01-pczza-sp1-onnetoffnetsms_default.png" width="576" />
+    </div>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Charging based on country of called party</strong></p>
+
+<p class="p">Differential charging based on country code of the called party can be done through rules, using the <em class="ph i">IMS_SERVICE_INFO</em> source context. The <em class="ph i">Called-Party-Address</em> AVP extracts the country code, which is mapped to find the destination country name.</p>
+
+<p class="p">Charging is based on the country name through tariff rule. For differential charging based on called country, the <span class="ph uicontrol">Called-Party-Country</span> value is available in the <em class="ph i">CALL_COMMON</em> source context.</p>
+
+<p class="p">The <em class="ph i">Called-Party-CC of IMS_SERVICE_INFO</em> source context is available for the following triggers:</p>
+<ul class="ul">
+<li class="li">IMS_CALL_ESTABLISHMENT </li>
+
+<li class="li">IMS_CALL_MODIFICATION </li>
+
+<li class="li">IMS_CALL_TERMINATION </li>
+
+<li class="li">APPLICABILITY </li>
+
+<li class="li">TARIFF </li>
+
+<li class="li">THRESHOLD </li>
+
+</ul>
+
+<p class="p">The following table provides the list of the standard one-digit and two-digit country codes.
+     These country codes are predefined in NCC. For three-digit country codes, a complex map must be
+     created.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Complex map cannot be used for one-digit and two-digit country codes.</div>
+
+<table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-d1e8295__cctable" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Predefined one-digit and two-digit country codes and corresponding country names</span></caption><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e778">
+         <p class="p">Country Code</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e784">
+         <p class="p">Country Name</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e790">
+         <p class="p">Country Code</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e796">
+         <p class="p">Country Name</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">1</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">USA</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">54</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Argentina</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">7</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Russia</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">55</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Brazil</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">20</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Egypt</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">56</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Chile</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">27</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">South Africa</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">57</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Colombia</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">30</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Greece</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">58</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Venezuela</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">31</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Netherlands</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">60</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Malaysia</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">32</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Belgium</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">61</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Australia</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">33</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">France</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">62</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Indonesia</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">34</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Spain</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">63</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Philippines</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">36</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Hungary</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">64</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">New Zealand</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">39</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Italy</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">65</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Singapore</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">40</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Romania</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">66</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Thailand</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">41</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Switzerland</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">81</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Japan</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">43</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Austria</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">82</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Korea</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">44</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">UK</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">86</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">China</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">45</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Denmark</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">90</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Turkey</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">46</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Sweden</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">91</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">India</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">47</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Norway</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">92</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Pakistan</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">48</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Poland</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">93</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Afghanistan</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">49</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Germany</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">94</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Sri Lanka</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">51</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Peru</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">95</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Myanmar</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">52</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Mexico</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">98</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">Iran</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e778 ">53</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e784 ">Cuba</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e790 ">-</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e796 ">-</td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+<p class="p">
+<strong class="ph b">Example: Configuration for pre-defined country code</strong>
+</p>
+
+<div class="p">Existing country codes are defined in NCC. The following figure provides an example tariff
+     formula for differential charging based on predefined country codes (available in
+      <a class="xref" href="differential_charging.html#id9yz-09126-ug01-pczza-sp1-d1e8295__cctable">Predefined one-digit and two-digit country codes and corresponding country names</a>).<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Example: Charging based on Called-Party-Address</span>
+      
+      <img class="image break" height="288" src="../images/img9yz-09126-ug01-pczza-sp1-contrycdcharging_default.png" width="384" />
+     </div>
+</div>
+
+<p class="p">
+<strong class="ph b">Example: Configuration for new country code</strong>
+</p>
+
+<p class="p">If the operator wants to add a new three-digit country code, it must define it in a complex map and then use it in rules.</p>
+<ol class="ol">
+<li class="li">Navigate to <span class="ph uicontrol">Charging → ≡ → Mapping tables</span> and define a map with key value
+      pairs for country name and country code respectively.</li>
+
+<li class="li">Use the map name to create a rule variable in the
+       <samp class="ph systemoutput">IMS_CALL_ESTABLISHMENT</samp> trigger. <a href="../images/img9yz-09126-ug01-pczza-sp1-ccrulevar2_default.png" class="image"><img class="image scalefit" height="288" src="../images/img9yz-09126-ug01-pczza-sp1-ccrulevar2_default.png" width="576" /></a>
+      <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e8295__image_fmz_nl5_cyb" height="192" src="../images/new_country_code_0.PNG" width="480" /></li>
+
+<li class="li">Use the rule variable in a rule group. <a href="../images/img9yz-09126-ug01-pczza-sp1-ccrulevar1_default.png" class="image"><img class="image scalefit" height="192" src="../images/img9yz-09126-ug01-pczza-sp1-ccrulevar1_default.png" width="480" /></a>
+     </li>
+
+</ol>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Access-Network-Information (ANI) AVP</h2>
+<p class="p">The <em class="ph i">Access-Network-Information</em> AVP (AVP code 1263) is of type <var class="keyword varname">OctetString</var> and indicates one instance of the SIP P-header <var class="keyword varname">P-Access-Network-Info</var>. In SIP, as per RFC 7315 [404], the content of the <kbd class="ph userinput">P-Access-Network-Info</kbd> header is known as the access-net-spec. When multiple access-net-spec values are transported in a single <kbd class="ph userinput">P-Access-Network-Info</kbd> header in comma-separated format, then multiple <em class="ph i">Access-Network-Information</em> AVPs are used with one access-net-spec value included in each AVP.</p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Charging based on ViLTE rating group</h2>
+<p class="p">The VoLTE or ViLTE correlation support over the Diameter 4G interface uses the <span class="ph uicontrol">ViLTE Rating Group</span> system parameter that identifies the ViLTE call over the Gy interface. However, this functionality is disabled when the <span class="ph uicontrol">ViLTE Rating Group</span> is set as <var class="keyword varname">-1</var>. Otherwise, this functionality is enabled and the configured value is considered as per the rating group of a ViLTE call.</p>
+
+<p class="p">This functionality enhances the capability of LTE Video Call (LTC) for performing smooth transition between voice and LVC.</p>
+
+<p class="p">The hard-stop of a volume limit over ViLTE call is checked when a video call is received over the IMS Ro interface and the <span class="ph uicontrol">ViLTE Rating Group</span> system parameter is enabled.</p>
+
+<p class="p">The volume quota is checked over ViLTE call and the following conditions are considered to check the hard-stop limit of volume:</p>
+<ul class="ul">
+<li class="li">All volume buckets are exhausted.</li>
+
+<li class="li">The hard-stop limit is reached over a counter, either due to the
+      <samp class="ph systemoutput">Reject</samp> threshold action or when the maximum limit of a counter is
+     reached.</li>
+
+<li class="li">No volume resources are available to rate and charge any rating groups when it comes over the Gy
+     interface.</li>
+
+<li class="li">The account balance is not available to rate and charge any rating groups when it comes over the
+     Gy interface.</li>
+
+<li class="li">A Usage Control (UC) limit is reached for a device.</li>
+
+<li class="li">PL or DL check is preformed.</li>
+
+<li class="li">A Time of Day (TOD) check is performed.</li>
+
+<li class="li">Minutes allowance (when time bucket is available).</li>
+
+<li class="li">This rating group is not present in a Gy request on a Ro interface, but when it is an LVC call
+     and the <span class="ph uicontrol">ViLTE Rating Group</span> system parameter is configured similar to
+     that in a rating group to check the data allowance. The same rating group is present in the Gy
+     request.</li>
+
+</ul>
+
+<p class="p">When a CCR message is received over the Gy interface containing the rating group for a ViLTE call, the hard-stop limit is checked. If the hard-stop limit is reached, then it responds with a result code <samp class="ph systemoutput">2001</samp> in a CCA message over the Gy interface and a RAR message is triggered for all active IMS Ro sessions. When a RAR message is sent over the IMS Ro interface, it leads to the arrival of CCR-U(s) message from TAS. Whereas, on the arrival of CCR-U message, the hard-stop limit of volume to be checked and if the hard-stop limit is reached, then the video call is responded with result code <samp class="ph systemoutput">2001</samp> at root level and result code <samp class="ph systemoutput">4012</samp> at MSCC level. The Ro and Gy sessions are not terminated and a CCR-U message is returned from TAS for a voice call, which means transition of video call to voice call, and a CCR-T message from PGW for the Gy session.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Following conditions are assumed:<ul class="ul">
+     <li class="li">VoLTE or ViLTE calls are running over Diameter 4G interface and only a single MSCC is
+      supported in an IMS call.</li>
+
+     <li class="li">Only one type of voice media is supported and there is no differentiation between HD or
+      non-HD voice.</li>
+
+     <li class="li">This functionality is applicable to originating, terminating, and forwarding a ViLTE call.
+      However, starting a new call during an update or terminate operation is not supported for an
+      IMS call.</li>
+
+     <li class="li">There are no retries of RAR, which means in case of any failure, a subscriber would
+      continue to have video call for a short duration till next CCR-U request is received over the
+      IMS Ro interface.</li>
+
+     <li class="li">The <em class="ph i">CALL_COMMON</em> and <em class="ph i">Gy_MESSAGE</em> are supported in rules for Gy estimation.</li>
+
+     <li class="li">When IMS call returns a result code <samp class="ph systemoutput">4012</samp> or
+       <samp class="ph systemoutput">5031</samp> in CCR-U message, then the validity time value is picked
+      from the <span class="ph uicontrol">Ims session inactivity duration</span>.</li>
+
+     <li class="li">For a soft limit Gy call, the validity time is picked from the <span class="ph uicontrol">Validity
+       Time</span> defined in the quota management (slicing profile).</li>
+
+    </ul>
+</div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">ANI or cell-based charging</h2><p class="p">Location of the subscriber is determined using
+    the <em class="ph i">Service-Information &gt; IMS-Information &gt; Access-Network-Information AVP. Decoding of
+     Access-Network-Information</em> AVP is done to extract relevant information. The decoding takes
+    into consideration the fact that MNC can either be of two digits or three digits in length. The
+    decoding separates all information of <em class="ph i">ANI</em> AVP, for example, MCC, MNC, LAC CI, and this
+    information is available for use in rules and custom data. If the <em class="ph i">ANI</em> AVP appears
+    multiple times, the first one is considered for processing.</p>
+<p class="p">In the example described in
+    the following figure, the following conditions are used to detect EUTRAN and GERAN calls.</p>
+
+   <samp class="ph systemoutput">IMS_SERVICE_INFO.RAT-TYPE = RATType3Gpp_EUTRAN</samp>
+   <samp class="ph systemoutput">IMS_SERVICE_INFO.RAT-TYPE = RATType3Gpp_GERAN</samp>
+   <div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Sample rule for cell-based charging</span>
+    
+    <img class="image break" height="288" src="../images/img9yz-09126-ug01-pczza-sp1-f-ani-charging_default.png" width="480" />
+   </div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Roaming-based charging</h2>
+<p class="p">Roaming is determined based on complex map using MCC and MNC AVP extracted from the <em class="ph i">ANI</em> AVP. Roaming information is then used in rules to decide on charging based on roaming location.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Sample complex map for roaming configuration</span>
+    
+    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-f-roamcomplexmap_default.png" height="174" width="313" />
+   </div>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Sample rule variable for roaming</span>
+    
+    <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e8295__image_nw5_3l5_cyb" height="192" src="../images/Roaming_based_charging_0.PNG" width="480" />
+    <img class="image break" height="288" src="../images/img9yz-09126-ug01-pczza-sp1-f-roamrulevar_default.png" width="576" />
+   </div>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Sample rule for roaming</span>
+    
+    <img class="image break" height="192" src="../images/img9yz-09126-ug01-pczza-sp1-f-roamrulegrp_default.png" width="480" />
+   </div>
+
+<p class="p">For termination calls, the <em class="ph i">ANI</em> AVP may not be present in the CCR-I. In this case, the original user location for the terminating call from first CCR-U is considered, if available, irrespective of whether the triggered feature support is turned on or off, and whether location change trigger is included or not. This value is set in the <samp class="ph systemoutput">origUserLocationInfo</samp> CDR tag.</p>
+
+<p class="p">For example, if CCR-I <em class="ph i">ANI</em> AVP includes a value <var class="keyword varname">a</var>, and the first CCR-U <em class="ph i">ANI</em> AVP includes a value <var class="keyword varname">b</var>, then the value of the <samp class="ph systemoutput">origUserLocationInfo</samp> tag in CDR is as follows:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">for CCR-I: the value is <var class="keyword varname">a</var>
+</p>
+
+</li>
+
+<li class="li">
+<p class="p">for CCR-U1: the value is <var class="keyword varname">b</var>
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Media-based charging</h2>
+<p class="p">The media type is determined through rules. The media type used for the call (whether initial or at media change) is read from the AVP <em class="ph i">Service-Information &gt; IMS-Information &gt; SDP-Media-Component &gt; SDP-Media-Name</em>.</p>
+
+<p class="p">The following media types are only supported for the VoLTE calls:</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e1503">Media type</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d410250e1506">AVP value format</th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e1503 ">Audio</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e1506 ">audio 49170 RTP/AVP 0</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e1503 ">Video</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d410250e1506 ">video 49170/2 RTP/AVP 31</td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+<p class="p">The first string in the AVP value is the media type for the call. If there are multiple <em class="ph i">SDP-Media-Name</em> AVPs in the CCR message with both audio and video media names, then the call is considered as a video call. If <em class="ph i">SDP-Media-Component</em> AVP is not present, then the media is considered as audio.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Sample rule for media-based charging</span>
+    
+    <img class="image break" height="288" src="../images/img9yz-09126-ug01-pczza-sp1-f-mediabasedch_default.png" width="480" />
+   </div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Charging based on closed user group calls</h2>
+<p class="p">If both the calling party and called party are part of the same closed user group (CUG), then the call is an in-group call. Otherwise, the call is an out-group call. Differential charging can be configured for in-group/out-group calls, for voice, SMS, and MMS.</p>
+
+<p class="p">CUG call is checked only if the call is onnet.</p>
+
+<p class="p">The <span class="ph uicontrol">Cug_Groups</span> attribute in the <em class="ph i">CALL_COMMON</em> source context configures differential charging based on in-group or out-group calls. This attribute is available for the following triggers:</p>
+<ul class="ul">
+<li class="li">APPLICABILITY </li>
+
+<li class="li">TARIFF </li>
+
+<li class="li">THRESHOLD </li>
+
+</ul>
+
+<p class="p">The application preference <em class="ph i">CUG Based Charging Applicability</em> is used to enable or disable the feature. It has possible values as 0, 1, 2 and the default value is 0. See charging application preferences for details.</p>
+
+<p class="p">The cugGroups has the group IDs of the common groups of the calling party and the called party (as shown in the following figure).</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>CUG groups in SM GUI</span>
+    
+    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-cug2_default.png" height="291" width="657" />
+   </div>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Example: Tariff formula for CUG calls</span>
+    
+    <img class="image break" height="288" src="../images/img9yz-09126-ug01-pczza-sp1-rulecug_default.png" width="480" />
+   </div>
+
+<p class="p">The CDR parameter <span class="ph uicontrol">CugGroups</span> is added to the CDR and contains the list of CUG groups of the called and calling party under the following conditions:</p>
+<ol class="ol">
+<li class="li">The <span class="ph uicontrol">CugGroups</span> is enabled in application preference.</li>
+
+<li class="li">The calling and called parties contain any common groups.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

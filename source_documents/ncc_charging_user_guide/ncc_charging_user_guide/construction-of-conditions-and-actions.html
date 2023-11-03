@@ -1,0 +1,1808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Construction of conditions and actions using attributes" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9YZ-09018-UG00-PCZZA-d1e15186" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Construction of conditions and actions using attributes</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9YZ-09018-UG00-PCZZA-d1e15186">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Construction of conditions and actions using attributes</h1>
+<div class="body conbody">
+        <p class="p">The rule engines provide profile oriented provisioning and rule editor provisioning that
+            allows you to enter basic details for the instance that you are configuring a rule for
+            according to the application plugin that is active. For example, if you are configuring
+            a rule for the active Diameter Routing plugin, your choice of source context and result
+            context narrows to Diameter Request and Diameter Answer.</p>
+
+        <p class="p">For profile oriented provisioning, when the basic details of the profile are correct, you
+            can configure the Triggers, Rule Groups and the Rule in the accompanying rule editor
+            window. Triggers cause the rule engine to act. Each profile contains a rule editor
+            window where you can author the Conditions and Actions for the application. The rule
+            editor window in a profile or rule variable usually includes the “if” statement on one
+            line and the “then” statement on the next line; you only need to add the criteria and
+            actions.</p>
+
+        <p class="p">For rule editor provisioning, the Triggers, Rule Groups and the Rules are configured
+            using the rule editor available on the Rule System Version. The rule editor window that
+            is part of each selection box usually requires you to type in the full rule syntax
+            (if/then) statement as shown in the following figure.</p>
+
+        <div class="fig fignone" id="id9YZ-09018-UG00-PCZZA-d1e15186__fig_qzl_5rw_w5b"><span class="figcap"><span class="fig--title-label">Figure: </span>Rule Editor window</span>
+            
+            <img class="image break" id="id9YZ-09018-UG00-PCZZA-d1e15186__image_rzl_5rw_w5b" src="../images/ruleeditor_default.png" />
+        </div>
+
+        <p class="p">NCC provides a set of supported attributes in the system’s application-specific rule
+            dictionaries, along with the ability to add other attributes that may have been created
+            by customers or other vendors in custom dictionaries, which feed the auto-complete
+            functionality when composing the rules. </p>
+
+        <p class="p">The editor highlights the syntax of rule entry, and flags most errors as editing
+            proceeds, highlighting where the error is located in the buffer, and displaying a
+            message that describes what is wrong (appearing on hover over the error icon). An
+            auto-complete appears as you enter text, which internally consults a dictionary of
+            possible entries based on context. If you suspect that you have made an error in
+            entering the rule text, move the cursor over the error icon to check the reason.</p>
+
+        <p class="p">All attributes are defined in rule attribute dictionaries using XML. Rules are
+            constructed in a simple format whereby the conditions result in an action, which can be
+            combined for multi-tiered policy and charging behavior. The multi-tiered behavior is
+            governed by the action precedence that NCC uses.</p>
+
+        <p class="p">There are two types of attributes, Criteria and Action. A Criteria Attribute is used in
+            conditions. An Action Attribute is used in results. Condition criteria definitions
+            include a source context and attribute. Action attribute definitions include a result
+            context and action attribute. </p>
+
+        <p class="p">A condition has a right hand side (RHS) and left hand side (LHS), separated by a
+            relational operator. Multiple conditions can be combined with the combination operator
+            and/or. Multiple conditions can be grouped with parentheses. The combination operator
+            has to be the same for all conditions within a group in parentheses, but the groups can
+            be combined with either operator, for example, (A or B or C) and (D and E and F).  The
+            groupings can also be nested, for example, (A or (B and C)). A rule action is specified
+            as an attribute with a parameter list. If there is only one parameter, it is depicted in
+            the rule editor as CONTEXTNAME.Attribute-Name = arg.  If there are multiple parameters,
+            it is depicted as CONTEXTNAME.Attribute-Name ( arg1, arg2 ).</p>
+
+        <p class="p">The following figure illustrates the rule authoring process.</p>
+
+        <div class="fig fignone" id="id9YZ-09018-UG00-PCZZA-d1e15186__fig_szl_5rw_w5b"><span class="figcap"><span class="fig--title-label">Figure: </span>Rule construction</span>
+            
+            <img class="image break" id="id9YZ-09018-UG00-PCZZA-d1e15186__image_tzl_5rw_w5b" src="../images/ruleconstruct2_default.gif" />
+        </div>
+
+        <p class="p">To build an entire rule with conditions, you must type “if” along with the criteria
+            attributes. If you do not type “if” in the first line, you are building an action.</p>
+
+        <p class="p">In NCC you can copy/paste rules in the rule editor windows when adding multiple rules and
+            use the Expand All button to expand or collapse the view of the rules.</p>
+
+<div class="section"><h2 class="title sectiontitle">Auto-complete</h2>
+
+<p class="p">When composing rules following the correct rule syntax, suggestions for input appear
+                below the cursor. The dictionary may define a particular parameter in the rule as
+                optional. You can omit the parameter, but you must enter a comma as a place holder.
+                When entering an attribute that has optional parameters, just after typing in the
+                CONTEXT.Attribute-Name you will see two suggestions for parameter-templates instead
+                of one. The second has optional parameters missing. </p>
+
+<p class="p">Suggestions pop-up automatically in some cases, but you can also press the
+                &lt;control&gt; + &lt;space&gt; keys to generate suggestions on demand or to invoke
+                an argument template list. The action provides either one or a list of possible
+                contexts, attributes, Enums, or operators, depending on where the cursor is
+                positioned in the rule editing area. Any list displayed is compiled according to the
+                position of your cursor in the rule editor (you may need to add a space to be in the
+                correct syntactical position; see the section <a class="xref" href="construction-of-conditions-and-actions.html#id9YZ-09018-UG00-PCZZA-d1e15186__RuleSyntax">Rule syntax</a>).</p>
+
+<p class="p">For example, the following shows how you would choose the EPC_IDENTITY_BIT enum when
+                creating criteria for a rule with the AF-Requested-Data attribute:</p>
+
+<p class="p">You enter the conditional statement by typing the word “if”. Nokia recommends that you type “if”
+                on the first line in the editor and then type the “Return” key to move the cursor to
+                the next line and enter condition criteria. On the new line, type or choose the
+                source context and attributes from the auto-complete selections. Wait for the system
+                to prompt you with the correct attributes. The SM always suggests attributes without
+                concern for the position of the cursor. The auto-complete suggests the next entry. </p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Example rule construction with auto-complete sequence step 1</span>
+                
+                <img class="image break" src="../images/arglist1_default.png" />
+            </div>
+
+<p class="p">Select the suggestion, then highlight the Bit_Name_ENUM (double click it or drag across it).</p>
+
+<p class="p">Type a space, or control-space, or the delete key to delete the selected text (any modification
+                triggers it) and you get a suggestion for the argument where the cursor is
+                situated:</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Example rule construction with auto-complete sequence step 2</span>
+                
+                <img class="image break" src="../images/arglist3_default.png" />
+            </div>
+
+<p class="p">Enter an operator (would have to be = or != for enum). It is best if you type a space between
+                entries as needed. </p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Example rule construction with auto-complete sequence step 3</span>
+                
+                <img class="image break" src="../images/arglist4_default.png" />
+            </div>
+
+<p class="p">When finished with the conditions, type the “Return” key to move the cursor to the
+                next line, choose “then” from the auto-complete and then type the “Return” key to
+                move the cursor to the next line to add the result context and complete the rule
+                with an action.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Example rule construction with auto-complete sequence step 5</span>
+                
+                <img class="image break" src="../images/arglist5_default.png" />
+            </div>
+
+<p class="p">If you have entered the rule properly with the correct syntax, a validation indicator (green
+                check mark) is available just above the rule editor window. However, if you have
+                entered an unsupported attribute or have made a mistake with spacing of the
+                attribute, the validation indicator will change color with an error icon added to
+                the circle instead of a check mark indicating that you have not entered the
+                information correctly.</p>
+
+<p class="p">The list of suggested attributes is filtered based on compatibility in the context of
+                the statement according to the trigger. For example, specific attributes appear
+                under specific triggers, an attribute on the right side of a condition must be
+                compatible with the left hand side, or attributes in an argument list need to be
+                compatible with the dictionary definition of the arguments.</p>
+
+<p class="p">If the prompts are failing to make suggestions, go back (delete what you have
+                entered) and look again for the prompt.</p>
+
+</div>
+
+<div class="section" id="id9YZ-09018-UG00-PCZZA-d1e15186__RuleSyntax"><h2 class="title sectiontitle">Rule syntax</h2>
+
+<p class="p">Rule authoring is not case sensitive, but Nokia recommends that you use lower case
+                letters in the SM GUI; the SM rule editor will correct the case as necessary. All
+                rules follow the same If/Then model as follows:</p>
+
+            <pre class="pre codeblock" id="id9YZ-09018-UG00-PCZZA-d1e15186__codeblock_uh5_2sl_1xb"><code>if  
+ &lt;source_context&gt;.&lt;attribute&gt; &lt;operator&gt; &lt;value&gt; 
+then  
+ &lt;result_context&gt;.&lt;attribute&gt; &lt;operator&gt; &lt;value&gt; </code></pre>
+<p class="p">The “if” statement is the condition and the “then” statement represents the action in the rule.
+                Action attributes represent the action that NCC sets when a condition is matched
+                successfully. You can add just an action by omitting the “if” statement in the rule
+                editor. Simply use the auto-complete functionality to add the action attributes and
+                values required.</p>
+
+<p class="p">The syntax of a rule consists of optional conditions followed by one or more actions.
+                The conditions are preceded with the “if” keyword and the actions begin after the
+                “then” keyword. The if/then keywords are entered as seen in the interface; that is,
+                a rule in a profile may be entered using lowercase keywords (if, then) or using
+                uppercase keywords (IF, THEN) in a stand-alone rule depending on the application.
+                The SM interprets that which is input and applies the proper case automatically. In
+                some instances, the keywords are automatically configured in the interface and in
+                some cases, you must enter the keywords. </p>
+
+<p class="p">Multiple conditions in the rule are combined with either “and” or “or” logical
+                operators. Multiple actions are separated by the “and’ logical operator. </p>
+
+<p class="p">Language elements other than keywords are of these types:</p>
+
+<ul class="ul">
+<li class="li">Context.attribute typically entered via auto-suggest. These attributes are defined by the system
+                    for use in rules, and are maintained in a dictionary, which the GUI can access.
+                    Attributes are segregated into contexts to make selection easier as NCC supports
+                    thousands of attributes. There is a context defined for each type of Diameter
+                    interface, a system context, and some support contexts</li>
+
+<li class="li">String literal enclosed in quotes if contains punctuation characters</li>
+
+<li class="li">Numeric integer value</li>
+
+<li class="li">IP Address an IPV4 or IPV6 formatted address</li>
+
+<li class="li">Date/Time a literal value representing a date/time is entered as a number, in units of
+                    milliseconds from epoch in UTC time zone.</li>
+
+<li class="li">Managed Object references to objects are represented in text form as objectType # objectName.
+                    For example, a reference to a rule group, which is entered as RuleTable#name
+                    (where name is the name of a rule group. Other MO type references appear as
+                    objectName # objectType.</li>
+
+                <li class="li">Variable rendered as <em class="ph i">@VariableName</em>. A variable definition is a rule table
+                    with the resulting action of setting a single value. This value is then
+                    substituted in rules where the variable is referenced. A variable reference can
+                    occur in the rule at all places where an attribute can occur.  <div class="note" id="id9YZ-09018-UG00-PCZZA-d1e15186__note_wjr_3kk_zsb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Variables are defined in the scope of an
+                        RSV.</div>
+<p class="p">If <em class="ph i">variableName</em> is a literal, then the <em class="ph i">@</em>
+                        notation is rendered in the GUI. If <em class="ph i">variableName</em> is an attribute, the
+                        long form is rendered as follows:</p>
+<p class="p">Variable definition or assignment
+                        within a rule:</p>
+<p class="p"><code class="ph codeph">VARIABLES.Set-Variable(variableName,
+                            value)</code></p>
+<p class="p">Variable
+                        reference:</p>
+<code class="ph codeph">VARIABLES.Get-Variable(variableName)</code></li>
+
+<li class="li">Lists of numbers or strings or IP addresses</li>
+
+</ul>
+
+<p class="p">Use parentheses to group parameters that apply to the preceding attribute or to
+                combine multiple conditions that are joined with the “and or “or” logical operator.
+                Multiple actions are separated by “and’. The following table shows the usage of some
+                rule syntax elements.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Rule syntax elements</span></caption><colgroup><col style="width:21.40077821011673%" /><col style="width:19.455252918287936%" /><col style="width:59.14396887159532%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d332691e250"> Element </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d332691e253"> Valid for </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d332691e256"> Description </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">//</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">Top lines</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">Lines beginning with // at the top of the rule text are stored in
+                                the description field of the rule.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">
+                                <p class="p">word containing one or more</p>
+
+                                <p class="p">“.” characters</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">all</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">The portion before the first “.” is interpreted as a (source or
+                                destination) context identifier. The remaining portion is
+                                interpreted as an attribute name within the context.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">
+                                <p class="p">word with no leading or</p>
+
+                                <p class="p">trailing “.”</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">all</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">a string literal</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">( )</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">
+                                <p class="p">Valid:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Following an attribute, for grouping associated
+                                            parameters</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Following a relational operator, for grouping subsequent
+                                            conditions</p>
+
+                                    </li>
+
+                                </ul>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">
+                                <p class="p">This parameter:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">specifies parameters to be passed to the attribute</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">groups conditions to which a single combination operator
+                                            applies (and/or)</p>
+
+                                    </li>
+
+                                </ul>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">[ ]</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">Lists of literals: strings, numbers or IP addresses, on right
+                                side of conditions or actions, or in arguments/parameters</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">The right hand side of some conditions and actions accept a list
+                                of literals where a single value normally applies.  See List section
+                                below for details.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">“</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">quote character</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">Delimits a string literal. The quote character can be embedded by
+                                preceding it with a backslash (\) character; for example:
+                                "x\"yz".</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d332691e250 d332691e253 d332691e256 ">
+                                <strong class="ph b">Relational Operators</strong>
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">&gt;</td>
+
+                            <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d332691e253 ">dates, times or numbers</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">Greater than</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">&lt;</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">Less than</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">&gt;=</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">Greater than or equal</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">&lt;=</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">Less than or equal</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">=<p class="p">equal</p>
+==</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">any</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 "><p class="p">Equal</p>
+<div class="note notice" id="id9YZ-09018-UG00-PCZZA-d1e15186__note_oqf_fqz_c5b"><div class="noticetitle"><img src="../../web/css/../images/notice.svg" title="notice-icon" class="noteicon" />Notice:</div> The
+                                    operators <code class="ph codeph">=</code> and <code class="ph codeph">!=</code> do not work
+                                    for decimal attributes, for example, counter-usage-limit. (A
+                                    decimal number has a fractional part, separated by a decimal
+                                    point, for example, 10.11).</div>Prefix with <code class="ph codeph">~</code>
+                                for case insensitive.<p class="p">Prefix with <code class="ph codeph">!</code> to
+                                    negate.</p>
+See the following variants:<ul class="ul" id="id9YZ-09018-UG00-PCZZA-d1e15186__ul_hr4_m2g_1xb">
+                                    <li class="li"><code class="ph codeph">~=</code> (case-insensitive equal (equal ignore
+                                        case)): It compares two strings, ignoring the case of the
+                                        characters, and returns true when the strings are equal. For
+                                        example, “ABC” Equal Ignore Case “abc” or “ABC” Equal Ignore
+                                        Case “ABC” The comparison is not case sensitive such that
+                                        when it compares two values, it considers A-Z to be the same
+                                        as a-z. </li>
+
+                                    <li class="li"><code class="ph codeph">!~=</code> (case-insensitive not equal (not equal
+                                        ignore case)): It compares two strings, ignoring the case of
+                                        the string, and returns true when the strings are not equal.
+                                        For example, “ABC” Not Equal Ignore Case “dfg”.</li>
+
+                                </ul>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">match_substring</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">string</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">
+                                <p class="p">Searches for an instance of a string inside another string. For
+                                    example, the substring “cde” matches when the string “abcdef” is
+                                    searched.</p>
+
+                                <p class="p">Prefix with ! to negate</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">match_pattern</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">string</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">
+                                <p class="p">Returns true if the entire string matches the pattern in the
+                                    regular expression. The Match Pattern operator allows you to
+                                    write a regular expression that defines a search pattern for
+                                    strings. </p>
+
+                                <p class="p">The pattern can match one time or not at all for the specified
+                                    string and only returns true if the entire string can be
+                                    matched. For example, “abcd” Match Pattern “ab.*” will match as
+                                    will it match “abcd”. However, it does not match patterns “ab”
+                                    or “a” The Attribute Value Type is not a valid option when you
+                                    use the regular expression operator Match Pattern.</p>
+
+                                <p class="p">Prefix with ! to negate.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">within_netmask</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">IP addresses</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">
+                                <p class="p">Returns true when the address is matched by the netmask. For
+                                    example, 123.123.123.123 Within Netmask 123.123.123.0/24</p>
+
+                                <p class="p">Prefix with ! to negate.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">present</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">message-based contexts (such as Gx Message or Rx Message)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">
+                                <p class="p">The Present operator should only be used with a message-based
+                                    contexts. Using this operator with another type of context may
+                                    return unexpected results. </p>
+
+                                <p class="p">This operator returns true when the specified attribute has a
+                                    value. </p>
+
+                                <p class="p">For example: Gx message.Framed-IP-Address Present </p>
+
+                                <p class="p">Some criteria attributes are considered opaque objects for which
+                                    only the Present and Not Present operators are available. You
+                                    cannot directly access the object and the size and shape of the
+                                    object are not visible. For attributes that always have a value,
+                                    the Present operator is not allowed.</p>
+
+                                <p class="p">For example: Account.Account-ID Present</p>
+
+                                <p class="p">Prefix with ! to negate.</p>
+
+                                <p class="p"><code class="ph codeph">present</code> and <code class="ph codeph">!present</code> are unary
+                                    operators, that is, they do not accept right-hand side
+                                    elements.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">empty</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">message based contexts (such as Gx Message or Rx Message)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">
+                                <p class="p">Returns true when the specified attribute is empty.</p>
+
+                                <p class="p">Prefix with ! to negate.</p>
+
+                                <p class="p"><code class="ph codeph">empty</code> and <code class="ph codeph">!empty</code> are unary
+                                    operators, that is, they do not accept right-hand side
+                                    elements.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">contains</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">collection (multivalue) type attributes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">It returns true when the value is equal to one of the attribute
+                                values. For example, [192.168.1.1, 1234::5:6] contains
+                                    192.168.10.1<p class="p">Prefix with ! to negate.</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">contains_substring</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">collection (multivalue) type attributes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">Returns true if the value is equal to any of the attribute’s
+                                values. For example, [193.167.1.1, 1234::5:6] contains
+                                    193.167.1.1.<p class="p">Prefix with ! to negate.</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">contains_pattern</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">collection (multivalue) type attributes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">
+                                <p class="p">Returns true when at least one of the strings in the set matches
+                                    the regular expression. The Contains Pattern Match operator
+                                    allows you to write a regular expression that defines a search
+                                    for an entire pattern. The pattern can match only one time.</p>
+
+                                <p class="p">After a source character is used in a match, it cannot be reused.
+                                    For example, the regular expression “123” matches the string
+                                    (123), or *.123.* matches the string "543412345" one time
+                                    (_123_), or as another example, the regular expression 123.*
+                                    matches (123_) on the first occurrence of 123.</p>
+
+                                <p class="p">The Attribute Value type is not a valid option when you use the
+                                    regular expression operator Contains pattern Match. See Appendix
+                                    28 for information about writing regular expressions.</p>
+
+                                <p class="p">Prefix with ! to negate.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">contains_netmask</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">collection (multivalue) type attributes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">Returns true when any of the values are matched by the specified
+                                netmask. For example, [123.123.123.123, 124.124.124.124] Contains
+                                Netmask 123.123.123.0/24<p class="p">Prefix with ! to negate.</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d332691e250 d332691e253 d332691e256 "><strong class="ph b">Combination operators</strong>
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">and</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">between multiple conditions or actions</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">Combines conditions logically or used to separate actions.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">or</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">between multiple conditions</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">Combines conditions such that one or the other is a valid
+                                attribute for the rule.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d332691e250 d332691e253 d332691e256 ">
+                                <strong class="ph b">Adjustment operators</strong>
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">+</td>
+
+                            <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d332691e253 "> Numbers</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">
+                                <p class="p">Add</p>
+
+                                <p class="p">For numeric type values such as Number, Decimal, Date Time, and
+                                    Custom Data values, this operator allows you to use addition (+)
+                                    to adjust values.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">-</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">
+                                <p class="p">Subtract</p>
+
+                                <p class="p">For numeric type values such as Number, Decimal, Date Time, and
+                                    Custom Data values, this operator allows you to use subtraction
+                                    (-) to adjust values.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">*</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">
+                                <p class="p">Multiply</p>
+
+                                <p class="p">For numeric type values such as Number, Decimal, Date Time, and
+                                    Custom Data values, this operator allows you to use
+                                    multiplication (x) to adjust values.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">%</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">
+                                <p class="p">Modulus</p>
+
+                                <p class="p">The Modulus (%) operator allows you to adjust the criteria by the
+                                    remainder of a division when one number is divided by another.
+                                    For example, if you have two positive number integers, in a
+                                    condition, that when divided by the result in a quotient with a
+                                    remainder, the remainder is the modulo of the division. For
+                                    example, the expression 9 modulus 2 would evaluate to 1 because
+                                    9 divided by 2 leaves a quotient of 4 and a remainder of 1,
+                                    while 9 modulus 3 would evaluate to 0 because the division of 9
+                                    by 3 has a quotient of 3 with a remainder of 0. If the divisor
+                                    is 0, the operator will return null. Operations with negative
+                                    numbers are supported. If you apply multiple modulus adjustment
+                                    values, the expression evaluates to (((value mod ADJ-1) mod
+                                    ADJ-2) mod ADJ-3).</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">concat</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">Strings</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">
+                                <p class="p">Concatenate</p>
+
+                                <p class="p">For string values only, the operator allows you to concatenate
+                                    rule condition or action values, or rule condition and action
+                                    adjustment values, that exist as strings for both Attribute and
+                                    non-Attribute values. For example, if you had a list of ordered
+                                    strings, string “ca”, and a number of other strings (x100,
+                                    x200,x300) that you want to join to the string “ca”, you can
+                                    concatenate (ca, x100, x200, x300) to join the strings for a
+                                    value of “cax100x200x300”. You can create an action that builds
+                                    the predefined PCC rule name based on concatenating strings from
+                                    available context. This approach is useful when the predefined
+                                    rule depends on subscriber information. For example, the
+                                    subscriber record can contain two attributes:[Category =
+                                    VIP/Gold/Silver/Bronze, P2P=Improved/Normal/Limited] requiring
+                                    you to write a total of 12 rules. Using the Concatenate operator
+                                    reduces the 12 rules to 1 rule.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e250 ">union</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e253 ">LIST</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e256 ">
+                                <p class="p">For List values only (custom data, IP addresses, and strings),
+                                    allows you to provide ORing functionality within a list such
+                                    that a value(s) within the list can be adjusted to satisfy:</p>
+
+                                <p class="p">A = B or C.</p>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Lists</h2>
+
+<p class="p">Rules support lists as follows:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">Some condition attributes are defined in the dictionary to be of a list
+                        type.  For this, you use the contains operator and a single- or list-value
+                        on the right-hand side (RHS).  Note, the '=' operator is not appropriate for
+                        these attributes. To test for multiple values, use multiple conditions
+                        combined with 'or'.</p>
+
+</li>
+
+<li class="li">
+<p class="p">For condition attributes not of list type, you can use either a single value
+                        or a list on the RHS.  The rules engine treats applies the operator to each
+                        and combines them with logical or.</p>
+
+</li>
+
+<li class="li">
+<p class="p">For action attributes of list type, you can assign either a list-literal or a
+                        single value.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Variable definitions are also considered to be of list type, so can be
+                        assigned single values or a list.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Some action-parameters and condition-arguments are defined as list types in
+                        the dictionary as well.  For these, either a single value or list literal
+                        can be used.</p>
+
+</li>
+
+<li class="li">
+<p class="p">For the equal (=) operator in a condition, a single-value on the LHS is
+                        required.</p>
+
+</li>
+
+<li class="li">
+<p class="p">For the contains operator, a list-type value on the left-hand side (LHS) is
+                        required.</p>
+
+</li>
+
+<li class="li">
+<p class="p">For the union operator, a list-type value on both sides is required.</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Condition containers</h2>
+
+<p class="p">Rule conditions are criteria that can be configured in a Condition Container to
+                represent the “If” statement in the processing logic. The Condition Containers group
+                your condition criteria into single entities as a list using brackets and allows for
+                separation between criteria attributes in the condition. Within a condition
+                container, the conditions and condition containers are ordered. When the container
+                is evaluated, the conditions will be evaluated first, and if necessary, the other
+                sub-containers are evaluated second.</p>
+
+<p class="p">If you need to set multiple conditions with an AND operation along with conditions
+                for an OR operation that result in an action, you can use the AND and OR
+                functionality to derive a complex logical function for any number of criteria. For
+                example, if you need to disable the Offline function when the
+                ((Count-Of-Unique-QCIs-In-PCC-Rules equals 3) AND
+                (Count-Of-PCC-Rules-For-IP-CAN-Session equals 6)) OR
+                (Count-Of-AF-Sessions-For-IP-CAN-Session equals 100). The rule logic to be
+                configured in this example is as follows:</p>
+
+<p class="p">
+<kbd class="ph userinput">IF (DSC.Count-Of-AF-Sessions-For-IP-CAN-Session equals 100) OR
+                </kbd>
+</p>
+
+<p class="p">
+<kbd class="ph userinput">((DSC.Count-Of-Unique-QCIs-In-PCC-Rules equals 3) AND </kbd>
+</p>
+
+<p class="p">
+<kbd class="ph userinput">(DSC.Count-Of-PCC-Rules-For-IP-CAN-Session equals 6)) </kbd>
+</p>
+
+<p class="p">
+<kbd class="ph userinput">Then</kbd>
+</p>
+
+<p class="p">
+<kbd class="ph userinput">Disable Offline</kbd>
+</p>
+
+<p class="p">The Or and AND statements are explicit. Notice that each Condition Container used is
+                represented by brackets. The first container will have single brackets around the
+                conditions and the next condition will be contained in double brackets. You can have
+                multiple containers in one logical expression. </p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Values</h2>
+
+<p class="p">The Value parameter defines how the value(s) are input for the comparison or
+                collection. Adjustments can be made on the value as well by selecting an adjustment
+                operator and configuring the adjustment value. The value appears in the Value column
+                of the Conditions panel after the condition is configured.</p>
+
+            <p class="p">All criteria operators support Lists as a value type. When you choose a criteria that
+                first appears with a singular Value Type; for example, Number, Enum, String, or IP
+                Address, you can change the Value Type to List and enter a list of values.</p>
+
+            <p class="p">Enums that are compiled into a List value type must be of the same type.</p>
+
+            <p class="p">Certain criteria attributes have been flagged as non-nullable types. These attributes
+                do not have default values and are not given a value until they are given a value;
+                for example, attributes for system time and session count.</p>
+
+            <p class="p">When you use a List value type with a condition, the list always forms an OR
+                statement. For example, if you use a multivalue type attribute such as
+                Framed-IP-Address with an Equal operator and Value type of List, you can enter the
+                list of framed IP addresses such as [192.168.1.1, 1234::5:6]. The following rule
+                condition is generated to indicate that the AF Session.Framed-IP-Address can be
+                equal to one of the IP addresses in the list:</p>
+
+            <p class="p">IF (AF Session.Framed-IP-Address Equal [123.123.123.123 OR 234.234.234.234 OR
+                345.345.345.345])</p>
+
+            <p class="p">THEN</p>
+
+            <p class="p">Perform action</p>
+
+            <p class="p">When you use a List operator with a negated condition value, (for example, Not
+                Equal), the list forms an AND statement. For example, if you use a multivalue type
+                attribute such as Framed-IP-Address with a Not Equal operator and a Value type of
+                List, you can enter the list of framed IP addresses such as [192.168.1.1,
+                1234::5:6]. The following rule condition is generated to indicate that the AF
+                Session.Framed-IP-Address cannot be equal to any of the IP addresses in the
+                list:</p>
+
+            <p class="p">if (AF Session.Framed-IP-Address Not Equal</p>
+
+            <p class="p"> [123.123.123.123 AND 234.234.234.234 AND 345.345.345.345])</p>
+
+            <p class="p">then</p>
+
+            <p class="p">Perform action</p>
+
+            <p class="p">Lists of numbers and lists of enums are not applicable for the substring
+                operators.</p>
+
+<p class="p">The values can be input as:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">
+<strong class="ph b">Attribute </strong>
+</p>
+
+<p class="p">Attributes are pre-defined in the system and selectable from a Rule Attribute
+                        table that lists the attribute names, which can be filtered by Source
+                        Context and Domain. When you choose the Attribute option, you can choose an
+                        attribute from the Rule Attributes table. To open the Rule Attributes table,
+                        click on the Select Object button beside the parameter. The Rule Attributes
+                        table has three columns that you can use to determine and choose the Name of
+                        the attribute from the choices available using the filters at the top of the
+                        Source Context and Domain Type columns. The contents of the columns are
+                        dynamic based on the Criteria parameter that you chose when defining the
+                        conditions. </p>
+
+<p class="p">Value arguments may also appear in the form depending on the attribute that
+                        you choose in the Value panel. The value arguments have predefined names and
+                        require you to configure the type and value for each.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Decimal</strong>
+</p>
+
+<p class="p">When you choose the Decimal option, you can enter any set of numbers that
+                        contains a decimal; for example: 1.0456. That is, any value of a
+                        floating-point type, taking into account both precision and magnitude.</p>
+
+<p class="p">You can also change the Type parameter to the List option and enter a list of
+                        Decimal values. To create a list of multiple Decimal value types, enter each
+                        value in the list using the “+” icon. To remove items from the list, click
+                        on the “x” icon.</p>
+
+<p class="p">See
+                        http://java.sun.com/docs/books/jls/third_edition/html/typesValues.html#4.2.3
+                        for more information about floating-point values.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Enum </strong>
+</p>
+
+<p class="p">When you choose the Enum option for the Value Type parameter, an enumeration
+                        type appears in the Value panel and provides you with a list of Enum values.
+                        Enumeration types are pre-defined in the system. The types are available
+                        depending on the specified Criteria attribute.</p>
+
+<p class="p">You can also change the Type parameter to the List option and enter a list of
+                        Enums. Enums that are compiled into a List value type must be of the same
+                        type. For example, you can list three RATType3Gpp Enums, each with a
+                        different value. To create a list of multiple Enums, enter each Enum with
+                        its value in the list using the “+” icon. When presented, you can use the
+                        Argument Template to choose a specific enum value from that made available
+                        in the auto-suggest panel. In this case you are given an argument template
+                        related to the attribute that you provision, place your curser within the
+                        bracketed template, and press the CTRL + space bar to get the one or a list
+                        of enums that you need. To remove items from the list, click on the “x”
+                        icon.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">IP Address </strong>
+</p>
+
+<p class="p">When you choose the IP Address option for the Value Type parameter, you can
+                        enter a single IP address in any of the accepted IP address formats. </p>
+
+<p class="p">You can also change the Type parameter to the List option and enter a list of
+                        IP addresses for the comparison. The Value text box that appears only
+                        accepts correctly formatted IPv4 and IPv6 addresses. </p>
+
+<p class="p">To create a list of multiple IP addresses, enter each IP address to the list
+                        using the “+” icon. To remove items from the list, click on the “x” icon.
+                        The list treats each IP address as an OR logical operation. In the following
+                        example, the comma represents the OR operation:</p>
+
+<p class="p">[123.123.123.123, 124.124.124.124, 125.125.125.125]</p>
+
+<p class="p">You can enter IPv4 and IPv6 addresses with or without subnet masks in the
+                        following formats:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">
+<strong class="ph b">IPv4—dotted-decimal-notation</strong>; for example:
+                                xxx.xxx.xxx.xxx/zz</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">IPv6—standard notation</strong>; eight 16-bit hexadecimal words
+                                separated by colons; for example,
+                                FEDC:BA98:0332:0000:CF8A:000C:2154:7313</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">IPv6—compressed notation</strong>; uses a double colon to represent a
+                                single contiguous group of zero fields in an IPv6 address; for
+                                example, FF01::CA:0:0:2:1</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">IPv6—Mixed notation</strong>; IPv4 addresses that are encapsulated in
+                                IPv6 addresses; for example, 25:1:5:0:9:0:127.32.67.25, or with
+                                zeros such as 0:0:0:0:0:0:127.32.67.15, or compressed without the
+                                zeros using the double colons such as, “::127.32.67.15”</p>
+
+</li>
+
+</ul>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Number</strong>
+</p>
+
+<p class="p">When you choose the number option for the Value Type parameter, you can enter
+                        any whole number for example: 123. You can enter Long values of up to a
+                        maximum of 4503599627370495, or 2<sup class="ph sup">52</sup>, in the parameter field for
+                        this parameter. This is a GUI limitation only; the server handles all 64
+                        bits.</p>
+
+<p class="p">You can also change the Type parameter to the List option and enter a list of
+                        Numbers. To create a list of Number value types, enter each value in the
+                        list using the “+” icon. To remove items from the list, click on the “x”
+                        icon.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">String </strong>
+</p>
+
+<p class="p">When you choose the String option for the Value Type parameter, you can enter
+                        a text string of the exact value that you require for the criteria or a
+                        wildcard. When you choose the String option for a criteria, you can enter
+                        the string that you require in either ASCII or Hexadecimal (0xFFFF) formats.
+                        You can also use the ASCII or Hexadecimal (0xFFFF) options to convert
+                        between an ASCII and Hexadecimal (0xFFFF) value. You can also enter null
+                        values as data in the ASCII input field to be converted to HEX. Enter the
+                        value as ASCII with the characters &lt;NUL&gt; positioned where needed in
+                        the string. The conversion from Hexadecimal (0xFFFF) to ASCII is only
+                        available to the strings that contain printable characters.</p>
+
+<p class="p">You can also change the Type parameter to the List option and enter a list of
+                        strings. When you change to the List option, you can enter the multiple
+                        strings in either ASCII or Hexadecimal (0xFFFF) formats. You can convert
+                        lists of ASCII or Hexadecimal (0xFFFF) values from one format to another.
+                        The Value text box that appears accepts any type of string with any type of
+                        character. The text box appears in the value area with “+” and “x” icons
+                        that allow you to add and remove values from the list. </p>
+
+<p class="p">To create a list of multiple strings, enter each string into the list using
+                        the “+” icon. To remove items from the list, click on the “x” icon. The list
+                        treats each string as an OR logical operation. In the following example, the
+                        comma represents the OR operation:</p>
+
+<p class="p">[abc, acd, afe12]</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Time Of Day</strong>
+</p>
+
+<p class="p">When you choose the Time Of Day option, you can enter the value for a 24-h
+                        clock in the format: hh:mm:ss.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Time Duration</strong>
+</p>
+
+<p class="p">When you choose the Time Duration option, you can enter the value as a period
+                        of time; for example, 2h 30min 20s.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Date Time </strong>
+</p>
+
+<p class="p">When you choose Date Time option, you can choose a date from the calendar and
+                        enter the time in the format: hh:mm:ss. The time zone of the local client is
+                        automatically included in the configuration. On the GUI display, the values
+                        indicate the local time zone.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">List</strong>
+</p>
+
+<p class="p">When you choose the List option, you must also choose the type of list. The
+                        options for type of list are as follows:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">Decimal—allows you to enter a list of decimal numbers</p>
+
+</li>
+
+<li class="li">
+<p class="p">Enum—allows you to enter a list of Enums</p>
+
+</li>
+
+<li class="li">
+<p class="p">IP Address—allows you to enter a list of IP addresses</p>
+
+</li>
+
+<li class="li">
+<p class="p">Number—allows you to enter a list of numbers</p>
+
+</li>
+
+<li class="li">
+<p class="p">String—allows you to enter a list of strings</p>
+
+</li>
+
+</ul>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Adjustment operators</h2>
+
+<p class="p">Numbers, enums, custom data, lists of IP addresses, lists of strings and so on can be
+                configured to include Adjustment Operators. The Adjustment Operator parameter
+                appears for most criteria and action selections and can be applied to criteria
+                values and action values. When you use any of the adjustment operators, an
+                Adjustment Value panel appears for entry of the adjustment values. You can enter
+                multiple values in some cases and single values in others, which is apparent by the
+                type of field displayed when you choose the adjustment operator. When you click on
+                the Add item button in the Adjustment Value panel, the Adjustment Value form
+                appears. You can then enter the Adjustment Data Type and a value in the Adjustment
+                Value form.</p>
+
+<p class="p">You cannot use a list of numbers as an adjustment value. However, you can use a
+                number as an adjustment value that can be applied to a list of numbers. Adjustment
+                values appear in the Criteria list and Action list as well as in the Summary
+                windows.</p>
+
+<p class="p">The Adjustment Operators are:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">
+<strong class="ph b">Add</strong>— For numeric type values such as Number, Decimal, Date Time, and
+                        Custom Data values, this operator allows you to use addition (+) to adjust
+                        values.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Subtract</strong>—For numeric type values such as Number, Decimal, Date Time,
+                        and Custom Data values, this operator allows you to use subtraction (-) to
+                        adjust values.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Multiply</strong>—For numeric type values such as Number, Decimal, Date Time,
+                        and Custom Data values, this operator allows you to use multiplication (x)
+                        to adjust values.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Union</strong>—For List values only (custom data, IP addresses, and strings),
+                        the operator allows you to provide OR functionality within a list so that a
+                        value within the list can be adjusted to A = B or C. </p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Concatenate</strong>—For string values only, the operator allows you to
+                        concatenate (Concat) rule condition or action values, or rule condition and
+                        action adjustment values, that exist as strings for both Attribute and
+                        non-Attribute values. For example, if you had a list of ordered strings,
+                        string “ca”, and a number of other strings (x100, x200, x300) that you want
+                        to join to the string “ca”, you can concatenate (ca, x100, x200, x300) to
+                        join the strings for a value of “cax100x200x300”. You can create an action
+                        that builds the predefined PCC rule name based on concatenating strings from
+                        available context. This approach is useful when the predefined rule depends
+                        on subscriber information. For example, the subscriber record can contain
+                        two attributes [Category = VIP/Gold/Silver/Bronze,
+                        P2P=Improved/Normal/Limited] requiring you to write a total of 12 rules.
+                        Using the Concatenate operator reduces the 12 rules to 1 rule. </p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Modulus</strong>
+</p>
+
+<p class="p">The Modulus (%) operator allows you to adjust the criteria by the remainder
+                        of a division when one number is divided by another. For example, if you
+                        have two positive number integers, in a condition, that when divided by the
+                        result in a quotient with a remainder, the remainder is the modulo of the
+                        division. For example, the expression 9 modulus 2 would evaluate to 1
+                        because 9 divided by 2 leaves a quotient of 4 and a remainder of 1, while 9
+                        modulus 3 would evaluate to 0 because the division of 9 by 3 has a quotient
+                        of 3 with a remainder of 0. If the divisor is 0, the operator will return
+                        null. Operations with negative numbers are supported.</p>
+
+<p class="p">If you apply multiple modulus adjustment values, the expression evaluates to
+                        (((value mod ADJ-1) mod ADJ-2) mod ADJ-3).</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Attribute and operator usage for adjustments</h2>
+
+<p class="p">The items available for the type of value associated with the criteria, criteria
+                argument, or action for the Adjustment Operator is displayed in the auto-suggest.
+                For example, if the value type is String for the criteria that you have configured,
+                only the concatenate adjustment operator is applicable, and therefore displayed as
+                the only option to include. The following defines how the options are available:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">When the type of value is "List", only the Union adjustment operator is
+                        applicable.</p>
+
+</li>
+
+<li class="li">
+<p class="p">When the type of value is "String", only the Concatenate adjustment operator
+                        is applicable.</p>
+
+</li>
+
+<li class="li">
+<p class="p">When the type of value is Numeric (for example, Number, Time of Day, Time
+                        Duration, Date Time, and Decimal) only the numeric adjustment operators are
+                        applicable.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Any other types do not have adjustments; for example, "IP Address" and "Enum"
+                        do not have adjustment operators.</p>
+
+</li>
+
+</ul>
+
+<p class="p">The following table lists the relationships between value types, operators, and
+                adjustment values based on the criteria, action, or Attribute types that are
+                adjusted. For example, if you choose a criteria type other than custom and then
+                choose an attribute value for the condition, the attribute value type can be a
+                number added to or subtracted from a number.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Attribute and operator usage for adjustment values</span></caption><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+<tr class="row">
+<th class="entry cellrowborder" style="vertical-align:top;" id="d332691e1347">
+                                Criteria or ActionType
+                           </th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d332691e1350">
+                                Attribute Value Type
+                           </th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d332691e1353">
+                                Operator
+                           </th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d332691e1356">
+                                Adjustment Value
+                           </th>
+
+</tr>
+
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry cellrowborder" rowspan="7" style="vertical-align:top;" headers="d332691e1347 "> All</td>
+
+<td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d332691e1350 ">
+<p class="p">Number</p>
+
+<p class="p">Time of Day</p>
+
+<p class="p">Time Duration</p>
+
+<p class="p">Date Time</p>
+
+<p class="p">Custom</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1353 ">
+<p class="p">Add</p>
+
+<p class="p">Subtract</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1356 ">
+<p class="p">Number</p>
+
+<p class="p">Time of Day</p>
+
+<p class="p">Time Duration</p>
+
+<p class="p">Date Time</p>
+
+<p class="p">Custom</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1353 ">
+<p class="p">Multiply</p>
+
+<p class="p">Modulus</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1356 ">
+<p class="p">Number</p>
+
+<p class="p">Time of Day</p>
+
+<p class="p">Time Duration</p>
+
+<p class="p">Date Time</p>
+
+<p class="p">Decimal</p>
+
+<p class="p">Custom</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1350 "> Decimal</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1353 ">
+<p class="p">Add</p>
+
+<p class="p">Subtract</p>
+
+<p class="p">Multiply</p>
+
+<p class="p">Modulus</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1356 ">
+<p class="p">Decimal</p>
+
+<p class="p">Custom</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1350 "> String</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1353 "> Concatenate</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1356 ">
+<p class="p">String</p>
+
+<p class="p">List String</p>
+
+<p class="p">Attribute</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1350 "> List String</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1353 "> Union</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1356 ">
+<p class="p">List String</p>
+
+<p class="p">Custom</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1350 "> List IP Address</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1353 "> Union</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1356 ">
+<p class="p">List IP Address</p>
+
+<p class="p">Custom</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1350 "> List Enum</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1353 "> Union</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1356 ">
+<p class="p">List Enum</p>
+
+<p class="p">Custom</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d332691e1347 ">
+<p class="p">Number</p>
+
+<p class="p">Time of Day</p>
+
+<p class="p">Time Duration</p>
+
+<p class="p">Date Time</p>
+
+<p class="p">Custom</p>
+
+</td>
+
+<td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d332691e1350 "> Custom</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1353 ">
+<p class="p">Add</p>
+
+<p class="p">Subtract</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1356 ">
+<p class="p">Number</p>
+
+<p class="p">Time of Day</p>
+
+<p class="p">Time Duration</p>
+
+<p class="p">Date Time</p>
+
+<p class="p">Custom</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1353 ">
+<p class="p">Multiply</p>
+
+<p class="p">Modulus</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1356 ">
+<p class="p">Number</p>
+
+<p class="p">Time of Day</p>
+
+<p class="p">Time Duration</p>
+
+<p class="p">Date Time</p>
+
+<p class="p">Custom</p>
+
+<p class="p">Decimal</p>
+
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+<p class="p">The following table shows the relationships between comparison operators, adjustment
+                operators, and types given the List value types with Custom as both the criteria
+                type and Attribute Value Type.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Usage for custom-custom condition attribute types</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+<tr class="row">
+<th class="entry cellrowborder" style="vertical-align:top;" id="d332691e1664">
+                                Comparison Operator
+                           </th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d332691e1667">
+                                Adjustment Operator
+                           </th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d332691e1670">
+                                Type
+                           </th>
+
+</tr>
+
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1664 ">
+<p class="p">Within Netmask</p>
+
+<p class="p">Not Within Netmask</p>
+
+<p class="p">Contains Netmask</p>
+
+<p class="p">Does Not Contain Netmask</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1667 "> Union</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1670 ">
+<p class="p">List IP Address</p>
+
+<p class="p">Custom</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1664 ">
+<p class="p">Contains Substring</p>
+
+<p class="p">Does Not Contain Substring</p>
+
+<p class="p">Match Substring</p>
+
+<p class="p">Does Not Match Substring</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1667 "> Union</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1670 ">
+<p class="p">List String</p>
+
+<p class="p">Custom</p>
+
+<p class="p">List Decimal</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1664 ">
+<p class="p">Contains Substring</p>
+
+<p class="p">Does Not Contain Substring</p>
+
+<p class="p">Match Substring</p>
+
+<p class="p">Does Not Match Substring</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1667 "> Concatenate</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1670 ">
+<p class="p">List String</p>
+
+<p class="p">Custom</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1664 ">
+<p class="p">Equal </p>
+
+<p class="p">Equal Ignore Case</p>
+
+<p class="p">Not Equal </p>
+
+<p class="p">Not Equal Ignore Case</p>
+
+<p class="p">Greater than </p>
+
+<p class="p">Less than </p>
+
+<p class="p">Greater than or equal to </p>
+
+<p class="p">Less than or equal to </p>
+
+<p class="p">Present </p>
+
+<p class="p">Not Present </p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1667 ">
+<p class="p">Add</p>
+
+<p class="p">Subtract</p>
+
+<p class="p">Multiply</p>
+
+<p class="p">Modulus</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1670 ">
+<p class="p">Number</p>
+
+<p class="p">Time of Day</p>
+
+<p class="p">Time Duration</p>
+
+<p class="p">Date Time</p>
+
+<p class="p">Decimal</p>
+
+<p class="p">Custom</p>
+
+<p class="p">List Decimal</p>
+
+<p class="p">List Number</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1664 ">
+<p class="p">Contains</p>
+
+<p class="p">Does not contain</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1667 "> Union</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1670 ">
+<p class="p">List String</p>
+
+<p class="p">List IP Address</p>
+
+<p class="p">Custom</p>
+
+<p class="p">List Decimal</p>
+
+<p class="p">List Enum</p>
+
+<p class="p">List Number</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1664 ">
+<p class="p">Contains</p>
+
+<p class="p">Does not contain</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1667 "> Concatenate</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1670 ">
+<p class="p">List String</p>
+
+<p class="p">Custom</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d332691e1664 ">
+<p class="p">Equal </p>
+
+<p class="p">Equal Ignore Case</p>
+
+<p class="p">Not Equal </p>
+
+<p class="p">Not Equal Ignore Case</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1667 ">
+<p class="p">Add</p>
+
+<p class="p">Subtract</p>
+
+<p class="p">Multiply</p>
+
+<p class="p">Modulus</p>
+
+</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1670 ">
+<p class="p">Number</p>
+
+<p class="p">Time of Day</p>
+
+<p class="p">Time Duration</p>
+
+<p class="p">Date Time</p>
+
+<p class="p">Decimal </p>
+
+<p class="p">Custom</p>
+
+<p class="p">List Decimal</p>
+
+<p class="p">List Number</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1667 "> Union</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1670 ">
+<p class="p">List String</p>
+
+<p class="p">List IP Address</p>
+
+<p class="p">Custom</p>
+
+</td>
+
+</tr>
+
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1667 "> Concatenate</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d332691e1670 ">
+<p class="p">List String</p>
+
+<p class="p">Custom</p>
+
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

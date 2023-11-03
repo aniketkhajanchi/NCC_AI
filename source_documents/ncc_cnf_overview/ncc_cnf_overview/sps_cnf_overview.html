@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="NCC overview" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="sps_cnf_overview" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>NCC overview</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="sps_cnf_overview">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">NCC overview</h1>
+<div class="body conbody">
+        <p class="p">NCC is a cloud-native software solution based on Kubernetes principles and offers
+            significant benefits for service providers including software support for 5G, 4G along
+            with SS7 support for legacy voice, SMS, IVR, and USSD traffic.</p>
+
+        <div class="section" id="sps_cnf_overview__section_jvh_b25_klb"><h2 class="title sectiontitle">Characteristics of cloud-native NCC</h2>
+            
+            <p class="p">These are the key feature highlights of NCC.</p>
+
+            <ul class="ul" id="sps_cnf_overview__ul_dcl_nvy_jlb">
+                <li class="li">Cloud-native application<ul class="ul" id="sps_cnf_overview__ul_kbd_vb5_klb">
+                        <li class="li">Infrastructure built around Kubernetes principles <p class="p">NCC uses Docker,
+                                containers, Helm charts, and more.</p>
+</li>
+
+                        <li class="li">Packaged as lightweight containers <p class="p">Cloud-native applications are a
+                                collection of independent and autonomous services, which are
+                                packaged as lightweight containers. Unlike virtual machines,
+                                containers scale out and scale in rapidly. Since the unit of scaling
+                                is a lightweight container, infrastructure utilization is
+                                optimized.</p>
+</li>
+
+                        <li class="li">Dynamic horizontal scaling<p class="p">The number of container instances grows and
+                                shrinks as needed for handling the varying load. This enables NCC to
+                                consume a much lower footprint during typical operating conditions,
+                                where the offered traffic is less than the maximum peak dimensioned
+                                and when the mate NCC system is healthy and processing its own share
+                                of traffic. A load balancer runs L7 protocols that allows NCC to
+                                distribute traffic across the container instances on a
+                                request-by-request basis.</p>
+</li>
+
+                        <li class="li">Internal protocols are service mesh friendly <p class="p">Service meshes are
+                                powerful tools that add power and flexibility to cloud-native
+                                applications. NCC uses Istio that helps provide load balancing,
+                                transparent mutual TLS authentication, distributed API call tracing,
+                                and more.</p>
+</li>
+
+                        <li class="li">Designed as loosely coupled microservices <p class="p">Microservice design allows
+                                for breaking up an application into a series of smaller, more
+                                specialized parts, each of which communicates with one another
+                                across common interfaces such as APIs and REST interfaces like HTTP.
+                                A microservice might be provided by a collection of pods working
+                                together to provide a service. Services that belong to the same
+                                application discover each other through the application runtime, and
+                                they exist independent of other services. Microservice design allows
+                                for an elastic infrastructure that scales out with efficiency and
+                                high performance.</p>
+</li>
+
+                        <li class="li">Consistent with the evolution towards agile DevOps processes <p class="p">Each
+                                service of a cloud-native application goes through an independent
+                                life cycle, which is managed through an agile DevOps process.
+                                Multiple continuous integration and delivery (CI/CD) pipelines work
+                                in tandem to deploy and manage a cloud-native application.</p>
+</li>
+
+                    </ul>
+</li>
+
+                <li class="li">5G readiness<p class="p">NCC is a low-latency application built for 4G and 5G.</p>
+</li>
+
+                <li class="li">Legacy SS7 support<p class="p">NCC support legacy voice, SMS, IVR, and USSD over
+                    SS7.</p>
+</li>
+
+                <li class="li">Agility and efficiency<p class="p">The flexibility provided by the Nokia Agile Rule
+                        Technology (ART) delivers performance efficiency for highly complex
+                        real-time use cases.</p>
+</li>
+
+                <li class="li">Use of best-in-class industry standard tools<p class="p">NCC supports the best-in-class
+                        industry standard tools such as Jaeger, Prometheus, Kafka, OpenSearch,
+                        Kiali, Istio, a metrics viewer, and more.</p>
+</li>
+
+                <li class="li">Flexible deployment options<p class="p">NCC supports deployment into a variety of customer
+                        environments. NCC follows standard best practices and is therefore generic
+                        and flexible by nature and suitable for integrating into many varied
+                        deployment environments. In some cases, the customer environment (whether
+                        their own or in a public cloud) may provide all the Kubernetes, load
+                        balancers, Istio, telemetry, and other infrastructure. In other cases, the
+                        customer may provide a more basic Kubernetes environment and rely on NCC to
+                        provide the service mesh and telemetry.</p>
+
+                </li>
+
+                <li class="li">Subscriber model<p class="p">The NCC subscriber model provides flexibility in configuring
+                        and managing all of the data associated with end-users and their devices,
+                        subscriptions, usage, and accounts.</p>
+
+                </li>
+
+                <li class="li">Focus on groups<p class="p">NCC incorporates a group theme, such as family, large
+                        enterprise groups, or ad-hoc groups based on rule-based quota allocation
+                        algorithms on the Gy interface. The groups are formed for a short period of
+                        time to either share a new subscription or share remaining resources on the
+                        same account.</p>
+
+                </li>
+
+                <li class="li"> In-service updates <p class="p">NCC supports in-service software updates leveraging the
+                        standard Kubernetes rolling update mechanism. NCC continues servicing
+                        traffic while pods are updated one-at-a-time and brought back into service.
+                    </p>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

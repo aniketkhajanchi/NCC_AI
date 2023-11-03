@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Tiered rate" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="tiered_rate" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Tiered rate</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="tiered_rate">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Tiered rate</h1>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_kmn_2zs_5vb"><h2 class="title topictitle2" id="ariaid-title2">Configuration of Tiered Rate</h2>
+<div class="body conbody">
+      <p class="p">When a tiered rate is created with 1-tier, then provisioning EDRs are created each for
+        tiered rate, counter, primary rate and secondary rate for 1-tier.</p>
+
+      <div class="section" id="concept_kmn_2zs_5vb__section_mc3_tzs_5vb"><h3 class="title sectiontitle">Sample EDR for a Gas Tariff</h3>
+        
+        <p class="p">Following is a sample with different Tiers/Rates for rating and charging Gas usage:</p>
+
+        <a href="../images/Gas_tariff_sampleEDR.png" class="image"><img class="image break scalefit" id="concept_kmn_2zs_5vb__image_vmp_31t_5vb" src="../images/Gas_tariff_sampleEDR.png" /></a>
+      </div>
+
+    </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_ixd_wzv_tvb"><h2 class="title topictitle2" id="ariaid-title3">EDR examples</h2>
+<div class="body conbody">
+            <div class="section" id="concept_ixd_wzv_tvb__section_el3_yzv_tvb"><h3 class="title sectiontitle">Create</h3>
+                
+                <pre class="pre codeblock" id="concept_ixd_wzv_tvb__codeblock_u3x_wzv_tvb"><code>SET (2 elem)
+[0] (19 byte) PROVISIONING_RECORD
+[1] (13 elem)
+SEQUENCE (2 elem)
+[0] (9 byte) invokedBy
+[1] (10 byte) webService
+SEQUENCE (2 elem)
+[0] (13 byte) invokedMethod
+[1] (17 byte) create_tieredRate
+SEQUENCE (2 elem)
+[0] (12 byte) tieredRateId
+[1] (9 byte) GasTR3639
+SEQUENCE (2 elem)
+[0] (18 byte) tieredRateUnitType
+[1] (2 byte) m3
+SEQUENCE (2 elem)
+[0] (20 byte) tieredRateKindOfUnit
+[1] (4 byte) UNIT
+SEQUENCE (2 elem)
+[0] (32 byte) tieredRatereUnitTypeCreationTime
+[1] (19 byte) 07/12/2022 12:27:53
+SEQUENCE (2 elem)
+[0] (22 byte) tieredRateCreationTime
+[1] (19 byte) 08/12/2022 12:19:01
+SEQUENCE (2 elem)
+[0] (6 byte) result
+[1] (7 byte) SUCCESS
+SEQUENCE (2 elem)
+[0] (19 byte) generationTimestamp
+[1] (19 byte) 08/12/2022 12:19:25
+SEQUENCE (2 elem)
+[0] (10 byte) meHostName
+[1] (2 byte) naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr
+SEQUENCE (2 elem)
+[0] (10 byte) nccVersion
+[1] (11 byte) SPS_23_0_R1
+SEQUENCE (2 elem)
+[0] (8 byte) recordId
+[1] (51 byte) 20221208064925_fff12c18-cc54-4821-aab1-6a5337e90847
+SEQUENCE (2 elem)
+[0] (15 byte) RecordTimestamp
+[1] (19 byte) 08/12/2022 12:19:25
+</code></pre>
+        <p class="lines" id="concept_ixd_wzv_tvb__lines_b2c_hbt_5vb"></p>
+
+        <pre class="pre codeblock" id="concept_ixd_wzv_tvb__codeblock_tsx_41t_5vb"><code>SET (2 elem)
+[0] (19 byte) PROVISIONING_RECORD
+[1] (17 elem)
+SEQUENCE (2 elem)
+[0] (9 byte) invokedBy
+[1] (10 byte) webService
+SEQUENCE (2 elem)
+[0] (13 byte) invokedMethod
+[1] (11 byte) create_rate
+SEQUENCE (2 elem)
+[0] (6 byte) rateId
+[1] (25 byte) GasTR3639_Tier1_Secondary
+SEQUENCE (2 elem)
+[0] (14 byte) connectionCost
+[1] (1 byte) 0
+SEQUENCE (2 elem)
+[0] (12 byte) rateUnitType
+[1] (2 byte) m3
+SEQUENCE (2 elem)
+[0] (14 byte) rateKindOfUnit
+[1] (4 byte) UNIT
+SEQUENCE (2 elem)
+[0] (26 byte) ratereUnitTypeCreationTime
+[1] (19 byte) 07/12/2022 12:27:53
+SEQUENCE (2 elem)
+[0] (12 byte) rateUnitType
+[1] (2 byte) m3
+SEQUENCE (2 elem)
+[0] (14 byte) rateKindOfUnit
+[1] (4 byte) UNIT
+SEQUENCE (2 elem)
+[0] (26 byte) ratereUnitTypeCreationTime
+[1] (19 byte) 07/12/2022 12:27:53
+SEQUENCE (2 elem)
+[0] (16 byte) rateCreationTime
+[1] (19 byte) 08/12/2022 12:19:19
+SEQUENCE (2 elem)
+[0] (6 byte) result
+[1] (7 byte) SUCCESS
+SEQUENCE (2 elem)
+[0] (19 byte) generationTimestamp
+[1] (19 byte) 08/12/2022 12:19:25
+SEQUENCE (2 elem)
+[0] (10 byte) meHostName
+[1] (2 byte) naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr
+SEQUENCE (2 elem)
+[0] (10 byte) nccVersion
+[1] (11 byte) SPS_23_0_R1
+SEQUENCE (2 elem)
+[0] (8 byte) recordId
+[1] (51 byte) 20221208064925_552b88e2-b530-4d74-bf32-6d85a23f0add
+SEQUENCE (2 elem)
+[0] (15 byte) RecordTimestamp
+</code></pre>
+        <p class="lines" id="concept_ixd_wzv_tvb__lines_gvq_gbt_5vb"></p>
+
+        <pre class="pre codeblock" id="concept_ixd_wzv_tvb__codeblock_wtk_2bt_5vb"><code>SET (2 elem)
+[0] (19 byte) PROVISIONING_RECORD
+[1] (17 elem)
+SEQUENCE (2 elem)
+[0] (9 byte) invokedBy
+[1] (10 byte) webService
+SEQUENCE (2 elem)
+[0] (13 byte) invokedMethod
+[1] (11 byte) create_rate
+SEQUENCE (2 elem)
+[0] (6 byte) rateId
+[1] (25 byte) GasTR3639_Tier1_Secondary
+SEQUENCE (2 elem)
+[0] (14 byte) connectionCost
+[1] (1 byte) 0
+SEQUENCE (2 elem)
+[0] (12 byte) rateUnitType
+[1] (2 byte) m3
+SEQUENCE (2 elem)
+[0] (14 byte) rateKindOfUnit
+[1] (4 byte) UNIT
+SEQUENCE (2 elem)
+[0] (26 byte) ratereUnitTypeCreationTime
+[1] (19 byte) 07/12/2022 12:27:53
+SEQUENCE (2 elem)
+[0] (12 byte) rateUnitType
+[1] (2 byte) m3
+SEQUENCE (2 elem)
+[0] (14 byte) rateKindOfUnit
+[1] (4 byte) UNIT
+SEQUENCE (2 elem)
+[0] (26 byte) ratereUnitTypeCreationTime
+[1] (19 byte) 07/12/2022 12:27:53
+SEQUENCE (2 elem)
+[0] (16 byte) rateCreationTime
+[1] (19 byte) 08/12/2022 12:19:19
+SEQUENCE (2 elem)
+[0] (6 byte) result
+[1] (7 byte) SUCCESS
+SEQUENCE (2 elem)
+[0] (19 byte) generationTimestamp
+[1] (19 byte) 08/12/2022 12:19:25
+SEQUENCE (2 elem)
+[0] (10 byte) meHostName
+[1] (2 byte) naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr
+SEQUENCE (2 elem)
+[0] (10 byte) nccVersion
+[1] (11 byte) SPS_23_0_R1
+SEQUENCE (2 elem)
+[0] (8 byte) recordId
+[1] (51 byte) 20221208064925_552b88e2-b530-4d74-bf32-6d85a23f0add
+SEQUENCE (2 elem)
+[0] (15 byte) RecordTimestamp
+[1] (19 byte) 08/12/2022 12:19:25
+
+</code></pre>
+        <p class="lines" id="concept_ixd_wzv_tvb__lines_ikb_jbt_5vb"></p>
+
+        <pre class="pre codeblock" id="concept_ixd_wzv_tvb__codeblock_s3m_3bt_5vb"><code>SET (2 elem)
+[0] (19 byte) PROVISIONING_RECORD
+[1] (17 elem)
+SEQUENCE (2 elem)
+[0] (9 byte) invokedBy
+[1] (10 byte) webService
+SEQUENCE (2 elem)
+[0] (13 byte) invokedMethod
+[1] (11 byte) create_rate
+SEQUENCE (2 elem)
+[0] (6 byte) rateId
+[1] (23 byte) GasTR3639_Tier1_Primary
+SEQUENCE (2 elem)
+[0] (14 byte) connectionCost
+[1] (1 byte) 0
+SEQUENCE (2 elem)
+[0] (12 byte) rateUnitType
+[1] (2 byte) m3
+SEQUENCE (2 elem)
+[0] (14 byte) rateKindOfUnit
+[1] (4 byte) UNIT
+SEQUENCE (2 elem)
+[0] (26 byte) ratereUnitTypeCreationTime
+[1] (19 byte) 07/12/2022 12:27:53
+SEQUENCE (2 elem)
+[0] (12 byte) rateUnitType
+[1] (2 byte) m3
+SEQUENCE (2 elem)
+[0] (14 byte) rateKindOfUnit
+[1] (4 byte) UNIT
+SEQUENCE (2 elem)
+[0] (26 byte) ratereUnitTypeCreationTime
+[1] (19 byte) 07/12/2022 12:27:53
+SEQUENCE (2 elem)
+[0] (16 byte) rateCreationTime
+[1] (19 byte) 08/12/2022 12:19:13
+SEQUENCE (2 elem)
+[0] (6 byte) result
+[1] (7 byte) SUCCESS
+SEQUENCE (2 elem)
+[0] (19 byte) generationTimestamp
+[1] (19 byte) 08/12/2022 12:19:19
+SEQUENCE (2 elem)
+[0] (10 byte) meHostName
+[1] (2 byte) naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr
+SEQUENCE (2 elem)
+[0] (10 byte) nccVersion
+[1] (11 byte) SPS_23_0_R1
+SEQUENCE (2 elem)
+[0] (8 byte) recordId
+[1] (51 byte) 20221208064919_0420c82a-2caf-49b8-8730-a572c9a3a632
+SEQUENCE (2 elem)
+[0] (15 byte) RecordTimestamp
+
+</code></pre>
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

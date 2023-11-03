@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Loan repayment" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="loan_repayment" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Loan repayment</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="loan_repayment">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Loan repayment</h1>
+<div class="body conbody">
+        <p class="p">Loan repayment using top-up API is available through recharge microservice. When a top-up
+            is done, the amount is first used for loan repayment, and the remaining amount is used
+            for account recharge. It can be configured if the top-up amount can/cannot be used for
+            loan repayment.</p>
+
+        <p class="p">When a top-up is done, the trigger <var class="keyword varname">PRE_RECHARGE</var> can be evaluated (as
+            shown in the following figure) to check if any pending loan repayment has to be done
+            with the top-up amount.</p>
+
+        <div class="fig fignone" id="loan_repayment__fig_rpd_zvq_4tb"><span class="figcap"><span class="fig--title-label">Figure: </span>Rule to evaluate if loan repayment has to be done</span>
+            
+            <img class="image break" id="loan_repayment__image_eyk_1wq_4tb" src="../images/loan14.png" />
+        </div>
+
+        <ul class="ul" id="loan_repayment__ul_pgz_vxq_4tb">
+            <li class="li"><var class="keyword varname">TRUE</var>: The loan repayment is not done from top-up amount. The
+                entire top-up amount is credited to the account balance.</li>
+
+            <li class="li"><var class="keyword varname">FALSE</var>: The loan repayment is done from the top-up amount.</li>
+
+            <li class="li">If this action is not provided, the default value is <var class="keyword varname">FALSE</var>.</li>
+
+        </ul>
+
+        <div class="section" id="loan_repayment__section_khv_dyq_4tb"><h2 class="title sectiontitle">Logic for loan repayments</h2>
+            
+            <p class="p">Loan repayment depends on the following:</p>
+
+            <ul class="ul" id="loan_repayment__ul_p3c_z5q_4tb">
+                <li class="li">type of loan subscribed</li>
+
+                <li class="li">whether the loan is used or not</li>
+
+                <li class="li">value set in parameter <strong class="ph b">Service fee paid only if loan used</strong></li>
+
+            </ul>
+
+            <p class="p">The following logic applies for loan repayments:</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="loan_repayment__table_bsj_qkr_4tb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Loan repayment logic</span></caption><colgroup><col style="width:9.451795841209828%" /><col style="width:17.67485822306238%" /><col style="width:10.9640831758034%" /><col style="width:15.122873345935725%" /><col style="width:37.33459357277882%" /><col style="width:9.451795841209828%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d97956e110">Loan used?</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d97956e113">Service fee paid only if loan used</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d97956e116">Type</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d97956e119">Main Balance (MB) and Loan Amount (LA) relation</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d97956e122">Result</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d97956e126">Loan State</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e110 ">Used</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e113 ">TRUE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e116 ">One-time</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e119 ">MB &lt; LA</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e122 ">
+                                <ul class="ul" id="loan_repayment__ul_ohh_22r_4tb">
+                                    <li class="li">Main balance is granted the top-up amount</li>
+
+                                    <li class="li">The remaining debt is cleared</li>
+
+                                    <li class="li">Loan is NOT granted AGAIN</li>
+
+                                </ul>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e126 ">Initial</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e110 ">Not used</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e113 ">TRUE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e116 ">One-time</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e119 ">MB ≥ LA</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e122 ">
+                                <ul class="ul" id="loan_repayment__ul_kym_32r_4tb">
+                                    <li class="li">Main balance is granted the top-up amount</li>
+
+                                    <li class="li">The remaining debt is NOT cleared</li>
+
+                                    <li class="li">Loan is NOT granted AGAIN</li>
+
+                                </ul>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e126 ">Opt-In</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e110 ">Used</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e113 ">FALSE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e116 ">Recurrent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e119 ">MB &lt; LA</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e122 ">
+                                <ul class="ul" id="loan_repayment__ul_xsn_xwr_4tb">
+                                    <li class="li">Main balance is granted the top-up amount</li>
+
+                                    <li class="li">The remaining debt is cleared</li>
+
+                                    <li class="li">Loan is granted AGAIN and remaining debt is added</li>
+
+                                </ul>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e126 ">Opt-In</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e110 ">Not used</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e113 ">FALSE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e116 ">Recurrent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e119 ">MB ≥ LA</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e122 ">
+                                <ul class="ul" id="loan_repayment__ul_dtn_xwr_4tb">
+                                    <li class="li">Main balance is granted the top-up amount</li>
+
+                                    <li class="li">The service fee is deducted and remaining debt is
+                                        adjusted</li>
+
+                                    <li class="li">Loan is NOT granted AGAIN</li>
+
+                                </ul>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d97956e126 ">Opt-In</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <div class="note" id="loan_repayment__note_jm4_jfs_4tb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If Loan entity for recurrent loan using which loan has been
+                opted-in is deleted after opting-in, then loan repayment using top-up API is done
+                considering the loan as one-time loan and the fee is paid only if <strong class="ph b">Service fee
+                    paid only if loan used</strong> is <var class="keyword varname">true</var>.</div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

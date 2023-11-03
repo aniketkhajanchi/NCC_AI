@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="BOU activation enhancements" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="bou_activation_enhancements" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>BOU activation enhancements</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="bou_activation_enhancements">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">BOU activation enhancements</h1>
+<div class="body conbody">
+        <div class="section">
+            <p class="p">This feature provides the functionality to trigger bundle activation rules for a
+                specified BOU bundle. </p>
+
+            <p class="p">This feature is applicable only when <em class="ph i">BOU Activation Priority</em> is set to
+                    <em class="ph i">ON_COMMIT</em>, and <em class="ph i">BOU Usage Priority</em> is set to
+                    <em class="ph i">DEFAULT_SORTING_ORDER</em>.</p>
+
+            <p class="p">BOU is activated when an eligible call event is triggered. The call is charged from a
+                resource which is not a part of the BOU bundle. </p>
+
+            <p class="p"><em class="ph i">Trigger-BOU-Activation</em> action in the <em class="ph i">RATING result context</em> can be
+                configured in tariff rules to trigger the bundle activation rules for a specified
+                BOU bundle. The name of the BOU bundle for which bundle activation rules should be
+                triggered can be passed as an argument to <em class="ph i">Trigger-BOU-Activation</em> action.</p>
+
+            <div class="p">If this feature is configured, and the specified BOU bundle is not active, then the
+                BOU activation rules are triggered for the specified BOU bundle.<div class="note" id="bou_activation_enhancements__note_okj_hr1_ntb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If the BOU bundle is already active, then BOU activation
+                    success is returned for that BOU bundle.</div>
+</div>
+
+            <div class="sectiondiv"><strong class="ph b">Triggering BOU activation</strong><p class="p">To trigger BOU activation rules for a BOU
+                    bundle, configure <em class="ph i">RATING.Trigger-BOU-Activation</em> action in <em class="ph i">TARIFF</em>
+                    rules.</p>
+<div class="p"><em class="ph i">Trigger-BOU-Activation</em> actions triggers the bundle
+                    activation rules for a specified BOU bundle. It has two mandatory parameters
+                    which are as follows: <ul class="ul" id="bou_activation_enhancements__ul_vcy_1bd_4tb">
+                        <li class="li">
+                            <div class="p"><em class="ph i">Bundle_Name_STRING</em> : This argument can take the following
+                                    values:<ul class="ul" id="bou_activation_enhancements__ul_swj_g1d_4tb">
+                                    <li class="li"><em class="ph i">Bundle_Name</em>: Bundle name can be passed as a string
+                                        argument. It indicates the name of the BOU bundle for which
+                                        BOU activation rules should be triggered.</li>
+
+                                    <li class="li"><em class="ph i">CALL_COMMON.Pre-Rating-Simulation-Bundle</em>: If this
+                                        argument is passed, then BOU activation rules are triggered
+                                        for the bundle that is selected in the pre-rating
+                                        simulation.</li>
+
+                                </ul>
+<div class="note" id="bou_activation_enhancements__note_yw3_2bd_4tb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> <em class="ph i">Pre-Rating-Simulation-Bundle</em>
+                                    attribute indicates the bundle name for the highest priority
+                                    applicable charging logic selected in the
+                                    pre-rating-simulation.</div>
+</div>
+
+                        </li>
+
+                        <li class="li">
+                            <div class="p"><em class="ph i">ChargingLogicSelection_ENUM</em> : This argument can take the
+                                following values:<ul class="ul" id="bou_activation_enhancements__ul_dld_ybc_ltb">
+                                    <li class="li"><em class="ph i">Stop</em>: If BOU reservation fails, then NCC stops using
+                                        the current charging logic and moves to the next applicable
+                                        charging logic, if any.</li>
+
+                                    <li class="li"><em class="ph i">Reject</em>: If BOU reservation fails, then call is
+                                        rejected immediately</li>
+
+                                    <li class="li"><em class="ph i">Continue</em>: If BOU reservation fails, rest of the
+                                        tariff rules are evaluated using the same charging
+                                        logic.</li>
+
+                                </ul>
+</div>
+
+                        </li>
+
+                    </ul>
+</div>
+</div>
+            <div class="sectiondiv">Note the following important points about this feature:<ul class="ul" id="bou_activation_enhancements__ul_ydb_z41_ntb">
+                    <li class="li">BOU activation can fail due to the following reasons:<ul class="ul" id="bou_activation_enhancements__ul_mnm_3p1_ntb">
+                            <li class="li">Insufficient balance to support BOU activation fee.</li>
+
+                            <li class="li">Insufficient spending limit to pay the BOU reservation fee.</li>
+
+                            <li class="li">If BOU bundle is not found.</li>
+
+                            <li class="li">If BOU bundle is barred and cannot be activated.</li>
+
+                            <li class="li">If BOU bundle is not selected in the pre-rating simulation.</li>
+
+                            <li class="li">If the bundle selected in the pre-rating simulation is not a BOU
+                                bundle.</li>
+
+                            <li class="li">If maximum renewal for BOU bundle is reached.</li>
+
+                        </ul>
+</li>
+
+                    <li class="li">BOU activation is not applicable for offline charging, MMS, and ECUR
+                        interface.</li>
+
+                    <li class="li">BOU bundle is not activated for MT Voice/MT SMS premium.</li>
+
+                </ul>
+</div>
+            <div class="sectiondiv"><strong class="ph b">Examples</strong><ul class="ul" id="bou_activation_enhancements__ul_awz_ldc_ltb">
+                    <li class="li"><em class="ph i"><strong class="ph b">RATING.Trigger-BOU-Activation("CALL_COMMON.Pre-Rating-Simulation-Bundle",
+                                "Stop")</strong></em><p class="p">BOU activation rule is triggered for BOU bundle
+                            specified in <em class="ph i">CALL_COMMON.Pre-Rating-Simulation-Bundle</em> attribute,
+                            provided the BOU bundle is not active. If BOU fee reservation is
+                            successful, then rest of the tariff rules are evaluated in the same
+                            charging logic, and BOU fee is committed at the time of committing the
+                            slice (that is, <em class="ph i">Used Service Units</em>). If BOU fee reservation
+                            fails, then logic stops using the current charging logic, and moves to
+                            the next applicable charging logic.</p>
+</li>
+
+                    <li class="li"><em class="ph i"><strong class="ph b">RATING.Trigger-BOU-Activation("VF_BOU_01", "Stop")</strong></em><p class="p">BOU
+                            activation rule is triggered for BOU bundle <em class="ph i">VF_BOU_01</em>, provided
+                            it is not active. If BOU fee reservation is successful, then rest of the
+                            tariff rules are evaluated in the same charging logic, and BOU fee is
+                            committed at the time of committing the slice (that is, <em class="ph i">Used Service
+                                Units</em>). If BOU fee reservation fails, then logic stops using the
+                            current charging logic, and moves to the next applicable charging
+                            logic.</p>
+</li>
+
+                    <li class="li"><em class="ph i"><strong class="ph b">RATING.Trigger-BOU-Activation("CALL_COMMON.Pre-Rating-Simulation-Bundle",
+                                "Reject")</strong></em><p class="p">BOU activation rule is triggered for BOU bundle
+                            specified in <em class="ph i">CALL_COMMON.Pre-Rating-Simulation-Bundle</em> attribute,
+                            provided the BOU bundle is not active. If BOU fee reservation is
+                            successful, then rest of the tariff rules are evaluated in the same
+                            charging logic, and BOU fee is committed at the time of committing the
+                            slice (that is, <em class="ph i">Used Service Units</em>). If BOU fee reservation is
+                            fails, then the call is rejected immediately. Hence, the call
+                        fails.</p>
+</li>
+
+                    <li class="li"><em class="ph i"><strong class="ph b">RATING.Trigger-BOU-Activation("VF_BOU_01", "Reject")</strong></em><p class="p">BOU
+                            activation rule is triggered for BOU bundle <em class="ph i">VF_BOU_01</em>, provided
+                            it is not active. If BOU fee reservation is successful, then rest of the
+                            tariff rules are evaluated in the same charging logic, and BOU fee is
+                            committed at the time of committing the slice (that is, <em class="ph i">Used Service
+                                Units</em>). If BOU fee reservation fails, then the call is rejected
+                            immediately. Hence, the call fails.</p>
+</li>
+
+                    <li class="li"><em class="ph i"><strong class="ph b">RATING.Trigger-BOU-Activation("VF_BOU_01", "Continue")</strong></em><p class="p">BOU
+                            activation rule is triggered for BOU bundle <em class="ph i">VF_BOU_01</em>, provided
+                            it is not active. If BOU fee reservation is successful, then rest of the
+                            tariff rules are evaluated in the same charging logic, and BOU fee is
+                            committed at the time of committing the slice (that is, <em class="ph i">Used Service
+                                Units</em>). Even if the BOU fee reservation fails, the rest of the
+                            tariff rules are evaluated in the same charging logic.</p>
+</li>
+
+                </ul>
+</div>
+            <div class="sectiondiv"><strong class="ph b">Use cases</strong><p class="p"><strong class="ph b">Use case 1: For roaming subscriber, MO call is charged
+                        from applicable home tariff  when BOU is activated.</strong></p>
+<ul class="ul" id="bou_activation_enhancements__ul_a3g_qwc_4tb">
+                    <li class="li">Device has a <em class="ph i">24H</em> renewable BOU bundle <em class="ph i">BOU1</em> attached to it with
+                        the following rules:<p class="p"><em class="ph i">BUNDLE.Activation-Fee = 8 and
+                                BUNDLE.Activation-Event = "activateBOU"</em></p>
+</li>
+
+                    <li class="li">A default tariff <em class="ph i">DTP01</em> is attached to the device. It has the lowest
+                        priority.</li>
+
+                    <li class="li">A time based home bundle <em class="ph i">TIME1</em> is attached to the device. Its time
+                        bucket is <em class="ph i">T01</em>.</li>
+
+                    <li class="li">BOU bundle and default tariff are a part of PTP/DTP category for which
+                        pre-rating-simulation is enabled in the <em class="ph i">GY_PREPROCESSING</em>
+                        trigger.</li>
+
+                    <li class="li">Home bundle is a part of the default category. Default category has higher
+                        priority than PTP/DTP category.</li>
+
+                    <li class="li">Device has an unlimited spending limit <em class="ph i">SPL1</em>.</li>
+
+                    <li class="li">The application preference <em class="ph i">BOU Activation fee enabled in CDR</em> is set
+                        to true</li>
+
+                    <li class="li">Charging Service of bundle <em class="ph i">TIME1</em> has the following tariff rules
+                                defined:<p class="p"><em class="ph i">RATING.Trigger-BOU-Activation("BOU1", "Reject") and
+                                RATING.Bucket-Selection = "T01"</em></p>
+</li>
+
+                </ul>
+<p class="p"><strong class="ph b">Result</strong>: When MO voice call is triggered from the roaming country,
+                        <em class="ph i">BOU1</em> is activated. The activation fee is charged from account and
+                    counted towards spending limit <em class="ph i">SPL1</em>. MO Voice call is charged from bucket
+                        <em class="ph i">T01</em>.</p>
+<p class="p"><strong class="ph b">Use case 2: For a roaming subscriber, MO call fails due
+                        to insufficient spending limit to pay the BOU activation fee.</strong></p>
+<ul class="ul" id="bou_activation_enhancements__ul_njl_ryc_4tb">
+                    <li class="li">Device has a <em class="ph i">24H</em> renewable BOU bundle <em class="ph i">BOU1</em> attached to it with
+                        the following rules:<p class="p"><em class="ph i">BUNDLE.Activation-Fee = 8 and
+                                BUNDLE.Activation-Event = "activateBOU"</em></p>
+</li>
+
+                    <li class="li">A default tariff <em class="ph i">DTP01</em> is attached to the device. It has the lowest
+                        priority.</li>
+
+                    <li class="li">A time based home bundle <em class="ph i">TIME1</em> is attached to the device. Its time
+                        bucket is <em class="ph i">T01</em>.</li>
+
+                    <li class="li">BOU bundle and default tariff are a part of PTP/DTP category for which
+                        pre-rating-simulation is enabled in the <em class="ph i">GY_PREPROCESSING</em>
+                        trigger.</li>
+
+                    <li class="li">Home bundle is a part of the default category. Default category has higher
+                        priority than PTP/DTP category.</li>
+
+                    <li class="li">Device has a spending limit <em class="ph i">SPL1</em>. It has already reached the hard
+                        stop threshold.</li>
+
+                    <li class="li">The application preference <em class="ph i">BOU Activation fee enabled in CDR</em> is set
+                        to true</li>
+
+                    <li class="li">Charging Service of bundle <em class="ph i">TIME1</em> has the following tariff rules
+                                defined:<p class="p"><em class="ph i">RATING.Trigger-BOU-Activation("BOU1", "Reject") and
+                                RATING.Bucket-Selection = "T01"</em></p>
+</li>
+
+                </ul>
+<p class="p"><strong class="ph b">Result</strong>: When MO voice call is triggered from the roaming country,
+                        <em class="ph i">BOU1</em> is not activated. MO voice call fails due to insufficient
+                    spending limit.</p>
+</div>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

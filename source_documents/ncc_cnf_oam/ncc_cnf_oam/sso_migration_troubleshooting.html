@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="SSO/LDAP migration troubleshooting" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="sso_migration_troubleshooting" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>SSO/LDAP migration troubleshooting</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="sso_migration_troubleshooting">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">SSO/LDAP migration troubleshooting</h1>
+<div class="body conbody">
+        <p class="p">When listing User and Role Management MariaDB servers and their statuses, you may run
+            into errors. The errors found in pod logs and commands to verify replication status etc
+            could be an indication that the MariaDB pods are not in sync with each other. These
+            examples show some sample errors that indicate replication issues.</p>
+
+        <pre class="pre codeblock"><code>Errors
+# Error 1: CKEY-CMDB pod logs indicate that the local replication is broken in the namespace=ig1.
+# kubectl -n ig1 logs -f ckey-cmdb-mariadb-0 -c mariadb
+ 
+{"version": "1.0", "level": "notice", "host": "ckey-cmdb-mariadb-0.ig1", "type": "alarm", "alarm": {"task": "notify", "name": "REPL_BROKEN", "severity": "CLEARED", "key": "3000610", "text": "Local replication broken", "event-type": "2", "probable-cause": "306", "id": 3000610, "data": "Replication OK"}, "service": "mariadb", "process": "mariadb_monproc.py", "time": "2022-04-18T16:37:21.598Z"}
+{"version": "1.0", "type": "log", "host": "ckey-cmdb-mariadb-0.ig1", "process": "docker-entrypoint.sh", "service": "mariadb", "log": {"message": "2022-04-18 16:37:22 67 [ERROR] Slave SQL: Error 'Table 'db4keycloak.EVENT_ENTITY' doesn't exist' on query. Default database: 'db4keycloak'. Query: 'delete from EVENT_ENTITY where (REALM_ID in ('47b6c857-1618-4f56-a2e7-5f926a7b7ac3' , 'btel-auth')) and EVENT_TIME&lt;1642169293445', Gtid 2-2000-177, Internal MariaDB error code: 1146"}, "level": "info", "time": "2022-04-18T16:37:22.410Z"}
+{"version": "1.0", "type": "log", "host": "ckey-cmdb-mariadb-0.ig1", "process": "docker-entrypoint.sh", "service": "mariadb", "log": {"message": "2022-04-18 16:37:22 67 [Warning] Slave: Table 'db4keycloak.EVENT_ENTITY' doesn't exist Error_code: 1146"}, "level": "info", "time": "2022-04-18T16:37:22.411Z"}
+{"version": "1.0", "type": "log", "host": "ckey-cmdb-mariadb-0.ig1", "process": "docker-entrypoint.sh", "service": "mariadb", "log": {"message": "2022-04-18 16:37:22 67 [ERROR] Error running query, slave SQL thread aborted. Fix the problem, and restart the slave SQL thread with \"SLAVE START\". We stopped at log 'ckey-cmdb-mariadb-2-bin.000001' position 342; GTID position ''"}, "level": "info", "time": "2022-04-18T16:37:22.411Z"}
+ 
+-------------------------------------------------------------------------------------------------------------------------------------------------
+# Error 2: Error while listing servers in a replication group. The python script fails while retrieving GTID for ckey-cmdb-mariadb-0.
+That indicates that ckey-cmdb-mariadb-0 pod is out of sync.
+ 
+# kubectl exec -n ig1  -it ckey-cmdb-maxscale-0 -c maxscale -- maxscale_adm --list-servers --all
+ 
+DATACENTER: localhost (Domain: 1)
+      Server                            IP:Port                      Server ID           GTID                             Status              
+-------------------  ----------------------------------------------  ---------  -----------------------  -----------------------------------------
+ckey-cmdb-mariadb-2  ckey-cmdb-mariadb-2.ig1.svc.cluster.local:3306       1002  1-1002-2773,2-2000-1839  Master, Slave of External Server, Running                      
+ckey-cmdb-mariadb-0 ckey-cmdb-mariadb-0.ig1.svc.cluster.local:3306 1000 Traceback (most recent call last):                      
+File "/usr/bin/maxscale_adm", line 753, in &lt;module&gt;
+main()
+File "/usr/bin/maxscale_adm", line 269, in main
+sys.exit(do_it(args))
+File "/usr/bin/maxscale_adm", line 608, in do_it
+remote_maxscale.pretty_print( remote_servers )
+File "/usr/lib/mariadb/maxscale_rest_api.py", line 324, in pretty_print
+sys.stdout.write(('{:&lt;%d} ' % columns[3]).format(server['GTID']))
+TypeError: unsupported format string passed to NoneType.__format__
+command terminated with exit code 1</code></pre>
+        <p class="p">The recommended solution to remedy this state is to perform a MariaDB data backup from
+            the master mariadb pod and restore the data in the affected MariaDB pod. This backup
+            ensures all of the MariaDB pods are in sync and replicating with each other.</p>
+
+        <pre class="pre codeblock"><code>Remedy
+# Step 1 - Identify the master CKEY-CMDB pod.
+# Sample command and output. In the example, ckey-cmdb-mariadb-2 is the master CKEY-CMDB server
+ 
+# kubectl exec -n ig1  -it ckey-cmdb-maxscale-0 -c maxscale -- maxscale_adm --list-servers --all
+ 
+DATACENTER: localhost (Domain: 1)
+      Server                            IP:Port                      Server ID           GTID                             Status              
+-------------------  ----------------------------------------------  ---------  -----------------------  -----------------------------------------
+ckey-cmdb-mariadb-2  ckey-cmdb-mariadb-2.ig1.svc.cluster.local:3306       1002  1-1002-2791,2-2000-1857  Master, Slave of External Server, Running
+ckey-cmdb-mariadb-0  ckey-cmdb-mariadb-0.ig1.svc.cluster.local:3306       1000  1-1002-2791,2-2000-1857  Slave, Running                       
+ckey-cmdb-mariadb-1  ckey-cmdb-mariadb-1.ig1.svc.cluster.local:3306       1001  1-1002-2791,2-2000-1857  Slave, Running                       
+ 
+DATACENTER: sm2 (Domain: 2)
+      Server                            IP:Port                      Server ID           GTID                             Status              
+-------------------  ----------------------------------------------  ---------  -----------------------  -----------------------------------------
+ckey-cmdb-mariadb-2  ckey-cmdb-mariadb-2.sm2.svc.cluster.local:3306       2002  1-1002-2791,2-2000-1857  Slave, Running                       
+ckey-cmdb-mariadb-1  ckey-cmdb-mariadb-1.sm2.svc.cluster.local:3306       2001  1-1002-2791,2-2000-1857  Slave, Running                       
+ckey-cmdb-mariadb-0  ckey-cmdb-mariadb-0.sm2.svc.cluster.local:3306       2000  1-1002-2791,2-2000-1857  Master, Slave of External Server, Running
+ 
+ 
+# Step 2 - Perform a CMDB backup of the ckey-cmdb-mariadb-2 data:
+# Sample command to perform a backup
+kubectl -n ig1 exec ckey-cmdb-mariadb-2 --container mariadb -- bash -c '/usr/bin/mariadb_db_backup --backup --file /mariadb/backup/dc1-backup.tgz'
+# Copy backup file to control node
+kubectl -n ig1 cp ckey-cmdb-mariadb-2:/mariadb/backup/dc1-backup.tgz /dc1-backup.tgz --container mariadb
+ 
+# Step 3 - Copy the backup to the pod that is out of sync and perform a CMDB restore.
+# Sample command to copy backup into affected pod
+kubectl -n ig1  cp dc1-backup.tgz ckey-cmdb-mariadb-0:/mariadb/backup/ --container mariadb
+ 
+# Restore
+kubectl -n ig1 exec ckey-cmdb-mariadb-0 --container mariadb -- bash -c '/usr/bin/mariadb_db_backup --restore --file /mariadb/backup/dc1-backup.tgz '
+ 
+# List servers and verify replication status. All local and remote site pods should be in sync.
+ 
+[root@nc2237node02 ~]# kubectl exec -n ig1  -it ckey-cmdb-maxscale-0 -c maxscale -- maxscale_adm --list-servers --all
+ 
+DATACENTER: localhost (Domain: 1)
+      Server                            IP:Port                      Server ID           GTID                             Status              
+-------------------  ----------------------------------------------  ---------  -----------------------  -----------------------------------------
+ckey-cmdb-mariadb-2  ckey-cmdb-mariadb-2.ig1.svc.cluster.local:3306       1002  1-1002-2773,2-2000-1839  Master, Slave of External Server, Running
+ckey-cmdb-mariadb-0  ckey-cmdb-mariadb-0.ig1.svc.cluster.local:3306       1000  1-1002-2773,2-2000-1839  Slave, Running                       
+ckey-cmdb-mariadb-1  ckey-cmdb-mariadb-1.ig1.svc.cluster.local:3306       1001  1-1002-2773,2-2000-1839  Slave, Running                       
+ 
+DATACENTER: sm2 (Domain: 2)
+      Server                            IP:Port                      Server ID           GTID                             Status              
+-------------------  ----------------------------------------------  ---------  -----------------------  -----------------------------------------
+ckey-cmdb-mariadb-2  ckey-cmdb-mariadb-2.sm2.svc.cluster.local:3306       2002  1-1002-2773,2-2000-1839  Slave, Running                       
+ckey-cmdb-mariadb-1  ckey-cmdb-mariadb-1.sm2.svc.cluster.local:3306       2001  1-1002-2773,2-2000-1839  Slave, Running                       
+ckey-cmdb-mariadb-0  ckey-cmdb-mariadb-0.sm2.svc.cluster.local:3306       2000  1-1002-2773,2-2000-1839  Master, Slave of External Server, Running
+ 
+# Verify that no errors are listed in CKEY-CMDB pod logs.</code></pre>
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Counter" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="d1e45074" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Counter</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="d1e45074">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Counter</h1>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_cpn_bbb_f3b"><h2 class="title topictitle2" id="ariaid-title2">EDR tags</h2>
+<div class="body conbody">
+			<table cellpadding="4" cellspacing="0" summary="" id="concept_cpn_bbb_f3b__table_ngd_gk3_qqb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>EDR Tags Description</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+						<tr class="row">
+							<th class="entry cellrowborder" style="vertical-align:top;" id="d41071e42">EDR Tag</th>
+
+							<th class="entry cellrowborder" style="vertical-align:top;" id="d41071e45">Description</th>
+
+							<th class="entry cellrowborder" style="vertical-align:top;" id="d41071e48">Example</th>
+
+						</tr>
+
+					</thead>
+<tbody class="tbody">
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">counterID</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">Name of counter.</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">ABY40550</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">policyCounter</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">Indicate if the Counter is policy counter.</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">false</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">counterUnitTypeId</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">Indicates the unit type for the entity.</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">--</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">counterKindOfUnit</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">Indicates the kind of unit for the entity.</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">VOLUME</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">resourceBased</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">Indicates if counter is resource based.</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">true</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">counterType</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">The counter type.<p class="p">Possible values: call, usage, cost</p>
+</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">CALL</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">counterScope</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">
+								<p class="p">Indicates counter scope. </p>
+
+								<p class="p">Possible values: ALL, SELF, HIERARCHY, MULTI_BUNDLE,
+									SUBSCRIPTION</p>
+
+							</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">SELF</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">counterConsumptionType</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">Indicates the consumption type for the Counter. <p class="p">Possible values: All, bucket,
+									counter, account, CS</p>
+</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">ALL</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">usageLimit</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">Usage limit of counter.</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">900</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">ovgLimit</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">Overage limit of counter.</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">90</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">thresholdProfileGroupIdList</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">List of threshold profile group IDs available for the counter.</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">[Tpg1]</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">capList</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">The CAP IDs. (Deprecated. This tag will be removed in future.)</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">[Cap3]</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">alignGranularity</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">It specifies to align granularity of counter. <p class="p">Possible values: true,
+								false</p>
+</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">true</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">counterCreationTime</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">Specifies the time at which the entity was created.</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">15/06/2021 10:51:04</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">counterLastUpdateTime</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">Specifies the time at which entity was last modified.</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">15/06/2021 10:51:04</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">deviceId</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">It indicates device ID with which counter is attached.</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">Device8899</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e42 ">groupId</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e45 ">It indicates GroupID with which counter is attached.</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e48 ">Group4</td>
+
+						</tr>
+
+					</tbody>
+</table>
+
+		</div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_lyy_3k4_yqb"><h2 class="title topictitle2" id="ariaid-title3">Applicability of tags</h2>
+<div class="body conbody">
+			<table cellpadding="4" cellspacing="0" summary="" id="concept_lyy_3k4_yqb__table_ogd_gk3_qqb" class="table" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+						<tr class="row">
+							<th class="entry cellrowborder" style="vertical-align:top;" id="d41071e293">EDR Tag</th>
+
+							<th class="entry cellrowborder" style="vertical-align:top;" id="d41071e296">Create</th>
+
+							<th class="entry cellrowborder" style="vertical-align:top;" id="d41071e299">Update</th>
+
+							<th class="entry cellrowborder" style="vertical-align:top;" id="d41071e302">Delete</th>
+
+						</tr>
+
+					</thead>
+<tbody class="tbody">
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e293 ">counterID</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e296 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e299 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e302 ">Yes</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e293 ">policyCounter</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e296 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e299 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e302 ">Yes</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e293 ">counterUnitTypeId</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e296 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e299 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e302 ">Yes</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e293 ">counterKindOfUnit</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e296 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e299 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e302 ">Yes</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e293 ">resourceBased</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e296 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e299 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e302 ">Yes</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e293 ">counterType</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e296 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e299 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e302 ">Yes</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e293 ">counterScope</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e296 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e299 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e302 ">Yes</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e293 ">counterConsumptionType</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e296 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e299 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e302 ">Yes</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e293 ">thresholdProfileGroupIdList</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e296 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e299 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e302 ">Yes</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e293 ">usageLimit</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e296 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e299 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e302 ">Yes</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e293 ">ovgLimit</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e296 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e299 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e302 ">Yes</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e293 ">capList</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e296 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e299 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e302 ">Yes</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e293 ">alignGranularity</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e296 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e299 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e302 ">Yes</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e293 ">counterCreationTime</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e296 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e299 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e302 ">Yes</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e293 ">counterLastUpdateTime</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e296 ">No</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e299 ">Yes</td>
+
+							<td class="entry cellrowborder" style="vertical-align:top;" headers="d41071e302 ">Yes</td>
+
+						</tr>
+
+					</tbody>
+</table>
+
+		</div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title4" id="concept_ytc_jk4_yqb"><h2 class="title topictitle2" id="ariaid-title4">Associated EDRs</h2>
+<div class="body conbody">
+			<p class="p">There are no associated EDRs for this EDR.</p>
+
+		</div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title5" id="concept_itz_bbb_f3b"><h2 class="title topictitle2" id="ariaid-title5">EDR examples</h2>
+<div class="body conbody">
+			<div class="section" id="concept_itz_bbb_f3b__section_cxq_bbb_f3b">
+				<div class="sectiondiv">
+					<p class="p"><strong class="ph b">Create</strong></p>
+
+					<div class="fig fignone" id="concept_itz_bbb_f3b__fig_dxq_bbb_f3b">
+						<pre class="pre codeblock"><code>-------------------------------------
+EDR length:                       571
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       4
+Name                          Tag                    Data
+RecordType                    0               PROVISIONING_RECORD
+invokedBy                     1                   webService
+invokedMethod                 1                create_counter
+counterID                     1                    C64234
+policyCounter                 1                     false
+counterUnitType               1                     MByte
+counterKindOfUnit             1                    VOLUME
+counterType                   1                     USAGE
+counterScope                  1                      SELF
+counterConsumptionType        1                    BUCKET
+counterConsumptionList        1 [Bun64234.CS64234.Bkt164234, Bun64234.CS64234.Bkt264234]
+thresholdProfileGroupIdList   1            [Netflix_Threshold.Threshold]
+capList                       1           [Capping_Counter_10GB.Cap]
+counterCreationTime           1              15/06/2018 11:51:04
+result                        1                          SUCCESS
+generationTimestamp           1              15/06/2018 11:51:04
+RecordTimestamp               1              15/06/2018 06:21:04
+</code></pre>
+					</div>
+
+				</div>
+				<div class="sectiondiv">
+					<p class="p"><strong class="ph b">Update</strong></p>
+
+					<div class="fig fignone" id="concept_itz_bbb_f3b__fig_exq_bbb_f3b">
+						<pre class="pre codeblock" id="concept_itz_bbb_f3b__codeblock_afw_z2y_lyb"><code>-------------------------------------
+EDR length:                       597
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       4
+Name                          Tag                            Data
+RecordType                    0               PROVISIONING_RECORD
+invokedBy                     1                        webService
+invokedMethod                 1                    update_counter
+counterID                     1                            C64234
+policyCounter                 1                             false
+counterUnitType               1                             GByte
+counterKindOfUnit             1                            VOLUME
+counterType                   1                             USAGE
+counterScope                  1                              SELF
+counterConsumptionType        1                            BUCKET
+counterConsumptionList        1 [Bun64234.CS64234.Bkt164234,Bun64234.CS64234.Bkt264234]
+thresholdProfileGroupIdList   1               [Netflix_Threshold]
+capList                       1            [Capping_Counter_10GB]
+counterCreationTime           1               15/06/2018 10:51:04
+counterLastUpdateTime         1               15/06/2018 10:52:04
+result                        1                           SUCCESS
+generationTimestamp           1               15/06/2018 11:51:04
+RecordTimestamp               1               15/06/2018 06:21:04</code></pre>
+					</div>
+
+				</div>
+				<div class="sectiondiv">
+					<p class="p"><strong class="ph b">Delete</strong></p>
+
+					<div class="fig fignone" id="concept_itz_bbb_f3b__fig_fxq_bbb_f3b">
+						<pre class="pre codeblock"><code> -------------------------------------
+EDR length:                       611
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       4
+Name                          Tag                             Data
+RecordType                    0                PROVISIONING_RECORD
+invokedBy                     1                         webService
+invokedMethod                 1                     delete_counter
+counterID                     1                             C64234
+policyCounter                 1                              false
+counterUnitType               1                              GByte
+counterKindOfUnit             1                             VOLUME
+counterType                   1                              USAGE
+counterScope                  1                               SELF
+counterConsumptionType        1                             BUCKET
+counterConsumptionList        1 [Bun64234.CS64234.Bkt164234,Bun64234.CS64234.Bkt264234]
+thresholdProfileGroupIdList   1               [Netflix_Threshold.Threshold]
+capList                       1               [Capping_Counter_10GB.Cap]
+counterCreationTime           1                 15/06/2018 11:51:05
+counterLastUpdateTime         1                 15/06/2018 11:51:05
+result                        1                             SUCCESS
+generationTimestamp           1                 15/06/2018 11:51:05
+RecordTimestamp               1                 15/06/2018 06:21:05
+</code></pre>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

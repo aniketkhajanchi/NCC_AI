@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Emergency loan" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="emergency_loan" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Emergency loan</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="emergency_loan">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Emergency loan</h1>
+<div class="body conbody">
+        <p class="p">A prepay subscriber is eligible for the loan (overdraft) service if its account has been
+            active for at least 30 days. Subscribers who are eligible for the loan service may
+            opt-in through an API request from the operators' IT systems. Opted-in subscribers may
+            opt-out again at any time, but remain eligible for the loan service. Operator can
+            configure whether, and how much, to charge a activation fee for opting in to the loan
+            service.</p>
+
+        <p class="p">Subscribers who opt in to the loan service receive a calling credit loan as per the
+            configured loan amount when their balance reaches zero or goes below a defined low
+            credit. The loan may be used for a chargeable event, with no change in the subscriber’s
+            price plan. There is no limit to the number of times a subscriber may receive a loan
+            provided they do not already have an outstanding loan.</p>
+
+        <p class="p">Operators can charge subscribers a fee for every calling credit loan they receive, but it
+            is charged when the subscriber opts out from the service.</p>
+
+        <div class="section" id="emergency_loan__section_x5r_spk_ysb"><h2 class="title sectiontitle">Loan example</h2>
+            
+            <p class="p">The following table and figure demonstrate a sample loan configuration and account
+                balance after loan opt-in.</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="emergency_loan__table_o3q_vpk_ysb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Examples - loan configuration</span></caption><colgroup><col style="width:11.587485515643104%" /><col style="width:13.093858632676705%" /><col style="width:17.149478563151792%" /><col style="width:15.063731170336037%" /><col style="width:15.758980301274622%" /><col style="width:27.346465816917725%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d423728e66">Name</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d423728e69">Type</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d423728e72">Loan amount</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d423728e75">Activation fee</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d423728e78">Service fee</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d423728e82">Service fee paid only if loan used</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d423728e66 ">IOU</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d423728e69 ">Recurrent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d423728e72 ">£3</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d423728e75 ">£0</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d423728e78 ">£0.45</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d423728e82 ">Y</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d423728e66 ">ETS</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d423728e69 ">One-time</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d423728e72 ">450 HUF</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d423728e75 ">0 HUF</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d423728e78 ">120 HUF</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d423728e82 ">N</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <div class="fig fignone" id="emergency_loan__fig_vrn_1pz_zsb"><span class="figcap"><span class="fig--title-label">Figure: </span>Example - Account balance after loan Opt-In</span>
+                
+                <img class="image break" id="emergency_loan__image_hpv_kqk_ysb" src="../images/loan1.png" height="340" width="450" />
+            </div>
+
+        </div>
+
+        <div class="section" id="emergency_loan__section_p3d_vmz_zsb"><h2 class="title sectiontitle">Scenarios for sending notifications</h2>
+            
+            <p class="p">Following are some scenarios in which operators can configure to send notifications
+                to the subscribers:</p>
+
+            <ul class="ul" id="emergency_loan__ul_an3_phz_zsb">
+                <li class="li">If a subscriber with account loan state <var class="keyword varname">Initial</var> and main
+                    balance at a configured threshold value (say zero) executes a call, then the
+                    subscriber receives a notification for failure with option to opt-in for loan
+                    service as shown in the following example:
+                    <pre class="pre codeblock" id="emergency_loan__codeblock_n4c_flz_zsb"><code>You are running low on credit. To top up, call ###. To borrow £3, SMS ABC to ### or call ### for free.</code></pre></li>
+
+                <li class="li">Opted-in subscribers with a low balance also receive a notification.</li>
+
+                <li class="li">Opted-in subscribers making a chargeable event that enters the loan portion of
+                    their balance receive a notification once the event is complete, as shown in the
+                    following
+                    example:<pre class="pre codeblock" id="emergency_loan__codeblock_vrx_vlz_zsb"><code>You are now using your £3 credit. This amount and a 45p service fee will be deducted from your next topup.</code></pre></li>
+
+                <li class="li">Operator tries to reset the loan state from
+                        <var class="keyword varname">Opt-in</var>/<var class="keyword varname">Opt-out</var> to
+                        <var class="keyword varname">Initial</var>.</li>
+
+                <li class="li">Subscriber opts out from loan service.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="section" id="emergency_loan__section_utn_bnz_zsb"><h2 class="title sectiontitle">EDR</h2>
+            
+            <p class="p">The operator receives related EDRs for subscriber opt-in or opt-out, or resetting
+                loan state. Refer to <em class="ph i">CDR/EDR Reference</em> for more information.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Procedure to rollback to non-SSO/LDAP configurations" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="Bookmark43" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Procedure to rollback to non-SSO/LDAP configurations</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="Bookmark43">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Procedure to rollback to non-SSO/LDAP configurations</h1>
+<div class="body conbody">
+    <p class="p">Review the prerequisites before you proceed with the rollbacks.</p>
+
+    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+      <ul class="ul">
+        <li class="li">In deployments with integrated (IG) systems, the ME subsystem must be modified in the
+          same maintenance window as the SM subsystem. In deployments that have IG with additional
+          ME systems, one or more of the additional ME systems must be modified in the same
+          maintenance window as the
+          IG.</li>
+
+        <li class="li">CGF (DR) chart (Helm releasename=dr) must be rolled back.</li>
+
+        <li class="li">Metrics Viewer must be rolled back.</li>
+
+      </ul>
+
+      <p class="p">The rollback procedure is for four SM/IG systems (1, 2, 3 and 4) as the use case. In the
+        case of only two SM/IG systems, certain steps can be omitted.</p>
+
+      <p class="p">Verify the MariaDB replication status on all SM/IG systems and ensure all pods are in sync
+        and replicating with each other. It can take a few minutes for the replication status to
+        display updated results. If the verification commands to check replication status indicate
+        problems, see <a class="xref" href="sso_migration_troubleshooting.html">SSO/LDAP migration troubleshooting</a>.</p>
+</div>
+
+  </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

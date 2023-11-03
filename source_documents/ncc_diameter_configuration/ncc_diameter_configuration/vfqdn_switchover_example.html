@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Example" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="vfqdn_switchover_example" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Example</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="vfqdn_switchover_example">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Example</h1>
+<div class="body conbody">
+        <p class="p">Configure the application preference as described in the previous section. </p>
+
+        <p class="p">Configure the NRF server as follows:</p>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="vfqdn_switchover_example__nrfserver" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>NRF server attributes</span></caption><colgroup><col style="width:50.98039215686274%" /><col style="width:49.01960784313725%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d35061e46">Parameter</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d35061e49">Value</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e46 ">Name</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e49 ">NRFEast</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e46 ">NRF API Root</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e49 ">http://_http._tcp.www.nrf.east.net./endpoint<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Here vFQDN for NRF
+                                server is
+                            <var class="keyword varname">_http._tcp.www.nrf.east.net.</var></div>
+</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e46 ">Retry count</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e49 ">0</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e46 ">Failed heartbeat threshold</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e49 ">10</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e46 ">Communication timeout</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e49 ">100</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" colspan="2" style="vertical-align:top;" headers="d35061e46 d35061e49 "><strong class="ph b">Probe</strong></td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e46 ">Probe timer</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e49 ">10</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e46 ">Probe success count</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e49 ">3</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e46 ">Failure count</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e49 ">5</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e46 ">FQDN-Probe NF Instance ID</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e49 ">-</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e46 ">Additional success codes for switchback to primary</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e49 ">404</td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+        <div class="section" id="vfqdn_switchover_example__section_w35_gdj_zqb"><h2 class="title sectiontitle">Configuration</h2>
+            
+            <ul class="ul" id="vfqdn_switchover_example__ul_efn_3dj_zqb">
+                <li class="li">External DNS configuration for NCC:<table cellpadding="4" cellspacing="0" summary="" id="vfqdn_switchover_example__table_k1g_xbj_zqb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:42.47619047619048%" /><col style="width:38.476190476190474%" /><col style="width:19.047619047619047%" /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d35061e184">vFQDN</th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d35061e187">Resolves to FQDNs</th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d35061e190">Primary/ Secondary (based on DNS priority)</th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d35061e184 ">_http._tcp.www.nrf.east.net.</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e187 ">nrf1.server.net</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e190 ">Primary</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e187 ">nrf2.server.net</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e190 ">Secondary</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d35061e184 ">_http._tcp.www.nrf.west.net.</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e187 ">nrf3.server.net</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e190 ">Primary</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e187 ">nrf4.server.net</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d35061e190 ">Secondary</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+</li>
+
+                <li class="li"> NRF Servers configured in NCC:<ul class="ul" id="vfqdn_switchover_example__ul_f5g_sdj_zqb">
+                        <li class="li">NRFEast(nrfApiRoot) =
+                                <var class="keyword varname">http://_http._tcp.www.nrf.east.net./endpoints</var>
+                        </li>
+
+                        <li class="li">NRFWest(nrfApiRoot) =
+                                <var class="keyword varname">http://_http._tcp.www.nrf.west.net./endpoints</var></li>
+
+                    </ul>
+</li>
+
+                <li class="li">Single NRF SERVER SET at NCC<ul class="ul" id="vfqdn_switchover_example__ul_ojn_sdj_zqb">
+                        <li class="li">NRF-Server-Set1 = NRFEast(primary), NRFWest </li>
+
+                    </ul>
+</li>
+
+            </ul>
+
+        </div>
+
+        <div class="section" id="vfqdn_switchover_example__section_qhv_ydj_zqb"><h2 class="title sectiontitle">Scenario 1: NfProfile registration with NRF
+                vFQDN</h2><strong class="ph b">Execution</strong><p class="p">Associate and provision <var class="keyword varname">NfProfile</var>
+                with <var class="keyword varname">NRF-Server-Set1</var>.</p>
+<p class="p"><strong class="ph b">Outcome</strong></p>
+<ul class="ul" id="vfqdn_switchover_example__ul_xpm_p2j_zqb">
+                <li class="li">NF Register: NF Register is sent to FQDN <var class="keyword varname">nrf1.server.net</var>
+                    (primary). That is, <var class="keyword varname">NfProfile</var> gets registered with NRFEast
+                    and it is marked as In-Use.</li>
+
+                <li class="li">NF Heart-Beat: NF Heart-Beat PATCH starts with FQDN
+                        <var class="keyword varname">nrf1.server.net</var> only.</li>
+
+                <li class="li">Probe: NfProfile Probe (using NFProfileRetrieval-GET) starts with FQDN
+                        <var class="keyword varname">nrf1.server.net</var> and FQDN
+                        <var class="keyword varname">nrf2.server.net</var></li>
+
+            </ul>
+</div>
+
+        <div class="section" id="vfqdn_switchover_example__section_zlp_z2j_zqb"><h2 class="title sectiontitle">Scenario 2: NRF failure detection at FQDN</h2>
+            
+            <p class="p"><strong class="ph b">Pre-condition:</strong> Scenario 1 is successful.</p>
+
+            <p class="p"><strong class="ph b">Execution</strong></p>
+
+            <p class="p">Probe for NfProfile (using NFProfileRetrieval-GET) to FQDN
+                    <var class="keyword varname">nrf1.server.net</var> fails 5 consecutive times (Failure Count).
+                That is, FQDN <var class="keyword varname">nrf1.server.net</var>  becomes Out-of-Service.</p>
+
+            <p class="p"><strong class="ph b">Outcome</strong></p>
+
+            <ul class="ul" id="vfqdn_switchover_example__ul_jkd_1gj_zqb">
+                <li class="li">NF Register: No NF Register is sent. That is, NfProfile remains registered with
+                    NRFEast.</li>
+
+                <li class="li">NF Heart-Beat: NF Heart-Beat PATCH stops with FQDN
+                        <var class="keyword varname">nrf1.server.net</var> and it starts with FQDN
+                        <var class="keyword varname">nrf2.server.net</var></li>
+
+                <li class="li">Probe: NfProfile Probe (using NFProfileRetrieval-GET) continues with FQDN
+                        <var class="keyword varname">nrf1.server.net</var> and FQDN
+                        <var class="keyword varname">nrf2.server.net</var></li>
+
+            </ul>
+
+        </div>
+
+        <div class="section" id="vfqdn_switchover_example__section_ynx_ggj_zqb"><h2 class="title sectiontitle">Scenario 3: NRF failure detection at
+                vFQDN</h2><strong class="ph b">Pre-condition:</strong> Scenario 2 is
+                successful.<p class="p"><strong class="ph b">Execution</strong></p>
+<div class="p">Probe for NfProfile (using
+                NFProfileRetrieval-GET) to FQDN <var class="keyword varname">nrf2.server.net</var> fails 5
+                consecutive times (Failure Count). That is, FQDN <var class="keyword varname">nrf2.server.net</var>
+                becomes Out-of-Service. FQDN <var class="keyword varname">nrf1.server.net</var>  is already
+                    Out-of-Service.<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div>  As both resolved FQDNs of vFQDN
+                        <var class="keyword varname">_http._tcp.www.nrf.east.net.</var> are Out-of-Service, hence
+                    the vFQDN also becomes Out-of-Service. </div>
+</div>
+<p class="p"><strong class="ph b">Outcome</strong></p>
+<ul class="ul" id="vfqdn_switchover_example__ul_vg2_chj_zqb">
+                <li class="li">NF Register: NF Register is sent towards FQDN
+                    <var class="keyword varname">nrf3.server.net</var>. That is, NfProfile gets registered with
+                    NRFWest and it becomes In-Use.</li>
+
+                <li class="li">NF Heart-Beat: NF Heart-Beat PATCH stops with FQDN
+                        <var class="keyword varname">nrf2.server.net</var> and it then starts with FQDN
+                        <var class="keyword varname">nrf3.server.net</var></li>
+
+                <li class="li">Probe:<ul class="ul" id="vfqdn_switchover_example__ul_xs3_khj_zqb">
+                        <li class="li">NfProfile Probe (using NFProfileRetrieval-GET) continues with FQDN
+                                <var class="keyword varname">nrf1.server.net</var> and FQDN
+                                <var class="keyword varname">nrf2.server.net</var>.</li>
+
+                        <li class="li">NfProfile Probe (using NFProfileRetrieval-GET) starts with FQDN
+                                <var class="keyword varname">nrf3.server.net</var> and FQDN
+                                <var class="keyword varname">nrf4.server.net</var>.</li>
+
+                    </ul>
+</li>
+
+            </ul>
+</div>
+
+        <div class="section" id="vfqdn_switchover_example__section_jwv_3gj_zqb"><h2 class="title sectiontitle">Scenario 4: NRF failure
+                recovery</h2><strong class="ph b">Pre-condition:</strong> Scenario 3 is
+                successful.<p class="p"><strong class="ph b">Execution</strong></p>
+<p class="p">Probe for NfProfile (using
+                NFProfileRetrieval-GET) to FQDN <var class="keyword varname">nrf2.server.net</var> becomes success
+                for 3 consecutive times (Success Count). That is, it recovers (becomes
+                In-Service).</p>
+<p class="p"><strong class="ph b">Outcome</strong></p>
+<ul class="ul" id="vfqdn_switchover_example__ul_nmg_vhj_zqb">
+                <li class="li">NF Register: NF Register is sent to FQDN <var class="keyword varname">nrf2.server.net</var> That
+                    is, NfProfile gets registered with NRFEast.</li>
+
+                <li class="li">NF Heart-Beat: NF Heart-Beat PATCH stops with FQDN
+                        <var class="keyword varname">nrf3.server.net</var> and it then starts with FQDN
+                        <var class="keyword varname">nrf2.server.net</var></li>
+
+                <li class="li">Probe: <ul class="ul" id="vfqdn_switchover_example__ul_tsx_m3j_zqb">
+                        <li class="li">NfProfile Probe (using NFProfileRetrieval-GET) stops with FQDN
+                                <var class="keyword varname">nrf3.server.net</var> and FQDN
+                                <var class="keyword varname">nrf4.server.net</var>
+                        </li>
+
+                        <li class="li">NfProfile Probe (using NFProfileRetrieval-GET) continues with FQDN
+                                <var class="keyword varname">nrf1.server.net</var> and FQDN
+                                <var class="keyword varname">nrf2.server.net</var></li>
+
+                    </ul>
+</li>
+
+            </ul>
+</div>
+
+    </div>
+<div class="footer"><hr /><p>Diameter/HTTP Configuration Guide • P556766-DN1000054969-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

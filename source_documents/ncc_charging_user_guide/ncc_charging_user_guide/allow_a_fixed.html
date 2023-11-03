@@ -1,0 +1,1895 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Allow a fixed VolumeQuotaThreshold for Diameter Gy quota allocation" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e228808" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Allow a fixed VolumeQuotaThreshold for Diameter Gy quota allocation</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e228808">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Allow a fixed VolumeQuotaThreshold for Diameter Gy quota allocation</h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">With this feature, a fixed VolumeQuotaThreshold (VQT) is added to a quota allocated, which is
+                sent back to the network when a soft-stop limit is reached irrespective of whether
+                the system is not configured to ignore the reservation quota. For information on
+                soft-stop scenarios, refer to <a class="xref" href="#id9yz-09126-ug01-pczza-sp1-d1e228808__softstop">Soft-stop scenarios</a>
+                section.</p>
+
+<p class="p">This feature supports the configuration in the system to define separate filter-ID values on a per rating group basis. It also returns the Granted Service Unit (GSU) value as zero, and triggers a Final Unit Action (FUA) set as <var class="keyword varname">Restrict-Access</var> under the following conditions:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Within UC Time of day (TOD) restricted interval.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Access is barred for a device, subscription, or account.</p>
+
+</li>
+
+<li class="li">
+<p class="p">A hard-stop limit is reached. For information on hard-stop scenarios, refer to
+                            <a class="xref" href="#id9yz-09126-ug01-pczza-sp1-d1e228808__hardstop">Hard-stop scenarios</a>
+                        section.</p>
+
+</li>
+
+</ul>
+
+<p class="p">While applying the slice reduction functionality to align the latest allocated GSU to an upcoming counter threshold, this feature excludes the allocated (in-flight) quota and provides parallel reservation or allocation of quota to different rating groups as per the minimum distance to the threshold limit applied.</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For 5G requests, <strong class="ph b">Final-Unit-Indication-Restriction-Filter-Rule</strong> AVP with
+                    <strong class="ph b">post-deny</strong> as input, is not supported. For final unit indication, use
+                    <strong class="ph b">RATING.Final-Unit-Indication-Filter-Id</strong> AVP (for both 4G/5G)
+                instead.</div>
+</div>
+
+    <div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e228808__hardstop"><h2 class="title sectiontitle">Hard-stop scenarios</h2>
+<p class="p">The hard-stop refers to the ability to stop using the resource and return GSU value as zero with a successful result-code and an FUA set as <var class="keyword varname">Restrict-Access</var> for different hard-stop triggers, such as TOD restricted interval, barred access for a device, subscription, or account, and hard-stop reached scenarios as explained in the following table:</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Hard-stop: Stop using resource or bundle</span></caption><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d90170e108">
+                                    <p class="p">Scenario</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d90170e114">
+                                    <p class="p">Stoppage Type</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d90170e120">
+                                    <p class="p">Behavior</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d90170e126">
+                                    <p class="p">Result</p>
+
+                               </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e108 ">UC bundle on base plan</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e114 ">Reject</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e120 ">Hard-stop is met as UC is applied to provide no further
+                                    usage even when a resource is available.</td>
+
+                                <td class="entry cellrowborder" rowspan="5" style="vertical-align:top;" headers="d90170e126 ">
+                                    <p class="p">Performs the following actions:</p>
+
+                                    <ul class="ul">
+                                        <li class="li">
+                                            <p class="p">Sends the GSU value as zero with a successful result
+                                                code <samp class="ph systemoutput">2001</samp>.</p>
+
+                                        </li>
+
+                                        <li class="li">
+                                            <p class="p">Sends an FUA set as
+                                                  <var class="keyword varname">Restrict-Access</var> with
+                                                  <em class="ph i">Filter-Id</em> as configured for a particular
+                                                rating group in global configuration.</p>
+
+                                        </li>
+
+                                        <li class="li">
+                                            <p class="p">Opens an active session.</p>
+
+                                        </li>
+
+                                    </ul>
+
+                               </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d90170e108 "> Normal bundle on base plan</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e114 ">Reject</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e120 ">Hard-stop is met when <var class="keyword varname">x</var> limit applied by
+                                    the bundle even when a resource is available.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e114 ">Stop</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e120 ">
+                                    <p class="p">Hard-stop is met when <var class="keyword varname">x</var> limit of the
+                                        bundle has applied a soft-stoppage but the resources are
+                                        exhausted.</p>
+
+                                    <p class="p">OR</p>
+
+                                    <p class="p">No other next resource, such as bucket, counter, or bundle is
+                                        available.</p>
+
+                               </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e108 ">Barring a device, account, or subscription</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e114 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e120 ">A device, account, or subscription gets barred in any
+                                    initial or update requests.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e108 ">TOD applied by UC bundle</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e114 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e120 ">TOD restrictions applied by UC bundle.</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For all hard-stop scenarios, the threshold action is only set as <samp class="ph systemoutput">Notification-Reject</samp> or <samp class="ph systemoutput">Reject</samp> actions.</div>
+
+</div>
+
+    <div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e228808__softstop"><h2 class="title sectiontitle">Soft-stop scenarios</h2>
+<p class="p">The soft-stop refers to the ability to identify the soft-stop scenarios (as explained in the following table) and addition of fixed VQT in quota allocated to network.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Soft-stop: Adding of fixed VQT as defined in quota management (slicing
+                    profile) in GSU (Quota Granted)</span></caption><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d90170e284">
+                                    <p class="p">Scenario</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d90170e290">
+                                    <p class="p">Stoppage Type</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d90170e296">
+                                    <p class="p">Behavior</p>
+
+                               </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d90170e302">
+                                    <p class="p">Result</p>
+
+                               </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d90170e284 "> Soft-stop by UC bundle on base plan</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e290 ">Continue</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e296 ">UC has been notified as soft-stop stoppage.</td>
+
+                                <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d90170e302 ">
+                                    <p class="p">Performs the following actions:</p>
+
+                                    <ul class="ul">
+                                        <li class="li">
+                                            <p class="p">Adds a fixed VQT in GSU quota allocation.</p>
+
+                                        </li>
+
+                                        <li class="li">
+                                            <p class="p">No FUA is sent.</p>
+
+                                        </li>
+
+                                        <li class="li">
+                                            <p class="p">No check is required irrespective of whether another
+                                                resource is available or not.</p>
+
+                                        </li>
+
+                                    </ul>
+
+                               </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e290 ">Stop</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e296 ">
+                                    <var class="keyword varname">x</var> limit is applied by UC to be notified as
+                                    soft-stop stoppage even when other resources are available, like
+                                    buckets or counters without their limits being reached.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d90170e284 "> Soft-stop by bundle on base plan</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e290 ">Continue</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e296 ">Bundle has applied <var class="keyword varname">x</var> limit as a soft-stop
+                                    to itself.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e290 ">Notification-Stop</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e296 ">
+                                    <var class="keyword varname">x</var> limit is applied by bundle to be notified
+                                    as soft-stop stoppage even when resources are available.
+                               </td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+</div>
+
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_w12_shm_r4b"><h2 class="title topictitle2" id="ariaid-title2">Configuration</h2>
+<div class="body conbody">
+            <div class="section" id="concept_w12_shm_r4b__section_ttl_vhm_r4b">
+                <p class="p">The following settings can be configured for this feature:</p>
+
+                <ul class="ul" id="concept_w12_shm_r4b__ul_utl_vhm_r4b">
+                    <li class="li">
+                        <p class="p">Configure the <span class="ph uicontrol">Volume-Quota-Threshold-Algo</span>
+                            parameter in quota management (slicing profile) rule under
+                                <em class="ph i">Dynamic_Slice</em> and can have one of the following values:</p>
+
+                        <ul class="ul" id="concept_w12_shm_r4b__ul_vtl_vhm_r4b">
+                            <li class="li"><p class="p">
+                                    <var class="keyword varname">FIXED_ADD_IN_GSU</var>: When configured as
+                                        <var class="keyword varname">FIXED_ADD_IN_GSU</var>, then the
+                                        <span class="ph uicontrol">Volume-Quota-Threshold</span> parameter in
+                                    quota management (slicing profile) rule specifies the absolute
+                                    value used to set AVP in CCA message sent back to the network.
+                                    It is added to the derived quota amount to determine the GSU
+                                    value when GSU is not a final slice.</p>
+<img class="image" id="concept_w12_shm_r4b__image_wtl_vhm_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-vqt_fixed_default.png" />
+                            </li>
+
+                            <li class="li"><p class="p">
+                                    <var class="keyword varname">PERCENTAGE</var>: When configured as
+                                        <var class="keyword varname">PERCENTAGE</var>, the
+                                        <span class="ph uicontrol">Volume-Quota-Threshold</span> parameter
+                                    value in quota management (slicing profile) rule is configured
+                                    in <em class="ph i">%</em> and calculated on the granted volume quota sent in
+                                    CCA message.</p>
+<img class="image" id="concept_w12_shm_r4b__image_xtl_vhm_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-vqt_percentage_default.png" />
+                            </li>
+
+                        </ul>
+
+                        <p class="p">By default, the value of this action attribute is set as
+                                <var class="keyword varname">PERCENTAGE</var> to achieve the existing slice
+                            reduction functionality.</p>
+
+                        <p class="p">This parameter is also defined per MSCC or rating group. Depending on the
+                            type of algorithm used, the<span class="ph uicontrol">
+                                Volume-Quota-Threshold</span> parameter is calculated and sent
+                            back to the network in CCA message.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Configure separate filter ID values for any of the triggering events
+                            (hard-stop, TOD, or <em class="ph i">Device-Barred</em>) and also enable specific
+                            rating groups to use a different value. This functionality is further
+                            used by UC to send a configurable <em class="ph i">Filter-ID</em> with
+                                <var class="keyword varname">Restrict-Access</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Configure the <span class="ph uicontrol">Ignore Reserved Quota</span> parameter to
+                            determine whether reservation quota needs to be considered in slice
+                            reduction logic or not. This parameter can have one of the following
+                            values:</p>
+
+                        <ul class="ul" id="concept_w12_shm_r4b__ul_ytl_vhm_r4b">
+                            <li class="li">
+                                <p class="p">
+                                    <var class="keyword varname">No:</var> When the parameter value is set as
+                                        <var class="keyword varname">No</var>, it means reserved quota is not
+                                    ignored during slice allocation or reduction mechanism.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">
+                                    <var class="keyword varname">Counter</var>: When the parameter value is set as
+                                        <var class="keyword varname">Counter</var>, it means that in case of
+                                        <em class="ph i">No-Charge</em>, the reserved quota is ignored and during
+                                    slice allocation or reduction mechanism, the current value is
+                                    considered.</p>
+
+                            </li>
+
+                        </ul>
+
+                        <p class="p">By default, this parameter is set as <var class="keyword varname">No</var>.</p>
+
+                        <div class="p">
+                            <div class="note" id="concept_w12_shm_r4b__note_tfk_kww_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Counter value is only applicable for
+                                    <em class="ph i">No-Charge</em>. This logic is not applicable when quota is
+                                allocated from bucket or main balance charging as they are not
+                                generally allowed to go negative.</div>
+
+                        </div>
+
+                    </li>
+
+                    <li class="li"><p class="p">Check the value of the <em class="ph i">Is-Gsu-Zero</em> attribute.</p>
+<p class="p">Following
+                            figure shows an example snapshot of the <em class="ph i">CALL_COMMON.Is-Gsu-Zero</em>
+                            attribute with the <em class="ph i">RATING_POST_PROCESSING</em> rule set.</p>
+<a href="../images/img9yz-09126-ug01-pczza-sp1-is-gsu-zero_default.png" class="image"><img class="image scalefit" id="concept_w12_shm_r4b__image_ztl_vhm_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-is-gsu-zero_default.png" height="225" width="712" /></a>
+                        <p class="p">In the above figure:</p>
+<ul class="ul" id="concept_w12_shm_r4b__ul_a5l_vhm_r4b">
+                            <li class="li">
+                                <p class="p">
+                                    <em class="ph i">RATING.GSU-Value</em>: For Set GSU in AVP with
+                                        <samp class="ph systemoutput">2001</samp>
+                                </p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">
+                                    <em class="ph i">CALL_COMMON.Is-Gsu-Zero</em>: To check whether anything is
+                                    allocated</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">
+                                    <em class="ph i">CALL_COMMON.Call-Trigger-Type</em>: Refers to the current
+                                        <em class="ph i">Trigger-Type</em> for MSCC</p>
+
+                            </li>
+
+                        </ul>
+<p class="p">The value of the <em class="ph i">Is-Gsu-Zero</em> attribute is required when
+                            rating does not allocate any units from resources for a current
+                            MSCC.</p>
+<p class="p">
+                            <kbd class="ph userinput">If CALL_COMMON.Is-Gsu-Zero = BooleanEnum_TRUE and</kbd>
+                            (check whether GSU 0 is allocated by rating)</p>
+<p class="p">
+                            <kbd class="ph userinput">CALL_COMMON.Call-Trigger-Type present and</kbd>
+                        </p>
+<p class="p">
+                            <kbd class="ph userinput">CALL_COMMON.Call-Trigger-Type != "SOFT_STOP"</kbd>
+                        </p>
+<p class="p">
+                            <kbd class="ph userinput">Then RATING.GSU-Value = 0</kbd> (Set Provided GSU in
+                            CCA AVP of MSCC)</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">Supported trigger types which are only supported to add in complex map:</p>
+
+                <ul class="ul" id="concept_w12_shm_r4b__ul_b5l_vhm_r4b">
+                    <li class="li">
+                        <p class="p">
+                            <em class="ph i">ACCOUNT_BARRED</em>
+                        </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <em class="ph i">DEVICE_BARRED</em>
+                        </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <em class="ph i">HARD_STOP</em>
+                        </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <em class="ph i">SOFT_STOP</em>
+                        </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <em class="ph i">TIME_OF_DAY</em>
+                        </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <em class="ph i">SUBSCRIPTION_BARRED</em>
+                        </p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">In addition, the VQT value can be updated in
+                    the RATING_POST_PROCESSING rule based on the allocated quota size. </p>
+
+                <p class="p">Rule example for VQT-Value:</p>
+
+                <pre class="pre codeblock" id="concept_w12_shm_r4b__codeblock_nm1_hbm_rsb"><code>if
+CALL_COMMON.Call-Type=CallType_PS and 
+CALL_COMMON.getGSUValue present and 
+CALL_COMMON.getGSUValue &gt; 0 and
+CALL_COMMON.getGSUValue &lt; 600
+then
+RATING.GSU-Value = 600 and
+RATING.VQT-Value = 100 and 
+RATING.Final-Unit-Action-Terminate</code></pre>
+                <div class="p">This feature exhibits the following behaviour based on the values of given
+                        parameters:<table cellpadding="4" cellspacing="0" summary="" id="concept_w12_shm_r4b__table_c5l_vhm_r4b" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:59.01639344262295%" /><col style="width:40.98360655737705%" /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d90170e702">
+                                        <p class="p">If...</p>
+
+                                   </th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d90170e708">
+                                        <p class="p">Then...</p>
+
+                                   </th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e702 ">
+                                        <p class="p">The <span class="ph uicontrol">Volume-Quota-Threshold-Algo</span>
+                                            per rating group is set as
+                                                <var class="keyword varname">VQTType_FIXED_ADD_IN_GSU</var>, and</p>
+
+                                        <p class="p">The <span class="ph uicontrol">Ignore Reserved Quota</span>
+                                            parameter is set as <var class="keyword varname">No</var>,</p>
+
+                                   </td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e708 ">The quota allocation is considered while determining the
+                                        new quota allocation, and either hard-stop behavior or
+                                        soft-stop behavior is followed based on the configuration.
+                                   </td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e702 ">
+                                        <p class="p">The <span class="ph uicontrol">Volume-Quota-Threshold-Algo</span>
+                                            per rating group is set as
+                                                <var class="keyword varname">VQTType_FIXED_ADD_IN_GSU</var>, and</p>
+
+                                        <p class="p">The <span class="ph uicontrol">Ignore Reserved Quota</span>
+                                            parameter is set as <var class="keyword varname">Counter</var>,</p>
+
+                                   </td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e708 ">The quota allocation is not considered while determining
+                                        the new quota allocation in case of <em class="ph i">No-Charge</em>
+                                        counter, and either hard-stop behavior or soft-stop behavior
+                                        is followed based on the configuration.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e702 ">
+                                        <p class="p">The <span class="ph uicontrol">Volume-Quota-Threshold-Algo</span>
+                                            per rating group is set as
+                                                <var class="keyword varname">VQTType_PERCENTAGE</var>, and</p>
+
+                                        <p class="p">The <span class="ph uicontrol">Ignore Reserved Quota</span>
+                                            parameter is set as <var class="keyword varname">No</var>,</p>
+
+                                   </td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e708 ">The quota allocation is considered while determining the
+                                        new quota allocation. Also, VQT is not added to GSU.
+                                   </td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e702 ">
+                                        <p class="p">The <span class="ph uicontrol">Volume-Quota-Threshold-Algo</span>
+                                            per rating group is set as
+                                                <var class="keyword varname">VQTType_PERCENTAGE</var>, and</p>
+
+                                        <p class="p">The <span class="ph uicontrol">Ignore Reserved Quota</span>
+                                            parameter is set as <var class="keyword varname">Counter</var>,</p>
+
+                                   </td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e708 ">The quota allocation is not considered while determining
+                                        the new quota allocation in case of <em class="ph i">No-Charge</em>
+                                        counter.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e702 ">
+                                        <p class="p">The <span class="ph uicontrol">Volume-Quota-Threshold-Algo</span>
+                                            per rating group is not defined, and</p>
+
+                                        <p class="p">The <span class="ph uicontrol">Ignore Reserved Quota</span>
+                                            parameter is set as <var class="keyword varname">No</var>,</p>
+
+                                   </td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e708 ">This feature is disabled.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e702 ">
+                                        <p class="p">The <span class="ph uicontrol">Volume-Quota-Threshold-Algo</span>
+                                            per rating group is not defined, and</p>
+
+                                        <p class="p">The <span class="ph uicontrol">Ignore Reserved Quota</span>
+                                            parameter is set as <var class="keyword varname">Counter</var>,</p>
+
+                                   </td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d90170e708 ">This feature is disabled.</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+</div>
+
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">AVP handling</strong></p>
+
+                </div>
+            </div>
+
+            <div class="section" id="concept_w12_shm_r4b__section_edc_5hm_r4b"><h3 class="title sectiontitle">AVP handling</h3>
+                
+                <p class="p">The <em class="ph i">FUA</em> AVP is configured with the <span class="ph uicontrol">Filter-ID</span>
+                    parameter to handle 4G Gy and 5G Nchf requests:</p>
+
+                <div class="fig fignone" id="concept_w12_shm_r4b__fig_ork_5hm_r4b">
+                    <img class="image break" id="concept_w12_shm_r4b__image_prk_5hm_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-fua_avp_img_1_default.png" />
+                </div>
+
+                <div class="fig fignone" id="concept_w12_shm_r4b__fig_qrk_5hm_r4b">
+                    <img class="image break" id="concept_w12_shm_r4b__image_rrk_5hm_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-fua_avp_img_2_default.png" />
+                </div>
+
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This FUA AVP is already handled. However, with
+                            <span class="ph uicontrol">Filter-ID</span> parameter, its implementation is done
+                        for restrict-access or redirect options for both 4G Gy and NCHF requests.
+                        The <em class="ph i">RATING_POST_PROCESSING </em> is the rule set in which the FUA with
+                            <span class="ph uicontrol">Filter-ID</span> option is exposed.</div>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_esx_4hm_r4b"><h2 class="title topictitle2" id="ariaid-title3">Additional information</h2>
+<div class="body conbody">
+            <div class="section" id="concept_esx_4hm_r4b__section_rpp_phm_r4b">
+                <p class="p">Consider the following points for this feature:</p>
+
+                <ul class="ul" id="concept_esx_4hm_r4b__ul_spp_phm_r4b">
+                    <li class="li">
+                        <p class="p">For this feature, centralized based charging is applied with static
+                            slicing. However, no dynamic slicing algorithm is applied.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The <span class="ph uicontrol">Volume-Quota-Threshold-Algo</span> parameter does not
+                            impact the quota allocated from a bucket or buckets allocated to other
+                            data session, or flows are considered while determining new quota
+                            allocation using the slice reduction logic.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">This feature is only applicable to multi-bundle counters or subscription
+                            counters.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">When a hard-stop limit is reached, it implies that the associated data
+                            flow does not have a rating group configured as <var class="keyword varname">Always Allowed
+                                but Countable</var>.</p>
+
+                        <div class="p">
+                            <div class="note" id="concept_esx_4hm_r4b__note_rkh_lww_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The hard-stop limit specified as a
+                                requirement in this feature only considers the threshold being
+                                applied as <samp class="ph systemoutput">Notification-Reject</samp> or
+                                    <samp class="ph systemoutput">Reject</samp> action.</div>
+
+                        </div>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">This feature is not applicable to the following charging
+                            entities/scenarios:</p>
+
+                        <ul class="ul" id="concept_esx_4hm_r4b__ul_tpp_phm_r4b">
+                            <li class="li">
+                                <p class="p">Device, group, or device-group counter</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">Aggregate view scenarios</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">Group CAP scenarios</p>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title4" id="concept_tkx_rfm_r4b"><h2 class="title topictitle2" id="ariaid-title4">Examples</h2>
+<div class="body conbody">
+            <p class="p">Consider the following examples for a better understanding of this functionality:</p>
+
+            <div class="section" id="concept_tkx_rfm_r4b__section_k4m_ghm_r4b"><h3 class="title sectiontitle">Example 1: Slice reduction functionality applied on unused counter value for
+                    parallel calls when configured to ignore the quota allocated to other data
+                    sessions</h3>
+                
+                <p class="p">This example shows that slice reduction functionality works on the unused counter
+                    value in case of parallel calls when the <em class="ph i">Ignore Reserved Quota</em> is set as
+                        <var class="keyword varname">Counter</var>, VQT is added in GSU if it is not the last slice
+                    and hard-stop is false.</p>
+
+                <div class="sectiondiv">
+                    <p class="p">
+                        <strong class="ph b">Preconditions:</strong>
+                    </p>
+
+                    <ul class="ul" id="concept_tkx_rfm_r4b__ul_mzf_lhm_r4b">
+                        <li class="li">
+                            <p class="p">Create a <var class="keyword varname">Do more Unlimited bundle</var> having two
+                                charging services; one for tethered data and one for non-tethered
+                                data with <em class="ph i">No-Charge</em> configuration for both the charging
+                                services.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create two counters for the <var class="keyword varname">Do more Unlimited
+                                    bundle</var>, which are multi-bundle counter
+                                    <var class="keyword varname">ABY</var> that accumulates both domestic and
+                                tethered data consumption, and a subscription counter
+                                    <var class="keyword varname">TBY</var> that accumulates only tethered data
+                                consumption (charging service with applicability criteria of
+                                    <kbd class="ph userinput">RG = 3303</kbd>).</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Define a threshold for <var class="keyword varname">TBY</var> counter to throttle
+                                    (<kbd class="ph userinput">SNR=low</kbd>) speed after 15k MB of data
+                                usage.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Define a threshold for <var class="keyword varname">ABY</var> counter to throttle
+                                    (<kbd class="ph userinput">SNR=low</kbd>) speed after 22k MB of data
+                                usage. Also, configure a notification for the <var class="keyword varname">ABY</var>
+                                counter has a usage limit set as <var class="keyword varname">20000</var> and usage
+                                limits for <samp class="ph systemoutput">Notification-Continue</samp> at
+                                50%, 75%, 90%, and 100%. The overage limit is set as
+                                    <var class="keyword varname">5000</var> with 90% near overage limit.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create a quota management (slicing profile) with following
+                                parameters:</p>
+
+                            <ul class="ul" id="concept_tkx_rfm_r4b__ul_nzf_lhm_r4b">
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">Slice Allocation Factor</em> = <var class="keyword varname">100</var>
+                                    </p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">MIN Slice Size</em> = <var class="keyword varname">0 byte</var>
+                                    </p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">Slice Size</em> = <var class="keyword varname">4000 MB</var>
+                                    </p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">Fixed VQT</em> = <var class="keyword varname">200 MB</var>
+                                    </p>
+
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Set the <em class="ph i">Ignore Reserved Amount</em> to
+                                <var class="keyword varname">Counter</var>.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Set the hard-stop to false.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Configure notification template.</p>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class="sectiondiv">
+                    <p class="p">
+                        <strong class="ph b">Post-conditions:</strong>
+                    </p>
+
+                    <p class="p">Execute a centralized SCUR with domestic call (<kbd class="ph userinput">RG =
+                            3300</kbd>) as mentioned below:</p>
+
+                    <ol class="ol" id="concept_tkx_rfm_r4b__ol_xx2_khm_r4b">
+                        <li class="li">
+                            <p class="p">CCR-I:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">RSU=empty, GSU=4200 MB</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">CCR-U1:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU=4000 MB, GSU=4200 MB, RSU=empty</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">CCR-U2:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU=4000 MB, GSU=2200 MB, RSU=empty</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">CCR-U3:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU=2000 MB, GSU=4200 MB, RSU=empty</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">CCR-U4:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU=4000 MB, GSU=1200 MB, RSU=empty</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">CCR-U5:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU=1000 MB, GSU=3200 MB, RSU=empty</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">CCR-U6:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU=3000 MB, GSU=2200 MB, RSU=empty</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">CCR-U7:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU=2000 MB, GSU=2200 MB, RSU=empty</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">CCR-U8:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU=2000 MB, GSU=2700 MB, RSU=empty</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">CCR-U9:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU=2500 MB, GSU=700 MB, RSU=empty</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">CCR-U10:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU= 500 MB, GSU=4200 MB, RSU=empty</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">CCR-T:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU= 4000 MB</kbd>
+                            </p>
+
+                        </li>
+
+                    </ol>
+
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Result:</strong>
+                    </p>
+
+                    <p class="p">After executing the preceding calls, this example verifies the following:</p>
+
+                    <ul class="ul" id="concept_tkx_rfm_r4b__ul_imf_3hm_r4b">
+                        <li class="li">
+                            <p class="p">When the data usage is from the <var class="keyword varname">Do more Unlimited
+                                    bundle</var> for tethered data usage, <var class="keyword varname">ABY</var>
+                                and <var class="keyword varname">TBY</var> counters are incremented. Also, when
+                                    <var class="keyword varname">TBY</var> counter value becomes 15 GB, SNR is
+                                triggered to throttle the speed.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Once, the subscriber subscribes to first data booster, charging
+                                begins from the data booster bundle for new reservation. The old
+                                reservation in update is charged from the <var class="keyword varname">Do more Unlimited
+                                    bundle</var> only. In this case, only the
+                                    <var class="keyword varname">ABY</var> counter is updated.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">If the first data booster bucket is exhausted, charging is done from
+                                the second data booster. Once, both the data boosters are exhausted,
+                                charging starts from the <var class="keyword varname">Do more Unlimited
+                                bundle</var>.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">If the <var class="keyword varname">ABY</var> data counter value reaches 50 GB, an
+                                SNR is triggered and throttling is done.</p>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="section" id="concept_tkx_rfm_r4b__section_hmd_chm_r4b"><h3 class="title sectiontitle">Example 2: Slice reduction functionality when GSU with VQT as final GSU
+                    reaches quota limit</h3>
+                
+                <p class="p">This example shows that in slice reduction functionality, when VQT is added in
+                    GSU as final GSU reaches quota limit, the total quota is allocated.</p>
+
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Preconditions:</strong>
+                    </p>
+
+                    <ul class="ul" id="concept_tkx_rfm_r4b__ul_tnz_2hm_r4b">
+                        <li class="li">
+                            <p class="p">Create a <var class="keyword varname">Do more Unlimited bundle</var> having two
+                                charging services; one for tethered data and one for non-tethered
+                                data with <em class="ph i">No-Charge</em> configuration for both the charging
+                                services.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create two counters for the <var class="keyword varname">Do more Unlimited
+                                    bundle</var>, which are multi-bundle counter
+                                    <var class="keyword varname">ABY</var> that accumulates both domestic and
+                                tethered data consumption, and a subscription counter
+                                    <var class="keyword varname">TBY</var> that accumulates only tethered data
+                                consumption (charging service with applicability criteria of
+                                    <kbd class="ph userinput">RG = 3303</kbd>).</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Define a threshold for <var class="keyword varname">TBY</var> counter to throttle
+                                    (<kbd class="ph userinput">SNR=low</kbd>) speed after 15k MB of data
+                                usage.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Define a threshold for <var class="keyword varname">ABY</var> counter to throttle
+                                    (<kbd class="ph userinput">SNR=low</kbd>) speed after 22k MB of data
+                                usage. Also, configure a notification for the <var class="keyword varname">ABY</var>
+                                counter has a <samp class="ph systemoutput">Notification-Reject</samp> at
+                                20k MB.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create a quota management (slicing profile) with following
+                                parameters:</p>
+
+                            <ul class="ul" id="concept_tkx_rfm_r4b__ul_unz_2hm_r4b">
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">Slice Allocation Factor</em> = <var class="keyword varname">100</var>
+                                    </p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">MIN Slice Size</em> = <var class="keyword varname">200 MB</var>
+                                    </p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">Slice Size</em> = <var class="keyword varname">4000 MB</var>
+                                    </p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">Fixed VQT</em> = <var class="keyword varname">200 MB</var>
+                                    </p>
+
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Set the <em class="ph i">Ignore Reserved Amount</em> to
+                                <var class="keyword varname">Counter</var>.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Set the hard-stop to true.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Configure notification template.</p>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Post-conditions:</strong>
+                    </p>
+
+                    <p class="p">Execute a centralized SCUR with domestic call (<kbd class="ph userinput">RG =
+                            3300</kbd>) as mentioned below:</p>
+
+                    <ol class="ol" id="concept_tkx_rfm_r4b__ol_j1p_dhm_r4b">
+                        <li class="li">
+                            <p class="p">CCR-I:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">RSU=empty, GSU=4200 MB</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">CCR-U1:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU=15900 MB, GSU=4100 MB, FUA with restrict
+                                    access</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">CCR-U2:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU=4100 MB, GSU=0 MB, RSU=empty, FUA with restrict
+                                    access</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">CCR-T:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU= 0 MB</kbd>
+                            </p>
+
+                        </li>
+
+                    </ol>
+
+                </div>
+            </div>
+
+            <div class="section" id="concept_tkx_rfm_r4b__section_orh_tgm_r4b"><h3 class="title sectiontitle">Example 3: GSU returned as zero with success result code for a multi-MSCC
+                    call with different rating group and device barred condition</h3>
+                
+                <p class="p">This example shows that for a multi-MSCC call with different rating group and
+                    device barred condition, GSU is set as <var class="keyword varname">0</var> with success code
+                        <samp class="ph systemoutput">2001</samp> and an FUA is sent with <em class="ph i">filter-id</em>
+                    as per the mapping in complex map for INITIAL and UPDATE requests.</p>
+
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Preconditions:</strong>
+                    </p>
+
+                    <ul class="ul" id="concept_tkx_rfm_r4b__ul_uqp_ygm_r4b">
+                        <li class="li">
+                            <p class="p">Create a charging service, bundle, device, and account.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create a device entity lifecycle with timer set as 10 seconds, which
+                                changes the state from <var class="keyword varname">Active</var> to
+                                    <var class="keyword varname">Barred</var> and again, back to
+                                    <var class="keyword varname">Active</var>. And, after 90 seconds, it changes the
+                                state from <var class="keyword varname">Barred</var> to
+                                <var class="keyword varname">Active</var>.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create an SCUR-I call with <kbd class="ph userinput">RG=8</kbd> and
+                                    <kbd class="ph userinput">RG=3300</kbd>.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create a device entity lifecycle with <var class="keyword varname">Barred</var> state
+                                and the device is also in the <var class="keyword varname">Barred</var> state.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create a complex map with proper entries of rating group and trigger
+                                type as follows:</p>
+
+                            <ul class="ul" id="concept_tkx_rfm_r4b__ul_vqp_ygm_r4b">
+                                <li class="li">
+                                    <p class="p">For initial request:</p>
+
+                                    <p class="p">
+                                        <kbd class="ph userinput">rating group = * , trigger type = is-barred ,
+                                            filter-id = INITIAL_DeviceBarred</kbd>
+                                    </p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">For update request (RG=8):</p>
+
+                                    <p class="p">
+                                        <kbd class="ph userinput">rating group = *,trigger type =
+                                            DEVICE_BARRED,filter-id = all_device_barred</kbd>
+                                    </p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">For update request (RG=3300):</p>
+
+                                    <p class="p">
+                                        <kbd class="ph userinput">rating group = 3300 ,trigger type = DEVICE_BARRED
+                                            ,filter-id = Test1</kbd>
+                                    </p>
+
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Post-conditions:</strong></p>
+
+                    <ul class="ul" id="concept_tkx_rfm_r4b__ul_xty_wgm_r4b">
+                        <li class="li">
+                            <p class="p">Execute an SCUR call when a device is <var class="keyword varname">Barred</var>
+                                state, then in INITIAL request</p>
+
+                            <p class="p">CCR-I1:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">RSU= 10, GSU=10 MB , RG = 8, RSU= 15, GSU=15 MB , RG =
+                                    3300</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Execute an SCUR call when a device is <var class="keyword varname">Barred</var>
+                                state, then in UPDATE request</p>
+
+                            <p class="p">CCR-I1:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">RSU= 10, GSU=10 MB , RG = 8, RSU= 15, GSU=15 MB , RG =
+                                    3300</kbd>
+                            </p>
+
+                            <p class="p">CCR-U1:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU= 15, GSU=15 MB, RG = 8, USU= 20, GSU=20 MB , RG =
+                                    3300</kbd>
+                            </p>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Result:</strong>
+                    </p>
+
+                    <p class="p">After executing the preceding calls, this example verifies the following:</p>
+
+                    <ul class="ul" id="concept_tkx_rfm_r4b__ul_jlm_vgm_r4b">
+                        <li class="li">
+                            <p class="p">The output for an SCUR call when device is in
+                                    <var class="keyword varname">Barred</var> state in INITIAL request:</p>
+
+                            
+                            <ol class="ol" id="concept_tkx_rfm_r4b__ol_klm_vgm_r4b">
+                                <li class="li">
+                                    <p class="p">Result code is <samp class="ph systemoutput">2001</samp>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">GSU is set as <var class="keyword varname">0</var>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">filter-id</em> is
+                                        <var class="keyword varname">INITIAL_DeviceBarred</var>.</p>
+
+                                </li>
+
+                            </ol>
+
+                            <p class="p">When a device gets unbarred in an UPDATE request.</p>
+
+                            <p class="p">Execute an SCUR call with:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU= 10, RSU= 20 MB , RG = 8, RSU= 15, USU= 20 MB , RG =
+                                    3300</kbd>
+                            </p>
+
+                            <p class="p">
+                                <strong class="ph b">The output is:</strong>
+                            </p>
+
+                            <p class="p">USU is granted as direct debit and for RSU, reservation is done.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">The output for an SCUR call when device is in
+                                    <var class="keyword varname">Barred</var> state in UPDATE request:</p>
+
+                            <p class="p">For <kbd class="ph userinput">RG=8</kbd>:</p>
+
+                            <ol class="ol" id="concept_tkx_rfm_r4b__ol_llm_vgm_r4b">
+                                <li class="li">
+                                    <p class="p">Result code is <samp class="ph systemoutput">2001</samp>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">GSU is set as <var class="keyword varname">0</var>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">filter-id</em> is
+                                        <var class="keyword varname">all_device_barred</var>.</p>
+
+                                </li>
+
+                            </ol>
+
+                            <p class="p">For <kbd class="ph userinput">RG=3300</kbd>:</p>
+
+                            <ol class="ol" id="concept_tkx_rfm_r4b__ol_mlm_vgm_r4b">
+                                <li class="li">
+                                    <p class="p">Result code is <samp class="ph systemoutput">2001</samp>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">GSU is set as <var class="keyword varname">0</var>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">filter-id</em> is <var class="keyword varname">Test1</var>.</p>
+
+                                </li>
+
+                            </ol>
+
+                            <p class="p">When device gets unbarred in a TERMINATE request.</p>
+
+                            <p class="p">Execute an SCUR call with:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU= 10 MB, RG = 8, USU= 20 MB , RG = 3300</kbd>
+                            </p>
+
+                            <p class="p">
+                                <strong class="ph b">The output is:</strong>
+                            </p>
+
+                            <p class="p">USU is granted as direct debit.</p>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="section" id="concept_tkx_rfm_r4b__section_p3w_jgm_r4b"><h3 class="title sectiontitle">Example 4: GSU returned as zero with success result code for a multi-MSCC
+                    call with different rating group and subscription barred condition</h3>
+                
+                <p class="p">This example shows that for a multi-MSCC call with different rating group and
+                    subscription barred condition, GSU is set as <var class="keyword varname">0</var> with success
+                    code <samp class="ph systemoutput">2001</samp> and an FUA is sent with <em class="ph i">filter-id</em>
+                    as per the mapping in complex map for UPDATE request.</p>
+
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Preconditions:</strong></p>
+
+                    <ul class="ul" id="concept_tkx_rfm_r4b__ul_hgf_pgm_r4b">
+                        <li class="li">
+                            <p class="p">Create a charging service, bundle, device, and account.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create a subscription entity lifecycle with timer set as 10 seconds,
+                                which changes the state from <var class="keyword varname">Active</var> to
+                                    <var class="keyword varname">Barred</var>. And, after 90 seconds, it changes the
+                                state from <var class="keyword varname">Barred</var> to
+                                <var class="keyword varname">Active</var>.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create an SCUR-I call with <kbd class="ph userinput">RG=3300</kbd> and
+                                    <kbd class="ph userinput">RG=3310</kbd>.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create a subscription entity lifecycle with <var class="keyword varname">Barred</var>
+                                state.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create a complex map with proper entries of rating group and trigger
+                                type as follows:</p>
+
+                            <ul class="ul" id="concept_tkx_rfm_r4b__ul_igf_pgm_r4b">
+                                <li class="li">
+                                    <p class="p">For update request (RG=3300):</p>
+
+                                    <p class="p">
+                                        <kbd class="ph userinput">rating group = *,trigger type =
+                                            SUBSCRIPTION_BARRED,filter-id = SUB_BARRED</kbd>
+                                    </p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">For update request (RG=3310):</p>
+
+                                    <p class="p">
+                                        <kbd class="ph userinput">rating group = 3310 ,trigger type =
+                                            SUBSCRIPTION_BARRED ,filter-id =
+                                            All_SubBarred</kbd>
+                                    </p>
+
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Post-conditions:</strong>
+                    </p>
+
+                    <ul class="ul" id="concept_tkx_rfm_r4b__ul_jj1_ngm_r4b">
+                        <li class="li">
+                            <p class="p">Execute an SCUR call when a subscription is in
+                                    <var class="keyword varname">Barred</var> state, then in INITIAL request</p>
+
+                            <p class="p">CCR-I1:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">RSU= 10, GSU= 10 MB , RG = 3300</kbd>
+                            </p>
+
+                            <p class="p">CCR-I1:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">RSU= 10, GSU= 10 MB , RG = 3310</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Execute an SCUR call when a subscription is in
+                                    <var class="keyword varname">Barred</var> state, then in UPDATE request</p>
+
+                            <p class="p">CCR-I1:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">RSU= 10, GSU=10 MB , RG = 3300, RSU= 10, GSU=10 MB , RG =
+                                    3310</kbd>
+                            </p>
+
+                            <p class="p">CCR-U1:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU= 10, GSU=10 MB , RG = 3300, USU= 10, GSU=10 MB , RG =
+                                    3310</kbd>
+                            </p>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class="sectiondiv">
+                    <p class="p">
+                        <strong class="ph b">Result:</strong>
+                    </p>
+
+                    <p class="p">After executing the preceding calls, this example verifies the following:</p>
+
+                    <ul class="ul" id="concept_tkx_rfm_r4b__ul_gsw_lgm_r4b">
+                        <li class="li">
+                            <p class="p">The output for an SCUR call when subscription is in
+                                    <var class="keyword varname">Barred</var> state in INITIAL request:</p>
+
+                            <p class="p">For <kbd class="ph userinput">RG=3300</kbd>:</p>
+
+                            <ol class="ol" id="concept_tkx_rfm_r4b__ol_hsw_lgm_r4b">
+                                <li class="li">
+                                    <p class="p">Result code is <samp class="ph systemoutput">2001</samp>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">GSU is set as <var class="keyword varname">0</var>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">filter-id</em> is <var class="keyword varname">SUB_BARRED</var>.</p>
+
+                                </li>
+
+                            </ol>
+
+                            <p class="p">For <kbd class="ph userinput">RG=3310</kbd>:</p>
+
+                            <ol class="ol" id="concept_tkx_rfm_r4b__ol_isw_lgm_r4b">
+                                <li class="li">
+                                    <p class="p">Result code is <samp class="ph systemoutput">2001</samp>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">GSU is set as <var class="keyword varname">0</var>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">filter-id</em> is <var class="keyword varname">All_SubBarred</var>.</p>
+
+                                </li>
+
+                            </ol>
+
+                            <p class="p">When subscription gets unbarred in an UPDATE request.</p>
+
+                            <p class="p">Execute an SCUR call with:</p>
+
+                            <p class="p">CCR-U1:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU= 15, RSU= 20, RG = 3300</kbd>
+                            </p>
+
+                            <p class="p">CCR-U1:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU= 15, RSU= 30, RG = 3310</kbd>
+                            </p>
+
+                            <p class="p">
+                                <strong class="ph b">The output is:</strong>
+                            </p>
+
+                            <p class="p">USU is granted as direct debit and for RSU, reservation is done for
+                                both MSCC (RG = 3300 and RG = 3310).</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">The output for an SCUR call when subscription is in
+                                    <var class="keyword varname">Barred</var> state in UPDATE request:</p>
+
+                            <p class="p">For <kbd class="ph userinput">RG=3300</kbd>:</p>
+
+                            <ol class="ol" id="concept_tkx_rfm_r4b__ol_jsw_lgm_r4b">
+                                <li class="li">
+                                    <p class="p">Result code is <samp class="ph systemoutput">2001</samp>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">GSU is set as <var class="keyword varname">0</var>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">filter-id</em> is <var class="keyword varname">SUB_BARRED</var>.</p>
+
+                                </li>
+
+                            </ol>
+
+                            <p class="p">For <kbd class="ph userinput">RG=3310</kbd>:</p>
+
+                            <ol class="ol" id="concept_tkx_rfm_r4b__ol_ksw_lgm_r4b">
+                                <li class="li">
+                                    <p class="p">Result code is <samp class="ph systemoutput">2001</samp>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">GSU is set as <var class="keyword varname">0</var>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">filter-id</em> is <var class="keyword varname">All_SubBarred</var>.</p>
+
+                                </li>
+
+                            </ol>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">When subscription gets unbarred in a TERMINATE request.</p>
+
+                            <p class="p">Execute an SCUR call with:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU= 10 MB, RG = 3310, USU= 20 MB , RG = 3300</kbd>
+                            </p>
+
+                            <p class="p">
+                                <strong class="ph b">The output is:</strong>
+                            </p>
+
+                            <p class="p">USU is granted as direct debit.</p>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="section" id="concept_tkx_rfm_r4b__section_vfq_sfm_r4b"><h3 class="title sectiontitle">Example 5: GSU returned as zero with success result code for a multi-MSCC
+                    call with different rating group and account barred condition</h3>
+                
+                <p class="p">This example shows that for a multi-MSCC call with different rating group and
+                    account barred condition, GSU is set as <var class="keyword varname">0</var> with success code
+                        <samp class="ph systemoutput">2001</samp> and an FUA is sent with <em class="ph i">filter-id</em>
+                    as per the mapping in complex map for UPDATE request.</p>
+
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Preconditions:</strong></p>
+
+                    <ul class="ul" id="concept_tkx_rfm_r4b__ul_m4w_3gm_r4b">
+                        <li class="li">
+                            <p class="p">Create a charging service, bundle, device, and account.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create an account entity lifecycle with timer set as 10 seconds,
+                                which changes the state from <var class="keyword varname">Active</var> to
+                                    <var class="keyword varname">Barred</var>. And, after 90 seconds, it changes the
+                                state from <var class="keyword varname">Barred</var> to
+                                <var class="keyword varname">Active</var>.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create an SCUR-I call with <kbd class="ph userinput">RG=3300</kbd> and
+                                    <kbd class="ph userinput">RG=3310</kbd>.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create an account entity lifecycle with <var class="keyword varname">Barred</var>
+                                state.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Create a complex map with proper entries of rating group and trigger
+                                type as follows:</p>
+
+                            <ul class="ul" id="concept_tkx_rfm_r4b__ul_n4w_3gm_r4b">
+                                <li class="li">
+                                    <p class="p">For update request (RG=3300):</p>
+
+                                    <p class="p">
+                                        <kbd class="ph userinput">rating group = *,trigger type =
+                                            ACCOUNT_BARRED,filter-id = AccountBarred</kbd>
+                                    </p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">For update request (RG=3310):</p>
+
+                                    <p class="p">
+                                        <kbd class="ph userinput">rating group = 3310 ,trigger type =
+                                            ACCOUNT_BARRED ,filter-id =
+                                            All_AccountBarred</kbd>
+                                    </p>
+
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Post-conditions:</strong>
+                    </p>
+
+                    <ul class="ul" id="concept_tkx_rfm_r4b__ul_cym_2gm_r4b">
+                        <li class="li">
+                            <p class="p">Execute an SCUR call when an account is in <var class="keyword varname">Barred</var>
+                                state, then in INITIAL request</p>
+
+                            <p class="p">CCR-I1:</p>
+
+                            <p class="p"><kbd class="ph userinput">RSU= 10, GSU= 10 MB , RG = 3300</kbd>
+                            </p>
+
+                            <p class="p">CCR-I1:</p>
+
+                            <p class="p"><kbd class="ph userinput">RSU= 10, GSU= 10 MB , RG = 3310</kbd>
+                            </p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Execute an SCUR call when an account is in <var class="keyword varname">Barred</var>
+                                state, then in UPDATE request</p>
+
+                            <p class="p">CCR-I1:</p>
+
+                            <p class="p"><kbd class="ph userinput">RSU= 10, GSU=10 MB , RG = 3300, RSU= 10, GSU=10 MB , RG =
+                                    3310</kbd>
+                            </p>
+
+                            <p class="p">CCR-U1:</p>
+
+                            <p class="p"><kbd class="ph userinput">USU= 10, GSU=10 MB , RG = 3300, USU= 10, GSU=10 MB , RG =
+                                    3310</kbd>
+                            </p>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Result:</strong>
+                    </p>
+
+                    <p class="p">After executing the preceding calls, this example verifies the following:</p>
+
+                    <ul class="ul" id="concept_tkx_rfm_r4b__ul_q1x_hgm_r4b">
+                        <li class="li">
+                            <p class="p">The output for an SCUR call when account is in
+                                    <var class="keyword varname">Barred</var> state in INITIAL request:</p>
+
+                            <p class="p">For <kbd class="ph userinput">RG=3300</kbd>:</p>
+
+                            <ol class="ol" id="concept_tkx_rfm_r4b__ol_r1x_hgm_r4b">
+                                <li class="li">
+                                    <p class="p">Result code is <samp class="ph systemoutput">2001</samp>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">GSU is set as <var class="keyword varname">0</var>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">filter-id</em> is <var class="keyword varname">AccountBarred</var>.</p>
+
+                                </li>
+
+                            </ol>
+
+                            <p class="p">For <kbd class="ph userinput">RG=3310</kbd>:</p>
+
+                            <ol class="ol" id="concept_tkx_rfm_r4b__ol_s1x_hgm_r4b">
+                                <li class="li">
+                                    <p class="p">Result code is <samp class="ph systemoutput">2001</samp>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">GSU is set as <var class="keyword varname">0</var>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">filter-id</em> is
+                                        <var class="keyword varname">All_AccountBarred</var>.</p>
+
+                                </li>
+
+                            </ol>
+
+                            <p class="p">When account gets unbarred in an UPDATE request.</p>
+
+                            <p class="p">Execute an SCUR call with:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU= 15, RSU= 20, RG = 3300</kbd>
+                            </p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU= 15, RSU= 30, RG = 3310</kbd>
+                            </p>
+
+                            <p class="p">
+                                <strong class="ph b">The output is:</strong>
+                            </p>
+
+                            <p class="p">USU is granted as direct debit and for RSU, reservation is done for
+                                both MSCC (RG = 3300 and RG = 3310).</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">The output for an SCUR call when account is in
+                                    <var class="keyword varname">Barred</var> state in UPDATE request:</p>
+
+                            <p class="p">For <kbd class="ph userinput">RG=3300</kbd>:</p>
+
+                            <ol class="ol" id="concept_tkx_rfm_r4b__ol_t1x_hgm_r4b">
+                                <li class="li">
+                                    <p class="p">Result code is <samp class="ph systemoutput">2001</samp>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">GSU is set as <var class="keyword varname">0</var>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">filter-id</em> is <var class="keyword varname">AccountBarred</var>.</p>
+
+                                </li>
+
+                            </ol>
+
+                            <p class="p">For <kbd class="ph userinput">RG=3310</kbd>:</p>
+
+                            <ol class="ol" id="concept_tkx_rfm_r4b__ol_u1x_hgm_r4b">
+                                <li class="li">
+                                    <p class="p">Result code is <samp class="ph systemoutput">2001</samp>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">GSU is set as <var class="keyword varname">0</var>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">
+                                        <em class="ph i">filter-id</em> is
+                                        <var class="keyword varname">All_AccountBarred</var>.</p>
+
+                                </li>
+
+                            </ol>
+
+                            <p class="p">When account gets unbarred in a TERMINATE request.</p>
+
+                            <p class="p">Execute an SCUR call with:</p>
+
+                            <p class="p">
+                                <kbd class="ph userinput">USU= 10 MB, RG = 8, USU= 20 MB , RG = 3300</kbd>
+                            </p>
+
+                            <p class="p">
+                                <strong class="ph b">The output is:</strong>
+                            </p>
+
+                            <p class="p">USU is granted as direct debit.</p>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

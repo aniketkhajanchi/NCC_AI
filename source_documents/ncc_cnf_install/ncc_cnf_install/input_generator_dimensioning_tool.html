@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Preparing Kubernetes object dimensioning data" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="input_generator_dimensioning_tool" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Preparing Kubernetes object dimensioning data</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="input_generator_dimensioning_tool">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Preparing Kubernetes object dimensioning data</h1>
+<div class="body conbody">
+        <div class="section"><h2 class="title sectiontitle">Dimensioning tool overview</h2>
+            
+            <p class="p">This tool provides the ability to use a dimensioning spreadsheet that is provided by
+                the sales team to generate the required output YAML file that is used for resource
+                sizing. The Input Generator uses this output file to produce the override files that
+                contain the necessary resource sizing.</p>
+
+            <div class="p">This figure describes the basic tool work flow. <div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Dimensioning tool work flow</span>
+                    
+                    <img class="image break" src="../images/dimensioning_workflow.png" />
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Required inputs</h2>
+            
+            <div class="p">
+                <ul class="ul">
+                    <li class="li">Tool name: <span class="ph filepath">generate-sizing.py</span></li>
+
+                    <li class="li">Tool location: <span class="ph filepath">input-generator/sizing-generator/</span></li>
+
+                    <li class="li">Output path:
+                            <span class="ph filepath">input-generator/sizing-generator/sizing-files/</span></li>
+
+                </ul>
+
+            </div>
+
+            <div class="p">The tool receives input from these files: <ul class="ul">
+                    <li class="li">A sizing mapper file that contains the required configuration settings. This
+                        file is part of the <span class="ph">NCC</span> deployment and is located in the
+                            <span class="ph filepath">input-generator/sizing-generator/</span> directory.</li>
+
+                    <li class="li">A dimensioning spreadsheet. This file is not included with the <span class="ph">NCC</span>
+                        deployment. You must contact your pre-sales team to obtain the file.</li>
+
+                    <li class="li">Pre-generated templates.</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Sizing mapper file</h2>
+            
+            <div class="p">You must edit the <span class="ph filepath">sizing-mapper.yaml</span> file with the specific
+                values for your deployment. This example shows the parameters that are included in
+                the file. <pre class="pre codeblock"><code>sizing:
+  extends:
+    # Do not remove this base-sizing.yaml. Add additional extends files below this file.
+    - sizing-files/base-sizing.yaml
+    - sizing-files/small.yaml
+#    - extends-sample.yaml
+  source:
+    sheets:
+      ig: 'IG Cfg1'
+      me: 'ME Cfg1'
+      sm: 'SM Cfg1'
+      rt: 'ROUTER Cfg1'
+      ss7: 'SS7 Cfg1'
+      rms: 'RMS Cfg1'
+      btel: 'COMMON BTEL Cfg1'
+    units:
+      cpuRequests: m
+      cpuLimits: m
+      memoryRequests: Mi
+      memoryLimits: Mi
+      ephemeralStorageRequests: Mi
+      ephemeralStorageLimits: Mi
+      persistentStorage: Mi
+    pod:
+      name: podName
+      parameters:
+      - averageCpuUtilization
+      - minReplicas
+      - maxReplicas
+      - replicas
+      skipCondition:
+        replicas: 0
+    container:
+      name: container-
+      parameters:
+      - cpuRequests
+      - cpuLimits
+      - memoryRequests
+      - memoryLimits
+      - ephemeralStorageRequests
+      - ephemeralStorageLimits
+      - heapSize
+      - persistentStorage
+      specialParameters:
+      - persistentStorage
+      skipCondition: {}</code></pre></div>
+
+            <div class="p">Parameter descriptions: <ul class="ul">
+                    <li class="li"><code class="ph codeph">source</code> - corresponds to the dimensioning sheet and its
+                        respective sheet names per element type that should be read and parsed.</li>
+
+                    <li class="li"><code class="ph codeph">pod</code> - defines the pod section and its parameters.</li>
+
+                    <li class="li"><code class="ph codeph">pod.name</code> - the name of the column in the input sheet where
+                        the pod names are defined.</li>
+
+                    <li class="li"><code class="ph codeph">pod.parametes</code> - the list of pod parameters that match with
+                        the column names that need to be parsed for pod definition.</li>
+
+                    <li class="li"><code class="ph codeph">pod.skipCondition</code> - the key value pair used to skip pod
+                        processing if any of the given conditions match.</li>
+
+                    <li class="li"><code class="ph codeph">container</code> - defines the container section and parameters
+                        that are applicable for each pod in the input sheet.</li>
+
+                    <li class="li"><code class="ph codeph">container.name</code> - the matching name of each container for
+                        each respective pod.</li>
+
+                    <li class="li"><code class="ph codeph">container.parameters</code> - the list of container parameters
+                        matching with column names between two container columns that need to be
+                        parsed for container definition.</li>
+
+                    <li class="li"><code class="ph codeph">container.specialParameters</code> - a list of special parameters
+                        where the parameter name contains a hyphen (-). During parsing, they are
+                        converted to a tree structure using the hyphen as a delimiter.</li>
+
+                    <li class="li"><code class="ph codeph">container.skipCondition</code> - the key value pair used to skip
+                        container processing for all of the pods that match the given
+                        condition.</li>
+
+                </ul>
+</div>
+
+            <p class="p">The output sizing file that is generated by the
+                    <span class="ph filepath">generate-sizing.py</span> tool is stored in the
+                    <span class="ph filepath">input-generator/sizing-generator/sizing-files/</span> directory.
+                By default, the file name is <span class="ph filepath">production.yaml</span>.</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If a file with the same name already exists in the output directory, the tool
+                overwrites the existing file without asking for confirmation.</div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Tool syntax</h2>
+            
+            <div class="p"><pre class="pre codeblock"><code>./generate-sizing.py -h
+Generates dimensioning YAML from a dimensioning spreadsheet and/or extends.
+ 
+Usage:
+  generate-sizing.py [-d|--debug] [-h|--help] [-i|--input &lt;file&gt;] [-m|--mapper &lt;file&gt;] [-o|--output  &lt;file&gt;] [-s|--skip]
+ 
+Options:
+  -d, --debug             run the command in debug mode
+  -h, --help              show this help message
+  -i, --input             name of input dimensioning sheet file
+  -m, --mapper            path to mapper file (default: sizing-mapper.yaml)
+  -o, --output            output file name in lower case (default: production.yaml) in 'sizing-files' directory
+  -s, --skip              skip processing of input file and only work with extends (-i not required)</code></pre></div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Running the tool</h2>
+            
+            <p class="p">Perform these steps to generate the dimensioning output file and create the override
+                files with the Input Generator.</p>
+
+            <ol class="ol">
+                <li class="li">Ensure the steps listed in <a class="xref" href="ncc_helm_chart_input_preparation.html">Generating Helm charts input</a>
+                    have been completed.</li>
+
+                <li class="li">Configure the sizing mapping file.</li>
+
+                <li class="li">Obtain the dimensioning spreadsheet.</li>
+
+                <li class="li">Run this command to generate the output
+                    file.<pre class="pre codeblock"><code>docker run -u="${UID}:$(id -g)" -v $(realpath .):/input-generator:z --rm ${DOCKER_REPO}/chf/input-generator:${CHART_VERSION} /input-generator/sizing-generator/generate-sizing.py -i /input-generator/Dimensioning_Tool.xlsx -m /input-generator/sizing-generator/sizing-mapper.yaml -o &lt;file_name&gt;.yaml</code></pre></li>
+
+                <li class="li">Open the <span class="ph filepath">Inputs.xlsx</span> spreadsheet.</li>
+
+                <li class="li">Click on the <span class="ph uicontrol">Common</span> worksheet.</li>
+
+                <li class="li">Enter the name (without the extension) of the output file that you created with
+                    the dimensioning tool into the <span class="ph uicontrol">Deployment Size</span> value
+                    column. (example: <code class="ph codeph">production</code>)</li>
+
+                <li class="li">Save the file.</li>
+
+                <li class="li">Run this command to generate the override sizing files.
+                    <pre class="pre codeblock"><code>docker run -u="${UID}:$(id -g)" -v $(realpath .):/input-generator:z --rm ${DOCKER_REPO}/chf/input-generator:${CHART_VERSION} /input-generator/generate.py --inputs Inputs22.7.1-53.xlsx</code></pre></li>
+
+            </ol>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Example</h2>
+            
+            <pre class="pre codeblock"><code># Run tool with Dimensioning sheet(mandatory) and mapper sheet(optional)
+# output file name can be defined using -o option. Default output file is production.yaml
+docker run -u="${UID}:$(id -g)" -v $(realpath .):/input-generator:z --rm ${DOCKER_REPO}/chf/input-generator:${CHART_VERSION} /input-generator/sizing-generator/generate-sizing.py -i /input-generator/Dimensioning_Tool.xlsx -m /input-generator/sizing-generator/sizing-mapper.yaml -o newsizing.yaml
+ 
+INFO: Processing extend files '['sizing-files/base-sizing.yaml']' ...
+INFO: Processing dimensioning file '/input-generator/Dimensioning_Tool.xlsx' and sheets: IG Cfg1... ME Cfg1... SM Cfg1... ROUTER Cfg1... SS7 Cfg1... RMS Cfg1... COMMON BTEL Cfg1...
+INFO: Output file 'newsizing.yaml' is saved successfully to '/input-generator/sizing-generator/sizing-files' directory.
+            
+# Edit the Inputs.xlsx file with the sizing output file name.
+
+# Generate the Helm inputs with new resources sizing:
+docker run -u="${UID}:$(id -g)" -v $(realpath .):/input-generator:z --rm ${DOCKER_REPO}/chf/input-generator:${CHART_VERSION} /input-generator/generate.py --inputs Inputs22.7.1-53.xlsx
+Element: istio1
+Copied files to: /input-generator/output/istio1
+ 
+Element: btel1
+Copied files to: /input-generator/output/btel1
+ 
+Element: ig1
+Copied files to: /input-generator/output/ig1
+ 
+# Add "--delete-output" at the end if you want to automatically delete the output directory when it exists (for automation).</code></pre>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

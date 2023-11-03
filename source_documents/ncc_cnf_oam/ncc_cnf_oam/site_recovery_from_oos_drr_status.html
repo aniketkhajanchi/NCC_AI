@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="System recovery from OOS-DRR status" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="site_recovery_from_oos_drr_status" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>System recovery from OOS-DRR status</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="site_recovery_from_oos_drr_status">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">System recovery from OOS-DRR status</h1>
+<div class="body conbody">
+        <p class="p">When <span class="ph">NCC</span> is down for a long duration, the tombstones on the healthy <span class="ph">NCC</span> can build up to
+            the point that the Aerospike memory is nearly exhausted. This condition causes Aerospike
+            to enter a stop-write mode.</p>
+
+        <p class="p">Based on the memory and tomb-raider-eligible-age configuration of the healthy system, it
+            is possible that the healthy system status changes from unhealthy to OVERFLOWED. The
+            unhealthy system shows a state of <code class="ph codeph">OOS-DRR</code> in the output of the
+            xdr-status tool.</p>
+
+        <p class="p">To recover from the <code class="ph codeph">OOS-DRR</code> state, you must perform a disaster recovery
+            procedure on the unhealthy system. For the disaster recovery procedure, see <a class="xref" href="disaster_recovery.html">Disaster recovery (DR)</a> and <a class="xref" href="disaster_recovery_for_sm_sites.html">Disaster recovery for SM systems</a>.</p>
+
+        <p class="p">The disaster recovery procedure does not remove the <code class="ph codeph">OOS_DRR</code> status. To
+            update the status of the unhealthy system, run these commands.</p>
+
+        <pre class="pre codeblock"><code># Verify on the unhealthy system the XDR replication status (remote sites toward local system) should be in CURRENT not OVERFLOWED for all sites.
+# Verify on the remaining sites XDR replication status (local system towards remote sites) should be CURRENT not OVERFLOWED for unhealthy system.
+kubectl -it exec &lt;admincli&gt; -c &lt;container&gt; -n &lt;namespace&gt; -- /opt/tpa/bin/xdr-status
+
+# If all sites are in CURRENT or BEHIND, run this command:
+kubectl -it exec &lt;admincli&gt; -c &lt;container&gt; -n &lt;namespace&gt; -- /opt/tpa/bin/xdr-status -d true
+
+# Verify system status changes from OOS-DRR to CURRENT.
+kubectl -it exec &lt;admincli&gt; -c &lt;container&gt; -n &lt;namespace&gt; -- /opt/tpa/bin/xdr-status
+
+# When the internal service state changes to CURRENT, run this command.
+kubectl -it exec &lt;admincli&gt; -c &lt;container&gt; -n &lt;namespace&gt; -- /opt/tpa/bin/xdr-status -d false</code></pre>
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

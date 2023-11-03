@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="task" />
+<meta name="DC.title" content="Adding independent pairs of 1+1 ME subsystems" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="adding_a_pair_of_1_1_independent_mes" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Adding independent pairs of 1+1 ME subsystems</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="adding_a_pair_of_1_1_independent_mes">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Adding independent pairs of 1+1 ME subsystems</h1>
+<div class="body taskbody">
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div>
+            <p class="p">This procedure provides instructions on how to increase the number of independent
+                pairs of 1+1 ME subsystems in the initial deployment. In this procedure, the initial
+                deployment has two sites where each site has a pair of 1+1 active/active SM systems
+                and one independent pair of 1+1 ME subsystems. After this procedure, the resulting
+                deployment will have one more independent pair of 1+1 ME subsystemss per site.</p>
+
+            <p class="p">This figure shows an example of the initial deployment with one independent pair of
+                1+1 ME subsystems at each site:</p>
+
+            <p class="p">where:</p>
+
+            <ul class="ul" id="adding_a_pair_of_1_1_independent_mes__ul_fpr_wpn_tpb">
+                <li class="li">ME1 and ME2 are an independent 1+1 ME pair deployed in the West site.</li>
+
+                <li class="li">ME3 and ME4 are an independent 1+1 ME pair deployed in the East site.</li>
+
+                <li class="li">The partition data (spspd namespace) is shared between the 1+1 ME subsystems.
+                    The partition data is primary on one ME and secondary on the other ME in the
+                    pair.</li>
+
+                <li class="li">The global data (dscglobal namespace) is shared between the 1+1 ME
+                    subsystems.</li>
+
+                <li class="li">The global data of each ME pair is not shared with any other ME pair in the
+                    network.</li>
+
+            </ul>
+
+            <div class="fig fignone" id="adding_a_pair_of_1_1_independent_mes__fig_xrx_xvd_zpb"><span class="figcap"><span class="fig--title-label">Figure: </span>Deployment with one independent 1+1 ME pair per site</span>
+                
+                <img class="image imagecenter break" id="adding_a_pair_of_1_1_independent_mes__image_yrx_xvd_zpb" src="../images/cnf_install_initial_deployment_with_one_independent_ME_pair.png" height="113" width="465" />
+            </div>
+
+            <p class="p">This figure shows an example of the resulting deployment where ME5 and ME6 are the
+                new independent pair of 1+1 ME subsystems added at the West site, and ME7 and ME8
+                are the new independent pair of 1+1 ME subsystems added at the East site.</p>
+
+            <div class="fig fignone" id="adding_a_pair_of_1_1_independent_mes__fig_oc5_rb2_zpb"><span class="figcap"><span class="fig--title-label">Figure: </span>Deployment with two independent pairs of 1+1 ME subsystems per site</span>
+                
+                <img class="image imagecenter break" id="adding_a_pair_of_1_1_independent_mes__image_pc5_rb2_zpb" src="../images/cnf_install_resulting_deployment_with_two_independent_ME_pairs.png" height="131" width="375" />
+            </div>
+
+            <p class="p"><strong class="ph b">Procedure assumptions</strong></p>
+
+            <p class="p">This procedure assumes the following:</p>
+
+            <ul class="ul" id="adding_a_pair_of_1_1_independent_mes__ul_epx_zdn_tpb">
+                <li class="li">The patching level of the new ME subsystems is the same as of the existing ME
+                    pairs.</li>
+
+                <li class="li">The connectivity between the systems in the initial deployment is normal and
+                    they are healthy, which implies the following:<ul class="ul" id="adding_a_pair_of_1_1_independent_mes__ul_ffs_dxy_zpb">
+                        <li class="li">Only the alarms related to the SM systems and ME subsystems of the
+                            initial deployment are present on these SM systems and ME
+                            subsystems.</li>
+
+                        <li class="li">The heartbeat is normal on the SM systems and ME subsystems of the
+                            initial deployment.</li>
+
+                    </ul>
+</li>
+
+                <li class="li"><span class="ph">NCC</span> software upgrade does not occur during this procedure.</li>
+
+                <li class="li">You do not switch the putty session during the execution of the steps.</li>
+
+                <li class="li">You add new ME subsystems to the topology during a maintenance window when no
+                    incoming traffic occurs on the new ME subsystems. At that time, the incoming
+                    traffic is processed by the ME subsystems that were deployed initially.</li>
+
+                <li class="li">The version of the input generator is the same throughout the procedure.</li>
+
+                <li class="li">If a rollback occurs, you reinstall the ME subsystems that you rolled back.
+                    During reinstallation no additional changes are expected since SM keeps the new
+                    ME subsystems' data in its distList for the static objects distributed on the ME
+                    subsystems. However, if the operator requires to change the new ME names and
+                    FQDNs, contact Nokia technical support.</li>
+
+                <li class="li">If using an ME Group feature, all existing CHFs should be part of an existing ME
+                    group. During this procedure, the existing ME group should be modify to add the
+                    new Grow ME subsystems.</li>
+
+            </ul>
+
+            <p class="p"><strong class="ph b">Alarms and heartbeat information</strong></p>
+
+            <p class="p">The Heartbeat status and alarms are processed as follows:</p>
+
+            <ul class="ul" id="adding_a_pair_of_1_1_independent_mes__ul_umz_rmz_zpb">
+                <li class="li"><strong class="ph b">SM systems</strong></li>
+
+                <li class="li">The Heartbeat status and alarms on the SM systems will continue to include the
+                    initially deployed ME subsystems.</li>
+
+                <li class="li">Once the procedure is completed, the new ME subsystems will be included in the
+                    Heartbeat status.</li>
+
+                <li class="li"><strong class="ph b">Initially deployed ME subsystems</strong></li>
+
+                <li class="li">The addition of the new ME pairs has no impact on the existing and new ME
+                    subsystems since all pairs of 1+1 ME subsystems are isolated.</li>
+
+                <li class="li">The Heartbeat status and alarms on the initially deployed ME subsystems will
+                    continue to include the SM systems.</li>
+
+                <li class="li"><strong class="ph b">New ME subsystems</strong></li>
+
+                <li class="li">When the procedure succeeds, the new ME subsystems will include the SM systems
+                    in the Heartbeat status. </li>
+
+                <li class="li">Until SNMP manager interface is not configured on the new ME subsystems, there
+                    will be no alarms from the new ME subsystems.</li>
+
+            </ul>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                <ul class="ul" id="adding_a_pair_of_1_1_independent_mes__ul_zlr_q4z_zpb">
+                    <li class="li">Do not execute SM reload during the procedure.</li>
+
+                    <li class="li">Database backup is not required during this procedure.</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">During a maintenance window, follow this procedure: <a class="xref" href="preparing_to_add_one_pair_of_1_1_independent_mes.html">Preparing to add independent pairs of 1+1 ME subsystems</a>.</span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Install new ME subsystems. For instructions, see the <cite class="cite">Installation and
+                        Upgrade Guide</cite>.</span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">For each system in the initial deployment, follow this procedure: <a class="xref" href="checking_a_cnf.html">Checking system health</a>.</span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">For each system and <span class="ph">NCC</span> Telemetry instance in the
+                    initial deployment, update the topology with new ME subsystems as follows:</span>
+                <div class="itemgroup info">
+                    <ul class="ul" id="adding_a_pair_of_1_1_independent_mes__ul_xs4_n3b_1qb">
+                        <li class="li">If the initial deployment has multiple systems/subsystems and shared <span class="ph">NCC</span> Telemetry, then follow this procedure:
+                                <a class="xref" href="updating_topology_for_a_cnf.html">Updating topology when adding an independent 1+1 ME pair</a> in this order:<ol class="ol" type="a" id="adding_a_pair_of_1_1_independent_mes__ol_iv2_v3b_1qb">
+                                <li class="li">Topology update of <span class="ph">NCC</span>
+                                    Telemetry</li>
+
+                                <li class="li">Topology update of ME subsystems </li>
+
+                                <li class="li">Topology update of the secondary SM</li>
+
+                                <li class="li">Push the static data on the new ME subsystems</li>
+
+                                <li class="li">Topology update of the primary SM</li>
+
+                            </ol>
+</li>
+
+                        <li class="li">If the initial deployment has multiple SM systems, multiple ME
+                            subsystems, multiple RTs, and <span class="ph">NCC</span> Telemetry
+                            is separate for each site, then follow this procedure: <a class="xref" href="updating_topology_for_a_cnf.html">Updating topology when adding an independent 1+1 ME pair</a> in this order:<ol class="ol" type="a" id="adding_a_pair_of_1_1_independent_mes__ol_c2v_jjb_1qb">
+                                <li class="li">Topology update of ME subsystems </li>
+
+                                <li class="li">Topology update of the secondary SM.</li>
+
+                                <li class="li">Push the static data on the new ME subsystems</li>
+
+                                <li class="li">Topology update of the primary SM</li>
+
+                            </ol>
+</li>
+
+                        <li class="li">If the initial deployment has multiple SM systems, multiple ME
+                            subsystems, and <span class="ph">NCC</span> Telemetry is separate
+                            for each site, then follow this procedure: <a class="xref" href="updating_topology_for_a_cnf.html">Updating topology when adding an independent 1+1 ME pair</a> in this order:<ol class="ol" type="a" id="adding_a_pair_of_1_1_independent_mes__ol_qls_qjb_1qb">
+                                <li class="li">Topology update of ME subsystems </li>
+
+                                <li class="li">Topology update of the secondary SM</li>
+
+                                <li class="li">Push the static data on the new ME subsystems</li>
+
+                                <li class="li">Topology update of the primary SM</li>
+
+                            </ol>
+</li>
+
+                        <li class="li">If the initial deployment has multiple SM systems, and multiple ME
+                            subsystems, and shared <span class="ph">NCC</span> Telemetry, then
+                            follow this procedure: <a class="xref" href="updating_topology_for_a_cnf.html">Updating topology when adding an independent 1+1 ME pair</a>
+                            in this order:<ol class="ol" type="a" id="adding_a_pair_of_1_1_independent_mes__ol_vtc_tjb_1qb">
+                                <li class="li">Topology update of <span class="ph">NCC</span> Telemetry </li>
+
+                                <li class="li">Topology update of ME subsystems </li>
+
+                                <li class="li">Topology update of the secondary SM</li>
+
+                                <li class="li">Push the static data on the new ME subsystems</li>
+
+                                <li class="li">Topology update of the primary SM</li>
+
+                            </ol>
+</li>
+
+                        <li class="li">If the initial deployment does not match any of the listed cases, choose
+                            the most appropriate strategy.<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If your deployment has shared <span class="ph">NCC</span> Telemetry, then you must perform a
+                                topology update for shared <span class="ph">NCC</span>
+                                Telemetry. If separate <span class="ph">NCC</span> Telemetry is
+                                enabled for each system in your deployment, then no change is
+                                required on the deployed <span class="ph">NCC</span> Telemetry
+                                on the existing ME subsystems. For new ME subsystems, <span class="ph">NCC</span> Telemetry is installed during that
+                                namespace installation.</div>
+</li>
+
+                    </ul>
+
+                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> You must complete this procedure: <a class="xref" href="updating_topology_for_a_cnf.html">Updating topology when adding an independent 1+1 ME pair</a> for each system and <span class="ph">NCC</span> Telemetry instance in the initial
+                        deployment.</div>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Once you have updated the topology for all systems and <span class="ph">NCC</span> Telemetry instances in the initial deployment,
+                    log in to the SM GUI and provision static data such as bundles, charging
+                    service, and so on for the new ME subsystems either manually or using new API as
+                    follows:</span>
+                <div class="itemgroup info">
+                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The API request body source ME and destination ME need to be updated
+                        accordingly with their ME names.</div>
+
+                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Before executing the copy API, check the logs of the servicemanager pods
+                        of all SM systems. You can monitor these logs until this pre-provisioning
+                        completes.</div>
+
+                    <p class="p">To avoid the issue caused by the introduction of Ux, you need to pass the
+                        Charging Services in the API 'exclude' list, so that CS will not be picked
+                        for the transfer from one ME to another. Instead Charging Logic will be
+                        picked and copied. To do it, enter:</p>
+
+                    <pre class="pre codeblock"><code>{
+"sourceME": "me3",
+"destinationME": "me4",
+"entityTypesToBeExcluded": ["Charging Services"]
+}
+
+curl -X PUT "https://&lt;SMFQDN&gt;/services/ServiceManager/copyservicedata" -H "accept: application/json" -H "Authorization: Basic c21hZG1pbjpTcHMhc20w" -H "Content-Type: application/json" -d "{\"sourceME\":\"&lt;SOURCEMENAME&gt;\",\"destinationME\":\"&lt;TARGETMENAME&gt;\",\"entityTypesToBeExcluded\":[\"Charging Services\"]}"  --insecure
+
+
+
+https://&lt;SMfqdn&gt;/services/ServiceManager/copyservicedata
+
+PUT Request
+
+API Body:
+
+{
+"sourceME":"me3",
+"destinationME": "me4",
+"entityTypesToBeExcluded": ["Charging Services"]
+}
+
+Response
+
+{
+"responseStatus":{
+"message": "In Progress"
+}
+}</code></pre>
+                    <div class="p">Run this command to check the copy API data status via reload
+                        API:<pre class="pre codeblock"><code>curl --insecure -X GET "https://&lt;&lt;SMFQDN&gt;&gt;/services/ServiceManager/reloadstatus/&lt;&lt;MENAME&gt;&gt;" -H  "accept: application/json" -H  "Authorization: Basic c21hZG1pbjpTcHMhc20w"
+Response Body:
+Once complete
+{
+"status": "Success"
+}
+
+On Going Execution.
+{
+"status": "In Progress"
+}</code></pre></div>
+
+                    <div class="note" id="adding_a_pair_of_1_1_independent_mes__note_jtp_2sc_nqb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                        <ul class="ul" id="adding_a_pair_of_1_1_independent_mes__ul_nnz_fmb_1qb">
+                            <li class="li">For more information on API, see API documentation.</li>
+
+                            <li class="li">The Entity types which are excluded and mentioned in the
+                                documentation as well, need to handled manually.</li>
+
+                            <li class="li">If you are using ME Groups feature, then the new ME subsystems can
+                                be added into the ME Group at this stage.</li>
+
+                            <li class="li">If the Diameter peer is a SurePay D-Router, then the new Grow ME
+                                would be added at this stage.</li>
+
+                            <li class="li">If any allow-list feature is in use inside the diameter peers at the
+                                operator end, the <span class="ph uicontrol">White list</span> button must be
+                                unselected and reselected after the new ME grows.</li>
+
+                            <li class="li">For information regarding the check-me-static-data tool, refer to
+                                the <cite class="cite">check-me-static-data</cite> tool section of the
+                                    <cite class="cite">Operations, Administration, and Maintenance
+                                guide</cite>.</li>
+
+                        </ul>
+
+                    </div>
+
+                    <p class="p"><strong class="ph b">Expected output</strong></p>
+
+                    <p class="p">The procedure succeeds.</p>
+
+                    <p class="p">If the procedure does not succeed, follow the rollback procedure: <a class="xref" href="rolling_back_an_addition_of_me_pairs.html">Rolling back an addition of independent pairs of 1+1 ME subsystems</a>.</p>
+
+                </div>
+            </li>
+</ol>
+
+    </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

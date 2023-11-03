@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Restore a backup" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="manual_restores" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Restore a backup</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="manual_restores">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Restore a backup</h1>
+<div class="body conbody">
+        <p class="p">The procedure to restore a specific backup is described in detail for each component. It
+            is performed by executing a curl command from the admincli pod. This is a generic
+            example.</p>
+
+        <pre class="pre codeblock"><code>CBUR_MASTER_NAMESPACE=naperil110vzwcchf-y-nk-sm-001   
+NAMESPACE=naperil110vzwcchf-y-nk-sm-001
+RELEASENAME=ckey
+BR_POLICY=ckey-ckey
+
+# Initiate Restore
+curl -vkL --header 'Accept: application/json' -X POST --header 'Content-Type: application/x-www-form-urlencoded' -d 'backup_id=&amp;volume=&amp;object_type=&amp;object_name=' http://cbur-master-cbur.$CBUR_MASTER_NAMESPACE.svc.cluster.local:80/v2/helm/release/restore/$NAMESPACE/$RELEASENAME?helm_version=3
+
+# In alternative to the command above, which will restore the latest backup taken for each BrPolicy defined for the specified release, 
+# if more than one, a different URL can be used in the curl command to specify the name of a BrPolicy:
+
+# Initiate Restore
+# curl -vkL --header 'Accept: application/json' -X POST --header 'Content-Type: application/x-www-form-urlencoded' -d 'backup_id=&amp;volume=&amp;object_type=&amp;object_name=' http://cbur-master-cbur.$CBUR_MASTER_NAMESPACE.svc.cluster.local:80/v2/restore/$NAMESPACE/$BR_POLICY?helm_version=3</code></pre>
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

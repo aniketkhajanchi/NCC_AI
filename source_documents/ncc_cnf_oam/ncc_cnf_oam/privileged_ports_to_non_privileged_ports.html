@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="task" />
+<meta name="DC.title" content="Transitioning from privileged ports to non-privileged ports" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="privileged_ports_to_non_privileged_ports" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Transitioning from privileged ports to non-privileged ports</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="privileged_ports_to_non_privileged_ports">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Transitioning from privileged ports to non-privileged ports</h1>
+<div class="body taskbody">
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div>
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Deployments that are using SS7 cannot be configured to use non-privileged
+                ports</div>
+
+        </div>
+<div class="section prereq p"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Prerequisites</h2></div>The current software version must be upgraded to Release 22.3 or later.</div>
+
+        
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">Manually update the clients definitions in the User and Role Management realms
+                    to handle the addition of the non-privileged port.</span>
+                <div class="itemgroup info">
+                    <p class="p">This is necessary because there is no way to automatically update an existing
+                        User and Role Management realm.</p>
+
+                    <div class="p">The current Valid Redirect URIs and Web Origins for the clients in the User
+                        and Role Management console must be updated to duplicate all of the entries
+                        and add the same URLs with the port number suffix <code class="ph codeph">:8443</code>.
+                        Update these clients with the port suffix:<ul class="ul">
+                            <li class="li">sps-auth: spssm</li>
+
+                            <li class="li">btel-auth: sps-grafana, sps-kibana, sps-calm</li>
+
+                            <li class="li">dr realm: eventlink_ui</li>
+
+                        </ul>
+
+                    </div>
+
+                    <p class="p">For example, if the SM client has this URL in the list of Valid Redirect
+                        URIs:
+                            <code class="ph codeph">https://site1-nc2232.dyn.nesc.nokia.net/servicemanager/*</code>,
+                        then the URL must be changed to
+                            <code class="ph codeph">https://site1-nc2232.dyn.nesc.nokia.net:8443/servicemanager/*</code>.</p>
+
+                    <p class="p">The same must be done for the Web Origins URL. For example,
+                            <code class="ph codeph">https://site1-nc2232.dyn.nesc.nokia.net</code> must be changed
+                        to <code class="ph codeph">https://site1-nc2232.dyn.nesc.nokia.net:8443</code>.</p>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Perform a Helm upgrade on each system in the network deployment, with the
+                    overrides generated with <code class="ph codeph">HTTP Ports For External Communication</code>
+                    set to <code class="ph codeph">incoming-allow-both-outgoing-privileged</code>.</span>
+                <div class="itemgroup info">After the upgrade, the system accepts traffic on both privileged and
+                    non-privileged ports but still issues requests by using the privileged ports,
+                    which are the only ports supported by the systems that have not been upgraded
+                    yet. These Helm charts need to be upgraded: <ul class="ul">
+                        <li class="li">citm-ingress</li>
+
+                        <li class="li">cist-istio-gateway</li>
+
+                        <li class="li">shared-istio-gateway</li>
+
+                    </ul>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Perform another helm upgrade of each system, with the overrides generated with
+                        <code class="ph codeph">HTTP Ports For External Communication</code> set to
+                        <code class="ph codeph">incoming-allow-both-outgoing-non-privileged</code>, once all of
+                    the systems are upgraded.</span>
+                <div class="itemgroup info">After the upgrade, the system issues requests by using non-privileged ports
+                    but still accepts traffic on both privileged ports (for requests coming from
+                    systems not upgraded yet) and non-privileged ports. These Helm charts need to be
+                    upgraded: <ul class="ul">
+                        <li class="li">chf-resource</li>
+
+                        <li class="li">dr (only for ME sites)</li>
+
+                        <li class="li">servicemanager (only for SM systems)</li>
+
+                        <li class="li">kiali</li>
+
+                        <li class="li">cvea</li>
+
+                        <li class="li">servicemanager</li>
+
+                        <li class="li">bssc-ifd</li>
+
+                        <li class="li">calm</li>
+
+                        <li class="li">cnot</li>
+
+                        <li class="li">cpro-grafana</li>
+
+                        <li class="li">cpro</li>
+
+                        <li class="li">dr</li>
+
+                    </ul>
+
+                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                        <p class="p" id="privileged_ports_to_non_privileged_ports__dr_upgrade_note">If the dr upgrade is not completed immediately after
+                            the chf-resource upgrade, the dr-ui pod might become unstable (after
+                            losing the connection to User and Role Management because the service
+                            entry changed). The dr-ui pod must be restarted after the dr upgrade by
+                            running a <code class="ph codeph">kubectl scale</code> command to set the replicas for
+                                <span class="keyword parmname">statefulset dr-ui</span> to 0 and then back to 1. This
+                            does not affect CDR processing.</p>
+
+                    </div>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Perform one last Helm upgrade of each system with the overrides generated with
+                        <code class="ph codeph">HTTP Ports For External Communication</code> set to
+                        <code class="ph codeph">non-privileged</code>, once all of the systems have been
+                    upgraded.</span>
+                <div class="itemgroup info">Once a system is upgraded, it will not accept traffic on privileged ports
+                    anymore. These Helm charts need to be upgraded: <ul class="ul">
+                        <li class="li">citm-ingress</li>
+
+                        <li class="li">cist-istio-gateway</li>
+
+                        <li class="li">shared-istio-gateway</li>
+
+                    </ul>
+
+                </div>
+            </li>
+</ol>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,796 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Threshold Profile Group" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="d1e49978" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Threshold Profile Group</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="d1e49978">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Threshold Profile Group</h1>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_rxd_qbb_f3b"><h2 class="title topictitle2" id="ariaid-title2">EDR tags</h2>
+<div class="body conbody">
+            <div class="section" id="concept_rxd_qbb_f3b__section_sqf_qbb_f3b">
+                <table cellpadding="4" cellspacing="0" summary="" id="concept_rxd_qbb_f3b__table_sfs_pm3_qqb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.15789473684211%" /><col style="width:40.526315789473685%" /><col style="width:26.31578947368421%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d89042e44">Tag</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d89042e47">Description</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d89042e50">Example</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">appType</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter specifies the application type of this entity.
+                                    The value can be CHARGING.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">CHARGING</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">thresholdProfileGroupId</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter indicates the id of the threshold profile
+                                    group associated with this entity.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">TPG1</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">thresholdProfileName*</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter specifies the name of threshold profile. This
+                                    name is auto-generated.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">ThreshProfileAbsoluteStart0</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">unitTypeName*</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter specifies the unit type of the defined
+                                    threshold.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">Gbyte</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">thrProftype*</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">
+                                    <p class="p">This parameter defines the type of the defined threshold. The
+                                        values can be:</p>
+
+                                    <p class="p"> ABSOLUTE_FROM_START</p>
+
+                                    <p class="p"> ABSOLUTE_FROM_END</p>
+
+                                    <p class="p"> PERCENTAGE</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">PERCENTAGE</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">thresholdName*</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter specifies the name of the defined
+                                    threshold.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">TPG1</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">thresholdValue*</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter specifies the value of the defined
+                                    threshold.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">15</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">recurring*</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter specifies whether the defined threshold is
+                                    recurring or not.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">true</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">overageFlag*</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter specifies the value of the
+                                    overageFlag.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">true</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">loanUsageFlag*</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter specifies the value of the
+                                    loanUsageFlag.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">true</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">startRange</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter specifies the value of the startRange.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">10</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">endRange</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter specifies the value of the endRange.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">50</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">description</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter specifies the description defined in this
+                                    entity.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 "> </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">thresholdProfileGroupKindOfUnit</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">
+                                    <p class="p">This parameter specifies the Kind of Unit of Threshold
+                                        Profile Group defined in this entity. The values can be:</p>
+
+                                    <p class="p"> TIME</p>
+
+                                    <p class="p"> VOLUME</p>
+
+                                    <p class="p"> MONEY</p>
+
+                                    <p class="p"> UNIT</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">VOLUME</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">policyThreshold</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter specifies whether the Threshold Profile Group
+                                    is a policy threshold or not.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">false</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">dynamicMilestoneFlag</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter specifies whether the Threshold Profile Group
+                                    is a milestone threshold or not.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">true</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">thresholdOnReservation</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter specifies whether this Threshold Profile Group
+                                    will be executed during Reservation.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">true</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">thresholdProfileGrpCreationTime</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter is the time at which the Threshold Profile
+                                    Group was created.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">06/07/2021 12:00:33</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e44 ">thresholdProfileGrpLastUpdateTime</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e47 ">This parameter is the time at which the Threshold Profile
+                                    Group was last modified.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e50 ">06/07/2021 12:00:33</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_lyy_3k4_yqb"><h2 class="title topictitle2" id="ariaid-title3">Applicability of tags</h2>
+<div class="body conbody">
+            <table cellpadding="4" cellspacing="0" summary="" id="concept_lyy_3k4_yqb__table_tfs_pm3_qqb" class="table" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d89042e335">EDR Tag</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d89042e338">Create</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d89042e341">Update</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d89042e344">Delete</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">RecordType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">invokedBy</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">invokedMethod</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">appType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">thresholdProfileGroupId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">thresholdProfileName*</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">unitTypeName*</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">thrProftype*</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">thresholdName*</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">thresholdValue*</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">recurring*</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">overageFlag*</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">loanUsageFlag</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">startRange</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">endRange</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">thresholdProfileDefList</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">description</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">thresholdProfileGroupKindOfUnit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">policyThreshold</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">dynamicMilestoneFlag</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">thresholdOnReservation</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">thresholdProfileGrpCreationTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">thresholdProfileGrpLastUpdateTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">result</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">generationTimestamp</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">meHostName</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">nccVersion</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e335 ">RecordTimestamp</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e338 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e341 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d89042e344 ">Yes</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title4" id="concept_ytc_jk4_yqb"><h2 class="title topictitle2" id="ariaid-title4">Associated EDRs</h2>
+<div class="body conbody">
+            <p class="p">There are no associated EDRs for this EDR.</p>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title5" id="concept_ymk_qbb_f3b"><h2 class="title topictitle2" id="ariaid-title5">EDR examples</h2>
+<div class="body conbody">
+            <div class="section" id="concept_ymk_qbb_f3b__section_uqf_qbb_f3b">
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Create</strong></p>
+
+                    <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       871
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                              Tag                                                  Data
+RecordType                        0                                     PROVISIONING_RECORD
+invokedBy                         1                                              webService
+invokedMethod                     1                            create_thresholdProfileGroup
+appType                           1                                                CHARGING
+thresholdProfileGroupId           1                                                TPG_Test
+thresholdProfileGroupKindOfUnit   1                                                   MONEY
+policyThreshold                   1                                                   false
+dynamicMilestoneFlag              1                                                   false
+thresholdOnReservation            1                                                   false
+thresholdProfileGrpCreationTime   1                                     27/02/2023 17:09:41
+result                            1                                                 SUCCESS
+generationTimestamp               1                                     27/02/2023 17:09:41
+meHostName                        1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                               
+nccVersion                        1                                             SPS_23_2_R1
+recordId                          1     20230227113941_96a1f587-36e0-4898-a655-b321d0937b02
+RecordTimestamp                   1                                     27/02/2023 17:09:41
+  RecordProperty                  0                                    thresholdProfileInfo
+  thresholdProfileName            1                                   thresholdProfileName0
+  unitTypeName                    1                                                    Euro
+  thrProftype                     1                                     ABSOLUTE_FROM_START
+    RecordProperty                0                                           thresholdInfo
+    thresholdName                 1                                                      th
+    thresholdValue                1                                                   10.00
+    recurring                     1                                                    true
+    overageFlag                   1                                                   false
+    loanUsageFlag                 1                                                   false
+    startRange                    1                                                      10
+    endRange                      1                                                      50
+</code></pre>
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Update</strong></p>
+
+                    <pre class="pre codeblock"><code>------------------------------------- 
+EDR length:                     428 
+Release ID | Version ID:        7|2 
+Data record format | TS number: 1|7 
+Release identifier extension:    4 
+Name                           Tag           Data 
+RecordType                      0         PROVISIONING_RECORD 
+invokedBy                       1         webService 
+invokedMethod                   1         update_thresholdProfileGroup 
+appType                         1         CHARGING 
+thresholdProfileGroupId         1         TPG_P_1_60346.Threshold 
+description                     1         Policy Threshold 
+thresholdProfileGroupKindOfUnit 1         VOLUME 
+policyThreshold                 1         true 
+dynamicMilestoneFlag            1         false 
+thresholdProfileGrpCreationTime 1         02/07/2018 14:58:04 
+result                          1         SUCCESS 
+generationTimestamp             1         02/07/2018 14:58:04 
+RecordTimestamp                 1         02/07/2018 09:28:04 </code></pre>
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Delete</strong></p>
+
+                    <pre class="pre codeblock"><code>------------------------------------- 
+EDR length:                     428 
+Release ID | Version ID:        7|2 
+Data record format | TS number: 1|7 
+Release identifier extension:    4 
+Name                           Tag         Data 
+RecordType                      0      PROVISIONING_RECORD 
+invokedBy                       1      webService 
+invokedMethod                   1      delete_thresholdProfileGroup 
+appType                         1      CHARGING 
+thresholdProfileGroupId         1      TPG_P_1_60346.Threshold 
+description                     1      Policy Threshold 
+thresholdProfileGroupKindOfUnit 1      VOLUME 
+policyThreshold                 1      true 
+dynamicMilestoneFlag            1      false 
+thresholdProfileGrpCreationTime 1      02/07/2018 14:58:14 
+result                          1      SUCCESS 
+generationTimestamp             1      02/07/2018 14:58:14 
+RecordTimestamp                 1      02/07/2018 09:28:14</code></pre>
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">EDR for Add-EDR-Action defined in TPG</strong></p>
+
+                    <pre class="pre codeblock" id="concept_ymk_qbb_f3b__codeblock_vpn_gxg_ptb"><code>  [0] (18 byte) LoanUsageThreshold
+  [1] (36 elem)
+    SEQUENCE (2 elem)
+      [0] (9 byte) invokedBy
+      [1] (13 byte) CallExecution
+    SEQUENCE (2 elem)
+      [0] (13 byte) invokedMethod
+      [1] (20 byte) TriggerLoanThreshold
+    SEQUENCE (2 elem)
+      [0] (8 byte) deviceId
+      [1] (10 byte) Device3457
+    SEQUENCE (2 elem)
+      [0] (18 byte) deviceIdentityType
+      [1] (4 byte) IMSI
+    SEQUENCE (2 elem)
+      [0] (19 byte) deviceIdentityValue
+      [1] (10 byte) 9999913457
+    SEQUENCE (2 elem)
+      [0] (18 byte) deviceIdentityType
+      [1] (4 byte) E164
+    SEQUENCE (2 elem)
+      [0] (19 byte) deviceIdentityValue
+      [1] (10 byte) 9999993457
+    SEQUENCE (2 elem)
+      [0] (18 byte) deviceCreationTime
+      [1] (19 byte) 22/04/2022 14:39:46
+    SEQUENCE (2 elem)
+      [0] (20 byte) deviceLastUpdateTime
+      [1] (19 byte) 22/04/2022 14:39:47
+    SEQUENCE (2 elem)
+      [0] (14 byte) subscriptionId
+      [1] (36 byte) a750ddf5-df30-47f8-84b2-db680e18742f
+    SEQUENCE (2 elem)
+      [0] (16 byte) renewResetStatus
+      [1] (5 byte) false
+    SEQUENCE (2 elem)
+      [0] (14 byte) renewalUpdated
+      [1] (5 byte) false
+    SEQUENCE (2 elem)
+      [0] (21 byte) bundleChangeCarryOver
+      [1] (5 byte) false
+    SEQUENCE (2 elem)
+      [0] (12 byte) globalEntity
+      [1] (5 byte) false
+    SEQUENCE (2 elem)
+      [0] (17 byte) subscriptionIndex
+      [1] (2 byte) -1
+    SEQUENCE (2 elem)
+      [0] (10 byte) deviceType
+      [1] (6 byte) NORMAL
+    SEQUENCE (2 elem)
+      [0] (12 byte) syOCSEnabled
+      [1] (4 byte) true
+    SEQUENCE (2 elem)
+      [0] (12 byte) allowOverage
+      [1] (5 byte) false
+    SEQUENCE (2 elem)
+      [0] (12 byte) pwdEncrypted
+      [1] (5 byte) false
+    SEQUENCE (2 elem)
+      [0] (12 byte) categoryList
+      [1] (17 byte) [DefaultCategory]
+    SEQUENCE (2 elem)
+      [0] (16 byte) offLineTimeStamp
+      [1] (1 byte) 0
+    SEQUENCE (2 elem)
+      [0] (10 byte) deviceDbId
+      [1] (36 byte) f94dd791-8c4d-4b52-b148-3ad389d8b77d
+    SEQUENCE (2 elem)
+      [0] (19 byte) entityLifeCycleName
+      [1] (22 byte) DefaultDeviceLifeCycle
+    SEQUENCE (2 elem)
+      [0] (20 byte) entityLifeCycleState
+      [1] (6 byte) Active
+    SEQUENCE (2 elem)
+      [0] (9 byte) loanState
+      [1] (6 byte) OPT_IN
+    SEQUENCE (2 elem)
+      [0] (9 byte) AccountId
+      [1] (11 byte) Account3457
+    SEQUENCE (2 elem)
+      [0] (22 byte) totalLoanRemainingDebt
+      [1] (4 byte) 3.45
+    SEQUENCE (2 elem)
+      [0] (10 byte) loanAmount
+      [1] (3 byte) 3.0
+    SEQUENCE (2 elem)
+      [0] (6 byte) LoanId
+      [1] (3 byte) IOU
+    SEQUENCE (2 elem)
+      [0] (6 byte) result
+      [1] (7 byte) SUCCESS
+    SEQUENCE (2 elem)
+      [0] (13 byte) correlationID
+      [1] (52 byte) X-CorrelationId:5d4242bf-ab3a-420a-8c26-ba1a93e74d9e
+    SEQUENCE (2 elem)
+      [0] (19 byte) generationTimestamp
+      [1] (19 byte) 22/04/2022 14:40:28
+    SEQUENCE (2 elem)
+      [0] (10 byte) meHostName
+      [1] (2 byte) naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr
+    SEQUENCE (2 elem)
+      [0] (10 byte) nccVersion
+      [1] (11 byte) SPS_22_5_R1
+    SEQUENCE (2 elem)
+      [0] (8 byte) recordId
+      [1] (51 byte) 20220422091028_62c5e352-2a8d-4a0b-8512-89f82cdf428a
+    SEQUENCE (2 elem)
+      [0] (15 byte) RecordTimestamp
+      [1] (19 byte) 22/04/2022 14:40:28
+</code></pre>
+                </div>
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

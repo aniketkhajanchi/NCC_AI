@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Installation" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="restore_kubernetes_objects_and_data" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Installation</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="restore_kubernetes_objects_and_data">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Installation</h1>
+<div class="body conbody">
+        <p class="p">On the recovering system, edit the values that are listed in this table in the
+                <span class="ph filepath">Inputs.xlsx</span> file.</p>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="restore_kubernetes_objects_and_data__table_aht_hdx_mwb" class="table" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d8862e47">Tab</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d8862e50">Section</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d8862e53">Property</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d8862e56">Value</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8862e47 ">Common</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8862e50 ">Global</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8862e53 ">Deployment Mode</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8862e56 ">Disaster Recovery</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8862e47 ">Common</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8862e50 ">Global</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8862e53 ">Enable XDR Traffic</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d8862e56 ">true</td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+        <p class="p">Install the Helm overrides file to restore the Kubernetes objects. The data is restored
+            later in this procedure. Do not re-enable scheduled backups that contain partition,
+            dscglobal, dsclocal, or dsc data at this point to prevent overwriting the existing
+            backups.</p>
+
+        <p class="p">Due to enabling XDR traffic, incoming XDR starts but the mate systems could remain
+            OUT_OF_SERVICE in the xdr-status tool results.</p>
+
+        <div class="section" id="restore_kubernetes_objects_and_data__section_ahx_2h2_4qb"><h2 class="title sectiontitle">Web SSO</h2>
+            
+            
+            <p class="p">To restore a Web SSO instance which has experienced a catastrophic failure, see <a class="xref" href="web_sso_data_recovery.html">Web SSO data recovery</a>.</p>
+
+        </div>
+
+        <div class="section" id="restore_kubernetes_objects_and_data__section_l5h_gh2_4qb"><h2 class="title sectiontitle">CVEA</h2>
+            
+            <p class="p">Reinstall CVEA by using the installation instructions with the original release name
+                and overrides file.</p>
+
+        </div>
+
+        <div class="section" id="restore_kubernetes_objects_and_data__section_ac1_hh2_4qb"><h2 class="title sectiontitle">NCC Telemetry</h2>
+            
+            <p class="p">To restore an <span class="ph">NCC</span> Telemetry instance which has
+                experienced a catastrophic failure, reinstall BTEL by using the installation
+                instructions with the original release name and overrides file. To avoid overwriting
+                the existing backups, do not re-enable scheduled backups at this point.</p>
+
+            <p class="p">Once reinstalled with the original release names and overrides file, recover the NCC
+                Telemetry data. The <span class="ph">NCC</span> admincli pod is used to
+                accomplish this, so if <span class="ph">NCC</span> has also experienced a
+                catastrophic failure, proceed with the <span class="ph">NCC</span> recovery
+                instructions and return to these instructions to complete data recovery.</p>
+
+            <p class="p">To recover the data, see <a class="xref" href="btel_backup_and_restore.html">NCC Telemetry backup and restore</a>. Once the data
+                has been restored, re-enable scheduled backups by using the installation
+                instructions.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

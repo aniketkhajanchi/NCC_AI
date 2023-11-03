@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="CC-Session-Failover (CCSF) AVP support in the NCC Gy interface" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-cn01-tczza-d1e17734" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>CC-Session-Failover (CCSF) AVP support in the NCC Gy interface</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-cn01-tczza-d1e17734">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">CC-Session-Failover (CCSF) AVP support in the NCC Gy interface</h1>
+<div class="body conbody">
+        <p class="p">The CC-Session-Failover AVP contains information about whether moving the credit-control
+            message stream to a backup server during an ongoing credit-control session is supported.
+            It can have three values <var class="keyword varname">FAILOVER_NOT_SUPPORTED (0)</var>,
+                <var class="keyword varname">FAILOVER_SUPPORTED(1)</var>, and <var class="keyword varname">IGNORE (2)</var>. The
+            value of this AVP is selected while processing through the active RSV. If the value is
+            configured as <var class="keyword varname">IGNORE</var> or the default parameter is missing in active
+            RSV, then CCSF AVP is not returned in CCA.</p>
+
+        <div class="note" id="id9yz-09126-cn01-tczza-d1e17734__note_svp_nnn_qxb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> CCSF AVP is not applicable for IEC calls.</div>
+
+        <p class="p">The values of CCSF can be configured as an output of the rule as shown in the following
+            figure.</p>
+
+        <div class="fig fignone" id="id9yz-09126-cn01-tczza-d1e17734__fig_tvp_nnn_qxb"><span class="figcap"><span class="fig--title-label">Figure: </span>CCSF</span>
+            
+            
+            <img class="image break" id="id9yz-09126-cn01-tczza-d1e17734__image_uvp_nnn_qxb" src="../images/ccsf_default.png" height="324" width="563" />
+        </div>
+
+</div>
+<div class="footer"><hr /><p>Diameter/HTTP Configuration Guide • P556766-DN1000054969-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

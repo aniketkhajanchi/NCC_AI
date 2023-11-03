@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="task" />
+<meta name="DC.title" content="Enabling mutual TLS for intrasystem Aerospike communication" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="enabling_mtls_for_intrasite_aerospike_communication" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Enabling mutual TLS for intrasystem Aerospike communication</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="enabling_mtls_for_intrasite_aerospike_communication">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Enabling mutual TLS for intrasystem Aerospike communication</h1>
+<div class="body taskbody">
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div>
+            <p class="p">This procedure provides instructions on how to enable intrasystem mutual TLS (mTLS)
+                communication on a particular system that occurs as server-to-server between
+                Aerospike pods, and as client-to-server between Aerospike pods (servers) and the
+                other pods (clients). This procedure is used post-installation when <span class="ph">NCC</span> has already been installed. For instructions on how
+                to configure mTLS for intrasystem Aerospike communication during installation, see
+                the <cite class="cite">Installation and Upgrade Guide</cite> in the <span class="ph">NCC</span> documentation set.</p>
+
+        </div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">Set these parameters in the <span class="ph filepath">values.yaml</span> file:</span>
+                <div class="itemgroup info">
+                    <ul class="ul" id="enabling_mtls_for_intrasite_aerospike_communication__ul_aj3_mhl_qnb">
+                        <li class="li"><code class="ph codeph">aerospike.network.intraCluster.exposeInsure</code> to
+                                <code class="ph codeph">true</code>
+                        </li>
+
+                        <li class="li"><code class="ph codeph">aerospike.network.intraCluster.mtls.enabled</code> to
+                                <code class="ph codeph">true</code></li>
+
+                        <li class="li"><code class="ph codeph">aerospike.network.intraCluster.mtls.credentialName</code> to
+                            the name of the secret</li>
+
+                        <li class="li"><code class="ph codeph">aerospike.network.intraCluster.mtls.cipherSuites</code> to
+                                <code class="ph codeph">DEFAULT</code></li>
+
+                    </ul>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Run <code class="ph codeph">helm upgrade</code> with <code class="ph codeph">-f</code> option passing the
+                    input <span class="ph filepath">values.yaml</span> file to apply the changes.</span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Restart the Aerospike server pods to upgrade the servers.</span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Set these parameters in the <span class="ph filepath">values.yaml</span> file:</span>
+                <div class="itemgroup info">
+                    <ul class="ul" id="enabling_mtls_for_intrasite_aerospike_communication__ul_xfv_vpl_qnb">
+                        <li class="li"><code class="ph codeph">global.aerospike.mtls.client.enabled</code> to
+                                <code class="ph codeph">true</code></li>
+
+                        <li class="li"><code class="ph codeph">aerospike.network.intraCluster.exposeInsure</code> to
+                                <code class="ph codeph">false</code></li>
+
+                    </ul>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Run <code class="ph codeph">helm upgrade</code> to apply the changes.</span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Restart the Aerospike server pods to upgrade the servers.</span>
+                <div class="itemgroup info">
+                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Aerospike communication uses a certificate for the aerospike-credential
+                        secret. When the current certificate expires or is rotated, the ongoing
+                        client-to-server connections are not affected. However, new connections
+                        require the updated certificate. To apply the updated certificate, the
+                        application and Aerospike pods must restart.</div>
+
+                </div>
+            </li>
+</ol>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

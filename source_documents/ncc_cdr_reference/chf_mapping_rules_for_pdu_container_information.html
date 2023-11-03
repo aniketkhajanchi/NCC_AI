@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Mapping rules for PDU container information in CHF records (V15)" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="chf_mapping_rules_for_pdu_container_information" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Mapping rules for PDU container information in CHF records (V15)</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="chf_mapping_rules_for_pdu_container_information">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Mapping rules for PDU container information in CHF records (V15)</h1>
+<div class="body conbody">
+        <table cellpadding="4" cellspacing="0" summary="" id="chf_mapping_rules_for_pdu_container_information__table_qht_b5b_l4b" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Mapping rules for PDU container information in CHF records (V15)</span></caption><colgroup><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /><col style="width:33.33333333333333%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d32531e42">Output field name</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d32531e45">Input field name</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d32531e48">Conversion rule for NCHFChargingRecord (5G)</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e42 ">chargingRuleBaseName</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e45 ">&lt;parent&gt;.chargingRuleBaseName</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e48 ">
+                            <p class="p">OPTIONAL.</p>
+
+                            <p class="p">Direct mapping.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e42 ">aFCorrelationInformation</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e45 ">&lt;parent&gt;.aFCorrelationInformation</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">Verify that the value is a valid octet string and convert to Octet if
+                                not. </p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e42 ">timeOfFirstUsage</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e45 ">&lt;parent&gt;.timeOfFirstUsage</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e48 ">
+                            <p class="p">OPTIONAL.</p>
+
+                            <p class="p">Convert input to timestamp, see <a class="xref" href="date_conversion_to_compact_utctime_format.html#date_conversion_to_compact_utctime_format">Date conversion to compact UTCTime format</a>. Raise a warning and do not map if the input is not valid.</p>
+
+                            <p class="p">Direct mapping.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e42 ">timeOfLastUsage</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e45 ">&lt;parent&gt;.timeOfLastUsage</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e48 ">
+                            <p class="p">OPTIONAL.</p>
+
+                            <p class="p">Convert input to timestamp, see <a class="xref" href="date_conversion_to_compact_utctime_format.html#date_conversion_to_compact_utctime_format">Date conversion to compact UTCTime format</a>. Raise a warning and do not map if the input is not valid.</p>
+
+                            <p class="p">Direct mapping.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e42 ">qoSInformation</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e45 ">&lt;parent&gt;.qoSInformation</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e48 ">See <a class="xref" href="chf_mapping_rules_for_qos_information.html#chf_mapping_rules_for_qos_information">Mapping rules for QoS Information in CHF records (V15)</a> with qoSInformation as parent.</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e42 ">userLocationInformation</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e45 ">&lt;parent&gt;.userLocationInformation</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e48 ">
+                            <p class="p">OPTIONAL.</p>
+
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">If the input has uneven number of characters, add F at the end.</p>
+
+                            <p class="p">Verify that the value is a valid octet string and raise a warning and
+                                do not map if it is not. </p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e42 "><span class="ph" id="chf_mapping_rules_for_pdu_container_information___Hlk60908161">presenceReportingAreaInfo</span></td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e45 ">&lt;parent&gt;. presenceReportingAreaInfo</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e48 ">
+                            <p class="p">OPTIONAL</p>
+
+                            <p class="p">See <a class="xref" href="chf_mapping_rules_for_presence_reporting_info.html#chf_mapping_rules_for_presence_reporting_info">Mapping rules for presence reporting info in CHF records (V15)</a> with presenceReportingAreaInfo as parent.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e42 ">rATType</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e45 ">&lt;parent&gt;.rATType</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e48 ">
+                            <p class="p">OPTIONAL.</p>
+
+                            <p class="p">Direct mapping. </p>
+
+                            <p class="p">Validate that the value is between 0 and 255. Raise a warning and do
+                                not map if it is not.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e42 ">sponsorIdentity</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e45 ">&lt;parent&gt;.sponsorIdentity</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e48 ">
+                            <p class="p">OPTIONAL</p>
+
+                            <p class="p">Direct mapping. </p>
+
+                            <p class="p">Verify that the value is a valid octet string and convert it to a
+                                valid octet if not. </p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e42 ">applicationServiceProviderIdentity</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e45 ">&lt;parent&gt;.applicationServiceProviderIdentity</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e48 ">
+                            <p class="p">OPTIONAL</p>
+
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">Verify that the value is a valid octet string and convert it to a
+                                valid octet if not. </p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e42 ">servingNetworkFunctionID</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e45 ">&lt;parent&gt;.servingNodeIDs.servingNetworkFunctionID</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e48 ">See <a class="xref" href="3mapping_rules_for_serving_network_function_id.html#CHF_mapping_rules_for_serving_network_function_id">Mapping rules for serving network function ID in CHF records (V15)</a> with servingNetworkFunctionID as parent. </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e42 ">uETimeZone</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e45 ">&lt;parent&gt;.uETimeZone</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e48 ">
+                            <p class="p">Direct mapping.</p>
+
+                            <p class="p">Input should be two octets long. Add more zeros to the end, if it is
+                                not. If there are too many octets, take only the first ones.</p>
+
+                            <p class="p">After that, verify that the input is a valid octet string. Raise a
+                                warning and do not map if it is not.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e42 ">threeGPPPSDataOffStatus</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e45 ">&lt;parent&gt;. threeGPPPSDataOffStatus</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d32531e48 ">
+                            <p class="p">OPTIONAL.</p>
+
+                            <p class="p">Direct mapping: </p>
+
+                            <p class="p">0 -&gt; 0 </p>
+
+                            <p class="p">1 -&gt; 1</p>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+    </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

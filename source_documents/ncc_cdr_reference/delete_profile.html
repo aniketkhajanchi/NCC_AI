@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="deleteProfile" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="delete_profile" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>deleteProfile</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="delete_profile">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">deleteProfile</h1>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_dk4_js1_srb"><h2 class="title topictitle2" id="ariaid-title2">EDR example</h2>
+<div class="body conbody">
+      <p class="p"><strong class="ph b">Example 1</strong></p>
+
+      <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       5293
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                           Tag             Data
+RecordType                     0           PROVISIONING_RECORD
+serviceProvider                1           MVNO1
+invokedBy                      1           webService
+invokedMethod                  1           deleteProfile
+result                         1           SUCCESS
+generationTimestamp            1           15/11/2021 11:40:21
+meHostName                     1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr         
+nccVersion                     1           SPS_22_0_R1
+RecordTimestamp                1           15/11/2021 11:40:21
+  RecordProperty               0           userInfo
+  userId                       1           User2-1001330
+  lastName                     1           Gates
+  firstName                    1           Bill
+  phoneNumbers                 1           [100133012345]
+  emails                       1           [SPSProfile@gmail.com]
+  facebookId                   1           SPSuser@gmail.com
+  userCreationTime             1           15/11/2021 11:38:32
+  notificationProfile          1           SPSAUTO_NotificationProfile
+  customDataDeleted            1           [CUSTOMER_USER1, CUSTOMER_USER2]
+  userDbId                     1           c9abaaa5-e45d-43e8-b410-129a096ffce7
+  globalEntity                 1           false
+  entityLifeCycleName          1           DefaultUserLifeCycle
+  entityLifeCycleState         1           Active
+  RecordProperty               0           accountInfo
+  accountID                    1           Acc2-1001330
+  hourOfDay                    1           0
+  dayOfWeek                    1           MONDAY
+  dayOfMonth                   1           1
+  timeZoneId                   1           IST
+  accountCreationTime          1           15/11/2021 11:38:32
+  accountLastUpdateTime        1           15/11/2021 11:38:32
+  accountOveragelimit          1           -1000.0
+  accountType                  1           PRE_PAID
+  customDataDeleted            1           [AccountCustom2, AccountCustom1]
+  renewStatus                  1           false
+  thresholdProfileGroupIds     1           [TPG10990]
+  billCycleCalendar            1           BCC0990
+  accountDbId                  1           2bfe5a2f-e60c-42a5-8623-8ba78e1705ce
+  globalEntity                 1           false
+  entityLifeCycleName          1           DefaultAccountLifeCycle
+  entityLifeCycleState         1           Active
+  periodLifeCycleName          1           AccountPeriodicLC5639
+  periodLifeCycleState         1           Active
+  RecordProperty               0           deviceInfo
+  deviceId                     1           D3-1001330
+  deviceCreationTime           1           15/11/2021 11:38:32
+  deviceLastUpdateTime         1           15/11/2021 11:40:21
+  customDataDeleted            1           [DeviceCustom1, DeviceCustom2]
+  avInstanceDefinitionName     1           [AV10990]
+  avInstanceId                 1           [7505ec45-379e-4cf7-87c4-a8f212dea94b]
+  subscriptionIndex            1           0
+  notificationProfile          1           SPSAUTO_NotificationProfile
+  deviceType                   1           NORMAL
+  ocsHost                      1           ocs-host
+  ocsRealm                     1           ocs-realm
+  syOCSEnabled                 1           false
+  allowOverage                 1           false
+  pwdEncrypted                 1           false
+  categoryList                 1           [DefaultCategory]
+  counterIds                   1           [CntD0990]
+  offLineTimeStamp             1           0
+  language                     1           English
+  deviceDbId                   1           86f1095b-0318-4c9d-85fe-0ef3295e7aa5
+  entityLifeCycleName          1           DefaultDeviceLifeCycle
+  entityLifeCycleState         1           Active
+    RecordProperty             0           userInfo
+    userId                     1           User2-1001330
+    globalEntity               1           false
+    RecordProperty             0           timeOfDayInfo
+    timeZone                   1           +5:30
+    daylightSavings            1           true
+    RecordProperty             0           deviceIdentityInfo
+    deviceIdentityType         1           2
+    deviceIdentityValue        1     sip:support02@phonesystem.3cx.com100133000001
+    RecordProperty             0           deviceIdentityInfo
+    deviceIdentityType         1           101
+    deviceIdentityValue        1           D3-1001330
+  RecordProperty               0           subscriptionInfo
+  subscriptionId               1           685c3402-7207-488b-b4c6-20cc7066251d
+  subscriptionCreationTime     1           15/11/2021 11:38:33
+  description                  1           descriptionOfSubscription1001330
+  typeOfSubscription           1           DEVICE
+  feeOverride                  1           10
+  renewResetStatus             1           false
+  remainingRenewals            1           4
+  renewalMode                  1           NONE
+  activationTime               1           15/11/2021 11:38:33
+  maxRenewals                  1           4
+  alternateId                  1           TestalternateId
+  globalEntity                 1           false
+  entityLifeCycleName          1           DefaultSubscriptionLifeCycle
+  entityLifeCycleState         1           Active
+    RecordProperty             0           bundleInfo
+    bundleName                 1           Personal_Bundle_V50990
+    bundleFee                  1           10
+    dayOfWeek                  1           SUNDAY
+    disableTTC                 1           false
+    RecordProperty             0           accountInfo
+    accountID                  1           Acc2-1001330
+    hourOfDay                  1           0
+    dayOfWeek                  1           MONDAY
+    dayOfMonth                 1           1
+    timeZoneId                 1           IST
+    accountCreationTime        1           15/11/2021 11:38:32
+    accountLastUpdateTime      1           15/11/2021 11:38:32
+    accountOveragelimit        1           -1000.0
+    accountType                1           PRE_PAID
+    renewStatus                1           false
+    thresholdProfileGroupIds   1           [TPG10990]
+    billCycleCalendar          1           BCC0990
+    accountDbId                1           2bfe5a2f-e60c-42a5-8623-8ba78e1705ce
+    globalEntity               1           false
+    entityLifeCycleName        1           DefaultAccountLifeCycle
+    entityLifeCycleState       1           Active
+    periodLifeCycleName        1           AccountPeriodicLC5639
+    periodLifeCycleState       1           Active
+    RecordProperty             0           chargingServiceInstanceInfo
+    chargingServiceName        1           PrePaid_CS_V50990
+      RecordProperty           0           bucketInfo
+      bucketInstanceId         1           16d810e5-374e-4b32-8c3c-938d500f300b
+      bucketName               1           Bucket50990
+      RecordProperty           0           counterInfo
+      counterInstanceId        1           971e269d-1f7b-482e-bb6c-fed05aba2616
+      counterID                1           Cnt50990
+    RecordProperty             0           deviceInfo
+    deviceId                   1           D3-1001330
+    deviceType                 1           NORMAL
+    syOCSEnabled               1           false
+    allowOverage               1           false
+    pwdEncrypted               1           false
+    offLineTimeStamp           1           0
+      RecordProperty           0           deviceIdentityInfo
+      deviceIdentityType       1           2
+      deviceIdentityValue      1     sip:support02@phonesystem.3cx.com100133000001
+      RecordProperty           0           deviceIdentityInfo
+      deviceIdentityType       1           101
+      deviceIdentityValue      1           D3-1001330
+  RecordProperty               0           lifeCycleInfo
+  shadowBalanceBefore          0           0.00000
+  shadowBalanceAfter           0           9.00000
+  entityLifeCycleName          1           DefaultSubscriptionLifeCycle
+  entityLifeCycleState         1           Active
+  bundleName                   1           Personal_Bundle_V50990
+  bundleActivationType         1           NORMAL
+  accountType                  1           PRE_PAID
+  accountBalanceBefore         1           -10.0
+  accountBalanceAfter          1           -10.0
+  timeZoneId                   1           IST
+  accountID                    1           Acc2-1001330
+  accountELCState              1           Active
+  accountPLCState              1           Active
+  deviceId                     1           D3-1001330
+  subscriptionInputDate        1           15/11/2021 11:38:33
+  alternateId                  1           TestalternateId
+  subscriptionId               1           685c3402-7207-488b-b4c6-20cc7066251d
+  result                       1           Success
+    RecordProperty             0           bucketInfo
+    bucketName                 1           Bucket50990
+    bucketUnitType             1           Byte
+    bucketKindOfUnit           1           VOLUME
+    bucketBalanceBefore        1           1000
+    bucketBalanceAfter         1           1000
+    carryOverBucket            1           false
+    RecordProperty             0           counterInfo
+    counterName                1           Cnt50990
+    counterKey                 1           971e269d-1f7b-482e-bb6c-fed05aba2616
+    counterType                1           USAGE
+    counterUnitType            1           Byte
+    counterKindOfUnit          1           VOLUME
+    alignGranularity           1           TRUE
+    counterValueBefore         1           0
+    counterValueAfter          1           0
+    counterPolicySignalName    1           Cnt50990
+</code></pre>
+      <div class="note" id="concept_dk4_js1_srb__note_pwv_ybj_x5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If shadow balance before operation is null both
+          <em class="ph i">shadowBalanceBefore</em> and <em class="ph i">shadowBalanceAfter</em> fields are omitted. Here
+          <em class="ph i">shadowBalanceBefore</em> and <em class="ph i">shadowBalanceAfter</em> indicate the shadow balance of
+        the account before and after the operation, respectively.</div>
+
+      <p class="p"><strong class="ph b">Example 2 - forceDelete</strong></p>
+
+      <p class="p">Only if the SM application preference <strong class="ph b">Forced Delete Before Create Profile</strong> is set to
+          <var class="keyword varname">true</var>, the <var class="keyword varname">forceDelete</var> tag is generated as shown in
+        the following sample.</p>
+
+      <pre class="pre codeblock" id="concept_dk4_js1_srb__codeblock_e5k_4gx_25b"><code>--------------------------------------
+CDR length:                       3680
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                         Tag                                      Data
+RecordType                    0                        PROVISIONING_RECORD
+invokedBy                     1                                 webService
+invokedMethod                 1                              deleteProfile
+forceDelete                   1                                       true
+result                        1                                    SUCCESS
+generationTimestamp           1                        01/07/2022 13:05:32
+meHostName                    1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                  
+nccVersion                    1                                SPS_22_7_R1
+recordId                      1     20220701073532_d5f69bdd-c8fc-4c52-84a9
+                                                             -fb686190fa20
+RecordTimestamp               1                        01/07/2022 13:05:32
+  RecordProperty              0                                accountInfo
+  accountID                   1                                  Acc124878
+  accountName                 1                                  Acc124878
+  hourOfDay                   1                                          0
+  dayOfWeek                   1                                     MONDAY
+  dayOfMonth                  1                                          1
+  timeZoneId                  1                                        IST
+  accountCreationTime         1                        01/07/2022 13:05:20
+  accountLastUpdateTime       1                        01/07/2022 13:05:31
+  accountOveragelimit         1                                    -1000.0
+  accountType                 1                                  POST_PAID
+  renewStatus                 1                                      false
+  thresholdProfileGroupIds    1                               [TPG1124865]
+  accountDbId                 1       dc213d2f-0243-462e-b11e-3324ab9e8b21
+  globalEntity                1                                      false
+  RecordProperty              0                                 deviceInfo
+  deviceId                    1                               Device124878
+  deviceName                  1                               Device124878
+  deviceCreationTime          1                        01/07/2022 13:05:20
+  deviceLastUpdateTime        1                        01/07/2022 13:05:31
+  avInstanceDefinitionName    1                                 [AV124865]
+  avInstanceId                1     [f32a9c7d-dddb-44fa-a608-b383d100d2cc]
+  subscriptionIndex           1                                          0
+  deviceType                  1                                     NORMAL
+  ocsHost                     1                                   ocs-host
+  ocsRealm                    1                                  ocs-realm
+  syOCSEnabled                1                                       true
+  allowOverage                1                                       true
+  pwdEncrypted                1                                      false
+  categoryList                1                          [DefaultCategory]
+  counterIds                  1                                 [C1124865]
+  offLineTimeStamp            1                                          0
+  language                    1                                    ENGLISH
+  deviceDbId                  1       83589cdc-ab1a-49c5-86cc-98dbe23c9dd5
+  entityLifeCycleName         1                     DefaultDeviceLifeCycle
+  entityLifeCycleState        1                                     Active
+  RecordProperty              0                           subscriptionInfo
+  subscriptionId              1       5e65dd3b-c28e-4f1e-b010-86a9b988e35f
+  renewalPriority             1                                          0
+  subscriptionCreationTime    1                        01/07/2022 13:05:20
+  typeOfSubscription          1                                     DEVICE
+  renewResetStatus            1                                      false
+  remainingRenewals           1                                          5
+  renewalMode                 1                                       NONE
+  renewalUpdated              1                                      false
+  activationTime              1                        01/07/2022 13:05:20
+  maxRenewals                 1                                          5
+  globalEntity                1                                      false
+  entityLifeCycleName         1               DefaultSubscriptionLifeCycle
+  entityLifeCycleState        1                                    Removed
+    RecordProperty            0                                 bundleInfo
+    bundleName                1                      Personal_Bundle124865
+    bundleFee                 1                                         10
+    dayOfWeek                 1                                     SUNDAY
+    disableTTC                1                                      false
+    processingType            1                                       NONE
+    RecordProperty            0                                accountInfo
+    accountID                 1                                  Acc124878
+    accountName               1                                  Acc124878
+    hourOfDay                 1                                          0
+    dayOfWeek                 1                                     MONDAY
+    dayOfMonth                1                                          1
+    timeZoneId                1                                        IST
+    accountCreationTime       1                        01/07/2022 13:05:20
+    accountLastUpdateTime     1                        01/07/2022 13:05:31
+    accountOveragelimit       1                                    -1000.0
+    accountType               1                                  POST_PAID
+    renewStatus               1                                      false
+    thresholdProfileGroupIds  1                               [TPG1124865]
+    accountDbId               1       dc213d2f-0243-462e-b11e-3324ab9e8b21
+    globalEntity              1                                      false
+    entityLifeCycleName       1                    DefaultAccountLifeCycle
+    entityLifeCycleState      1                                    Removed
+    periodLifeCycleName       1                 DefaultAccountBillingCycle
+    periodLifeCycleState      1                                      Start
+    RecordProperty            0                chargingServiceInstanceInfo
+    chargingServiceName       1                        PrePaid_CS_V1124865
+    creationTime              1                        01/07/2022 13:05:20
+      RecordProperty          0                                 bucketInfo
+      bucketInstanceId        1       d9701e49-388f-4809-a208-559a35e1a9ee
+      bucketName              1                    PrePaid_Bucket_V1124865
+    RecordProperty            0                                 deviceInfo
+    deviceId                  1                               Device124878
+    deviceName                1                               Device124878
+    deviceType                1                                     NORMAL
+    syOCSEnabled              1                                      false
+    allowOverage              1                                      false
+    pwdEncrypted              1                                      false
+    offLineTimeStamp          1                                          0
+    deviceDbId                1       83589cdc-ab1a-49c5-86cc-98dbe23c9dd5
+  RecordProperty              0                              lifeCycleInfo
+  entityLifeCycleName         1               DefaultSubscriptionLifeCycle
+  entityLifeCycleState        1                                    Removed
+  bundleName                  1                      Personal_Bundle124865
+  bundleActivationType        1                                     NORMAL
+  accountBalanceBefore        1                                      -10.0
+  accountBalanceAfter         1                                        0.0
+  shadowBalanceBefore         1                                        0.0
+  shadowBalanceAfter          1                                        0.0
+  subscriptionInputDate       1                        01/07/2022 13:05:20
+  subscriptionId              1       5e65dd3b-c28e-4f1e-b010-86a9b988e35f
+  result                      1                                    Success
+    RecordProperty            0                                 bucketInfo
+    bucketName                1                    PrePaid_Bucket_V1124865
+    bucketUnitType            1                                       Byte
+    bucketKindOfUnit          1                                     VOLUME
+    bucketBalanceBefore       1                                  314572800
+    bucketBalanceAfter        1                                  314572800
+    carryOverBucket           1                                      false
+</code></pre>
+      <div class="note" id="concept_dk4_js1_srb__note_etr_gbj_x5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If shadow balance before operation is null both
+          <em class="ph i">shadowBalanceBefore</em> and <em class="ph i">shadowBalanceAfter</em> fields are omitted. Here
+          <em class="ph i">shadowBalanceBefore</em> and <em class="ph i">shadowBalanceAfter</em> indicate the shadow balance of
+        the account before and after the operation, respectively.</div>
+
+    </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

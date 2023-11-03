@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Set recovering system to in service" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="Bookmark139" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Set recovering system to in service</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="Bookmark139">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Set recovering system to in service</h1>
+<div class="body conbody">
+        <p class="p">Set the recovering system to in service by running these commands.</p>
+
+                
+                <pre class="pre codeblock"><code>kubectl -it exec &lt;admincli&gt; -c &lt;container&gt; -n &lt;namespace&gt; -- /opt/tpa/bin/configure-manual-oos -e ME
+
+# Verify MOOS status should change to "FALSE"
+kubectl -it exec &lt;admincli&gt; -c &lt;container&gt; -n &lt;namespace&gt; -- /opt/tpa/bin/configure-manual-oos -s ME
+
+# Output:
+# COMPONENT | MOOS
+# ME: FALSE
+
+# Verify all pod should be up and running
+sleep 20
+kubectl get pods -n &lt;namespace&gt; | egrep 'charging|central|provi|notification|iohd'</code></pre>
+        <div class="p">Where:<ul class="ul" id="Bookmark139__ul_rgh_xdb_bqb">
+                <li class="li"><code class="ph codeph">&lt;admincli&gt;</code> is the name of the admincli pod.</li>
+
+                <li class="li"><code class="ph codeph">&lt;container&gt;</code> is the name of the container.</li>
+
+                <li class="li"><code class="ph codeph">&lt;namespace&gt;</code> is the name of the namespace.</li>
+
+            </ul>
+</div>
+
+        <p class="p">For example, the following shows expected output of the above commands with
+                <code class="ph codeph">growthme-admincli-b6496b469-hlmwb</code> as
+            <code class="ph codeph">&lt;admincli&gt;</code>, <code class="ph codeph">growthme-admincli</code> as
+                <code class="ph codeph">&lt;container&gt;</code>, and <code class="ph codeph">sps-btel-me5</code> as
+                <code class="ph codeph">&lt;namespace&gt;</code>.</p>
+
+        <pre class="pre codeblock" id="Bookmark139__codeblock_utz_3jc_bqb"><code>[root@bcmtvzrm3-control-01 me5]# kubectl -it exec growthme-admincli-b6496b469-hlmwb -c growthme-admincli -n sps-btel-me5 -- /opt/tpa/bin/configure-manual-oos -e ME
+ [root@bcmtvzrm3-control-01 me5]# kubectl -it exec growthme-admincli-b6496b469-hlmwb -c growthme-admincli -n sps-btel-me5 -- /opt/tpa/bin/configure-manual-oos -s ME
+ ------------------
+ COMPONENT | MOOS
+ ------------------
+ ME: FALSE
+ [root@bcmtvzrm3-control-01 me5]# sleep 20
+[root@bcmtvzrm3-control-01 me5]# kubectl get pods -n sps-btel-me5 | egrep 'charging|central|provi|notification|iohd'
+ growthme-centralmanagement-0 2/2 Running 3 4d6h
+ growthme-centralmanagement-1 2/2 Running 2 4d6h
+ growthme-charging-999958474-xrlx5 2/2 Running 0 3d2h
+ growthme-iohd-0 2/2 Running 2 4d6h
+ growthme-iohd-1 2/2 Running 2 4d6h
+ growthme-notification-65d46fd789-fv6qc 2/2 Running 2 4d6h
+ growthme-provisioning-5cff8bfc77-5q6rn 2/2 Running 2 4d6h</code></pre>
+            </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

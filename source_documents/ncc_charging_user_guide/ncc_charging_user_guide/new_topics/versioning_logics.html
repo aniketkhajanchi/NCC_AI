@@ -1,0 +1,1344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Versioning" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="versioning_logics" />
+<link rel="stylesheet" type="text/css" href="../../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../web/css/common-extended.css" /><title>Versioning</title>
+<script src="../../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="versioning_logics">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Versioning</h1>
+<div class="body conbody">
+        <p class="p">Operators can enable versioning for services (logics) using the following parameters:</p>
+
+        <ul class="ul" id="versioning_logics__ul_nvn_jbs_4wb">
+            <li class="li">SM preference: <strong class="ph b">Entity Versioning Enabled</strong>. Once enabled, it cannot be disabled
+                as it has adverse effect on backward compatibility.</li>
+
+            <li class="li">ME application preference: <strong class="ph b">Versioning Enabled</strong></li>
+
+        </ul>
+
+        <p class="p">When versioning is enabled, and you make a change, a new draft copy (minor) version is
+            created (for example, 1.1), which can be published as new major version (for example,
+            2.0).</p>
+
+        <div class="p">The API users can continue using APIs without specifying the exact version numbers (minor
+            or major). The following table describes the behavior when you
+            provision/unprovision/delete a versioned entity without specifying the exact version
+            number in the request.<table cellpadding="4" cellspacing="0" summary="" id="versioning_logics__table_lgv_b2s_4wb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Provisioning/unprovisioning/deleting a versioned entity without specifying
+                    version number</span></caption><colgroup><col style="width:23.475046210720887%" /><col style="width:18.484288354898336%" /><col style="width:58.04066543438078%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e64">Action</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e67">Behavior</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e70">APIs</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e64 "><strong class="ph b">Provision</strong> a versioned entity without specifying the exact
+                                version number in the request</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e67 ">The highest draft version is picked. The withdrawn versions are
+                                also considered as drafts. This behavior is same for provisioning as
+                                active and test-active. </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e70 ">
+                                <ul class="ul" id="versioning_logics__ul_lqy_5ss_4wb">
+                                    <li class="li"><em class="ph i">services/ServiceManager/provision/ChLogic</em></li>
+
+                                    <li class="li"><em class="ph i">services/ServiceManager/testProvision/ChLogic</em></li>
+
+                                    <li class="li"><em class="ph i">services/ServiceManager/publish/ChLogic</em></li>
+
+                                    <li class="li"><em class="ph i">services/ServiceManager/testPublish/ChLogic</em></li>
+
+                                    <li class="li"><em class="ph i">services/ServiceManager/provision/ChargingService</em></li>
+
+                                    <li class="li"><em class="ph i">services/ServiceManager/testProvision/ChargingService</em></li>
+
+                                </ul>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e64 "><strong class="ph b">Unprovision</strong> a versioned entity without specifying the
+                                exact version number in the request</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e67 ">The highest version among the active and test-active versions is
+                                picked. </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e70 "><em class="ph i">services/ServiceManager/withdraw/ChLogic</em>.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e64 "><strong class="ph b">Delete</strong> a versioned entity without specifying the exact
+                                version number in the request</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e67 ">The highest draft version is deleted. If the highest version is
+                                Active, an exception is thrown. </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e70 ">
+                                <ul class="ul" id="versioning_logics__ul_fm5_wss_4wb">
+                                    <li class="li"><em class="ph i">services/ServiceManager/delete/ChLogic</em></li>
+
+                                    <li class="li"><em class="ph i">services/ServiceManager/delete/ChargingService</em></li>
+
+                                </ul>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+</div>
+
+        <p class="p"><strong class="ph b">Trigger lifecycle</strong>: A lifecycle must be triggered to update the subscription with
+            latest version. Following is the API to trigger lifecycle event:</p>
+
+        <pre class="pre codeblock"><code>{
+      "entityType": "com.nokia.tpapps.servicemodel.model.Subscription",
+      "entityId": "{{subscriptionId}}",
+      "meName": "sps-me",
+      "lifeCycleType": "PERIOD",
+      "triggerEvent": "RepeatCycleEvent"  
+}</code></pre>
+        <p class="p">Pre-requisites applicable for following scenarios:</p>
+
+        <ul class="ul" id="versioning_logics__ul_gwj_hj4_brb">
+            <li class="li">The versioning flags must be enabled.</li>
+
+            <li class="li">A lifecycle that has RenewSubscriptionAction is called upon an event.</li>
+
+            <li class="li">Bundle or Account must have a lifecycle.</li>
+
+        </ul>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="versioning_logics__table_grk_nj4_brb" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Scenarios</span></caption><colgroup><col style="width:6.844626967830253%" /><col style="width:21.560574948665295%" /><col style="width:21.286789869952084%" /><col style="width:32.785763175906915%" /><col style="width:17.522245037645447%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e209">No</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e212">Scenario</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e215">Previous behavior</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e218">Current behavior</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e221">Configuration</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e209 ">1</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e212 ">Create a new version of the ChLogic, then TriggerLifecycle Event To
+                            Renew Subscription.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e215 ">A new Subscription is created having the new ChargingLogic values.
+                            The current subscription is moved to final state.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e218 ">The current subscription contains the new values of new version of
+                            the ChLogic.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e221 ">Use the services/ServiceManager/create/ChLogic API to create a new
+                            version of ChLogic and trigger LC Event to Renew
+                                Subscription.<p class="p">Provision the ChLogic.</p>
+<p class="p">After BCR, the new
+                                values of the subscription are the new values in the new
+                                version.</p>
+</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e209 ">2</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e212 ">Create a new version of the Protected ChLogic, then Trigger a
+                            Lifecycle Event to renew subscription.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e215 ">No version protect feature.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e218 ">The subscription has the values of the version that is used to create
+                            the subscription. This means that the subscription is not updated to the
+                            new version of the ChLogic.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e221 ">Create a service with Protected version settings using the create
+                            bundle API with following block in request body:
+                            <pre class="pre codeblock"><code>"versionSettings": {
+    "versionProtectType": "PURCHASE_DATE"
+},</code></pre>Repeat same steps as in case 1. <p class="p">After BCR, the
+                                subscription values are not changed because the ChLogic is related
+                                to a bundle which has a protected version setting.</p>
+</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e209 ">3</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e212 ">Create a new version of ChLogic while the Allowance Limit/Counter is
+                            updated temporarily for two periods.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e215 ">A new subscription is created with new ChargingLogic values. The
+                            temporary values are not considered. The current subscription is moved
+                            to final state.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e218 ">The subscription is updated with new ChargingLogic values. The
+                            allowanceLimit/Counter is updated according to the temporary update. If
+                            it was set to INC/DEC, then this will be on top of the version updated
+                            values. If it was SET, then the API Allowance limit/Counter value take
+                            effect instead of the versioning values. After the two periods, the
+                            version Allowance limit value is taken as the new value from the latest
+                            version of ChLogic.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e221 ">Update the bucket instance or counter instance values temporarily for
+                            two periods using the update subscription API:
+                                <kbd class="ph userinput">/services/ServiceManager/subscriber/update/Subscription</kbd>.
+                            Create a new version of ChLogic and trigger lifecycle event to renew
+                            subscription. <p class="p">After BCR, the updated values of subscription
+                                temporarily is not changed, whereas the non-updated values are taken
+                                from the new version of ChLogic. When the subscription is renewed n
+                                times (where n is the number of periods to keep the temporary
+                                change) the values of subscription is taken from the latest version
+                                of ChLogic. </p>
+</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e209 ">4</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e212 ">Create a new version of ChLogic while the Allowance Limit or Counter
+                            is updated permanently.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e215 ">A new subscription is created with the new ChargingLogic values. The
+                            permanent values are not considered in the new subscription. The current
+                            subscription is moved to final state.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e218 ">The subscription is updated with new ChargingLogic values. The
+                            allowanceLimit/Counter is updated according to the permanent value. If
+                            it was set to INC/DEC, then this will be on top of the version updated
+                            values. If it was SET , then the API Allowance limit value take effect
+                            instead of the versioning values.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e221 ">Update bucket instance or counter instance values permanently using
+                            the update subscription API:
+                                <kbd class="ph userinput">/services/ServiceManager/subscriber/update/Subscription</kbd>.
+                            Create a new version of ChLogic and trigger lifecycle event to renew
+                                subscription.<p class="p">After BCR, the updated values of the subscription
+                                permanently will not be changed, whereas the non-updated values are
+                                taken from the new version of the ChLogic.</p>
+</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e209 ">5</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e212 ">Create a new subscription using the Template API, create a new
+                            version of ChLogic, then trigger LC for Renewal.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e215 ">A new subscription is created with the new ChargingLogic values taken
+                            from the latest version. The current subscription is moved to final
+                            state.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e218 ">The subscription is updated with new ChargingLogic values taken from
+                            the template API. The non mentioned value will be taken from the
+                            chargingLogic version.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e221 ">Create a subscription using the Template API over a service, ChLogic.
+                            Create a new ChLogic version and trigger the lifecycle event to Renew
+                                subscription.<p class="p">After BCR, the values of subscription is not changed
+                                because they are taken from the Template API, whereas the values
+                                that are not provided to the Template API is taken from the latest
+                                version.</p>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+    </div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_rzm_byt_4wb"><h2 class="title topictitle2" id="ariaid-title2">Adding/removing components</h2>
+<div class="body conbody">
+            <div class="p">While creating a new version of charging logic, its following components can be
+                    added/removed:<ul class="ul" id="concept_rzm_byt_4wb__ul_ez1_qly_srb">
+                    <li class="li">Allowance limit</li>
+
+                    <li class="li">Metering limit</li>
+
+                    <li class="li">Custom counters</li>
+
+                    <li class="li">Tiered allowance</li>
+
+                    <li class="li">Fair usage policy</li>
+
+                    <li class="li">Rate</li>
+
+                    <li class="li">Zero rate</li>
+
+                </ul>
+</div>
+
+            <div class="note" id="concept_rzm_byt_4wb__note_pgs_d25_wsb"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Aggregate views can be attached to a device or group. When
+                versioning charging logic, the AV instances can be updated immediately or in next
+                BCR. See <a class="xref" href="#section_um4_w3c_vrb">Example: Immediate versioning of charging logic with AV in Device</a>. </div>
+
+            <div class="section" id="concept_rzm_byt_4wb__section_tlc_gyt_4wb"><h3 class="title sectiontitle">Removing a component</h3>
+                
+                <p class="p">A component (bucket or counter) can be removed from the new version of charging
+                    logic. When a version change is triggered for a subscription that uses the
+                    charging logic, the corresponding instances of the removed components are not
+                    immediately deleted. They are marked as expired by setting the
+                        <em class="ph i">deletionTime</em> field. If the subscription's version type is
+                        <strong class="ph b">IMMEDIATE</strong>, the deletion time is the version time of the new charging
+                    logic in which the component is removed. If the version type is <strong class="ph b">NEXT_BCR</strong>,
+                    the deletion time is the BCR time. The expired components are not used for
+                    rating, nor can they be reset. An expired component gets permanently deleted
+                    from the database at a later time. The <strong class="ph b">History Period</strong> parameter decides
+                    the time at which the expired component must be deleted. This parameter
+                    indicates the minimum number of days for which the expired components are kept
+                    in database. An expired component is permanently deleted at BCR if <strong class="ph b">BCR time -
+                        Deletion time &gt; History Period</strong>. </p>
+
+                <p class="p">While setting a component as expired, a new item is added to the history list of
+                    the component. The end time of this item is equal to the deletion time. The
+                    relevant values (initial value, current value for bucket, current value, ULI,
+                    OLI for counter) are set to the last values before the component was expired and
+                    before proration was done.</p>
+
+                <p class="p">In the middle of an ongoing charging session, a component can be set as expired
+                    while some reservation was already done from it. In this case, the reservation
+                    can be committed as a result of the next CCRU or CCRT requests, but the
+                    component is not used for further reservations.</p>
+
+                <p class="p"><strong class="ph b">Events that trigger versioning</strong></p>
+
+                <div class="p">The addition or deletion of components in the new version of charging the logic
+                    does not get reflected in the existing subscriptions until an appropriate event
+                    triggers the versioning. Following events can trigger versioning:<ul class="ul" id="concept_rzm_byt_4wb__ul_ngb_vny_srb">
+                        <li class="li">Credit control request (CCR) on the device that owns subscription. On
+                            CCR, the versioning is done only if the subscription's version type is
+                                <strong class="ph b">IMMEDIATE</strong>.</li>
+
+                        <li class="li">Billing cycle reset (BCR). On BCR, the versioning is done only if the
+                            version type is <strong class="ph b">NEXT_BCR</strong>, or it is <strong class="ph b">IMMEDIATE</strong> but no event
+                            triggered versioning until BCR.</li>
+
+                        <li class="li">Reset resource action. Buckets or counters can have an individual
+                            lifecycle with Reset Resource Action attached to them. In case the
+                            subscription's version type is <strong class="ph b">IMMEDIATE</strong>, this can also trigger
+                            versioning on the entire subscription that the bucket or counter
+                            instance belongs to.</li>
+
+                    </ul>
+</div>
+
+                <div class="note" id="concept_rzm_byt_4wb__note_cnf_whv_3tb"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The latest published active version of the <em class="ph i">Charging
+                        Logic (Charging Service)</em> can be fixed (updated or edited) and
+                    re-published. For more details, see <a class="xref" href="../updating_published_version.html">Updating latest published active version</a>.</div>
+
+            </div>
+
+            <div class="section" id="concept_rzm_byt_4wb__section_zjl_2yt_4wb"><h3 class="title sectiontitle">Adding a new component</h3>
+                
+                <p class="p">Any supported component can be added to the new version of the charging logic.
+                    When the version change is triggered for a subscription that uses this charging
+                    logic, a new instance for the added component is created along with its
+                    threshold profile. This new instance can be used in future rating events.</p>
+
+                <p class="p">When adding a new component on the new version, if the component being added has
+                    an expired instance on the corresponding subscriptions, the old instance is
+                    re-activated with the new values and the old history. It can be used for future
+                    rating events, and its old values still can be used for the late ratings. </p>
+
+                <p class="p">After adding/removing components in the subscription, all the AV instances
+                    attached to the device/group are refreshed to reflect these changes. The expired
+                    components are excluded from AV instances.</p>
+
+                <p class="p">The <strong class="ph b"><em class="ph i">deletionTime</em>
+                    </strong>component is used in the SM APIs that can return components instances data.
+                    The following are the APIs that was supported to return the
+                    <em class="ph i">deletionTime</em>:</p>
+
+                <table cellpadding="4" cellspacing="0" summary="" id="concept_rzm_byt_4wb__table_mnr_cry_srb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>API changes</span></caption><colgroup><col style="width:9.79431929480901%" /><col style="width:27.52203721841332%" /><col style="width:62.68364348677766%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e496">Method</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e499">Description</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e502">URL</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e496 ">Get</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e499 ">Read Group</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e502 ">​​/subscriber​/update​/Group</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e496 ">Get</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e499 ">Read Subscription</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e502 ">/​subscriber​/getData​/Subscription</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e496 ">Get</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e499 ">Read Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e502 ">/subscriber/getData/Device</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e496 ">Get</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e499 ">Read Account</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e502 ">/subscriber/getData/Account</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e496 ">Get</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e499 ">Read User</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e502 ">/subscriber/getData/User</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e496 ">Get</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e499 ">Read Entity Counter instance</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e502 ">/subscriber/getData/EntityCounterInstance</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e496 ">Get</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e499 ">Read Bucket instance</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e502 ">/subscriber/getData/BucketInstance</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_ncw_mxt_4wb"><h2 class="title topictitle2" id="ariaid-title3">Proration</h2>
+<div class="body conbody">
+            <div class="p">Proration works for all counters as well as for Allowance limits and tiered
+                Allowance. On component (allowance limit/counter) the values for add/update/remoe
+                can be prorated. To see proration, you must comply with the following requirements.
+                    <ul class="ul" id="concept_ncw_mxt_4wb__ul_bzx_nnb_5rb">
+                    <li class="li">The proration profile must be attached to the subscription. It should have a
+                        Bundle periodic life-cycle(LC), or in case if the subscription has no
+                        periodic LC, then by default, monthly LC will be considered from the
+                        account.</li>
+
+                    <li class="li">The proration profile must have immediate versioning at the Bundle level. If
+                        all these requirements are satisfied and you remove a component within the
+                        cycle, the component is prorated. The following formula calculates the
+                        component proration on remove:</li>
+
+                </ul>
+</div>
+
+            <div class="section" id="concept_ncw_mxt_4wb__section_ht2_m5t_4wb"><h3 class="title sectiontitle">Proration on remove</h3><p class="p">The removed
+                    component values can be prorated. To see proration, you must comply with the
+                    requirements mentioned for Proration. The following formula calculates the
+                    component:</p>
+<p class="p">proration on
+                    update:</p>
+<pre class="pre codeblock" id="concept_ncw_mxt_4wb__codeblock_vgs_d25_wsb"><code>Initial value - (Definition value * (Period end date - Remove date)/Period length)</code></pre><p class="p">where</p>
+<ul class="ul" id="concept_ncw_mxt_4wb__ul_y4k_2dm_4wb">
+                    <li class="li"><strong class="ph b">Initial value</strong>: The initial value of the component. For counters, it
+                        is either overage limit or usage limit.</li>
+
+                    <li class="li"><strong class="ph b">Definition value</strong>: The initial value of the catalog (definition). For
+                        counters, it is either overage limit or usage limit.</li>
+
+                    <li class="li"><strong class="ph b">Period end date</strong>: Indicates the LC end date.</li>
+
+                    <li class="li"><strong class="ph b">Remove date</strong>: The date-time when the component was removed. </li>
+
+                    <li class="li"><strong class="ph b">Period length</strong>: The LC length which can be Monthly, Weekly, Daily. The
+                        smallest supported unit is rounding to the current day.</li>
+
+                </ul>
+<div class="p">If there is any consumption or reservation from the component, then after
+                    the proration as a result the consumed or reserved amount is subtracted from the
+                    initial value. If you have a case when more values were consumed than values in
+                    the initial value field, set them to 0. Note that when removing a component, if
+                    the remove time equals activation time with consideration to the granularities
+                    in proration profiles, in this case we will consider it as it lasted 1 unit of
+                    time regarding the granularity (even though it stayed zero unit of time).<div class="note" id="concept_ncw_mxt_4wb__note_wgs_d25_wsb"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> All the calculations made are for component
+                        instance.</div>
+</div>
+<div class="p">The subscription
+                    cancellation is implemented using the same logic. When a user publishes new
+                    charging logic within the current lifecycle by adding or removing or updating
+                    the components, the initial value is deducted by some percent. The deductions
+                    depend on the following factors:<ul class="ul" id="concept_ncw_mxt_4wb__ul_uw1_2yt_wsb">
+                        <li class="li">Type of operation the user is performing</li>
+
+                        <li class="li">When an operation was performed</li>
+
+                        <li class="li">What is the proration profile granularity</li>
+
+                        <li class="li">Does component has it's lifecycle or not</li>
+
+                    </ul>
+</div>
+<div class="p">Following are the granularities in proration profiles for
+                    add/remove/update operations:<ul class="ul" id="concept_ncw_mxt_4wb__ul_fgf_lyt_wsb">
+                        <li class="li"><strong class="ph b">Current Time</strong>: Prorates the component by considering the least
+                            time unit in minutes.</li>
+
+                        <li class="li"><strong class="ph b">Current Hour</strong>: Prorates the component by considering the least
+                            time unit in hours.</li>
+
+                        <li class="li"><strong class="ph b">Current Day</strong>: Prorates the component by considering the least time
+                            unit in days.</li>
+
+                    </ul>
+</div>
+<p class="p">If a component has its lifecycle (periodic lifecycle), then it is
+                    not prorated. Hence, all the components are aligned to subscription lifecycle,
+                    particularly at the end date, all components in the subscription have same end
+                    date. However, the component activation time is considered and the component can
+                    be activated later or with the subscription. Consider the following
+                    configurations:</p>
+<table cellpadding="4" cellspacing="0" summary="" id="concept_ncw_mxt_4wb__table_z12_5zt_wsb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e705">Component name</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e708">Configuration</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e705 ">DefaultSubscriptionBillingCycle</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e708 ">starts on <strong class="ph b">2022-03-01 T 00:00:00</strong><p class="p">ends on
+                                            <strong class="ph b">2022-04-01 T 00:00:00</strong></p>
+</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e705 ">Allowance limit Bckt1</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e708 ">1300-byte</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e705 ">Allowance limit Bckt2</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e708 ">2000-byte</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e705 ">Charging logic → Chlgc1</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e708 ">Allowance Limit → 1300-byte</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e705 ">Account → Acc1</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e708 ">Account Type → PRE_PAID<p class="p">Time zone → UTC</p>
+<p class="p">Billing cycle
+                                        information:</p>
+<ul class="ul" id="concept_ncw_mxt_4wb__ul_gg4_3b5_wsb">
+                                        <li class="li">Hour of Day → 0</li>
+
+                                        <li class="li">Day of Month → 1</li>
+
+                                        <li class="li">Day of Week → SUNDAY (by default)</li>
+
+                                    </ul>
+</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e705 ">Bundle → Bundl1</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e708 ">
+                                    <ul class="ul" id="concept_ncw_mxt_4wb__ul_d2h_4b5_wsb">
+                                        <li class="li">Periodical Lifecycle →
+                                            DefaultSubscriptionBillingCycle</li>
+
+                                        <li class="li">Proration Profile → P1</li>
+
+                                        <li class="li">Charging logic → C1</li>
+
+                                        <li class="li">Service Fee → 20$</li>
+
+                                        <li class="li">Update Type → Immediate</li>
+
+                                    </ul>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+<p class="p">It does not matter if Bundle has Monthly/Daily/Weekly life-cycles. NCC
+                    converts this life-cycle period length to Proration Profiles granularity. For
+                    example, if a Bundle with monthly lifecycle (LC) has a Proration Profile with
+                    Current Hour granularity, then the Bundle LC is converted to hours. For this
+                    example, the Bundle has monthly LC and <strong class="ph b">current date is 2022-03-01 T
+                        00:00:00</strong>.</p>
+<p class="p">Assume that there is a device D0 with account Acc1 and
+                    subscribe to bundle Bndl1 on 2022-03-01 at 00:00:00. Following is the device
+                    overview.</p>
+<table cellpadding="4" cellspacing="0" summary="" id="concept_ncw_mxt_4wb__table_hkq_vd5_wsb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e831">Device name</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e834">Initial value</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e831 ">D0</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e834 ">1300 bytes</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+<p class="p">range [start date, end date] → Indicates both start date and end date
+                    included. </p>
+<p class="p">range [start date, end date) → Indicates only start date
+                    included in calculation. </p>
+<p class="p">Assume that you want to remove an allowance
+                    limit Bckt1 in Chlgc1 on 2022-03-05 at 15:30:40. The proration calculations
+                    depend on each prorate granularity in proration profiles. The initial values
+                    after proration is rounded; for bytes it is always rounded up to the nearest
+                    integer.</p>
+<p class="p"><strong class="ph b">Current days</strong>: The time is truncated to 12:00 AM.</p>
+<table cellpadding="4" cellspacing="0" summary="" id="concept_ncw_mxt_4wb__table_ecz_hk5_wsb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e878">Subscription cycle length</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e881">Component is being active until remove date</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e884">Prorate factor</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e887">Initial value after proration</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e878 ">range [2022-03-01, 2022-04-01) = 31 days</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e881 ">
+                                    <p class="p">range [2022-03-05, 2022-04-01) = 27 days</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e884 ">27/31 = 0.870967442</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e887 ">1300 – (1300 * 0.870967442) = 167.7423254, rounded to
+                                    168</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+<p class="p"><strong class="ph b">Current hours</strong>: For removal, the event date is not truncated and is
+                    rounded up from 15:30:40 to 15:00:00.</p>
+<table cellpadding="4" cellspacing="0" summary="" id="concept_ncw_mxt_4wb__table_fcz_hk5_wsb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e935">Subscription cycle length</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e938">Component is being active until remove date</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e941">Prorate factor</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e944">Initial value after proration</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e935 ">range [2022-03-01, 2022-04-01) = 31 days<p class="p">31 * 24 = 744
+                                        hours</p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e938 ">
+                                    <p class="p">2022-03-05 and left with only 24 – 14 = 9 hours</p>
+
+                                    <p class="p">range [2022-03-06, 2022-04-01) = 26 days = 26 * 24 hours =
+                                        624 hours</p>
+
+                                    <p class="p">Total: 624 + 9 = 633 hours</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e941 ">633/744 = 0.850806452</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e944 ">1300 – (1300 * 0.850806452) = 193.9516124, rounded to
+                                    194</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+<strong class="ph b">Current Time</strong>: For removal, the event date is not truncated and is
+                rounded up from 15:30:40 to 15:30:00.<table cellpadding="4" cellspacing="0" summary="" id="concept_ncw_mxt_4wb__table_gcz_hk5_wsb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1000">Subscription cycle length</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1003">Component is being active until remove date</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1006">Prorate factor</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1009">Initial value after proration</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1000 ">range [2022-03-01, 2022-04-01) = 31 days<p class="p">31*24 = 744
+                                        hours</p>
+<p class="p">744*60 = 44640 minutes</p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1003 ">
+                                    <p class="p">2022-03-05 and left with only 24 – 4 = 8 hours</p>
+
+                                    <p class="p">range [2022-03-06, 2022-04-01) = 26 days = 26 * 24 = 624
+                                        hours</p>
+
+                                    <p class="p">624 + 8 = 632 hours = 632 * 60 minutes = 37920 minutes</p>
+
+                                    <p class="p">Total: 37920 + 30 = 37950 minutes</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1006 ">
+                                    <p class="p">37950/44640 = 0.</p>
+
+                                    <p class="p">850134409</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1009 ">1300 – (1300 * 0.850134409) = 194.8252683, rounded to
+                                    195</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+
+            <div class="section" id="concept_ncw_mxt_4wb__section_tfm_dmt_4wb"><h3 class="title sectiontitle">Proration on update</h3><p class="p">The updated
+                    component values can be prorated. To see proration, you must comply with the
+                    requirements mentioned for Proration. The following formula calculates the
+                    component proration on
+                    update:</p>
+<pre class="pre codeblock" id="concept_ncw_mxt_4wb__codeblock_n3t_rrm_4wb"><code>Initial value - (Old definition value * (Period end date - Event date)/Period length) + (New definition value * (Period end date - Event date)/Period length)</code></pre><p class="p">where</p>
+<ul class="ul" id="concept_ncw_mxt_4wb__ul_glq_xym_4wb">
+                    <li class="li"><strong class="ph b">Initial value:</strong> The initial value of the component. For counters, it
+                        is either overage limit or usage limit.</li>
+
+                    <li class="li"><strong class="ph b">Old definition value:</strong> The initial value of current catalog
+                        (definition). For counters, it is either overage limit or usage limit.</li>
+
+                    <li class="li"><strong class="ph b">Period end date:</strong> Indicates the LC end date.</li>
+
+                    <li class="li"><strong class="ph b">Event date:</strong> The date when the new version was added.</li>
+
+                    <li class="li"><strong class="ph b">New definition value:</strong> The initial value of new catalog (definition)
+                        to be added. For counters, it is either overage limit or usage limit.</li>
+
+                </ul>
+<p class="p">Assume that you want to update an allowance limit Bckt1 from 1300 to 3000
+                    bytes in Chlgc1 on 2022-03-05 at 15:30:40. The proration calculations depend on
+                    each prorate granularity in proration profiles. The initial values after
+                    proration is rounded; for bytes it is always rounded up to the nearest integer.
+                    For update, the computation is different. It is the combination of add and
+                    remove. Prorated definition (catalog) value is subtracted from the initial value
+                    (remove), and the new prorated definition (catalog) value is added to the
+                    initial value (add). The same prorate factor is used for the previous and new
+                    value. The old value is not replaced with new one. In the following example, the
+                    component period is same as subscription period to simplify calculation. For old
+                    component prorate factor, the period is taken from component instance and not
+                    from subscription.</p>
+<p class="p"><strong class="ph b">Current days</strong>: The time is truncated to 12:00
+                    AM.</p>
+<table cellpadding="4" cellspacing="0" summary="" id="concept_ncw_mxt_4wb__table_un4_wm5_wsb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1115">Subscription cycle length</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1118">New component cycle length</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1121">New and old value prorate factor</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1124">Initial value after proration</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1115 ">range [2022-03-01, 2022-04-01) = 31 days</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1118 ">
+                                    <p class="p">range [2022-03-05, 2022-04-01) = 27 days</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1121 ">27/31 = 0.870967442</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1124 "><p class="p">1300 – (1300 * 0.870967442) =
+                                        167.7419354</p>
+<p class="p">0.870967742 * 3000 =
+                                        2612.903226</p>
+<strong class="ph b">Updated value</strong>: 167.7419354 +
+                                    2612.903226 = 2780.6451614, rounded to <strong class="ph b">2781</strong></td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+<p class="p"><strong class="ph b">Current hours</strong>: For update, the event date is truncated and is
+                    rounded down from 15:30:40 to 15:00:00.</p>
+<table cellpadding="4" cellspacing="0" summary="" id="concept_ncw_mxt_4wb__table_y4n_kn5_wsb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1180">Subscription cycle length</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1183">New component cycle length</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1186">New and old value prorate factor</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1189">Initial value after proration</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1180 ">range [2022-03-01, 2022-04-01) = 31 days<p class="p">31 * 24 = 744
+                                        hours</p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1183 ">
+                                    <p class="p">2022-03-05 and left with only 24 – 14 = 9 hours</p>
+
+                                    <p class="p">range [2022-03-06, 2022-04-01) = 26 days</p>
+
+                                    <p class="p">26 * 24 = 624 hours</p>
+
+                                    <p class="p">Total: 624 + 9 = 633 hours</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1186 ">633/744 = 0.850806452</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1189 ">1300 – (1300 * 0.850806452) = 193.9516124 <p class="p">0.850806452 *
+                                        3000 = 2552.419356</p>
+<strong class="ph b">Updated value</strong>: 2552.419356 +
+                                    193.9516124 = 2746.3709684, rounded to <strong class="ph b">2747</strong></td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+<strong class="ph b">Current Time</strong>: For update, the event date is not truncated and is
+                rounded down from 15:30:40 to 15:30:00.<table cellpadding="4" cellspacing="0" summary="" id="concept_ncw_mxt_4wb__table_qdp_245_wsb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1255">Subscription cycle length</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1258">New component cycle length</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1261">New and old value prorate factor</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1264">Initial value after proration</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1255 ">range [2022-03-01, 2022-04-01) = 31 days<p class="p">31*24 = 744
+                                        hours</p>
+<p class="p">744*60 = 44640 minutes</p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1258 ">
+                                    <p class="p">2022-03-05 and left with only 24-14 = 8 hours</p>
+
+                                    <p class="p">range [2022-03-06, 2022-04-01) = 26 days = 26 * 24 = 624
+                                        hours</p>
+
+                                    <p class="p">624+8 = 632 hours = 632 * 60 = 37920 minutes</p>
+
+                                    <p class="p">Total: 37920 + 30 = 37950 minutes</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1261 ">
+                                    <p class="p">37950/44640 = 0.</p>
+
+                                    <p class="p">850134409</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1264 "><p class="p">1300 – (1300 * 0.850134409) =
+                                        194.</p>
+<p class="p">8252683</p>
+<p class="p">0.850134409 * 3000 =
+                                        2550.403227</p>
+<strong class="ph b">Updated value</strong>: 2550.403227 +
+                                    194.8252683 = 2745.2284953, rounded to<strong class="ph b">2746</strong></td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+
+            <div class="section" id="concept_ncw_mxt_4wb__section_xgs_d25_wsb"><h3 class="title sectiontitle">Proration on add</h3><div class="p">The values added to
+                    the component can be prorated. To see proration, you must comply with the same
+                    requirements mentioned for removing a component case. The following formula
+                    calculates the component proration on
+                    add:<pre class="pre codeblock" id="concept_ncw_mxt_4wb__codeblock_ygs_d25_wsb"><code>Initial value * (Period end  date - Component activation date)/period length</code></pre></div>
+<p class="p">where</p>
+<ul class="ul" id="concept_ncw_mxt_4wb__ul_vfz_lqm_4wb">
+                    <li class="li"><strong class="ph b">Initial value</strong>: The initial value of the component. For counters, it
+                        is either overage limit or usage limit.</li>
+
+                    <li class="li"><strong class="ph b">Period end date:</strong> Indicates the the LC end date.</li>
+
+                    <li class="li"><strong class="ph b">Component activation date</strong>: The date when the component became
+                        active.</li>
+
+                    <li class="li"><strong class="ph b">Period length</strong>: The LC full length (in days).</li>
+
+                </ul>
+<p class="p">On addition of component, an instance is created per already prorated
+                    initial value.</p>
+<p class="p">Assume that you want to add an allowance limit Bckt2 in
+                    Chlgc1 on 2022-03-05 at 15:30:40. The proration calculations depend on each
+                    prorate granularity in proration profiles. The initial values after proration is
+                    rounded; for bytes it is always rounded up to the nearest
+                        integer.</p>
+<p class="p"><strong class="ph b">Current days</strong>: The time is truncated to 12:00
+                    AM.</p>
+<table cellpadding="4" cellspacing="0" summary="" id="concept_ncw_mxt_4wb__table_f1c_hg5_wsb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1377">Subscription cycle length</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1380">Component cycle length</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1383">Prorate factor</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1386">Initial value after proration</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1377 ">range [2022-03-01, 2022-04-01) = 31 days</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1380 ">
+                                    <p class="p">range [2022-03-05, 2022-04-01) = 27 days</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1383 ">27/31 = 0.870967442</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1386 ">0.870967442*2000 = 1741.935483871, rounded to 1742</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+<p class="p"><strong class="ph b">Current hours</strong>: The event time is truncated from 15:30:40 to
+                    15:00:00.</p>
+<table cellpadding="4" cellspacing="0" summary="" id="concept_ncw_mxt_4wb__table_eqn_ph5_wsb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1434">Subscription cycle length</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1437">Component cycle length</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1440">Prorate factor</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1443">Initial value after proration</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1434 ">range [2022-03-01, 2022-04-01) = 31 days<p class="p">31*24 = 744
+                                        hours</p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1437 ">2022-03-05 and left with only 24-14 = 9 hours<p class="p">range
+                                        [2022-03-06, 2022-04-01) = 26 days</p>
+<p class="p">26*24 = 624
+                                        hours</p>
+<p class="p">Total: 624+9 = 633 hours</p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1440 ">633/744 = 0.850806452</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1443 ">0.850806452*2000 = 1701.612903226, rounded to 1702</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+<strong class="ph b">Current Time</strong>: The event time is truncated from 15:30:40 to
+                    15:30:00.<table cellpadding="4" cellspacing="0" summary="" id="concept_ncw_mxt_4wb__table_brl_2j5_wsb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1496">Subscription cycle length</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1499">Component cycle length</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1502">Prorate factor</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1505">Initial value after proration</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1496 ">range [2022-03-01, 2022-04-01) = 31 days<p class="p">31*24 = 744
+                                        hours</p>
+<p class="p">744*60 = 44640 minutes</p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1499 ">2022-03-05 and left with only 24-14 = 8 hours<p class="p">range
+                                        [2022-03-06, 2022-04-01) = 26 days</p>
+<p class="p">26*24 = 624
+                                        hours</p>
+<p class="p">624+8 = 632 hours</p>
+<p class="p">632*60 = 37920
+                                        minutes</p>
+<p class="p">Total: 37920+30 = 37950 minutes</p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1502 ">37950/44640 = 0.850134409</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1505 ">0.850134409*2000 = 1700.268817204, rounded to 1701</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title4" id="concept_bvf_fxt_4wb"><h2 class="title topictitle2" id="ariaid-title4">Bucket instance decrement scenario </h2>
+<div class="body conbody">
+            <div class="section"><div class="p">In case of immediate versioning, a new version of a charging logic can
+                    update the values of an existing bucket instance in the middle of a cycle. This
+                    can happen in the following cases:<ul class="ul" id="concept_bvf_fxt_4wb__ul_lgl_ht4_wsb">
+                        <li class="li">Override the bucket initial value in the charging logic new
+                            version.</li>
+
+                        <li class="li">Remove the bucket from the charging logic or remove a charging logic
+                            from a bundle. If a proration profile is configured, then the bucket
+                            values are prorated upon removal.</li>
+
+                    </ul>
+In both these cases, the intial value is updated and the unused and current
+                    values are adjusted accordingly. For immediate versioning, the initial value is
+                    decremented, but the new initial value cannot cover (is less than) an active
+                    reservation. For example: </div>
+<table cellpadding="4" cellspacing="0" summary="" id="concept_bvf_fxt_4wb__table_rjs_nw4_wsb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1578"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1580">Initial value</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1583">Unused value</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1586">Current value</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1578 ">Actual</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1580 ">100</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1583 ">80</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1586 ">10</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1578 ">Previous</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1580 ">-</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1583 ">-</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1586 ">-</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+The preceding table shows the state of the bucket instance. There is a
+                pending total reservation of 70 units. With versioning, the new initial value is 50,
+                but it cannot cover the 70 reservation. This case is handled as follows:<ul class="ul" id="concept_bvf_fxt_4wb__ul_agx_fy4_wsb">
+                    <li class="li">The actual values are copied to previous values.</li>
+
+                    <li class="li">The initial value is set to the new initial value.</li>
+
+                    <li class="li">The unused value and current value is set to 0.</li>
+
+                </ul>
+<table cellpadding="4" cellspacing="0" summary="" id="concept_bvf_fxt_4wb__table_nhf_zy4_wsb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1654"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1656">Initial value</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1659">Unused value</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1662">Current value</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1654 ">Actual</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1656 ">50</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1659 ">0</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1662 ">0</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1654 ">Previous</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1656 ">100</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1659 ">80</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1662 ">10</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+<p class="p">The old reservations are committed or canceled from previous values. For
+                    example, if a request is received to commit 10 out of 70, it is done from
+                    previous values.</p>
+<table cellpadding="4" cellspacing="0" summary="" id="concept_bvf_fxt_4wb__table_d2y_fz4_wsb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1720"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1722">Initial value</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1725">Unused value</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1728">Current value</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1720 ">Actual</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1722 ">50</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1725 ">0</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1728 ">0</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1720 ">Previous</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1722 ">100</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1725 ">70</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1728 ">70</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+<p class="p">However, the end user received only 30 units of 50. Hence, the remaining
+                    20 is passed back to actual values and can be used for future reservations. The
+                    final state of bucket is as follows:</p>
+<table cellpadding="4" cellspacing="0" summary="" id="concept_bvf_fxt_4wb__table_w1v_41p_wsb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1786"> </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1788">Initial value</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1791">Unused value</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d128493e1794">Current value</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1786 ">Actual</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1788 ">50</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1791 ">20</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1794 ">20</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1786 ">Previous</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1788 ">100</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1791 ">70</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d128493e1794 ">70</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+<p class="p"><strong class="ph b">Limitation</strong></p>
+<div class="p">The bucket instance previous values are used to
+                    commit reservations done before subscription reset. To avoid conflicts between
+                    these two cases, the immediate versioning is skipped for the subscription
+                    altogether if any of following conditions is true:<ul class="ul" id="concept_bvf_fxt_4wb__ul_z4l_wgp_wsb">
+                        <li class="li">[Current Time] - [Subscription's last reset time] &lt; [Validity time of
+                            the active slicing profile]</li>
+
+                        <li class="li">[Subscription's upcoming reset time] - [Current Time] &lt; [Validity
+                            time of the active slicing profile]</li>
+
+                    </ul>
+</div>
+<p class="p">In other words, the immediate versioning is skipped if the
+                    subscription's current period's start and end dates are too close to the
+                    versioning time.</p>
+</div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title5" id="concept_lyk_zwt_4wb"><h2 class="title topictitle2" id="ariaid-title5">Versioning of allowance limit carry-over properties</h2>
+<div class="body conbody">
+            <div class="section"><p class="p">The carry-over allowance limit has following properties:</p>
+<img class="image imagecenter break" id="concept_lyk_zwt_4wb__image_s5r_m3p_wsb" src="../../images/allowance_limit_carry_over.png" height="109" width="514" />Currently, NCC allows
+                versioning of these properties. That is, in the new charging logic versions, any
+                changes to these values are reflected on the existing bucket instances. Irrespective
+                of the version type being IMMEDIATE or NEXT_BCR on subscription renewal the
+                carry-over amount will be distributed according to the new values.</div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title6" id="section_um4_w3c_vrb"><h2 class="title topictitle2" id="ariaid-title6">Example: Immediate versioning of charging logic with AV in Device</h2>
+<div class="body conbody">
+            <p class="p">For immediate versioning of charging logic with AV in device with version protect
+                enabled, then after publishing the new version and consuming from each subscription,
+                the AV instance keeps the previous versions intact. </p>
+
+            <p class="p">Consider that a CHARGING_SERVICE AV and COUNTER AV instances in device have multiple
+                subscriptions. A new version of charging logic is created. After publishing the new
+                version and consuming each subscription, the AV instance gets updated according to
+                the new versions. </p>
+
+            <div class="p">Following is the configuration for this use case:<ol class="ol" id="section_um4_w3c_vrb__ol_z3k_jjc_vrb">
+                    <li class="li">Create and distribute AV of type CHARGING_SERVICE and set the charging
+                        services for it to follow. </li>
+
+                    <li class="li">Create and distribute AV of type COUNTER set to subscription counters.</li>
+
+                    <li class="li">Create a new version of charging logic and update the allowance limit
+                        Initial Value for the charging logic.</li>
+
+                    <li class="li">Execute a charging call to activate the immediate versioning.</li>
+
+                </ol>
+</div>
+
+            <p class="p"><strong class="ph b">Expected result</strong>: AV shows the updated value of Allowance limit according to
+                the new version, with deductions applicable for the charging call.</p>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

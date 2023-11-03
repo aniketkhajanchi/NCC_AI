@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="db-remove-data" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="db-remove-data" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>db-remove-data</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="db-remove-data">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">db-remove-data</h1>
+<div class="body conbody">
+        <div class="section" id="db-remove-data__section_h1k_1sj_nlb"><h2 class="title sectiontitle">Description</h2>
+            
+            <p class="p">This tool is used to delete data from a set (table) in the Aerospike database. At
+                times, it may be required to empty a given data set. db-remove-data allows users to
+                remove all records from a data set in a simple, efficient manner. </p>
+
+            <p class="p">This tool may also be used to clean all data from a given database node the next time
+                that node reboots. This is achieved by setting a flag (which is read during the next
+                node reboot), which removes all database disk files and forces a clean boot (relying
+                instead on the data from peer database nodes to populate the database on that
+                node).</p>
+
+            <div class="note notice"><div class="noticetitle"><img src="../../web/css/../images/notice.svg" title="notice-icon" class="noteicon" />Notice:</div> This command removes ALL data from the specified data set. Once
+                complete, this action cannot be reversed. Ensure this is what you want to do before
+                running the db-remove-data tool.</div>
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                <ul class="ul" id="db-remove-data__ul_ux3_4cg_wqb">
+                    <li class="li">db-remove-data does not run if there is an instance running of db-backup,
+                        db-restore, or db-remove-data for the same data set. In this case, an error
+                        message is displayed.</li>
+
+                    <li class="li">A clean boot is required anytime a node has been out-of-service for more
+                        than a couple hours, prior to bringing that node back to service, to ensure
+                        that no deleted records are mistakenly inserted back into the database
+                        cluster.</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="section" id="db-remove-data__section_z2k_jsj_nlb"><h2 class="title sectiontitle">Syntax</h2>
+            
+            <pre class="pre codeblock"><code>db-remove-data -s &lt;set&gt; [-n namespace] [-r] [-w &lt;node&gt;]</code></pre>
+            <table cellpadding="4" cellspacing="0" summary="" id="db-remove-data__table_z51_lsj_nlb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:35.97122302158273%" /><col style="width:64.02877697841726%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d8189e72">Code</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d8189e75">Description</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d8189e72 "><code class="ph codeph">No arguments</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d8189e75 ">Displays usage/help information.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d8189e72 "><code class="ph codeph">-h</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d8189e75 ">Displays usage/help information. </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d8189e72 "><code class="ph codeph">-s &lt;set&gt;</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d8189e75 ">Specifies the data set (table) from which to remove the
+                                data.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d8189e72 "><code class="ph codeph">-n &lt;namespace&gt;</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d8189e75 ">Namespace for the specified set, or all. The default value is all
+                                and means to remove data from the given set from all namespaces that
+                                include a set by that name.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d8189e72 "><code class="ph codeph">-r</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d8189e75 ">Remove records completely without the durable delete feature,
+                                leaving behind no tombstones.<div class="note caution"><div class="cautiontitle"><img src="../../web/css/../images/caution.svg" title="caution-icon" class="noteicon" />CAUTION:</div> This can leave the
+                                    system vulnerable to resurrected records that were previously
+                                    deleted. This option should therefore NOT BE USED for most
+                                    situations.</div>
+<p class="p">This option should only be used for
+                                    specific use cases by users who completely understand the
+                                    impacts.</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d8189e72 "><code class="ph codeph">-c &lt;node&gt;</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d8189e75 ">Use this for clean boot. This option wipes all data from the
+                                given node (where node is the hostname/podname) when it is
+                                booted.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d8189e72 "><code class="ph codeph">-w &lt;node&gt;</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d8189e75 ">Wipe all data from the given node when the database is
+                                OOS.</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <div class="section" id="db-remove-data__section_qsw_rbg_wqb"><h2 class="title sectiontitle">Example</h2> If the Aerospike pod/node name is
+                <var class="keyword varname">ig-aerospike-0</var>:<div class="fig fignone" id="db-remove-data__fig_ph1_tbg_wqb">
+                <pre class="pre codeblock"><code>[tpaadmin@&lt;ADMIN CLI POD&gt; /]$/opt/tpa/bin/db-remove-data -c ig-aerospike-0
+ 
+**** CAUTION: This will cause ALL DATA TO BE REMOVED from the node ig-aerospike-0 ****
+Once the node has been booted, THIS CANNOT BE UNDONE.
+ 
+Do you wish to continue? [y/n] y
+ 
+Set the key ig-aerospike-0/config/aerospike/datastore/cleanboot to be true in sdc</code></pre>
+            </div>
+</div>
+
+        <div class="section" id="db-remove-data__section_hsk_wbg_wqb"><h2 class="title sectiontitle">Verification</h2><div class="fig fignone" id="db-remove-data__fig_fnn_xbg_wqb">
+                <pre class="pre codeblock"><code>sdcctl get system &lt;AEROSPIKE POD NAME&gt;/config/aerospike/datastore/cleanboot</code></pre>
+            </div>
+As the Aerospike pod/node name is <var class="keyword varname">ig-aerospike-0</var>:<div class="fig fignone" id="db-remove-data__fig_uyl_d2g_wqb">
+                <pre class="pre codeblock"><code>[tpaadmin@&lt;ADMIN CLI POD&gt; /]$ sdcctl get system ig-aerospike-0/config/aerospike/datastore/cleanboot
+true</code></pre>
+            </div>
+</div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

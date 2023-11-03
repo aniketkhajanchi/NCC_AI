@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Input variables" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="Bookmark9" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Input variables</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="Bookmark9">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Input variables</h1>
+<div class="body conbody">
+    <p class="p">Input values can be supplied to terraform by using the tfvars syntax. For more information on
+      the syntax, see <a class="xref" href="https://www.terraform.io/language/values/variables" target="_blank" rel="noopener noreferrer">https://www.terraform.io/language/values/variables</a>.</p>
+
+    <table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Input variables</span></caption><colgroup><col style="width:18.181818181818183%" /><col style="width:27.27272727272727%" /><col style="width:18.181818181818183%" /><col style="width:9.090909090909092%" /><col style="width:27.27272727272727%" /></colgroup><thead class="thead" style="text-align:left;">
+          <tr class="row">
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d20702e54">Attribute name</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d20702e57">Default value</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d20702e60">Mandatory</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d20702e63">Type</th>
+
+            <th class="entry cellrowborder" style="vertical-align:top;" id="d20702e66">Description</th>
+
+          </tr>
+
+        </thead>
+<tbody class="tbody">
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d20702e54 ">aws-profile</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d20702e57 ">null</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d20702e60 ">yes</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d20702e63 ">string</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d20702e66 ">Name of the aws profile you have setup to connect to your aws account.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d20702e54 ">region</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d20702e57 ">“us-east-1”</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d20702e60 ">no</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d20702e63 ">string</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d20702e66 ">AWS region to be used.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d20702e54 ">permissions-boundary</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d20702e57 ">“arn:aws:iam::966096131882:policy/NokiaBoundary”</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d20702e60 ">no</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d20702e63 ">string</td>
+
+            <td class="entry cellrowborder" style="vertical-align:top;" headers="d20702e66 ">Permission boundary if any for your account.</td>
+
+          </tr>
+
+        </tbody>
+</table>
+
+  </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

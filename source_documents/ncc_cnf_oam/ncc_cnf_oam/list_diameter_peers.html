@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="list-diameter-peers" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="list_diameter_peers" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>list-diameter-peers</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="list_diameter_peers">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">list-diameter-peers</h1>
+<div class="body conbody">
+        <div class="section"><h2 class="title sectiontitle">Description</h2>
+            
+            <div class="p">Use this tool to list the Diameter peer information from the active IOHD and Charging
+                pods. The tool is located in the <span class="ph filepath">/opt/tpa/bin</span> directory and
+                must be run by the tpaadmin user.<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This tool does not work when sites are in a
+                    MOOS/OOS state or charging/IOHD pods are not READY.</div>
+</div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Syntax</h2>
+            
+            <div class="p">
+                <pre class="pre codeblock"><code>list-diameter-peers [-h] [-s] [-a]</code></pre>
+            </div>
+
+            <div class="p">
+                <table cellpadding="4" cellspacing="0" summary="" id="list_diameter_peers__table_pys_y5n_mnb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Options</span></caption><colgroup><col style="width:33.33333333333333%" /><col style="width:66.66666666666666%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d14164e67">Option</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d14164e70">Description</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d14164e67 "><code class="ph codeph">No arguments</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d14164e70 ">List the Diameter peer information from active IOHD
+                                    node.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d14164e67 "><code class="ph codeph">-h or -?</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d14164e70 ">Displays usage/help information.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d14164e67 "><code class="ph codeph">-s</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d14164e70 ">Display a summary of the peers.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d14164e67 "><code class="ph codeph">-a</code></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d14164e70 ">Collects information from active IOHD and Charging
+                                    pods.</td>
+
+                            </tr>
+
+                            
+                        </tbody>
+</table>
+
+            </div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Examples</h2>
+            
+            <div class="p"><pre class="pre codeblock"><code>list-diameter-peers
+INFO: Finding service with headless=false, and labels=app=iohd
+list peers on &lt;ip_address&gt;
+
+Local Peer:
+  Origin-Host: ig1.realm
+  Origin-Realm: realm
+  Connected: true
+  Connected Address: null
+  Quarantined: false
+  Origin-State-Id: 1685095702
+  Hostname: po-ig-ig-iohd-1
+  Port: 3868
+  Protocol: TCP
+  Is secure: true
+  IP addresses:
+    IPV4: &lt;ipv4_address&gt;
+  Firmware rev: 23050000080
+  Product name: Smart Plan Suite
+  Vendor ID: NSN
+  Supported Vendor IDs: CISCOCSG2,VerizonWireless,NSN,ALU,3GPP,3GPP2,OPENET
+  Inband Security IDs:
+  Accounting applications:
+  Authorization applications:
+    Diameter (0)
+    NASREQ (1)
+    N28 (167773025)
+    CreditControl / Gy / IMS / Ro (4)
+    N40 (40)
+    Proprietary (99999999)
+    ICCSy (111)
+    Gxx (16777266)
+    S9 (16777267)
+    Rx (16777236)
+    Gx (16777238)
+    Sy (16777302)
+    Sd (16777303)
+  Vendor-specific applications:
+    Diameter (0)
+    N28 (167773025)
+    Gxx (16777266)
+    S9 (16777267)
+    Rx (16777236)
+    CreditControl / Gy / IMS / Ro (4)
+    Gx (16777238)
+    Sy (16777302)
+    Sd (16777303)
+    N40 (40)
+    Proprietary (99999999)
+    ICCSy (111)
+  Name: Tcp1
+  Id: 4611686018427387917
+
+  Remote Peers: 1
+    Origin-Host: gyClient.gyRealm
+    Origin-Realm: gyRealm
+    Connected: true
+    Connected Address: &lt;ip_address&gt;
+    Quarantined: false
+    Origin-State-Id: 1685125754
+    Hostname: &lt;ip_address&gt;
+    Port: 39849
+    Protocol: TCP
+    Is secure: true
+    IP addresses:
+      IPV6: 0:0:0:0:0:0:0:1
+      IPV4: 10.11.176.200
+      IPV6: fe80:0:0:0:f816:3eff:fe2b:3de2
+      IPV4: 192.168.122.1
+    Firmware rev: -1
+    Product name: A5350 Diameter Agent
+    Vendor ID: IETF_IANA
+    Supported Vendor IDs:
+    Inband Security IDs:
+    Application: Relay
+    Id: 2305843009213694054
+
+list-diameter-peers -s
+INFO: Finding service with headless=false, and labels=app=iohd
+list peers on &lt;ip_address&gt;
+
+Local Peer:
+  Origin-Host: ig1.realm, Connected: true, Name: Tcp1, Id: 4611686018427387917
+
+  Remote Peers: 1
+    Origin-Host: gyClient.gyRealm, Connected: true, Id: 2305843009213694054
+
+
+list-diameter-peers -a
+INFO: Finding service with headless=false, and labels=app=iohd
+INFO: Finding service with headless=true, and labels=appi=charging-api
+list peers on &lt;ip_address&gt;
+
+Local Peer:
+  Origin-Host: ig1.realm
+  Origin-Realm: realm
+  Connected: true
+  Connected Address: null
+  Quarantined: false
+  Origin-State-Id: 1685095702
+  Hostname: po-ig-ig-iohd-1
+  Port: 3868
+  Protocol: TCP
+  Is secure: true
+  IP addresses:
+    IPV4: &lt;ipv4_address&gt;
+  Firmware rev: 23050000080
+  Product name: Smart Plan Suite
+  Vendor ID: NSN
+  Supported Vendor IDs: CISCOCSG2,VerizonWireless,NSN,ALU,3GPP,3GPP2,OPENET
+  Inband Security IDs:
+  Accounting applications:
+  Authorization applications:
+    Diameter (0)
+    NASREQ (1)
+    N28 (167773025)
+    CreditControl / Gy / IMS / Ro (4)
+    N40 (40)
+    Proprietary (99999999)
+    ICCSy (111)
+    Gxx (16777266)
+    S9 (16777267)
+    Rx (16777236)
+    Gx (16777238)
+    Sy (16777302)
+    Sd (16777303)
+  Vendor-specific applications:
+    Diameter (0)
+    N28 (167773025)
+    Gxx (16777266)
+    S9 (16777267)
+    Rx (16777236)
+    CreditControl / Gy / IMS / Ro (4)
+    Gx (16777238)
+    Sy (16777302)
+    Sd (16777303)
+    N40 (40)
+    Proprietary (99999999)
+    ICCSy (111)
+  Name: Tcp1
+  Id: 4611686018427387917
+
+  Remote Peers: 1
+    Origin-Host: gyClient.gyRealm
+    Origin-Realm: gyRealm
+    Connected: true
+    Connected Address: &lt;ip_address&gt;
+    Quarantined: false
+    Origin-State-Id: 1685125754
+    Hostname: &lt;ip_address&gt;
+    Port: 39849
+    Protocol: TCP
+    Is secure: true
+    IP addresses:
+      IPV6: 0:0:0:0:0:0:0:1
+      IPV4: 10.11.176.200
+      IPV6: fe80:0:0:0:f816:3eff:fe2b:3de2
+      IPV4: 192.168.122.1
+    Firmware rev: -1
+    Product name: A5350 Diameter Agent
+    Vendor ID: IETF_IANA
+    Supported Vendor IDs:
+    Inband Security IDs:
+    Application: Relay
+    Id: 2305843009213694054
+
+list peers on &lt;ip_address&gt;
+
+Local Peer:
+  Origin-Host: ig1.realm
+  Origin-Realm: realm
+  Connected: true
+  Connected Address: null
+  Quarantined: false
+  Origin-State-Id: 1685095702
+  Hostname: po-ig-ig-charging-5f8594848d-znp2f
+  Port: 3868
+  Protocol: unknown
+  Is secure: false
+  IP addresses:
+  Firmware rev: 23050000080
+  Product name: Smart Plan Suite
+  Vendor ID: NSN
+  Supported Vendor IDs: CISCOCSG2,VerizonWireless,NSN,ALU,3GPP,3GPP2,OPENET
+  Inband Security IDs:
+  Accounting applications:
+  Authorization applications:
+    Diameter (0)
+    NASREQ (1)
+    N28 (167773025)
+    CreditControl / Gy / IMS / Ro (4)
+    N40 (40)
+    Proprietary (99999999)
+    ICCSy (111)
+    Gxx (16777266)
+    S9 (16777267)
+    Rx (16777236)
+    Gx (16777238)
+    Sy (16777302)
+    Sd (16777303)
+  Vendor-specific applications:
+    Diameter (0)
+    N28 (167773025)
+    Gxx (16777266)
+    S9 (16777267)
+    Rx (16777236)
+    CreditControl / Gy / IMS / Ro (4)
+    Gx (16777238)
+    Sy (16777302)
+    Sd (16777303)
+    N40 (40)
+    Proprietary (99999999)
+    ICCSy (111)
+  Name: Tcp1
+  Id: 4611686018427387926
+
+  Remote Peers: 1
+    Origin-Host: gyClient.gyRealm
+    Origin-Realm: gyRealm
+    Connected: true
+    Connected Address: &lt;ip_address&gt;
+    Quarantined: false
+    Origin-State-Id: 1685125754
+    Hostname: &lt;ip_address&gt;
+    Port: 39849
+    Protocol: TCP
+    Is secure: true
+    IP addresses:
+      IPV6: 0:0:0:0:0:0:0:1
+      IPV4: 10.11.176.200
+      IPV6: fe80:0:0:0:f816:3eff:fe2b:3de2
+      IPV4: 192.168.122.1
+    Firmware rev: -1
+    Product name: A5350 Diameter Agent
+    Vendor ID: IETF_IANA
+    Supported Vendor IDs:
+    Inband Security IDs:
+    Application: Relay
+    Id: 2305843009213694054
+
+list peers on &lt;ip_address&gt;
+
+Local Peer:
+  Origin-Host: ig1.realm
+  Origin-Realm: realm
+  Connected: true
+  Connected Address: null
+  Quarantined: false
+  Origin-State-Id: 1685095702
+  Hostname: po-ig-ig-charging-5f8594848d-92mvm
+  Port: 3868
+  Protocol: unknown
+  Is secure: false
+  IP addresses:
+  Firmware rev: 23050000080
+  Product name: Smart Plan Suite
+  Vendor ID: NSN
+  Supported Vendor IDs: CISCOCSG2,VerizonWireless,NSN,ALU,3GPP,3GPP2,OPENET
+  Inband Security IDs:
+  Accounting applications:
+  Authorization applications:
+    Diameter (0)
+    NASREQ (1)
+    N28 (167773025)
+    CreditControl / Gy / IMS / Ro (4)
+    N40 (40)
+    Proprietary (99999999)
+    ICCSy (111)
+    Gxx (16777266)
+    S9 (16777267)
+    Rx (16777236)
+    Gx (16777238)
+    Sy (16777302)
+    Sd (16777303)
+  Vendor-specific applications:
+    Diameter (0)
+    N28 (167773025)
+    Gxx (16777266)
+    S9 (16777267)
+    Rx (16777236)
+    CreditControl / Gy / IMS / Ro (4)
+    Gx (16777238)
+    Sy (16777302)
+    Sd (16777303)
+    N40 (40)
+    Proprietary (99999999)
+    ICCSy (111)
+  Name: Tcp1
+  Id: 4611686018427387928
+
+  Remote Peers: 1
+    Origin-Host: gyClient.gyRealm
+    Origin-Realm: gyRealm
+    Connected: true
+    Connected Address: 127.0.0.6
+    Quarantined: false
+    Origin-State-Id: 1685125754
+    Hostname: &lt;ip_address&gt;
+    Port: 39849
+    Protocol: TCP
+    Is secure: true
+    IP addresses:
+      IPV6: 0:0:0:0:0:0:0:1
+      IPV4: 10.11.176.200
+      IPV6: fe80:0:0:0:f816:3eff:fe2b:3de2
+      IPV4: &lt;ipv4_address&gt;
+    Firmware rev: -1
+    Product name: A5350 Diameter Agent
+    Vendor ID: IETF_IANA
+    Supported Vendor IDs:
+    Inband Security IDs:
+    Application: Relay
+    Id: 2305843009213694054</code></pre></div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

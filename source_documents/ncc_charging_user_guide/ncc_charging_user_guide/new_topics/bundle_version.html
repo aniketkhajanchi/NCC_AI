@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Versioning" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="bundle_version" />
+<link rel="stylesheet" type="text/css" href="../../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../web/css/common-extended.css" /><title>Versioning</title>
+<script src="../../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="bundle_version">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Versioning</h1>
+<div class="body conbody">
+        <p class="p">Operators can enable versioning for services (bundles) using the following
+            parameters:</p>
+
+        <ul class="ul" id="bundle_version__ul_nvn_jbs_4wb">
+            <li class="li">SM preference: <strong class="ph b">Entity Versioning Enabled</strong>. Once enabled, it cannot be disabled
+                as it has adverse effect on backward compatibility.</li>
+
+            <li class="li">ME application preference: <strong class="ph b">Versioning Enabled</strong></li>
+
+        </ul>
+
+        <p class="p">When versioning is enabled, and you make a change, a new draft copy (minor) version is
+            created (for example, 1.1), which can be published as new major version (for example,
+            2.0).</p>
+
+        <p class="p">The API users can continue using APIs without specifying the exact version numbers (minor
+            or major). </p>
+
+        <p class="p">The service (bundle) create API is:
+                <kbd class="ph userinput">/services/ServiceManager/create/Bundle</kbd> and publish API is:
+                <kbd class="ph userinput">/services/ServiceManager/provision/Bundle</kbd>.</p>
+
+        <p class="p">NCC uses the following approach to provision, unprovision, or delete a versioned
+            entity:</p>
+
+        <table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Provisioning/unprovisioning/deleting a versioned entity without specifying
+                version number</span></caption><colgroup><col style="width:23.475046210720887%" /><col style="width:18.484288354898336%" /><col style="width:58.04066543438078%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d57754e78">Action</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d57754e81">Behavior</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d57754e84">APIs</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e78 "><strong class="ph b">Provision</strong> a versioned entity without specifying the exact
+                            version number in the request</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e81 ">The highest draft version is picked. The withdrawn versions are also
+                            considered as drafts. This behavior is same for provisioning as active
+                            and test-active. </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e84 ">
+                            <ul class="ul" id="bundle_version__ul_lw1_5gp_pwb">
+                                <li class="li"><em class="ph i">services/ServiceManager/provision/Bundle</em></li>
+
+                                <li class="li"><em class="ph i">services/ServiceManager/testProvision/Bundle</em></li>
+
+                                <li class="li"><em class="ph i">services/ServiceManager/publish/Bundle</em></li>
+
+                                <li class="li"><em class="ph i">services/ServiceManager/testPublish/Bundle</em></li>
+
+                            </ul>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e78 "><strong class="ph b">Unprovision</strong> a versioned entity without specifying the exact
+                            version number in the request</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e81 ">The highest version among the active and test-active versions is
+                            picked. </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e84 "><em class="ph i">services/ServiceManager/withdraw/Bundle</em></td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e78 "><strong class="ph b">Delete</strong> a versioned entity without specifying the exact version
+                            number in the request</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e81 ">The highest draft version is deleted. If the highest version is
+                            Active, an exception is thrown. </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e84 "> </td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+        <p class="p">Previously, the new version of the service (bundle) was effective on BCR by creating a
+            new subscription and moving the current subscription to final state. Currently, NCC
+            allows to update the subscription with the latest service (bundle) version at BCR. </p>
+
+        <p class="p">Pre-requisites applicable for following scenarios:</p>
+
+        <ul class="ul" id="bundle_version__ul_t2f_nt4_brb">
+            <li class="li">The versioning flags must be enabled.</li>
+
+            <li class="li">Versioning must be enabled for service: fee, max renewals and PLC under some
+                restrictions and assumptions. </li>
+
+            <li class="li">A lifecycle has RenewSubscriptionAction followed by ResetPeriodAction. </li>
+
+            <li class="li">Service or Account must have a lifecycle.</li>
+
+            <li class="li">Fee and MaxRenewal Versioning changes are not relevant in the
+                ResetSubscriptionAction (no use of fee and MaxRenewals).</li>
+
+            <li class="li">The only difference between PLC version 1 and PLC version 2 is the <strong class="ph b">Timer
+                    value</strong> and <strong class="ph b">Timer units</strong> fields (same events and actions).</li>
+
+            <li class="li">PLC Versioning changes are applied only during RenewSubscriptionAction followed by
+                ResetPeriodAction of <strong class="ph b">Subscription </strong>(not supported in case of Account
+                BCR).</li>
+
+            <li class="li">Versioning happens at BCR (regardless if version type = immediately or next
+                BCR).</li>
+
+            <li class="li"><strong class="ph b">Protect</strong> value is considered for the version change.</li>
+
+            <li class="li">Service<strong class="ph b"> Template API - </strong>consider PLC Override permanent.</li>
+
+        </ul>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="bundle_version__table_grk_nj4_bub" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Scenarios</span></caption><colgroup><col style="width:6.596306068601583%" /><col style="width:28.693931398416883%" /><col style="width:25.659630606860155%" /><col style="width:21.50395778364116%" /><col style="width:17.54617414248021%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d57754e231">No</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d57754e234">Scenario</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d57754e237">Previous behavior</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d57754e240">Current behavior</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d57754e243">Configuration</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e231 ">1</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e234 ">Create a new version of Service, then wait for next Lifecycle Event
+                            To Renew Subscription.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e237 ">A new subscription is created with the new values according to the
+                            new service version. The current subscription is moved to final
+                            state.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e240 ">The current subscription contains the new values of new version of
+                            service.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e243 ">Create service version 1 → Fee =10, Max Renewals =30, PLC=LC_1MIN(1
+                            minute lifecycle renewal)<p class="p">Use the API to create service version 2 →
+                                Fee=50, Max Renewals=40, PLC=LC_4DAYS(4 days lifecycle
+                                renewal)</p>
+<p class="p">Wait (1 minute) for next lifecycle event to renew
+                                subscription. </p>
+<p class="p">After BCR, the new values of subscription are
+                                the new values in the new version.</p>
+</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e231 ">2</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e234 ">Create New version of Protected Service, then wait for next Lifecycle
+                            Event To Renew Subscription</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e237 ">No version protect feature.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e240 ">Subscription has the values of the version that is used to create the
+                            subscription. This means, the subscription will not be updated to the
+                            new version of service.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e243 ">Create a service with Protected version settings and repeat same
+                            steps as in case 1.<div class="p">For creating service with protected version
+                                settings, add the following block in the request
+                                body:<pre class="pre codeblock"><code>"versionSettings": {
+    "versionProtectType": "PURCHASE_DATE"
+},</code></pre></div>
+<p class="p">After BCR, the subscription values remain
+                                unchanged.</p>
+</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e231 ">3</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e234 ">New subscription using Template API, Create new version of Service,
+                            then wait for next Lifecycle Event To Renew Subscription</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e237 ">A new Subscription is created with the new service values taken from
+                            the latest version. The current subscription is be moved to final
+                            state.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e240 ">The subscription is updated according to service values taken from
+                            the Template API. The non mentioned value will be taken from the service
+                            new version.</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e243 ">Create a subscription using the Template API over a service. Create a
+                            new service version, then wait for next lifecycle event to renew
+                                subscription.<p class="p">After BCR, the values of subscription remain
+                                unchanged because they are taken from the Template API, whereas the
+                                values that are not provided to the Template API are taken from the
+                                latest version.</p>
+</td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+        <div class="p">Previously, operators were not able to update the subscription
+            with new service (bundle) or charging logic versions for a bundle with NEXT_BCR version
+            type until the start of the next period. However, this type of update is needed
+            immediately for the cases when an operator has to perform emergent fixes on the
+            subscription catalog. Operators do not want to wait for the next period to deliver the
+            fix for the subscribers. Currently, NCC allows to immediately deliver new versions of
+            the bundle or charging logic to the subscribed users when a subscription to a bundle has
+            version type = NEXT_BCR. The <strong class="ph b">forceVersioning</strong> attribute can be used to force a new
+            version of the bundle or charging logic to apply immediately on the subscription. This
+            change takes effect if the bundle version type = NEXT_BCR. If <strong class="ph b">forceVersioning</strong> is
+            true, then versioning changes are applied immediately. If <strong class="ph b">forcedVersioning</strong> is
+            false, then versioning changes are applied to the next period. The
+                <strong class="ph b">forcedVersioning</strong> attribute is available in the following APIs:<ul class="ul" id="bundle_version__ul_nvt_xwc_vsb">
+                <li class="li">/services/ServiceManager/create/Bundle</li>
+
+                <li class="li">/services/ServiceManager/create/ChLogic</li>
+
+                <li class="li">/services/ServiceManager/create/ChargingService</li>
+
+                <li class="li">/services/ServiceManager/provision/Bundle</li>
+
+                <li class="li">/services/ServiceManager/provision/ChLogic</li>
+
+                <li class="li">/services/ServiceManager/provision/ChargingService</li>
+
+            </ul>
+</div>
+
+        <div class="section" id="bundle_version__section_lwh_rmy_srb"><h2 class="title sectiontitle">Adding/removing charging logic (charging
+                service)</h2><div class="note"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The <strong class="ph b">versionProtectType</strong> must be <strong class="ph b">NOT_PROTECTED</strong> to
+                make the new version of service with added or removed charging logic affect the
+                existing subscription.</div>
+<p class="p"><strong class="ph b">Adding a charging logic</strong></p>
+<p class="p">The creation of
+                a new version of the service (bundle) with addition of a charging service affects
+                the existing subscription immediately (at CCR) or at next bill cycle (at BCR). The
+                proration is considered when creating a charging service instance such as prorated
+                bucket IV, currentValue, and unUsedValue, prorated counter ULI, OLI. The new values
+                of prorated bucket or counter depends on the proration factor calculated as
+                follows:</p>
+<div class="p">
+                <pre class="pre codeblock"><code>Remaining days = total days - CS add date + 1
+Prorate factor = Remaining days/total days</code></pre>
+            </div>
+<p class="p"><strong class="ph b">Removing a charging logic</strong></p>
+<p class="p">Creation of a new version of the service
+                (bundle) with deletion of a charging service affects the existing subscription
+                immediately (at CCR) or at next bill cycle (at BCR). The proration is considered
+                when creating a charging service instance such as prorated bucket IV, currentValue,
+                and unUsedValue, prorated counter ULI, OLI. The new values of prorated bucket or
+                counter depends on the proration factor calculated as follows:</p>
+<div class="p">
+                <pre class="pre codeblock"><code>Active days = CS remove date - CS activation date + 1
+Prorate factor = Active days/total days</code></pre>
+            </div>
+<div class="p">The addition or deletion of charging logic in the service's (bundle) new version
+                do not get reflected in the existing subscriptions until an appropriate event
+                triggers the versioning. Following events can trigger versioning:<ul class="ul" id="bundle_version__ul_ngb_vny_srb">
+                    <li class="li">Credit control request (CCR) on the device that owns subscription. On CCR,
+                        the versioning is done only if the subscription's version type is
+                            <strong class="ph b">IMMEDIATE</strong>.</li>
+
+                    <li class="li">Billing cycle reset (BCR). On BCR, the versioning is done only if the
+                        version type is <strong class="ph b">NEXT_BCR</strong>, or it is <strong class="ph b">IMMEDIATE</strong> but no event
+                        triggered versioning until BCR.</li>
+
+                    <li class="li">Reset resource action. Buckets or counters can have an individual lifecycle
+                        with Reset Resource Action attached to them. In case the subscription's
+                        version type is <strong class="ph b">IMMEDIATE</strong>, this can also trigger versioning on the
+                        entire subscription that the bucket or counter instance belongs to.</li>
+
+                </ul>
+</div>
+An expired charging logic gets permanently deleted from the database at a
+            later time. Also, the expiry of charging logic makes the charging components in the
+            charging logic to expire. The <strong class="ph b">History Period</strong> parameter decides the time at which
+            the expired charging logic must be deleted. This parameter indicates the minimum number
+            of days for which the expired components are kept in database. An expired charging logic
+            is permanently deleted at BCR if<strong class="ph b"> BCR time - Deletion time &gt; History Period</strong>.
+                <div class="p">The <strong class="ph b"><em class="ph i">deletionTime</em>
+                </strong>component is used in the SM APIs that can return components instances data. The
+                following are the APIs that was supported to return the <em class="ph i">deletionTime</em>:<table cellpadding="4" cellspacing="0" summary="" id="bundle_version__table_mnr_cry_srb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>API changes</span></caption><colgroup><col style="width:19.569471624266143%" /><col style="width:29.9412915851272%" /><col style="width:50.489236790606654%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d57754e449">Method</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d57754e452">Description</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d57754e455">URL</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e449 ">Get</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e452 ">Read Group</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e455 ">​​/subscriber​/update​/Group</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e449 ">Get</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e452 ">Read Subscription</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e455 ">/​subscriber​/getData​/Subscription</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e449 ">Get</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e452 ">Read Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e455 ">/subscriber/getData/Device</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e449 ">Get</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e452 ">Read Account</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e455 ">/subscriber/getData/Account</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e449 ">Get</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e452 ">Read User</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e455 ">/subscriber/getData/User</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e449 ">Get</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e452 ">Read Entity Counter instance</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e455 ">/subscriber/getData/EntityCounterInstance</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e449 ">Get</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e452 ">Read Bucket instance</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d57754e455 ">/subscriber/getData/BucketInstance</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+<div class="note" id="bundle_version__note_cnf_whv_3tb"><div class="notetitle"><img src="../../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The latest published active version of the
+                        <em class="ph i">Service (Bundle)</em> can be fixed (updated or edited) and re-published.
+                    For more details, see <a class="xref" href="../updating_published_version.html">Updating latest published active version</a>.</div>
+</div>
+</div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

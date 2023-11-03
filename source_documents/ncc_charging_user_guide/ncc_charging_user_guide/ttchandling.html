@@ -1,0 +1,951 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Tariff Time Change (TTC) handling" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-ttchandling" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Tariff Time Change (TTC) handling</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-ttchandling">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Tariff Time Change (TTC) handling</h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">This section explains handling <em class="ph i">Tariff-Time-Change</em> (TTC), which is the switch time when a
+                tariff is changed for a data session. After a tariff switch is reached, all active
+                user sessions report their session usage by the end of validity period of the
+                current request or receive new quota for resource usage for the new tariff
+                period.</p>
+
+<p class="p">In order to avoid the need for multiple simultaneous quota refresh trials, the traffic usage is split into resource usage before a tariff switch and resources used after a tariff switch, which means a bundle, bucket, or counter may be changed during this switch time.</p>
+
+<p class="p">During a data call, if the TTC time calculated is nearing, then the quota allocation is handled
+                accordingly. The portion of the call before and after the TTC time may have
+                different tariff rates. When a CCR received includes two or three USU instances in
+                one MSCC, the NCC call controller handles the reported usage separately in the USU
+                instances due to the session that ranges crossing TTC times. NCC handles USU before
+                tariff changes and after tariff change in sequence.</p>
+
+            <div class="p">TTC candidates are picked from the bucket and subscription counter that are
+                approaching BCR. The approaching end time of the bucket or counter is considered to
+                calculate a TTC value.<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This feature does not addresses the requirement of
+                    modifying the start time for subscription, bucket or counter. </div>
+</div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">TTC handling - before and after BCR time</h2>
+<p class="p">NCC considers the following points while handling the tariff change:</p>
+<ul class="ul">
+<li class="li">There is no limitation on the number of USUs. If multiple USUs are received with same
+                        <em class="ph i">Tariff-Change-Usage</em> (TCU) value, then the service accumulates the
+                    value of same types of USU. The ME application parameter <span class="ph uicontrol">Gy TCU
+                        Indeterminate</span> identifies whether the first USU value with
+                        <em class="ph i">Tariff-Change-Usage</em> (<var class="keyword varname">2 -INDETERMINATE</var>) is added
+                    before the tariff change usage, after the tariff change usage, or is completely
+                    ignored. <div class="note" id="id9yz-09126-ug01-pczza-sp1-ttchandling__note_yw2_cbr_nyb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For details on configuring ME application
+                        preferences, see <em class="ph i">Global Configuration Guide</em>.</div>
+</li>
+
+<li class="li">If the reported USU <em class="ph i">Before Tariff Change</em> (BTC) is greater than zero but less than GSU,
+                    then the usage is committed before tariff change to pre-BCR version of
+                    subscription (from which reservation was done). In case of carry-over bucket,
+                    the initial or unused value in carry-over bucket instance gets updated when the
+                    usage is committed before tariff change. If the reported USU before tariff
+                    change is greater than GSU, then GSU is committed on pre-BCR version of
+                    subscription, and the over committed part (USU before tariff change – GSU) is
+                    added to the usage after tariff change. Notification is sent when configured in
+                    the rule engine.</li>
+
+<li class="li">The subscriptions are sorted again at the start of CCR message since after the tariff switch
+                    time, and if BCR or subscription activation occurred, then some subscriptions
+                    may be switched from valid to invalid and vice-versa. After the subscriptions or
+                    charging services are sorted based on predefined priorities, the application
+                    condition is checked for each Charging Service (CS) with slice allocation time
+                    set to tariff switch time.</li>
+
+<li class="li">If the reported USU After Tariff Change (ATC) is greater than zero, then the usage is committed
+                    based on the newly sorted subscriptions or CS list. The USU ATC is handled as
+                    overcommit since the charging services are re-selected.</li>
+
+<li class="li">A notification is sent after committing the ATC or BTC usage. To support multiple USU instances
+                    in the CCR message, the rule trigger <em class="ph i">RATING_POST_PROCESSING</em> is changed as
+                    shown in the following figure and the notification variable USU is obtained from
+                    the <em class="ph i">RATING_POST_PROCESSING</em> source context. <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-ttchandling__fig_jvq_2vv_lqb">
+                        <img class="image break" id="id9yz-09126-ug01-pczza-sp1-ttchandling__image_vvq_2vv_lqb" src="../images/img9yz-09126-ug01-pczza-sp1-ttc_rule3_default.png" height="200" width="452" />
+                    </div>
+
+                </li>
+
+</ul>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Supported TTC times</strong></p>
+
+<p class="p">
+<strong class="ph b">Precondition:</strong> For the following table, TTC time is enabled in the Gy pre-processing of rules.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Different times used for TTC computation</span></caption><colgroup><col style="width:31.84713375796178%" /><col style="width:68.15286624203821%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d195527e127">
+                                    <p class="p">Supported TTC times</p>
+
+                              </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d195527e133">
+                                    <p class="p">Comments</p>
+
+                              </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e127 ">End time of subscription</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e133 ">This time refers only to those subscriptions, which are used
+                                    for reservation.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e127 ">Start time of subscription</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e133 ">This time refers to all subscriptions.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e127 ">Future activation subscriptions</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e133 ">This refers to the future activation time of all
+                                    subscriptions irrespective of their applicability conditions.
+                              </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e127 ">Entity lifecycle state validity time</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e133 ">If current state in the entity lifecycle of the resource
+                                    (from where reservation is done) has a validity time less than
+                                    the BCR time of resource (from periodic lifecycle), then TTC is
+                                    not set and instead validity time of the state is set as
+                                        <span class="ph uicontrol">Validity Time</span> in CCA.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e127 ">End time of bucket</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e133 ">This time refers to all the buckets.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e127 ">End time of counter</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e133 ">This time refers to only the subscription counters.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e127 ">End time of Account</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e133 ">This time refers to period lifecycle of account, which is
+                                    linked to subscription and is used for reservation.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e127 ">End time of multi-bundle counter</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e133 ">This time refers to period lifecycle of bundle, which is
+                                    linked to a subscription containing multi-bundle counter, which
+                                    is applied during reservation.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e127 ">End time of device counter</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e133 ">This time refers to period lifecycle of a counter, which is
+                                    attached to device and applied during reservation.</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> TTC is implemented only for subscription counters.</div>
+
+<p class="p">The final TTC time is the nearest time to the Diameter call found after sorting all the times mentioned in the above table.</p>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Entity lifecycle - validity time of current state</h2>
+<p class="p">Every entity has an entity lifecycle associated to it with defined states and transitions. The state of the resource may have a validity time linked to it. If the state validity time is defined, then transition takes place at the same configured time. The TTC logic considers the minimum of BCR and the validity time of the current state to determine the TTC to be sent to the gateway.</p>
+
+<p class="p">Assume there are two TTC users with the following behavior:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">If the BCR value of resource is greater than or equal to the value of entity lifecycle state validity time, then TTC is not configured and VT is set as the state validity time.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the BCR value of resource is less than the value of entity lifecycle state validity time, then BCR is configured as TTC.</p>
+
+</li>
+
+</ul>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Only those subscriptions are considered for state validity time and BCR, from where the
+                reservation is performed.</div>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example</strong></p>
+
+<p class="p">
+<em class="ph i">Configuration or provisioning:</em>
+</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Consider two subscriptions <var class="keyword varname">Sub1</var> and <var class="keyword varname">Sub2</var>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<var class="keyword varname">Sub1</var> has an entity lifecycle with current state <var class="keyword varname">Active</var> at <kbd class="ph userinput">2018/7/25 09:25:00</kbd> with validity time of 1 hour and <var class="keyword varname">Sub1</var> has end time <kbd class="ph userinput">2018/7/25 11:30:00</kbd>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<var class="keyword varname">Sub2</var> has an end time or BCR at <kbd class="ph userinput">2018/7/25 14:30:00</kbd>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Validity time of 86400 seconds in quota management (slicing profile).</p>
+
+<p class="p">A user makes a data call at <kbd class="ph userinput">2018/7/25 9:30:00</kbd>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<em class="ph i">Few observations for TTC and VT:</em>
+</p>
+
+<p class="p">During TTC calculation, the end time of <var class="keyword varname">Sub1</var> is compared with its state entity lifecycle.</p>
+
+<p class="p">
+                            <kbd class="ph userinput">2018/7/25 10:25:00</kbd> (validity time of 1 hour) &lt;
+                            end time of <var class="keyword varname">Sub1</var> (<kbd class="ph userinput">2018/7/25
+                                11:30:00</kbd>) &lt; end time of <var class="keyword varname">Sub2</var>
+                                (<kbd class="ph userinput">2018/7/25 14:30:00</kbd>) &lt; VT (quota
+                            management (slicing profile))</p>
+
+<p class="p">Therefore, TTC is not configured and VT is set to 55 minutes (<kbd class="ph userinput">2018/7/25 10:25:00</kbd> - current call).</p>
+
+</li>
+
+</ul>
+
+</div>
+</div>
+
+<div class="section" id="id9yz-09126-ug01-pczza-sp1-ttchandling__ttcconfig"><h2 class="title sectiontitle">Configuring TTC</h2>
+<p class="p">The operators enable the TTC feature using the following methods:</p>
+<ul class="ul">
+<li class="li">
+                    <p class="p">
+                        <span class="ph uicontrol">Complex map</span>: Provision the relationship between
+                            <em class="ph i">Origin-Host</em> and <em class="ph i">Is-TTC-Enabled</em> flag in the mapping
+                        table.</p>
+
+                    
+                    <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-ttchandling__fig_esx_fvv_lqb">
+                        <img class="image break" id="id9yz-09126-ug01-pczza-sp1-ttchandling__image_ksx_fvv_lqb" src="../images/img9yz-09126-ug01-pczza-sp1-ttc_complex_map_default.png" height="256" width="448" />
+                        <img class="image break" id="id9yz-09126-ug01-pczza-sp1-ttchandling__image_csr_gvv_lqb" src="../images/img9yz-09126-ug01-pczza-sp1-ttc_complex_map1_default.png" height="112" width="429" />
+                    </div>
+
+                </li>
+
+<li class="li">
+                    <p class="p">
+                        <span class="ph uicontrol">Rules</span>: Configure the charging
+                            <em class="ph i">GY_PRE_PROCESSING</em> trigger to fetch the <em class="ph i">Is-TTC-Enabled</em>
+                        flag. </p>
+
+                    <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-ttchandling__fig_cnw_hvv_lqb">
+                        <img class="image break" id="id9yz-09126-ug01-pczza-sp1-ttchandling__image_inw_hvv_lqb" height="288" src="../images/img9yz-09126-ug01-pczza-sp1-ttc_rule1_default.png" width="672" />
+                    </div>
+
+                </li>
+
+</ul>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> NCC can send <span class="ph uicontrol">VT</span> = <var class="keyword varname">0</var>. If the PGW does not support the
+                    <span class="ph uicontrol">VT</span> = <var class="keyword varname">0</var>, then operators
+                configure a rule to send <span class="ph uicontrol">VT</span> = <var class="keyword varname">1</var> from NCC
+                as shown in the following figure:</div>
+
+<div class="fig fignone">
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-ttc_vt_default.png" height="242" width="533" />
+            </div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">TTC and TCU AVP support</h2>
+            <p class="p">The <em class="ph i">Tariff-Time-Change</em> AVP is supported in a CCA message and used within the
+                    <em class="ph i">GSU</em> AVP to determine the tariff switch time. In this feature, global TTC
+                time configured in the RSV, future activation time of subscriptions, or TTC
+                configured in bundle rules or RSV is <span class="ph uicontrol">Tariff-Time-Change</span>,
+                which is an optional parameter.</p>
+
+            <p class="p">The <em class="ph i">Tariff-Change-Usage</em> AVP is supported in CCR message and its value type is
+                date. The <em class="ph i">TCU</em> AVP is used within <em class="ph i">USU</em> AVP to distinguish reported usage
+                before and after the tariff time change.</p>
+
+            <kbd class="ph userinput"> &lt;Used-Service-Unit&gt; ::= &lt;AVP Header: 446 &gt;
+                [Tariff-Change-Usage]</kbd>
+            <p class="p">The value type of <em class="ph i">Tariff-Change-Usage</em> AVP is enumerated.</p>
+<ul class="ul">
+                <li class="li">
+                    <p class="p">
+                        <var class="keyword varname">0 - UNIT_BEFORE_TARIFF_CHANGE</var>
+                    </p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">
+                        <var class="keyword varname">1 - UNIT_AFTER_TARIFF_CHANGE</var>
+                    </p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">
+                        <var class="keyword varname">2 - UNIT_INDETERMINATE</var>
+                    </p>
+
+                </li>
+
+            </ul>
+
+            <p class="p">The ME application preference <span class="ph uicontrol">Gy TCU Indeterminate</span>
+                indicates how to process the usage with the <em class="ph i">Tariff-Charge-Usage</em> AVP. See
+                    <a class="xref" href="system_pref.html">Charging application preferences</a> for more details on this
+                parameter. </p>
+</div>
+
+        <div class="section" id="id9yz-09126-ug01-pczza-sp1-ttchandling__section_lbv_trf_wqb"><h2 class="title sectiontitle">Automatic TTC calculation</h2>
+            
+            <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-ttchandling__ul_x4x_ntf_wqb">
+                <li class="li">You can enable the automatic calculation of TCU before and after a TTC
+                    occurrence even when the Gateway is unable to process the TTC, and report USU
+                    before and after the TTC.</li>
+
+                <li class="li">To enable this functionality, you must set the
+                        <span class="ph uicontrol">Is-TTC-Enabled</span> flag, and
+                        <span class="ph uicontrol">Enable-Silent-TTC</span> to <var class="keyword varname">true</var> in the
+                        <em class="ph i">GY_PRE_PROCESSING</em> trigger.</li>
+
+                <li class="li">Slice Duration is the difference between the event timestamps of the CCRs, for
+                    the same MSSC, received after and before TTC. For example: Consider the event
+                    timestamps of the following CCRs:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-ttchandling__ul_u2s_5zf_wqb">
+                        <li class="li">CCR(U)1 for MSCC1 at T1</li>
+
+                        <li class="li">CCR(U)2 for MSCC2 at T2</li>
+
+                        <li class="li">CCR(U)3 for MSCC1 at T3</li>
+
+                    </ul>
+Slice Duration is calculated as <samp class="ph systemoutput">SD = T3 - T1</samp>.
+                    In general, <p class="p"><samp class="ph systemoutput">Slice Duration (SD) = Event Timestamp of CCR after
+                            TTC (CCR_After_T) - Event Timestamp of CCR before TTC
+                            (CCR_Before_T)</samp></p>
+</li>
+
+                <li class="li">TCU before the TTC occurrence is calculated as follows:
+                            <p class="p"><samp class="ph systemoutput">TCU_Before = Round (USU * (TTC - CCR_Before_T) /
+                            SD)</samp></p>
+</li>
+
+                <li class="li">TCU after the TTC occurrence is calculated as follows:
+                            <p class="p"><samp class="ph systemoutput">TCU_After = Round (USU * (CCR_After_T - TTC) /
+                            SD)</samp></p>
+</li>
+
+                <li class="li">USU can be Volume (octets), Time (secs), or Units (items).</li>
+
+            </ul>
+
+            <div class="note" id="id9yz-09126-ug01-pczza-sp1-ttchandling__note_bgt_gtf_wqb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Timestamps, and time calculations are in seconds
+                granularity.</div>
+
+            <div class="note" id="id9yz-09126-ug01-pczza-sp1-ttchandling__note_fff_htf_wqb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Round function provides the rounding mechanism that rounds
+                up to the next interger. The result is an integer. For example: 0.5 <strong class="ph b">→</strong>
+                1.</div>
+
+        </div>
+
+<div class="section" id="id9yz-09126-ug01-pczza-sp1-ttchandling__VTandTTC"><h2 class="title sectiontitle">VT and TTC calculation</h2>
+<p class="p">When the TTC feature is enabled, the <em class="ph i">GSU</em> AVP in the CCA message is configured under one of the following conditions:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">If BCR occurs within the VT of the granted quota and NCC considers the <em class="ph i">Timezone ID</em> of the
+                        account.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If future activation time of subscription or <em class="ph i">Subscription State Validity Time</em> (which is, the entity lifecycle current state time).</p>
+
+</li>
+
+</ul>
+
+<p class="p">During quota allocation, the end time or <em class="ph i">Subscription Current State Validity Time</em> of the subscriptions used in quota reservation, which are associated with subscription used for quota reservation is checked and the start time or the future activation time is retrieved from all subscriptions and corresponding groups. The start time, end time, and future activation time are sorted, which are later than the call start time and within the VT to get the nearest time and second nearest time. If the subscription does not attach to any period lifecycle, then the associated account period lifecycle start time or end time is used.</p>
+
+<p class="p">After getting the TTC and VT values, if the values of both <em class="ph i">TTCAF</em> and <em class="ph i">VTAF</em> are greater than zero, then the TTC and VT values are adjusted as per the following criteria:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">If the (current time + VT) is between TTC time calculated and TTC time calculated + 2 seconds</p>
+
+<p class="p">
+<samp class="ph systemoutput">TTC = TTC calculated date + 1 second</samp>
+</p>
+
+<p class="p">
+<samp class="ph systemoutput">VT = Time to TTC + 2 seconds</samp>
+</p>
+
+</li>
+
+<li class="li">
+<p class="p">If there is a policy counter attached to a device whose status gets changed during TTC date processing, the TTC and VT is calculated as follows:</p>
+
+<p class="p">
+<samp class="ph systemoutput">TTC = TTC calculated date + RAND [1 second, TTCAF]</samp>
+</p>
+
+<p class="p">
+<samp class="ph systemoutput">VT = time to TTC + 1 second</samp>
+</p>
+
+</li>
+
+<li class="li">
+<p class="p">Otherwise, if the device does not currently have one or more policy counters whose status change during TTC calculated processing, then the TTC and VT are calculated as follows:</p>
+
+<p class="p">
+<samp class="ph systemoutput">TTC = TTC calculated date + RAND [1 second, MIN(TTCAF, VT-time to TTC-1 second)]</samp>
+</p>
+
+<p class="p">
+<samp class="ph systemoutput">VT = TTC Time calculated date + RAND [2 seconds, MIN(VTs-time to TTC, VTAF)]</samp>
+</p>
+
+</li>
+
+</ul>
+
+<div class="sectiondiv">
+                <p class="p"><strong class="ph b">Example: TTC and VT adjustment when device has a policy counter that changes
+                        during TTC time calculated</strong></p>
+
+                <strong class="ph b">Scenario:</strong>
+                <p class="p">This example shows a case when there is a policy counter TTC Time calculated
+                    within VTs and policy counter status is changed during BCR. TTC and VT for the
+                    session are set as per the following formulae:</p>
+
+                <kbd class="ph userinput">TTC = TTC Time calculated + RAND[1 second, TTCAF]</kbd>
+                <kbd class="ph userinput">VT = time to TTC + 1 second</kbd>
+                <p class="p">
+                    <strong class="ph b">Provisioning:</strong> Provision the following entities:</p>
+<ol class="ol">
+                    <li class="li">
+                        <p class="p">Enable the TTC feature. See <a class="xref" href="ttchandling.html#id9yz-09126-ug01-pczza-sp1-ttchandling__ttcconfig">Configuring TTC</a> for more
+                            information.</p>
+
+                    </li>
+
+                    <li class="li">Configure VTs (standard VT from quota management (slicing profile)) = 18h =
+                        64800 seconds in the quota management (slicing profile) entity.</li>
+
+                    <li class="li">Set the ME application preference <em class="ph i">VT Adjustment Factor</em> to
+                            <var class="keyword varname">3000</var> seconds. </li>
+
+                    <li class="li">Set the ME application preference <em class="ph i">TTC Adjustment Factor</em> to
+                            <var class="keyword varname">300</var> seconds.  </li>
+
+                    <li class="li">Create a charging service.</li>
+
+                    <li class="li">Create a subscription renewal lifecycle.<table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                                    <tr class="row">
+                                        <th class="entry cellrowborder" style="vertical-align:top;" id="d195527e787">
+                                            <p class="p">Parameter</p>
+
+                                       </th>
+
+                                        <th class="entry cellrowborder" style="vertical-align:top;" id="d195527e793">
+                                            <p class="p">Value</p>
+
+                                       </th>
+
+                                    </tr>
+
+                                </thead>
+<tbody class="tbody">
+                                    <tr class="row">
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e787 ">Name</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e793 ">SubscriptionRenewCycle1</td>
+
+                                    </tr>
+
+                                    <tr class="row">
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e787 ">Type</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e793 ">Bill Cycle</td>
+
+                                    </tr>
+
+                                    <tr class="row">
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e787 ">Applicable to</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e793 ">Subscription</td>
+
+                                    </tr>
+
+                                    <tr class="row">
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e787 ">Timer value</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e793 ">90</td>
+
+                                    </tr>
+
+                                    <tr class="row">
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e787 ">Time units</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e793 ">HOURS</td>
+
+                                    </tr>
+
+                                </tbody>
+</table>
+</li>
+
+                    <li class="li">
+                        <p class="p">Create a bundle and link the charging service created in the previous
+                            step.</p>
+
+                        <table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                                    <tr class="row">
+                                        <th class="entry cellrowborder" style="vertical-align:top;" id="d195527e868">Parameter</th>
+
+                                        <th class="entry cellrowborder" style="vertical-align:top;" id="d195527e871">Value</th>
+
+                                    </tr>
+
+                                </thead>
+<tbody class="tbody">
+                                    <tr class="row">
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e868 ">Name</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e871 ">Bun1_V_6789</td>
+
+                                    </tr>
+
+                                    <tr class="row">
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e868 ">Charging Service List</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e871 ">CS_V_6789</td>
+
+                                    </tr>
+
+                                    <tr class="row">
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e868 ">Bundle Activation Type</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e871 ">NORMAL</td>
+
+                                    </tr>
+
+                                    <tr class="row">
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e868 ">Period</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e871 ">SubscriptionRenewCycle1</td>
+
+                                    </tr>
+
+                                    <tr class="row">
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e868 ">Max Renewals</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e871 ">10000</td>
+
+                                    </tr>
+
+                                    <tr class="row">
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e868 ">Period</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e871 ">SubscriptionRenewCycle1</td>
+
+                                    </tr>
+
+                                    <tr class="row">
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e868 ">Entity</td>
+
+                                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d195527e871 ">DefaultSubscriptionLifeCycle</td>
+
+                                    </tr>
+
+                                </tbody>
+</table>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create an account and attach the <var class="keyword varname">Bun1_V</var> bundle. The
+                            current data volume is 15 GB. </p>
+
+                        <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-ttchandling__fig_h5j_mvv_lqb">
+                            <img class="image break" id="id9yz-09126-ug01-pczza-sp1-ttchandling__image_l5j_mvv_lqb" src="../images/img9yz-09126-ug01-pczza-sp1-ttc_account_default.png" />
+                        </div>
+
+                        <p class="p">For account, the period lifecycle is 70 minutes.</p>
+
+                        <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-ttchandling__fig_syv_mvv_lqb">
+                            <img class="image break" id="id9yz-09126-ug01-pczza-sp1-ttchandling__image_xyv_mvv_lqb" src="../images/img9yz-09126-ug01-pczza-sp1-ttc_time_default.png" />
+                        </div>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create a device and attach the <var class="keyword varname">Bun1_V</var> bundle with
+                            period lifecycle of 90 hours. The current data volume is 15 GB.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Configure the threshold profile on policy counter. 0 is High, 5 is Low,
+                            10 is Down.</p>
+
+                        <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-ttchandling__fig_exj_nvv_lqb">
+                            <img class="image break" id="id9yz-09126-ug01-pczza-sp1-ttchandling__image_jxj_nvv_lqb" src="../images/img9yz-09126-ug01-pczza-sp1-ttc_ex_default.png" />
+                        </div>
+
+                    </li>
+
+                </ol>
+
+                <p class="p">
+                    <strong class="ph b">Post-conditions:</strong>
+                </p>
+<ul class="ul">
+                    <li class="li">
+                        <p class="p">A Gy call is triggered and CCR(I) status of Device Policy Counter (DPC)
+                            is <var class="keyword varname">HIGH</var>, CCR(T) USU = 5 GB, and status of DPC is
+                            changed to <var class="keyword varname">LOW</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">For CCA(I), BCR time (90 hour) for bundle is out of VTs (18 hour)
+                            duration. Even though, policy counter BCR time (70 minutes) is within
+                            VT, but since policy counter status is not changed during BCR, it is not
+                            considered as time change point. The <em class="ph i">TTC</em> AVP is not set. VTs (18
+                            hour) is used to set <em class="ph i">VT</em> AVP in the CCA message.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">A second Gy call is triggered and CCR(I) status of DPC is LOW. CCR(T) USU
+                            = 5 GB and the session ends.</p>
+
+                        <p class="p">For CCA(I), BCR time (90 hour) for bundle is still out of VTs (18 hour)
+                            duration. The policy counter BCR time (70 minutes) is within VT. The
+                            current policy status is <var class="keyword varname">LOW</var> and BCR logic throttles
+                            the status to <var class="keyword varname">HIGH</var>. The policy counter BCR time is
+                            considered as time change point.</p>
+
+                        <p class="p">BCR date = 1557736980000 ms</p>
+
+                        <p class="p">RAND[1 second, TTCAF] = RAND[1 second, 300 seconds] = 269575 ms</p>
+
+                        <p class="p">New TTC = 1557736980000 ms + 269575 ms = 1557737249575 ms</p>
+
+                        <p class="p">New VT = TTC – current time +1 second </p>
+
+                        <p class="p"> =1557737249575 ms -1557733096648 ms + 1000 ms</p>
+
+                        <p class="p"> = 4153927 ms = 4154 s</p>
+
+                    </li>
+
+                </ul>
+<p class="p"><strong class="ph b">Example: TTC when Bucket has a periodic lifecycle.</strong></p>
+<p class="p">This example
+                    shows a case where the subscription has an end time on 30 June at 00:00 but the
+                    bucket is defined with periodicity as daily, and is ending on 22 June at 00:00.
+                    </p>
+<p class="p">While calculating TTC for an initial or update which has arrived on 22
+                    June at 20:00, both the end times are considered. Since the bucket is the
+                    earliest approaching end time, the TTC is sent as 22 June 00:00.</p>
+
+            </div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">MIN VT and MIN TTC configuration</strong></p>
+
+<p class="p">
+                    <em class="ph i">MIN VT</em> and <em class="ph i">MIN TTC</em> is defined in the quota management (slicing
+                    profile) ruleset with unit type second. If TTC and VT calculated with tariff
+                    time change point is less than the minimum value, the TTC and VT are adjusted
+                    based on the minimum value.</p>
+
+<p class="p">The <em class="ph i">MIN VT</em> and <em class="ph i">MIN TTC</em> in SLICING_PROFILE are optional attributes, and if not configured, then they are treated as zero. If the <em class="ph i">MIN TTC</em> greater than <em class="ph i">MIN VT</em>, then the <em class="ph i">MIN VT</em> value is ignored and treated as zero.</p>
+
+<div class="fig fignone">
+                    <div class="figgroup">
+                        <img class="image break" id="id9yz-09126-ug01-pczza-sp1-ttchandling__image_fwl_4vv_lqb" height="192" src="../images/img9yz-09126-ug01-pczza-sp1-ttc_minvt_default.png" width="384" />
+                    </div>
+                </div>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">GSU additional check</strong></p>
+
+<p class="p">When the TTC feature is enabled, after the quota reservation, NCC performs additional check for
+                    all the subscriptions used for quota allocation. If the <var class="keyword varname">Max
+                        Renewal</var> time has reached or if the account is
+                        <var class="keyword varname">PRE_PAID</var> and has insufficient balance for subscription
+                    renewal, then the service ignores the TTC and sets the VT to the subscription
+                    end time. In this case, <var class="keyword varname">MIN-VT</var> is not used.</p>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Assumptions</h2>
+<p class="p">Following assumptions apply to the TTC feature:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Only the subscription period lifecycle fee is checked. The account lifecycle is considered when the subscription does not have its own lifecycle or account balance is used for charging calls.</p>
+
+</li>
+
+<li class="li">
+                    <p class="p">Irrespective of whether a subscription renewal is checked individually, there
+                        may be some instances for which the renewable check is passed. However, the
+                        subscription is not successfully renewed as shown in the following
+                        example:</p>
+
+                    <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-ttchandling__fig_r5c_pvv_lqb">
+                        <img class="image break" id="id9yz-09126-ug01-pczza-sp1-ttchandling__image_w5c_pvv_lqb" src="../images/img9yz-09126-ug01-pczza-sp1-ttc_assumption_example_default.png" />
+                    </div>
+
+                </li>
+
+<li class="li">
+<p class="p">There may be cases wherein the TTC logic finds that the subscriptions can be renewed, but they
+                        may actually be not renewed when the lifecycle logic checks get executed.
+                        For example, consider that there are three subscriptions with same end time
+                        associated with same account. When the TTC logic checks the subscriptions
+                        one-by-one, it finds that the subscription is renewable, that is, account
+                        balance (10) &gt; subscription renewal fee (5). But, all the three
+                        subscriptions have same end time as per calculation, the account balance
+                        (10) &lt; subscription renewal fees (5*3). In such cases, NCC logic does not
+                        take any action.</p>
+
+                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> While considering activation time of subscription, the applicability
+                        condition or priority is not checked.</div>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Examples</h2>
+<p class="p">Consider the following examples for better understanding of this feature:</p>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 1</strong></p>
+
+<p class="p">
+<strong class="ph b">Preconditions:</strong> Bob makes a data call. There are two subscriptions <var class="keyword varname">SubA</var> and <var class="keyword varname">SubB</var> at device level, and <var class="keyword varname">SubC</var> at group level.</p>
+<ul class="ul">
+<li class="li">
+<p class="p">There is a volume bucket <var class="keyword varname">BK1</var> of 500M in <var class="keyword varname">SubA</var>, where the <var class="keyword varname">SubA</var> end time is <kbd class="ph userinput">2018/7/31 10:30:00</kbd>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">There is a volume bucket <var class="keyword varname">BK2</var> of 1000M in <var class="keyword varname">SubB</var>, where the <var class="keyword varname">SubB</var> end time is <kbd class="ph userinput">2018/8/1 00:00:00</kbd>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">There is a volume bucket <var class="keyword varname">BK3</var> in <var class="keyword varname">SubC</var>, where the <var class="keyword varname">SubC</var> start time is <kbd class="ph userinput">2018/7/31 10:00:00</kbd> and <var class="keyword varname">SubC</var> is in a barred state.</p>
+
+</li>
+
+</ul>
+
+<p class="p">The priority is set as <var class="keyword varname">BK3</var> &gt; <var class="keyword varname">BK1</var> &gt; <var class="keyword varname">BK2</var>
+</p>
+
+<p class="p">
+<strong class="ph b">Post-conditions:</strong>
+</p>
+<ul class="ul">
+<li class="li">
+<p class="p">When a CCR-I is received on <kbd class="ph userinput">2018/7/31 9:55:00</kbd>, the TTC feature is enabled and VT is 10800 seconds. Quota size is 100 M, <var class="keyword varname">BK1</var> is reserved for 100M, TTC is set to <kbd class="ph userinput">2018/7/31 10:00:00</kbd>, ad VT is set to 2100 seconds.</p>
+
+</li>
+
+<li class="li">
+<p class="p">When a CCR-U is received on <kbd class="ph userinput">2018/7/31 10:20:00</kbd>, report reason is quota
+                            exhausted. In USU <em class="ph i">UNIT_BEFORE_TARIFF_CHANGE</em> is 60M,
+                                <em class="ph i">UNIT_AFTER_TARIFF_CHANGE</em> is set as 40M.
+                                <var class="keyword varname">BK1</var> is deducted with 60M and returns 40M, after
+                            calculation <var class="keyword varname">BK1</var> is 440M.</p>
+
+<p class="p">When <var class="keyword varname">SubC</var> BCR occurs, 40M is deducted from <var class="keyword varname">BK3</var>. After calculation, <var class="keyword varname">BK3</var> is 110M. 100M is reserved from <var class="keyword varname">BK3</var> for new quota allocation, TTC is set to <kbd class="ph userinput">10:30:00</kbd>, and VT is set to 10800 seconds.</p>
+
+</li>
+
+<li class="li">
+<p class="p">When a CCR-T is received on <kbd class="ph userinput">2018/07/31 10:50:00</kbd>, report reason is quota
+                            exhausted. In USU <em class="ph i">UNIT_BEFORE_TARIFF_CHANGE</em> is 100M,
+                                <em class="ph i">UNIT_AFTER_TARIFF_CHANGE</em> is set as 40M.
+                                <var class="keyword varname">BK3</var> is deducted with 100M after calculation usage
+                            and before tariff change, <var class="keyword varname">BK3</var> is 10M.</p>
+
+<p class="p">When <var class="keyword varname">BK1</var> BCR occurs, pre-BCR value is 440M, current BCR version value is 1000M (initial value). For <em class="ph i">UNIT_AFTER_TARIFF_CHANGE</em>, <var class="keyword varname">BK3</var> is deducted with 10M, remaining value is 0M. <var class="keyword varname">BK1</var> current value is updated to 970M, and unused value is updated to 970M.</p>
+
+</li>
+
+</ul>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 2</strong></p>
+
+<p class="p">
+                    <strong class="ph b">Preconditions:</strong> Bob makes a data call at <kbd class="ph userinput">2018/7/25
+                        9:30:00</kbd>. There is one subscription <var class="keyword varname">Sub1</var> at
+                    device level, and two subscriptions <var class="keyword varname">Sub3</var> and
+                        <var class="keyword varname">Sub4</var> at group level. The validity time is 7200 seconds
+                    from the quota management (slicing profile).</p>
+<ul class="ul">
+<li class="li">
+<p class="p">
+<var class="keyword varname">Sub1</var> is a monthly renewed subscription with start time set as <kbd class="ph userinput">2018/6/25 10:00:00</kbd> and end time set as <kbd class="ph userinput">2018/7/25 10:00:00</kbd>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<var class="keyword varname">Sub3</var> is a one-time (non-renewable) subscription with start time set as <kbd class="ph userinput">2018/7/18 09:55:00</kbd> and end time set as <kbd class="ph userinput">2018/ 7/25 09:55:00</kbd>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<var class="keyword varname">Sub4</var> is in the barred state and its future activation time is <kbd class="ph userinput">2018/7/25 11:00:00</kbd>.</p>
+
+</li>
+
+</ul>
+
+<p class="p">
+<strong class="ph b">Post-conditions:</strong>
+</p>
+<ul class="ul">
+<li class="li">
+<p class="p">If <var class="keyword varname">Sub1</var> and <var class="keyword varname">Sub3</var> are used for the quota reservation, then the end time of <var class="keyword varname">Sub1</var> and <var class="keyword varname">Sub3</var>, and activation time of <var class="keyword varname">Sub4</var> are used for TTC calculation.</p>
+
+</li>
+
+<li class="li">
+<p class="p">After sorting, <kbd class="ph userinput">2018/7/25 09:55:00</kbd> (end time of <var class="keyword varname">Sub3</var>) &lt; <kbd class="ph userinput">2018/7/25 10:00:00</kbd> (end time of <var class="keyword varname">Sub1</var>) &lt; <kbd class="ph userinput">2018/7/25 11:00:00</kbd> (activation time of <var class="keyword varname">Sub4</var>):</p>
+
+<p class="p">
+<kbd class="ph userinput">2018/7/25 09:55:00</kbd> set as VT because its non-renewable (1500 seconds).</p>
+
+</li>
+
+</ul>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 3</strong></p>
+
+<p class="p">
+                    <strong class="ph b">Preconditions:</strong> Bob makes a data call at <kbd class="ph userinput">2018/7/25
+                        9:30:00</kbd>. There is one subscription <var class="keyword varname">Sub1</var> at
+                    device level, and two subscriptions <var class="keyword varname">Sub3</var> and
+                        <var class="keyword varname">Sub4</var> at group level. The validity time is 7200 seconds
+                    from the quota management (slicing profile).</p>
+<ul class="ul">
+<li class="li">
+<p class="p">
+<var class="keyword varname">Sub1</var> is a monthly renewed subscription with start time set as <kbd class="ph userinput">2018/6/25 10:00:00</kbd> and end time set as <kbd class="ph userinput">2018/7/25 10:00:00</kbd>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<var class="keyword varname">Sub3</var> is a one-time (non-renewable) subscription with start time set as <kbd class="ph userinput">2018/7/18 09:55:00</kbd> and end time set as <kbd class="ph userinput">2018/ 7/25 09:55:00</kbd>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<var class="keyword varname">Sub4</var> is in the barred state and its future activation time is set as <kbd class="ph userinput">2018/7/25 9:40:00</kbd>.</p>
+
+</li>
+
+</ul>
+
+<p class="p">
+<strong class="ph b">Post-conditions:</strong>
+</p>
+<ul class="ul">
+<li class="li">
+<p class="p">If <var class="keyword varname">Sub1</var> and <var class="keyword varname">Sub3</var> are used for the quota reservation, then the end time of <var class="keyword varname">Sub1</var> and <var class="keyword varname">Sub3</var>, and activation time of <var class="keyword varname">Sub4</var> are used for TTC calculation.</p>
+
+</li>
+
+<li class="li">
+<p class="p">After sorting, <kbd class="ph userinput">2018/7/25 9:40:00</kbd> (activation time of <var class="keyword varname">Sub4</var>) &lt; <kbd class="ph userinput">2018/7/25 09:55:00</kbd> (end time of <var class="keyword varname">Sub3</var>) &lt; <kbd class="ph userinput">2018/7/25 10:00:00</kbd> (end time of <var class="keyword varname">Sub1</var>):</p>
+
+<p class="p">TTC is set to <kbd class="ph userinput">2018/7/25 09:40:00</kbd> and VT is set to 1500 seconds.</p>
+
+</li>
+
+</ul>
+
+</div>
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

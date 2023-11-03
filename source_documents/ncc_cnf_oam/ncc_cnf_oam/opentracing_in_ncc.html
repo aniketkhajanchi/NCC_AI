@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="OpenTracing in NCC" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="opentracing_in_ncc" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>OpenTracing in NCC</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="opentracing_in_ncc">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">OpenTracing in <span class="ph">NCC</span></h1>
+<div class="body conbody">
+        <p class="p">These modules can be traced with OpenTracing in <span class="ph">NCC</span> for the N40 interface including DB
+            client and LTM client calls.</p>
+
+        <div class="p">This table describes the charging-helm chart properties that are used to enable or
+            disable OpenTracing in <span class="ph">NCC</span>. <table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%" /><col style="width:50%" /><col style="width:16.666666666666664%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d10064e52">Property</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d10064e55">Description</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d10064e58">Default value</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10064e52 "><code class="ph codeph">global.opentracing.enabled</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10064e55 ">This property enables OpenTracing. The valid values are
+                                    <code class="ph codeph">true</code> or <code class="ph codeph">false</code>.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10064e58 "><code class="ph codeph">true</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10064e52 "><code class="ph codeph">global.opentracing.span</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10064e55 ">This property enables span creation. The valid values are
+                                    <code class="ph codeph">off</code> or <code class="ph codeph">on</code>.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10064e58 "><code class="ph codeph">off</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10064e52 "><code class="ph codeph">global.opentracing.dbspan</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10064e55 ">This property enables the Aerospike span creation. The valid
+                                values are <code class="ph codeph">on</code>, <code class="ph codeph">off</code>, or
+                                    <code class="ph codeph">debug</code>. This property is only valid if
+                                    <code class="ph codeph">global.opentracing.span</code> is set to
+                                    <code class="ph codeph">on</code>.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10064e58 "><code class="ph codeph">on</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10064e52 "><code class="ph codeph">global.opentracing.ltmspan</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10064e55 ">This property enables LTM span creation. The valid values are
+                                    <code class="ph codeph">off</code> or <code class="ph codeph">on</code>.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10064e58 "><code class="ph codeph">off</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10064e52 "><code class="ph codeph">global.opentracing.chargingspanlevel</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10064e55 ">This property controls the level of N40 span creation. The valid
+                                values are in the range <code class="ph codeph">1</code> to <code class="ph codeph">5</code>.
+                                This property is only valid if
+                                    <code class="ph codeph">global.opentracing.span</code> is set to
+                                    <code class="ph codeph">on</code>.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d10064e58 "><code class="ph codeph">1</code></td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+</div>
+
+        <div class="p">This figure describes the charging span levels in the charging application call flow. <div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Call flow spans</span>
+                
+                <img class="image break" src="../images/opentracing_spans.png" />
+            </div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

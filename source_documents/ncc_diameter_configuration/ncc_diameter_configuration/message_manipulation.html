@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Message manipulation" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-cn01-tczza-d1e5388" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Message manipulation</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-cn01-tczza-d1e5388">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Message manipulation </h1>
+<div class="body conbody">
+        <p class="p">NCC allows for message manipulation scenarios using Diameter rules and message filters
+            that enable you to quickly and easily manipulate most types of Diameter messages. That
+            is, the Message Manipulation menu offers the capability to write Diameter rules and
+            message validation filters that manipulate generic message processing and facilitate the
+            Diameter application/command change between standards-based and pre-standard values.
+            Message manipulation is particularly useful when a pre-standards deployment may have
+            occurred and the messages in the existing non-standard component need to be adapted to
+            inter-operate with a later standards-based component.</p>
+
+        <p class="p">You can write Diameter rules or filters to change the standards-based Diameter
+            application and command information in an inbound or outbound Diameter message. The
+            Inbound message manipulation plugin, which is automatically installed, allows you to
+            manipulate a vast variety of Diameter inbound messages using a Diameter rule. The
+            Outbound message manipulation plugin, which is also automatically installed, allows you
+            to manipulate messages, for example GxRAR, RxRAR, and SySLR, to apply an outbound
+            Diameter message using a Diameter rule. </p>
+
+        <div class="note" id="id9yz-09126-cn01-tczza-d1e5388__note_ocw_s5n_4xb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Diameter message manipulation operations are applied outside of
+            the application’s perspective. If you are influencing the content of a message though
+            message manipulation, you must consider that the message may not be preserved in the
+            context of the session state that is stored in NCC.</div>
+
+        <p class="p">To configure message manipulation functionality, in SM GUI navigate to
+                <span class="ph uicontrol">Connectivity</span> → ☰ → <strong class="ph b">MESSAGE MANIPULATION</strong>. The following
+            sub-menus are supported under the Message Manipulation menu to allow for adapting
+            Diameter application/command information and controlling generic message processing:</p>
+
+        <ul class="ul" id="id9yz-09126-cn01-tczza-d1e5388__ul_pcw_s5n_4xb">
+            <li class="li"><span class="ph uicontrol">Connectivity Rules</span> (<em class="ph i">Diameter rules</em>): allows you to use
+                the rule editor with the auto-suggest function to author a rule.</li>
+
+            <li class="li"><span class="ph uicontrol">Message Validation</span>: allows you to author a rule in a named
+                message filter without the auto-suggest function; however, with only the appropriate
+                selections being made available.</li>
+
+        </ul>
+
+        <div class="section" id="id9yz-09126-cn01-tczza-d1e5388__section_rj2_c2s_qxb"><h2 class="title sectiontitle">Message manipulation configuration</h2>
+            
+            <p class="p">For details on configuring <span class="ph uicontrol">Connectivity rules</span>, see <a class="xref" href="connectivity_rules.html">Connectivity rules</a>.</p>
+
+            <p class="p">For details on configuring <span class="ph uicontrol">Message Validation</span>, see <a class="xref" href="message_validation.html">Message validation</a>.</p>
+
+        </div>
+
+<div class="section"><h2 class="title sectiontitle">Data type conversion</h2>
+<p class="p">The <em class="ph i">CalculatorContext</em> manages the AVP data type and supports data type conversions wherein some of these conversions are implemented through simple assignment and few are exposed as rule action in the <em class="ph i">CalculatorContext</em>, such as <em class="ph i">Address-To-UTF8</em> or <em class="ph i">Enum-To-UTF8</em> data type conversion.</p>
+
+<p class="p">For example:</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Address-To-UTF8 conversion action</span>
+                
+                <img class="image break" src="../images/address-to-utf8_conversion_default.png" />
+            </div>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Enum-To-UTF8 converter action</span>
+                
+                <img class="image break" src="../images/utf8_converter_action_default.png" height="156" width="973" />
+            </div>
+
+<p class="p">For more information on various types of actions supported by the <em class="ph i">CalculatorContext</em>, see the <a class="xref" href="ncc_computational.html#id9yz-09126-cn01-tczza-d1e9435__Calculatorcontext">Calculator context</a> section in this chapter.</p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Dictionary of definitions for the AVPs</h2>
+<p class="p">NCC provides a dictionary of definitions for the AVPs that can be present in the supported
+                Diameter applications. NCC uses these dictionaries to generate source and result
+                contexts to help you build filters and actions. Each Diameter AVP is made available
+                as an attribute of the context corresponding to the message type it is contained in.
+                For example, Subscription-Id is made available as an attribute of GxCCR, GxxCCR,
+                etc. You can write filters to specify the actions that should be performed on the
+                Diameter messages and the conditions when these actions should occur. </p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Diameter rule and message filter construction</h2>
+<p class="p">The Diameter Rules GUI allows you to author specific rules for Diameter messages. A rule consists of criteria that are matched against the message being processed followed by the actions that are to be taken on a match of criteria.</p>
+
+<p class="p">Message filters provide a way to customize the behavior of a plugin and are based on a simplified version of the rule. In a message filter, a condition is always &lt;context.attribute&gt; &lt;operator&gt; &lt;literal data&gt;, for which only ANDing of conditions is supported. To see the selection available in the SM GUI, click on the context box inside a Diameter rule or message filter criterion and choose a context. Then click on the attribute and choose and attribute. You can then “AND” another criterion in the rule, or choose an action in the same manner.</p>
+
+<p class="p">There are specific classes for each context, but all Diameter messages are implemented using three classes:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">RequestMessageContext </p>
+
+</li>
+
+<li class="li">
+<p class="p">AnswerMessageContext</p>
+
+</li>
+
+<li class="li">
+<p class="p">MessageContext</p>
+
+</li>
+
+</ul>
+
+<p class="p">There are many contexts that NCC supports out of the box including DiameterRequest and
+                DiameterAnswer along with the following for Gy, Gx, Sy, and Rx to name a few:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">CCR</p>
+
+</li>
+
+<li class="li">
+<p class="p">CCA</p>
+
+</li>
+
+<li class="li">
+<p class="p">RAA</p>
+
+</li>
+
+<li class="li">
+<p class="p">RAR</p>
+
+</li>
+
+<li class="li">
+<p class="p">ASA</p>
+
+</li>
+
+<li class="li">
+<p class="p">ASR</p>
+
+</li>
+
+<li class="li">
+<p class="p">etc.</p>
+
+</li>
+
+</ul>
+
+<p class="p">The following is an example of a rule that you could use in a Diameter rule or message filter where <em class="ph i">Media-Component-Description.Media-Sub-Component.Flow-Description</em> is an attribute of an Rx AAR message context: </p>
+
+<p class="p">
+<kbd class="ph userinput">Rx AAR.Media-Component-Description.Media-Sub-Component.Flow-Description</kbd>
+</p>
+
+<p class="p">There are a number of attributes and actions available in the contexts. Standard actions and additional attributes are available for every AVP, for example:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">attributes such as M-Bit, Number-Of-Values</p>
+
+</li>
+
+<li class="li">
+<p class="p">actions such as set, add, remove</p>
+
+</li>
+
+</ul>
+
+<p class="p">All of the attributes and actions are automatically determined and pre-populated according to the context type selected. For example, if you select DiameterRequest as the context, your next choice of attribute or action will be from a list of only those attributes and actions that are available within the DiameterRequest context. </p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Structure of Diameter AVPs</h2>
+<p class="p">The structure of the Diameter attributes for Diameter request and answer contexts are defined by the relevant standards document for the given application message type.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For a complete list of standard Attribute Value Pairs (AVPs) for a Diameter command supported
+                by NCC, please refer to the appropriate Technical Standard (TS) document.</div>
+
+<p class="p">A Diameter AVP is usually a simple value with a unique identifier that enables the Diameter device to interpret the value. A Diameter message must have at least one AVP. Further, the Diameter protocol also defines the AVP structure for a message. </p>
+
+<p class="p">The following AVP structures are allowed:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">
+<strong class="ph b">Simple AVP</strong>- The AVP is a simple value, such as, int, string, float, etc.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Grouped AVP</strong>- The AVP is a container of a collection of other AVPs, each of which may be simple values or grouped AVPs themselves. For example, in a Rx AAR message, the Media-Component-Description is multi-valued and of type grouped.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Multi-value AVP</strong>- The AVP (simple or grouped) appears more than once in the Diameter message. For example, the Flow-Description AVP in a Rx AAR message.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Single-value AVP</strong>- The AVP (simple or grouped) appears once in the Diameter message. For example, CC-Request-Type, CC-Request-Number in a Gx CCR message.</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Common action types for Diameter AVPs</h2>
+<p class="p">NCC provides a set of basic actions/attributes that support the content manipulation of any AVP
+                instance in several ways: adding, removing, or moving the AVP. You can also modify
+                the content of an AVP. The common action types are specified as part of the action
+                attribute name in the <span class="ph uicontrol">Action Attribute</span> table for the filter.
+                The actions are available across both single-value and multi-value AVP
+                structures.</p>
+
+<p class="p">Grouped AVPs have the same actions/attributes as simple AVPs except you can use the presence of a grouped AVP in message filter conditions. However, the value of the AVP cannot be tested.</p>
+
+<p class="p">The table below describes the set of basic actions/attributes that allow you to manipulate Diameter AVPs in a message context. </p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Common action types for AVP content manipulation</span></caption><colgroup><col style="width:16.025641025641026%" /><col style="width:83.97435897435898%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d29247e347">
+                                <p class="p">Action name</p>
+
+                            </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d29247e353">
+                                <p class="p">Purpose</p>
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e347 "> Add </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e353 ">
+                                <p class="p">Allows you to add an AVP if it does not already exist in the
+                                    Diameter message.</p>
+
+                                <p class="p">For example, <em class="ph i">GxCCR.Origin-State-Id.Add</em> set as
+                                        <var class="keyword varname">123456789</var>.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e347 "> Set </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e353 ">
+                                <p class="p">Allows you to set the value of an AVP either by overwriting the
+                                    existing value, or by adding the AVP if it does not already
+                                    exist in the Diameter message.</p>
+
+                                <p class="p">For example, <em class="ph i">GyCCR.Event-Timestamp.Set</em> =
+                                        <var class="keyword varname">GyCCR.Service-Information.PS-Information.Start-Time</var>.</p>
+
+                                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For setting the value of AVPs of type octet string, each octet
+                                    value must be prefixed with '\' character. For example:
+                                        <var class="keyword varname">\82\13\00\62\a6\f6\13\00\62\00\72\7d\02</var></div>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e347 "> Remove </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e353 ">
+                                <p class="p">Allows you to remove an AVP from the Diameter message.</p>
+
+                                <p class="p">For example, <em class="ph i">Origin-State-Id.Remove</em>.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e347 ">Remove-Value </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e353 ">
+                                <p class="p">Allows you to delete the existing value of an AVP from the
+                                    Diameter message. </p>
+
+                                <p class="p"> In the case of a single-value AVP, the single value is removed,
+                                    leaving the AVP without any value. For example,
+                                        <em class="ph i">Origin-State-Id.Remove-Value</em>.</p>
+
+                                <p class="p">When you use the action on a multi-value AVP, the value at the
+                                    current Write-Index is removed and all subsequent entries are
+                                    moved up one position.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e347 ">Append </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e353 "> Allows you to append to the value of an AVP. If the AVP doesn't
+                                exist yet, this action sets the value of the AVP. This action only
+                                applies to string AVPs. </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e347 ">Prepend </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e353 "> Allows you to prepend to the value of an AVP. If the AVP doesn't
+                                exist yet, then this action sets the value of the AVP. This action
+                                only applies to string AVPs </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e347 ">Name </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e353 ">
+                                <p class="p">Returns the name of the AVP as a string. For use as a parameter
+                                    in other Rule Attributes or Actions.</p>
+
+                                <p class="p">For example, <em class="ph i">Subscription-Id.Name</em> returns
+                                        <var class="keyword varname">Subscription-Id</var>.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e347 ">Path </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d29247e353 ">
+                                <p class="p">Returns the dot separated path of the AVP as a string. For use as
+                                    a parameter in other Rule Attributes or Actions.</p>
+
+                                <p class="p">For example, <em class="ph i">Subscription-Id.Subscription-Data.Path</em>
+                                    returns
+                                    <var class="keyword varname">Subscription-Id.Subscription-Data</var>.</p>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Diameter/HTTP Configuration Guide • P556766-DN1000054969-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,1002 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Apply granularity to bucket and counter" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="apply_granularity_to_bucket_or_counter" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Apply granularity to bucket and counter</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="apply_granularity_to_bucket_or_counter">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Apply granularity to bucket and counter</h1>
+<div class="body conbody">
+        <div class="section" id="apply_granularity_to_bucket_or_counter__section_bsf_yyd_wnb">
+            <p class="p">This feature enables NCC to apply granularity to a non-monetary bucket or counter
+                accumulating from bucket or main balance resources. Following are the behavior with
+                respect to this feature:</p>
+
+            <ul class="ul" id="apply_granularity_to_bucket_or_counter__ul_dmj_p22_wnb">
+                <li class="li">
+                    <p class="p">The non-monetary type of bucket is decremented with granularity through a Gy
+                        request. In this case, granularity is defined on the rate applicable to the
+                        bucket as per the tariff configuration.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Rounding as per granularity on any resource through a Gy request is performed
+                        at the end of the call, that is, CCR-T, and the usage delta is transferred
+                        from one CCR-U request to the next CCR-U request. Even if BCR/TTC has
+                        happened during the call, that is, between two CCR-U requests, delta is
+                        still transferred and adjusted.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">When a <em class="ph i">Subscription</em> or <em class="ph i">Multi-Bundle</em> counter of usage type is
+                        incremented, it should be as per the granularity of the rate applied to the
+                        resource, which is, monetary or non-monetary type of bucket, or main
+                        balance.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Handling of counter rounding with granularity of resources is configurable in
+                        counter definition.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Counter follows the granularity applied on the resources, which is, monetary
+                        or non-monetary type of bucket, or main balance by the rate applicable on
+                        them.</p>
+
+                </li>
+
+            </ul>
+
+            <p class="p">Following sections help to understand this feature in detail:</p>
+
+        </div>
+
+    </div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_drt_wql_r4b"><h2 class="title topictitle2" id="ariaid-title2">Configuring non-monetary bucket with granularity</h2>
+<div class="body conbody">
+            <div class="section" id="concept_drt_wql_r4b__section_r54_xf2_wnb">
+                <p class="p">The granularity of a non-monetary bucket is based on the rate applicable to that
+                    bucket.</p>
+
+                <p class="p">Follow the given configuration to enable a non-monetary bucket to be deducted
+                    with the granularity defined in its rate:</p>
+
+                <ol class="ol" id="concept_drt_wql_r4b__ol_qhg_zg2_wnb">
+                    <li class="li">
+                        <p class="p">Define a rate with granularity to be applied on the non-monetary
+                            bucket.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">While selecting the non-monetary bucket during tariff configuration,
+                            specify that rate as:</p>
+
+                        <p class="p"><span class="keyword cmdname">Rating.Rate(RateID,Non-Monetary-BucketID)</span></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Set the ME application preference <em class="ph i">GRANULARITY SKIP FOR LOW BALANCE</em>
+                            as <var class="keyword varname">True</var>.</p>
+
+                    </li>
+
+                </ol>
+
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> <p class="p">Consider the following points when applying rate to a non-monetary
+                        bucket:</p>
+
+                    <ul class="ul" id="concept_drt_wql_r4b__ul_qxr_214_xnb">
+                        <li class="li">
+                            <p class="p">The initial balance, which is provisioned should not be in
+                                decimal.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">The quantity and cost should be multiple of each other. For example,
+                                allowed rate configuration can be 25/50, 30/60, or 50/5; however,
+                                50/80 is not allowed.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">The <em class="ph i">Granularity</em> should be divisible by <em class="ph i">Quantity</em>. For
+                                example, if <em class="ph i">Quantity</em> is set as <var class="keyword varname">60</var>, then
+                                    <em class="ph i">Granularity</em> can be <var class="keyword varname">60</var>,
+                                    <var class="keyword varname">120</var>, or <var class="keyword varname">180</var>, but certainly
+                                not <var class="keyword varname">50</var> or <var class="keyword varname">90</var>.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Keep the finite step bucket in multiples of <em class="ph i">Quantity</em> or
+                                multiples of <em class="ph i">Granularity</em>. For example, if <em class="ph i">Quantity</em> is
+                                set as <var class="keyword varname">60</var>, then the finite step bucket can be
+                                    <var class="keyword varname">2400</var> but not <var class="keyword varname">2500</var>.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Configure a non-decimal value for <em class="ph i">Fixed fee</em> for a non-monetary
+                                bucket.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Tax is not applicable for non-monetary bucket.</p>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="section" id="concept_drt_wql_r4b__section_ims_1rl_r4b"><h3 class="title sectiontitle">Example</h3>
+                
+                <p class="p"><strong class="ph b">Preconditions:</strong></p>
+
+                <ol class="ol" id="concept_drt_wql_r4b__ol_r4v_f32_wnb">
+                    <li class="li">
+                        <p class="p">Create the following rate object:</p>
+
+                        <div class="fig fignone" id="concept_drt_wql_r4b__fig_u15_r32_wnb">
+                            <img class="image break" id="concept_drt_wql_r4b__image_rcw_t32_wnb" src="../images/ratesecondimg1.PNG" height="249" width="754" />
+                        </div>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create a charging service object <var class="keyword varname">CS_2</var> having a bucket
+                                <var class="keyword varname">bucket4</var> of <em class="ph i">second</em> type and rate
+                                (<var class="keyword varname">rate_second</var>) applied to the bucket. The bucket
+                            value is <var class="keyword varname">204 seconds</var>.</p>
+
+                        <p class="p">The charging service has the following tariff configuration:</p>
+
+                        <div class="fig fignone" id="concept_drt_wql_r4b__fig_lxz_yj2_wnb">
+                            <img class="image break" id="concept_drt_wql_r4b__image_izq_bk2_wnb" src="../images/chargingservicetariffrule.PNG" />
+                        </div>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create the following bundle:</p>
+
+                        <ul class="ul" id="concept_drt_wql_r4b__ul_qzm_vvl_wnb">
+                            <li class="li">
+                                <p class="p"><em class="ph i">Name</em>: <var class="keyword varname">bundle_second</var></p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p"><em class="ph i">Fee</em>: <var class="keyword varname">0</var></p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p"><em class="ph i">Charging Service List</em>: <var class="keyword varname">CS_2</var></p>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create an accout and a device object with the following subscription:</p>
+
+                        <div class="fig fignone" id="concept_drt_wql_r4b__fig_kql_zyl_wnb">
+                            <img class="image break" id="concept_drt_wql_r4b__image_rbm_bzl_wnb" src="../images/devicesubscription.PNG" height="120" width="843" />
+                        </div>
+
+                    </li>
+
+                    <li class="li">Set the ME application preference <em class="ph i">GRANULARITY SKIP FOR LOW BALANCE</em> to
+                            <var class="keyword varname">True</var>. <div class="note" id="concept_drt_wql_r4b__note_ghh_n2w_ptb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For details on
+                            configuring ME application preferences, see <em class="ph i">Managed Elements</em>
+                            section in <em class="ph i">Global Configuration Guide</em>.</div>
+</li>
+
+                </ol>
+
+                <p class="p"><strong class="ph b">Execution:</strong></p>
+
+                <p class="p">Execute a single MSCC decentralized IMS call with <span class="keyword cmdname">RG=3300</span> as
+                    follows:</p>
+
+                <ol class="ol" id="concept_drt_wql_r4b__ol_lqt_dzl_wnb">
+                    <li class="li">
+                        <p class="p"><span class="keyword cmdname">CCR(I): RG=3300 : RSU= 30 sec , GSU=60 sec</span></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p"><span class="keyword cmdname">CCR(U1): RG=3300 : RSU= 30 sec , GSU=60 sec</span></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p"><span class="keyword cmdname">CCR(U2): RG=3300 : USU=70 sec, RSU= 80 sec, GSU=110
+                                sec</span></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p"><span class="keyword cmdname">CCR(U3): RG=3300 : USU= 40 sec, RSU= 40 sec, GSU=70
+                                sec</span></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p"><span class="keyword cmdname">CCR(U4): RG=3300:USU= 25 RSU = 20 GSU = 45</span></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p"><span class="keyword cmdname">CCR(T'): RG=3300 : USU=50 sec</span></p>
+
+                    </li>
+
+                </ol>
+
+                <p class="p"><strong class="ph b">Verification:</strong> After executing the preceding calls, following points are
+                    verified:</p>
+
+                <ul class="ul" id="concept_drt_wql_r4b__ul_tqp_nzl_wnb">
+                    <li class="li">
+                        <p class="p">After executing the <span class="keyword cmdname">CCR(U2)</span> call, the unused bucket
+                            value becomes <var class="keyword varname">84</var> and GSU is calculated as
+                                <var class="keyword varname">110</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">After executing the <span class="keyword cmdname">CCR(U3)</span> call, the unused bucket
+                            value remains <var class="keyword varname">84</var> and GSU is calculated as
+                                <var class="keyword varname">70</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">After executing the <span class="keyword cmdname">CCR(U4)</span> call, the unused bucket
+                            value becomes <var class="keyword varname">24</var> and GSU calculated as
+                                <var class="keyword varname">45</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">After executing the <span class="keyword cmdname">CCR(T')</span> call, the unused bucket
+                            value becomes <var class="keyword varname">0</var>.</p>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_fqy_jvt_54b"><h2 class="title topictitle2" id="ariaid-title3">Applying bucket granularity with only step-size without considering
+            cost/quantity</h2>
+<div class="body conbody">
+            <div class="section" id="concept_fqy_jvt_54b__section_myn_nvt_54b">
+                <p class="p">The bucket granularity is based on assigned rate, which can be a standard rate
+                    used elsewhere (for example, <var class="keyword varname">EUR/MB</var> with step-size is greater
+                    than 1 byte).</p>
+
+                <p class="p">The non-monetary bucket can be only decreased by step-size and not with any
+                    defined cost/quantity (that is, <var class="keyword varname">1 EUR/MB</var> or even <var class="keyword varname">0.5
+                        EUR/MB</var>) in that rate. The same rate can be configured to be used
+                    for a monetary or non-monetary resource, but only its step-size (and NOT
+                    cost/quantity) is applied on non-monetary buckets.</p>
+
+                <p class="p">The new rating action <span class="keyword cmdname">Bucket-Granularity-Selection</span> is
+                    required.</p>
+
+                <p class="p">Signature:
+                        <span class="keyword cmdname">Rating.Bucket-Granularity-Selection(RateID,BucketID)</span></p>
+
+                <p class="p">Rating action when specified as
+                    <span class="keyword cmdname">Bucket-Granularity-Selection</span>:</p>
+
+                <ul class="ul" id="concept_fqy_jvt_54b__ul_hjp_vwt_54b">
+                    <li class="li">
+                        <p class="p">Applies only the step-size of the <em class="ph i">RateID</em> defined in the action
+                            with volume or time bucket.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Does not apply the cost/quantity even when it has any value defined.</p>
+
+                    </li>
+
+                </ul>
+
+                <p class="p">Following tarriff rules are applied:</p>
+
+                <ul class="ul" id="concept_fqy_jvt_54b__ul_csh_cxt_54b">
+                    <li class="li">
+                        <p class="p">Tariff: <span class="keyword cmdname">Rating.Rate(RateX,VolumeBucket)</span></p>
+
+                        <p class="p">with step-size + cost/quantity of <var class="keyword varname">RateX</var> is applied to
+                                <span class="keyword cmdname">VolumeBucket</span>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Tariff: <span class="keyword cmdname">Rating. Bucket-Selection(VolumeBucket)</span></p>
+
+                        <p class="p">with no rate or granularity applied to
+                            <span class="keyword cmdname">VolumeBucket</span></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Tariff: <span class="keyword cmdname">Rating. Bucket-Granularity-Selection
+                                (RateX,VolumeBucket)</span></p>
+
+                        <p class="p">with step-size of rate or granularity applied to
+                                <span class="keyword cmdname">VolumeBucket</span> and not cost/quantity.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Tariff: <span class="keyword cmdname">Rating. Bucket-Granularity-Selection
+                                (CALL_COMMON.Pre-Rating-Simulation-Rate,VolumeBucket)</span></p>
+
+                        <p class="p">with step-size of rate or granularity of
+                                <span class="keyword cmdname">CALL_COMMON.PTP_RATE</span> applied to
+                                <span class="keyword cmdname">VolumeBucket</span> and not its cost/quantity.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Tariff: <span class="keyword cmdname">Rating. Bucket-Granularity-Selection
+                                (CALL_COMMON.Selected-Rate,VolumeBucket)</span></p>
+
+                        <p class="p">with step-size of rate or granularity of
+                                <span class="keyword cmdname">CALL_COMMON.Selected-Rate</span> applied to
+                                <span class="keyword cmdname">VolumeBucket</span> and not its cost/quantity.</p>
+
+                    </li>
+
+                </ul>
+
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                    <ul class="ul" id="concept_fqy_jvt_54b__ul_q55_fyt_54b">
+                        <li class="li">
+                            <p class="p">The applied rate should be <em class="ph i">Normal</em> type of rate. The
+                                    <em class="ph i">Fixed</em> or <em class="ph i">Reflection</em> type of rate is not a part of
+                                this feature.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">If a user configures <span class="keyword cmdname">Bucket-Granularity-Selection</span>
+                                rating action with a monetary bucket or main balance, then this
+                                feature is disabled, that means cost/quantity is applied with the
+                                step-size.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">Any other type of cost, like connection cost; and if defined in the
+                                rate, then it is not applicable to non-monetary buckets (only its
+                                step-size), which means connection cost to be ignored.</p>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="section" id="concept_fqy_jvt_54b__section_vpn_dzt_54b"><h3 class="title sectiontitle">Example</h3>
+                
+                <p class="p"><strong class="ph b">Objective:</strong> Check that in case of a non-monetary bucket, cost/quantity as
+                    specified in rate is ignored and granularity specified as <var class="keyword varname">10
+                        bytes</var> is taken into consideration.</p>
+
+                <p class="p"><strong class="ph b">Prerequisites:</strong></p>
+
+                <ol class="ol" id="concept_fqy_jvt_54b__ol_ikl_f15_54b">
+                    <li class="li">
+                        <p class="p">Create a rate object with following information:</p>
+
+                        <p class="p"><em class="ph i">Name</em>: <var class="keyword varname">rate_byte</var></p>
+
+                        <p class="p"><em class="ph i">RateType</em>: <var class="keyword varname">Byte</var></p>
+
+                        <p class="p"><em class="ph i">Granularity Level</em>: <var class="keyword varname">Byte Cost/Quantity</var> =
+                                <var class="keyword varname">5/1 B</var> and <em class="ph i"> Step Size</em> = <var class="keyword varname">10
+                                B</var></p>
+
+                        <img class="image break" id="concept_fqy_jvt_54b__image_d3r_mc5_54b" src="../images/granularity_example1_rate.PNG" height="205" width="886" />
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create the following charging service object with bucket having
+                                <var class="keyword varname">1000 bytes</var> and rate applied on bucket:</p>
+
+                        <img class="image break" id="concept_fqy_jvt_54b__image_uzs_4c5_54b" src="../images/granularity_example1_charging_service.PNG" height="262" width="604" />
+                        
+                        <img class="image break" id="concept_fqy_jvt_54b__image_wty_sc5_54b" src="../images/granularity_example1_bucket.PNG" />
+                        
+                        <img class="image break" id="concept_fqy_jvt_54b__image_fml_vc5_54b" src="../images/granularity_example1_tariff_config.PNG" />
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create a bundle, account and device objects.</p>
+
+                        <img class="image break" id="concept_fqy_jvt_54b__image_q4j_5c5_54b" src="../images/granularity_example1_bundle.PNG" />
+                    </li>
+
+                </ol>
+
+                <p class="p"><strong class="ph b">Execution:</strong></p>
+
+                <p class="p">Execute single MSCC decentralized SCUR call with <span class="keyword cmdname">RG=3300</span> as
+                    specified:</p>
+
+                <p class="p"><span class="keyword cmdname">CCR(I): RG=3300 : RSU= 25 bytes , GSU=30 bytes</span></p>
+
+                <p class="p"><span class="keyword cmdname">CCR(U1): RG=3300 : USU=25 bytes, RSU= 25 bytes, GSU=25
+                    bytes</span></p>
+
+                <p class="p"><span class="keyword cmdname">CCR(U2): RG=3300 : USU= 50 bytes, RSU= 30 bytes, GSU=35
+                    bytes</span></p>
+
+                <p class="p"><span class="keyword cmdname">CCR(T'): RG=3300 : USU=25 bytes</span></p>
+
+                <p class="p"><strong class="ph b">Verification:</strong></p>
+
+                <ol class="ol" id="concept_fqy_jvt_54b__ol_k4r_bb5_54b">
+                    <li class="li">
+                        <p class="p">Verify that after <span class="keyword cmdname">CCRU1</span>, the unused bucket value
+                            becomes <var class="keyword varname">970</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Verify that after <span class="keyword cmdname">CCRU2</span>, the unused bucket value
+                            becomes <var class="keyword varname">920</var> . Here, charging takes place in 2 steps;
+                            first reserved quantity gets charged which is <var class="keyword varname">20
+                                bytes</var> and then, overcommit quantity, which is <var class="keyword varname">25
+                                bytes</var> gets charged.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Verify that after <span class="keyword cmdname">CCRT</span>, the unused bucket value
+                            becomes <var class="keyword varname">900</var>.</p>
+
+                    </li>
+
+                </ol>
+
+                <table cellpadding="4" cellspacing="0" summary="" id="concept_fqy_jvt_54b__table_y3x_zc5_54b" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Call flow</span></caption><colgroup><col style="width:16.666666666666664%" /><col style="width:16.666666666666664%" /><col style="width:16.666666666666664%" /><col style="width:16.666666666666664%" /><col style="width:16.666666666666664%" /><col style="width:16.666666666666664%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d50049e819">Diameter call</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d50049e822">RSU</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d50049e825">USU</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d50049e828">GSU</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d50049e831">Bucket Current Value</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d50049e835">Bucket Unused Value</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e819 ">START</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e822 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e825 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e828 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e831 ">1000</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e835 ">1000</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e819 ">CCR-I</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e822 ">25</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e825 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e828 ">30</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e831 ">970</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e835 ">1000</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e819 ">CCR-U1</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e822 ">25</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e825 ">25</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e828 ">25</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e831 ">950</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e835 ">970</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e819 ">CCR-U2</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e822 ">30</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e825 ">50</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e828 ">35</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e831 ">890</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e835 ">920</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e819 ">CCR-T</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e822 ">NA</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e825 ">25</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e828 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e831 ">900</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d50049e835 ">900</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title4" id="concept_rk4_3ql_r4b"><h2 class="title topictitle2" id="ariaid-title4">Updating counter with usage consumption without granularity applied to main balance
+            or bucket</h2>
+<div class="body conbody">
+            <div class="section" id="concept_rk4_3ql_r4b__section_ssg_21m_wnb">
+                <p class="p">Follow the given configuration to update a counter with usage consumption from
+                    main balance or bucket without granularity (rate) applied on the main balance or
+                    bucket:</p>
+
+                <ol class="ol" id="concept_rk4_3ql_r4b__ol_ykd_3bm_wnb">
+                    <li class="li">
+                        <p class="p">Define a rate with the granularity to be applied on main balance or
+                            bucket.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Define a counter with <em class="ph i">Align Granularity</em> parameter set as
+                                <var class="keyword varname">False</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">While selecting the counter during tariff configuration, specify that
+                            rate as:</p>
+
+                        <p class="p"><span class="keyword cmdname">Rating.Rate(RateID,BucketID)</span></p>
+
+                        <p class="p"><span class="keyword cmdname">Rating.Counter-Selection(CounterID)</span></p>
+
+                        <p class="p"><span class="keyword cmdname">Or</span></p>
+
+                        <p class="p"><span class="keyword cmdname">Rating.Rate(RateID,Main-Balance)</span></p>
+
+                        <p class="p"><span class="keyword cmdname">Rating.Counter-Selection(CounterID)</span></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Set the ME application preference <em class="ph i">GRANULARITY SKIP FOR LOW BALANCE</em>
+                            as <var class="keyword varname">True</var>.</p>
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+            <div class="section" id="concept_rk4_3ql_r4b__section_qlk_qql_r4b"><h3 class="title sectiontitle">Example with granularity applied to main balance</h3>
+                
+                <p class="p"><strong class="ph b">Preconditions:</strong></p>
+
+                <ol class="ol" id="concept_rk4_3ql_r4b__ol_uft_bgm_wnb">
+                    <li class="li">
+                        <p class="p">Create the following rate object:</p>
+
+                        <div class="fig fignone" id="concept_rk4_3ql_r4b__fig_fcq_dhm_wnb">
+                            <img class="image break" id="concept_rk4_3ql_r4b__image_r4f_2hm_wnb" src="../images/ratesecondimg2.PNG" height="263" width="858" />
+                        </div>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create a subscription counter <var class="keyword varname">subscription_counter1</var>
+                            with <em class="ph i">Counter Type</em> set as <var class="keyword varname">Usage</var>, <em class="ph i">Unit
+                                Type</em> set as <var class="keyword varname">Byte</var>, and <em class="ph i">Align
+                                Granularity</em> as <var class="keyword varname">False</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create a charging service object <var class="keyword varname">CS_2</var> having the
+                            counter <var class="keyword varname">subscription_counter1</var> and rate applied to
+                            account main balance.</p>
+
+                        <p class="p">The charging service has the following tariff configuration:</p>
+
+                        <div class="fig fignone" id="concept_rk4_3ql_r4b__fig_hy5_4hm_wnb">
+                            <img class="image break" id="concept_rk4_3ql_r4b__image_dfk_phm_wnb" src="../images/chargingservicetariffrule2.PNG" />
+                        </div>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create an accout and a device object, and the main balance in account is
+                                <var class="keyword varname">104448</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <div class="p">Set the ME application preferences <em class="ph i">GRANULARITY SKIP FOR LOW
+                                BALANCE</em> to <var class="keyword varname">True</var>. <div class="note" id="concept_rk4_3ql_r4b__note_s4r_r2w_ptb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For details on configuring ME application preferences, see
+                                    <em class="ph i">Managed Elements</em> section in <em class="ph i">Global Configuration
+                                    Guide</em>.</div>
+</div>
+
+                    </li>
+
+                </ol>
+
+                <p class="p"><strong class="ph b">Execution:</strong></p>
+
+                <p class="p">Execute a single MSCC decentralized SCUR call with <span class="keyword cmdname">RG=3300</span> as
+                    follows:</p>
+
+                <ol class="ol" id="concept_rk4_3ql_r4b__ol_jgw_yhm_wnb">
+                    <li class="li">
+                        <p class="p"><span class="keyword cmdname">CCR(I): RG=3300 : RSU= 25600 bytes , GSU=30720
+                            bytes</span></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p"><span class="keyword cmdname">CCR(U1): RG=3300 : USU=25600 bytes, RSU= 25600 bytes, GSU=25600
+                                bytes</span></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p"><span class="keyword cmdname">CCR(U2): RG=3300 : USU= 51200 bytes, RSU= 30720 bytes, GSU=35480
+                                bytes</span></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p"><span class="keyword cmdname">CCR(T'): RG=3300 : USU=51200 bytes</span></p>
+
+                    </li>
+
+                </ol>
+
+                <p class="p"><strong class="ph b">Verification:</strong> After executing the preceding calls, following points are
+                    verified:</p>
+
+                <ul class="ul" id="concept_rk4_3ql_r4b__ul_zvg_d3m_wnb">
+                    <li class="li">
+                        <p class="p">After executing the <span class="keyword cmdname">CCR(U1)</span> call, the counter value
+                            becomes <var class="keyword varname">25600</var> and account main balance becomes
+                                <var class="keyword varname">73728</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">After executing the <span class="keyword cmdname">CCR(U2)</span> call, the counter value
+                            becomes <var class="keyword varname">76800</var> and account main balance becomes
+                                <var class="keyword varname">22528</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">After executing the <span class="keyword cmdname">CCR(T)</span> call, the counter value
+                            becomes <var class="keyword varname">128000</var> and account main balance becomes
+                                <var class="keyword varname">-28672</var>.</p>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title5" id="concept_gkv_fql_r4b"><h2 class="title topictitle2" id="ariaid-title5">Updating counter with usage consumption with granularity applied to main balance or
+            bucket</h2>
+<div class="body conbody">
+            <div class="section" id="concept_gkv_fql_r4b__section_dqx_fcm_wnb">
+                <p class="p">Follow the given configuration to update a counter with usage consumption from
+                    main balance or bucket with granularity (rate) applied on the main balance or
+                    bucket:</p>
+
+                <ol class="ol" id="concept_gkv_fql_r4b__ol_ucl_nfm_wnb">
+                    <li class="li">
+                        <p class="p">Define a rate with the granularity to be applied on main balance or
+                            bucket.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Define a counter with <em class="ph i">Align Granularity</em> parameter set as
+                                <var class="keyword varname">True</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">While selecting the counter during tariff configuration, specify that
+                            rate as:</p>
+
+                        <p class="p"><span class="keyword cmdname">Rating.Rate(RateID,BucketID)</span></p>
+
+                        <p class="p"><span class="keyword cmdname">Rating.Counter-Selection(CounterID)</span></p>
+
+                        <p class="p"><span class="keyword cmdname">Or</span></p>
+
+                        <p class="p"><span class="keyword cmdname">Rating.Rate(RateID,Main-Balance)</span></p>
+
+                        <p class="p"><span class="keyword cmdname">Rating.Counter-Selection(CounterID)</span></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Set the ME application preference <strong class="ph b">GRANULARITY SKIP FOR LOW BALANCE</strong>
+                            as <var class="keyword varname">True</var>.</p>
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+            <div class="section" id="concept_gkv_fql_r4b__section_jhm_jql_r4b"><h3 class="title sectiontitle">Example with granularity applied to bucket</h3>
+                
+                <p class="p"><strong class="ph b">Preconditions:</strong></p>
+
+                <ol class="ol" id="concept_gkv_fql_r4b__ol_fsx_1jm_wnb">
+                    <li class="li">
+                        <p class="p">Create the following rate object:</p>
+
+                        <div class="fig fignone" id="concept_gkv_fql_r4b__fig_gsx_1jm_wnb">
+                            <img class="image break" id="concept_gkv_fql_r4b__image_hsx_1jm_wnb" src="../images/ratesecondimg2.PNG" height="263" width="858" />
+                        </div>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create a subscription counter <var class="keyword varname">subscription_counter2</var>
+                            with <em class="ph i">Counter Type</em> set as <var class="keyword varname">Usage</var>, <em class="ph i">Unit
+                                Type</em> set as <var class="keyword varname">Byte</var>, and <em class="ph i">Align
+                                Granularity</em> as <var class="keyword varname">True</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create a charging service object <var class="keyword varname">CS_3</var> having a
+                            monetary bucket <var class="keyword varname">bucket5</var> with value of
+                                <var class="keyword varname">104448</var>, and the counter
+                                <var class="keyword varname">subscription_counter2</var> with rate applied to
+                            account main balance.</p>
+
+                        <p class="p">The charging service has the following tariff configuration:</p>
+
+                        <div class="fig fignone" id="concept_gkv_fql_r4b__fig_lsx_1jm_wnb">
+                            <img class="image break" id="concept_gkv_fql_r4b__image_p5c_4jm_wnb" src="../images/chargingservicetariffrule3.PNG" />
+                        </div>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Create a bundle, account and a device object.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Set the ME application preference <em class="ph i">GRANULARITY SKIP FOR LOW BALANCE</em>
+                            to <var class="keyword varname">True</var>.</p>
+
+                        <div class="note" id="concept_gkv_fql_r4b__note_hnm_t2w_ptb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For details on configuring ME application
+                            preferences, see <em class="ph i">Managed Elements</em> section in <em class="ph i">Global
+                                Configuration Guide</em>.</div>
+
+                    </li>
+
+                </ol>
+
+                <p class="p"><strong class="ph b">Execution:</strong></p>
+
+                <p class="p">Execute a single MSCC decentralized SCUR call with <span class="keyword cmdname">RG=3300</span> as
+                    follows:</p>
+
+                <ol class="ol" id="concept_gkv_fql_r4b__ol_rrw_tjm_wnb">
+                    <li class="li">
+                        <p class="p"><span class="keyword cmdname">CCR(I): RG=3300 : RSU= 25600 bytes , GSU=30720
+                            bytes</span></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p"><span class="keyword cmdname">CCR(U1): RG=3300 : USU=25600 bytes, RSU= 25600 bytes, GSU=25600
+                                bytes</span></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p"><span class="keyword cmdname">CCR(U2): RG=3300 : USU= 51200 bytes, RSU= 30720 bytes, GSU =
+                                27648 bytes</span></p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p"><span class="keyword cmdname">CCR(T'): RG=3300 : USU=30720 bytes</span></p>
+
+                    </li>
+
+                </ol>
+
+                <p class="p"><strong class="ph b">Verification:</strong> After executing the preceding calls, following points are
+                    verified:</p>
+
+                <ul class="ul" id="concept_gkv_fql_r4b__ul_srw_tjm_wnb">
+                    <li class="li">
+                        <p class="p">After executing the <span class="keyword cmdname">CCR(U1)</span> call, the bucket value
+                            becomes <var class="keyword varname">73728</var> and counter value becomes
+                                <var class="keyword varname">30720</var> as <em class="ph i">Align Granularity</em> is set as
+                                <var class="keyword varname">True</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">After executing the <span class="keyword cmdname">CCR(U2)</span> call, the bucket value
+                            becomes <var class="keyword varname">22528</var> and counter value becomes
+                                <var class="keyword varname">81920</var>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">After executing the <span class="keyword cmdname">CCR(T)</span> call, the bucket value
+                            becomes <var class="keyword varname">0</var> and counter value becomes
+                                <var class="keyword varname">104448</var>.</p>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title6" id="concept_fd3_zpl_r4b"><h2 class="title topictitle2" id="ariaid-title6">Additional information</h2>
+<div class="body conbody">
+            <div class="section" id="concept_fd3_zpl_r4b__section_xnr_fkm_wnb">
+                <p class="p">Consider the following points with respect to this feature:</p>
+
+                <ul class="ul" id="concept_fd3_zpl_r4b__ul_en1_hkm_wnb">
+                    <li class="li">
+                        <p class="p">This feature is only applicable to Gy, IMS, or VoLTE calls, wherein
+                            tariff is calculated.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">In non-monetary scenarios, the <em class="ph i">Rate</em> and <em class="ph i">Kind Of Unit</em> for
+                            the resource must be of the same type, which means if the bucket is of
+                                <var class="keyword varname">VOLUME</var> type, then the rate has to be
+                                <var class="keyword varname">VOLUME</var> only.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The rate applied to monetary or non-monetary bucket applies both <em class="ph i">Step
+                                Size</em> and <em class="ph i">Cost/Quantity</em>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">This feature is not applicable to <var class="keyword varname">No-Charge with
+                                Counters</var> or directly rate to <em class="ph i">Counter Selection</em>.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">It is assumed that the counter accumulation is as per the usage or cost
+                            from the resource, which can be main balance or a bucket of monetary or
+                            non-monetary type.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">A counter is updated with usage consumption from main balance or bucket
+                            with granularity (rate) applied on main balance or bucket.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">A counter is updated with usage consumption, that is <em class="ph i">No-Charge</em>
+                            without granularity, which means counter gets updated with the value as
+                            in USU request. However, updating a counter with usage consumption, that
+                            is <em class="ph i">No-Charge</em> with respect to granularity is not supported.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">A <var class="keyword varname">Cost</var> type counter is ALWAYS updated with granularity
+                            of the resource, that can be main balance or bucket.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">In order to skip the cost/quantity defined in a rate for non-monetary
+                            resources, use the following configuration:</p>
+
+                        <p class="p"><em class="ph i">Rate Type as byte/seconds (base unit) and Cost = 1 and Quantity =
+                                1</em></p>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

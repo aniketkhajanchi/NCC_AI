@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Custom counter configuration" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="counter_entity_configuration" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Custom counter configuration</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="counter_entity_configuration">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Custom counter configuration</h1>
+<div class="body">
+<p class="p">Log into the Service Manager Graphical User Interface (SM GUI), navigate to
+    <span class="ph uicontrol">Charging</span> → ≡ → <span class="ph uicontrol">COMPONENT LIBRARY</span> →
+    <span class="ph uicontrol">Custom counter</span>. To define a new counter, click 
+   <img class="image" src="../images/hybrid_gui/new_button.png" height="54" width="104" /> to add the
+   basic details as described in the given table:</p>
+
+  <p class="p"><strong class="ph b">Basic Details</strong></p>
+
+  <table cellpadding="4" cellspacing="0" summary="" id="counter_entity_configuration__table_nhs_k42_tpb" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters for custom counter</span></caption><colgroup><col style="width:15.217391304347828%" /><col style="width:59.1533180778032%" /><col style="width:14.187643020594965%" /><col style="width:11.441647597254004%" /></colgroup><thead class="thead" style="text-align:left;">
+     <tr class="row">
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d116698e62">Parameter</th>
+
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d116698e65">Description</th>
+
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d116698e68">Options</th>
+
+      <th class="entry cellrowborder" style="vertical-align:top;" id="d116698e71">Mandatory/ Optional</th>
+
+     </tr>
+
+    </thead>
+<tbody class="tbody">
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Name</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">This parameter indicates a unique name of the counter.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">String</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Mandatory</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Type</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">
+       <p class="p">This parameter indicates the type such as Time, Data, Money, Message associated with the
+        counter.</p>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">
+       <p class="p">Enum</p>
+
+       <p class="p">Select the required type from the predefined set of values in the drop-down list.</p>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 "> Mandatory</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Unit</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">
+       <p class="p">This parameter indicates the type of unit associated with the counter. Supported values
+        are: Minute, Hour, Day, Second.</p>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">
+       <p class="p">Enum</p>
+
+       <p class="p">Select the required unit type from the predefined counter types in the drop-down list.</p>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Mandatory</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Description</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">This parameter contains the description of a counter.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">String</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Apply granularity</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">This flag must be checked to apply granularity.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Boolean</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Counter Scope</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">
+       <p class="p">This parameter indicates the scope of the counter. The supported values are as
+        follows:</p>
+
+       <ul class="ul" id="counter_entity_configuration__ul_phs_k42_tpb">
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">All</var>: Scope is to monitor all counters in hierarchy.</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">Self</var>: Scope is to monitor the usage or call of device or group to which
+          the counter is attached.</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">Hierarchy</var>: Scope is to monitor the all counters in the hierarchy except
+          the usage or call of the device or group attached to the counter.</p>
+
+         <p class="p">That is, <var class="keyword varname">Hierarchy</var> equals <var class="keyword varname">All</var> -
+           <var class="keyword varname">Self</var>.</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">Multi-service</var>: This refers to those types of counters that are updated
+          across all subscriptions attached to a device.</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">Subscription</var>: This refers to those counters attached to a subscription
+          and limited to consumption by attached subscription only.</p>
+
+        </li>
+
+       </ul>
+
+       <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If <strong class="ph b">Counter Scope</strong> is <var class="keyword varname">All</var>, Group Counter is incremented if
+        charging is done from Device Resource. To prevent this increment, it must be of type
+         <var class="keyword varname">Self</var> or <var class="keyword varname">Hierarchy</var> while creating Group
+        Counter.</div>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">
+       <p class="p">Enum</p>
+
+       <p class="p">Select the required counter scope from the predefined counter scopes in the drop-down
+        list.</p>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Mandatory</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d116698e62 "> Counter incrementation type</td>
+
+      <td class="entry cell-norowborder" style="vertical-align:top;" headers="d116698e65 "> This parameter indicates the consumption type such as bucket.</td>
+
+      <td class="entry cell-norowborder" style="vertical-align:top;" headers="d116698e68 "> Enum</td>
+
+      <td class="entry cell-norowborder" style="vertical-align:top;" headers="d116698e71 "> Mandatory</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cell-norowborder" style="vertical-align:top;" headers="d116698e65 ">
+       <p class="p">The supported values are as follows:</p>
+
+       <ul class="ul" id="counter_entity_configuration__ul_qhs_k42_tpb">
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">All</var>: The counter is incremented when the consumption is done through
+          any of the entities. For example, Bucket, Counter, Account or Charging Service.</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">Allowance</var>: The counter is incremented when the consumption is done only
+          through the bucket. </p>
+
+         <p class="p"><var class="keyword varname">Allowance Amount Type</var>: </p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">Metering</var>: The counter is incremented when the consumption is done only
+          through the counter.</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">Account</var>: The counter is incremented when the consumption is done only
+          through an account.</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">Charging Logic</var>: The counter is incremented when the consumption is done
+          only through the charging service.</p>
+
+        </li>
+
+       </ul>
+
+      </td>
+
+      <td class="entry cell-norowborder" style="vertical-align:top;" headers="d116698e68 "> Select the required counter consumption type from the predefined counter
+       consumption types in the drop-down list.</td>
+
+      <td class="entry cell-norowborder" style="vertical-align:top;" headers="d116698e71 "> </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">
+       <div class="note" id="counter_entity_configuration__note_xqh_www_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If the Counter incrementation type is <var class="keyword varname">All</var>,
+        then the Counter Consumption List must be empty.</div>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 "> </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 "> </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">OCS policy counter</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 "><p class="p">This parameter indicates the value for the <em class="ph i">PolicyCounter</em> flag is dependent on
+        the given conditions:</p>
+<ul class="ul" id="counter_entity_configuration__ul_czp_b3g_3qb">
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">True</var>: If the current interface is the Sy interface. If this check box
+          is checked.</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <var class="keyword varname">False</var>: If the current interface is Gy interface. If this check box is
+          unchecked.</p>
+
+        </li>
+
+       </ul>
+Note that the Fair usage policy entity provides a simple way of configuring Sy interface
+       interactions, but you can configure custom counter with this flag set, and associated
+       thresholds as well.<p class="p">The default value is <var class="keyword varname">False</var>.</p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">
+       <p class="p">String</p>
+
+       <p class="p">Select this checkbox to indicate whether the counter is a policy counter or not.</p>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Resource Based Counter</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">By default, this checkbox is unchecked.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Select this checkbox to indicate whether the counter is a resource counter or
+       not.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Limit</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 "><p class="p">This parameter defines the usage limit or overage limit applied per counter within a
+        service.</p>
+<p class="p">If this parameter is defined, then percentage type thresholds are allowed in
+        the Thresholds Profile Group IDs parameter with a symbolic end limit as usage
+        limit.</p>
+<p class="p">Following are the important points to note:</p>
+<ul class="ul" id="counter_entity_configuration__ul_ths_k42_tpb">
+        <li class="li">
+         <p class="p">A same counter definition ID in different bundles can have different usage limits.</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">If percentage thresholds are to be used or the overage limit is to be defined for the
+          counter, then you must define the usage limit for the counter.</p>
+
+        </li>
+
+        </ul>
+The maximum supported value is 1125899906842624 (in base units) with database precision =
+       2.<div class="note" id="counter_entity_configuration__note_hgt_r5x_25b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> With increase in database precision, this value decreases. For
+        example, in case database precision is set to 5, the maximum supported value is 92233720368547.
+        </div>
+<p class="p">Once, usage limit of the counter is reached, the overage limit is considered and
+        subsequently triggers all threshold actions for the overage block. The overage is applied
+        repetitively to the counter.</p>
+<div class="note" id="counter_entity_configuration__note_j1h_2xx_25b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The overage limit can be defined
+        only when usage limit is defined.</div>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Big decimal</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Threshold profile</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">This parameter indicates the threshold profile already defined in the system that can
+       be attached to the counter.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Enum</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Allow Overage</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">If this flag is enabled, then overage is applied.<p class="p">By default, this checkbox is
+        unchecked.</p>
+</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Select this check box to indicate whether overage should be allowed.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Overage Limit</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">This parameter defines an overage usage limit per counter within a bundle and it is
+       applicable only when the usage limit is set and reached.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Integer</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Max Resets</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">For future use.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Integer</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Fee</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">This parameter defines the overage fee to be charged when usage is consumed from the
+       overage block.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Integer</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Generate EDRs</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">If the <em class="ph i">Generate EDR</em> flag is enabled, then EDR is generated at the time of
+       charging overage fee from the main balance. If multiple blocks are consumed in a single call,
+       then a separate EDR is generated for each OLI block. </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Select this check box to indicate whether EDRs should be generated for overage
+       charge.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Threshold Profile</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">This parameter indicates the threshold profile already defined in the system that can
+       be attached to overage limit.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Enum</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Applicability Condition</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">This parameter indicates a rule condition expression evaluated to determine whether the
+       charging logic is applicable.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">String</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Rule Configurations</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">
+       <p class="p">This parameter indicates the rules associated with a counter being created.</p>
+
+       <div class="p">
+        <div class="note" id="counter_entity_configuration__note_zht_xww_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The rules are evaluated only for <var class="keyword varname">Muti-Bundle</var>
+         type counter.</div>
+
+       </div>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">String</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d116698e62 d116698e65 d116698e68 d116698e71 ">Click <span class="ph uicontrol">+ADD RULE</span> to add a new
+       rule.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d116698e62 d116698e65 d116698e68 d116698e71 "><span class="ph uicontrol">Counting period</span></td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Inherit service period</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">By default, this checkbox is checked.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Select this check box to indicate whether service period should be inherited.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Period type</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">Default: Custom</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Enum</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Mandatory</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Periodical lifecycle</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">This parameter indicates the billing cycle associated with the custom counter.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Enum</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Mandatory if <span class="ph uicontrol">Inherit service period</span> is not selected.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Align Subscription Period End to a Date</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">By default, this checkbox is not checked.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Select this check box to indicate whether subscription period should be aligned to a
+       date.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Optional</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Reference Date</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">It supports <var class="keyword varname">Day of Month </var>, and <var class="keyword varname">Day of Week</var>
+       values.</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Enum</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Mandatory if <strong class="ph b">Align with Subscription period end to a date</strong> is selected.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Day of Month</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">
+       <p class="p">Following are the supported values for this parameter</p>
+
+       <ul class="ul" id="counter_entity_configuration__ul_idv_tmd_1rb">
+        <li class="li">
+         <p class="p">1 to 31</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <span class="ph uicontrol">Exact</span>: If selected, the day of week is aligned to subscription
+          purchase date.</p>
+
+        </li>
+
+       </ul>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Integer</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Mandatory if <strong class="ph b">Align with Subscription period end to a date</strong> is selected.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Day of Week</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">
+       <p class="p">Following are the supported values for this parameter</p>
+
+       <ul class="ul" id="counter_entity_configuration__ul_vcq_kqw_fqb">
+        <li class="li">
+         <p class="p">Sunday to Saturday</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <span class="ph uicontrol">Exact</span>: If selected, the day of week is aligned to subscription
+          purchase date.</p>
+
+        </li>
+
+       </ul>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">String</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Mandatory if <strong class="ph b">Align with Subscription period end to a date</strong> is selected.</td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e62 ">Hour of Day</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e65 ">
+       <p class="p">Following are the supported values for this parameter</p>
+
+       <ul class="ul" id="counter_entity_configuration__ul_kwq_nyc_fqb">
+        <li class="li">
+         <p class="p">0 to 23</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <span class="ph uicontrol">Exact</span>: If selected, the end date and time has the same time as
+          subscription start time.</p>
+
+        </li>
+
+        <li class="li">
+         <p class="p">
+          <span class="ph uicontrol">Next Day Start</span>: If selected, the end date and time is aligned to
+          00:00:00 of next day as per the lifecycle periodicity. For example, if a monthly
+          subscription is purchased on 20th Jan 13:45:00, then the end date and time of subscription
+          is set to 21st Feb 00:00:00.</p>
+
+        </li>
+
+       </ul>
+
+      </td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e68 ">Integer</td>
+
+      <td class="entry cellrowborder" style="vertical-align:top;" headers="d116698e71 ">Mandatory if <strong class="ph b">Align with Subscription period end to a date</strong> is selected.</td>
+
+     </tr>
+
+    </tbody>
+</table>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

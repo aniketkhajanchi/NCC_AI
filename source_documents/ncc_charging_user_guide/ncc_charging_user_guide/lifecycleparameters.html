@@ -1,0 +1,1215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Lifecycle parameters" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-lifecycleparameters" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Lifecycle parameters</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-lifecycleparameters">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Lifecycle parameters</h1>
+<div class="body conbody">
+        <p class="p">This section describes the following lifecycle parameters and provides information on how
+            to use and configure these parameters:</p>
+
+        <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-lifecycleparameters__ul_gdm_k5b_nwb">
+            <li class="li">
+                <p class="p">ENTITY lifecycle parameters</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">PERIOD lifecycle parameters</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">State parameters</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">Barring flag</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">Transition parameters</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">Action parameters</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">Timer parameters</p>
+
+            </li>
+
+        </ul>
+
+        <div class="note" id="id9yz-09126-ug01-pczza-sp1-lifecycleparameters__note_hdm_k5b_nwb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Once a lifecycle is created and distributed to ME, it cannot be
+            deleted.</div>
+
+<div class="section"><h2 class="title sectiontitle">ENTITY lifecycle parameters</h2>
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Any update to a lifecycle requires up to 30 seconds to take effect.</div>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameter details</span></caption><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e103">
+                                <p class="p">Parameter</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e109">
+                                <p class="p">Description</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e115">
+                                <p class="p">Options</p>
+
+                           </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e121">
+                                <p class="p">Mandatory / Optional</p>
+
+                           </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e103 ">Name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e109 ">This parameter indicates the name of a lifecycle.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e115 ">User-defined string up to 64 characters</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e121 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e103 ">Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e109 ">This parameter indicates the identifier for a lifecycle type.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e115 ">Must be set to ENTITY, that is, Object Status Lifecycle</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e121 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e103 ">Applicable to</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e109 ">This parameter indicates the type of the entity to which a
+                                lifecycle belongs.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e115 ">
+                                <p class="p">One of the following:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Account</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Device</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Group</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">User</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Subscription</p>
+
+                                    </li>
+
+                                </ul>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e121 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e103 ">States</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e109 ">
+                                <p class="p">This parameter indicates a set of states.</p>
+
+                                <p class="p">States must contain at least one state.</p>
+
+                                <p class="p">States must contain exactly one state marked as initial.</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e115 ">State parameters are described in
+                                    <a class="xref" href="lifecycleparameters.html#id9yz-09126-ug01-pczza-sp1-lifecycleparameters__stateparameterstable">Parameter details</a>.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e121 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e103 ">transitions</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e109 ">
+                                <p class="p">This parameter indicates a set of transitions.</p>
+
+                                <p class="p">Transitions are configured by you based on your business
+                                    requirements.</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e115 ">Transition parameters are described in
+                                    <a class="xref" href="lifecycleparameters.html#id9yz-09126-ug01-pczza-sp1-lifecycleparameters__transitionparameterstable">Parameter details</a>.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e121 ">Optional</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">PERIOD lifecycle parameters</h2>
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Any update to a lifecycle requires up to 30 seconds to take effect.</div>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameter details</span></caption><colgroup><col style="width:16.84370257966616%" /><col style="width:34.29438543247344%" /><col style="width:33.68740515933232%" /><col style="width:15.174506828528072%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e296">
+                                <p class="p">Parameter</p>
+
+                            </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e302">
+                                <p class="p">Description</p>
+
+                            </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e308">
+                                <p class="p">Options</p>
+
+                            </th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e314">
+                                <p class="p">Mandatory / Optional</p>
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e296 ">Name</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e302 ">This parameter indicates the name of a lifecycle.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e308 ">User-defined string up to 64 characters</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e314 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e296 ">Type</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e302 ">This parameter indicates the identifier for a lifecycle
+                                type.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e308 ">Must be set to PERIOD, that is, Bill Cycle</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e314 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e296 ">Applicable to</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e302 ">This parameter indicates the type of entity to which a lifecycle
+                                belongs.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e308 ">
+                                <p class="p">One of the following:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">Account</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">Subscription</p>
+
+                                    </li>
+
+                                </ul>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e314 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e296 ">periodLength</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e302 ">This parameter indicates the length of a PERIOD
+                                lifecycle.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e308 ">
+                                <p class="p">Consists of:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">timeUnit</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">units</p>
+
+                                    </li>
+
+                                </ul>
+
+                            </td>
+
+                            <td class="entry cellrowborder" rowspan="3" style="vertical-align:top;" headers="d381032e314 "> Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e296 ">timeUnit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e302 ">This parameter indicates the unit of time.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e308 ">
+                                <p class="p">Specifies the following time units:</p>
+
+                                <ul class="ul">
+                                    <li class="li">
+                                        <p class="p">SECONDS</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">MINUTES</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">HOURS</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">DAYS</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">WEEKS</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">MONTHS</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">YEARS</p>
+
+                                    </li>
+
+                                </ul>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e296 ">units</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e302 ">This parameter indicates the value for time units.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e308 ">Integer</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e296 ">states</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e302 ">
+                                <p class="p">This parameter indicates a set of states.</p>
+
+                                <p class="p">States must contain at least one state.</p>
+
+                                <p class="p">States must contain exactly one state marked as initial.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e308 ">State parameters are described in
+                                    <a class="xref" href="lifecycleparameters.html#id9yz-09126-ug01-pczza-sp1-lifecycleparameters__stateparameterstable">Parameter details</a>.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e314 ">Mandatory</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e296 ">transitions</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e302 ">
+                                <p class="p">This parameter indicates a set of transitions.</p>
+
+                                <p class="p">Transitions are configured by you based on your business
+                                    requirements.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e308 ">Transition parameters are described in
+                                    <a class="xref" href="lifecycleparameters.html#id9yz-09126-ug01-pczza-sp1-lifecycleparameters__transitionparameterstable">Parameter details</a>.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e314 ">Optional</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+</div>
+
+<div class="section" id="id9yz-09126-ug01-pczza-sp1-lifecycleparameters__StateParameters"><h2 class="title sectiontitle">State parameters</h2>
+<div class="p">The given table lists and describes the parameters for a state instance.<table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-lifecycleparameters__stateparameterstable" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameter details</span></caption><colgroup><col style="width:12.934131736526943%" /><col style="width:57.72455089820359%" /><col style="width:17.36526946107784%" /><col style="width:11.976047904191615%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e578">
+                                    <p class="p">Parameter</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e584">
+                                    <p class="p">Description</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e590">
+                                    <p class="p">Option</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e596">
+                                    <p class="p">Mandatory / Optional</p>
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e578 ">name</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e584 ">This parameter indicates the state name that must be unique
+                                    within a lifecycle of a given type. For example, the account XYZ
+                                    has a state called Reserved in its ENTITY lifecycle and PERIOD
+                                    lifecycles, but in each of these lifecycles there must be only
+                                    one reserved state.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e590 ">String up to of 64 characters</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e596 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e578 ">initial</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e584 ">This parameter indicates a lifecycle must have a state marked
+                                    initial. There must be exactly one initial state in a
+                                    lifecycle.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e590 ">Boolean, defaults to false</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e596 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e578 ">barring</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e584 ">
+                                    <p class="p">This parameter indicates an entity is barred. Behavior
+                                        depends on the entity.</p>
+
+                                    <p class="p">For more information, see the
+                                            <a class="xref" href="#id9yz-09126-ug01-pczza-sp1-lifecycleparameters__BarringFlag">Barring flag</a> section.</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e590 ">Boolean, defaults to false</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e596 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e578 ">final</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e584 ">
+                                    <p class="p">This parameter indicates the flag used for ‘retiring’
+                                        entities with the intention of deleting these entities in
+                                        the future.</p>
+
+                                    <p class="p">Once a state is created and the final flag is set, the final
+                                        flag cannot be changed. if a state is marked as non-final,
+                                        it stays non-final. If a state is marked as final, it stays
+                                        final.</p>
+
+                                    <p class="p">A lifecycle can have only one state marked final. A state
+                                        marked as final must also be marked as barring.</p>
+
+                                    <p class="p">Having the final state in a lifecycle is optional.</p>
+
+                                    <p class="p">The final state cannot be Start State. An entity cannot
+                                        transition out of the final state.</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e590 ">Boolean, defaults to false</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e596 ">Mandatory</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+
+<p class="p">A state is configured in accordance with the following:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">An entity can be present in one state of a given lifecycle at a time. For example, an account XYZ can be in Active state in its ENTITY lifecycle and in Start state in its PERIOD lifecycle.</p>
+
+</li>
+
+<li class="li">
+<p class="p">A state is allowed to have at most two timed transitions if and only if one of them is an entry transition. This implies that only one entry transition is allowed for a state. An entry transition is a looping transition that starts and ends in the same state with a timer less or equal to zero.</p>
+
+</li>
+
+<li class="li">
+<p class="p">There is no limit on a number of non-timed transitions for a state.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Once created and distributed to ME, a state cannot be deleted.</p>
+
+</li>
+
+</ul>
+</div>
+
+    <div class="section" id="id9yz-09126-ug01-pczza-sp1-lifecycleparameters__BarringFlag"><h2 class="title sectiontitle">Barring flag</h2>
+<p class="p">Barring behavior depends on the entity. Each individual domain knows how to behave in case the
+                barring flag is set to true. See <a class="xref" href="lcstateex.html">Lifecycle state examination</a> for more details.</p>
+
+</div>
+
+<div class="section" id="id9yz-09126-ug01-pczza-sp1-lifecycleparameters__TransitionParameters"><h2 class="title sectiontitle">Transition parameters</h2>
+<div class="p">The given table lists and describes the parameters for a transition instance.<table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-lifecycleparameters__transitionparameterstable" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameter details</span></caption><colgroup><col style="width:9.852216748768472%" /><col style="width:47.19211822660098%" /><col style="width:31.527093596059114%" /><col style="width:11.428571428571427%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e761">
+                                    <p class="p">Parameter</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e767">
+                                    <p class="p">Description</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e773">
+                                    <p class="p">Option</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e779">
+                                    <p class="p">Mandatory / Optional</p>
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e761 ">name</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e767 ">
+                                    <p class="p">This parameter indicates the name of a transition.</p>
+
+                                    <p class="p">Must be unique within a lifecycle.</p>
+
+                                    <p class="p">Allows you to define a transition based on a particular
+                                        event.</p>
+
+                                    <p class="p">If you choose to configure a transition triggered by a
+                                        built-in event, the name of this transition must match the
+                                        name of that built-in event.</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e773 ">String up to 64 characters</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e779 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e761 ">startState</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e767 ">This parameter indicates the state that a transition starts
+                                    from.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e773 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e779 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e761 ">endState</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e767 ">This parameter indicates the state that a transition ends
+                                    at.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e773 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e779 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e761 ">actions</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e767 ">
+                                    <p class="p">This parameter indicates the sequence of actions executed
+                                        when entity transitions from startState to endState.</p>
+
+                                    <p class="p">Actions are invariably built-in elements.</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e773 ">
+                                    <p class="p">Actions can be repetitive.</p>
+
+                                    <p class="p">Action parameters are described in
+                                            <a class="xref" href="lifecycleparameters.html#id9yz-09126-ug01-pczza-sp1-lifecycleparameters__actionparameterstable">Parameter details</a>.</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e779 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e761 ">timer</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e767 ">
+                                    <p class="p">This parameter indicates the time that an entity persists in
+                                        startState before transitioning to the next state.</p>
+
+                                    <p class="p">Allows you to schedule time before a transition is
+                                        executed.</p>
+
+                                    <p class="p">Allows to calculate timers for time-based scenarios such as
+                                        notifications or expirations.</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e773 ">Timer parameters are described in
+                                        <a class="xref" href="lifecycleparameters.html#id9yz-09126-ug01-pczza-sp1-lifecycleparameters__timerparameterstable">Parameter details</a>.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e779 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e761 ">conditions</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e767 ">This parameter represents the sequence of applicability
+                                    conditions for a transition to complete. If any of the
+                                    conditions evaluate to false, the execution of the action is
+                                    bypassed.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e773 ">This parameter consists of attribute-value pair with an
+                                    operator, defining the condition. For details, see
+                                        <a class="xref" href="events.html">Lifecycle events</a>.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e779 ">Optional</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+
+<p class="p">A transition is configured in accordance with the following:</p>
+<ul class="ul">
+<li class="li">Once created, a transition cannot be deleted.</li>
+
+<li class="li">The final state cannot be Start State. A transition cannot be configured from the state marked
+                    final.</li>
+
+                <li class="li">To delete a subscription, move the subscription state to Final state and ensure
+                    that the timer value must be set to a minimum of 1 second. 0 second is not a
+                    valid input in this scenario. Use the action <strong class="ph b">DeleteEntity</strong> to delete the
+                    entity once the duration specified by the timer passes.</li>
+
+<li class="li">Parameters Start State and End State must belong to the same lifecycle.</li>
+
+<li class="li">Two transitions leaving from the same state must have different events.</li>
+
+<li class="li">A transition is called looping if its Start State is the same as its End State. A looping
+                    transition with a timer greater than zero should be executed for each interval
+                    defined in the timer. This feature is useful in a billing cycle where for
+                    example, you might want to send a notification every month that it is time to
+                    pay the bill.</li>
+
+<li class="li">A looping transition with a timer less or equal to zero is called an entry transition. An entry
+                    transition has higher priority than other timed transitions. An entry transition
+                    executes immediately and only once.</li>
+
+<li class="li">A transition may have at most one timer greater than zero.</li>
+
+<li class="li">Two timed transitions are allowed in one state if and only if one of them is an entry
+                    transition. This implies that only one entry transition is allowed for a
+                    state.</li>
+
+<li class="li">When calculating a relative timer for a transition, note that this timer can refer to End Time
+                    and Start Time only if this transition is configured for a PERIOD lifecycle. The
+                    use of End Time and Start Time is limited to PERIOD lifecycles only. You should
+                    not use End Time and Start Time to calculate timers used in ENTITY
+                    lifecycles.</li>
+
+<li class="li">
+<p class="p">When adding more than one action to a transition, Nokia recommends adding at most one action that generates a success or failure event. For example, if you have Add Subscription Action configured in a transition, you can add Send Notification Action to the same transition since the latter does not generate any success or failure events but the former does.</p>
+
+<p class="p">Nokia does not recommend to have in the same transition two or more actions that generate a success or failure event for example, two Add Subscription Actions configured in the same transition.</p>
+
+</li>
+
+</ul>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Transitions in SM GUI</strong></p>
+
+<p class="p">Transitions are represented in the SM GUI through states. To configure a transition, you select a state. Under this state, the transition parameters are presented as follows: </p>
+<ul class="ul">
+<li class="li">The selected state is Start State.</li>
+
+<li class="li"><strong class="ph b">Event</strong> is for a transition name.</li>
+
+<li class="li"><strong class="ph b">Upon</strong> is for an event that triggers a transition.</li>
+
+<li class="li"><strong class="ph b">Go to</strong> is for End State.</li>
+
+</ul>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Action parameters</h2>
+<div class="p">The given table lists and describes the parameters for an action instance.<table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-lifecycleparameters__actionparameterstable" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameter details</span></caption><colgroup><col style="width:17.952127659574472%" /><col style="width:50.9308510638298%" /><col style="width:17.819148936170215%" /><col style="width:13.297872340425531%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e1031">
+                                    <p class="p">Parameter</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e1037">
+                                    <p class="p">Description</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e1043">
+                                    <p class="p">Option</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e1049">
+                                    <p class="p">Mandatory / Optional</p>
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1031 ">actionName</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1037 ">
+                                    <p class="p">This parameter indicates the name of an action.</p>
+
+                                    <p class="p">Predefined by the system.</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1043 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1049 "> </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1031 ">defaultValues</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1037 ">
+                                    <p class="p">This parameter indicates the attribute-value pair that
+                                        consists of:</p>
+
+                                    <ul class="ul">
+                                        <li class="li">
+                                            <p class="p">parameterName: This parameter indicates the name of
+                                                the parameter on which the action is executed. This
+                                                is a string value.</p>
+
+                                        </li>
+
+                                        <li class="li">
+                                            <p class="p">value: This parameter indicates the value assigned to
+                                                parameterName. This is a string value.</p>
+
+                                        </li>
+
+                                    </ul>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1043 ">An action can have more than one defaultValues.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1049 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1031 ">Rule</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1037 ">
+                                    <p class="p">This parameter provides the rule for the lifecycle entity and
+                                        contains the rules and conditions in a defined format.</p>
+
+                                    <div class="p">
+                                        <div class="note" id="id9yz-09126-ug01-pczza-sp1-lifecycleparameters__note_x3w_2jx_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The <span class="ph uicontrol">Rules</span>
+                                            box becomes visible only when the user selects the
+                                            action as <em class="ph i">Send Notification</em>. For any other
+                                            action, this box is not available.</div>
+
+                                    </div>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1043 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1049 ">Optional</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+
+</div>
+
+<div class="section" id="id9yz-09126-ug01-pczza-sp1-lifecycleparameters__TimerParameters"><h2 class="title sectiontitle">Timer parameters</h2>
+<div class="p">The following table lists and describes parameters for a timer instance.<table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-lifecycleparameters__timerparameterstable" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameter details</span></caption><colgroup><col style="width:14.106145251396649%" /><col style="width:39.66480446927374%" /><col style="width:32.262569832402235%" /><col style="width:13.966480446927374%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e1170">Parameter</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e1173">Description</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e1176">Option</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d381032e1179">Mandatory / Optional</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1170 ">timeUnit</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1173 ">This parameter indicates the unit of time.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1176 ">
+                                    <p class="p">Must be specified if units are specified</p>
+
+                                    <p class="p">Specifies the following:</p>
+
+                                    <ul class="ul">
+                                        <li class="li">SECONDS</li>
+
+                                        <li class="li">MINUTES</li>
+
+                                        <li class="li">HOURS</li>
+
+                                        <li class="li">DAYS</li>
+
+                                        <li class="li">WEEKS</li>
+
+                                        <li class="li">MONTHS</li>
+
+                                        <li class="li">YEARS</li>
+
+                                    </ul>
+
+                                </td>
+
+                                <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d381032e1179 ">
+                                    <p class="p">Mandatory if baseDateField is not provided</p>
+
+                                    <p class="p">Optional if baseDateField is provided</p>
+
+                                </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1170 ">units</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1173 ">This parameter indicates the value of time units.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1176 ">
+                                    <p class="p">Integer</p>
+
+                                    <p class="p">Must be specified if timeUnit is specified</p>
+
+                                </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1170 ">baseDateField</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1173 ">
+                                    <p class="p">This parameter allows you to calculate timers for scheduled
+                                        tasks in the future relative to a specific date parameter of
+                                        an entity.</p>
+
+                                    <p class="p"> If you choose not to specify baseDateField, then timeUnit
+                                        and units parameters are used to calculate a timer relative
+                                        to now.</p>
+
+                                    <p class="p">This parameter must be based on a date-related parameter of
+                                        an entity whose lifecycle the timer belongs to. The referred
+                                        parameter must also be of type long.</p>
+
+                                    <p class="p">If the value of the specified date-related parameter is null
+                                        (not initialized), when attempting to arm the timer, the
+                                        timer is not armed.</p>
+
+                                    <p class="p">If you specify baseDateField, then the timer is calculated
+                                        according to the following formula:</p>
+
+                                    <ul class="ul">
+                                        <li class="li">
+                                            <p class="p">S{baseDateField} + offset(units, timeUnit)</p>
+
+                                        </li>
+
+                                    </ul>
+
+                                    <p class="p">If you do not specify baseDateField, then the timer is
+                                        calculated according to the following formula:</p>
+
+                                    <ul class="ul">
+                                        <li class="li">
+                                            <p class="p">NOW() + offset(units,timeUnit)</p>
+
+                                        </li>
+
+                                    </ul>
+
+                                    <p class="p">If the timer happens to be in the past, it executes
+                                        immediately.</p>
+
+                                    <p class="p">For example, you would like to create a timer for sending
+                                        notifications one day prior to the end of a billing cycle.
+                                        Since an account is a periodic entity, its endTime parameter
+                                        is the most appropriate for baseDateField in this case. Then
+                                        the timer is calculated as follows:</p>
+
+                                    <ul class="ul">
+                                        <li class="li">
+                                            <p class="p">endTime - 1 DAY</p>
+
+                                            <p class="p">where baseDateField=endTime, units=-1,
+                                                timeUnits=DAYS</p>
+
+                                        </li>
+
+                                    </ul>
+
+                                    <p class="p">If you choose to send a notification one day after the start
+                                        of a billing cycle, then the timer is calculated as
+                                        follows:</p>
+
+                                    <ul class="ul">
+                                        <li class="li">
+                                            <p class="p">startTime + 1 DAY</p>
+
+                                            <p class="p">where baseDateField=startTime, units=1,
+                                                timeUnits=DAYS</p>
+
+                                        </li>
+
+                                    </ul>
+
+                                    <div class="note" id="id9yz-09126-ug01-pczza-sp1-lifecycleparameters__note_nkr_c3q_nwb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> endTime and startTime are intended
+                                        for use in PERIOD lifecycles only. You should not use
+                                        endTime and startTime in ENTITY lifecycles.</div>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1176 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1179 ">
+                                    <p class="p">Mandatory if timeUnit and units are not provided</p>
+
+                                    <p class="p">Optional if timeUnits and units are provided</p>
+
+                                </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1170 ">tolerance</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1173 ">
+                                    <p class="p">This parameter indicates a tolerant delay of a scheduled
+                                        transition in seconds.</p>
+
+                                    <p class="p">This feature allows you to process transitions in the
+                                        scheduler with a random delay.</p>
+
+                                    <p class="p">This feature allows you to avoid peaks in processing
+                                        transitions that occur at the same moment. For example, a
+                                        number of subscriptions expire at the end of a month or any
+                                        other period (week, day, hour) simultaneously.</p>
+
+                                    <p class="p">This feature is used as follows:</p>
+
+                                    <ul class="ul">
+                                        <li class="li">
+                                            <p class="p">If you specify tolerance to be 5 seconds, the delay
+                                                interval is set from 0 to 4 seconds.</p>
+
+                                            <p class="p">This implies that the actual delay can be 0,1,2,3 or
+                                                4 seconds, depending on the random selection by the
+                                                system.</p>
+
+                                        </li>
+
+                                    </ul>
+
+                                    <p class="p">If you specify tolerance for a transition with actions, then
+                                        all these actions are going to be delayed for the same
+                                        time.</p>
+
+                                    <p class="p">This feature cannot be used in timers whose baseDateField is
+                                        null and units are not greater than zero.</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1176 ">
+                                    <p class="p">Long positive</p>
+
+                                    <p class="p">Defaults to zero</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d381032e1179 ">Optional</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+
+<p class="p">A timer is configured in accordance with the following:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">The timer is based on the time zone of the server. The time zone of an entity (for example, account) is not respected.</p>
+
+</li>
+
+<li class="li">
+<p class="p">For the spring forward transition, there is a gap of missing time when the occurrence might not exist. For example, in US Eastern Time, a daily timer expected to be executed at 2:30 A.M. does not exist on March 12th, 2017. In this case, the timer should be advanced by the saving amount (in this case, 1 hour), so the timer should be executed at 3:30 A.M. on that day.</p>
+
+<p class="p"> For the fall back transition, there is an overlap of duplicated time when the occurrence might exist twice. For example, in US Eastern Time, a timer expected to be executed at 1:30 A.M. has two possible times it could run at on November 5, 2017. In this case, the timer should be executed at the first occurrence of 1:30 A.M. and skip the next occurrence of 1:30 A.M. of the same date.</p>
+
+</li>
+
+<li class="li">
+<p class="p">A timer with a value of one day does not necessarily mean 24 hours. It means tomorrow, at the same time, even when there is a time change on that same day for example, Daylight Savings Time. The same logic applies to weeks, months, and years.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If a timer is supposed to go off on a day that does not exist in a month, it is scheduled for the last day of the month. For example, a one month timer set on January 31 goes off on February 28 if the year is not a leap year and on February 29 if the year is a leap year. The same rule applies to years. For example, if on February 29 you set a one year timer, it goes off on February 28 the following year.</p>
+
+</li>
+
+<li class="li">
+<p class="p"> A timer of 1.5 days should be configured as 36 hours or 2160 minutes or 129600 seconds.</p>
+
+</li>
+
+<li class="li">
+<p class="p">A timer is called armed when the actions associated with a transition are scheduled for execution. A timer is armed when an entity transitions to a state containing a timer. This can occur when a transition is triggered or when an entity is created in a specific state. A timer is called armed when actions are scheduled for execution. </p>
+
+</li>
+
+<li class="li">
+<p class="p">A timer that evaluates to the past executes immediately.</p>
+
+</li>
+
+<li class="li">
+<p class="p">When calculating a relative timer for a transition, note that this timer can refer to End Time and Start Time only if this transition is configured for a PERIOD lifecycle. The use of End Time and Start Time is limited to PERIOD lifecycles only. You should not use End Time and Start Time to calculate timers used in ENTITY lifecycles.</p>
+
+</li>
+
+<li class="li">
+<p class="p">A timer can also consider the account billing related information or bundle billing related
+                        information (dayOfMonth, dayOfWeek, hourOfDay) for Entity and Period
+                        lifecycle for the configurations mentioned in the <a class="xref" href="actions.html#id9yz-09126-ug01-pczza-sp1-actions__tlc">Timer</a> table. Timer is
+                        recalculated based on the account billing related information or bundle
+                        billing related information and the previously calculated timer.</p>
+
+</li>
+
+<li class="li">
+<p class="p">A timer can be cancelled when an entity leaves the current state. The entity can leave the current state when a transition is triggered or when this entity is updated and because of this update the entity leaves the current state. A timer should not be cancelled if the entity is updated but the state of the entity stays the same.</p>
+
+</li>
+
+</ul>
+
+<p class="p">The following example describes two scenarios of how a timer can be cancelled. In both scenarios, the entity resides in the current state CS with three transitions coming out of that state.</p>
+
+<p class="p">In the first scenario, the transitions A, B and C are defined as follows:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">A starts and ends in CS, and has no timer.</p>
+
+</li>
+
+<li class="li">
+<p class="p">B starts in CS and ends in S1, and has no timer.</p>
+
+</li>
+
+<li class="li">
+<p class="p">C starts in CS and ends in S2, and has a timer greater than zero that behaves as follows:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">If B is triggered, the timer is cancelled since the entity changes its state from CS to S1 (as defined by transition B).</p>
+
+</li>
+
+<li class="li">
+<p class="p">If A is triggered, the timer is cancelled and rearmed  since the entity stays in its current state CS (as defined by transition A).</p>
+
+</li>
+
+</ul>
+
+</li>
+
+</ul>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Timer cancelled (scenario 1)</span>
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-lc-timer_cancelled_scenario_1_default.png" />
+            </div>
+
+<p class="p">In the second scenario, the transitions A, B, and C are defined as follows:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">B starts and ends in CS, and has no timer.</p>
+
+</li>
+
+<li class="li">
+<p class="p">C starts in CS and ends in S1, and has no timer.</p>
+
+</li>
+
+<li class="li">
+<p class="p">A starts and ends in CS, and has a timer greater than zero that behaves as follows:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">If C is triggered, the timer is cancelled since the entity changes its state from CS to S1 (as defined by transition C).</p>
+
+</li>
+
+<li class="li">
+<p class="p">If B is triggered, the timer is cancelled and rearmed since the entity does not change its state (as defined by transition B).</p>
+
+</li>
+
+<li class="li">
+<p class="p">If A is triggered, the timer is rearmed since the entity does not change its state (as defined by transition A).</p>
+
+</li>
+
+</ul>
+
+</li>
+
+</ul>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Timer cancelled (scenario 2)</span>
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-lc_timer_cancelled_scenario_2_default.png" />
+            </div>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

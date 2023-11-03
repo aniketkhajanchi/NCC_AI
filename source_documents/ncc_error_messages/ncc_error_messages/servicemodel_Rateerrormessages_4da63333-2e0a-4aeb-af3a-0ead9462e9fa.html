@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Rate Error Messages" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id4da63333-2e0a-4aeb-af3a-0ead9462e9fa" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Rate Error Messages</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id4da63333-2e0a-4aeb-af3a-0ead9462e9fa">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Rate Error Messages</h1>
+<div class="body conbody"><p class="p">This table describes the rate error messages that the NCC may generate.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Rate error messages</span></caption><colgroup><col style="width:16.666666666666664%" /><col style="width:21.428571428571427%" /><col style="width:30.952380952380953%" /><col style="width:30.952380952380953%" /></colgroup><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:top;" id="d98150e40">Number</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d98150e42">Message</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d98150e44">HTTP Error Code</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d98150e47">Description</th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00001</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">RATE is mandatory.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">RATE is a mandatory field and must be specified.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00002</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Name of the RATE is NULL.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">RATE Name is a mandatory field and must be specified.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00003</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Name of the RATE is a mandatory field.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">RATE Name is a mandatory field and must not be left blank.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00004</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Charging Step is mandatory.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Charging Step is a mandatory field and must be specified.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00005</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">At least one Charging Step is required.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">At least one Charging Step is required.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00006</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Connection Cost cannot be negative.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Connection cost cannot be negative.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00007</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Connection Cost Must be a Numerical Digit.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Connection cost must be a Numerical Digit.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00008</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Connection Cost Must be between 0 TO 9223372036854775807 (with decimal Precision).</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Connection cost must be between 0 to 9223372036854775807 (with decimal Precision).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00009</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Cost defined in Charging Step cannot be NULL/Left Blank.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Cost defined in Charging Step "{0}" cannot be NULL/Left Blank.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00010</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Cost defined in Charging Step Must be a Numerical Digit.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">406</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Cost defined in Charging Step "{0}" must be a Numerical Digit.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00011</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Cost defined in Charging Step cannot be negative.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">406</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Cost defined in Charging Step "{0}" cannot be negative.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00012</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Cost defined in Charging Step Must be between 0 to 9223372036854775807 (with decimal Precision).</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Cost defined in Charging Step "{0}" must be between 0 to 9223372036854775807 (with decimal Precision).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00013</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Quantity defined in Charging Step cannot be NULL/Left Blank.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Quantity defined in Charging Step "{0}" cannot be NULL/Left Blank.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00014</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Quantity defined in Charging Step Must be a Numerical Digit.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Quantity defined in Charging Step "{0}" must be a Numerical Digit.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00015</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Quantity defined in Charging Step cannot be negative.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">400</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Quantity defined in Charging Step "{0}" cannot be negative.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00016</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Quantity defined in Charging Step Must be between 0 to 9223372036854775807 (with decimal Precision).</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Quantity defined in Charging Step "{0}" must be between 0 to 9223372036854775807 (with decimal Precision).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00017</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Duration defined in Charging Step cannot be NULL/Left Blank.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Duration defined in Charging Step "{0}" cannot be NULL/Left Blank.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00018</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Duration defined in Charging Step Must be a Numerical Digit.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Duration defined in Charging Step "{0}" must be a Numerical Digit.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00019</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Duration defined in Charging Step cannot be negative.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Duration defined in Charging Step "{0}" cannot be negative.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00020</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Duration defined in Charging Step Must be between 0 to 9223372036854775807 (with decimal Precision).</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Duration defined in Charging Step "{0}" must be between 0 to 9223372036854775807 (with decimal Precision).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00021</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Granularity defined in Charging Step cannot be NULL/Left Blank.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Granularity defined in Charging Step "{0}" cannot be NULL/Left Blank.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00022</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Granularity defined in Charging Step must be a Numerical Digit.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Granularity defined in Charging Step "{0}" must be a Numerical Digit.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00023</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Granularity defined in Charging Step cannot be negative.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Granularity defined in Charging Step "{0}" cannot be negative.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00024</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Granularity defined in Charging Step must be between 0 to 9223372036854775807 (with decimal Precision).</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Granularity defined in Charging Step "{0}" must be between 0 to 9223372036854775807 (with decimal Precision).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00025</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Rate Record Already Exists.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">The attribute "{0}" already exists in Rate.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00026</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Rate Id does not exist.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">The attribute "{0}" does not exist in Rate.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00027</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Granularity defined in Charging Step cannot be ZERO.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Granularity defined in Charging Step "{0}" cannot be ZERO</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00028</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Granularity defined in one Charging Step cannot be Greater than Duration (except if it is Last Step and duration is ZERO).</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Granularity defined in one Charging Step "{0}" cannot be greater than Duration (except if it is the Last Step and duration is ZERO).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00029</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Duration of Last Step should be ZERO.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Duration of Last Step should be kept as ZERO (to mark it as INFINITE Step)</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00030</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">UnitType given in RateType does not exist.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">UnitType "{0}" given in RateType does not exist.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00031</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">UnitType given in GranularityType does not exist.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">UnitType "{0}" given in GranularityType does not exist.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00032</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Quantity defined in Charging Step cannot be ZERO.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Quantity defined in Charging Step "{0}" cannot be ZERO .</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00033</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Cost defined in Charging Step for Step-Type (Reflection cost) cannot be ZERO.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Quantity defined in Charging Step "{0}" for Step-Type (Reflection cost) cannot be ZERO .</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00034</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Rate is not Infinite : if last step is of step_type ('Normal' or Fixed Cost) then either Duration must be 0 or repetitive flag of any Prior (Fixed cost or Normal) step should be high.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Rate is not Infinite: if last step is of step_type 'Normal' or Fixed Cost' then either Duration must be 0 or repetitive flag of any Prior (Fixed cost or Normal) step should be high.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00035</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Rate is not Infinite : if last step is of step_type 'REFLECTION_COST' then repetitive flag of any Prior Fixed or " Normal step should be high.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Rate is not Infinite: if last step is of step_type 'REFLECTION_COST' then repetitive flag of any Prior Fixed or " Normal step should be high.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00036</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Step-Type defined in Charging Step cannot be NULL/Left Blank.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Step-Type defined in Charging Step "{0}" cannot be NULL/Left Blank.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00037</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Rate-Type cannot be NULL/Left Blank.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Rate-Type cannot be NULL/Left Blank.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00038</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Granularity-Type cannot be NULL/Left Blank.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Granularity-Type cannot be NULL/Left Blank.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00039</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">If Step-Type is Reflection Cost, then Granularity Must be ZERO (0).</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">In Charging Step "{0}" , For Step-Type (Reflection Cost) Granularity must be ZERO (0).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00040</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">If Step-Type is Reflection Cost, then Quantity Must be One (1).</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">In Charging Step "{0}" , for Step-Type (Reflection Cost) Quantity Must be One (1).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00041</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">If Step-Type is Reflection Cost, then Duration Must be ZERO (0).</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">In Charging Step "{0}" , for Step-Type (Reflection Cost) Duration Must be Zero (0).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00042</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">If Step-Type is Fixed Cost, then Granularity Must be ZERO (0).</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">In Charging Step "{0}" , for Step-Type (Fixed Cost) Granularity Must be ZERO (0).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00043</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">If Step-Type is Fixed Cost, then Quantity Must be One (1).</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">In Charging Step "{0}" , for Step-Type (Fixed Cost) then Quantity Must be One (1).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00044</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Repetitive Flag cannot be NULL.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Repetitive Flag defined in Charging Step "{0}" is NULL.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00045</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Granularity type does not exist.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Granularity type "{0}" does not exist in DB.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00046</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">KindOfUnit of RateType is Different from KindOfUnit of UnitType in DB</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">KindOfUnit of RateType "{0}" is Different from KindOfUnit of UnitType {0} in DB.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00047</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">KindOfUnit of GranularityType is Different from KindOfUnit of UnitType in database.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">KindOfUnit of GranularityType "{0}" is Different from KindOfUnit of UnitType {0} in database.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00048</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">KindOfUnit of RateType is NULL or Invalid.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">KindOfUnit of RateType is NULL or Invalid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00049</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">KindOfUnit of GranularityType is NULL or Invalid.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">KindOfUnit of GranularityType is NULL or Invalid.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00050</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">ID in Ratetype is NULL or Empty.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">ID in Ratetype is NULL or Empty.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00051</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">ID in GranularityType is NULL or Empty.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">ID in GranularityType is NULL or Empty.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00052</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Attribute Duration defined in Charging Step cannot be Zero(0), if Step is not the Last step (except for Reflection Cost).</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Attribute Duration defined in Charging Step "{0}" cannot be Zero(0), if Step is Not the Last step (except for Reflection Cost).</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00053</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">If Rate has only one Charging Step then StepType of that step cannot be Reflection Cost.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">If Rate has only one Charging Step then StepType of that step cannot be Reflection Cost .</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00054</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Rate Type and Granularity Type mismatch.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">RateType and GranularityType should be of the same KindOfUnit.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00055</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Type Converter missing for Rate Type.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Converter missing to convert RateType values to the defined base unit type.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e40 ">RATE_00056</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e42 ">Type Converter missing for Granularity Type.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d98150e47 ">Converter missing to convert GranularityType values to the defined base unit type.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="footer"><hr /><p>Error Messages • P556766-DN1000055003-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

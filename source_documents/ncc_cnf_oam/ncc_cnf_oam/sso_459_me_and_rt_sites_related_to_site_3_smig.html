@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="ME systems connected to SM/IG 3" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="Bookmark82" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>ME systems connected to SM/IG 3</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="Bookmark82">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">ME systems connected to SM/IG 3</h1>
+<div class="body conbody">
+    <ol class="ol" id="Bookmark82__ol_ryk_sny_3tb">
+      <li class="li"><span class="ph">NCC</span> is at Helm revision 2.</li>
+
+      <li class="li">Helm rollback <span class="ph">NCC</span> to revision 1.</li>
+
+      <li class="li"><span class="ph">NCC</span> is at Helm revision 3 (Rollback to 1).</li>
+
+      <li class="li">For CGF (DR) chart, in the <span class="ph filepath">Inputs.xlsx</span> file, set these properties:<ol class="ol" type="a" id="Bookmark82__ol_syk_sny_3tb">
+          <li class="li"><span class="ph uicontrol">Enable SSO</span> = <code class="ph codeph">false</code> in the Common tab's Global
+            section.</li>
+
+          <li class="li"><span class="ph uicontrol">Deployment Type</span> = <code class="ph codeph">in-service upgrade</code>.</li>
+
+          <li class="li"><span class="ph uicontrol">Reimport DR realm</span> = <code class="ph codeph">true</code> in ME 3 tab's DR
+            section. </li>
+
+        </ol>
+</li>
+
+      <li class="li">Regenerate Helm overrides files.</li>
+
+      <li class="li">Helm upgrade <span class="ph">NCC</span>.<ol class="ol" type="a" id="Bookmark82__ol_tyk_sny_3tb">
+          <li class="li">CGF (DR) chart will pickup non-SSO data. </li>
+
+        </ol>
+</li>
+
+      <li class="li"><span class="ph">NCC</span> will be in Helm revision 4.</li>
+
+    </ol>
+
+    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+      <ul class="ul">
+        <li class="li">These items are impacted when the Servicemanager is inaccessible. <ul class="ul">
+            <li class="li">All provisioning traffic.</li>
+
+            <li class="li">Servicemanager related REST API calls.</li>
+
+            <li class="li">Servicemanager GUI access.</li>
+
+            <li class="li">SS7 USSD requests are impacted because of its dependence on Servicemanager's service
+              name.</li>
+
+            <li class="li">SS7 communicates with Servicemanagers through its service name since performance
+              degradation happens when primary and secondary Servicemanager FQDNs are used. </li>
+
+          </ul>
+</li>
+
+        <li class="li">When the User and Role Management GUI is down, authentication requests and all GUIs are
+          inaccessible.</li>
+
+        <li class="li">When User and Role Management is down, CGF (DR)'s dr-ui pods try to reach User and Role
+          Management and crashloopback after seven failed attempts. If that happens, delete and
+          recreate those dr-ui pods.</li>
+
+        <li class="li">When <span class="ph uicontrol">Reimport DR realm</span> = <code class="ph codeph">true</code> and
+            <span class="ph uicontrol">Deployment Type</span> = <code class="ph codeph">in-service upgrade</code> in the
+            <span class="ph filepath">Inputs.xlsx</span> file, CGF (DR) chart (release name=dr) reupload DR
+          realm to User and Role Management when an in-service upgrade is done. To avoid reimports
+          in future in-service upgrades, set <span class="ph uicontrol">Reimport DR realm</span> =
+            <code class="ph codeph">false</code>.</li>
+
+        <li class="li">When <span class="ph uicontrol">Deployment Type</span> = <code class="ph codeph">in-service upgrade</code> in the
+            <span class="ph filepath">Inputs.xlsx</span> file, backup cronjobs are enabled for the MariaDB for
+          User and Role Management.</li>
+
+      </ul>
+
+    </div>
+
+    <p class="p">Verify MariaDB replication status on all SM/IG systems. All SM/IG systems should be replicating
+      with each other and have non-SSO authentication data.</p>
+
+    <p class="p">It might take a few minutes for the replication status to show updated results. If the
+      changes are not reflected after a few minutes, it may be necessary to restart the maxscale
+      pods on the system not listed as external secondary.</p>
+
+  </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

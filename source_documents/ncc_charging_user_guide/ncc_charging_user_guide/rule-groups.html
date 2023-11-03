@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Rule Groups" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9YZ-09018-UG00-PCZZA-d1e17541" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Rule Groups</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9YZ-09018-UG00-PCZZA-d1e17541">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Rule Groups</h1>
+<div class="body conbody">
+                                <p class="p">A Rule Group is a grouping of related Rules that can be run as a
+                                                logical group. A Rule Group is usually associated
+                                                with one or more Triggers. Rule groups can be used
+                                                in one or more triggers to optimize rules and
+                                                consistency across different operations. Only the
+                                                applicable rule criteria are allowed in a rule group
+                                                based on the source context and the trigger to which
+                                                the rule group belongs. Then, only the rule actions
+                                                applicable to those criteria and triggers can be
+                                                configured. </p>
+
+                                <p class="p">In the SM rule list, you can drag the various rules in the rule
+                                                group to a level that shows hierarchy to allow for
+                                                priority.</p>
+
+                                <p class="p">Rule groups are configured and applied as parent-child sets
+                                                related by rule set. You can place the rules
+                                                required in one or more top-level stand-alone rule
+                                                groups or configure a parent-child set of rule
+                                                groups that use the Rule-Table action in the parent
+                                                rule group to execute other rule groups. The
+                                                execution of all rule groups depend on the
+                                                conditions met and associated rule sets. </p>
+
+                                <p class="p">Whether a top-level stand-alone rule group or the top-level
+                                                parent rule group of a parent-child type set of rule
+                                                groups, you must select the Top Level check box to
+                                                ensure that the rule group runs when required. A
+                                                top-level standalone rule group does not have
+                                                actions that call other rules.</p>
+
+                                <p class="p">The parent-child set of rule groups and pointing the action to
+                                                another rule group, you can group rules into
+                                                numerous child rule groups whose actions are run
+                                                when the correct conditions are met. For this
+                                                parent-child type of rule group usage, you must
+                                                designate the parent rule group by selecting the Top
+                                                Level check box and identify the children by
+                                                ensuring that the Top Level check box is not
+                                                selected. Further more, The triggers configured for
+                                                the child rule groups must include those from the
+                                                parent rule group.</p>
+
+                                
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="setBalance" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="set_balance" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>setBalance</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="set_balance">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">setBalance</h1>
+<div class="body conbody">
+        <p class="p">For description of EDR tags, refer to <a class="xref" href="account.html">Account</a>.</p>
+
+    </div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_djk_3qw_xqb"><h2 class="title topictitle2" id="ariaid-title2">EDR tags</h2>
+<div class="body conbody">
+            <table cellpadding="4" cellspacing="0" summary="" id="concept_djk_3qw_xqb__table_bff_lrc_qqb" class="table" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d30418e49">EDR Tag</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d30418e52">Example</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d30418e49 ">accountID</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d30418e52 ">Account62294</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d30418e49 ">accountDbID</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d30418e52 ">25</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d30418e49 ">accountType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d30418e52 ">PRE_PAID</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d30418e49 ">Source</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d30418e52 ">BalanceAdjustment</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d30418e49 ">accountBalanceBefore</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d30418e52 ">10.00</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d30418e49 ">accountBalanceAfter</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d30418e52 ">20.00</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d30418e49 ">amount</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d30418e52 ">20.0</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_dvs_2qw_xqb"><h2 class="title topictitle2" id="ariaid-title3">EDR examples</h2>
+<div class="body conbody">
+            <p class="p"><strong class="ph b">Set balance</strong></p>
+
+            <pre class="pre codeblock"><code>------------------------------------- 
+EDR length:                     219 
+Release ID | Version ID:        7|2 
+Data record format | TS number: 1|7
+Release identifier extension:    4 
+Name                     Tag            Data 
+RecordType                0          PROVISIONING_RECORD
+serviceProvider           1          MVNO1 
+invokedBy                 1          webService 
+invokedMethod             1          setBalance 
+accountID                 1          Account62294 
+balance                   1          500.0 
+result                    1          SUCCESS 
+generationTimestamp       1          27/06/2018 19:59:51 
+RecordTimestamp           1          27/06/2018 14:29:51 </code></pre>
+            <p class="p"><strong class="ph b">Set balance with balance adjust</strong></p>
+
+            <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       410
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                   Tag                      Data
+RecordType             0         PROVISIONING_RECORD
+serviceProvider        1                       MVNO1
+invokedBy              1                  webService
+invokedMethod          1                  setBalance
+accountID              1     Account_AdjustBalance14
+amount                 1                       20.00
+accountType            1                    PRE_PAID
+source                 1           BalanceAdjustment
+accountBalanceBefore   1                       10.00
+accountBalanceAfter    1                       20.00
+result                 1                     SUCCESS
+generationTimestamp    1         18/05/2021 13:42:32
+meHostName             1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr               
+nccVersion             1                 SPS_21_6_R1
+RecordTimestamp        1         18/05/2021 13:42:32</code></pre>
+            <p class="p"><strong class="ph b">Set balance with account recharge</strong></p>
+
+            <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       409
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                   Tag                      Data
+RecordType             0         PROVISIONING_RECORD
+serviceProvider        1                       MVNO1
+invokedBy              1                  webService
+invokedMethod          1                  setBalance
+accountID              1     Account_AdjustBalance14
+amount                 1                      100.00
+accountType            1                    PRE_PAID
+source                 1             AccountRecharge
+accountBalanceBefore   1                        0.00
+accountBalanceAfter    1                      100.00
+result                 1                     SUCCESS
+generationTimestamp    1         18/05/2021 13:42:14
+meHostName             1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr               
+nccVersion             1                 SPS_21_6_R1
+RecordTimestamp        1         18/05/2021 13:42:14</code></pre>
+        </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Re-Authorization request support in the NCC Gy interface" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-cn01-tczza-d1e17663" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Re-Authorization request support in the NCC Gy interface</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-cn01-tczza-d1e17663">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Re-Authorization request support in the NCC Gy interface</h1>
+<div class="body conbody">
+<div class="section"><h2 class="title sectiontitle"> RAR support</h2>
+<p class="p">Re-Authorization is supported by NCC with session audit and dynamic slicing algorithm
+                functionality.</p>
+
+<p class="p">The following message indicates AVPs of the <kbd class="ph userinput">Re-Auth-Request</kbd> command:</p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>&lt;RAR&gt; ::= &lt; Diameter Header: 258, REQ, PXY &gt;
+
+&lt; Session-Id &gt;
+{ Origin-Host }
+{ Origin-Realm }
+{ Destination-Realm }
+{ Destination-Host }
+{ Auth-Application-Id }
+{ Re-Auth-Request-Type }
+[ Origin-State-Id ]
+{ User-Name }
+{ Rating-Group }</code></pre>
+</div>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> <var class="keyword varname">Re-Auth-Request-Type</var> AVP is supported to have only one value that is
+                    <var class="keyword varname">AUTHORIZE_ONLY</var>
+</div>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Diameter/HTTP Configuration Guide • P556766-DN1000054969-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

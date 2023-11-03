@@ -1,0 +1,1146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Sample CDRs" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="sample_cdrs_0" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Sample CDRs</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="sample_cdrs_0">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Sample CDRs</h1>
+<div class="body conbody">
+        <div class="section" id="sample_cdrs_0__section_zfm_drn_kyb">
+            <p class="p">This section provides sample CDRs for the TMF-compliant eCommerce APIs.</p>
+
+            <div class="sectiondiv"><span class="ph uicontrol">POST /usage (“charge” request)</span><div class="p"><strong class="ph b">Successful
+                        charging - Enough
+                    Credit</strong><pre class="pre codeblock" id="sample_cdrs_0__codeblock_ndm_krn_kyb"><code>Name                                  Tag                                   Data
+RecordType                            0                        OCSChargingRecord
+prevMeName                            1                               devanna-me
+classOfService                        1                                      111
+originatingZoneCode                   1                                        0
+destinationZoneCode                   1                                        0
+endUserTypology                       1                                       01
+defaultTariffPlan                     1                                       74
+extendedDayOfWeek                     1                                        3
+SOSCall                               1                                        N
+transactionAmount                     1                                  7.00000
+taxPercentage                         1                                     22.0
+origin                                1                                      301
+service                               1                                      301
+GSM_PI                                1                         GSMT21BSD010S**I
+tariffClass                           1                                     4089
+IMSI                                  1                          222085113923501
+serviceID                             1                                      592
+AVAILABLE_BALANCE                     1                                     93.0
+usageDate                             1                      09/08/2023 18:54:32
+eComAction                            1                                   Charge
+transactionId                         1    ecom-transaction-2023-08-09T18:54:32Z
+generationTimestamp                   1                      09/08/2023 16:53:12
+deviceId                              1                             395113923501
+deviceName                            1                             395113923501
+deviceOwner                           1                             395113923501
+deviceOwnerName                       1                             395113923501
+deviceState                           1                                   ACTIVE
+devicePartitionId                     1                                        1
+deviceSiteId                          1                                        4
+recordSequenceNumber                  1                                        0
+recordId                              1   20230809165312_f10e3f65-12aa-4266-a765-bfd466cb8d93    
+meHostName                            1                               devanna-me
+nccVersion                            1                              SPS_23_8_R1
+RecordTimestamp                       1                      09/08/2023 16:53:12
+  RecordProperty                      0                               listOfMscc
+    RecordProperty                    0                                     mscc
+    recordEventResult                 1                                       00
+    recordEventType                   1                                ECOMMERCE
+    localSequenceNumber               1                                        0
+      RecordProperty                  0                               deviceInfo
+        RecordProperty                0                         subscriptionInfo
+        subscriptionId                1     406839b5-6646-425d-bad2-cb40b55f2fd5
+        subscriptionState             1                                   Active
+        bundleName                    1             DefaultTariffPlan_CBUPrepaid
+        bundleActivationType          1                                   NORMAL
+        accountID                     1                             395113923501
+        accountName                   1                             395113923501
+        subscriptionStartDateTime     1                      09/08/2023 16:54:18
+        subscriptionEndDateTime       1                      08/08/2024 16:54:18
+          RecordProperty              0                      chargingServiceInfo
+          chargingServiceName         1          DefaultTariffPlan_CBUPrepaid_CS
+          chargingServiceType         1                                     UNIT
+          chargingServicePriority     1                                   100000
+          chargingServiceCategory     1                                  PTP/DTP
+          CS_SEQ_NUMBER               1                                        0
+            RecordProperty            0                              accountInfo
+            accountID                 1                             395113923501
+            accountName               1                             395113923501
+            accountType               1                                 PRE_PAID
+            accountOwner              1                             395113923501
+            accountOwnerName          1                             395113923501
+            accountState              1                                   ACTIVE
+            accountBalanceBefore      1                                100.00000
+            accountBalanceAfter       1                                 93.00000
+            committedTaxAmount        1                                  1.26230
+            accountOveragelimit       1                                  0.00000
+            shadowBalanceAfter        1                                  3.00000
+            accountBalanceCommitted   1                                  7.00000
+            shadowBalanceCommitted    1                                 -7.00000
+            accountBalanceReserved    1                                  0.00000
+            rateId                    1                                eCom_ITEM
+            tariffID                  1              DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+            totalUnitsCharged         1                                  1.00000
+  RecordProperty                      0                     listOfSubscriptionID
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        0
+    subscriptionIdData                1                             395113923501
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        1
+    subscriptionIdData                1                          222085113923501
+</code></pre></div>
+<div class="p"><strong class="ph b">Unsuccessful charging - Not Enough
+                    Credit</strong><pre class="pre codeblock" id="sample_cdrs_0__codeblock_ob4_prn_kyb"><code>Name                      Tag                                               Data
+RecordType                0                                    OCSChargingRecord
+prevMeName                1                                           devanna-me
+classOfService            1                                                  111
+originatingZoneCode       1                                                    0
+destinationZoneCode       1                                                    0
+endUserTypology           1                                                   01
+defaultTariffPlan         1                                                   74
+extendedDayOfWeek         1                                                    4
+SOSCall                   1                                                    N
+transactionAmount         1                                                101.0
+currency                  1                                                  EUR
+taxPercentage             1                                                 22.0
+origin                    1                                                  304
+merchantId                1                                              merchID
+contentDescription        1                                              Content
+commercialService         1                                           ComService
+merchantDescription       1                                            MerchDesc
+shortCode                 1                                                  111
+IMSI                      1                                      222085116810005
+serviceType               1                                           ComService
+AVAILABLE_BALANCE         1                                                100.0
+usageDate                 1                                  10/08/2023 18:24:16
+eComAction                1                                               Charge
+transactionId             1                ecom-transaction-2023-08-10T18:24:16Z
+generationTimestamp       1                                  10/08/2023 16:22:53
+deviceId                  1                                         395116810005
+deviceName                1                                         395116810005
+deviceOwner               1                                         395116810005
+deviceOwnerName           1                                         395116810005
+deviceState               1                                               ACTIVE
+devicePartitionId         1                                                    1
+deviceSiteId              1                                                    4
+recordSequenceNumber      1                                                    0
+recordId                  1   20230810162253_d503d6bd-48e6-49c5-a3bc-1522e1a156e7
+meHostName                1                                           devanna-me
+nccVersion                1                                          SPS_23_8_R1
+RecordTimestamp           1                                  10/08/2023 16:22:53
+  RecordProperty          0                                           listOfMscc
+    RecordProperty        0                                                 mscc
+    recordEventResult     1                                                   21
+    recordEventType       1                                            ECOMMERCE
+    localSequenceNumber   1                                                    0
+  RecordProperty          0                                 listOfSubscriptionID
+    RecordProperty        0                                       subscriptionId
+    subscriptionIdType    1                                                    0
+    subscriptionIdData    1                                         395116810005
+    RecordProperty        0                                       subscriptionId
+    subscriptionIdType    1                                                    1
+    subscriptionIdData    1                                      222085116810005
+</code></pre></div>
+</div>
+            <div class="sectiondiv"><span class="ph uicontrol">PATCH /usage (“historical refund”
+                        request)</span><div class="p"><strong class="ph b">Successful
+                    refund</strong><pre class="pre codeblock" id="sample_cdrs_0__codeblock_ft4_csn_kyb"><code>Name                                  Tag                                   Data
+RecordType                            0                        OCSChargingRecord
+prevMeName                            1                               devanna-me
+accountSetId                          1                             395113923501
+refundingTransId                      1    ecom-reftransaction-2023-08-09T18:54:41Z
+originalTransTS                       1                      09/08/2023 16:53:12
+extendedDayOfWeek                     1                                        3
+GSM_PI                                1                         GSMT21BSD010S**I
+generationTimestamp                   1                      09/08/2023 16:53:18
+taxPercentage                         1                                     22.0
+deviceSiteId                          1                                        4
+destinationZoneCode                   1                                        0
+prevMeName                            1                               devanna-me
+endUserTypology                       1                                       01
+tariffClass                           1                                     4089
+deviceId                              1                             395113923501
+deviceName                            1                             395113923501
+transactionId                         1    ecom-transaction-2023-08-09T18:54:32Z        
+deviceOwner                           1                             395113923501
+deviceOwnerName                       1                             395113923501
+originatingZoneCode                   1                                        0
+service                               1                                      301
+defaultTariffPlan                     1                                       74
+eComAction                            1                         HistoricalRefund
+deviceState                           1                                   ACTIVE
+AVAILABLE_BALANCE                     1                                     93.0
+devicePartitionId                     1                                        1
+usageDate                             1                      09/08/2023 18:54:41
+serviceID                             1                                      592
+IMSI                                  1                          222085113923501
+origin                                1                                      301
+classOfService                        1                                      111
+transactionAmount                     1                                  7.00000
+SOSCall                               1                                        N
+recordSequenceNumber                  1                                        0
+recordId                              1   20230809165318_f17db570-a81a-48aa-912b-b224ede3a791      
+meHostName                            1                               devanna-me
+nccVersion                            1                              SPS_23_8_R1
+RecordTimestamp                       1                      09/08/2023 16:53:18
+  RecordProperty                      0                               listOfMscc
+    RecordProperty                    0                                     mscc
+    localSequenceNumber               1                                        0
+    recordEventResult                 1                                       00
+    recordEventType                   1                                ECOMMERCE
+      RecordProperty                  0                               deviceInfo
+        RecordProperty                0                         subscriptionInfo
+        subscriptionStartDateTime     1                      09/08/2023 16:54:18
+        subscriptionId                1     406839b5-6646-425d-bad2-cb40b55f2fd5
+        subscriptionState             1                                   Active
+        bundleName                    1             DefaultTariffPlan_CBUPrepaid
+        bundleActivationType          1                                   NORMAL
+        subscriptionEndDateTime       1                      08/08/2024 16:54:18
+        accountName                   1                             395113923501
+        accountID                     1                             395113923501
+          RecordProperty              0                      chargingServiceInfo
+          chargingServiceType         1                                     UNIT
+          chargingServiceCategory     1                                  PTP/DTP
+          chargingServiceName         1          DefaultTariffPlan_CBUPrepaid_CS
+          chargingServicePriority     1                                   100000
+          CS_SEQ_NUMBER               1                                        0
+            RecordProperty            0                              accountInfo
+            totalUnitsCharged         1                                  1.00000
+            accountBalanceCommitted   1                                  7.00000
+            shadowBalanceCommitted    1                                 +7.00000
+            shadowBalanceAfter        1                                 10.00000
+            accountID                 1                             395113923501
+            accountBalanceAfter       1                                100.00000
+            accountBalanceBefore      1                                 93.00000
+            accountOwnerName          1                             395113923501
+            rateId                    1                                eCom_ITEM
+            committedTaxAmount        1                                  1.26230
+            tariffID                  1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+            accountState              1                                   ACTIVE
+            accountName               1                             395113923501
+            accountType               1                                 PRE_PAID
+            accountOveragelimit       1                                  0.00000
+            accountBalanceReserved    1                                  0.00000
+            accountOwner              1                             395113923501
+  RecordProperty                      0                     listOfSubscriptionID
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdData                1                             395113923501
+    subscriptionIdType                1                                        0
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        1
+    subscriptionIdData                1                          222085113923501
+</code></pre></div>
+</div>
+            <div class="sectiondiv"><span class="ph uicontrol">POST /usage (“refund” request)</span><div class="p"><strong class="ph b">Successful
+                        refund</strong><pre class="pre codeblock" id="sample_cdrs_0__codeblock_wbz_jsn_kyb"><code>Name                                  Tag                                   Data
+RecordType                            0                        OCSChargingRecord
+prevMeName                            1                               devanna-me
+accountSetId                          1                             395113923501
+extendedDayOfWeek                     1                                        3
+generationTimestamp                   1                      09/08/2023 16:53:18
+deviceSiteId                          1                                        4
+destinationZoneCode                   1                                        0
+prevMeName                            1                               devanna-me
+deviceId                              1                             395113923501
+deviceName                            1                             395113923501
+transactionId                         1    ecom-transaction-2023-08-09T18:54:32Z        
+deviceOwner                           1                             395113923501
+deviceOwnerName                       1                             395113923501
+originatingZoneCode                   1                                        0
+eComAction                            1                         		   Refund
+deviceState                           1                                   ACTIVE
+AVAILABLE_BALANCE                     1                                     93.0
+devicePartitionId                     1                                        1
+usageDate                             1                      09/08/2023 18:54:41
+recordSequenceNumber                  1                                        0
+recordId                              1   20230809165318_f17db570-a81a-48aa-912b-b224ede3a791     
+meHostName                            1                               devanna-me
+nccVersion                            1                              SPS_23_8_R1
+RecordTimestamp                       1                      09/08/2023 16:53:18
+  RecordProperty                      0                               listOfMscc
+    RecordProperty                    0                                     mscc
+    localSequenceNumber               1                                        0
+    recordEventResult                 1                                       00
+    recordEventType                   1                                ECOMMERCE
+      RecordProperty                  0                               deviceInfo
+        RecordProperty                0                         subscriptionInfo
+        subscriptionStartDateTime     1                      09/08/2023 16:54:18
+        subscriptionId                1     406839b5-6646-425d-bad2-cb40b55f2fd5
+        subscriptionState             1                                   Active
+        bundleName                    1             DefaultTariffPlan_CBUPrepaid
+        bundleActivationType          1                                   NORMAL
+        subscriptionEndDateTime       1                      08/08/2024 16:54:18
+        accountName                   1                             395113923501
+        accountID                     1                             395113923501
+          RecordProperty              0                      chargingServiceInfo
+          chargingServiceType         1                                     UNIT
+          chargingServiceCategory     1                                  PTP/DTP
+          chargingServiceName         1          DefaultTariffPlan_CBUPrepaid_CS
+          chargingServicePriority     1                                   100000
+          CS_SEQ_NUMBER               1                                        0
+            RecordProperty            0                              accountInfo
+            totalUnitsCharged         1                                  1.00000
+            accountBalanceCommitted   1                                 +7.00000
+            accountID                 1                             395113923501
+            accountBalanceAfter       1                                 93.00000
+            accountBalanceBefore      1                                100.00000
+            accountOwnerName          1                             395113923501
+            rateId                    1                                eCom_ITEM
+            committedTaxAmount        1                                  1.26230
+            tariffID                  1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+            accountState              1                                   ACTIVE
+            accountName               1                             395113923501
+            accountType               1                                 PRE_PAID
+            accountOveragelimit       1                                  0.00000
+            accountBalanceReserved    1                                  0.00000
+            accountOwner              1                             395113923501
+  RecordProperty                      0                     listOfSubscriptionID
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdData                1                             395113923501
+    subscriptionIdType                1                                        0
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        1
+    subscriptionIdData                1                          222085113923501
+</code></pre></div>
+</div>
+            <div class="sectiondiv"><span class="ph uicontrol">POST /usage (“reserve” request)</span><div class="p"><strong class="ph b">Successful
+                        reserve – item based with secondary balance
+                    available</strong><pre class="pre codeblock" id="sample_cdrs_0__codeblock_wy2_524_kyb"><code>Name                                  Tag                                   Data
+RecordType                            0                        OCSChargingRecord
+prevMeName                            1                               devanna-me
+transactionAmount                     1                                     10.0
+usageDate                             1                      09/08/2023 20:21:41
+eComAction                            1                                  Reserve
+transactionId                         1    ecom-transaction-2023-08-09T20:21:41Z
+generationTimestamp                   1                      09/08/2023 18:20:17
+deviceId                              1                             395116810001
+deviceName                            1                             395116810001
+deviceOwner                           1                             395116810001
+deviceOwnerName                       1                             395116810001
+deviceState                           1                                   ACTIVE
+devicePartitionId                     1                                        1
+deviceSiteId                          1                                        4
+recordSequenceNumber                  1                                        0
+recordId                              1   20230809182017_6bf78bc7-b335-4980-bc08-0566b02969b2     
+meHostName                            1                               devanna-me
+nccVersion                            1                              SPS_23_8_R1
+RecordTimestamp                       1                      09/08/2023 18:20:17
+  RecordProperty                      0                               listOfMscc
+    RecordProperty                    0                                     mscc
+    recordEventResult                 1                                       11
+    recordEventType                   1                                ECOMMERCE
+    localSequenceNumber               1                                        0
+      RecordProperty                  0                               deviceInfo
+        RecordProperty                0                         subscriptionInfo
+        subscriptionId                1     80829dbd-fbee-44aa-8419-7c12c6a6a7d8
+        subscriptionState             1                                   Active
+        bundleName                    1             DefaultTariffPlan_CBUPrepaid
+        bundleActivationType          1                                   NORMAL
+        accountID                     1                             395116810001
+        accountName                   1                             395116810001
+        subscriptionStartDateTime     1                      09/08/2023 18:21:26
+        subscriptionEndDateTime       1                      08/08/2024 18:21:26
+          RecordProperty              0                      chargingServiceInfo
+          chargingServiceName         1          DefaultTariffPlan_CBUPrepaid_CS
+          chargingServiceType         1                                     UNIT
+          chargingServicePriority     1                                   100000
+          chargingServiceCategory     1                                  PTP/DTP
+            RecordProperty            0                    additionalBalanceInfo
+            chargingServiceName       1                        SecondaryBalance1
+            usageType                 1                        SECONDARY_BALANCE
+            usedAs                    1                                    USAGE
+              RecordProperty          0                               bucketInfo
+              bucketName              1  BalanceAllowanceLimit-SecondaryBalance1
+              bucketUnitType          1                                    Money
+              bucketKindOfUnit        1                                    MONEY
+              bucketBalanceBefore     1                                  5.00000
+              bucketBalanceAfter      1                                  5.00000
+              committedTaxAmount      1                                  0.93496
+              carryOverBucket         1                                    false
+              bucketCommitedUnits     1                                        0
+              bucketReservedUnits     1                                        5
+              rateId                  1                                eCom_ITEM
+              tariffID                1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+            RecordProperty            0                              accountInfo
+            accountID                 1                             395116810001
+            accountName               1                             395116810001
+            accountType               1                                 PRE_PAID
+            accountOwner              1                             395116810001
+            accountState              1                                   ACTIVE
+            accountBalanceBefore      1                                100.00000
+            accountBalanceAfter       1                                100.00000
+            committedTaxAmount        1                                  0.93496
+            accountOveragelimit       1                                  0.00000
+            accountBalanceCommitted   1                                  0.00000
+            accountBalanceReserved    1                                  5.00000
+            rateId                    1                                  eCom_ITEM
+            tariffID                  1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+  RecordProperty                      0                       listOfSubscriptionID
+    RecordProperty                    0                             subscriptionId
+    subscriptionIdType                1                                          1
+    subscriptionIdData                1                            222085116810001
+    RecordProperty                    0                             subscriptionId
+    subscriptionIdType                1                                          0
+    subscriptionIdData                1                               395116810001
+</code></pre></div>
+<div class="p"><strong class="ph b">Successful reserve – money based with secondary balance
+                        available</strong><pre class="pre codeblock" id="sample_cdrs_0__codeblock_fyd_qcj_lyb"><code>Name                                  Tag                                   Data
+RecordType                            0                        OCSChargingRecord
+prevMeName                            1                               devanna-me
+transactionAmount                     1                                     10.0
+usageDate                             1                      11/08/2023 09:56:35
+eComAction                            1                                  Reserve
+transactionId                         1    ecom-transaction-2023-08-11T09:56:35Z
+generationTimestamp                   1                      11/08/2023 07:55:09
+deviceId                              1                             395116810001
+deviceName                            1                             395116810001
+deviceOwner                           1                             395116810001
+deviceOwnerName                       1                             395116810001
+deviceState                           1                                   ACTIVE
+devicePartitionId                     1                                        1
+deviceSiteId                          1                                        4
+recordSequenceNumber                  1                                        0  
+recordId                              1   20230811075509_7813fc98-854f-4a8b-82fb-49a2fbbd3b5f   
+meHostName                            1                               devanna-me
+nccVersion                            1                              SPS_23_8_R1
+RecordTimestamp                       1                      11/08/2023 07:55:09
+  RecordProperty                      0                               listOfMscc
+    RecordProperty                    0                                     mscc
+    recordEventResult                 1                                       11
+    recordEventType                   1                                ECOMMERCE
+    localSequenceNumber               1                                        0
+      RecordProperty                  0                               deviceInfo
+        RecordProperty                0                         subscriptionInfo
+        subscriptionId                1     3dbcee34-65a1-4f8f-b095-b97b34d14b0d
+        subscriptionState             1                                   Active
+        bundleName                    1             DefaultTariffPlan_CBUPrepaid
+        bundleActivationType          1                                   NORMAL
+        accountID                     1                             395116810001
+        accountName                   1                             395116810001
+        subscriptionStartDateTime     1                      11/08/2023 07:56:23
+        subscriptionEndDateTime       1                      10/08/2024 07:56:23
+          RecordProperty              0                      chargingServiceInfo
+          chargingServiceName         1          DefaultTariffPlan_CBUPrepaid_CS
+          chargingServiceType         1                                    MONEY
+          chargingServicePriority     1                                   100000
+          chargingServiceCategory     1                                  PTP/DTP
+            RecordProperty            0                              accountInfo
+            accountID                 1                             395116810001
+            accountName               1                             395116810001
+            accountType               1                                 PRE_PAID
+            accountOwner              1                             395116810001
+            accountState              1                                   ACTIVE
+            accountBalanceBefore      1                                100.00000
+            accountBalanceAfter       1                                100.00000
+            committedTaxAmount        1                                  0.93496
+            accountOveragelimit       1                                  0.00000
+            accountBalanceCommitted   1                                  0.00000
+            accountBalanceReserved    1                                  5.00000
+            rateId                    1                               eCom_MONEY
+            tariffID                  1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+            RecordProperty            0                    additionalBalanceInfo
+            chargingServiceName       1                        SecondaryBalance1
+            usageType                 1                        SECONDARY_BALANCE
+            usedAs                    1                                    USAGE
+              RecordProperty          0                               bucketInfo
+              bucketName              1  BalanceAllowanceLimit-SecondaryBalance1
+              bucketUnitType          1                                    Money
+              bucketKindOfUnit        1                                    MONEY
+              bucketBalanceBefore     1                                  5.00000
+              bucketBalanceAfter      1                                  5.00000
+              committedTaxAmount      1                                  0.93496
+              carryOverBucket         1                                    false
+              bucketCommitedUnits     1                                        0
+              bucketReservedUnits     1                                        5
+              rateId                  1                               eCom_MONEY
+              tariffID                1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+  RecordProperty                      0                     listOfSubscriptionID
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        1
+    subscriptionIdData                1                          222085116810001
+    RecordProperty                    0                          subscriptionId
+    subscriptionIdType                1                                       0
+    subscriptionIdData                1                            395116810001
+</code></pre></div>
+</div>
+            <div class="sectiondiv"><span class="ph uicontrol">PATCH /usage (“commit” request)</span><div class="p"><strong class="ph b">Successful
+                        commit – item based with secondary balance
+                    available</strong><pre class="pre codeblock" id="sample_cdrs_0__codeblock_uyk_z24_kyb"><code>Name                                  Tag                                   Data
+RecordType                            0                        OCSChargingRecord
+prevMeName                            1                               devanna-me
+transactionAmount                     1                                     10.0
+commitId                              1   ecom-reftransaction-2023-08-09T20:21:44Z
+usageDate                             1                      09/08/2023 20:21:44
+eComAction                            1                                   Commit
+transactionId                         1    ecom-transaction-2023-08-09T20:21:41Z
+generationTimestamp                   1                      09/08/2023 18:20:21
+deviceId                              1                             395116810001
+deviceName                            1                             395116810001
+deviceOwner                           1                             395116810001
+deviceOwnerName                       1                             395116810001
+deviceState                           1                                   ACTIVE
+devicePartitionId                     1                                        1
+deviceSiteId                          1                                        4
+recordSequenceNumber                  1                                        0 
+recordId                              1   20230809182021_f91306e9-6f54-4bef-bb72-330452350e83       
+meHostName                            1                               devanna-me
+nccVersion                            1                              SPS_23_8_R1
+RecordTimestamp                       1                      09/08/2023 18:20:21
+  RecordProperty                      0                               listOfMscc
+    RecordProperty                    0                                     mscc
+    recordEventResult                 1                                       00
+    recordEventType                   1                                ECOMMERCE
+    localSequenceNumber               1                                        0
+      RecordProperty                  0                               deviceInfo
+        RecordProperty                0                         subscriptionInfo
+        subscriptionId                1     80829dbd-fbee-44aa-8419-7c12c6a6a7d8
+        subscriptionState             1                                   Active
+        bundleName                    1             DefaultTariffPlan_CBUPrepaid
+        bundleActivationType          1                                   NORMAL
+        accountID                     1                             395116810001
+        accountName                   1                             395116810001
+        subscriptionStartDateTime     1                      09/08/2023 18:21:26
+        subscriptionEndDateTime       1                      08/08/2024 18:21:26
+          RecordProperty              0                      chargingServiceInfo
+          chargingServiceName         1          DefaultTariffPlan_CBUPrepaid_CS
+          chargingServiceType         1                                     UNIT
+          chargingServicePriority     1                                   100000
+          chargingServiceCategory     1                                  PTP/DTP
+            RecordProperty            0                    additionalBalanceInfo
+            chargingServiceName       1                        SecondaryBalance1
+            usageType                 1                        SECONDARY_BALANCE
+            usedAs                    1                                    USAGE
+              RecordProperty          0                               bucketInfo
+              bucketName              1  BalanceAllowanceLimit-SecondaryBalance1
+              bucketUnitType          1                                    Money
+              bucketKindOfUnit        1                                    MONEY
+              bucketBalanceBefore     1                                  5.00000
+              bucketBalanceAfter      1                                  0.00000
+              committedTaxAmount      1                                  0.93496
+              carryOverBucket         1                                    false
+              bucketCommitedUnits     1                                        5
+              bucketReservedUnits     1                                        0
+              rateId                  1                                eCom_ITEM
+              tariffID                1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+              totalUnitsCharged       1                                      0.5
+            RecordProperty            0                              accountInfo
+            accountID                 1                             395116810001
+            accountName               1                             395116810001
+            accountType               1                                 PRE_PAID
+            accountOwner              1                             395116810001
+            accountOwnerName          1                             395116810001
+            accountState              1                                   ACTIVE
+            accountBalanceBefore      1                                100.00000
+            accountBalanceAfter       1                                 95.00000
+            committedTaxAmount        1                                  0.93496
+            accountOveragelimit       1                                  0.00000
+            accountBalanceCommitted   1                                  5.00000
+            accountBalanceReserved    1                                  0.00000
+            rateId                    1                                eCom_ITEM
+            tariffID                  1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+            totalUnitsCharged         1                                  0.50000
+  RecordProperty                      0                     listOfSubscriptionID
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        1
+    subscriptionIdData                1                          222085116810001
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        0
+    subscriptionIdData                1                             395116810001
+</code></pre></div>
+<div class="p"><strong class="ph b">Successful commit – money based with secondary balance
+                        available</strong><pre class="pre codeblock" id="sample_cdrs_0__codeblock_n45_xcj_lyb"><code>Name                                  Tag                                   Data
+RecordType                            0                        OCSChargingRecord
+prevMeName                            1                               devanna-me
+transactionAmount                     1                                     10.0
+commitId                              1 ecom-reftransaction-2023-08-11T11:38:39Z
+usageDate                             1                      11/08/2023 11:38:39
+eComAction                            1                                   Commit
+transactionId                         1    ecom-transaction-2023-08-11T11:38:35Z
+generationTimestamp                   1                      11/08/2023 09:37:14
+deviceId                              1                             395116810001
+deviceName                            1                             395116810001
+deviceOwner                           1                             395116810001
+deviceOwnerName                       1                             395116810001
+deviceState                           1                                   ACTIVE
+devicePartitionId                     1                                        1
+deviceSiteId                          1                                        4
+recordSequenceNumber                  1                                        0
+recordId                              1   20230811093714_4aaf7c13-5b6a-4f8b-931c-f31fe4e46389
+meHostName                            1                               devanna-me
+nccVersion                            1                              SPS_23_8_R1
+RecordTimestamp                       1                      11/08/2023 09:37:14
+  RecordProperty                      0                               listOfMscc
+    RecordProperty                    0                                     mscc
+    recordEventResult                 1                                       00
+    recordEventType                   1                                ECOMMERCE
+    localSequenceNumber               1                                        0
+      RecordProperty                  0                               deviceInfo
+        RecordProperty                0                         subscriptionInfo
+        subscriptionId                1     0459119f-d5a3-45b0-957e-4c080d1cbb40
+        subscriptionState             1                                   Active
+        bundleName                    1             DefaultTariffPlan_CBUPrepaid
+        bundleActivationType          1                                   NORMAL
+        accountID                     1                             395116810001
+        accountName                   1                             395116810001
+        subscriptionStartDateTime     1                      11/08/2023 09:38:23
+        subscriptionEndDateTime       1                      10/08/2024 09:38:23
+          RecordProperty              0                      chargingServiceInfo
+          chargingServiceName         1          DefaultTariffPlan_CBUPrepaid_CS
+          chargingServiceType         1                                    MONEY
+          chargingServicePriority     1                                   100000
+          chargingServiceCategory     1                                  PTP/DTP
+            RecordProperty            0                    additionalBalanceInfo
+            chargingServiceName       1                        SecondaryBalance1
+            usageType                 1                        SECONDARY_BALANCE
+            usedAs                    1                                    USAGE
+              RecordProperty          0                               bucketInfo
+              bucketName              1  BalanceAllowanceLimit-SecondaryBalance1
+              bucketUnitType          1                                    Money
+              bucketKindOfUnit        1                                    MONEY
+              bucketBalanceBefore     1                                  5.00000
+              bucketBalanceAfter      1                                  0.00000
+              committedTaxAmount      1                                  0.93496
+              carryOverBucket         1                                    false
+              bucketCommitedUnits     1                                        5
+              bucketReservedUnits     1                                        0
+              rateId                  1                               eCom_MONEY
+              tariffID                1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+              totalMoneyCharged       1                                        5
+            RecordProperty            0                              accountInfo
+            accountID                 1                             395116810001
+            accountName               1                             395116810001
+            accountType               1                                 PRE_PAID
+            accountOwner              1                             395116810001
+            accountOwnerName          1                             395116810001
+            accountState              1                                   ACTIVE
+            accountBalanceBefore      1                                100.00000
+            accountBalanceAfter       1                                 95.00000
+            committedTaxAmount        1                                  0.93496
+            accountOveragelimit       1                                  0.00000
+            accountBalanceCommitted   1                                  5.00000
+            accountBalanceReserved    1                                  0.00000
+            rateId                    1                               eCom_MONEY
+            tariffID                  1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+            totalMoneyCharged         1                                  5.00000
+  RecordProperty                      0                     listOfSubscriptionID
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        1
+    subscriptionIdData                1                          222085116810001
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        0
+    subscriptionIdData                1                             395116810001
+</code></pre></div>
+<p class="p"><strong class="ph b">Successful under-commit – money based with secondary
+                        balance available</strong></p>
+<pre class="pre codeblock" id="sample_cdrs_0__codeblock_tnh_gdj_lyb"><code>
+Name                                  Tag                                   Data
+RecordType                            0                        OCSChargingRecord
+prevMeName                            1                               devanna-me
+transactionAmount                     1                                      8.0
+commitId                              1 ecom-reftransaction-2023-08-11T12:29:48Z
+usageDate                             1                      11/08/2023 12:29:48
+eComAction                            1                                   Commit
+transactionId                         1    ecom-transaction-2023-08-11T12:29:44Z
+generationTimestamp                   1                      11/08/2023 10:28:22
+deviceId                              1                             395116810001
+deviceName                            1                             395116810001
+deviceOwner                           1                             395116810001
+deviceOwnerName                       1                             395116810001
+deviceState                           1                                   ACTIVE
+devicePartitionId                     1                                        1
+deviceSiteId                          1                                        4
+recordSequenceNumber                  1                                        0
+recordId                              1   20230811102822_83008fb0-0f37-463e-8404-99cbcf884981
+meHostName                            1                               devanna-me
+nccVersion                            1                              SPS_23_8_R1
+RecordTimestamp                       1                      11/08/2023 10:28:22
+  RecordProperty                      0                               listOfMscc
+    RecordProperty                    0                                     mscc
+    recordEventResult                 1                                       00
+    recordEventType                   1                                ECOMMERCE
+    localSequenceNumber               1                                        0
+      RecordProperty                  0                               deviceInfo
+        RecordProperty                0                         subscriptionInfo
+        subscriptionId                1     97860f35-328a-4e74-89cc-e6808058ec6a
+        subscriptionState             1                                   Active
+        bundleName                    1             DefaultTariffPlan_CBUPrepaid
+        bundleActivationType          1                                   NORMAL
+        accountID                     1                             395116810001
+        accountName                   1                             395116810001
+        subscriptionStartDateTime     1                      11/08/2023 10:29:31
+        subscriptionEndDateTime       1                      10/08/2024 10:29:31
+          RecordProperty              0                      chargingServiceInfo
+          chargingServiceName         1          DefaultTariffPlan_CBUPrepaid_CS
+          chargingServiceType         1                                    MONEY
+          chargingServicePriority     1                                   100000
+          chargingServiceCategory     1                                  PTP/DTP
+            RecordProperty            0                    additionalBalanceInfo
+            chargingServiceName       1                        SecondaryBalance1
+            usageType                 1                        SECONDARY_BALANCE
+            usedAs                    1                                    USAGE
+              RecordProperty          0                               bucketInfo
+              bucketName              1  BalanceAllowanceLimit-SecondaryBalance1
+              bucketUnitType          1                                    Money
+              bucketKindOfUnit        1                                    MONEY
+              bucketBalanceBefore     1                                  5.00000
+              bucketBalanceAfter      1                                  0.00000
+              committedTaxAmount      1                                  0.93496
+              carryOverBucket         1                                    false
+              bucketCommitedUnits     1                                        5
+              bucketReservedUnits     1                                        0
+              rateId                  1                               eCom_MONEY
+              tariffID                1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+              totalMoneyCharged       1                                        5
+            RecordProperty            0                              accountInfo
+            accountID                 1                             395116810001
+            accountName               1                             395116810001
+            accountType               1                                 PRE_PAID
+            accountOwner              1                             395116810001
+            accountOwnerName          1                             395116810001
+            accountState              1                                   ACTIVE
+            accountBalanceBefore      1                                100.00000
+            accountBalanceAfter       1                                 97.00000
+            committedTaxAmount        1                                  0.56098
+            accountOveragelimit       1                                  0.00000
+            accountBalanceCommitted   1                                  3.00000
+            accountBalanceReserved    1                                  0.00000
+            rateId                    1                               eCom_MONEY
+            tariffID                  1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+            totalMoneyCharged         1                                  3.00000
+  RecordProperty                      0                     listOfSubscriptionID
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        1
+    subscriptionIdData                1                          222085116810001
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        0
+    subscriptionIdData                1                             395116810001
+</code></pre><div class="p"><strong class="ph b">Successful over-commit – money based with secondary
+                        balance
+                    available</strong><pre class="pre codeblock" id="sample_cdrs_0__codeblock_hmm_vdj_lyb"><code>Name                                  Tag                                   Data
+RecordType                            0                        OCSChargingRecord
+prevMeName                            1                               devanna-me
+transactionAmount                     1                                     12.0
+commitId                              1 ecom-reftransaction-2023-08-11T12:48:54Z
+usageDate                             1                      11/08/2023 12:48:54
+eComAction                            1                                   Commit
+transactionId                         1    ecom-transaction-2023-08-11T12:48:51Z
+generationTimestamp                   1                      11/08/2023 10:47:29
+deviceId                              1                             395116810001
+deviceName                            1                             395116810001
+deviceOwner                           1                             395116810001
+deviceOwnerName                       1                             395116810001
+deviceState                           1                                   ACTIVE
+devicePartitionId                     1                                        1
+deviceSiteId                          1                                        4
+recordSequenceNumber                  1                                        0
+recordId                              1  20230811104729_5f569c39-0b43-4396-91b8-af31be974f60
+meHostName                            1                               devanna-me
+nccVersion                            1                              SPS_23_8_R1
+RecordTimestamp                       1                      11/08/2023 10:47:29
+  RecordProperty                      0                               listOfMscc
+    RecordProperty                    0                                     mscc
+    recordEventResult                 1                                       00
+    recordEventType                   1                                ECOMMERCE
+    localSequenceNumber               1                                        0
+      RecordProperty                  0                               deviceInfo
+        RecordProperty                0                         subscriptionInfo
+        subscriptionId                1     ef7bf398-b783-4e50-855c-c10a6761907f
+        subscriptionState             1                                   Active
+        bundleName                    1             DefaultTariffPlan_CBUPrepaid
+        bundleActivationType          1                                   NORMAL
+        accountID                     1                             395116810001
+        accountName                   1                             395116810001
+        subscriptionStartDateTime     1                      11/08/2023 10:48:39
+        subscriptionEndDateTime       1                      10/08/2024 10:48:39
+          RecordProperty              0                      chargingServiceInfo
+          chargingServiceName         1          DefaultTariffPlan_CBUPrepaid_CS
+          chargingServiceType         1                                    MONEY
+          chargingServicePriority     1                                   100000
+          chargingServiceCategory     1                                  PTP/DTP
+            RecordProperty            0                    additionalBalanceInfo
+            chargingServiceName       1                        SecondaryBalance1
+            usageType                 1                        SECONDARY_BALANCE
+            usedAs                    1                                    USAGE
+              RecordProperty          0                               bucketInfo
+              bucketName              1  BalanceAllowanceLimit-SecondaryBalance1
+              bucketUnitType          1                                    Money
+              bucketKindOfUnit        1                                    MONEY
+              bucketBalanceBefore     1                                  5.00000
+              bucketBalanceAfter      1                                  0.00000
+              committedTaxAmount      1                                  0.93496
+              carryOverBucket         1                                    false
+              bucketCommitedUnits     1                                        5
+              bucketReservedUnits     1                                        0
+              rateId                  1                               eCom_MONEY
+              tariffID                1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+              totalMoneyCharged       1                                        5
+            RecordProperty            0                              accountInfo
+            accountID                 1                             395116810001
+            accountName               1                             395116810001
+            accountType               1                                 PRE_PAID
+            accountOwner              1                             395116810001
+            accountOwnerName          1                             395116810001
+            accountState              1                                   ACTIVE
+            accountBalanceBefore      1                                100.00000
+            accountBalanceAfter       1                                 93.00000
+            committedTaxAmount        1                                  1.30895
+            accountOveragelimit       1                                  0.00000
+            accountBalanceCommitted   1                                  7.00000
+            accountBalanceReserved    1                                  0.00000
+            rateId                    1                               eCom_MONEY
+            tariffID                  1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+            totalMoneyCharged         1                                  7.00000
+  RecordProperty                      0                     listOfSubscriptionID
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        1
+    subscriptionIdData                1                          222085116810001
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        0
+    subscriptionIdData                1                             395116810001
+</code></pre></div>
+<div class="p"><strong class="ph b">Successful over-commit with lost money – money based with
+                        secondary balance
+                    available</strong><pre class="pre codeblock" id="sample_cdrs_0__codeblock_ccd_c2j_lyb"><code>Name                                  Tag                                   Data
+RecordType                            0                        OCSChargingRecord
+prevMeName                            1                               devanna-me
+transactionAmount                     1                                     16.0
+commitId                              1 ecom-reftransaction-2023-08-11T13:04:05Z
+usageDate                             1                      11/08/2023 13:04:05
+eComAction                            1                                   Commit
+transactionId                         1    ecom-transaction-2023-08-11T13:04:01Z
+generationTimestamp                   1                      11/08/2023 11:02:40
+deviceId                              1                             395116810001
+deviceName                            1                             395116810001
+deviceOwner                           1                             395116810001
+deviceOwnerName                       1                             395116810001
+deviceState                           1                                   ACTIVE
+devicePartitionId                     1                                        1
+deviceSiteId                          1                                        4
+recordSequenceNumber                  1                                        0   
+recordId                              1  20230811110240_eeeb9f6d-55ad-4bfe-bcc3-066115dfcd42
+meHostName                            1                               devanna-me
+nccVersion                            1                              SPS_23_8_R1
+RecordTimestamp                       1                      11/08/2023 11:02:40
+  RecordProperty                      0                               listOfMscc
+    RecordProperty                    0                                     mscc
+    recordEventResult                 1                                       02
+    recordEventType                   1                                ECOMMERCE
+    lostMoney                         1                                  1.00000
+    localSequenceNumber               1                                        0
+      RecordProperty                  0                               deviceInfo
+        RecordProperty                0                         subscriptionInfo
+        subscriptionId                1     9708eb10-8e76-4ebd-906c-a1a811452276
+        subscriptionState             1                                   Active
+        bundleName                    1             DefaultTariffPlan_CBUPrepaid
+        bundleActivationType          1                                   NORMAL
+        accountID                     1                             395116810001
+        accountName                   1                             395116810001
+        subscriptionStartDateTime     1                      11/08/2023 11:03:50
+        subscriptionEndDateTime       1                      10/08/2024 11:03:50
+          RecordProperty              0                      chargingServiceInfo
+          chargingServiceName         1          DefaultTariffPlan_CBUPrepaid_CS
+          chargingServiceType         1                                    MONEY
+          chargingServicePriority     1                                   100000
+          chargingServiceCategory     1                                  PTP/DTP
+            RecordProperty            0                              accountInfo
+            accountID                 1                             395116810001
+            accountName               1                             395116810001
+            accountType               1                                 PRE_PAID
+            accountOwner              1                             395116810001
+            accountOwnerName          1                             395116810001
+            accountState              1                                   ACTIVE
+            accountBalanceBefore      1                                 10.00000
+            accountBalanceAfter       1                                  0.00000
+            committedTaxAmount        1                                  1.86992
+            accountOveragelimit       1                                  0.00000
+            accountBalanceCommitted   1                                 10.00000
+            accountBalanceReserved    1                                  0.00000
+            rateId                    1                               eCom_MONEY
+            tariffID                  1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+            totalMoneyCharged         1                                 10.00000
+            RecordProperty            0                    additionalBalanceInfo
+            chargingServiceName       1                        SecondaryBalance1
+            usageType                 1                        SECONDARY_BALANCE
+            usedAs                    1                                    USAGE
+              RecordProperty          0                               bucketInfo
+              bucketName              1  BalanceAllowanceLimit-SecondaryBalance1
+              bucketUnitType          1                                    Money
+              bucketKindOfUnit        1                                    MONEY
+              bucketBalanceBefore     1                                  5.00000
+              bucketBalanceAfter      1                                  0.00000
+              committedTaxAmount      1                                  0.93496
+              carryOverBucket         1                                    false
+              bucketCommitedUnits     1                                        5
+              bucketReservedUnits     1                                        0
+              rateId                  1                               eCom_MONEY
+              tariffID                1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+              totalMoneyCharged       1                                        5
+  RecordProperty                      0                     listOfSubscriptionID
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        1
+    subscriptionIdData                1                          222085116810001
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        0
+    subscriptionIdData                1                             395116810001
+</code></pre></div>
+</div>
+            <div class="sectiondiv"><span class="ph uicontrol">PATCH /usage (“cancel” request)</span><div class="p"><strong class="ph b">Successful
+                        cancel – item based with secondary balance
+                    available</strong><pre class="pre codeblock" id="sample_cdrs_0__codeblock_trs_lf4_kyb"><code>Name                                  Tag                                   Data
+RecordType                            0                        OCSChargingRecord
+prevMeName                            1                               devanna-me
+transactionAmount                     1                                     10.0
+cancelId                              1   ecom-reftransaction-2023-08-09T21:03:39Z
+usageDate                             1                      09/08/2023 21:03:39
+eComAction                            1                                   Cancel
+transactionId                         1    ecom-transaction-2023-08-09T21:03:36Z
+generationTimestamp                   1                      09/08/2023 19:02:15
+deviceId                              1                             395116810001
+deviceName                            1                             395116810001
+deviceOwner                           1                             395116810001
+deviceOwnerName                       1                             395116810001
+deviceState                           1                                   ACTIVE
+devicePartitionId                     1                                        1
+deviceSiteId                          1                                        4
+recordSequenceNumber                  1                                        0   
+recordId                              1   20230809190215_8d326638-4187-4210-a657-76d9758359d6
+meHostName                            1                               devanna-me
+nccVersion                            1                              SPS_23_8_R1
+RecordTimestamp                       1                      09/08/2023 19:02:15
+  RecordProperty                      0                               listOfMscc
+    RecordProperty                    0                                     mscc
+    recordEventResult                 1                                       00
+    recordEventType                   1                                ECOMMERCE
+    localSequenceNumber               1                                        0
+      RecordProperty                  0                               deviceInfo
+        RecordProperty                0                         subscriptionInfo
+        subscriptionId                1     c44b88bf-d7bd-4ad9-9f90-b02491448db6
+        subscriptionState             1                                   Active
+        bundleName                    1             DefaultTariffPlan_CBUPrepaid
+        bundleActivationType          1                                   NORMAL
+        accountID                     1                             395116810001
+        accountName                   1                             395116810001
+        subscriptionStartDateTime     1                      09/08/2023 19:03:24
+        subscriptionEndDateTime       1                      08/08/2024 19:03:24
+          RecordProperty              0                      chargingServiceInfo
+          chargingServiceName         1          DefaultTariffPlan_CBUPrepaid_CS
+          chargingServiceType         1                                     UNIT
+          chargingServicePriority     1                                   100000
+          chargingServiceCategory     1                                  PTP/DTP
+            RecordProperty            0                    additionalBalanceInfo
+            chargingServiceName       1                        SecondaryBalance1
+            usageType                 1                        SECONDARY_BALANCE
+            usedAs                    1                                    USAGE
+              RecordProperty          0                               bucketInfo
+              bucketName              1  BalanceAllowanceLimit-SecondaryBalance1
+              bucketUnitType          1                                    Money
+              bucketKindOfUnit        1                                    MONEY
+              bucketBalanceBefore     1                                  5.00000
+              bucketBalanceAfter      1                                  5.00000
+              committedTaxAmount      1                                  0.00000
+              carryOverBucket         1                                    false
+              bucketCommitedUnits     1                                        0
+              bucketReservedUnits     1                                        0
+            RecordProperty            0                              accountInfo
+            accountID                 1                             395116810001
+            accountName               1                             395116810001
+            accountType               1                                 PRE_PAID
+            accountOwner              1                             395116810001
+            accountOwnerName          1                             395116810001
+            accountState              1                                   ACTIVE
+            accountBalanceBefore      1                                100.00000
+            accountBalanceAfter       1                                100.00000
+            committedTaxAmount        1                                  0.00000
+            accountOveragelimit       1                                  0.00000
+            accountBalanceCommitted   1                                  0.00000
+            accountBalanceReserved    1                                  0.00000
+            rateId                    1                                eCom_ITEM
+            tariffID                  1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+  RecordProperty                      0                     listOfSubscriptionID
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        1
+    subscriptionIdData                1                          222085116810001
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        0
+    subscriptionIdData                1                             395116810001
+</code></pre></div>
+<div class="p"><strong class="ph b">Successful cancel – money based with secondary balance
+                        available</strong><pre class="pre codeblock" id="sample_cdrs_0__codeblock_ypj_k2j_lyb"><code>Name                                  Tag                                   Data
+RecordType                            0                        OCSChargingRecord
+prevMeName                            1                               devanna-me
+transactionAmount                     1                                     10.0
+cancelId                              1 ecom-reftransaction-2023-08-11T16:31:37Z
+usageDate                             1                      11/08/2023 16:31:37
+eComAction                            1                                   Cancel
+transactionId                         1    ecom-transaction-2023-08-11T16:31:34Z
+generationTimestamp                   1                      11/08/2023 14:30:11
+deviceId                              1                             395116810001
+deviceName                            1                             395116810001
+deviceOwner                           1                             395116810001
+deviceOwnerName                       1                             395116810001
+deviceState                           1                                   ACTIVE
+devicePartitionId                     1                                        1
+deviceSiteId                          1                                        4
+recordSequenceNumber                  1                                        0
+recordId                              1   20230811143011_0fd00b27-38ea-4d0a-9c22-33b447a18666
+meHostName                            1                               devanna-me
+nccVersion                            1                              SPS_23_8_R1
+RecordTimestamp                       1                      11/08/2023 14:30:11
+  RecordProperty                      0                               listOfMscc
+    RecordProperty                    0                                     mscc
+    recordEventResult                 1                                       00
+    recordEventType                   1                                ECOMMERCE
+    localSequenceNumber               1                                        0
+      RecordProperty                  0                               deviceInfo
+        RecordProperty                0                         subscriptionInfo
+        subscriptionId                1     b504b96f-be86-4f9f-bc3d-058d0c07b2a2
+        subscriptionState             1                                   Active
+        bundleName                    1             DefaultTariffPlan_CBUPrepaid
+        bundleActivationType          1                                   NORMAL
+        accountID                     1                             395116810001
+        accountName                   1                             395116810001
+        subscriptionStartDateTime     1                      11/08/2023 14:31:23
+        subscriptionEndDateTime       1                      10/08/2024 14:31:23
+          RecordProperty              0                      chargingServiceInfo
+          chargingServiceName         1          DefaultTariffPlan_CBUPrepaid_CS
+          chargingServiceType         1                                    MONEY
+          chargingServicePriority     1                                   100000
+          chargingServiceCategory     1                                  PTP/DTP
+            RecordProperty            0                    additionalBalanceInfo
+            chargingServiceName       1                        SecondaryBalance1
+            usageType                 1                        SECONDARY_BALANCE
+            usedAs                    1                                    USAGE
+              RecordProperty          0                               bucketInfo
+              bucketName              1  BalanceAllowanceLimit-SecondaryBalance1
+              bucketUnitType          1                                    Money
+              bucketKindOfUnit        1                                    MONEY
+              bucketBalanceBefore     1                                  5.00000
+              bucketBalanceAfter      1                                  5.00000
+              committedTaxAmount      1                                  0.00000
+              carryOverBucket         1                                    false
+              bucketCommitedUnits     1                                        0
+              bucketReservedUnits     1                                        0
+            RecordProperty            0                              accountInfo
+            accountID                 1                             395116810001
+            accountName               1                             395116810001
+            accountType               1                                 PRE_PAID
+            accountOwner              1                             395116810001
+            accountOwnerName          1                             395116810001
+            accountState              1                                   ACTIVE
+            accountBalanceBefore      1                                100.00000
+            accountBalanceAfter       1                                100.00000
+            committedTaxAmount        1                                  0.00000
+            accountOveragelimit       1                                  0.00000
+            accountBalanceCommitted   1                                  0.00000
+            accountBalanceReserved    1                                  0.00000
+            rateId                    1                               eCom_MONEY
+            tariffID                  1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+  RecordProperty                      0                     listOfSubscriptionID
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        1
+    subscriptionIdData                1                          222085116810001
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        0
+    subscriptionIdData                1                             395116810001
+</code></pre></div>
+</div>
+            <div class="sectiondiv"><span class="ph uicontrol">Automatic cancel at reserve validity
+                        expiration</span><div class="p"><strong class="ph b">Successful automatic cancel with secondary
+                        balance
+                    available</strong><pre class="pre codeblock" id="sample_cdrs_0__codeblock_cn1_5f4_kyb"><code>Name                                  Tag                                   Data
+RecordType                            0                        OCSChargingRecord
+prevMeName                            1                               devanna-me
+transactionAmount                     1                                     10.0
+usageDate                             1                      09/08/2023 21:43:15
+eComAction                            1                              AuditCancel
+transactionId                         1    ecom-transaction-2023-08-09T21:43:15Z
+generationTimestamp                   1                      09/08/2023 19:56:51
+deviceId                              1                             395116810001
+deviceName                            1                             395116810001
+deviceOwner                           1                             395116810001
+deviceOwnerName                       1                             395116810001
+deviceState                           1                                   ACTIVE
+devicePartitionId                     1                                        1
+deviceSiteId                          1                                        4
+recordSequenceNumber                  1                                        0    
+recordId                              1   20230809212922_ff5ceeea-46c8-4605-b669-b1bb4c82bde5
+meHostName                            1                               devanna-me
+nccVersion                            1                              SPS_23_8_R1
+RecordTimestamp                       1                      09/08/2023 19:56:51
+  RecordProperty                      0                               listOfMscc
+    RecordProperty                    0                                     mscc
+    recordEventResult                 1                                       00
+    recordEventType                   1                                ECOMMERCE
+    localSequenceNumber               1                                        0
+      RecordProperty                  0                               deviceInfo
+        RecordProperty                0                         subscriptionInfo
+        subscriptionId                1     4de4301e-7706-4564-9c62-f2819507647e
+        subscriptionState             1                                   Active
+        bundleName                    1             DefaultTariffPlan_CBUPrepaid
+        bundleActivationType          1                                   NORMAL
+        accountID                     1                             395116810001
+        accountName                   1                             395116810001
+        subscriptionStartDateTime     1                      09/08/2023 19:43:02
+        subscriptionEndDateTime       1                      08/08/2024 19:43:02
+          RecordProperty              0                      chargingServiceInfo
+          chargingServiceName         1          DefaultTariffPlan_CBUPrepaid_CS
+          chargingServiceType         1                                     UNIT
+          chargingServicePriority     1                                   100000
+          chargingServiceCategory     1                                  PTP/DTP
+            RecordProperty            0                    additionalBalanceInfo
+            chargingServiceName       1                        SecondaryBalance1
+            usageType                 1                        SECONDARY_BALANCE
+            usedAs                    1                                    USAGE
+              RecordProperty          0                               bucketInfo
+              bucketName              1  BalanceAllowanceLimit-SecondaryBalance1
+              bucketUnitType          1                                    Money
+              bucketKindOfUnit        1                                    MONEY
+              bucketBalanceBefore     1                                  5.00000
+              bucketBalanceAfter      1                                  5.00000
+              carryOverBucket         1                                    false
+              bucketCommitedUnits     1                                        0
+              bucketReservedUnits     1                                        0
+            RecordProperty            0                              accountInfo
+            accountID                 1                             395116810001
+            accountName               1                             395116810001
+            accountType               1                                 PRE_PAID
+            accountOwner              1                             395116810001
+            accountOwnerName          1                             395116810001
+            accountState              1                                   ACTIVE
+            accountBalanceBefore      1                                100.00000
+            accountBalanceAfter       1                                100.00000
+            accountOveragelimit       1                                  0.00000
+            accountBalanceCommitted   1                                  0.00000
+            accountBalanceReserved    1                                  0.00000
+            rateId                    1                                eCom_ITEM
+            tariffID                  1           DefaultTariffPlan_CBUPrepaid_CS_ChargingRules
+  RecordProperty                      0                     listOfSubscriptionID
+    RecordProperty                    0                           subscriptionId
+    subscriptionIdType                1                                        1
+    subscriptionIdData                1                          222085116810001
+</code></pre></div>
+</div>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

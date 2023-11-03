@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Kafka redelivery stream" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="kafka_re_delivery_stream" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Kafka redelivery stream</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="kafka_re_delivery_stream">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Kafka redelivery stream</h1>
+<div class="body conbody">
+        <p class="p">The Kafka redelivery stream handles failed distributed records by the Kafka output
+            stream, after being written by Log distributor stream to an SFTP location configured by
+            the <span class="keyword parmname">SFTPRemoteDirectory</span> node parameter. It is important that the
+            node parameter <span class="keyword parmname">SFTPRemoteDirectory</span> is set to the same value in both
+            the CGF (DR) SFTP Kafka Failure Collector Node and CG Log Distributor Node.</p>
+
+        <p class="p">As part of this stream, a Kafka health check process was introduced to observe the Kafka
+            brokers status before trying to redeliver messages to Kafka.</p>
+
+        <div class="p">Kafka redelivery stream contains these nodes: <ul class="ul" id="kafka_re_delivery_stream__ul_hby_z5g_tvb">
+                <li class="li">CGF (DR) SFTP Kafka Failure Collector Node: collects failed files from a remote
+                    server by using SFTP and writes them securely into the database.</li>
+
+                <li class="li">CG Kafka Distributor Node: distributes the encoded records from the database to
+                    Apache Kafka topics.</li>
+
+            </ul>
+</div>
+
+      
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="addDeviceToGroup" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="adddevicetogroup" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>addDeviceToGroup</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="adddevicetogroup">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">addDeviceToGroup</h1>
+<div class="body conbody">
+        <p class="p">For description of EDR tags, refer to <a class="xref" href="device.html">Device</a>.</p>
+
+    </div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_wyn_b34_yqb"><h2 class="title topictitle2" id="ariaid-title2">EDR tags</h2>
+<div class="body conbody">
+            <table cellpadding="4" cellspacing="0" summary="" id="concept_wyn_b34_yqb__table_yns_b34_yqb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:53.27102803738318%" /><col style="width:46.728971962616825%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d50261e49">EDR Tag</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d50261e52">Example</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d50261e49 ">deviceId </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d50261e52 ">Device012172</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d50261e49 ">groupID </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d50261e52 ">Grp1</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d50261e49 ">deviceIdentityInfo</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d50261e52 ">-</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d50261e49 ">deviceIdentityType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d50261e52 ">o</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d50261e49 ">deviceIdentityValue</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d50261e52 ">012172000011</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_cvj_lbb_f3b"><h2 class="title topictitle2" id="ariaid-title3">EDR example</h2>
+<div class="body conbody">
+            <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       977
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                    Tag                               Data
+RecordType              0                  PROVISIONING_RECORD
+serviceProvider         1                                MVNO1
+invokedBy               1                           webService
+invokedMethod           1                     addDeviceToGroup
+deviceId                1                         Device012172
+groupId                 1                            G1-012172
+result                  1                              SUCCESS
+generationTimestamp     1                  26/11/2020 16:31:36
+meHostName              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                               
+nccVersion              1                          SPS_21_0_R1
+RecordTimestamp         1                  26/11/2020 16:31:36
+  RecordProperty        0                   deviceIdentityInfo
+  deviceIdentityType    1                                    0
+  deviceIdentityValue   1                         012172000011
+  RecordProperty        0                   deviceIdentityInfo
+  deviceIdentityType    1                                  103
+  deviceIdentityValue   1                 msisdn-012172000011,
+                                extid-012172000014@01217200001
+  RecordProperty        0                   deviceIdentityInfo
+  deviceIdentityType    1                                    1
+  deviceIdentityValue   1                         012172000012
+  RecordProperty        0                   deviceIdentityInfo
+  deviceIdentityType    1                                  102
+  deviceIdentityValue   1   imsi-012172000012,nai-012172000013
+  RecordProperty        0                   deviceIdentityInfo
+  deviceIdentityType    1                                    3
+  deviceIdentityValue   1                         012172000013
+  RecordProperty        0                   deviceIdentityInfo
+  deviceIdentityType    1                                  100
+  deviceIdentityValue   1             012172000014@01217200001
+  RecordProperty        0                   deviceIdentityInfo
+  deviceIdentityType    1                                  101
+  deviceIdentityValue   1                         Device012172 </code></pre>
+        </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

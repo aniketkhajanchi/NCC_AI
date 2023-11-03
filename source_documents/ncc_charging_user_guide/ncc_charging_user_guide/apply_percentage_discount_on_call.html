@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Apply percentage discount on call" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="apply_percentage_discount_on_call" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Apply percentage discount on call</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="apply_percentage_discount_on_call">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Apply  percentage discount on call</h1>
+<div class="body conbody">
+        <p class="p">This feature allows operators to apply discount for a call. This can be configured in
+            tariff. The RATING.Call-Discount action can be configured in tariff that contains the
+            discount applicable for the call. </p>
+
+        <div class="p">The discount is applied on the following configurations of the bundle if the priority
+            order of the bundle is equal to or less than the bundle in which the discount is
+            configured. The discount value represents the percentage value to be applied on call
+                cost.<ol class="ol" id="apply_percentage_discount_on_call__ol_dpc_hgh_npb">
+                <li class="li">Rate configured with the main balance, money-bucket and cost-bucket.</li>
+
+                <li class="li">Step-fee.</li>
+
+                <li class="li">Rate's connection cost.</li>
+
+            </ol>
+</div>
+
+        <p class="p"><strong class="ph b">Example</strong>:</p>
+
+        <p class="p">The following example shows the configuration of Call-Discount. In this, the
+            TARIFF:RATING.Call-Discount =30 is configured which indicates that 30% of discount is
+            applicable for all monetary resources which comes in priority after the current
+            bundle.</p>
+
+        <div class="p">
+            <img class="image break" id="apply_percentage_discount_on_call__image_l5s_zgh_npb" src="../images/discount_call.png" height="340" width="612" />
+        </div>
+
+        <div class="section" id="apply_percentage_discount_on_call__section_e22_tvn_tvb"><h2 class="title sectiontitle">Discount on rate enhancement</h2>
+            
+            <p class="p">If multiple discounts are active on the subscriber then the enhancement varies on the
+                parameters, either <em class="ph i">Exclusive</em> or <em class="ph i">Cumulative</em>. </p>
+
+            <div class="p">
+                <table cellpadding="4" cellspacing="0" summary="" id="apply_percentage_discount_on_call__simpletable_iwd_2xn_tvb" class="simpletable simpletableborder"><col style="width:50%" /><col style="width:50%" /><thead><tr class="sthead">
+                        <th style="vertical-align:bottom;text-align:left;" id="d191647e76" class="stentry">If...</th>
+
+                        <th style="vertical-align:bottom;text-align:left;" id="d191647e79" class="stentry">Then...</th>
+
+                    </tr>
+</thead><tbody><tr class="strow">
+                        <td style="vertical-align:top;" headers="d191647e76" class="stentry">Exclusive</td>
+
+                        <td style="vertical-align:top;" headers="d191647e79" class="stentry">The discount selection is based on discount with a higher priority.
+                            Only one discount is applied on the call.</td>
+
+                    </tr>
+<tr class="strow">
+                        <td style="vertical-align:top;" headers="d191647e76" class="stentry">Cumulative</td>
+
+                        <td style="vertical-align:top;" headers="d191647e79" class="stentry">The cumulative of the discounts are applied.</td>
+
+                    </tr>
+</tbody></table>
+
+            </div>
+
+            <div class="note" id="apply_percentage_discount_on_call__note_fwx_hxn_tvb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If <em class="ph i">Exclusive</em> is selected and multiple discounts have
+                the same priority, then the selection is purely based on the Charging logic
+                (charging service) priority rules.</div>
+
+        </div>
+
+        <div class="section" id="apply_percentage_discount_on_call__section_un2_qhh_npb"><h2 class="title sectiontitle">Constraints on discount</h2>
+            
+            <div class="p">Following are the constraints on discount:<ul class="ul" id="apply_percentage_discount_on_call__ul_otf_rhh_npb">
+                    <li class="li">The discount can be a decimal or integer value. </li>
+
+                    <li class="li">The discount value can be in the range 0-100 (excluding 0). Decimal values
+                        are supported. If a wrong value is configured, then the following error
+                        message appears: <strong class="ph b">CHARGING_SERVICE_CALL_DISCOUNT_VALUE_NOT_IN_RANGE_ERROR:
+                            </strong><strong class="ph b">Invalid Configuration for Call-Discount: Tariff must have
+                            Call-Discount action value in range 0-100"</strong>.</li>
+
+                    <li class="li">This discount is not applicable for non-monetary buckets. </li>
+
+                    <li class="li">This discount is not applied on secondary as well as external rate.</li>
+
+                    <li class="li">This discount is not applicable for BOU bundles including activation
+                        fee.</li>
+
+                </ul>
+</div>
+
+        </div>
+
+        <div class="section" id="apply_percentage_discount_on_call__section_p1k_vc2_qpb"><h2 class="title sectiontitle">Example</h2>
+            
+            <div class="p">A Device D1 is subscribed with four bundles having the following configuration:<ul class="ul" id="apply_percentage_discount_on_call__ul_dfj_zc2_qpb">
+                    <li class="li">Bundle B1 has CS1 with step bucket SBkt1. The priority of CS1 is highest
+                        among all.</li>
+
+                    <li class="li">Bundle B2 has CS2 with tariff having only call discount as 50. This is
+                        promotional bundle having priority lower than CS1.</li>
+
+                    <li class="li">Bundle B3 has CS3 with step bucket SBkt2. The priority of CS3 is lower than
+                        CS2.</li>
+
+                    <li class="li">Bundle B4 has CS4 with main balance. The priority of CS4 is least among
+                        all.</li>
+
+                </ul>
+</div>
+
+            <p class="p">When a call is executed, CS1 is picked and since discount has not been evaluated yet,
+                discount is not applied and the cost is deducted as per step fee. Once CS1 is
+                exhausted and CS2 having discount configuration is evaluated. From now onwards,
+                whenever charging happens either from step bucket SBkt2 or main balance, 50%
+                discount is applied. The discount can be configured in any tariff pass. Hence, once
+                a discount is encountered, all the bundles in all passes become eligible for
+                discount. </p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

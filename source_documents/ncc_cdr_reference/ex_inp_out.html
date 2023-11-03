@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Examples for input and output" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="examples_for_input_and_output" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Examples for input and output</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="examples_for_input_and_output">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Examples for input and output</h1>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_fll_sfd_lwb"><h2 class="title topictitle2" id="ariaid-title2">Input</h2>
+<div class="body conbody">
+            <div class="section" id="concept_fll_sfd_lwb__section_jdy_sfd_lwb"><h3 class="title sectiontitle">Example 1</h3>
+                
+                <pre class="pre codeblock" id="concept_fll_sfd_lwb__codeblock_bzz_tfd_lwb"><code>{
+    "PROVISIONING_RECORD": {
+        "invokedBy": "WebServices",
+        "invokedMethod": "adjustBalance",
+        "partialTransfer" : "True",
+        "correlationID": "05c180e6-604a-4124-ac44-69f1465dc2c6",
+        "aggSequenceNumber": "1",
+        "aggLastRecord": "false",
+        "invokedByExternalMethod": "transferBalance",
+        "bundleName": "upgd_bundle",
+        "bundleActivationType": "NORMAL",
+        "accountID": "upgd_acc10",
+        "deviceId": "upgd_dev10",
+        "subscriptionId": "6ff4004d-3988-4892-bad5-4dd9ef5cc0cd",
+        "fee": "10",
+        "result": "success",
+        "timeStamp": "19/12/2019 14:02:40",
+        "RecordTimestamp": "19/12/2019 08:32:41"
+    }
+}
+</code></pre>
+            </div>
+
+            <div class="section" id="concept_fll_sfd_lwb__section_bvb_vfd_lwb"><h3 class="title sectiontitle">Example 2</h3>
+                
+                <pre class="pre codeblock" id="concept_fll_sfd_lwb__codeblock_pb1_wfd_lwb"><code>{
+    "PROVISIONING_RECORD": {
+        "invokedBy": "WebServices",
+        "invokedMethod": "adjustBalance",
+        "partialTransfer" : "false",
+        "correlationID": "05c180e6-604a-4124-ac44-69f1465dc2c6",
+        "aggSequenceNumber": "2",
+        "aggLastRecord": "true",
+        "invokedByExternalMethod": "transferBalance",
+        "bundleName": "upgd_bundle",
+        "bundleActivationType": "NORMAL",
+        "accountID": "upgd_acc10",
+        "deviceId": "upgd_dev10",
+        "subscriptionId": "6ff4004d-3988-4892-bad5-4dd9ef5cc0cd",
+        "fee": "10",
+        "result": "success",
+        "timeStamp": "19/12/2019 14:02:40",
+        "RecordTimestamp": "19/12/2019 08:32:41"
+    }
+}
+</code></pre>
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_yhw_xfd_lwb"><h2 class="title topictitle2" id="ariaid-title3">Aggregated output</h2>
+<div class="body conbody">
+            <pre class="pre codeblock" id="concept_yhw_xfd_lwb__codeblock_yjn_zfd_lwb"><code>record1:
+  payload:
+    genericRecord:
+      recordType: PROVISIONING_RECORD
+      recordElements:
+      - varName: correlationID
+        varValue: 05c180e6-604a-4124-ac44-69f1465dc2c6
+      - varName: invokedByExternalMethod
+        varValue: transferBalance
+      - varName: partialTransfer
+        varValue: 'True'
+      - varName: result
+        varValue: success
+      recordExtensions:
+      - recordProperty: transferBalance
+        recordSubExtensions:
+        - recordProperty: correlationID
+          recordElements:
+          - varName: recordType
+            varValue: PROVISIONING_RECORD
+          - varName: invokedBy
+            varValue: WebServices
+          - varName: invokedMethod
+            varValue: adjustBalance
+          - varName: partialTransfer
+            varValue: 'True'
+          - varName: correlationID
+            varValue: 05c180e6-604a-4124-ac44-69f1465dc2c6
+          - varName: aggSequenceNumber
+            varValue: '1'
+          - varName: aggLastRecord
+            varValue: 'false'
+          - varName: invokedByExternalMethod
+            varValue: transferBalance
+          - varName: bundleName
+            varValue: upgd_bundle
+          - varName: bundleActivationType
+            varValue: NORMAL
+          - varName: accountID
+            varValue: upgd_acc10
+          - varName: deviceId
+            varValue: upgd_dev10
+          - varName: subscriptionId
+            varValue: 6ff4004d-3988-4892-bad5-4dd9ef5cc0cd
+          - varName: fee
+            varValue: '10'
+          - varName: result
+            varValue: success
+          - varName: timeStamp
+            varValue: 19/12/2019 14:02:40
+          - varName: RecordTimestamp
+            varValue: 19/12/2019 08:32:41
+        - recordProperty: correlationID
+          recordElements:
+          - varName: recordType
+            varValue: PROVISIONING_RECORD
+          - varName: invokedBy
+            varValue: WebServices
+          - varName: invokedMethod
+            varValue: adjustBalance
+          - varName: partialTransfer
+            varValue: 'false'
+          - varName: correlationID
+            varValue: 05c180e6-604a-4124-ac44-69f1465dc2c6
+          - varName: aggSequenceNumber
+            varValue: '2'
+          - varName: aggLastRecord
+            varValue: 'true'
+          - varName: invokedByExternalMethod
+            varValue: transferBalance
+          - varName: bundleName
+            varValue: upgd_bundle
+          - varName: bundleActivationType
+            varValue: NORMAL
+          - varName: accountID
+            varValue: upgd_acc10
+          - varName: deviceId
+            varValue: upgd_dev10
+          - varName: subscriptionId
+            varValue: 6ff4004d-3988-4892-bad5-4dd9ef5cc0cd
+          - varName: fee
+            varValue: '10'
+          - varName: result
+            varValue: success
+          - varName: timeStamp
+            varValue: 19/12/2019 14:02:40
+          - varName: RecordTimestamp
+            varValue: 19/12/2019 08:32:41
+</code></pre>
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title4" id="concept_zk5_zfd_lwb"><h2 class="title topictitle2" id="ariaid-title4">Partial output</h2>
+<div class="body conbody">
+            <div class="section" id="concept_zk5_zfd_lwb__section_xfd_bgd_lwb"><h3 class="title sectiontitle">Example 1</h3>
+                
+                <pre class="pre codeblock" id="concept_zk5_zfd_lwb__codeblock_p33_cgd_lwb"><code>record1:
+  payload:
+    genericRecord:
+      recordType: PROVISIONING_RECORD
+      recordElements:
+      - varName: invokedBy
+        varValue: WebServices
+      - varName: invokedMethod
+        varValue: adjustBalance
+      - varName: partialTransfer
+        varValue: 'True'
+      - varName: correlationID
+        varValue: 05c180e6-604a-4124-ac44-69f1465dc2c6
+      - varName: aggSequenceNumber
+        varValue: '1'
+      - varName: aggLastRecord
+        varValue: 'false'
+      - varName: invokedByExternalMethod
+        varValue: transferBalance
+      - varName: bundleName
+        varValue: upgd_bundle
+      - varName: bundleActivationType
+        varValue: NORMAL
+      - varName: accountID
+        varValue: upgd_acc10
+      - varName: deviceId
+        varValue: upgd_dev10
+      - varName: subscriptionId
+        varValue: 6ff4004d-3988-4892-bad5-4dd9ef5cc0cd
+      - varName: fee
+        varValue: '10'
+      - varName: result
+        varValue: success
+      - varName: timeStamp
+        varValue: 19/12/2019 14:02:40
+      - varName: RecordTimestamp
+        varValue: 19/12/2019 08:32:41
+</code></pre>
+            </div>
+
+            <div class="section" id="concept_zk5_zfd_lwb__section_etp_cgd_lwb"><h3 class="title sectiontitle">Example 2</h3>
+                
+                <pre class="pre codeblock" id="concept_zk5_zfd_lwb__codeblock_et1_dgd_lwb"><code>record1:
+  payload:
+    genericRecord:
+      recordType: PROVISIONING_RECORD
+      recordElements:
+      - varName: invokedBy
+        varValue: WebServices
+      - varName: invokedMethod
+        varValue: adjustBalance
+      - varName: partialTransfer
+        varValue: 'false'
+      - varName: correlationID
+        varValue: 05c180e6-604a-4124-ac44-69f1465dc2c6
+      - varName: aggSequenceNumber
+        varValue: '2'
+      - varName: aggLastRecord
+        varValue: 'true'
+      - varName: invokedByExternalMethod
+        varValue: transferBalance
+      - varName: bundleName
+        varValue: upgd_bundle
+      - varName: bundleActivationType
+        varValue: NORMAL
+      - varName: accountID
+        varValue: upgd_acc10
+      - varName: deviceId
+        varValue: upgd_dev10
+      - varName: subscriptionId
+        varValue: 6ff4004d-3988-4892-bad5-4dd9ef5cc0cd
+      - varName: fee
+        varValue: '10'
+      - varName: result
+        varValue: success
+      - varName: timeStamp
+        varValue: 19/12/2019 14:02:40
+      - varName: RecordTimestamp
+        varValue: 19/12/2019 08:32:41
+</code></pre>
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

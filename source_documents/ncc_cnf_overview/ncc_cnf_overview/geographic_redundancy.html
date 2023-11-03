@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="GEO overview" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="geographic_redundancy" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>GEO overview</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="geographic_redundancy">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">GEO overview</h1>
+<div class="body conbody">
+        <p class="p">An NCC network deployment includes a pair of IG systems and optional additional pairs of
+            ME systems as required for additional capacity. Much of the data on an SM subsystem is
+            replicated across the network with the other SM subsystem, allowing the two SM
+            subsystems to operate in an active/active mode. Similarly, much of the data on an ME
+            subsystem is replicated across the network with the other ME subsystem in the pair,
+            allowing the two ME subsystems to operate in an active/active mode.</p>
+
+        <p class="p">A subscriber or device is homed on a particular ME subsystem and all transactions for
+            that subscriber or device are handled by that home ME subsystem. This serialization of
+            transactions through a single home ME subsystem ensures proper data integrity and
+            consistency and avoids race conditions in the network that could result in a loss of
+            that data integrity. If the primary ME subsystem is unable to process traffic, then the
+            other ME subsystem in the pair takes over as the currently active home for those
+            subscribers or devices normally homed on that failed ME subsystem. Expectation is that
+            half of the subscribers or devices served by a particular ME subsystem pair would be
+            homed on one ME subsystem in the pair as primary with the other ME subsystem serving as
+            secondary home, with the other half being vice-versa. Thus, the ME subsystems in a pair
+            are active/active in the normal case, but each active on their own primary subscribers
+            or devices.</p>
+
+        <p class="p">The SM subsystems maintain the mapping of which subscribers or devices are homed on which
+            ME subsystems. The actual detailed subscriber or device records are stored only on the
+            ME subsystems.</p>
+
+        <p class="p">The ME subsystems maintain their own mapping data of which ME subsystems are currently
+            the active home for particular subscribers or devices. In a network deployment model
+            with Independent ME subsystems, this mapping data includes only those subscribers or
+            devices in this ME subsystem pair. In the network deployment model with Networked ME
+            subsystems, this mapping data includes all subscribers or devices across all ME
+            subsystems in the network. Thus, any call received by a particular ME subsystem can be
+            forwarded to the currently active home ME subsystem for that subscriber / devices,
+            across any ME subsystem in the network deployment.</p>
+
+        <p class="p">The SM and ME subsystems engage in network heartbeats to ascertain the most accurate
+            network view of which ME subsystems are in-service or out-of-service. This ensures
+            appropriate differentiation between local network issues and actual failures of an ME
+            subsystem in the network and helps avoid split-brain scenarios where both ME subsystems
+            in a pair could mistakenly assume they need to be the active home. It also ensures
+            consistent network-wide site routing based on a shared network view.</p>
+
+        <p class="p">SM and ME subsystem data stored in the Aerosopike database is replicated to other SM and
+            ME subsystems, respectively, by leveraging Aerospike's cross-datacenter replication
+            (XDR).</p>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

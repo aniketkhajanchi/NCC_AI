@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Domestic call identification" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="ro_volte_call_processing" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Domestic call identification</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="ro_volte_call_processing">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Domestic call identification</h1>
+<div class="body conbody">
+        <p class="p">This feature allows you to consider international calls as domestic calls based on
+            Carrier Identification Code (CIC). International calls with a specific CIC are treated
+            as domestic voice calls for the purpose of rating. The CIC based on which international
+            calls are treated as domestic voice calls can be configured using the rule attributes
+                <em class="ph i">IMS-Information.Carrier-Select-Routing-Information</em> and
+                <em class="ph i">IMS-Information.Carrier-Identification-Code</em></p>
+
+        <p class="p">In addition to CIC during the VoLTE call processing, the presence of specific
+            subscriptions can also be checked for treating international calls as domestic
+            calls.</p>
+
+        <div class="section" id="ro_volte_call_processing__section_qz3_5sp_w5b"><h2 class="title sectiontitle">Configuration</h2>
+            
+            <div class="p">The following rule configuration takes effect to enable this feature:<ul class="ul" id="ro_volte_call_processing__ul_g34_wsp_w5b">
+                    <li class="li"><em class="ph i">IMS-Information.Carrier-Select-Routing-Information</em>: This attribute
+                        provides the <em class="ph i">Carrier-Select-Routing-Information</em> value from the
+                        IMS-Information.</li>
+
+                    <li class="li"><em class="ph i">IMS-Information.Carrier-Identification-Code</em>: This attribute extracts
+                        the carrier identification code from the
+                            <em class="ph i">Carrier-Select-Routing-Information</em> AVP. The first four digits of
+                            <em class="ph i">Carrier-Select-Routing-Information</em> AVP constitute the carrier
+                        identification code. <p class="p">For example: Carrier-Select-Routing-Information =
+                            0010;cic-context=+1. Carrier identification code extracted is 0010
+                            (first four digits of the AVP).</p>
+</li>
+
+                </ul>
+<div class="fig fignone" id="ro_volte_call_processing__fig_b5b_wnq_w5b">
+                    <img class="image break" id="ro_volte_call_processing__image_acv_xnq_w5b" height="192" src="../images/domestic_call_identification.png" width="480" />
+                </div>
+</div>
+
+        </div>
+
+        <div class="section" id="ro_volte_call_processing__section_cgr_ftp_w5b"><h2 class="title sectiontitle">Use cases</h2>
+            
+            <div class="sectiondiv"><strong class="ph b">Use case 1: Prepaid subscriber makes a VoLTE call to Canada and call is
+                    treated as domestic</strong><ol class="ol" id="ro_volte_call_processing__ol_spd_t5p_w5b">
+                    <li class="li">Subscriber makes a VoLTE call to Canada.</li>
+
+                    <li class="li">CCR-I has the <em class="ph i">Carrier-Select-Routing-Information</em> AVP containing
+                        Carrier Identification Code (CIC X).</li>
+
+                    <li class="li">Rule configuration indicates VoLTE call with <em class="ph i">CIC X</em> is treated as a
+                        domestic call.</li>
+
+                    <li class="li">Subscriber is not charged for the call to Canada.</li>
+
+                </ol>
+</div>
+            <div class="sectiondiv"><strong class="ph b">Use case 2: Prepaid subscriber makes a VoLTE call to the Czech
+                    Republic</strong><ol class="ol" id="ro_volte_call_processing__ol_c1g_cvp_w5b">
+                    <li class="li">Subscriber makes a VoLTE call to Czech Republic.</li>
+
+                    <li class="li">CCR-I has the <em class="ph i">Carrier-Select-Routing-Information</em> AVP containing
+                        Carrier Identification Code (CIC) Y.</li>
+
+                    <li class="li">Rule configuration indicates that VoLTE call with <em class="ph i">CIC Y</em> is treated as
+                        international call.</li>
+
+                    <li class="li">Subscriber is charged for the call the Czech Republic.</li>
+
+                </ol>
+</div>
+            <div class="sectiondiv"><strong class="ph b">Use case 3: Usage Control (Wholesale or Retail) subscriber makes a VoLTE
+                    call to Canada not during TOD and the number is not on the blocked list</strong><ol class="ol" id="ro_volte_call_processing__ol_c2j_mvp_w5b">
+                    <li class="li">Subscriber makes a VoLTE call to Canada.</li>
+
+                    <li class="li">CCR-I has the <em class="ph i">Carrier-Select-Routing-Information</em> AVP containing
+                        Carrier Identification Code (CIC) X.</li>
+
+                    <li class="li">Rule configuration indicates that VoLTE call with <em class="ph i">CIC X</em> is treated as
+                        a domestic call.</li>
+
+                    <li class="li">Subscriber is not charged for the call to Canada, and usage is calculated as
+                        a domestic call.</li>
+
+                    <li class="li">Carrier Identification Code is stored in the ASN.1 record.</li>
+
+                </ol>
+</div>
+            <div class="sectiondiv"><strong class="ph b">Use case 4: Usage Control (Wholesale or Retail) subscriber makes a VoLTE
+                    call to Czech Republic</strong><ol class="ol" id="ro_volte_call_processing__ol_dwl_svp_w5b">
+                    <li class="li">Subscriber makes a VoLTE call to Czech Republic.</li>
+
+                    <li class="li">CCR-I has the <em class="ph i">Carrier-Select-Routing-Information</em> AVP containing
+                        Carrier Identification Code (CIC) Y.</li>
+
+                    <li class="li">Rule configuration indicates <em class="ph i">CIC Y</em> is treated as an international
+                        call.</li>
+
+                    <li class="li">Subscriber is charged for the call to the Czech Republic as a normal VoLTE
+                        ILD call, and usage is calculated.</li>
+
+                    <li class="li">Carrier Identification Code is stored in the ASN.1 record.</li>
+
+                </ol>
+</div>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

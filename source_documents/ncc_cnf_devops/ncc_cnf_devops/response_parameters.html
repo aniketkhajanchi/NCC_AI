@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Response parameters" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="response_parameters" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Response parameters</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="response_parameters">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Response parameters</h1>
+<div class="body conbody">
+        <p class="p">Here are described the HTTP status codes and response body parameters received for the
+            alternative REST API calls.</p>
+
+        <div class="section" id="response_parameters__section_gmk_sls_vrb"><h2 class="title sectiontitle">HTTP status</h2>
+            
+            <table cellpadding="4" cellspacing="0" summary="" id="response_parameters__table_agh_sfv_trb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>HTTP statuses for REST API call responses</span></caption><colgroup><col style="width:23.076923076923077%" /><col style="width:76.92307692307693%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d1109e48">HTTP code</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d1109e51">Description</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e48 ">200</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e51 ">Successful. The request was successfully processed.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e48 ">401</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e51 ">The user credentials are incorrect.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e48 ">403</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e51 ">Forbidden. The user is not permitted or does not have the
+                                appropriate role.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e48 ">404</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e51 ">Not found. The requested item was not found.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e48 ">405</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e51 ">Invalid method. The functionality is disabled.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e48 ">409</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e51 ">
+                                <p class="p">Conflict. The requested item is not unique.</p>
+
+                                <div class="note" id="response_parameters__note_rtl_vfb_5rb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                                    <p class="p">For a REST API call <em class="ph i">cancelling a test suite</em>, this
+                                        status code means:</p>
+
+                                    <p class="p">Conflict. The job cannot be cancelled because it has already
+                                        completed.</p>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e48 ">500</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e51 ">Internal server error. An unexpected error occurred while
+                                processing the request.</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <div class="section" id="response_parameters__section_vgy_2ms_vrb"><h2 class="title sectiontitle">Response body parameters</h2>
+            
+            <p class="p">Response body parameters are different for the three possible high-level actions
+                (starting, monitoring and cancelling a test suite) and for creating a test suite
+                artifact. Therefore, they are presented in separate tables.</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="response_parameters__table_ddk_1gv_trb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Response body parameters for starting, monitoring and cancelling a test
+                    suite</span></caption><colgroup><col style="width:28.57142857142857%" /><col style="width:71.42857142857143%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d1109e164">Name</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d1109e167">Description</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e164 "><code class="ph codeph">name</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e167 ">The name of the test suite. Possible values:
+                                    <code class="ph codeph">NEW_FEATURES</code>, <code class="ph codeph">REGRESSION</code>,
+                                    <code class="ph codeph">PERFORMANCE</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e164 "><code class="ph codeph">id</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e167 ">
+                                <p class="p">A unique identifier of the test suite being executed (for
+                                    example, <code class="ph codeph">0578a6f6</code>).</p>
+
+                                <p class="p">Additionally:</p>
+
+                                <ul class="ul" id="response_parameters__ul_spv_ngb_5rb">
+                                    <li class="li">
+                                        <p class="p">For REST API calls <em class="ph i">starting a test suite</em> and
+                                                <em class="ph i">monitoring a test suite</em>:</p>
+
+                                        <p class="p">A <code class="ph codeph">NOT_BUILT</code> result can have an
+                                                <code class="ph codeph">id</code> of <code class="ph codeph">-1</code> or the
+                                                <code class="ph codeph">id</code> of the job that has not started
+                                            yet.</p>
+
+                                    </li>
+
+                                    <li class="li">
+                                        <p class="p">For a REST API call <em class="ph i">starting a test suite</em>:</p>
+
+                                        <p class="p">A <code class="ph codeph">DUPLICATE</code> result will have an
+                                                <code class="ph codeph">id</code> of <code class="ph codeph">-1</code>.</p>
+
+                                    </li>
+
+                                </ul>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e164 "><code class="ph codeph">result</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e167 ">The result for the request. Possible values:
+                                    <code class="ph codeph">SUCCESS</code>, <code class="ph codeph">FAILURE</code>,
+                                    <code class="ph codeph">ABORT</code>, <code class="ph codeph">NOT_BUILT</code>,
+                                    <code class="ph codeph">DUPLICATE</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e164 "><code class="ph codeph">error</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e167 ">The error message on <code class="ph codeph">FAILURE</code>.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e164 "><code class="ph codeph">vendor</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e167 ">The vendor name.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e164 "><code class="ph codeph">product</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e167 ">The product name.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e164 "><code class="ph codeph">release</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e167 ">The release number of the vendor software.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e164 "><code class="ph codeph">estimatedDuration</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e167 ">An estimated duration of the test suite in milliseconds.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e164 "><code class="ph codeph">duration</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e167 ">The duration of the test suite execution in milliseconds.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e164 "><code class="ph codeph">timestamp</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e167 ">The time in milliseconds since Jan 1 1970 (UTC).</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e164 "><code class="ph codeph">tests</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e167 ">The total number of test cases in the suite (not steps but
+                                individual test cases).</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e164 "><code class="ph codeph">errors</code></td>
+
+                            <td class="entry cellrowborder wrap.special" style="vertical-align:top;" headers="d1109e167 ">The number of test cases that have
+                                resulted in errors (unexpected problems).</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e164 "><code class="ph codeph">failures</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e167 ">The number of test cases that have failed (expected
+                                problems).</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e164 "><code class="ph codeph">attempts</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e167 ">The number of times this test suite has retried in case of
+                                failure.</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="response_parameters__table_mrr_dns_vrb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Response body parameters for creating a test suite artifact</span></caption><colgroup><col style="width:33.33333333333333%" /><col style="width:66.66666666666666%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d1109e419">Name</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d1109e422">Description</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e419 "><code class="ph codeph">name</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e422 ">The name of the test suite. Possible values:
+                                    <code class="ph codeph">NEW_FEATURES</code>, <code class="ph codeph">REGRESSION</code>,
+                                    <code class="ph codeph">PERFORMANCE</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e419 "><code class="ph codeph">id</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e422 ">A unique identifier of the test suite being executed (for
+                                example, <code class="ph codeph">0578a6f6</code>)</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e419 "><code class="ph codeph">property:vendor.name</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e422 ">The vendor name.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e419 "><code class="ph codeph">property:vendor.product</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e422 ">The product name.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e419 "><code class="ph codeph">property:vendor.release</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e422 ">The release number of the vendor software</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e419 "><code class="ph codeph">time</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e422 ">The time taken (in seconds) to execute the tests in the
+                                suite.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e419 "><code class="ph codeph">timestamp</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e422 ">The time when the test was executed, in ISO 8601 format.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e419 "><code class="ph codeph">tests</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e422 ">The total number of test cases in the test suite.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e419 "><code class="ph codeph">failures</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e422 ">
+                                <p class="p">The total number of tests (in the test suite) that failed. A
+                                    failure is a test where the code has explicitly failed in a
+                                    testing mechanism, for example,
+                                    <code class="ph codeph">assertEquals</code>.</p>
+
+                                <p class="p">The test suite is considered a <strong class="ph b">SUCCESS</strong> only if both
+                                        <code class="ph codeph">failures</code> and <code class="ph codeph">errors</code> have
+                                    value <code class="ph codeph">0</code>. Otherwise, the test suite is
+                                    considered a <strong class="ph b">FAILURE</strong>.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e419 "><code class="ph codeph">errors</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e422 ">
+                                <p class="p">The total number of tests (in the test suite) that had an error.
+                                    This is a test case that had an unanticipated problem, for
+                                    example, an unchecked throwable, or a problem with the
+                                    implementation of the test.</p>
+
+                                <p class="p">The test suite is considered a <strong class="ph b">SUCCESS</strong> only if both
+                                        <code class="ph codeph">failures</code> and <code class="ph codeph">errors</code> have
+                                    value <code class="ph codeph">0</code>. Otherwise, the test suite is
+                                    considered a <strong class="ph b">FAILURE</strong>.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e419 "><code class="ph codeph">attempts</code></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d1109e422 ">
+                                <p class="p">The number of times the test suite has retried in case of
+                                    failure.</p>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>DevOps Guide • P556766-DN1000055058-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

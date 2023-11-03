@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="EDRs for bill cycle lengthening" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="edr_for_bill_cycle_lengthening" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>EDRs for bill cycle lengthening</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="edr_for_bill_cycle_lengthening">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">EDRs for bill cycle lengthening</h1>
+<div class="body conbody">
+        <p class="p">If account bill cycle is lengthened using PATCH APIs, the
+                <var class="keyword varname">prolongedSubscription</var> provisioning EDR is generated. It contains
+            information about proration of fees and allowances. It contains information about the
+            subscriptions that are prorated. If there are multiple subscriptions then there are
+            multiple <var class="keyword varname">prolongedSubscription</var> records, that is, for every
+            subscription that is prorated. If proration is not applicable or fails due to any
+            reason, then this EDR is generated with <var class="keyword varname">result</var> as
+                <var class="keyword varname">Fail</var>.</p>
+
+    </div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_bt2_hby_jsb"><h2 class="title topictitle2" id="ariaid-title2">EDR tags</h2>
+<div class="body conbody">
+            <table cellpadding="4" cellspacing="0" summary="" id="concept_bt2_hby_jsb__table_tpr_hby_jsb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>EDR tags for bill cycle lengthening</span></caption><colgroup><col style="width:26.041666666666664%" /><col style="width:46.354166666666664%" /><col style="width:27.604166666666668%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d121572e62">Tag</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d121572e65">Description</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d121572e68">Example</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">invokedBy</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">Indicates the triggering event that invoked the EDR.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">prolongedSubscription</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">triggeredEntityType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">Indicates the triggering entity that invoked the EDR.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">Subscription</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">triggeredEntityId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">Identifier of the triggering entity.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">71095028-2115-46b5-8f8f-e7d65d80e0f9</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">triggeredAtTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">Time at which the event was triggered.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">27/01/2022 13:00:30</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">triggeredBy</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">It indicates that this EDR is generated due to lengthening of
+                                bill cycle.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">BILLCYCLE_LENGTHENING</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">bundleName</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">
+                                <p class="p">This tag specifies the name of bundle purchased by the
+                                    subscriber.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">auto_Service2_A</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">accountID</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">Account ID with which subscription is funded.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">Account_Task2_05</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">accountName</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">The account name.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">Account_Task2_05</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">accountType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">The type of account.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">PRE_PAID</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">accountBalanceBefore</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">The value of account balance before the event.<p class="p">For maximum
+                                    value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">944.8387</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">accountBalanceAfter</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">The value of account balance after the event.<p class="p">For maximum
+                                    value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">935.16128</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">result</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">The result of the transaction.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">Success</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">proratingPercentage</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">Calculated as Prorating Days/Bill Cycle Period length.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">0.16130</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">fee</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">The amount charged for the transaction.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">60</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">deviceId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">The device ID as stored in database.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">Device_Task2_05</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">deviceName</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">The device name.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">Device_Task2_05</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 ">timeStamp</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">Date and time of the transaction.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">27/01/2022 13:00:30</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> RecordProperty</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">Group tag for counter information.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">counterInfo</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> counterName</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">Name of the counter.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">auto_Counter2_A</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> counterKey</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">
+                                <p class="p">Specifies the key of Counter updated.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">1683dab8-fae5-47fa-aac4-0c7d08da569d</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> counterType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">
+                                <p class="p">Specifies the type of Counter updated.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">USAGE</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> counterUnitType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">
+                                <p class="p">Specifies the unit of the Counter (Bytes, KB, MB, Minutes, etc.).
+                                    It is defined as per customer and type conversion.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">MByte</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> counterKindOfUnit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">
+                                <p class="p">Specifies the unit type of the Counter. It can be Unit, Volume,
+                                    Money, or Time, which are system defined.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">VOLUME</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> alignGranularity</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">
+                                <p class="p">Specifies if counter is updated with granularity. Applicable
+                                    values are TRUE and FALSE.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">TRUE</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> counterValueBefore</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">The value of counter balance before the event.<p class="p">For maximum
+                                    value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">25165824</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> counterValueAfter</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">The value of counter balance after the event.<p class="p">For maximum
+                                    value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">25165824</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> RecordProperty</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">Group tag for bucket information.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">bucketInfo</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> bucketName</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">
+                                <p class="p">Specifies the name of Bucket from which charging has happened. It
+                                    is the bucket defined in the tariff as a resource output and
+                                    purchased by bundle.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">auto_Bucket2_A</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> bucketUnitType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">
+                                <p class="p">Specifies the Unit Type of Bucket (Bytes, KB, MB, Minutes, etc.).
+                                    It is defined as per customer and Type conversion defined by the
+                                    operator.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">MByte</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> bucketKindOfUnit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">
+                                <p class="p">Specifies the Type of Bucket. It can be Unit/Volume/Money/Time
+                                    which are system defined.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">VOLUME</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> bucketBalanceBefore</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">The value of bucket balance before the event.<p class="p">For maximum
+                                    value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">702207660</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> bucketBalanceAfter</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">The value of bucket balance before the event.<p class="p">For maximum
+                                    value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">727373494</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e62 "> carryOverBucket</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e65 ">Indicates whether the bucket is a carryover bucket.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d121572e68 ">false</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_xpl_zzx_jsb"><h2 class="title topictitle2" id="ariaid-title3">Sample EDR</h2>
+<div class="body conbody">
+            <div class="fig fignone" id="concept_xpl_zzx_jsb__fig_ird_b1y_jsb">
+                <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       1145
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                    Tag                             Data
+RecordType              0                PROVISIONING_RECORD
+invokedBy               1              prolongedSubscription
+triggeredEntityType     1                       Subscription
+triggeredEntityId    1  71095028-2115-46b5-8f8f-e7d65d80e0f9
+triggeredAtTime         1                27/01/2022 13:00:30
+triggeredBy             1              BILLCYCLE_LENGTHENING
+bundleName              1                    auto_Service2_A
+accountID               1                   Account_Task2_05
+accountName             1                   Account_Task2_05
+accountType             1                           PRE_PAID
+accountBalanceBefore    1                           944.8387
+accountBalanceAfter     1                          935.16128
+result                  1                            Success
+proratingPercentage     1                            0.16130
+fee                     1                                 60
+deviceId                1                    Device_Task2_05
+deviceName              1                    Device_Task2_05
+timeStamp               1                27/01/2022 13:00:30
+meHostName              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                        
+nccVersion              1                        SPS_22_3_R1
+RecordTimestamp         1                27/01/2022 13:00:30
+  RecordProperty        0                        counterInfo
+  counterName           1                    auto_Counter2_A
+  counterKey         1  1683dab8-fae5-47fa-aac4-0c7d08da569d
+  counterType           1                              USAGE
+  counterUnitType       1                              MByte
+  counterKindOfUnit     1                             VOLUME
+  alignGranularity      1                               TRUE
+  counterValueBefore    1                           25165824
+  counterValueAfter     1                           25165824
+  RecordProperty        0                         bucketInfo
+  bucketName            1                     auto_Bucket2_A
+  bucketUnitType        1                              MByte
+  bucketKindOfUnit      1                             VOLUME
+  bucketBalanceBefore   1                          702207660
+  bucketBalanceAfter    1                          727373494
+  carryOverBucket       1                              false</code></pre>
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

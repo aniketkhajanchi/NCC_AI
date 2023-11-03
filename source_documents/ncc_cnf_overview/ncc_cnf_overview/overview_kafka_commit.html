@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Kafka commit" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="SPS_CDR_Streams_Stream_Overview_kafka_commit" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Kafka commit</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="SPS_CDR_Streams_Stream_Overview_kafka_commit">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Kafka commit</h1>
+<div class="body conbody">
+                
+                <p class="p">Whenever a consumer polls from the egress topic, the poll returns records written
+                    to Kafka that consumers in the group have not read yet. Kafka allows consumers
+                    to use the broker to track their position (offset) in each partition. The action
+                    of updating the current position in the partition is called a commit.</p>
+
+                <p class="p">A given consumer cannot poll more than a configured number of messages,
+            controlled by node parameter <code class="ph codeph">ConsumerMaxPollRecords</code>. The number N set
+            in this parameter is equivalent to a commit size in database terminology, i.e. the
+            consumer will successfully handle N polled messages or nothing if any errors occur.</p>
+
+                <p class="p">CG Kafka Collector Node performs commit once all the polled messages have either been
+            stored to database successfully or filtered out. Only fatal errors, such as database
+            unreachable or Kafka broker unreachable, cause the node not to perform a commit. In such
+            a case, the messages remain in the topic and are picked up for reprocessing by another
+            consumer. Other errors, such as message decoding errors, do not prevent the commit to
+            Kafka. The messages are filtered out, and Kafka commit is performed so that corrupted
+            messages are effectively removed from the egress topic. All error situations generate
+            aggregated alerts, to which the Administrator can then react.</p>
+
+            </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

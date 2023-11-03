@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Charging notification EDRs" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="d1e28681" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Charging notification EDRs</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="d1e28681">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Charging notification EDRs</h1>
+<div class="body conbody">
+        <div class="section" id="d1e28681__section_vv4_m2v_23b">
+            <p class="p">Charging notification EDRs are generated as a result of notification events in the
+                Charging application. The <samp class="ph systemoutput">deviceId</samp>tag indicates that
+                the notification is for device and the <samp class="ph systemoutput">groupID</samp> tag
+                indicates that the notification is for group.</p>
+
+            <p class="p">The <var class="keyword varname">serviceProvider</var> indicates the service provider (MNO/MVNO) for
+                which the CDR is applicable. This tag is generated only if service provider is
+                enabled.</p>
+
+        </div>
+
+    </div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_cyh_m2v_23b"><h2 class="title topictitle2" id="ariaid-title2">Example</h2>
+<div class="body conbody">
+            <div class="section" id="concept_cyh_m2v_23b__section_wv4_m2v_23b">
+                <div class="fig fignone" id="concept_cyh_m2v_23b__fig_xv4_m2v_23b">
+                    <pre class="pre codeblock"><code>CDR length:                376
+Release ID | Version ID:        7|2
+Data record format | TS number: 1|7
+Release identifier extension:     4
+Name                      Tag             Data
+RecordType                 0       OCSNotificationRecord
+serviceProvider            1                       MVNO1
+requestType                1              UPDATE_REQUEST
+entityId                   1                      D65504
+entityType                 1                      Device
+deviceId                   1                      devi12
+notificationTemplateId     1  Notification_Template_demo
+notificationTemplateParams 1    {getAvCurrentValue=5120}
+sessionId                  1                   1-1-65504
+sessionSequenceNumber      1                           1
+recipientId                1                   User65504
+generationTimestamp        1         20/07/2018 10:25:46
+RecordTimestamp            1         20/07/2018 04:55:46</code></pre>
+                </div>
+
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

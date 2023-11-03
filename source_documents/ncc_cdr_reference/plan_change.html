@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Plan change" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="d1e45043" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Plan change</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="d1e45043">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Plan change</h1>
+<div class="body conbody">
+        <div class="section">
+            <p class="p">When a plan is changed, the invoke method in the EDR is
+                    <var class="keyword varname">change_bundle</var>. Data for both the old bundle and new bundle
+                are also generated.</p>
+
+        </div>
+
+    </div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_scv_h34_yqb"><h2 class="title topictitle2" id="ariaid-title2">EDR tags</h2>
+<div class="body conbody">
+            <div class="section">
+                <table cellpadding="4" cellspacing="0" summary="" id="concept_scv_h34_yqb__table_mny_dkg_rpb" class="table" frame="border" border="1" rules="all"><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d37776e52">Tag</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d37776e55">Description</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d37776e58">Example</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">deviceId</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag indicates the device to which the subscription is
+                                    attached.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">Device121254</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">changeType</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">
+                                    <p class="p">This tag signifies the type of bundle change.</p>
+
+                                    <p class="p">Possible values: NEXT_BILL_CYCLE, IMMEDIATE,
+                                        IMMEDIATE_MINUS_USED, IMMEDIATE_BACKDATED, CANCEL</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">IMMEDIATE</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">carryOverIncluded</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">
+                                    <p class="p">This tag signifies the carryover flag of the bundle
+                                        changed.</p>
+
+                                    <p class="p">Possible values: true, false</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">true</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">customizedFlag</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag indicates whether the bundle is
+                                        customized.<p class="p">Possible values: true, false</p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">false</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">oldBundleInfo</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This is record property which defines the old bundle state
+                                    during the change plan.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">oldBundleInfo</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">newBundleInfo</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This is record property which defines the new bundle state
+                                    during the change plan.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">newBundleInfo</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">remainingRenewals<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag signifies the number of times a subscription can be
+                                    renewed. It can be present under old bundle info or new bundle
+                                    info or both.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">5</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">bundleName<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag signifies the name of the bundle depending on where
+                                    the tag is present; new bundle or old bundle.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">Bundle121254</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">bundleFee<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag signifies the bundle purchase fee deducted only from
+                                    the main account balance, depending on where the tag is present;
+                                    new bundle or old bundle.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">10</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">maxRenewals<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag signifies the maximum number of times the
+                                    subscription can be renewed. If a value is not specified, then
+                                    it denotes unlimited renewals can take place. It can be present
+                                    in old bundle or new bundle or both.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">3</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">disableTTC<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">
+                                    <p class="p">This tag signifies if TTC calculation should occur. If this
+                                        flag is set to <var class="keyword varname">true</var>, then TTC calculation
+                                        is not done and VT is aligned to the expiration date and
+                                        time of the subscription.</p>
+
+                                    <p class="p">Possible values: true, false</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">true</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">chargingServiceInfo<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This record property contains the charging service
+                                    tags.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">RecordProperty</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">chargingServiceName<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag signifies the Charging Services associated with the
+                                    bundle. Possible values can be zero or more charging
+                                    services.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">chargingServiceName</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">bucketInfo<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This record property contains the bucket tags.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">RecordProperty</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">bucketInstanceId<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag signifies the instance ID of the bucket.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">2a6e8edb-2854-4081-bd39-283152016606</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">bucketName<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag signifies the name of the bucket definition.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">PrePaid_Bucket_V1121254</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">bucketUnitType<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag defines the type of the unit defined for the bucket
+                                    to measure the charging factor.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">Byte</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">bucketBalanceBefore<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">If the <var class="keyword varname">carryOverBucket</var> is
+                                        <var class="keyword varname">false</var>, then this tag signifies the
+                                    remaining value of the main Bucket at reset or renewal.
+                                    Otherwise, the this tag signifies the remaining value of carry
+                                    over bucket after reset or renewal.<p class="p">For maximum value, refer
+                                        to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">1048576000</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">bucketBalanceAfter<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">If the <var class="keyword varname">carryOverBucket</var> is
+                                        <var class="keyword varname">false</var>, then this tag signifies the
+                                    initial value of the main bucket after reset or renewal.
+                                    Otherwise, the this tag signifies the updated initial Value of
+                                    the carry over bucket after reset or renewal.<p class="p">For maximum
+                                        value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">1048576000</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">carryOverBucket<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">
+                                    <p class="p">This tag signifies whether the bucket is a carryover
+                                        bucket.</p>
+
+                                    <p class="p">Possible values:</p>
+
+                                    <ul class="ul" id="concept_scv_h34_yqb__ul_iyq_qzf_brb">
+                                        <li class="li"><var class="keyword varname">true</var>: <var class="keyword varname">bucketInfo</var>
+                                            record is for carryover bucket.</li>
+
+                                        <li class="li"><var class="keyword varname">false</var>: <var class="keyword varname">bucketInfo</var>
+                                            record is for regular bucket.</li>
+
+                                    </ul>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">true</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">maxCarryOverValue<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag signifies the maximum balance that the carryover
+                                    bucket can hold at the next billing cycle.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">1048576000</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">renewalPeriodMode<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">
+                                    <p class="p">This tag signifies if the carryover is to be applied for one
+                                        billing cycle or all billing cycles.</p>
+
+                                    <p class="p">Possible values: ONE_PERIOD, UNLIMITED</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">ONE_PERIOD</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">consumptionPriority<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">
+                                    <p class="p">This tag signifies which bucket instance (regular or
+                                        carryover) was used first. It helps to decide which instance
+                                        of the bucket, whether regular or carryover, was first used
+                                        for charging.</p>
+
+                                    <p class="p">Possible values: REGULAR_BUCKET, CARRY_OVER_BUCKET</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">REGULAR_BUCKET</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">counterInfo<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This is record property which defines the Counter.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">counterInfo</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">counterName<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag indicates the name of the counter.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">Cnt1</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">counterKey<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag indicates the key of the counter.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">79e45306-1ed0-4c59-9f1e-17d7d4d3f1d5</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">counterType<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">
+                                    <p class="p">This tag indicates the type of counter.</p>
+
+                                    <p class="p">Possible values: USAGE, COST</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">COST</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">counterUnitType<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag defines the type of the unit defined for the counter
+                                    to measure the charging factor.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">Byte</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">counterKindOfUnit<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag indicates the kind of unit defined for the counter.
+                                        <p class="p">Valid values: TIME,VOLUME, MONEY, UNIT.</p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">TIME</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">counterValue<sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag signifies the value of the counter.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 "> </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">deviceIdentityInfo</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This is Record property, dumped when "Add 5G Device
+                                    Identities in EDR/CDR" is set to 1.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">deviceIdentityInfo</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">deviceIdentityType</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">
+                                    <p class="p">This tag signifies the device identity type and is fetched
+                                        from the Subscription-Id-Type AVP in the diameter Gy CCR
+                                        message for 4G and its equivalent attribute in 5G.</p>
+
+                                    <p class="p">Valid values: 0 (e164), 1 (iMSI), 2 (sIP-URI), 3 (nAI), 4
+                                        (uSER-PRIVATE), 100 (eXTERNAL-ID), 101 (dEVICE-ID), 102
+                                        (sUPI), 103 (gPSI)</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">1</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">deviceIdentityValue</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag indicates the value of the device
+                                    identifier.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">msisdn-121254000011</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e52 ">renewalPriority <sup class="ph sup">†</sup></td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e55 ">This tag specifies the priority used at the time of
+                                    subscription renewal through account renewal.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d37776e58 ">0</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+                <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The tags with † are present for both old bundle and new bundle.</div>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_lv2_1bb_f3b"><h2 class="title topictitle2" id="ariaid-title3">Example EDRs</h2>
+<div class="body conbody">
+            <div class="section" id="concept_lv2_1bb_f3b__section_ayf_njx_g5b"><h3 class="title sectiontitle">Example 1</h3>
+                
+                <div class="p">
+                    <pre class="pre codeblock" id="concept_lv2_1bb_f3b__codeblock_zts_ljx_g5b"><code>--------------------------------------
+CDR length:                       1993
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                      Tag                                Data
+RecordType                0                   PROVISIONING_RECORD
+serviceProvider           1                                 MVNO1
+invokedBy                 1                            webService
+invokedMethod             1                         change_bundle
+deviceId                  1                          Device121254
+changeType                1                             IMMEDIATE
+carryOverIncluded         1                                 false
+customizedFlag            1                                 false
+result                    1                               SUCCESS
+generationTimestamp       1                   27/11/2020 15:19:26
+meHostName                1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                
+nccVersion                1                           SPS_21_0_R1
+RecordTimestamp           1                   27/11/2020 15:19:26
+  RecordProperty          0                         oldBundleInfo
+  remainingRenewals       1                                     5
+  bundleName              1                 Personal_Bundle121254
+  bundleFee               1                                    10
+  maxRenewals             1                                     5
+  disableTTC              1                                 false
+  RecordProperty          0                   chargingServiceInfo
+  chargingServiceName     1                   PrePaid_CS_V1121254
+    RecordProperty        0                            bucketInfo
+    bucketInstanceId      1  2a6e8edb-2854-4081-bd39-283152016606
+    bucketName            1               PrePaid_Bucket_V1121254
+    bucketUnitType        1                                  Byte
+    bucketBalanceBefore   1                            1048576000
+    bucketBalanceAfter    1                            1048576000
+    carryOverBucket       1                                 false
+    maxCarryOverValue     1                            1048576000
+    renewalPeriodMode     1                            ONE_PERIOD
+    consumptionPriority   1                     CARRY_OVER_BUCKET
+    RecordProperty        0                            bucketInfo
+    bucketInstanceId      1  db5fcaf9-809a-4ba1-9710-90b771181f18
+    bucketName            1               PrePaid_Bucket_V1121254
+    bucketUnitType        1                                  Byte
+    bucketBalanceBefore   1                                     0
+    bucketBalanceAfter    1                                     0
+    carryOverBucket       1                                  true
+    RecordProperty        0                           counterInfo
+    counterName           1                             TBY121254
+    counterKey            1  79e45306-1ed0-4c59-9f1e-17d7d4d3f1d5
+    counterType           1                                 USAGE
+    counterUnitType       1                                  Byte
+    counterKindOfUnit     1                                VOLUME
+    counterValue          1                                     8
+  RecordProperty          0                    deviceIdentityInfo
+  deviceIdentityType      1                                     0
+  deviceIdentityValue     1                          121254000011
+  RecordProperty          0                    deviceIdentityInfo
+  deviceIdentityType      1                                   103
+  deviceIdentityValue     1                  msisdn-121254000011,
+                                   extid-121254000014@12125400001
+  RecordProperty          0                    deviceIdentityInfo
+  deviceIdentityType      1                                     1
+  deviceIdentityValue     1                          121254000012
+  RecordProperty          0                    deviceIdentityInfo
+  deviceIdentityType      1                                   102
+  deviceIdentityValue     1    imsi-121254000012,nai-121254000013
+  RecordProperty          0                    deviceIdentityInfo
+  deviceIdentityType      1                                     3
+  deviceIdentityValue     1                          121254000013
+  RecordProperty          0                    deviceIdentityInfo
+  deviceIdentityType      1                                   100
+  deviceIdentityValue     1              121254000014@12125400001
+  RecordProperty          0                    deviceIdentityInfo
+  deviceIdentityType      1                                   101
+  deviceIdentityValue     1                          Device121254</code></pre>
+                </div>
+
+            </div>
+
+            <div class="section" id="concept_lv2_1bb_f3b__section_ybn_4jx_g5b"><h3 class="title sectiontitle">Example 2</h3>
+                
+                <pre class="pre codeblock" id="concept_lv2_1bb_f3b__codeblock_i3n_pjx_g5b"><code>
+--------------------------------------
+CDR length:                       1428
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                    Tag                                                   Data
+RecordType              0                                      PROVISIONING_RECORD
+invokedBy               1                                               webService
+invokedMethod           1                                            change_bundle
+deviceId                1                                                       D1
+changeType              1                                      IMMEDIATE_BACKDATED
+carryOverIncluded       1                                                    false
+customizedFlag          1                                                    false
+result                  1                                                  SUCCESS
+correlationID           1     X-CorrelationId:29d3db43-0bc0-44d9-82cc-c3a2b71aa0fb
+generationTimestamp     1                                      21/07/2022 17:42:02
+meHostName              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                               
+nccVersion              1                                              SPS_22_7_R1
+recordId                1      20220721121202_ab2cdff7-0b5f-47d0-ab86-e25e09e824b8
+RecordTimestamp         1                                      21/07/2022 17:42:02
+  RecordProperty        0                                            oldBundleInfo
+  remainingRenewals     1                                                       10
+  bundleName            1                               MandatoryBundle1_3831_copy
+  bundleFee             1                                                       40
+  maxRenewals           1                                                       10
+  disableTTC            1                                                    false
+  renewalPriority       1                                                        0
+  processingType        1                                                     NONE
+  RecordProperty        0                                      chargingServiceInfo
+  chargingServiceName   1                                                  CS23831
+    RecordProperty      0                                              counterInfo
+    counterName         1                                             Counter13831
+    counterKey          1                     c0bd91b8-c90f-4430-857d-de5732f3ae60
+    counterType         1                                                    USAGE
+    counterUnitType     1                                                     Byte
+    counterKindOfUnit   1                                                   VOLUME
+    counterValue        1                                                        0
+    counterUsageLimit   1                                                        0
+  RecordProperty        0                                            newBundleInfo
+  remainingRenewals     1                                                       10
+  bundleName            1                               MandatoryBundle1_3831_copy
+  bundleFee             1                                                       40
+  maxRenewals           1                                                       10
+  disableTTC            1                                                    false
+  renewalPriority       1                                                        0
+  processingType        1                                                     NONE
+  RecordProperty        0                                      chargingServiceInfo
+  chargingServiceName   1                                                  CS23831
+    RecordProperty      0                                              counterInfo
+    counterName         1                                             Counter13831
+    counterKey          1                     784eb56c-27df-4cbd-834d-8bb307d38571
+    counterType         1                                                    USAGE
+    counterUnitType     1                                                     Byte
+    counterKindOfUnit   1                                                   VOLUME
+    counterValue        1                                                        0
+    counterUsageLimit   1                                                        0
+</code></pre>
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

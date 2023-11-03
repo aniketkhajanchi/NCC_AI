@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="SMS and MMS call support" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e26482" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>SMS and MMS call support</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e26482">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">SMS and MMS call support</h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">In SMS and MMS calls, Credit-Control-Request (initial/termination) contains some SMS and MMS
+                                        AVPs. In NCC, appropriate source contexts, result contexts,
+                                        triggers, and attributes are available, so that operators
+                                        can perform some actions based on type of request and the
+                                        values of these AVPs.</p>
+
+<p class="p">
+<var class="keyword varname">Service-Context-Id</var> AVP is used to differentiate between Gy(SMS) and Gy(MMS) calls as follows:</p>
+
+<ul class="ul">
+<li class="li">
+<p class="p">32274@3gpp.org is used for SMS Charging</p>
+
+</li>
+
+<li class="li">
+<p class="p">32270@3gpp.org  is used for MMS Charging</p>
+
+</li>
+
+</ul>
+
+<p class="p">SMS and MMS calls are handled in Event Charging Unit Reservation (ECUR) and Immediate Event Charging (IEC) mode.</p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">SMS AVP support in rules</h2>
+<p class="p">The following table provides information about the SMS AVPs and the corresponding rule attributes
+                                        in NCC.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>SMS AVP–rule attribute mapping</span></caption><colgroup><col style="width:36.496350364963504%" /><col style="width:63.503649635036496%" /></colgroup><thead class="thead" style="text-align:left;">
+                                                  <tr class="row">
+                                                  <th class="entry cellrowborder" style="vertical-align:top;" id="d41056e77">
+                                                  <p class="p">AVP</p>
+
+                                                 </th>
+
+                                                  <th class="entry cellrowborder" style="vertical-align:top;" id="d41056e83">
+                                                  <p class="p">Rule attribute</p>
+
+                                                 </th>
+
+                                                  </tr>
+
+                                                  </thead>
+<tbody class="tbody">
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">smsNode</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">SMS-Information.SMS-Node</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">clientAddress</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">
+                                                  <p class="p">SMS-Information.Client-Address.Address-Family</p>
+
+                                                  <p class="p">SMS-Information.Client-Address.Address-Value</p>
+
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">originatorSCCPAddres</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">
+                                                  <p class="p">SMS-Information.Originator-SCCP-Address.Address-Family</p>
+
+                                                  <p class="p">SMS-Information.Originator-SCCP-Address.Address-Value</p>
+
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">smscAddress</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">
+                                                  <p class="p">SMS-Information.SMSC-Address.Address-Family</p>
+
+                                                  <p class="p">SMS-Information.SMSC-Address.Address-Value</p>
+
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">dataCodingScheme</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">SMS-Information.Data-Coding-Scheme
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">smDischargeTime</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">SMS-Information.SM-Discharge-Time</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">smMessageType</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">SMS-Information.SM-Message-Type</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">originatorInterface</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">
+                                                  <p class="p">SMS-Information.Originator-Interface-Id</p>
+
+                                                  <p class="p">SMS-Information.Originator-Interface-Text</p>
+
+                                                  <p class="p">SMS-Information.Originator-Interface-Port</p>
+
+                                                  <p class="p">SMS-Information.Originator-Interface-Type</p>
+
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">smProtocolId</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">SMS-Information.SM-Protocol-ID</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">replyPathRequested</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">SMS-Information.Reply-Path-Requested
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">smStatus</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">SMS-Information.SM-Status</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">smUserDataHeader</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">SMS-Information.SM-User-Data-Header
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">numOfMessageSent</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">SMS-Information.Number-Of-Messages-Sent
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">destinationInterface</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">
+                                                  <p class="p">SMS-Information.Recipient-Info.Destination-Interface-Id</p>
+
+                                                  <p class="p">SMS-Information.Recipient-Info.Destination-Interface-Text</p>
+
+                                                  <p class="p">SMS-Information.Recipient-Info.Destination-Interface-Port</p>
+
+                                                  <p class="p">SMS-Information.Recipient-Info.Destination-Interface-Type</p>
+
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">recipientAddresses</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">
+                                                  <p class="p">SMS-Information.Recipient-Info.Recipient-Addr.Address-Type</p>
+
+                                                  <p class="p">SMS-Information.Recipient-Info.Recipient-Received-Address.Address-Data</p>
+
+                                                  <p class="p">SMS-Information.Recipient-Info.Recipient-Addr.Addressee-Type</p>
+
+                                                  <p class="p">SMS-Information.Recipient-Info.Recipient-Addr.Address-Data</p>
+
+                                                  <p class="p">SMS-Information.Recipient-Info.Recipient-Addr.Addr-Domain.Domain-Name</p>
+
+                                                  <p class="p">SMS-Information.Recipient-Info.Recipient-Addr.Addr-Domain.IMSI-MCC-MNC</p>
+
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">recipientReceivedAddresses</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">
+                                                  <p class="p">SMS-Information.Recipient-Info.Recipient-Received-Address.Address-Type</p>
+
+                                                  <p class="p">SMS-Information.Recipient-Info.Recipient-Received-Address.Address-Data</p>
+
+                                                  <p class="p">SMS-Information.Recipient-Info.Recipient-Received-Address.Domain-Name</p>
+
+                                                  <p class="p">SMS-Information.Recipient-Info.Recipient-Received-Address.IMSI-MCC-MNC</p>
+
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">recipientSCCPAddress</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">
+                                                  <p class="p">SMS-Information.Recipient-Info.Recipient-SCCP-Add.Address-Family</p>
+
+                                                  <p class="p">SMS-Information.Recipient-Info.Recipient-SCCP-Add.Address-value</p>
+
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">smProtocolID</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">
+                                                  SMS-Information.Recipient-Info.SM-Protocol-ID
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">Address-Domain</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">
+                                                  <p class="p">SMS-Information.Recipient-Info.Addr-Domain.Domain-Name</p>
+
+                                                  <p class="p">SMS-Information.Recipient-Info.Addr-Domain.IMSI-MCC-MNC</p>
+
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">originatorReceivedAddress</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">
+                                                  <p class="p">SMS-Information.Originator-Received-Add.Address-Type</p>
+
+                                                  <p class="p">SMS-Information.Originator-Received-Add.Address-Data</p>
+
+                                                  <p class="p">SMS-Information.Originator-Received-Add.Domain-Name</p>
+
+                                                  <p class="p">SMS-Information.Originator-Received-Add.IMSI-MCC-MNC</p>
+
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">smServiceType</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">SMS-Information.SM-Service-Type</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">smSequenceNumber</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">SMS-Information.SM-Sequence-Number
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">smsResult</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">SMS-Information.SMS-Result</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">smDeviceTriggerIndicator</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">
+                                                  SMS-Information.SM-Device-Trigger-Indicator
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e77 ">smDeviceTriggerInfo</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e83 ">
+                                                  <p class="p">SMS-Information.SM-DeviceTriggerInfo.Mtc-Iwf-Address.Address-Family</p>
+
+                                                  <p class="p">SMS-Information.SM-DeviceTriggerInfo.Mtc-Iwf-Address.Address-Value</p>
+
+                                                  <p class="p">SMS-Information.SM-DeviceTriggerInfo.Reference-Number</p>
+
+                                                  <p class="p">SMS-Information.SM-DeviceTriggerInfo.Validity-Time</p>
+
+                                                  <p class="p">SMS-Information.SM-DeviceTriggerInfo.Priority-Indication</p>
+
+                                                  <p class="p">SMS-Information.SM-DeviceTriggerInfo.Application-Port-Identifier</p>
+
+                                                 </td>
+
+                                                  </tr>
+
+                                                  </tbody>
+</table>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">MMS AVP support in rules</h2>
+<p class="p">The following table provides information about the SMS AVPs and the corresponding rule attributes
+                                        in NCC.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>MMS AVP–rule attribute mapping</span></caption><colgroup><col style="width:35.587188612099645%" /><col style="width:64.41281138790036%" /></colgroup><thead class="thead" style="text-align:left;">
+                                                  <tr class="row">
+                                                  <th class="entry cellrowborder" style="vertical-align:top;" id="d41056e464">
+                                                  <p class="p">AVP</p>
+
+                                                 </th>
+
+                                                  <th class="entry cellrowborder" style="vertical-align:top;" id="d41056e470">
+                                                  <p class="p">Rule attribute</p>
+
+                                                 </th>
+
+                                                  </tr>
+
+                                                  </thead>
+<tbody class="tbody">
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">originatorAddress</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">
+                                                  <p class="p">MMS-Information.Originator-Address.Address-Type</p>
+
+                                                  <p class="p">MMS-Information.Originator-Address.Address-Data</p>
+
+                                                  <p class="p">MMS-Information.Originator-Address.Domain-Name</p>
+
+                                                  <p class="p">MMS-Information.Originator-Address.IMSI-MCC-MNC</p>
+
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">recipientAddress</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">
+                                                  <p class="p">MMS-Information.Recipient-Add.Address-Type</p>
+
+                                                  <p class="p">MMS-Information.Recipient-Add.Addressee-Type</p>
+
+                                                  <p class="p">MMS-Information.Recipient-Address.Address-Data</p>
+
+                                                  <p class="p">MMS-Information.Recipient-Address.Domain-Name</p>
+
+                                                  <p class="p">MMS-Information.Recipient-Address.IMSI-MCC-MNC</p>
+
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">submissionTime</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">MMS-Information.Submission-Time</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">mmContentType</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">
+                                                  <p class="p">MMS-Information.MM-Content-Type.Additional-Type-Info</p>
+
+                                                  <p class="p">MMS-Information.MM-Content-Type.Content-Size</p>
+
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">priority</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">MMS-Information.Priority</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">messageID</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">MMS-Information.Message-Id</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">messageType</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">MMS-Information.Message-Type</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">messageSize</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">MMS-Information.Message-Size</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">messageClass’s class identifier</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">
+                                                  MMS-Information.Message-Class.Class-Identifier
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">deliveryReportRequested</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">MMS-Information.Delivery-Report-Requested
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">readReplyReportRequested</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">
+                                                  MMS-Information.Read-Reply-Report-Requested
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">mmBoxStorageRequested</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">MMS-Information.MM-Box-Storage-Requested
+                                                 </td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">applicID</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">MMS-Information.Applic-ID</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">replyApplicID</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">MMS-Information.Reply-Applic-ID</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">auxApplicInfo</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">MMS-Information.Aux-Applic-Info</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">contentClass</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">MMS-Information.Content-Class</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">drmContent</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">MMS-Information.DRM-Content</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">adaptations</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">MMS-Information.Adaptations</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">vaspID</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">MMS-Information.Vasp-Id</td>
+
+                                                  </tr>
+
+                                                  <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e464 ">vasID</td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:top;" headers="d41056e470 ">MMS-Information.Vas-Id</td>
+
+                                                  </tr>
+
+                                                  </tbody>
+</table>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Pre-shipped SMS rules</h2>
+<p class="p">The following figure presents the pre-shipped rules for SMS.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Pre-shipped SMS rules</span>
+                                        
+                                        
+                                        <img class="image break" height="288" src="../images/img9yz-09126-ug01-pczza-sp1-pre-shipped_sms_rules_default.png" width="576" />
+                              </div>
+
+<p class="p">Following are the assumptions while using the SMS rules:</p>
+<ol class="ol">
+<li class="li">
+<p class="p">
+<em class="ph i">Subscription-Id</em> must contains the E164.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<em class="ph i">SMS-Information</em>, <em class="ph i">Originator-Received-Address</em>, or <em class="ph i">Address-Type</em> must come as MSISDN.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Single instance of <em class="ph i">SMS-Information</em> or <em class="ph i">Recipient-Info</em> AVP is present.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Single instance of <em class="ph i">SMS-Information</em>, <em class="ph i">Recipient-Info</em>, or <em class="ph i">Recipient-Address</em> AVP is present.</p>
+
+</li>
+
+</ol>
+
+<p class="p">As shown in the preceding figure, there are following three rules present under <em class="ph i">SMS_CALL_ESTABLISHMENT</em> by default:</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If <em class="ph i">SMS_CALL_ESTABLISHMENT</em> trigger is deleted from rules and variables, then only
+                                                  <span class="ph uicontrol">CALL-SUB-TYPE</span> parameter is
+                                        set as <var class="keyword varname">SMS_MO</var>, rest parameters like
+                                                  <span class="ph uicontrol">CALLING-_PARTY</span>,
+                                                  <span class="ph uicontrol">CALLING_PARTY_TYPE</span>,
+                                                  <span class="ph uicontrol">CALLED_PARTY</span>, and
+                                                  <span class="ph uicontrol">CALLED_PARTY_TYPE</span> are set
+                                        to <var class="keyword varname">none</var>.</div>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Rule for mobile originated (SMS-MO) call</strong></p>
+
+<p class="p">The Call-Sub-Type is SMS_MO.</p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>if 
+          GY_MESSAGE.Subscription-Id-Data-By-Type ( SubscriptionIdType_END_USER_E164 )  = GY_MESSAGE.SMS-Information.Originator-Received-Add.Address-Data
+then
+          SESSION_PARAMETERS.Call-Sub-Type = "SMS_MO" and
+          SESSION_PARAMETERS.Calling-Party = GY_MESSAGE.Subscription-Id-Data-By-Type ( SubscriptionIdType_END_USER_E164 )  and
+          SESSION_PARAMETERS.Calling-Party-Type = AddressType_MSISDN and
+          SESSION_PARAMETERS.Called-Party = GY_MESSAGE.SMS-Information.Recipient-Info.Recipient-Addr.Address-Data and
+          SESSION_PARAMETERS.Called-Party-Type = GY_MESSAGE.SMS-Information.Recipient-Info.Recipient-Addr.Address-Type
+</code></pre>
+</div>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Rule for mobile terminated (SMS-MT) call</strong></p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>if 
+           GY_MESSAGE.Subscription-Id-Data-By-Type ( SubscriptionIdType_END_USER_E164 )  = GY_MESSAGE.SMS-Information.Recipient-Info.Recipient-Addr.Address-Data
+then
+           SESSION_PARAMETERS.Call-Sub-Type = "SMS_MT" and
+           SESSION_PARAMETERS.Called-Party = GY_MESSAGE.Subscription-Id-Data-By-Type ( SubscriptionIdType_END_USER_E164 )  and
+           SESSION_PARAMETERS.Called-Party-Type = AddressType_MSISDN and
+           SESSION_PARAMETERS.Calling-Party = GY_MESSAGE.SMS-Information.Originator-Received-Add.Address-Data and
+           SESSION_PARAMETERS.Calling-Party-Type = GY_MESSAGE.SMS-Information.Originator-Received-Add.Address-Type
+</code></pre>
+</div>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Default rule</strong></p>
+
+<p class="p">Default actions are the same as for MO Call. Call-Sub-Type is SMS_MO.</p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>SESSION_PARAMETERS.Call-Sub-Type = "SMS_MO" and
+          SESSION_PARAMETERS.Calling-Party = GY_MESSAGE.SMS-Information.Originator-Received-Add.Address-Data and
+          SESSION_PARAMETERS.Calling-Party-Type = GY_MESSAGE.SMS-Information.Originator-Received-Add.Address-Type and
+          SESSION_PARAMETERS.Called-Party = GY_MESSAGE.SMS-Information.Recipient-Info.Recipient-Addr.Address-Data and
+          SESSION_PARAMETERS.Called-Party-Type = GY_MESSAGE.SMS-Information.Recipient-Info.Recipient-Addr.Address-Type
+</code></pre>
+</div>
+
+</div>
+                              <div class="sectiondiv"><strong class="ph b">Identification of SMS MO and SMS MT calls</strong><p class="p">If the
+     Subscription-Id-Data AVP in Subscription ID AVP and Address Data AVP in Originator Address AVP
+     within CCR message are identical, then SMS is considered as MO or MT based on following
+     conditions:</p>
+<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e26482__ul_eyx_1n1_vmb">
+     <li class="li">If there is more than one recipient included in the Recipient Address AVP and one of
+      multiple recipients is same as Address Data AVP in Originator Address AVP within CCR message,
+      then SMS is treated as MO-SMS.</li>
+
+     <li class="li">If there is only one recipient included in the Recipient Address AVP and the recipient is
+      same as Address Data AVP in Originator Address AVP within CCR message, then service uses the
+      SM-Interface-ID of SM-Originator-Interface and SM-Interface-ID of SM-Destination-Interface to
+      determine the MO-SMS or MT-SMS.</li>
+
+    </ul>
+<p class="p">Else if the Subscription-Id-Data AVP in Subscription ID AVP is equal to Address Data AVP
+     in Originator Address AVP, the call is treated as MO-SMS. If the Subscription-Id-Data AVP is
+     equal to Address Data AVP in the Recipient Address AVP, the call is treated as
+     MT-SMS.</p>
+<p class="p">Else if MO-SMS or MT-SMS cannot be determined based on the Subscription-ID and
+     Originator Address/Recipient Address, then service uses the <em class="ph i">SM-Interface-ID </em>of
+      <em class="ph i">SM-Originator-Interface </em>and <em class="ph i">SM-Interface- ID </em>of <em class="ph i">SM-Destination-interface
+     </em>to determine the MO-SMS or MT-SMS.</p>
+<p class="p">Else if MO and MT cannot be determined, then the
+     existing NCC logic is followed.</p>
+<p class="p">Following assumptions are considered:</p>
+<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e26482__ul_vbc_l41_vmb">
+     <li class="li">If the SM-Interface-ID of originator or destination is not present, MO/MT determination
+      logic is still supported.</li>
+
+     <li class="li">The Recipient-Address AVP may appear multiple times, but, only the first Recipient-Address
+      AVP is fetched to determine MO/MT SMS calls.</li>
+
+    </ul>
+<p class="p"><strong class="ph b">Rule configuration example:</strong></p>
+<p class="p">Configure SMS_CALL_ESTABLISHMENT trigger to
+     determine call sub-type:</p>
+<img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e26482__image_wrh_hct_wmb" height="288" src="../images/sms_rule_1_1.png" width="480" /><img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e26482__image_zps_5w1_vmb" height="288" src="../images/sms_rule2.png" width="480" /><img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e26482__image_kfj_vw1_vmb" height="288" src="../images/sms_rule3.png" width="384" /></div>
+                              <div class="sectiondiv"><strong class="ph b">Identification of MMS MO and MMS MT calls</strong><p class="p">If the
+     Message-Type is included, then service uses Message-Type to determine
+     SESSION_PARAMETERS.Call-Sub-Type = "MMS_MO" or "MMS_MT". If the MO and MT cannot be determined,
+     then the existing NCC logic is followed.</p>
+<p class="p"><strong class="ph b">Rule configuration
+     example:</strong></p>
+<p class="p">Configure rule in the MMS_CALL_ESTABLISHMENT trigger to determine call
+     sub-type:</p>
+<img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e26482__image_jmt_21b_vmb" height="288" src="../images/mms_rule.png" width="576" /></div>
+</div>
+
+                    <div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e26482__section_svl_m4c_vmb"><h2 class="title sectiontitle">SMS/MMS IEC interface</h2>
+                              
+                              <p class="p">Rating Group or Service Identifier is mandatory in MSCC AVP for
+                                        NCC, but not expected by the standard for Immediate Event
+                                        Charging (IEC). If the client is not sending this AVP or
+                                        MSCC at all, it must be added in message manipulation.</p>
+
+                              <p class="p"><strong class="ph b">Rule example:</strong></p>
+
+                              <p class="p"><strong class="ph b">Mapping VDCCA service-context-id value to 3GPP standard</strong></p>
+
+                              <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e26482__image_os2_tpc_vmb" src="../images/smsmmsinterface1.png" height="252" width="538" />
+                              <p class="p"><strong class="ph b">Check if it is IEC call without MSCC</strong></p>
+
+                              <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e26482__image_u22_1qc_vmb" src="../images/smsmmsinterface2.png" height="242" width="575" />
+                              <p class="p"><strong class="ph b">If MSCC is added by rule, remove it before sending back CCA
+                                                  message</strong></p>
+
+                              <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e26482__image_dpm_3qc_vmb" src="../images/smsmmsinterface3.png" height="249" width="596" />
+                    </div>
+
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_fmj_2db_gxb"><h2 class="title topictitle2" id="ariaid-title2">Multi-recipients SMS/MMS</h2>
+<div class="body conbody">
+   <p class="p">For a mobile originated SMS/MMS, if the CCR request has multiple <em class="ph i">Recipient-Address</em>
+    AVPs, then the request is considered as multi-recipients SMS/MMS.</p>
+
+   <p class="p">NCC supports handling of mobile originated multi-recipients SMS/MMS. The request is processed
+    separately for each recipient, and the cost is calculated without correlation.</p>
+
+   <p class="p">If the subscriber has sufficient resources (Account, Bucket, Counter, and so on) to support
+    the delivery to all the recipients in the request, then the request is processed successfully.
+    Else, the request is rejected with the corresponding result code.</p>
+
+   <p class="p">If MO-SMS/MO-MMS multi-recipients call is successful, then separate CDRs are generated for
+    each recipient, and a single CDR with details of all the recipients and consolidated charging
+    information is also generated.</p>
+
+   <div class="p">Even if one <em class="ph i">Recipient-Address</em> handling fails due to insufficient resources, the request
+    is rejected and a CDR is generated.<div class="note" id="concept_fmj_2db_gxb__note_p3l_sdb_gxb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If charging of a
+      <em class="ph i">Recipient-Address</em> handling fails due to
+      <code class="ph codeph">DIAMETER_CREDIT_LIMIT_REACHED-4012</code>, then the request is rejected with result
+     code <var class="keyword varname">4012</var>.</div>
+</div>
+
+   <div class="p"><strong class="ph b">Additional information</strong>:<ul class="ul" id="concept_fmj_2db_gxb__ul_p23_njb_gxb">
+     <li class="li">In a multi-recipients SMS/MMS, the <em class="ph i">Requested-Service-Unit</em> (RSU) is same for all the
+       <em class="ph i">Recipient-Address</em> AVPs.</li>
+
+     <li class="li">This feature is supported only on IEC (Immediate Event Charging) mode. It is not supported
+      for ECUR (Event Charging with Unit Reservation).</li>
+
+     <li class="li">This feature only supports single MSCC.</li>
+
+     <li class="li">For multi-recipients SMS/MMS, GY_MESSAGE must be used to configure rules on
+       <em class="ph i">Recipient-Address</em>. For example:
+       <code class="ph codeph">GY_MESSAGE.SMS-Information.Recipient-Info.Recipient-Addr.Address-Type =
+       AddressType_MSISDN</code></li>
+
+     <li class="li">This feature is only supported with the NCC internal MNP functionality. External MNP is not
+      supported with this feature. That is, the <em class="ph i">Number-Portability-Routing-Information</em>
+      received from the client, and external MNP query made by NCC are not supported.</li>
+
+    </ul>
+</div>
+
+   <div class="section" id="concept_fmj_2db_gxb__section_c3f_gzd_hxb"><h3 class="title sectiontitle">Use cases</h3>
+    
+    <div class="sectiondiv"><strong class="ph b">Use case 1</strong>: <ul class="ul" id="concept_fmj_2db_gxb__ul_mzf_b12_hxb">
+      <li class="li">A subscriber with Spending Limit as 10, and Current Usage as 5 sends 10 MMS pictures to a
+       multiparty number when the subscriber has subscribed to 100 picture messages bundle. </li>
+
+      <li class="li">Fee for the first 5 MMS is deducted from the bundle, and the fee for remaining MMS is
+       charged from the balance and a multi-bundle cost counter with hard stop at usage limit of 10
+       is incremented.</li>
+
+     </ul>
+<p class="p">Result:</p>
+<ul class="ul" id="concept_fmj_2db_gxb__ul_hq4_zzd_hxb">
+      <li class="li">MR MO-MMS IEC request is successful. Fee for the first 5 MMS is deducted from the MMS
+       bundle, and fee for the remaining MMS is charged from the balance and multi-bundle cost
+       counter is incremented.</li>
+
+      <li class="li">10 CDRs are generated separately for each MMS.</li>
+
+      <li class="li">A consolidated CDR is generated with the details of all the multiple recipients and
+       consolidated charging information.</li>
+
+     </ul>
+</div>
+    <div class="sectiondiv"><strong class="ph b">Use case 2</strong>: <p class="p">A subscriber with Spending Limit as 10, and Current Usage as 5
+      fails to send 10 MMS pictures to a multiparty number when subscriber has sufficient balance
+      but the limit is insufficient to send all 10 MMS. (£0.25 per MMS). </p>
+<p class="p">Result:</p>
+<ul class="ul" id="concept_fmj_2db_gxb__ul_k55_f12_hxb">
+      <li class="li">MR MO-MMS IEC request fails with result code <var class="keyword varname">4012</var>.</li>
+
+      <li class="li">A consolidated single CDR is generated with the multiple-recipients information.</li>
+
+     </ul>
+</div>
+   </div>
+
+  </div>
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

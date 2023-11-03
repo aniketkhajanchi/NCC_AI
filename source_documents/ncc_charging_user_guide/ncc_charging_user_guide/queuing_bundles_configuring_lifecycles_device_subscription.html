@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Configuring lifecycles - Device, Subscription" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="section_cpv_dby_1pb" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Configuring lifecycles - Device, Subscription</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="section_cpv_dby_1pb">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Configuring lifecycles - Device, Subscription </h1>
+<div class="body">
+            
+            <p class="p">Configure the Device, Subscription entity and period lifecycles. Note that the values
+                indicated in the following tables are sample values and you can modify them as per
+                your requirement.</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="section_cpv_dby_1pb__table_ctk_rby_1pb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Device lifecycle</span></caption><colgroup><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d378275e50">FromState</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d378275e53">Event</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d378275e56">Actions</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d378275e59">Timer</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d378275e62">ToState</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e50 ">PreActive(Initial)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e53 ">StartEvent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e56 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e59 ">0 seconds</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e62 ">Inactive(Barred)</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d378275e50 ">Inactive(Barred)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e53 ">DeviceAttachmentEvent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e56 ">ActivateQueuedSubsAction</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e59 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e62 ">Active</td>
+
+                        </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e53 ">Activate</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e56 "> </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e59 "> </td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e62 ">Active</td>
+
+                    </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e50 ">Active</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e53 ">Deactivate</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e56 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e59 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e62 ">Inactive(Barred)</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="section_cpv_dby_1pb__table_m1w_1cy_1pb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Subscription entity lifecycle</span></caption><colgroup><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d378275e157">FromState</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d378275e160">Event</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d378275e163">Actions</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d378275e166">Timer</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d378275e169">ToState</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e157 ">Active</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e160 ">StartCycle</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e163 ">TriggerEventAction(StartCycleEvent of PERIOD)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e166 ">0 seconds</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e169 ">Active</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e157 ">Active</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e160 ">Deactivate</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e163 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e166 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e169 ">Inactive(Barred)</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e157 ">Active</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e160 ">Entity Removed Event</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e163 ">TriggerEventAction(SubscriptionExpiredEvent of PERIOD)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e166 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e169 ">Removed(Final)</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e157 ">Inactive(Barred)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e160 ">Deactivate</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e163 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e166 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e169 ">Active</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e157 ">Inactive(Barred)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e160 ">EntityRemovedEvent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e163 ">TriggerEventAction(SubscriptionExpiredEvent of PERIOD)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e166 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e169 ">Removed(Final)</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e157 ">Removed(Final)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e160 ">Delete</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e163 ">DeleteEntity</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e166 ">24hrs</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e169 ">Removed(Final)</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="section_cpv_dby_1pb__table_xtl_kcy_1pb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Subscription period lifecycle</span></caption><colgroup><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d378275e304">FromState</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d378275e307">Event</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d378275e310">Actions</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d378275e313">Timer</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d378275e316">ToState</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e304 ">Start(Initial)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e307 ">StartCycleEvent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e310 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e313 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e316 ">PreActive(Barred)</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e304 ">PreActive(Barred)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e307 ">ActivateQueuedSubEvent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e310 ">ResetPeriodAction, SendNotificationAction</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e313 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e316 ">Active</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e304 ">Active</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e307 ">SubscriptionExpiredEvent</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e310 ">SendNotificationAction, ActivateQueuedSubAction</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e313 ">EndTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e316 ">Removed(Final)</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e304 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e307 ">ExhaustionEventOnReserveration</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e310 ">ActivateQueuedSubAction</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e313 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e316 ">Active</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e304 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e307 ">ExhaustionEventOnCommit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e310 ">ActivateQueuedSubAction</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e313 "> </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e316 ">Removed(Final)</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e304 ">Removed(Final)</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e307 ">Delete</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e310 ">DeleteEntity</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e313 ">24hrs</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d378275e316 ">Removed(Final)</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

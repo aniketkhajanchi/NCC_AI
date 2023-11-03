@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="AWS introduction" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="Bookmark2" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>AWS introduction</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="Bookmark2">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">AWS introduction</h1>
+<div class="body conbody">
+    <p class="p">Nokia Converged Charging (NCC) is certified for deployment on the Elastic Kubernetes Service
+      (EKS) provided by Amazon Web Services (AWS). The process of getting the application up and
+      running is divided into three parts. First, there are some prerequisites that must be
+      satisfied such as having an AWS account, and some basic networking. Then, <span class="ph">NCC</span> provides
+      terraform scripts that execute and set up the necessary AWS services for the application.
+      Finally, Helm charts deploy the application.</p>
+
+    <p class="p">As part of certification, <span class="ph">NCC</span> has validated that the application can be installed correctly,
+      and that it can handle customer traffic load. There is flexibility in the exact AWS resources
+      that can be used - such as the type of EC2 instance, but recommendations on what was tested
+      are provided.</p>
+
+    <p class="p">This feature is limited to traditional cloud-native network interfaces. The optional SS7
+      module along with multus and SCTP are not supported. Testing was done with the AWS provided
+      Container Network Interface (CNI).</p>
+
+    <p class="p">Redundancy is provided by installing multiple sites, each in an availability zone. The
+      recommendation to use <span class="ph">NCC</span> does not support a single site that spans multiple availability
+      zones.</p>
+
+    <p class="p">The solution is single tenant. While the AWS account and network can be shared, the
+      deployment assumes it can create its own Kubernetes cluster that is not shared.</p>
+
+    <div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span><span class="ph">NCC</span> on AWS</span>
+      
+      <img class="image break" src="../images/aws_install.png" />
+    </div>
+
+  </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

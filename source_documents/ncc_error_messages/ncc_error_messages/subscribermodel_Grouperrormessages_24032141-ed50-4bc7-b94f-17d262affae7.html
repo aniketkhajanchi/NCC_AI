@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Group Error Messages" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id24032141-ed50-4bc7-b94f-17d262affae7" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Group Error Messages</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id24032141-ed50-4bc7-b94f-17d262affae7">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Group Error Messages</h1>
+<div class="body conbody"><p class="p">This table describes the Group error messages that the NCC may generate.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Group error messages</span></caption><colgroup><col style="width:16.666666666666664%" /><col style="width:21.428571428571427%" /><col style="width:30.952380952380953%" /><col style="width:30.952380952380953%" /></colgroup><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:top;" id="d101093e40">Number</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d101093e42">Message</th>
+<th class="entry cellrowborder" style="vertical-align:top;" id="d101093e44">HTTP Error Code</th>
+
+<th class="entry cellrowborder" style="vertical-align:top;" id="d101093e47">Description</th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 "># GROUP_00003</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Cannot change parent.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">GROUP_00003. # Cannot change parent of a group that contains other child groups.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">#GROUP_00005</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Loop in parent hierarchy.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">GROUP_00005. # A group cannot use a child or grandchild group as its parent.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00001</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">User does not exist.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Could not fetch user with id "{0}".</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00002</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Group does not exist.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Could not fetch group with id "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00004</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Parent to self.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">A group cannot be its own parent.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00006</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">User not an administrator of the group.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">User with id "{0}" is not an administrator of the group with id "{1}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00007</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">User already an administrator of the group.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">User with id "{1}" is already an administrator of the group with id "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00008</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Group and Device counter list must be empty .</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Group and Device counter list argument must be empty at time of Group creation.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00009</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Group and Device counter list must be empty or same as in DB at the time of Group Update.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Counter list modification not allowed. Group and Device counter list argument must be empty or same as in DB at time of Group Update.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00010</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Duplicate Counter, counter already in List</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Duplicate Counter not allowed. Counter reference already in List.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00011</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Group Counter not attached to group.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Group Counter "{0}" not attached to Group "{1}", remove failed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00012</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Device Counter not attached to group</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Device Counter "{0}" not attached to Group "{1}", remove failed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00013</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Device and Group Id List modification not allowed.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Device and Group Id list modification not allowed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00014</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Device and Group Id List must be empty.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Device and Group Id List must be empty.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00015</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Group already attached to parent group.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Group is already attached to parent group.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00016</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Moving group to different hierarchy</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">At the moment it is not possible to move groups to a different hierarchy root</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00017</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Group and Device report list must be empty.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Group and Device report list argument must be empty at time of Group creation.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00018</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Report list modification not allowed.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Modification of active group report list or active device group report list is not allowed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00019</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">AVInstance not attached with Group.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">AVInstance not attached with Group.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00020</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">AVInstances does not exist.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">AVInstances does not exist.</td>
+</tr>
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00021</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Duplicate unique identity.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Unique identity of type "{0}" and value "{1}" has already been provisioned.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00022</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Device associated to more than one Group.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Group details cannot be fetched, device "{0}" is associated to more than one group.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00023</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Same Old and New Group Name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Old and new Group Name must be different</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00024</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Null Old and New Group Name.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Old and new Group Name cannot be NULL.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00025</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Invalid group id.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">The id of the group is invalid.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00026</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">No such Group available on LDAP Server.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">No such Group available on LDAP server.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00027</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Group could not be fetched from LDAP Server.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Group could not be fetched from LDAP server.</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00028</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Maximum Subscription Limit : {0} is reached for Group.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Maximum Subscription Limit : {0} is reached for Group.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00029</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">No subscriptions attached to group.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">No subscriptions attached to group with id "{0}".</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00030</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Group cannot be updated.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Request cannot be performed as data is being refreshed. Request needs to be sent again considering updated data.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00031</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Group reload failed.</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Could not reload pending lifecycles for "{0}".</td>
+</tr>
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00032</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Group Patch validation failed due to Notification Profile id not exist.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Request cannot be performed as the Notification Profile provided in request does not exist in DB.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00033</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Child group id list is empty</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Child group id list is empty</td>
+</tr>
+<tr class="row">
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00034</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Child group does not exist</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Child group does not exist "{0}"</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00035</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">group home site mismatch</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Parent group and child group, home site mismatch "{0}","{1}"</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00036</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Child group id is invalid</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Child group ids is invalid "{0}"</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00037</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Parent period invalid dates.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Parent period end time cannot be less than start or dates in minus.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00038</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">History List exceeds maximum number.</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">History List is exceeding the maximum number of history allowed.</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00039</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Child group ID is same as parent ID</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Both Child group ids and parent ID cannot be same "{0}"</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00040</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Device does not exist</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Could not fetch device with ID "{0}".</td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00041</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Delete global group failed</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Can not delete global group {0} which is attached the child devices {1}</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00042</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Delete group failed</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Can not delete group {0} due to child group attached</td>
+</tr>
+
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e40 ">GROUP_00043</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e42 ">Detach group device is ongoing</td>
+
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e44 ">500</td>
+<td class="entry cellrowborder" style="vertical-align:top;" headers="d101093e47 ">Detach device job is ongoing for Group {0}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="footer"><hr /><p>Error Messages • P556766-DN1000055003-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,1012 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Virtual policy counters" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9YZ-09126-UG01-PCZZA-SP1-vpc" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Virtual policy counters</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9YZ-09126-UG01-PCZZA-SP1-vpc">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Virtual policy counters</h1>
+<div class="body conbody">
+        <div class="section">
+            <p class="p">A virtual policy counter (VPC) is a policy counter (PC) that neither exists in NCC
+                nor is attached with a device. VPCs are supported for multiple Sy or N28 interfaces.
+                Following information must be considered for VPCs:</p>
+
+            <ul class="ul">
+                <li class="li">
+                    <p class="p">The execution of <samp class="ph systemoutput">SY.Send-SNR</samp> action is defined
+                        in the threshold with the <span class="ph uicontrol">OCS Policy Threshold</span>
+                        parameter set to <var class="keyword varname">True</var>, and attached to a bucket or
+                        counter.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">The VPCs are mapped with buckets, counters, and subscription lifecycles.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">The VPCs are attached to multiple buckets, counters, and lifecycles.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">The policy buckets are included in all Sy or N28 messages, similar to that of
+                        PCs.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">An SNR is sent when VPC or PC status is triggered by the provisioning
+                        interface.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">All PCs are included in SNR or SLA message irrespective of the state
+                        change.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Some specific policy states are specified when a PC or VPC is detached from
+                        the device based on the application preference <span class="ph uicontrol">Removed Signalling
+                            State Value</span>.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">The behavior of VPCs is not tested for group configuration and counters.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">VPCs are not supported for aggregate view and accounts.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">A bucket is treated as a policy-type bucket when it has a threshold defined,
+                        with the <span class="ph uicontrol">OCS Policy Threshold</span> parameter set to
+                            <var class="keyword varname">True</var> available in threshold.</p>
+
+                </li>
+
+            </ul>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> To send SNR in provisioning, provide rule
+                    <var class="keyword varname">THRESHOLD.Threshold-Trigger-Type=ThresholdTriggerType_PROVISION</var>
+                in threshold. This action should be present with <em class="ph i">SY.Send-SNR</em> actions. Also,
+                VPC feature should be enabled (to know how to enable/disable VPC feature, refer to
+                the application preference <em class="ph i">Virtual Policy Counter Support</em>). <p class="p">Rule example:
+                        <var class="keyword varname">THRESHOLD.Threshold-Trigger-Type=ThresholdTriggerType_PROVISION and
+                        SY.Send-SNR= "HIGH"</var>
+                </p>
+</div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Application preferences</h2>
+            
+            <p class="p">The following application preferences are available for VPCs (see
+                    <a class="xref" href="system_pref.html">Charging application preferences</a> for definitions).</p>
+
+            <ul class="ul">
+                <li class="li">
+                    <p class="p">Virtual Policy Counter Support</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Default Signalling State Value</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Include All Policy Counters in SNR</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Aggregate Counter Priority</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Removed Signalling State Value</p>
+
+                </li>
+
+            </ul>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Once the status of flag <em class="ph i">Virtual Policy Counter Support</em> is changed from
+                    <var class="keyword varname">ON</var> to <var class="keyword varname">OFF</var> or vice versa, then the new
+                behavior is be more consistent on the new subscription taken. For older
+                subscriptions, policy counter name/status over Sy interface may be slightly
+                inconsistent because of the current information for the old instances in
+                database.</div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">VPC support in Send-SNR action for threshold</h2>
+            
+            <p class="p">The <var class="keyword varname">Send-SNR</var> action in threshold is defined with pair of
+                parameters, for example, <var class="keyword varname">Sy.Send-SNR = “VPC, State”</var>. The first
+                parameter is the VPC name and the second parameter is the Policy state. Although
+                there can be multiple pairs of parameters in the <var class="keyword varname">Send-SNR</var> action,
+                only the first pair is considered. For example, if <var class="keyword varname">Sy.Send-SNR = “VPC1,
+                    State1;VPC2,State2;VPC3,State3”</var> is defined, then only <var class="keyword varname">VPC1,
+                    State1</var> is considered.</p>
+
+            <p class="p">In the <var class="keyword varname">Send-SNR</var> action, the first parameter in a pair is optional.
+                If only one parameter is provided, then it is considered as the state. In this
+                scenario, the Bucket name or Counter name is sent as the policy counter ID (PCID) to
+                the PCRF over Sy/N28 interface.</p>
+
+            <p class="p">See the following scenarios.</p>
+
+            <p class="p">
+                <strong class="ph b">Scenario 1:</strong>
+                <em class="ph i">Virtual Policy Counter Support</em> flag is <var class="keyword varname">ON</var>
+                and Bundle is subscribed:</p>
+
+            <ul class="ul">
+                <li class="li">
+                    <p class="p">If threshold action is configured on Bucket/Counter as
+                            <samp class="ph systemoutput">SY.Send-SNR="VPC,High"</samp> then in SLA/SNR,
+                        policy counter name will be <var class="keyword varname">VPC</var> and policy counter state
+                        will be <var class="keyword varname">High</var>.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">If threshold action is configured like
+                            <samp class="ph systemoutput">SY.Send-SNR="High"</samp> then in SLA/SNR, policy
+                        counter name will be <var class="keyword varname">Counter/Bucket Definition name</var> and
+                        policy counter state will be <var class="keyword varname">High</var>.</p>
+
+                </li>
+
+            </ul>
+
+            <p class="p">
+                <strong class="ph b">Scenario 2:</strong>
+                <em class="ph i">Virtual Policy Counter Support</em> flag is <var class="keyword varname">OFF</var>
+                and Bundle is subscribed:</p>
+
+            <ul class="ul">
+                <li class="li">
+                    <p class="p">If threshold action is configured as
+                            <samp class="ph systemoutput">SY.Send-SNR="VPC,High"</samp> then in SLA/SNR,
+                        policy counter name will be <var class="keyword varname">Counter Definition name</var> and
+                        policy counter state will be <var class="keyword varname">VPC,High</var>.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">If threshold action is configured on counter as
+                            <var class="keyword varname">SY.Send-SNR="High"</var> then in SLA/SNR, policy counter
+                        name will be <var class="keyword varname">Counter Definition name</var> and policy counter
+                        state will be <var class="keyword varname">High</var>.</p>
+
+                </li>
+
+            </ul>
+
+            <div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Example: VPC in Send-SNR action</span>
+                
+                
+                <img class="image break" src="../images/vpcthrshold_default.png" height="259" width="661" />
+            </div>
+
+            <p class="p">In this example, as the threshold can be attached to multiple Bucket(s)/Counter(s),
+                VPC1 can be shared by multiple Bucket(s)/Counter(s). When the threshold is executed,
+                the PC name and state provided in the <var class="keyword varname">Send-SNR</var> action are sent to
+                the PCRF over Sy/N28 interface in SLA and SNR.</p>
+
+            <p class="p">A Bucket/Counter is linked to only one PCID. If multiple PCIDs are configured in
+                different <var class="keyword varname">Send-SNR</var> actions in the threshold linked to one
+                Bucket/Counter, then the first occurrence of the PCID is considered as the PCID for
+                that Bucket/Counter.</p>
+
+        </div>
+
+        <div class="section" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__sortL"><h2 class="title sectiontitle">Sorting logic of VPCs</h2>
+            
+            <p class="p">A sorting logic resolves the conflict wherein multiple VPCs with the same name become
+                eligible to be sent to the PCRF. If multiple resources are updated during a data
+                session through provisioning or lifecycle, then it leads to execution of linked
+                thresholds having <samp class="ph systemoutput">Send-SNY</samp> with the same VPC name.</p>
+
+            <p class="p">The sorting logic is enabled if the application preference <em class="ph i">Virtual Policy
+                    Counter Support</em> is set to <var class="keyword varname">BUCKET_COUNTER</var>. Rules to
+                follow at conflict situation is as below</p>
+
+            <p class="p">The priority is applicable for both SLR and SNR and for both Sy and N28
+                interfaces.</p>
+
+            
+            <ol class="ol">
+                <li class="li">
+                    <p class="p">A PC with an <var class="keyword varname">active</var> subscription has higher preference
+                        over a PC with <var class="keyword varname">barred</var> subscription.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">If a PC is associated with multiple <var class="keyword varname">active</var> subscriptions
+                        or all <var class="keyword varname">barred</var> subscriptions then:</p>
+
+                    
+                    <ul class="ul">
+                        <li class="li">
+                            <p class="p">The PC linked to non-exhausted bucket or counter is selected.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">If all buckets or counters are exhausted, then the PC associated with
+                                a bucket or counter having the latest exhaustion time is
+                                selected.</p>
+
+                        </li>
+
+                    </ul>
+
+                    <div class="note" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__note_ec1_kgx_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Exhaustion of bucket and counter is derived using
+                        the following rule:<ul class="ul" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__ul_fc1_kgx_p5b">
+                            <li class="li">
+                                <p class="p">When the bucket balance reaches zero, it is considered as
+                                    exhausted and the time when the exhaustion happens becomes the
+                                    exhaustion time of the bucket.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">When a counter reaches a value that triggers the threshold
+                                    action, the counter is said to be exhausted and the time when
+                                    exhaustion happens becomes the exhaustion time of the
+                                    counter.</p>
+
+                                <p class="p">If the <samp class="ph systemoutput">Notification-Reject</samp> or
+                                        <samp class="ph systemoutput">Reject</samp> action is triggered when
+                                    a counter reaches the threshold value, then this is considered
+                                    as a hard-stop scenario for counter.</p>
+
+                            </li>
+
+                        </ul>
+</div>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">If there are multiple non-exhausted buckets or counters OR multiple buckets
+                        or counters with the same exhaustion time, then the PC linked with the
+                        highest charging service priority is selected. For aggregate counters,
+                        priority is based on the application preference <em class="ph i">Aggregate Counter
+                            Priority</em>.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">If all above factors are same for multiple buckets or counters, then the
+                        following logic is followed:</p>
+
+                    <table cellpadding="4" cellspacing="0" summary="" class="table" width="90%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d152216e450">Application preference</th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d152216e453">Value</th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d152216e456">Selection</th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d152216e450 "> CS Selection Order</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e453 ">CREATION TIME</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e456 ">The PC linked to the earliest subscription creation time
+                                        is selected.</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e453 ">END TIME</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e456 ">The PC linked to earliest subscription expiry time is
+                                        selected.</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">If there is still a conflict, the first PC in the conflict list is
+                        picked.</p>
+
+                </li>
+
+            </ol>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> An SNR is not sent if there is no change is policy state. For example, if
+                    signalling state for a PC is <var class="keyword varname">High</var> and on expiry of the
+                    current bucket there is another bucket for use with PC status
+                        <var class="keyword varname">High</var>, then no SNR or notification is sent.</div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Sending SNR via provisioning commands</h2>
+            
+            <p class="p">If values of Policy Buckets or Counters are updated via provisioning command and the
+                new value changes the Policy state of a resource, then SNR is sent to PCRF as
+                defined in the Send-SNR configuration of threshold. In order to execute threshold
+                over the provisioning interface, the configuration described in the following figure
+                is used.</p>
+
+            <div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Rule configuration for SNR via provisioning command</span>
+                
+                
+                <img class="image break" src="../images/sendsnrprovcomm_default.png" />
+            </div>
+
+            <p class="p">This also applies when a new subscription is attached to the Device and it has some
+                Policy Bucket(s) and/or Counter(s) defined.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">TCP/IP notification parameters</h2>
+            
+            <p class="p">This section defines the configuration for sending a TCP/IP notification when a SNA
+                is received.</p>
+
+            <p class="p">The <var class="keyword varname">SNA_MANAGEMENT</var> trigger gets evaluated when an SNA is received,
+                and SySession is successfully updated in the database, thereby indicating a change
+                in policy counter status. If SNA is not received, then notification is not triggered
+                for that call. However, in the next call, a notification is triggered if SNA is
+                received. The <var class="keyword varname">SNA_MANAGEMENT</var> source context in the
+                    <var class="keyword varname">SNA_MANAGEMENT</var> trigger is used to send notification
+                parameters. These parameters can be used in TCP/IP notifications sent using NS.</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                
+                <ul class="ul">
+                    <li class="li">It is recommended to use this trigger if there is a need to avoid
+                        notification of Policy state change (as there is no Policy state change). In
+                        such case, it is not recommended to configure notification for Policy state
+                        change in individual Bucket/Counter threshold; rather it should be
+                        configured in the <var class="keyword varname">SNA_MANAGEMENT</var> trigger.</li>
+
+                    <li class="li">In NS, custom behavior in Notification Template must be set as
+                            <var class="keyword varname">DVS</var>.</li>
+
+                </ul>
+
+            </div>
+
+            <div class="sectiondiv">
+                <p class="p"><strong class="ph b">Application preference</strong></p>
+
+                <p class="p">For the notification to be sent, the application preference <var class="keyword varname">Virtual
+                        Policy Counter Support</var> must be set to
+                        <var class="keyword varname">BUCKET_COUNTER</var>. </p>
+
+            </div>
+            <div class="sectiondiv">
+                <p class="p"><strong class="ph b">Rule configuration</strong></p>
+
+                <p class="p">The following figure presents a sample rule for configuring SNA
+                    notifications.</p>
+
+                <div class="fig fignone" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__sna_notif"><span class="figcap"><span class="fig--title-label">Figure: </span>Example: Rule configuration for SNA notification</span>
+                    
+                    
+                    <img class="image break" src="../images/sna-notiff-vpc_default.png" height="217" width="518" />
+                </div>
+
+                <p class="p">Two rule variables <var class="keyword varname">Current-SySession-Index</var> and
+                        <var class="keyword varname">Total-SySession-Count</var> are available under
+                        <var class="keyword varname">SNA_MANAGEMNT</var> source context. These are used in rule
+                    condition to configure the number of notifications sent in case of multiple Sy
+                    sessions. For sample usage of <var class="keyword varname">Current-SySession-Index</var>, see
+                        <a class="xref" href="vpc.html#id9YZ-09126-UG01-PCZZA-SP1-vpc__sna_notif">Example: Rule configuration for SNA notification</a>.</p>
+
+            </div>
+            <div class="sectiondiv">
+                <p class="p"><strong class="ph b">TCP/IP notification variables and headers</strong></p>
+
+                <p class="p">The parameters described in the following table are available in
+                        <var class="keyword varname">SNA_MANAGEMNT</var> for notification.</p>
+
+                <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>TCP/IP notification variables for Send-SNA</span></caption><colgroup><col style="width:19.13793103448276%" /><col style="width:42.1551724137931%" /><col style="width:8.620689655172415%" /><col style="width:30.086206896551726%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d152216e650">Name</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d152216e653">Description</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d152216e656">Type</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d152216e659">Example</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e650 ">APNRTRCOS</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e653 ">Indicates the name of the charging service. Create a custom
+                                    data dictionary with ID as Segment and content type as DEVICE.
+                                    Attach custom data in device with key as Segment. Priority of
+                                    custom data is higher.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e656 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e659 ">COS = SNA_MANAGEMENT.Class-Of-Service</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e650 ">MDN</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e653 ">Indicates the MSISDN value or device that triggers the
+                                    notification. The variable is the E.164 number configured in the
+                                    device.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e656 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e659 ">MDN = SPR_DEVICE.E164</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e650 ">ACT</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e653 ">Indicates the Account ID of subscription (for
+                                    Bucket)/Account ID associated with first subscription (for
+                                    Counter). Create a custom data dictionary with ID as
+                                    BillingAccountID and content type as DEVICE. Attach custom data
+                                    in device with key as BillingAccountID. Priority of custom data
+                                    is higher.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e656 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e659 ">APNRTRACT = SNA_MANAGEMENT.Billing-Account-Id</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e650 ">TIM</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e653 ">Indicates the Unix timestamp when the notification is
+                                    generated. This is the current time period in seconds.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e656 ">Long</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e659 ">TIM = SNA_MANAGEMENT.Unix-Timestamp</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e650 ">T</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e653 ">Indicates the time when the notification is generated for a
+                                    Bucket/Counter. It refers to the last three digits or
+                                    milliseconds of the Unix timestamp.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e656 ">Long</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e659 ">T = SNA_MANAGEMENT. Unix-Timestamp-Ms</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e650 ">CID</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e653 ">Indicates the discount ID. It is the identifier of the
+                                    Bucket/Counter for which notification is sent.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e656 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e659 ">CID = SNA_MANAGEMENT. Discount-Id</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e650 ">PPCS</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e653 ">Indicates pre-event Policy Bucket/Counter status.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e656 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e659 ">PPCS = SNA_MANAGEMENT.Pre-Policy-Counter-Status</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e650 ">NPCS</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e653 ">Indicates post-event Policy Bucket/Counter status.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e656 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e659 ">NPCS  = SNA_MANAGEMENT.Post-Policy-Counter-Status</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e650 ">PCID</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e653 ">Indicates policy counter ID. For non-virtual policy
+                                    counters, it is same as discount ID.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e656 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e659 ">PCID = SNA_MANAGEMENT.Policy-Counter-Id</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+                <ol class="ol">
+                    <li class="li">All variables are optional.</li>
+
+                </ol>
+
+                <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Header fields for sending TCP/IP notification</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d152216e829">
+                                    <p class="p">Name</p>
+
+                             </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d152216e835">
+                                    <p class="p">Description</p>
+
+                             </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d152216e841">
+                                    <p class="p">Example</p>
+
+                             </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e829 ">MASID</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e835 ">This variable indicates the identifier of the physical
+                                    system, such as system ID. This is the NCC site ID that
+                                    generates the notification.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e841 ">MASID = SNA_MANAGEMENT.Site-ID</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e829 ">SPAID</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e835 ">This variable indicates the identifier of the application
+                                    fixed against the NCC node.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e841 ">SPAID = SNA_MANAGEMENT.Application-ID</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e829 ">HOSTID</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e835 ">This variable indicates the identifier of the host.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e841 ">HOSTID = SNA_MANAGEMENT.Host-ID</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e829 ">CLIENTID</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e835 ">This variable indicates the client identifier within the
+                                        host.<div class="note" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__note_png_vrp_ssb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> As there is no separate
+                                        client ID in NCC, the Client ID has the same value as the
+                                        SPAID. </div>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e841 ">CLIENTID = SNA_MANAGEMENT.Application-ID</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+                <ol class="ol">
+                    <li class="li">All fields are required.</li>
+
+                    <li class="li">
+                        <p class="p">All fields are of <var class="keyword varname">string</var> type.</p>
+
+                    </li>
+
+                </ol>
+
+            </div>
+        </div>
+
+        <div class="section" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__section_szn_zjz_4sb"><h2 class="title sectiontitle">Enabling Policy-Counter-Status-Change notification</h2>
+            
+            <p class="p">When the policy counter status changes during an active Sy session, a notification is
+                sent using the SNA_MANAGEMENT trigger. However, if the Sy session is not present or
+                SNA is not received, then the notification is not sent. </p>
+
+            <div class="p">This feature provides the functionality to send a notification upon the policy
+                counter status change, regardless of the Sy session. <div class="note" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__note_v2d_pb1_psb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The
+                        <em class="ph i">Policy-Counter-Status-Change</em> notification is independent of Sy
+                    session. </div>
+</div>
+
+            <div class="p">This feature is applicable only to the following types of counters:<ul class="ul" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__ul_urk_pyz_4sb">
+                    <li class="li">Policy-counters (device, subscription, group, multi-bundle, and so on)</li>
+
+                    <li class="li">Virtual Policy Counters based on counters</li>
+
+                    <li class="li">Virtual Policy Counters based on buckets</li>
+
+                    <li class="li">Lifecycle Policy Counters</li>
+
+                </ul>
+<div class="note" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__note_mn2_2zz_4sb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                    <ul class="ul" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__ul_y5w_fzz_4sb">
+                        <li class="li">This feature is not applicable to location-based policy counters and TOD
+                            policy counters.</li>
+
+                        <li class="li">No notification exchange or trigger execution for SLR/SLA.</li>
+
+                    </ul>
+
+                </div>
+</div>
+
+            <div class="sectiondiv"><strong class="ph b">Configuration</strong><p class="p">For details on the attributes to configure the
+                        <em class="ph i">Policy-Counter-Status-Change</em> notification, see <a class="xref" href="policy_counter_status_change_source_context.html#policy_counter_status_change_source_context__table_ssy_txy_4sb">POLICY_COUNTER_STATUS_CHANGE source context</a></p>
+<div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Application preference</strong></p>
+
+                    <div class="p">Configure the following ME application preference to enable the
+                            <em class="ph i">Policy-Counter-Status-Change</em> notification:<ul class="ul">
+                            <li class="li">
+                                <p class="p">Set <em class="ph i">Enable SNR throttling and Keep-Alive</em> to
+                                        <var class="keyword varname">true</var>.</p>
+
+                            </li>
+
+                        </ul>
+</div>
+
+                </div><div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Rule configuration</strong></p>
+
+                    <div class="p">The following figures present sample rules for configuring
+                            <em class="ph i">Policy-Counter-Status-Change</em> notifications based on the
+                            <em class="ph i">Trigger-Source</em> attribute.<div class="note" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__note_ebx_p21_psb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> <em class="ph i">Trigger-Source</em> attribute specifies the event (call,
+                            lifecycle, and provisioning) which triggers the
+                                <em class="ph i">Policy-Counter-Status-Change</em> notification. </div>
+<ul class="ul" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__ul_av3_nd1_psb">
+                            <li class="li">If <em class="ph i">Trigger-Source</em> is <var class="keyword varname">CALL</var>:<img class="image break" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__image_ubb_fg1_psb" height="288" src="../images/policy_counter_notifi_call1.png" width="576" /></li>
+
+                            <li class="li">If <em class="ph i">Trigger-Source</em> is <var class="keyword varname">PROVISIONING</var>:<img class="image break" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__image_vx2_gg1_psb" height="288" src="../images/policy_counter_notifi_provisioning1.png" width="576" /></li>
+
+                            <li class="li">If <em class="ph i">Trigger-Source</em> is <var class="keyword varname">LIFECYCLE</var>:<img class="image break" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__image_wzf_hg1_psb" height="288" src="../images/policy_counter_notifi_lifecycle1.png" width="576" /></li>
+
+                        </ul>
+</div>
+
+                </div></div>
+            <div class="sectiondiv"><strong class="ph b"><em class="ph i">Policy-Counter-Status-Change</em> notification variables</strong><p class="p">The
+                    parameters described in the following table are available in
+                        <var class="keyword varname">POLICY_COUNTER_STATUS_CHANGE</var> trigger for
+                    notification.</p>
+<table cellpadding="4" cellspacing="0" summary="" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__table_skl_nfp_ssb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span><em class="ph i">Policy-Counter-Status-Change</em> notification variables</span></caption><colgroup><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d152216e1090">Name</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d152216e1093">Description</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d152216e1096">Type</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d152216e1099">Example</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1090 ">COS</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1093 ">Indicates the name of the charging service. Create a custom
+                                    data dictionary with ID as <em class="ph i">Segment</em> and content type as
+                                    DEVICE. Attach custom data in device with key as <em class="ph i">Segment</em>.
+                                    Priority of custom data is higher.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1096 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1099 ">COS = POLICY_COUNTER_STATUS_CHANGE.Class-Of-Service</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1090 ">TIM</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1093 ">
+                                    <p class="p">Indicates the Unix timestamp when the notification is
+                                        generated. This is the current time period in seconds.</p>
+
+                             </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1096 ">Long</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1099 ">TIM = POLICY_COUNTER_STATUS_CHANGE.Unix-Timestamp</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1090 ">T</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1093 ">
+                                    <p class="p">Indicates the time when the notification is generated for a
+                                        Bucket/Counter. It refers to the last three digits or
+                                        milliseconds of the Unix timestamp.</p>
+
+                             </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1096 ">Long</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1099 ">T = POLICY_COUNTER_STATUS_CHANGE.Unix-Timestamp-Ms</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1090 ">DISC</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1093 ">Indicates the bucket or counter definition Id.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1096 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1099 ">DISC = POLICY_COUNTER_STATUS_CHANGE.Discount-Id</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1090 ">BUN</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1093 ">Indicates the bundle name (without MVNO) corresponding to the
+                                    subscription that is present in the bucket, or counter.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1096 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1099 ">BUN = POLICY_COUNTER_STATUS_CHANGE.Bundle-Name</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1090 ">CHS</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1093 ">Indicates the charging service name (without MVNO) that is
+                                    present in the bucket, or counter.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1096 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1099 ">CHS= POLICY_COUNTER_STATUS_CHANGE.Charging-Service</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1090 ">USU</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1093 ">Indicates the Used Service Units corresponding to a single
+                                        MSCC.<div class="note" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__note_gqv_n2z_4sb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This attribute is present
+                                        only for CALL scenario (that is, when the value of
+                                            <em class="ph i">Trigger-Source</em> is
+                                    <var class="keyword varname">CALL</var>.</div>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1096 ">Big decimal</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1099 ">USU =
+                                    POLICY_COUNTER_STATUS_CHANGE.Usage-From-Last-CCR</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1090 ">BACT</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1093 ">Indicates the Billing Account Id as defined in the CustomData
+                                    Dictionary of Device.<p class="p">If <em class="ph i">BillingAccountID</em> custom data
+                                        is not present in the device, then this attribute contains
+                                        the account Id.</p>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1096 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1099 ">BACT =
+                                    POLICY_COUNTER_STATUS_CHANGE.Billing-Account-Id</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1090 ">ACT</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1093 ">
+                                    <p class="p">Indicates the Account ID of subscription (for Bucket)/Account
+                                        ID associated with first subscription (for Counter). Create
+                                        a custom data dictionary with ID as <em class="ph i">BillingAccountID</em>
+                                        and content type as DEVICE. Attach custom data in device
+                                        with key as <em class="ph i">BillingAccountID</em>. Priority of custom data
+                                        is higher.</p>
+
+                             </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1096 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1099 ">ACT = POLICY_COUNTER_STATUS_CHANGE.Billing-Account-Id</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1090 ">NPCS</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1093 ">
+                                    <p class="p">Indicates post-event Policy Bucket/Counter status.</p>
+
+                             </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1096 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1099 ">NPCS =
+                                    POLICY_COUNTER_STATUS_CHANGE.Post-Policy-Counter-Status</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1090 ">PCID</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1093 ">
+                                    <p class="p">Indicates policy counter ID. For non-virtual policy counters,
+                                        it is same as discount ID.</p>
+
+                             </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1096 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1099 ">PCID = POLICY_COUNTER_STATUS_CHANGE.
+                                    Policy-Counter-Id</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1090 ">PPCS</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1093 ">
+                                    <p class="p">Indicates pre-event Policy Bucket/Counter status.</p>
+
+                             </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1096 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1099 ">PPCS = POLICY_COUNTER_STATUS_CHANGE.
+                                    Pre-Policy-Counter-Status</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1090 ">MDN</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1093 ">
+                                    <p class="p">Indicates the MSISDN value or device that triggers the
+                                        notification. The variable is the E.164 number configured in
+                                        the device.</p>
+
+                             </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1096 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1099 ">MDN = SPR_DEVICE.E164</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1090 ">DVI</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1093 ">Indicates Id of a device.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1096 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1099 ">DVI = SPR_DEVICE.Device-Id</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1090 ">TS</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1093 ">It specifies the event which triggers this notification.<p class="p">It
+                                        has the following possible values: </p>
+<ul class="ul" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__ul_wmc_y2z_4sb">
+                                        <li class="li"><var class="keyword varname">CALL</var></li>
+
+                                        <li class="li"><var class="keyword varname">LIFECYCLE</var></li>
+
+                                        <li class="li"><var class="keyword varname">PROVISIONING</var></li>
+
+                                    </ul>
+</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1096 ">String</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d152216e1099 ">TS = POLICY_COUNTER_STATUS_CHANGE.Trigger-Source</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+<div class="note" id="id9YZ-09126-UG01-PCZZA-SP1-vpc__note_tyf_dpp_ssb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> All fields are optional.</div>
+</div>
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Lifecycle changes for different entities</h2>
+            
+            <p class="p">When VPC is enabled, there are some changes in the <var class="keyword varname">Send-SNR</var> event
+                via lifecycle based on entity type.</p>
+
+            <div class="sectiondiv">
+                <p class="p"><strong class="ph b">Device</strong></p>
+
+                <p class="p">When lifecycle is configured for a Device, in addition to policy counters, it
+                    also looks for Policy Buckets for the Device.</p>
+
+            </div>
+            <div class="sectiondiv">
+                <p class="p"><strong class="ph b">Subscription</strong></p>
+
+                <p class="p">When lifecycle is configured for a Subscriptions, in addition to Subscription
+                    policy counter, it also looks for PCs/VPCs/Policy Buckets attached to the Device
+                    and its other Subscription if the Subscription is of Device type. If
+                    Subscription is of group type, it also looks policy counters and policy Buckets
+                    for other subscriptions of the Groups.</p>
+
+            </div>
+            <div class="sectiondiv">
+                <p class="p"><strong class="ph b">Account</strong></p>
+
+                <p class="p">When lifecycle is configured for an Account, in addition to policy counters
+                    related to Accounts, it also matches Policy Buckets/VPCs attached to all
+                    subscriptions of Devices and all subscriptions of Groups linked to Accounts.</p>
+
+            </div>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

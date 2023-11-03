@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Reload to resynchronize data" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="reload_to_re_synchronize_data" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Reload to resynchronize data</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="reload_to_re_synchronize_data">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Reload to resynchronize data</h1>
+<div class="body conbody">
+        <p class="p">If required, perform a reload to resynchronize data on the recovering site. This is
+            required to provision leftover data on the ME, which includes some local data on the ME
+            that resides in the dsclocal namespace of the ME database. Also, there may be some data
+            that is updated/added/deleted after a scheduled backup of the ME, and that data will not
+            be recovered by restore and XDR synchronization from the mate site. Instead, that data
+            will be recovered on the ME by reloading the ME from the healthy SM.</p>
+
+        <div class="p">Perform these steps to reload and resynchronize data on the recovering site. <ol class="ol" id="reload_to_re_synchronize_data__ol_jqy_ph3_bqb">
+                <li class="li">In the <span class="ph">NCC</span> GUI, choose <strong class="ph b">Global
+                    Configurations</strong>, then <strong class="ph b">Managed Elements</strong>.</li>
+
+                <li class="li">Hover the cursor over the recovering ME in the <strong class="ph b">Managed Element List</strong> and
+                    click the <strong class="ph b">Reload ME</strong> icon. A dialog box with the following message should
+                    appear: <strong class="ph b">Select the status to reload the ME</strong>.</li>
+
+                <li class="li">In the aforementioned dialog box, select the <strong class="ph b">All</strong> radio button. This
+                    action forces updates from the SM to an ME for the dsclocal namespace and
+                    corrects any failed transactions</li>
+
+            </ol>
+
+        </div>
+
+        <div class="note" id="reload_to_re_synchronize_data__note_wqx_yw3_bqb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> In case of failure and partial status, retry the above three
+            points.</div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Subscriber healing and orphan lookup tables audit" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="subscriber_healing_and_orphan_lookup_tables_audit" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Subscriber healing and orphan lookup tables audit</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="subscriber_healing_and_orphan_lookup_tables_audit">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Subscriber healing and orphan lookup tables audit</h1>
+<div class="body conbody">
+        <p class="p">The <span class="keyword option">-k</span> option in the db-list tool is used to provide an input file for
+            finding inconsistency (<span class="keyword option">-i</span> option) and healing (<span class="keyword option">-a</span>
+            option) for subscribers of a specific club.</p>
+
+        <p class="p">For each line of the input file, club IDs are fetched based on the input parameters, then
+            a consistency check and heal (if enabled) is performed base on the club ID result.</p>
+
+        <div class="note notice"><div class="noticetitle"><img src="../../web/css/../images/notice.svg" title="notice-icon" class="noteicon" />Notice:</div> Consult Nokia support before you use the <span class="keyword option">-a</span>
+            option.</div>
+        <p class="p">If you use the <span class="keyword option">-a report</span> option when running this tool, the tool only
+            performs a consistency check.</p>
+
+        <p class="p">If you use the <span class="keyword option">-a heal</span> option when running this tool, then based on the
+            input parameters, the tool performs these actions:</p>
+
+        <ul class="ul">
+            <li class="li">If only one club ID is found in the InfrequentlyChangingData set and there is one
+                record present with this club ID as the primary key, then a consistency check and
+                healing (if enabled) are processed for this InfrequentlyChangingData record.</li>
+
+            <li class="li">If only one club ID is found and InfrequentlyChangingData does not exist for this
+                club ID or InfrequentlyChangingData for this club ID exists but no entities (device
+                or account or group or user) exist in this InfrequentlyChangingData, then orphan
+                lookup tables that are related to parameters in the input file are deleted.</li>
+
+            <li class="li">If two or more club IDs are found and InfrequentlyChangingData does not exist for
+                all club IDs or InfrequentlyChangingData for these club IDs exists and no entities
+                (device or account or group or user) are present in the InfrequentlyChangingData
+                set: <ul class="ul">
+                    <li class="li">If you used the <code class="ph codeph">-s primary</code> option when running the tool, if
+                        all orphan lookup tables belong to the local system, then orphan lookup
+                        tables related to parameters in input file are deleted. If one or more club
+                        IDs belong to a remote system, then only a consistency report is generated
+                        and no more actions are taken.</li>
+
+                    <li class="li">If you did not use the <code class="ph codeph">-s</code> option or used the <code class="ph codeph">-s
+                            all</code> option when running the tool, then all orphan lookup tables
+                        related to input parameters are deleted, no matter if they are local or
+                        remote. </li>
+
+                </ul>
+</li>
+
+        </ul>
+
+        <div class="section"><h2 class="title sectiontitle">Configuration file</h2>
+            
+            <p class="p">The configuration file is located in the
+                    <span class="ph filepath">/opt/tpa/bin/db-list.properties</span> directory.</p>
+
+            <p class="p">This properties file contains lookup table names to be healed for a corresponding
+                subscriber. Tables that are not included in this file, are not be healed.</p>
+
+            <div class="p">These three parameters are included in the file: <ul class="ul" id="subscriber_healing_and_orphan_lookup_tables_audit__ul_vpx_zqk_kyb">
+                    <li class="li">ATTRIBUTE_DELIMITER - used to separate different types of IDs (the default
+                        value is a comma). It is supported to find inconsistent (<span class="keyword option">-i</span>
+                        option) and heal (<span class="keyword option">-a</span> option) data according to parameters
+                        included in the CSV file (<span class="keyword option">-k</span> option).</li>
+
+                    <li class="li">ATTRIBUTE_VALUE_DELIMITER - used to separate different values of an ID (the
+                        default is two colons). You should make sure these delimiters are not used
+                        in names or IDs and should not include the equals sign. This is an example
+                        with default values:
+                        <pre class="pre codeblock"><code>Clubid,group,group-id,group-name,parent-group-id,administrator-id-1::administrator-id-2</code></pre></li>
+
+                    <li class="li">ACCOUNT_BALANCE_VALUE - When healing inconsistent data for an account, if
+                        InfrequentlyChangingData is present but DD is not present or the account
+                        balance is missing from its DD, the tool creates an account balance in DD in
+                        the same club of the account's InfrequentlyChangingData and sets the balance
+                        to the value set by the ACCOUNT_BALANCE_VALUE parameter. The default value
+                        is 0. Only positive values are supported. An error is thrown if a negative
+                        value is provided. If this parameter is not present in the
+                            <span class="ph filepath">db-list.properties</span> file, no healing is done.</li>
+
+                </ul>
+</div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">input file format</h2>
+            
+            <div class="p">An entry for each subscriber-entity should be given in the input file. For
+                subscriber-entities, the first four entries are common. The remaining entries are
+                subscriber-entity specific. For example: <pre class="pre codeblock"><code>ClubId,subscriber-type,Subscriber-id, subscriber-name,..,..,</code></pre>
+                <ul class="ul">
+                    <li class="li">Club id: should be numeric</li>
+
+                    <li class="li">Subscriber-type: device/group/account/user</li>
+
+                    <li class="li">Subscriber-id: ID of the subscriber</li>
+
+                    <li class="li">subscriber-name: name of the subscriber-entity</li>
+
+                </ul>
+</div>
+
+            <div class="p">For a Device entity, the input file entry should be in this format:
+                <pre class="pre codeblock"><code>Clubid,device,device-id,device-name,e164-1::e164-2,imsi-1::imsi-2,msisdn-1::msisdn-2,nai-1::nai-2,sipuri-1::sipuri-2,
+privateid-1::privateid-2,externalid-1::externalid-2,group-id-1::group-id-2,user-Id</code></pre></div>
+
+            <div class="p">For a Group entity, the input file entry should be in this format:
+                <pre class="pre codeblock"><code>Clubid,group,group-id,group-name,parent-group-id,administrator-id-1::administrator-id-2</code></pre></div>
+
+            <div class="p">For an Account entity, the input file entry should be in this format:
+                <pre class="pre codeblock"><code>Clubid,account,account-id,account-name,user-id-1::user-id-2</code></pre></div>
+
+            <div class="p">For a User entity, the input file entry should be in this format:
+                <pre class="pre codeblock"><code>Clubid,user,user-id,user-name,email-id-1::email-id-2,phone-number-1::phone-number-2,facebook-id</code></pre></div>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> <ul class="ul">
+                    <li class="li">If the <span class="keyword option">-i</span> option argument does not match with the
+                        subscriber-type of the input file, validation failure information is
+                        included in the CSV output and no more action is processed. For example: if
+                            <code class="ph codeph">./db-list -i devices -k inputfile</code> is run and
+                            <code class="ph codeph">1234,group,Group1,Groupname</code> is present in the input
+                        file, validation fails and "subscriber-type inconsistent" is shown as the
+                        failed reason in the CSV output. </li>
+
+                    <li class="li">When the Application Preference <span class="keyword apiname">AutoGen SPR Ids</span> value is
+                        set to true, the Subscriber-id value in the input file should be in UUID
+                        format, otherwise orphan lookup tables related to the subscriber-id are not
+                        cleared. </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Report formats</h2>
+            
+            <div class="p">A CSV file is generated for the summary report. XML files are generated for the
+                inconsistency and healing reports. This information is provided, based on entity
+                type: <ul class="ul">
+                    <li class="li">Entity-status: INCONSISTENT/CONSISTENT/ERROR/VALIDATION_FAILED::&lt;reason
+                        for validation failed&gt;/UNABLE_TO_PROCESS:&lt;reason for unable to
+                        process&gt;</li>
+
+                    <li class="li">Healing-status: HEALED/NOT_HEALED/ERROR/NOT_APPLICABLE/ORPHAN_DELETED</li>
+
+                    <li class="li">account-balance-status values: BALANCE_UPDATED/NOT_APPLICABLE</li>
+
+                </ul>
+ This is an example of the CSV file information:
+                <pre class="pre codeblock"><code>INCONSISTENT,ORPHAN_DELETED,148618787703260161,device,Device1005247,Device1005247,999991005247::9999910052471,999991005247:
+:9999910052472,9999910052473,9999910052474,sip:9999910052475@sip.com::sip:99999100524751@sip.com,9999910052476,
+9999910052477@9999910052477,Group1005247,User1005247</code></pre></div>
+
+            <div class="p">This is an example of an inconsistency report:
+                <pre class="pre codeblock language-xml"><code>&lt;clubs&gt;
+    &lt;club clubId="148618787704308737" partitionId="1" siteId="1"&gt;
+        &lt;devices&gt;
+            &lt;device status="INCORRECT"&gt;
+                &lt;ICD&gt;NOT_FOUND&lt;/ICD&gt;
+                &lt;DevicePar_id&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;INCORRECT&lt;/status&gt;
+                    &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                &lt;/DevicePar_id&gt;
+                &lt;DeviceCustomDataPar_id&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;INCORRECT&lt;/status&gt;
+                    &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                &lt;/DeviceCustomDataPar_id&gt;
+                &lt;DeviceCustomData_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;INCORRECT&lt;/status&gt;
+                    &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                &lt;/DeviceCustomData_device&gt;
+                &lt;DeviceLocationDetailsPar_id&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;INCORRECT&lt;/status&gt;
+                    &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                &lt;/DeviceLocationDetailsPar_id&gt;
+                &lt;DynamicPastUsage_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;INCORRECT&lt;/status&gt;
+                    &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                &lt;/DynamicPastUsage_device&gt;
+                &lt;EmergencyDetailPar_id&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;INCORRECT&lt;/status&gt;
+                    &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                &lt;/EmergencyDetailPar_id&gt;
+                &lt;EmergencyDetail_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;INCORRECT&lt;/status&gt;
+                    &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                &lt;/EmergencyDetail_device&gt;
+                &lt;DeviceBCRDetailsPar_id&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;INCORRECT&lt;/status&gt;
+                    &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                &lt;/DeviceBCRDetailsPar_id&gt;
+                &lt;DeviceBCRDetails_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;INCORRECT&lt;/status&gt;
+                    &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                &lt;/DeviceBCRDetails_device&gt;
+                &lt;Device_deviceName&gt;
+                    &lt;id&gt;Device1&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;clubId&gt;148618787704308737&lt;/clubId&gt;
+                &lt;/Device_deviceName&gt;
+                &lt;Device_e164 count="3"&gt;
+                    &lt;e164&gt;
+                        &lt;id&gt;12345678901&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;clubId&gt;148618787704308737&lt;/clubId&gt;
+                    &lt;/e164&gt;
+                    &lt;e164&gt;
+                        &lt;id&gt;999991005247&lt;/id&gt;
+                        &lt;status&gt;INCORRECT&lt;/status&gt;
+                        &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                    &lt;/e164&gt;
+                    &lt;e164&gt;
+                        &lt;id&gt;9999910052471&lt;/id&gt;
+                        &lt;status&gt;INCORRECT&lt;/status&gt;
+                        &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                    &lt;/e164&gt;
+                &lt;/Device_e164&gt;
+                &lt;Device_imsi count="3"&gt;
+                    &lt;imsi&gt;
+                        &lt;id&gt;98765432101&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;clubId&gt;148618787704308737&lt;/clubId&gt;
+                    &lt;/imsi&gt;
+                    &lt;imsi&gt;
+                        &lt;id&gt;999991005247&lt;/id&gt;
+                        &lt;status&gt;INCORRECT&lt;/status&gt;
+                        &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                    &lt;/imsi&gt;
+                    &lt;imsi&gt;
+                        &lt;id&gt;9999910052472&lt;/id&gt;
+                        &lt;status&gt;INCORRECT&lt;/status&gt;
+                        &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                    &lt;/imsi&gt;
+                &lt;/Device_imsi&gt;
+                &lt;Device_msisdn count="1"&gt;
+                    &lt;msisdn&gt;
+                        &lt;id&gt;9999910052473&lt;/id&gt;
+                        &lt;status&gt;INCORRECT&lt;/status&gt;
+                        &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                    &lt;/msisdn&gt;
+                &lt;/Device_msisdn&gt;
+                &lt;Device_nai count="1"&gt;
+                    &lt;nai&gt;
+                        &lt;id&gt;9999910052474&lt;/id&gt;
+                        &lt;status&gt;INCORRECT&lt;/status&gt;
+                        &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                    &lt;/nai&gt;
+                &lt;/Device_nai&gt;
+                &lt;Device_sipUri count="2"&gt;
+                    &lt;sipuri&gt;
+                        &lt;id&gt;sip:9999910052475@sip.com&lt;/id&gt;
+                        &lt;status&gt;INCORRECT&lt;/status&gt;
+                        &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                    &lt;/sipuri&gt;
+                    &lt;sipuri&gt;
+                        &lt;id&gt;sip:99999100524751@sip.com&lt;/id&gt;
+                        &lt;status&gt;INCORRECT&lt;/status&gt;
+                        &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                    &lt;/sipuri&gt;
+                &lt;/Device_sipUri&gt;
+                &lt;Device_privateId count="1"&gt;
+                    &lt;privateid&gt;
+                        &lt;id&gt;9999910052476&lt;/id&gt;
+                        &lt;status&gt;INCORRECT&lt;/status&gt;
+                        &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                    &lt;/privateid&gt;
+                &lt;/Device_privateId&gt;
+                &lt;Device_externalId count="1"&gt;
+                    &lt;externalId&gt;
+                        &lt;id&gt;9999910052477@9999910052477&lt;/id&gt;
+                        &lt;status&gt;INCORRECT&lt;/status&gt;
+                        &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                    &lt;/externalId&gt;
+                &lt;/Device_externalId&gt;
+                &lt;Device_groups count="1"&gt;
+                    &lt;groups&gt;
+                        &lt;id&gt;Group1005247&lt;/id&gt;
+                        &lt;status&gt;INCORRECT&lt;/status&gt;
+                        &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                    &lt;/groups&gt;
+                &lt;/Device_groups&gt;
+                &lt;Device_owner&gt;
+                    &lt;id&gt;User1005247&lt;/id&gt;
+                    &lt;status&gt;INCORRECT&lt;/status&gt;
+                    &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                &lt;/Device_owner&gt;
+                &lt;EntityCounterInstancePar_id count="3"&gt;
+                    &lt;entityCounterInstance&gt;
+                        &lt;id&gt;DEVICE;Device1005247;null&lt;/id&gt;
+                        &lt;status&gt;NOT_FOUND&lt;/status&gt;
+                    &lt;/entityCounterInstance&gt;
+                    &lt;entityCounterInstance&gt;
+                        &lt;id&gt;DEVICE_GROUP;Device1005247||Group1005247;null&lt;/id&gt;
+                        &lt;status&gt;NOT_FOUND&lt;/status&gt;
+                    &lt;/entityCounterInstance&gt;
+                    &lt;entityCounterInstance&gt;
+                        &lt;id&gt;MULTI_BUNDLE;Device1005247;null&lt;/id&gt;
+                        &lt;status&gt;INCORRECT&lt;/status&gt;
+                        &lt;clubId&gt;148618787704243201&lt;/clubId&gt;
+                    &lt;/entityCounterInstance&gt;
+                &lt;/EntityCounterInstancePar_id&gt;
+            &lt;/device&gt;
+        &lt;/devices&gt;
+    &lt;/club&gt;
+&lt;/clubs&gt;</code></pre></div>
+
+            <div class="p">This is an example of a healing report:
+                <pre class="pre codeblock language-xml"><code>&lt;clubs&gt;
+    &lt;club clubId="148618787704308737" partitionId="1" siteId="1"&gt;
+        &lt;devices&gt;
+            &lt;device status="HEALED"&gt;
+                &lt;Device_deviceName&gt;
+                    &lt;id&gt;Device1&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;Device1||210000000108401&lt;/value&gt;
+                &lt;/Device_deviceName&gt;
+                &lt;Device_e164 count="1"&gt;
+                    &lt;e164&gt;
+                        &lt;id&gt;12345678901&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;healed&gt;true&lt;/healed&gt;
+                        &lt;action&gt;DELETED&lt;/action&gt;
+                        &lt;value&gt;Device1||210000000108401&lt;/value&gt;
+                    &lt;/e164&gt;
+                &lt;/Device_e164&gt;
+                &lt;Device_imsi count="1"&gt;
+                    &lt;imsi&gt;
+                        &lt;id&gt;98765432101&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;healed&gt;true&lt;/healed&gt;
+                        &lt;action&gt;DELETED&lt;/action&gt;
+                        &lt;value&gt;Device1||210000000108401&lt;/value&gt;
+                    &lt;/imsi&gt;
+                &lt;/Device_imsi&gt;
+            &lt;/device&gt;
+        &lt;/devices&gt;
+    &lt;/club&gt;
+    &lt;club clubId="148618787704243201" partitionId="1" siteId="1"&gt;
+        &lt;devices&gt;
+            &lt;device status="HEALED"&gt;
+                &lt;DevicePar_id&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;148618787704243201&lt;/value&gt;
+                &lt;/DevicePar_id&gt;
+                &lt;DeviceCustomDataPar_id&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;148618787704243201&lt;/value&gt;
+                &lt;/DeviceCustomDataPar_id&gt;
+                &lt;DeviceCustomData_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;Device1005247||2100000000f8401&lt;/value&gt;
+                &lt;/DeviceCustomData_device&gt;
+                &lt;DeviceLocationDetailsPar_id&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;148618787704243201&lt;/value&gt;
+                &lt;/DeviceLocationDetailsPar_id&gt;
+                &lt;DynamicPastUsage_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;DynamicPastUsageId{attachmode=DEVICE, keyValue='Device1005247||2100000000f8401', msccIdentifier='RG_206'}&lt;/value&gt;
+                &lt;/DynamicPastUsage_device&gt;
+                &lt;EmergencyDetailPar_id&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;148618787704243201&lt;/value&gt;
+                &lt;/EmergencyDetailPar_id&gt;
+                &lt;EmergencyDetail_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;Device1005247||2100000000f8401&lt;/value&gt;
+                &lt;/EmergencyDetail_device&gt;
+                &lt;DeviceBCRDetailsPar_id&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;148618787704243201&lt;/value&gt;
+                &lt;/DeviceBCRDetailsPar_id&gt;
+                &lt;DeviceBCRDetails_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;Device1005247||2100000000f8401&lt;/value&gt;
+                &lt;/DeviceBCRDetails_device&gt;
+                &lt;Device_e164 count="2"&gt;
+                    &lt;e164&gt;
+                        &lt;id&gt;999991005247&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;healed&gt;true&lt;/healed&gt;
+                        &lt;action&gt;DELETED&lt;/action&gt;
+                        &lt;value&gt;Device1005247||2100000000f8401&lt;/value&gt;
+                    &lt;/e164&gt;
+                    &lt;e164&gt;
+                        &lt;id&gt;9999910052471&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;healed&gt;true&lt;/healed&gt;
+                        &lt;action&gt;DELETED&lt;/action&gt;
+                        &lt;value&gt;Device1005247||2100000000f8401&lt;/value&gt;
+                    &lt;/e164&gt;
+                &lt;/Device_e164&gt;
+                &lt;Device_imsi count="2"&gt;
+                    &lt;imsi&gt;
+                        &lt;id&gt;999991005247&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;healed&gt;true&lt;/healed&gt;
+                        &lt;action&gt;DELETED&lt;/action&gt;
+                        &lt;value&gt;Device1005247||2100000000f8401&lt;/value&gt;
+                    &lt;/imsi&gt;
+                    &lt;imsi&gt;
+                        &lt;id&gt;9999910052472&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;healed&gt;true&lt;/healed&gt;
+                        &lt;action&gt;DELETED&lt;/action&gt;
+                        &lt;value&gt;Device1005247||2100000000f8401&lt;/value&gt;
+                    &lt;/imsi&gt;
+                &lt;/Device_imsi&gt;
+                &lt;Device_msisdn count="1"&gt;
+                    &lt;msisdn&gt;
+                        &lt;id&gt;9999910052473&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;healed&gt;true&lt;/healed&gt;
+                        &lt;action&gt;DELETED&lt;/action&gt;
+                        &lt;value&gt;Device1005247||2100000000f8401&lt;/value&gt;
+                    &lt;/msisdn&gt;
+                &lt;/Device_msisdn&gt;
+                &lt;Device_nai count="1"&gt;
+                    &lt;nai&gt;
+                        &lt;id&gt;9999910052474&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;healed&gt;true&lt;/healed&gt;
+                        &lt;action&gt;DELETED&lt;/action&gt;
+                        &lt;value&gt;Device1005247||2100000000f8401&lt;/value&gt;
+                    &lt;/nai&gt;
+                &lt;/Device_nai&gt;
+                &lt;Device_sipUri count="2"&gt;
+                    &lt;sipuri&gt;
+                        &lt;id&gt;sip:9999910052475@sip.com&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;healed&gt;true&lt;/healed&gt;
+                        &lt;action&gt;DELETED&lt;/action&gt;
+                        &lt;value&gt;Device1005247||2100000000f8401&lt;/value&gt;
+                    &lt;/sipuri&gt;
+                    &lt;sipuri&gt;
+                        &lt;id&gt;sip:99999100524751@sip.com&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;healed&gt;true&lt;/healed&gt;
+                        &lt;action&gt;DELETED&lt;/action&gt;
+                        &lt;value&gt;Device1005247||2100000000f8401&lt;/value&gt;
+                    &lt;/sipuri&gt;
+                &lt;/Device_sipUri&gt;
+                &lt;Device_privateId count="1"&gt;
+                    &lt;privateid&gt;
+                        &lt;id&gt;9999910052476&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;healed&gt;true&lt;/healed&gt;
+                        &lt;action&gt;DELETED&lt;/action&gt;
+                        &lt;value&gt;Device1005247||2100000000f8401&lt;/value&gt;
+                    &lt;/privateid&gt;
+                &lt;/Device_privateId&gt;
+                &lt;Device_externalId count="1"&gt;
+                    &lt;externalId&gt;
+                        &lt;id&gt;9999910052477@9999910052477&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;healed&gt;true&lt;/healed&gt;
+                        &lt;action&gt;DELETED&lt;/action&gt;
+                        &lt;value&gt;Device1005247||2100000000f8401&lt;/value&gt;
+                    &lt;/externalId&gt;
+                &lt;/Device_externalId&gt;
+                &lt;Device_groups count="1"&gt;
+                    &lt;groups&gt;
+                        &lt;id&gt;Group1005247&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;healed&gt;true&lt;/healed&gt;
+                        &lt;action&gt;DELETED&lt;/action&gt;
+                        &lt;value&gt;Device1005247||2100000000f8401&lt;/value&gt;
+                    &lt;/groups&gt;
+                &lt;/Device_groups&gt;
+                &lt;Device_owner&gt;
+                    &lt;id&gt;User1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;Device1005247||2100000000f8401&lt;/value&gt;
+                &lt;/Device_owner&gt;
+                &lt;EntityCounterInstancePar_id count="1"&gt;
+                    &lt;entityCounterInstance&gt;
+                        &lt;id&gt;MULTI_BUNDLE;Device1005247;null&lt;/id&gt;
+                        &lt;status&gt;OK&lt;/status&gt;
+                        &lt;healed&gt;true&lt;/healed&gt;
+                        &lt;action&gt;DELETED&lt;/action&gt;
+                        &lt;value&gt;148618787704243201&lt;/value&gt;
+                    &lt;/entityCounterInstance&gt;
+                &lt;/EntityCounterInstancePar_id&gt;
+                &lt;GySession_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;1-1-1005247;102301002_dpu||2100000000f8401&lt;/value&gt;
+                &lt;/GySession_device&gt;
+                &lt;GySession_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;1-1-1005247;102301002_loc_gy||2100000000f8401&lt;/value&gt;
+                &lt;/GySession_device&gt;
+                &lt;GySession_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;1-1-N40-SPS-ME-644809fc-79f7-40be-8800-67e59007bcb9||2100000000f8401&lt;/value&gt;
+                &lt;/GySession_device&gt;
+                &lt;Session_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;1-1-1005247;102301002_dpu_RG206||2100000000f8401&lt;/value&gt;
+                &lt;/Session_device&gt;
+                &lt;Session_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;1-1-N40-SPS-ME-644809fc-79f7-40be-8800-67e59007bcb9_RG4500||2100000000f8401&lt;/value&gt;
+                &lt;/Session_device&gt;
+                &lt;Session_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;1-1-1005247;102301002_ims_1st_SI4||2100000000f8401&lt;/value&gt;
+                &lt;/Session_device&gt;
+                &lt;Session_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;1-1-1005247;102301002_ims_2nd_SI4||2100000000f8401&lt;/value&gt;
+                &lt;/Session_device&gt;
+                &lt;Session_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;1-1-1005247;102301002_loc_gy_SI1000||2100000000f8401&lt;/value&gt;
+                &lt;/Session_device&gt;
+                &lt;SySession_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;1-1-1005247;102301002_sy1||2100000000f8401&lt;/value&gt;
+                &lt;/SySession_device&gt;
+                &lt;SySession_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;1-1-N28-SPS-ME-74b0df24-9c99-4ffd-a062-8dc20149e92f||2100000000f8401&lt;/value&gt;
+                &lt;/SySession_device&gt;
+                &lt;IMSSession_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;1-1-1005247;102301002_ims_2nd||2100000000f8401&lt;/value&gt;
+                &lt;/IMSSession_device&gt;
+                &lt;IMSSession_device&gt;
+                    &lt;id&gt;Device1005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;1-1-1005247;102301002_ims_1st||2100000000f8401&lt;/value&gt;
+                &lt;/IMSSession_device&gt;
+                &lt;SySession_msisdn&gt;
+                    &lt;id&gt;999991005247&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;1-1-N28-SPS-ME-74b0df24-9c99-4ffd-a062-8dc20149e92f||2100000000f8401&lt;/value&gt;
+                &lt;/SySession_msisdn&gt;
+                &lt;SySession_msisdn&gt;
+                    &lt;id&gt;9999910052472&lt;/id&gt;
+                    &lt;status&gt;OK&lt;/status&gt;
+                    &lt;healed&gt;true&lt;/healed&gt;
+                    &lt;action&gt;DELETED&lt;/action&gt;
+                    &lt;value&gt;1-1-1005247;102301002_sy1||2100000000f8401&lt;/value&gt;
+                &lt;/SySession_msisdn&gt;
+            &lt;/device&gt;
+        &lt;/devices&gt;
+    &lt;/club&gt;
+&lt;/clubs&gt;</code></pre></div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Distribution rules" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="SPS_CDR_Streams_Stream_Overview_distribution_rules" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Distribution rules</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="SPS_CDR_Streams_Stream_Overview_distribution_rules">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Distribution rules</h1>
+<div class="body conbody">
+
+        <p class="p">Configuration stream holds the default distribution rules for the CDR streams. The
+            configuration is imported into lookup tables, stored into the database and taken into
+            use when the Configuration stream is started for the first time.</p>
+
+        <p class="p">Published tables for datasets are only created if they are in use in some splitting
+            criteria.</p>
+
+        <p class="p">In the following runs of CG Configuration Node, distribution rules are read from the
+            draft tables and published only if they have changed and the validation of the rules
+            passes. If the validation is successful, the configuration is loaded into the database
+            and the streams take the changes into use immediately. Any ongoing output record batches
+            still to be created are closed and flushed to the respective locations based on the old
+            configuration, and new output record batches start using the new configuration.</p>
+
+        <p class="p">Distribution rules define where specific output records are sent. One record can be sent
+            to multiple outputs if needed. The destination of the output record depends on the type
+            of output it has configured. Records can be sent to files, where they are divided into
+            different file groups, or they can be sent to a Kafka topic, for example. If no output
+            is configured for a distribution rule, output records are filtered out instead.
+            Preconfigured splitting criteria are used for identifying the correct output for each
+            output record.</p>
+
+        <div class="section" id="SPS_CDR_Streams_Stream_Overview_distribution_rules__section_o1l_n35_cmb"><h2 class="title sectiontitle">File output characteristics</h2>
+            
+            <p class="p">The following characteristics can be defined for file output:</p>
+
+            <ul class="ul" id="SPS_CDR_Streams_Stream_Overview_distribution_rules__ul_odg_r35_cmb">
+                <li class="li">Output identifier that can be used as part of the actual file name.</li>
+
+                <li class="li">Output directory (destination) where to store the output files. If defined, this
+                    is a sub-directory of the directory defined in CG Distributor Node. Otherwise,
+                    the default value in CG Distributor Node is used.</li>
+
+                <li class="li">Number of records per file. If not specified, the default value in CG Mapper
+                    Node is used.</li>
+
+                <li class="li">Maximum number of seconds to collect output records for one file. If not
+                    specified, the default value in CG Mapper Node is used.</li>
+
+                <li class="li">Sequence number sharing. If specified, all file groups with the same value share
+                    the sequence numbering of the files. Otherwise, they all use their own sequence
+                    numbering for identifying the files.</li>
+
+                <li class="li">Description of the file group. This is not stored in the database and not used
+                    for processing the output records.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="section" id="SPS_CDR_Streams_Stream_Overview_distribution_rules__section_dq4_v3j_4nb"><h2 class="title sectiontitle">Kafka output characteristics</h2>
+            
+            <p class="p">The following characteristics can be defined for Kafka output:</p>
+
+            <ul class="ul" id="SPS_CDR_Streams_Stream_Overview_distribution_rules__ul_kwv_jkj_4nb">
+                <li class="li">Destination Kafka topic where the record is sent to.</li>
+
+                <li class="li">Number of records per batch that is processed by the Kafka output stream in one
+                    go.</li>
+
+                <li class="li">Maximum number of seconds to collect output records for one batch. </li>
+
+                <li class="li">Failure identifier and failure directory for the failure log if sending of
+                    output fails.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="section" id="SPS_CDR_Streams_Stream_Overview_distribution_rules__section_swr_t35_cmb"><h2 class="title sectiontitle">Splitting criteria</h2>
+            
+            <p class="p">A splitting criterion is a reusable expression specifying the characteristics of one
+                field in the output record, for example, record type. A combination of criteria is
+                used for identifying records that belong to a group of output records and the same
+                criterion can be used by any number of distribution rules.</p>
+
+            <p class="p">Only fields that are in the output record can be used. Customization in CG Mapper
+                Node allows also additional temporary fields to be added in the output record, if
+                needed for the distribution rules.</p>
+
+            <p class="p">A separate lookup table is used for defining splitting criteria. Additional dataset
+                lookup tables can also be added, if the evaluation of some fields require comparison
+                to a bigger number of values. Datasets are simple lists of string valued entries,
+                stored in a separate lookup table.</p>
+
+            <p class="p">A splitting criterion has a unique name, and the value of the given field can be
+                evaluated as:</p>
+
+            <ul class="ul" id="SPS_CDR_Streams_Stream_Overview_distribution_rules__ul_sqj_x35_cmb">
+                <li class="li">an exact match</li>
+
+                <li class="li">matching a regular expression</li>
+
+                <li class="li">not matching a regular expression</li>
+
+                <li class="li">being numerical and greater / less than a given value</li>
+
+                <li class="li">being an exact match to a value defined in a given dataset</li>
+
+                <li class="li">not being an exact match to any value defined in a given dataset</li>
+
+                <li class="li">starting with one of the prefixes defined in a given dataset</li>
+
+            </ul>
+
+        </div>
+
+        <div class="section" id="SPS_CDR_Streams_Stream_Overview_distribution_rules__section_b22_y35_cmb"><h2 class="title sectiontitle">Distribution rules</h2>
+            
+            <p class="p">When the splitting criteria have been defined, a prioritized list of output record
+                distribution rules can be created by combining the criteria as needed. Every
+                distribution rule defines zero or more outputs. The output records covered by the
+                rule are described by the given splitting criteria, and multiple criteria can be
+                given for one rule.</p>
+
+            <p class="p">The output records are matched against the distribution rules, starting with the rule
+                with highest priority (smallest number) and proceeding down. The first rule for
+                which all the criteria are met is selected. If a distribution rule is disabled, the
+                rule is not evaluated and no output records match that rule. To guarantee that all
+                records have at least one matching rule, there must always be a default rule without
+                any criteria with the lowest priority.</p>
+
+            <p class="p">For more details on the configuration of distribution rules, see the <cite class="cite">Operation,
+                    Administration, and Maintenance Guide</cite>. Note also that all output to a
+                specific output type (for example, file or Kafka) can be disabled through node
+                parameter <code class="ph codeph">DisabledOutputs</code> in CG Mapper Node.</p>
+
+            <p class="p">For information on the default distribution rules for File output stream, see
+                    <cite class="cite">CDR/EDR Reference</cite>.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

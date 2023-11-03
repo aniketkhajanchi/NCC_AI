@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Rating VoLTE calls on the basis of stored location when a call is answered" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="rating_volte_calls_on_the_basis_of" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Rating VoLTE calls on the basis of stored location when a call is answered</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="rating_volte_calls_on_the_basis_of">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Rating VoLTE calls on the basis of stored location when a call is answered</h1>
+<div class="body conbody">
+        <p class="p">This feature provides an option to separately save the device stored location when a
+            VoLTE call is answered. The location stored at the call answer time is used to rate the
+            complete call. The VoLTE call is considered answered either at the time of CCR-I
+            transaction or first CCR-U, if reported without usage. Even if the device location gets
+            updated while the VoLTE call is in progress, the original location when the call was
+            answered is only used to rate the call and NOT the new location updated during the
+            call.</p>
+
+        <p class="p">This feature also provides the ability to configure default MCC MNC value used to
+            initialize device stored location, if it is not already set, when
+            CCR-I/SLR/Nchf_SpendingLimit_subscribe transaction is received.</p>
+
+        <div class="section" id="rating_volte_calls_on_the_basis_of__section_yvg_cz2_vvb"><h2 class="title sectiontitle">Configuration</h2>Configure the following
+            application preferences:<ul class="ul" id="rating_volte_calls_on_the_basis_of__ul_nb1_fz2_vvb">
+                <li class="li">Store Call Start Location In Session = IMS</li>
+
+                <li class="li">Default MCC MNC = provide a MCC MNC value</li>
+
+            </ul>
+</div>
+
+        <div class="section" id="rating_volte_calls_on_the_basis_of__DocumentationInput.-Initializingdevicestoredlocation"><h2 class="title sectiontitle">Initializing device stored location</h2>
+            
+            <p class="p">If the application preference <strong class="ph b">Store Location Updates</strong> is set to <em class="ph i">true</em> and
+                the device does not have a stored location (MCC MNC) and the default location value
+                is configured in application preferences, then the stored location of the device is
+                initialized with the configured default MCC MNC:</p>
+
+            <ul class="ul" id="rating_volte_calls_on_the_basis_of__ol_sk5_lz2_vvb">
+                <li class="li">when an SLR or Nchf_SpendingLimit_subscribe transaction is received, or</li>
+
+                <li class="li">when a VoLTE CCR-I is received which <strong class="ph b">does not</strong> contain an ANI with a GERAN
+                    RAT or the ANI received is not of GERAN RAT.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="section" id="rating_volte_calls_on_the_basis_of__DocumentationInput.-Storethelocationatcallanswertime"><h2 class="title sectiontitle">Storing the location at call answer time</h2>
+            
+            <p class="p">If the application preference <strong class="ph b">Store Call Start Location In Session</strong> is enabled
+                (that is, set to <var class="keyword varname">IMS</var>) then the location at IMS call answer time
+                is stored separately in session so that the same stored location can be used to rate
+                the complete call.</p>
+
+            <p class="p">IMS call answer time can be at CCR-I or first CCR-U based on the subscriber type as
+                follows:</p>
+
+            <ol class="ol" id="rating_volte_calls_on_the_basis_of__ol_zyp_mz2_vvb">
+                <li class="li">When a CCR-I is received, the device stored location is stored in the
+                    session.</li>
+
+                <li class="li">If a subsequent first CCR-U is received <em class="ph i">WITHOUT ANY USAGE</em> (that is, USU
+                    reported is not greater than 0), then the location for session is updated based
+                    on the current device stored location.</li>
+
+                <li class="li">If no CCR-U is received before the CCR-T or if the first CCR-U has
+                        <em class="ph i">non-zero</em> usage reported, then it is assumed that the call was
+                    answered when the CCR-I was received and the session location stored at CCR-I is
+                    used to rate the rest of the VoLTE call. The device stored location continues to
+                    be updated but the session location is not updated.</li>
+
+                <li class="li">Also, if any subsequent CCR-U (second CCR-U onwards) arrives with GERAN RAT,
+                    then device stored location is updated but stored session location is NOT
+                    updated.</li>
+
+                <li class="li">Location identified at IMS call answer time (either at CCR-I or first CCR-U) is
+                    set to existing rule variable <em class="ph i">SPR_DEVICE.SGSNMCCMNC, SPR_DEVICE.MCCMNC</em>
+                    and is not changed from the second CCR-U onwards.</li>
+
+            </ol>
+
+            <p class="p">Irrespective of the value of <strong class="ph b">Charge IMS Call for first update</strong> application
+                preference, if the current feature is enabled, then first CCR-U is charged if USU
+                reported is greater than zero and the behavior is the same where we have CCR-T
+                directly followed by CCR-I and no CCR-U is received.</p>
+
+        </div>
+
+        <div class="section" id="rating_volte_calls_on_the_basis_of__DocumentationInput.-RulevariablestoholdthelocationstoredinsessionattheVoLTEcallanswertime"><h2 class="title sectiontitle">Rule variables to hold the location stored in session at the VoLTE call answer
+                time</h2>
+            
+            <p class="p">Following rule variables are set with the location stored in session at the call
+                answer time for IMS VoLTE call and when the current feature is enabled. For Gy/N40
+                calls or if this feature is disabled, then existing behavior is followed for the
+                following rule variables.</p>
+
+            <ul class="ul" id="rating_volte_calls_on_the_basis_of__ol_mmh_nz2_vvb">
+                <li class="li">SPR_DEVICE.SGSNMCCMNC</li>
+
+                <li class="li">SPR_DEVICE.MCCMNC</li>
+
+            </ul>
+
+            <p class="p">If at the VoLTE call answer time, no location is stored in session (for some reasons)
+                then above rule variables are set to null.</p>
+
+        </div>
+
+        <div class="section" id="rating_volte_calls_on_the_basis_of__DocumentationInput.-VoLTEUncorrelatedTransactions"><h2 class="title sectiontitle">VoLTE Uncorrelated Transactions</h2>
+            
+            <p class="p">When application preference <strong class="ph b">New Call Start in Update or Terminate for IMS</strong> is
+                enabled and an uncorrelated CCR-U or CCR-T is received directly without any CCR-I,
+                then the call proceeds and charging takes place. If the application preference is
+                disabled then the call fails.</p>
+
+            <ul class="ul" id="rating_volte_calls_on_the_basis_of__ol_am5_nz2_vvb">
+                <li class="li">
+                    <p class="p"><strong class="ph b">Uncorrelated CCR-U</strong></p>
+
+                    <p class="p">An uncorrelated CCR-U is treated similar to CCR-I and session location is
+                        updated.</p>
+
+                    <p class="p">If no location ANI is received then the device stored location is updated in
+                        session location. If the device does not have any stored location and
+                        default MCC MNC is configured then the device and session location is
+                        updated with the default.</p>
+
+                    <p class="p">If location is received in ANI with GERAN RAT then the session location is
+                        updated with the received location.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p"><strong class="ph b">Uncorrelated CCR-T</strong></p>
+
+                    <p class="p">When directly a CCR-T is received without any CCR-I and CCR-U, then their is
+                        no session, and thus no location is stored in the session. Device stored
+                        location is used to rate the call. If ANI with GERAN RAT is received in
+                        CCR-T then device location is updated with it. If no location is received in
+                        CCR-T and device does not have any stored location then default MCCC MNC, if
+                        configured, then the call is rated based on default MCC MNC.</p>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="section" id="rating_volte_calls_on_the_basis_of__DocumentationInput.-VoLTEAPRTransactions"><h2 class="title sectiontitle">VoLTE APR Transactions</h2>
+            
+            <p class="p">Uncorrelated VoLTE APR transactions are handled using the following two ways if
+                application preference <strong class="ph b">Store Call Start Location In Session</strong> is set to
+                    <strong class="ph b">IMS</strong>: </p>
+
+            <ul class="ul" id="rating_volte_calls_on_the_basis_of__ol_hwj_4z2_vvb">
+                <li class="li">If application preference <strong class="ph b">No Device Location Update for APR</strong> is set to
+                        <em class="ph i">ENABLED</em>, then the default location value configured in application
+                    preferences is used to rate any uncorrelated APR VoLTE transactions. If default
+                    location is not configured or set to <var class="keyword varname">None</var> in application
+                    preferences, the Default_Home_Zone is used to rate any uncorrelated APR VoLTE
+                    transactions.</li>
+
+                <li class="li">If application preference <strong class="ph b">No Device Location Update for APR</strong> is set to
+                        <var class="keyword varname">ENABLED_AND_VOLTE_APR_USING_ANI</var> then the location within
+                    the ANI received in any APR VoLTE transaction is used to rate the transaction.
+                    This applies <em class="ph i">regardless of the RAT</em> associated with the ANI unlike
+                    existing logic which only uses ANI location information when the RAT is GERAN.
+                    If a) there is no ANI in the transaction, b) the ANI value is not valid, or c)
+                    the location within the ANI is not configured on the system then the default
+                    location value configured in application preferences must be used to rate any
+                    APR VoLTE transactions. If default location is not configured or set to None in
+                    application preferences, the Default_Home_Zone is used to rate any uncorrelated
+                    APR VoLTE transactions.</li>
+
+            </ul>
+
+            <p class="p">For correlated VoLTE APR transactions, if <strong class="ph b">Store Call Start Location In Session</strong>
+                is set to <var class="keyword varname">IMS</var> and <strong class="ph b">No Device Location Update for APR</strong> is set
+                to <var class="keyword varname">ENABLED</var> or <var class="keyword varname">ENABLED_AND_VOLTE_APR_USING_ANI</var>,
+                and the CHF has location information stored for this VoLTE session, then the
+                location information stored for the session is used to rate the APR VoLTE
+                transaction. If location is not found in session, then it is treated as an
+                uncorrelated VoLTE APR transaction.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

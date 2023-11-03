@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Mapping device location to location policy counter status" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e225136" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Mapping device location to location policy counter status</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e225136">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Mapping device location to location policy counter status</h1>
+<div class="body conbody">
+        <div class="p">This feature supports mapping the MCCMNC location of a device to a policy counter status
+            associated with the <em class="ph i">Location Policy Counter ID</em> of a device. This mapping includes
+            the following capabilities:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e225136__ul_kmv_h3v_d5b">
+                <li class="li">
+                    <p class="p">An MCCMNC can be directly mapped to an external location policy counter
+                        status value (for example, <var class="keyword varname">HOME</var> for MCCMNC values
+                        considered to be within a user network).</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">An MCCMNC can be mapped to a bundle name (this is expected to be used for
+                            <var class="keyword varname">TravelPass</var> BOU bundles).</p>
+
+                    <p class="p">In this case, if the bundle is currently available for the device (for
+                        example, in the <var class="keyword varname">Active</var> or <var class="keyword varname">Pre-Active</var>
+                        state), then the policy counter status is used for the current location
+                        policy counter status. Otherwise, if the bundle name is not currently
+                        available for the device, then a globally configured value for roaming
+                        should be sent (for example, <var class="keyword varname">ROAM</var>).</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">If there is no entry in the table for the current MCCMNC of a device, then
+                        the globally configured value for roaming (for example,
+                            <var class="keyword varname">ROAM</var>) must be used as the location PC status for the
+                        device.</p>
+
+                </li>
+
+            </ul>
+</div>
+
+        <p class="p">Previously, this feature supported only a single global table mapping MCCMNCs to a fixed
+            bundle name. Currently, the feature is enhanced to support mapping of MCCMNCs to
+            multiple bundles associated with different price plans.</p>
+
+        <p class="p">The same MCCMNC location of a device can be mapped to separate policy counter status
+            values associated with the <em class="ph i">Location Policy Counter ID</em> of the device.</p>
+
+        <p class="p">For example: If the device is in <em class="ph i">location1</em> and subscribed to <em class="ph i">bundle1</em>, then
+            the location policy counter Id status can be <em class="ph i">TP2</em>. If the device is in
+                <em class="ph i">location1</em> and subscribed to <em class="ph i">bundle2</em>, then location policy counter Id
+            status can be <em class="ph i">ROAM</em> (If <em class="ph i">location1</em> is mapped only for <em class="ph i">bundle1</em> but not
+                <em class="ph i">bundle2</em>), based on configuration.</p>
+
+        <div class="p">
+            <div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e225136__note_xzj_q3v_d5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If the device has multiple bundles
+                    (<var class="keyword varname">Base-Plan</var> or <var class="keyword varname">TravelPass</var>), then the
+                bundles should not have a common location. If multiple bundles with common locations
+                are provisioned to the same device, then the policy counter status configured in the
+                bundle with higher priority is considered.</div>
+
+        </div>
+
+        <div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e225136__section_vz3_y4b_25b"><h2 class="title sectiontitle">Configuration</h2>
+            
+            <p class="p">The following rules should be configured to map the location information to local
+                policy counter status and roaming status.</p>
+
+            <div class="p"><em class="ph i">BUNDLE.Roaming-Status</em> and <em class="ph i">BUNDLE.Location-Counter-Status</em>: <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e225136__fig_ajd_2pb_25b">
+                    <a href="../images/roaming_status.PNG" class="image"><img class="image break scalefit" id="id9yz-09126-ug01-pczza-sp1-d1e225136__image_amy_tpb_25b" height="192" src="../images/roaming_status.PNG" width="480" /></a>
+                </div>
+<div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e225136__note_wz2_rnw_25b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For details on <em class="ph i">Roaming-Status</em> and
+                        <em class="ph i">Location-Counter-Status</em> attributes, see <a class="xref" href="resultcontext_and_actions_bundle_result_context.html">BUNDLE result context</a>.</div>
+</div>
+
+            <p class="p">Alternatively, the location information can be mapped to location policy counter
+                status and roaming status using the following configuration (that is, configuring
+                complex mapping table, <em class="ph i">CALL_COMMON.Get-Match-String</em> attribute, and
+                GY_POST_PROCESSING ruleset):</p>
+
+            <div class="p"><em class="ph i">CALL_COMMON.Get-Match-String</em><div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e225136__fig_ujg_2qb_25b">
+                    <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e225136__image_fxw_2qb_25b" height="192" src="../images/get_match_string.PNG" width="480" />
+                    <div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e225136__note_ug4_wnw_25b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For details on <em class="ph i">Get-Match-String</em> attribute,
+                        see <a class="xref" href="ruleattributes_call_common_source_context.html">CALL_COMMON source context</a>.</div>
+
+                </div>
+</div>
+
+            <div class="p"><em class="ph i">GY_POST_PROCESSING ruleset</em><div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e225136__fig_wz3_y4b_25b"><span class="figcap"><span class="fig--title-label">Figure: </span>GY_POST_PROCESSING ruleset</span>
+                    
+                    <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e225136__image_qdp_glw_25b" height="192" src="../images/gy_post_processing_map_device_location.PNG" width="576" />
+                    <div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e225136__note_nqk_lkw_25b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div>  If location policy counter status is fetched using
+                        BUNDLE rule (that is, through BUNDLE rule configuration for all bundles),
+                        then configuring <em class="ph i">GY_POST_PROCESSING</em> ruleset is not required.</div>
+
+                </div>
+</div>
+
+            <div class="p">Complex mapping table:<div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e225136__fig_oyv_1lw_25b"><span class="figcap"><span class="fig--title-label">Figure: </span>MCCMNC mapping table</span>
+                    
+                    <a href="../images/location_status_mapping.png" class="image"><img class="image break scalefit" id="id9yz-09126-ug01-pczza-sp1-d1e225136__image_pyv_1lw_25b" height="192" src="../images/location_status_mapping.png" width="672" /></a>
+                </div>
+<div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e225136__fig_qyv_1lw_25b"><span class="figcap"><span class="fig--title-label">Figure: </span>Policy counter status mapping table</span>
+                    
+                    <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e225136__image_ryv_1lw_25b" height="192" src="../images/policy_status_mapping.png" width="576" />
+                </div>
+</div>
+
+            <div class="p">
+                <div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e225136__note_syv_1lw_25b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> One of the two configuration methods can be selected to
+                    configure the mapping of device location to location policy counter status and
+                    roaming status. Hybrid configuration is not recommended.</div>
+
+            </div>
+
+            <p class="p">For the preceding figure, consider the following steps:</p>
+
+            <ol class="ol" id="id9yz-09126-ug01-pczza-sp1-d1e225136__ol_b1j_y4b_25b">
+                <li class="li">
+                    <p class="p">The MCCMNC of a device can be directly mapped to an external <em class="ph i">Location
+                            Policy Counter Status</em> value. For example, <var class="keyword varname">HOME</var>
+                        for status value, which is considered as a user's own network.</p>
+
+                </li>
+
+                <li class="li">
+                    <div class="p">If preceding directly mapping is empty, then use the MCCMNC of a device for
+                        mapping to multiple bundle names. For example, current applicable bundle
+                        name is <var class="keyword varname">Travelpass-List</var>.<div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e225136__note_ugj_xmw_25b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> When
+                            multiple bundle names are configured in a complex mapping table,
+                                <var class="keyword varname">";"</var> should be used as the delimiter instead of
+                                <var class="keyword varname">","</var>.</div>
+</div>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">If the bundle is currently available for the device and it is in the
+                            <var class="keyword varname">Active</var> or <var class="keyword varname">Pre-Active</var> state, then
+                        the PC status defined in the table is used for the current <em class="ph i">Location
+                            Policy Counter Status</em>, and if these complex mapping tables are used
+                        in BUNDLE rule, then Roaming Status can also be fetched from the table.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">If the bundle name is not currently available for the device or it is not in
+                        the <var class="keyword varname">Active</var> or <var class="keyword varname">Pre-Active</var> state, then a
+                        globally configured value for roaming should be used as the location policy
+                        counter status, for example <var class="keyword varname">ROAM</var>.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">For the preceding steps, if there is no entry in the table for the MCCMNC of
+                        a device, then the globally configured value for roaming (for example,
+                            <var class="keyword varname">ROAM</var>) must be used as the location PC status for the
+                        device.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">After checking the preceding steps, it checks whether the new <em class="ph i">Location
+                            Policy Counter Status</em> is same as the current stored <em class="ph i">Location
+                            Policy Counter Status</em> of a device. If not, then send an SNR with new
+                            <em class="ph i">Location Policy Counter Status</em>; but if yes, then there is no need
+                        to send an SNR.</p>
+
+                </li>
+
+            </ol>
+
+            <p class="p">Following are the supported call types:</p>
+
+            <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e225136__ul_c1j_y4b_25b">
+                <li class="li">
+                    <p class="p">Gy</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">IMS</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Event</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">5G</p>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_jky_ylm_r4b"><h2 class="title topictitle2" id="ariaid-title2">Update location for 5G and VoLTE MO call</h2>
+<div class="body conbody">
+            <div class="section" id="concept_jky_ylm_r4b__section_pjl_1mm_r4b"><h3 class="title sectiontitle">Update location for 5G calls</h3>
+                
+                <p class="p">Previously, the stored location of the device was updated based on the MCC and
+                    MNC values included within the <em class="ph i">eutraLocation</em> IE in an N40 transaction
+                    received from a network. Currently, <em class="ph i">nrLocation</em> IE in an N40 transaction
+                    is prioritized over <em class="ph i">eutraLocation</em> IE to update the stored location of the
+                    device.</p>
+
+                <div class="p">When a 5G call is received, the stored location of the device is updated based on
+                    the following conditions:<ul class="ul" id="concept_jky_ylm_r4b__ul_qmf_zjc_25b">
+                        <li class="li">If the <em class="ph i">nrLocation</em> IE
+                                (<em class="ph i">ChargingDataRequest-&gt;pDUSessionChargingInformation-&gt;userLocationinfo-&gt;nrLocation-&gt;ncgi-&gt;plmnId</em>)
+                            is present in the N40 transaction with non-zero MCC values, then the
+                            stored location of the device is updated based on those MCC and MNC
+                            values.</li>
+
+                        <li class="li">If the <em class="ph i">nrLocation</em> IE is either not present in the N40
+                            transaction, or it does not contain non-zero MCC values, and if the
+                                <em class="ph i">eutraLocation</em> IE
+                                (<em class="ph i">ChargingDataRequest-&gt;pDUSessionChargingInformation-&gt;userLocationinfo-&gt;eutraLocation-&gt;ecgi-&gt;plmnId</em>)
+                            is present in the N40 transaction with non-zero MCC values, then the
+                            stored location of the device is updated based on those MCC and MNC
+                            values.</li>
+
+                    </ul>
+</div>
+
+            </div>
+
+            <div class="section" id="concept_jky_ylm_r4b__section_lwx_qwh_25b"><h3 class="title sectiontitle">Configuration</h3>
+                
+                <p class="p">This feature is controlled by the application preferences <em class="ph i">Location Update
+                        Enhancement</em> and <em class="ph i">Store location updates</em>. If <em class="ph i">Store location
+                        updates</em> is set to <var class="keyword varname">true</var>, and <em class="ph i">Location Update
+                        Enhancement</em> is set to <var class="keyword varname">NCGI_SUPPORT_WITHOUT_UPDATE_TZ</var>,
+                    then <em class="ph i">nrLocation</em> IE is prioritized over <em class="ph i">eutraLocation</em> IE to fetch
+                    the stored location details of the device (that is, the stored location details
+                    of the device are fetched first from the <em class="ph i">nrLocation</em> IE). </p>
+
+                <p class="p">If <em class="ph i">Location Update Enhancement</em> is <var class="keyword varname">DISABLED</var>, then the
+                    stored location details of the device are fetched from <em class="ph i">eutraLocation</em>
+                    IE.</p>
+
+                <p class="p">When a 5G call is received, following AVPs are checked:</p>
+
+                <ol class="ol" id="concept_jky_ylm_r4b__ol_xgk_2zh_25b">
+                    <li class="li">
+                        <p class="p"><em class="ph i">userLocationInformation</em> AVP (under <em class="ph i">PS information group</em>
+                            AVP), which stores the exact user location and MCC MNC extracts from
+                            this AVP.</p>
+
+                        <p class="p">This AVP is mapped with 5G request parameter
+                                <span class="ph uicontrol">PDUSessionChargingInformation</span> or
+                                <span class="ph uicontrol">userLocationInfo</span>.</p>
+
+                        <p class="p">If the application preference <em class="ph i">Location Update Enhancement</em> is set
+                            as <var class="keyword varname">NCGI_SUPPORT_WITHOUT_UPDATE_TZ</var>, then<em class="ph i"> nrLocation
+                                ncgi</em> of <em class="ph i">userLocationInformation</em> is checked for stored
+                            location details of the device, else <em class="ph i">eutraLocation ecgi</em> of
+                                <em class="ph i">userLocationInformation</em> is checked.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <em class="ph i">3gpp-ms-timezone</em> AVP (under <em class="ph i">PS information group</em> AVP),
+                            which stores the UE timezone.</p>
+
+                        <p class="p">This AVP is mapped from 5G request parameter
+                                <span class="ph uicontrol">PDUSessionChargingInformation</span> or
+                                <span class="ph uicontrol">uetimezone</span>. The
+                                <span class="ph uicontrol">timeZoneId</span>,
+                            <span class="ph uicontrol">sgsnMccMnc</span>, and
+                                <span class="ph uicontrol">userLocationInfo</span> attributes for 5G call,
+                            check each request message for location update, not only those request
+                            with <em class="ph i">user_location_update</em> trigger type.</p>
+
+                        <div class="p">If the application preference <em class="ph i">Location Update Enhancement</em> is set
+                            as <var class="keyword varname">NCGI_SUPPORT_WITHOUT_UPDATE_TZ</var>, the device
+                            location is updated, and the <em class="ph i">3gpp-ms-timezone</em> AVP is not
+                            received, then the timezone stored in device is not cleared.<div class="note" id="concept_jky_ylm_r4b__note_btk_pwh_25b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> When this feature is enabled, and if the MCC
+                                and MNC values of the device are updated from an N40 transaction
+                                which does not contain <em class="ph i">ueTimeZone</em> IE, then the
+                                    <em class="ph i">ueTimezone</em> information of the device is not cleared while
+                                processing N40 transactions. The <em class="ph i">ueTimezone</em> information of
+                                the device is updated while processing N40 transactions only when a
+                                new <em class="ph i">ueTimezone</em> is received from the network. It can be
+                                cleared during Gy or Ro processing.</div>
+</div>
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+            <div class="section" id="concept_jky_ylm_r4b__section_lbl_hyh_25b"><h3 class="title sectiontitle">Update location for VoLTE MO call</h3>
+                
+                <p class="p">When a message is received for VoLTE MO call, following AVPs are checked:</p>
+
+                <p class="p">Location updates received in VoLTE CCR-I transactions and VoLTE CCR-U updates
+                    with a location change trigger, which includes an
+                        <em class="ph i">Access-Network-Information</em> AVP with an access-class header with a
+                    value of <var class="keyword varname">3GPP-GERAN</var> should have the ULI in the ANI used to
+                    update the MCCMNC and ULI for the device. When this feature is enabled, ANI
+                    information received in VoLTE transactions without an access-class header of
+                        <var class="keyword varname">3GPP-GERAN</var> is not used to update the stored location
+                    information of a device.</p>
+
+                <ol class="ol" id="concept_jky_ylm_r4b__ol_rjl_1mm_r4b">
+                    <li class="li">
+                        <p class="p">
+                            <em class="ph i">Geo Location Type</em>: <var class="keyword varname">RATType3Gpp.GERAN</var>
+                        </p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <em class="ph i">User Location Id</em>: <var class="keyword varname">cgi3gpp</var>
+                        </p>
+
+                        <p class="p">-&gt; <em class="ph i">format</em>: <var class="keyword varname">MCC MNC LAC CI</var>
+                        </p>
+
+                        <p class="p">-&gt; <em class="ph i">length</em>: <var class="keyword varname">13</var> or <var class="keyword varname">14</var> (MNC
+                            2 or 3)</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">
+                            <em class="ph i">Identity Type</em>: <var class="keyword varname">AccessInfoType.CGI</var>
+                        </p>
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_hn5_5lm_r4b"><h2 class="title topictitle2" id="ariaid-title3">Actions associated with Location Policy Counter ID</h2>
+<div class="body conbody">
+            <div class="section" id="concept_hn5_5lm_r4b__section_v5m_vlm_r4b">
+                <table cellpadding="4" cellspacing="0" summary="" id="concept_hn5_5lm_r4b__table_w5m_vlm_r4b" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:44.44444444444444%" /><col style="width:55.55555555555556%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d149164e650">Action</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d149164e653">Description</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e650 ">
+                                    <p class="p"><em class="ph i"> update/updateLocationPolicyCounter/Device</em></p>
+
+                               </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e653 ">
+                                    <p class="p">Used to add, update, or delete the <em class="ph i">Location Policy Counter
+                                            ID</em> in device entity based on global definition by
+                                        providing the mandatory parameter <span class="ph uicontrol">Device
+                                            ID</span>.</p>
+
+                               </td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+                <p class="p">For more information on <em class="ph i">Location Policy Counter ID</em> and <em class="ph i">Location Policy
+                        Counter Status</em>, refer to section <em class="ph i">Managed Element application
+                        preferences</em> in the <em class="ph i">Global Configuration Guide</em>.</p>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title4" id="concept_mxd_mdw_25b"><h2 class="title topictitle2" id="ariaid-title4">Geographic location type mapped with database value</h2>
+<div class="body conbody">
+            <div class="section" id="concept_mxd_mdw_25b__section_e3f_ndw_25b">
+                <p class="p">The Geographic-Location-Type is set based on the location information extracted
+                    from the received AVPs or IEs. The total location object is stored in the
+                    database. </p>
+
+                <div class="p">The supported geographic location types are listed in the following table:<table cellpadding="4" cellspacing="0" summary="" id="concept_mxd_mdw_25b__table_el2_d2w_25b" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Geographic location type mapped with database value</span></caption><colgroup><col style="width:29.75206611570248%" /><col style="width:27.548209366391184%" /><col style="width:42.69972451790634%" /></colgroup><thead class="thead" style="text-align:left;">
+                                <tr class="row">
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d149164e730">Geographic location type</th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d149164e733">Type code</th>
+
+                                    <th class="entry cellrowborder" style="vertical-align:top;" id="d149164e736">Value saved in database</th>
+
+                                </tr>
+
+                            </thead>
+<tbody class="tbody">
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e730 ">CGI</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e733 ">0</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e736 ">0</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e730 ">SAI</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e733 ">1</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e736 ">1</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e730 ">RAI</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e733 ">2</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e736 ">2</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e730 ">TAI</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e733 ">128</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e736 ">3</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e730 ">ECGI</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e733 ">129</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e736 ">4</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e730 ">TAI and ECGI</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e733 ">130</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e736 ">5</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e730 ">NCGI</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e733 ">135</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e736 ">7</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e730 ">5GS TAI</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e733 ">136</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e736 ">8</td>
+
+                                </tr>
+
+                                <tr class="row">
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e730 ">5GS TAI and NCGI</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e733 ">137</td>
+
+                                    <td class="entry cellrowborder" style="vertical-align:top;" headers="d149164e736 ">9</td>
+
+                                </tr>
+
+                            </tbody>
+</table>
+<div class="note" id="concept_mxd_mdw_25b__note_wbb_42w_25b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                        <ul class="ul" id="concept_mxd_mdw_25b__ul_gcg_s2w_25b">
+                            <li class="li">For VoLTE call, the geographic location type
+                                    <em class="ph i">RATType3Gpp.GERAN</em> is mapped to <var class="keyword varname">CGI</var>. </li>
+
+                            <li class="li">For 5G call, if the stored location is fetched from
+                                    <em class="ph i">eutraLocation</em> IE, then the geographic location type is
+                                    <var class="keyword varname">ECGI</var>, and if the location is fetched from
+                                    <em class="ph i">nrLocation</em> IE, then the geographic location type is
+                                    <var class="keyword varname">NCGI</var>.</li>
+
+                        </ul>
+
+                    </div>
+</div>
+
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

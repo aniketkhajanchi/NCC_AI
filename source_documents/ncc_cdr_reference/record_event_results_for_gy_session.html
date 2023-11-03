@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Record event results for Gy and IMS sessions" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="d1e13965a" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Record event results for Gy and IMS sessions</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="d1e13965a">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Record event results for Gy and IMS sessions</h1>
+<div class="body conbody">
+        <div class="section" id="d1e13965a__section_fqv_t1v_23b">
+            <p class="p">Whenever a session/event request has occurred, it is either successful or
+                unsuccessful depending upon the logic processing in NCC. The
+                    <em class="ph i">RecordEventResult</em> tag contains the numeric number created by NCC
+                explaining the cause of session/event closure.</p>
+
+            <p class="p">Example: <em class="ph i">recordEventResult</em> = <var class="keyword varname">21</var>
+            </p>
+
+            <p class="p">Following are the record event result ranges with their descriptions:</p>
+
+            <ul class="ul" id="d1e13965a__ul_gqv_t1v_23b">
+                <li class="li">
+                    <kbd class="ph userinput">00-20</kbd>: Related to successful call
+                </li>
+
+                <li class="li">
+                    <kbd class="ph userinput">21-40</kbd>: Call unsuccessful due to insufficient
+                        balance
+                </li>
+
+                <li class="li">
+                    <kbd class="ph userinput">41-80</kbd>: Error due to object not found in database
+                </li>
+
+                <li class="li">
+                    <kbd class="ph userinput">81-100</kbd>: Call unsuccessful due to some problem in rule
+                        engine output
+                </li>
+
+                <li class="li">
+                    <kbd class="ph userinput">100-130</kbd>: Call unsuccessful due to some error, for
+                        example Device Barred, Subscription Barred, Group Barred
+                </li>
+
+                <li class="li">
+                    <kbd class="ph userinput">131-140</kbd>: Call unsuccessful due to some error in
+                        charging service
+                </li>
+
+                <li class="li">
+                    <kbd class="ph userinput">141-150</kbd>: Call unsuccessful due to some error in
+                        subscription or group
+                </li>
+
+                <li class="li">
+                    <kbd class="ph userinput">151-200</kbd>: Call unsuccessful due to some problem in
+                        rate configuration
+                </li>
+
+                <li class="li">
+                    <kbd class="ph userinput">200 onwards</kbd>: Call unsuccessful due to some
+                        configuration problem at call control
+                </li>
+
+                <li class="li"><kbd class="ph userinput">300-320</kbd>: Session audit result codes for
+                    successful/unsuccessful result due to different events, like RAR. These are
+                    listed in <a class="xref" href="session_audit_cdr.html#d1e13965__table_hqv_t1v_23b">Record event results for session audit CDRs</a></li>
+
+            </ul>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="d1e13965a__table_hqv_t1v_23b" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Record event results for Gy and IMS sessions</span></caption><colgroup><col style="width:14.705882352941178%" /><col style="width:85.29411764705883%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d132454e126">Record Event Result</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d132454e129">Description</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">00</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call successful.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">01</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call successful with partial reservation due to not enough
+                                balance with the customer. Only partial units were successfully
+                                reserved as per the balance available.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">02</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call successful with lost credit when no more credit is left with
+                                the customer.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">03</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call successful resulting to lost credit for overcommitted units
+                                due to device barring.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">04</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call successful resulting to lost credit for overcommitted units
+                                due to the subscription being barred.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">05</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call successful with partial reservation done due to the
+                                subscription being barred.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">06</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call successful with requested service units is zero in the
+                                update request.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">07</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call successful with no MSCC present.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">08</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call successful, the RSU value is NULL.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">09</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call successful, partial reserve account is barred.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">10</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call successful, lost credit account is barred.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">11</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call successful with reserve from account.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">12</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call successful with partial reserve from account.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">13</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call successful resulting to lost credit for overcommitted units
+                                due to all groups being barred in Terminate Request.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">14</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call successful with partial reservation from step bucket.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">15</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Successful VoLTE CCR for a session that spanned the account BCR
+                                or standalone subscription renewal/expiration time.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">21</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to not enough credit.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">22</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to not enough credit and credit loss. It’s
+                                a case of overcommit used units sent in Update Request.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">23</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to not enough credit and subscription is
+                                being barred.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">24</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to not enough credit and resulting to a
+                                case of lost credit due to subscription being barred in Update
+                                Request.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">25</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Sufficient balance is not present as account is barred.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">26</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Lost credit during overcommit and no further reservation allowed
+                                in update request due to group barring.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">27</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to not enough credit and resulting to lost
+                                credit due to all groups being barred in Update Request.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">28</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call is rejected due to call cost cap reached.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">41</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to charging service not found in database.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">42</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to account not found in database.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">43</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to rate not found in database.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">44</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful as subscription list not found in database.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">45</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to account database operation in the
+                                database.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">46</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful as converter list not found in database.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">47</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to session not found in database.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">48</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to failure in bucket database operation.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">49</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to failure in session database operation.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">50</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to failure in unit type database operation.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">51</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to slicing profile not found in database.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">81</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to rate ID missing for account selected for
+                                charging from tariff.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">82</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to rule engine result which was provisioned
+                                in the tariff is invalid.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">83</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to rule engine result is null , which can
+                                be the result when rule's are not loaded properly or any error in
+                                Rule engine.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">84</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to any failure received from rule engine in
+                                its processing.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">85</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to the conditions mentioned in rule engine
+                                are not applicable to complete the call.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">86</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful since out of many subscription's purchased by
+                                the customer few subscriptions are barred but for the rest rule is
+                                not applicable.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">101</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to non initialization of internal rating
+                                object which is used to save the charging information which is the
+                                billing quantity object.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">102</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful since the session already exists with the
+                                session Id for which the request has been received.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">103</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to any generic rating error received while
+                                computing any operation.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">104</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful as new reservation not allowed due to device
+                                barred.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">105</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful as new reservation not allowed due to
+                                subscription barred.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">106</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to invalid request type received from the
+                                network.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">107</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful as requested service unit is zero.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">108</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call uncessful as reservation failed due to account
+                                barring.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">109</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful as new reservation not allowed due to all
+                                groups being barred.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">110</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call blocked by usage control limits.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">111</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call blocked by usage control TOD.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">112</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call blocked by global barred list.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">113</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call blocked by UC barred list.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">114</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Called blocked due to Special
+                                Rate.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">131</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful as charging service list empty.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">132</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful as charging service with subscription not found
+                                in the database.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">141</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful as subscription ID NULL in database.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">142</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful as subscription not found in the database.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">143</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful as no subscription attached with device.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">144</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful as all subscription barred.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">145</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful as category is missing for subscription
+                                attached with the device.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">146</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful as subscription has been removed.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">147</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful as all groups are barred.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">151</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to failure in rate calculation error.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">152</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to invalid charging step defined in rate
+                                entity.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">153</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to invalid rate configuration resulting to
+                                a error scenario. The rate object in billingQty is pre-validated.
+                                However, this error code mentions that if it is a different rate
+                                then perform validation check. This error code is generated in case
+                                of invalid rate object.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">154</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to a check of rate object passed inside
+                                rating logic for calculation. Its a check and error for early
+                                rejection of invalid rate object.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">201</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to source context
+                                missing.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">202</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to device context
+                                missing.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">203</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to common call context
+                                missing.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">204</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to service info context
+                                missing.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">205</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to request type missing.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">206</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to request action
+                                missing.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">207</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to request action is not
+                                direct debit.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">208</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to call type missing.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">209</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to requested service unit
+                                missing.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">210</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to device ID missing.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">211</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to RSU unit type missing.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">212</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to RSU IVOL missing.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">213</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to RSU base cc unit type
+                                missing.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">214</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to RSU list missing.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">215</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to RSU OVOL missing.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">216</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to RSU service specific
+                                value missing.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">217</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to RSU TVOL missing.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">218</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to RSU time value
+                                missing.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">219</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to Rating Group missing.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">220</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful and rating failed due to Session ID missing.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">221</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to Event Request received in
+                                    <kbd class="ph userinput">CENTRALIZED</kbd> charging mode. Event request
+                                works only in <kbd class="ph userinput">DE_CENTRALIZED</kbd> charging mode.
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">222</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due to received null RSU unit type in
+                                    <kbd class="ph userinput">CENTRALIZED</kbd> charging mode.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">223</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Balance Manager over commit scenario.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">224</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful when device not found.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">225</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due, Diameter unable to comply.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">226</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due, USU is missing in request.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">227</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful due, RatingGroup and Service Identifier are
+                                missing.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">228</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful, RSU Unit type mismatch.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">229</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful, GSU is missing for USU.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">230</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful, USU Unit Type missing.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">231</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Call unsuccessful, USU Unit Type mismatch.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">232</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">CC-Time is missing from RSU for IMS call.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">233</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">CC-NEW-MSCC not supported in update and terminate in IMS
+                                call.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">234</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Local sequence number of USU is not valid.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">235</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Reporting reason=final, GSU is missing for USU.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">238</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">All USUs were rejected.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">239</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">It's an barred inbound roamer.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">299</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">Unspecified error.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">316</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">This value signifies that upon rating session audit, reservation
+                                got cancelled successfully.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e126 ">317</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d132454e129 ">This value signifies that upon rating session audit, reservation
+                                got cancelled successfully from previous resources in case of
+                                resource reset.</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Change bundle or subscription" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-cb" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Change bundle or subscription</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-cb">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Change bundle or subscription</h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">Operators can change the subscription for a device or group using the SM GUI or the (<em class="ph i">updateDevice</em>, <em class="ph i">updateGroup</em>, <em class="ph i">updateChangePlan</em>) REST API.</p>
+
+<p class="p">Operators can also cancel the subscription by setting a parameter in the <em class="ph i">updateChangePlan</em> API. If a call is in-progress when a subscription is changed, a RAR is sent and in the next CCR-U or CCR-T message, the usage allocated from the old subscription is charged and quota is allocated from the new subscription. When the change bundle option is executed, if the Aggregate View (AV) is configured on a device or group, then the corresponding update reflects in the AV.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This feature is applicable only to charging module.</div>
+
+<div class="p">A subscription must have a final state configured (as shown in the following figure). If a final
+                state is not configured, then see <a class="xref" href="cb.html#id9yz-09126-ug01-pczza-sp1-cb__wfinal">Change bundle - without final lifecycle state</a> for information on the action
+                NCC performs in such cases.<div class="fig fignone">
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-subscriptionentitylc_default.png" height="363" width="705" />
+                </div>
+</div>
+
+<p class="p">For carry-over logic, the change bundle feature is applicable only when you have a single bucket attached and that is of the same unit type. This restriction is applicable only for <em class="ph i">Immediately</em> and <em class="ph i">Immediately with prorating</em> options. With <em class="ph i">IMMEDIATE_BACKDATED</em> option, carry-over works even when bundle has more than one bucket.</p>
+
+<p class="p">Following are the supported modes for changing the bundle:</p>
+<ul class="ul">
+<li class="li"><em class="ph i">Immediately</em>
+                </li>
+
+<li class="li"><em class="ph i">Immediately with prorating</em>
+                </li>
+
+<li class="li"><em class="ph i">On next cycle</em>
+                </li>
+
+<li class="li"><em class="ph i">IMMEDIATE_BACKDATED</em> - Note that this option is available only from REST API and not from
+                    SM GUI.</li>
+
+</ul>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For <em class="ph i">Immediately</em>, <em class="ph i">Immediately with prorating</em>, <em class="ph i">IMMEDIATE_BACKDATED</em> modes, if there are calls in-progress, then a RAR is triggered for sessions using old subscription and change bundle EDR gets generated.</div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Configuration to send SNR for new counters </h2>
+<p class="p">To trigger SNR for new counters after ChangePlan execution, the following configuration must be done in thresholds.</p>
+
+<p class="p">Ensure that you select the <span class="ph uicontrol">OCS Policy Threshold</span> option during threshold creation.</p>
+
+<p class="p">Following is the threshold configuration for counters:</p>
+
+<p class="p">
+<span class="ph uicontrol">Threshold for subscription (ABY) counter</span>
+</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-aby_planb_default.png" />
+            </div>
+
+<p class="p">
+<span class="ph uicontrol">Threshold for multi bundle (TBY) counter</span>
+</p>
+
+<div class="fig fignone">
+                
+                <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-tby_planb_default.png" />
+            </div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Parameters in updateDevice, updateGroup, and updateChangePlan REST API</h2>
+<div class="note notice"><div class="noticetitle"><img src="../../web/css/../images/notice.svg" title="notice-icon" class="noteicon" />Notice:</div> It is recommended to use the <em class="ph i">updateChangePlan</em> API to change bundle or subscription.</div>
+<div class="p">The updateDevice and updateGroup API supports the following parameters to change the
+                    bundle:<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>updateDevice and updateGroup API parameters</span></caption><colgroup><col style="width:21.88006482982172%" /><col style="width:8.103727714748784%" /><col style="width:26.418152350081037%" /><col style="width:43.59805510534846%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d178417e181">
+                                    <p class="p">Parameter name</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d178417e187">
+                                    <p class="p">Type</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d178417e193">
+                                    <p class="p">Supported values</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d178417e199">
+                                    <p class="p">Description</p>
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e181 ">referBundleName</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e187 ">string</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e193 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e199 ">Indicates the bundle name.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e181 ">referBundleCustomize</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e187 ">flag</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e193 ">
+                                    <p class="p">True</p>
+
+                                    <p class="p">False</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e199 ">
+                                    <p class="p">Indicates whether the bundle is customized.</p>
+
+                                    <p class="p">If this flag is set as <var class="keyword varname">True</var>, then the
+                                        charging service, bucket definition, counter definition,
+                                        bundle name, lifecycle name, and carry over details are
+                                        considered in the changed subscription for the device.</p>
+
+                                </td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e181 ">bundleChangeCarryOver</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e187 ">flag</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e193 ">
+                                    <p class="p">True</p>
+
+                                    <p class="p">False</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e199 ">Indicates whether the carry over is enabled.</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e181 ">typeOfBundleChange</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e187 ">string</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e193 ">
+                                    <p class="p">Immediate</p>
+
+                                    <p class="p">Immediate_Minus_Used</p>
+
+                                    <p class="p">Next_Billing_Cycle</p>
+
+                                    <p class="p">IMMEDIATE_BACKDATED</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e199 ">Indicates the change type, such as
+                                        <var class="keyword varname">Immediate</var>,
+                                        <var class="keyword varname">Immediate_Minus_Used</var>, or
+                                        <var class="keyword varname">Next_Billing_Cycle</var>, or
+                                        <var class="keyword varname">IMMEDIATE_BACKDATED</var>.</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> NCC considers the timezone ID of an account while using REST API to update the end
+                date of subscription.</div>
+
+<div class="p">The updateChangePlan API supports the following parameters to change the bundle:<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>updateChangePlan API parameters</span></caption><colgroup><col style="width:19.094076655052266%" /><col style="width:6.968641114982578%" /><col style="width:21.533101045296167%" /><col style="width:41.53310104529616%" /><col style="width:10.871080139372822%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d178417e344">
+                                    <p class="p">Parameter name</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d178417e350">
+                                    <p class="p">Type</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d178417e356">
+                                    <p class="p">Supported values</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d178417e362">
+                                    <p class="p">Description</p>
+
+                                </th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d178417e368">
+                                    <p class="p">Mandatory/ Optional</p>
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e344 ">ID Type</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e350 ">string</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e356 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e362 ">Indicates the device or group.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e368 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e344 ">ID</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e350 ">string</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e356 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e362 ">Indicates the device ID or group ID depending on the ID
+                                    type.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e368 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e344 ">OldBundleName</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e350 ">string</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e356 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e362 ">Indicates the name of the bundle that needs to be
+                                    replaced.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e368 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e344 ">NewBundleName</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e350 ">string</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e356 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e362 ">
+                                    <p class="p">Indicates the name of the new bundle to replace the old
+                                        bundle.</p>
+
+                                    <p class="p">Note that, if the <em class="ph i">ChangePlanOption</em> is
+                                            <var class="keyword varname">Cancel</var>, then the
+                                            <span class="ph uicontrol">NewBundleName</span> parameter is
+                                        ignored irrespective of its value.</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e368 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e344 ">ChangePlanOption</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e350 ">string</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e356 ">
+                                    <p class="p">Immediate</p>
+
+                                    <p class="p">Immediate_Minus_Used</p>
+
+                                    <p class="p">Next_Billing_Cycle</p>
+
+                                    <p class="p">Cancel</p>
+
+                                    <p class="p">IMMEDIATE_BACKDATED</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e362 ">
+                                    <p class="p">Indicates the change type.</p>
+
+                                    <div class="p"><var class="keyword varname">Cancel</var> is used to cancel the change plan
+                                        for <var class="keyword varname">Next_Billing_Cycle</var>. See
+                                            <a class="xref" href="cb.html#id9yz-09126-ug01-pczza-sp1-cb__cancels">Subscription activation - Cancel</a> for an
+                                        example related to the <var class="keyword varname">Cancel</var>
+                                            option.<div class="note notice"><div class="noticetitle"><img src="../../web/css/../images/notice.svg" title="notice-icon" class="noteicon" />Notice:</div> If a carryover is done
+                                            from/to a multi-Bucket Bundle, the carryover value
+                                            remains 0 for ChangePlan with IMMEDIATE,
+                                            IMMEDIATE_MINUS_USED, NEXT_BILL_CYCLE, and
+                                            IMMEDIATE_BACKDATED options.</div></div>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e368 ">Mandatory</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e344 ">CarryOverFlag</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e350 ">flag</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e356 ">
+                                    <p class="p">True</p>
+
+                                    <p class="p">False</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e362 ">Indicates whether the carry over is enabled.</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e368 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e344 ">OldSubscriptionInstanceID</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e350 ">string</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e356 "> </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e362 ">
+                                    <p class="p">Indicates the ID of old subscription.</p>
+
+                                    <p class="p">Note that it is required when there are multiple instances of
+                                        same bundle.</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e368 ">Optional</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e344 ">CustomizeFlag</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e350 ">flag</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e356 ">
+                                    <p class="p">True</p>
+
+                                    <p class="p">False</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e362 ">
+                                    <p class="p">Indicates whether the bundle values need to be
+                                        customized.</p>
+
+                                    <p class="p">If this flag is set as <var class="keyword varname">True</var>, then the
+                                        customized values of new bundle are processed.</p>
+
+                                </td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e368 ">Optional</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Results of updateDevice, updateGroup, and updateChangePlan REST API operations</h2>
+<p class="p">The <em class="ph i">updateDevice</em>, <em class="ph i">updateGroup</em>, and <em class="ph i">updateChangePlan</em> APIs can provide any of the following results:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">
+<samp class="ph systemoutput">OK</samp>: Successful</p>
+
+<p class="p">For <var class="keyword varname">Cancel</var> option, if the existing bundle has information about the new bundle
+                        to get activated in the next billing cycle, then NCC removes the information
+                        about the new bundle from the existing bundle in a device or group and
+                        returns a success message.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<samp class="ph systemoutput">NOK</samp>: Failure or error message and instance lists are returned</p>
+
+<p class="p">If the result is <var class="keyword varname">NOK</var> due to multiple instances of the subscription and operator has not provided the instance ID for which the change bundle is needed, then all instances of the subscription are returned. Therefore, in the next request, the operator specifies the instance ID for which the change bundle is needed.</p>
+
+<p class="p">For <var class="keyword varname">Cancel</var> option, if the bundle is subscribed multiple times, then the
+                        instance ID for old subscription is required. Otherwise, NCC returns
+                            <samp class="ph systemoutput">NOK</samp> with instance lists.</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Change bundle mode selection using SM GUI</h2>
+<div class="p">The following figure shows the <var class="keyword varname">Change Bundle</var> option available in the device entity.<div class="fig fignone">
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-changebundle1_default.png" height="243" width="623" />
+                </div>
+</div>
+
+<div class="p">Once you click <var class="keyword varname">Change Bundle</var> option, the new bundle along with the different
+                modes to apply change appear as shown in the following figure:<div class="fig fignone">
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-changebundle2_default.png" height="246" width="624" />
+                </div>
+</div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Subscription activation - Immediately</h2>
+<p class="p">For <em class="ph i">Immediately</em> activation mode, the old bundle is moved to final state and new subscription is immediately subscribed to a device or group.</p>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example: Subscription activated using Immediately mode</strong></p>
+
+<p class="p">Bob has a 5 GB subscription, out of which, only 3 GB is used. When the <em class="ph i">Immediately</em> activation mode is executed, the current subscription is changed to a new subscription of 8 GB.</p>
+
+<p class="p">Bob gets a new 8 GB subscription. After BCR also, Bob gets 8 GB subscription. If the carry over flag is set and the new bundle supports carryover, then the carry over bucket value in old bundle is transferred to carry over the bucket value in a new bundle.</p>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Subscription activation - Immediately with prorating</h2>
+<p class="p">For <em class="ph i">Immediately with prorating</em> mode, the old bundle is moved to final state and then the
+                new bundle is subscribed. NCC sets the current value of new bucket with
+                (initial value of new bucket - used value of old bucket) when a new bundle is
+                subscribed. If the used value of old bucket is greater than the initial value of the
+                new bucket, then the current value of new bucket is set to zero. If there are calls
+                in progress, then the reserved amount is also treated as used value.</p>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 1: Subscription activated using Immediately with prorating mode</strong></p>
+
+<p class="p">Consider the following two variants:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">
+<strong class="ph b">Variant 1</strong>: Bob has a 5 GB subscription, out of which, only 3 GB has been used. When the <em class="ph i">Immediately with prorating</em> activation mode is executed, Bob gets a new plan of 8 GB but the current value of the new bucket is 5 GB (8 GB - 3 GB). From the next billing cycle, Bob gets 8 GB subscription and the carry over flag is ignored.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<strong class="ph b">Variant 2</strong>: Bob has a 8 GB subscription, out of which, only 7 GB has been used. When the <em class="ph i">Immediately with prorating</em> activation mode is executed, Bob gets a new plan of 5 GB but the current value of the new bucket is 0 GB (5 GB - 7 GB). From the next billing cycle, Bob gets 5 GB subscription and the carry over flag is ignored.</p>
+
+</li>
+
+</ul>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 2: Immediate with prorating (IMMEDIATE_MINUS_USED) and carry over options for normal
+                        and customized bundle</strong></p>
+
+<p class="p">This example shows that using the <em class="ph i">updateGroup</em> API, operators can change the normal to custom bundle along with <var class="keyword varname">IMMEDIATE_MINUS_USED</var> and <var class="keyword varname">Carry over</var> options enabled. Consider that a group has a bundle with bucket and counter as shown in the following figure. When the bundle details are changed using the <em class="ph i">updateGroup</em> API with <span class="ph uicontrol">typeofBundleChange</span> set to <var class="keyword varname">IMMEDIATE_MINUS_USED</var> and <span class="ph uicontrol">bundlechangeCarryOver</span> set to <var class="keyword varname">True</var>, the new values sent in the <em class="ph i">updateGroup</em> API is set accordingly as shown in the figure.</p>
+
+<div class="fig fignone">
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-changebundle1_default.png" height="243" width="623" />
+                </div>
+
+<p class="p">The following figure shows the group subscription lifecycle (Object Status Lifecycle) before the <em class="ph i">updateGroup</em> API is executed.</p>
+
+<div class="fig fignone">
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-changebundlelc1_default.png" height="323" width="706" />
+                </div>
+
+<p class="p">The following figure shows the group subscription data after the <em class="ph i">updateGroup</em> API is executed to change the bundle data.</p>
+
+<div class="fig fignone">
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-changebundlesub1_default.png" height="251" width="576" />
+                </div>
+
+<p class="p">The following figure shows the value of group bucket and counter data after the <em class="ph i">updateGroup</em> API is executed to change the bundle data. </p>
+
+<div class="fig fignone">
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-changebundle2_default.png" height="246" width="624" />
+                </div>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Subscription activation - On next cycle</h2>
+<p class="p">When BCR happens, NCC checks whether the changed bundle exists for a subscription. If yes, then
+                the old subscription is moved to final state and the new subscription is subscribed
+                to a device or group. For further transactions, the new bundle is used. If the carry
+                over flag is set, then the leftover bucket value is carried to the new subscription.
+                The details of old and new subscriptions such as bundle, charging service, counter,
+                and bucket are recorded in the CDR.</p>
+
+<p class="p">
+<span class="ph uicontrol">Example</span>: Bob has a 5 GB subscription, out of which 4 GB is used and the carry-over flag is set to <var class="keyword varname">True</var>. After BCR, Bob is subscribed to a new 6 GB subscription. Since, carry-over flag was set, the leftover bucket value of 1 GB is carried to the new subscription and the total value of new data bucket is 7 GB.</p>
+
+</div>
+
+<div class="section" id="id9yz-09126-ug01-pczza-sp1-cb__cancels"><h2 class="title sectiontitle">Subscription activation - Cancel </h2>
+<p class="p">Operators can use the <var class="keyword varname">Cancel</var> option in the <em class="ph i">ChangePlan</em> API to cancel the change the bundle or subscription scheduled for <em class="ph i">Next_Billing_Cycle</em>.</p>
+
+<p class="p">
+<span class="ph uicontrol">Example</span>: A device has a bundle A. BCR date is 10th June. On 3rd June, the <em class="ph i">ChangePlan</em> REST API with <em class="ph i">Next_Billing_Cycle</em> is invoked to change <var class="keyword varname">Bundle A</var> with <var class="keyword varname">Bundle B</var> with customized information. On 7th June, the <em class="ph i">ChangePlan</em> REST API with <var class="keyword varname">Cancel</var> is invoked for <var class="keyword varname">Bundle A</var>. The <var class="keyword varname">Bundle B</var> with customized information is removed from bundle A. On 9th June, <em class="ph i">ChangePlan</em> REST API with <var class="keyword varname">Cancel</var> is invoked for <var class="keyword varname">Bundle A</var> again and nothing happens for <var class="keyword varname">Bundle A</var>. On 10th June, <var class="keyword varname">Bundle A</var> BCR happens as scheduled and <em class="ph i">ChangePlan</em> API is not executed. </p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Subscription activation - IMMEDIATE_BACKDATED</h2>
+<p class="p">Operators can use the <var class="keyword varname">IMMEDIATE_BACKDATED</var> option from REST API (change plan, update device, update Group) only and not from SM GUI.</p>
+
+<p class="p">In this option, old bundle is moved to final state and then new bundle is subscribed.</p>
+
+<p class="p">NCC sets the current and unused value of new bucket to current value of same name
+                bucket in old bundle. If after setting this, the initial value of new bucket is less
+                than its 'unused value' (that is, value with reservation), then the initial value is
+                adjusted to be set to unused value only for current bill cycle and bucket gets its
+                own initial value from next bill cycle.</p>
+
+<p class="p">Also, carry-over, if applicable, is calculated from this old bucket and set as carry-over in new bucket. If the new value crosses any threshold configured in new bucket/counter, then those thresholds are marked as crossed and no actions are performed for those thresholds.</p>
+
+<p class="p">This option is also applicable to counters, and current value of new counter is set to current value of same name counter in old bundle. If a new bundle subscription has a new bucket with different name, it is created with its initial value and nothing is copied from old subscription. This same approach is applied to counters as well.</p>
+
+<p class="p">If there was any reservation from old bucket or counter before change plan, then during their commit (that is, CCR-U or CCR-T request), new bucket or counter (in new bundle) is also modified as follows:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">
+<span class="ph uicontrol">For new bucket</span>: During under commit of old bucket, leftover-units (reserved value - unitsToCommit) are added to current and unused values of new bucket (and old bucket). After this update, if the initial value of new bucket is less than unused value, then the initial value is adjusted to be same as unused value only for current bill cycle.</p>
+
+<p class="p">This is not applicable if carry over is enabled for new bucket. So, leftover-units are not added to new bucket in under commit (or to carryover bucket instance in case reservation was done from old carry over bucket instance before change plan).</p>
+
+<p class="p">For exact commit and over commit of old bucket, there is no change in existing behavior. In exact commit, only old bucket is modified. In over commit, old bucket is modified for reserved value and the over-committed value is deducted from new bucket's current and unused values.</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<span class="ph uicontrol">For new counter</span>: During exact and under commit of old counter, units to commit are added to new counter. During over commit of old counter, the reserved value of old counter and over committed value is added to new counter (reserved value is added to old counter).</p>
+
+</li>
+
+</ul>
+
+<p class="p">Thresholds are updated for new bucket/counter instance after updating current value. Thresholds
+                are executed in old bucket and counter instance for the units committed in old
+                bucket and counter instance respectively. Thresholds in new bucket and counter
+                instance are updated in such a way that they are not executed for the units
+                committed from old bucket and counter instance reservation. </p>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 1: Subscription activated using IMMEDIATE_BACKDATED mode</strong></p>
+
+<p class="p">
+<span class="ph uicontrol">Variant 1</span>: Bob has a 5 GB subscription, out of which 3 GB has been used, so current value is 2 GB. When the <var class="keyword varname">Immediate_Backdated</var> mode is executed (with same name bucket), then Bob gets a new plan of 8 GB but the current value is 2 GB. From the next billing cycle, Bob gets 8 GB subscription. </p>
+
+<p class="p">
+<span class="ph uicontrol">Variant 2</span>: Bob has a 8 GB subscription, out of which 1 GB has been used, so current value is 7 GB. When the <var class="keyword varname">Immediate_Backdated</var> activation mode is executed with a new plan of 5 GB (with same name bucket), Bob gets 7 GB as initial, current and unused value. From the next billing cycle, Bob gets 5 GB subscription. Carry over if applicable is applied.</p>
+
+<p class="p">
+<span class="ph uicontrol">Variant 3</span>: Bob has a 5 GB subscription, out of which 3 GB has been used, so current value is 2 GB. It includes active reservation of 200 MB. When the <var class="keyword varname">Immediate_Backdated</var> mode is executed (with same name bucket), then Bob gets a new plan of 8 GB, but the current value is 2 GB. During CCR-T of old subscription, value to commit is 100 MB, then remaining units from reserved value, that is, 100 MB (200 MB - 100 MB) are added to new subscription and its current value becomes 2.1 GB. From the next billing cycle, Bob gets 8 GB subscription.</p>
+
+<p class="p">
+<span class="ph uicontrol">Variant 4</span>: Bob has a 5 GB subscription, out of which 3 GB has been used, so current value is 2 GB. It includes active reservation of 200 MB. When the <var class="keyword varname">Immediate_Backdated</var> mode is executed (with same name bucket) with a new plan of 1 GB, then Bob gets initial, current and unused values as 2 GB. Now, during CCR-T of old subscription, value to commit is 100 MB, then remaining units from reserved value, that is, 100 MB (200 MB - 100 MB) are added to new subscription and its initial, current and unused values become 2.1 GB. From the next billing cycle, Bob gets 1 GB subscription.</p>
+
+<p class="p">
+<span class="ph uicontrol">Variant 5</span>: Bob has a subscription having TBY (Subscription counter), ABY (Multi Bundle Counter) counters, with current value as 3 GB for both counters. When the <var class="keyword varname">Immediate_Backdated</var> activation mode is executed with a new plan having same name counters, then the current value of new counters (ABY, TBY) in new subscription is also set to 3 GB.</p>
+
+<p class="p">
+<span class="ph uicontrol">Variant 6</span>: Bob has a subscription having TBY (Subscription counter), ABY (Multi Bundle Counter) counters, with current value as 3 GB for both counters. It includes active reservation of 200 MB. When the <var class="keyword varname">Immediate_Backdated</var> activation mode is executed with a new plan having same name counters, then the current value of new counters (ABY, TBY) in new subscription is also set to 3 GB. During CCR-T of old subscription, value to commit is 100 MB, then the committed value in old counter, that is, 100 MB is added to ABY and TBY counters in new subscription and current value of both the new counters become 3.1 GB.</p>
+
+</div>
+</div>
+
+<div class="section" id="id9yz-09126-ug01-pczza-sp1-cb__wfinal"><h2 class="title sectiontitle">Change bundle - without final lifecycle state</h2>
+<p class="p">When NCC executes <em class="ph i">ChangePlan</em> for subscription using either <span class="ph uicontrol">Immediately with
+                    Prorating</span>, <span class="ph uicontrol">Immediately</span>, or
+                    <span class="ph uicontrol">Immediate_Backdated</span> mode, and subscription does not have
+                a final state configured within entity lifecycle, the subscription moves to barred
+                state and this subscription cannot be used further. NCC schedules deletion of this
+                subscription after a configured time. </p>
+
+<p class="p">When NCC executes <em class="ph i">ChangePlan</em> for subscription using <span class="ph uicontrol">On Next Cycle</span>
+                mode, and subscription does not have a final state configured within entity
+                lifecycle, and the next reset/renew subscription action executes as per periodic
+                lifecycle configured, then NCC performs the following actions:</p>
+<ol class="ol">
+<li class="li">
+<p class="p">Moves the subscription to a barred state and the subscription cannot be used further.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Schedules deletion of the subscription after a configured time. </p>
+
+</li>
+
+</ol>
+
+<div class="p">Operators can configure/update the scheduled time using SM GUI. To do this, change the value of
+                the Me application preference <var class="keyword varname">Change-Plan:Subscription Scheduled Time
+                    Without Final State(in secs)</var>. The default value is 86400 seconds.<div class="note" id="id9yz-09126-ug01-pczza-sp1-cb__note_ghh_n2w_ptb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> For details on configuring ME application preferences, see
+                        <em class="ph i">Managed Elements</em> section in <em class="ph i">Global Configuration
+                Guide</em>.</div>
+</div>
+
+</div>
+
+        <div class="section" id="id9yz-09126-ug01-pczza-sp1-cb__section_dq3_ssg_kyb"><h2 class="title sectiontitle">Sending RAR for <em class="ph i">updateChangePlan</em> API without checking for active
+                session</h2>
+            
+            <p class="p">For a <em class="ph i">updateChangePlan</em> call with <var class="keyword varname">Immediate</var> or
+                    <var class="keyword varname">Immediate_backdated</var> mode, before sending a RAR based on the
+                existing Gy/IMS sessions of the device, NCC evaluates the ME application preference
+                    <em class="ph i">Send RAR Always</em>. Depending on the value, the RAR is sent as follows:</p>
+
+            <ul class="ul">
+                <li class="li">DISABLED: NCC sends the RAR only if a corresponding Rating Session for that
+                    device exists or any resource is being used for reservation.</li>
+
+                <li class="li">CHANGEPLAN: NCC sends the RAR without checking.</li>
+
+            </ul>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-cb__table_yrm_55g_kyb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Example scenarios for <em class="ph i">Send RAR Always</em></span></caption><colgroup><col style="width:9.174311926605505%" /><col style="width:34.4954128440367%" /><col style="width:34.4954128440367%" /><col style="width:21.834862385321102%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d178417e1147">No.</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d178417e1150">Change plan purpose</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d178417e1153">Session, resource, additional conditions</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d178417e1156">Result</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1147 ">1</td>
+
+                            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d178417e1150 ">ChangePlan from old to a new subscription</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1153 ">Rating session does not exists but Gy/IMS session exists for the
+                                device</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1156 ">RAR is sent</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1147 ">2</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1153 ">Resource (subscription/multi-bundle) may/may not be used for
+                                reservation but Gy/IMS session exists for the device</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1156 ">RAR is sent </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1147 ">3</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1150 ">ChangePlan from old to a new subscription but the old
+                                subscription is removed directly or due to its lifecycle.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1153 ">-</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1156 ">RAR is not sent (as the changePlan is rejected as there is no old
+                                subscription)</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1147 ">4</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1150 ">ChangePlan to move from two subscriptions to one
+                                immediately</td>
+
+                            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d178417e1153 ">
+                                <p class="p">There is no rating session or applicable counter/resource.</p>
+
+                                <p class="p">Configuration:</p>
+
+                                <div class="p">
+                                    <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-cb__ul_ltn_4xg_kyb">
+                                        <li class="li">ChangePlanType = Advanced </li>
+
+                                        <li class="li">ME application preference: Send RAR Always =
+                                            CHANGEPLAN</li>
+
+                                    </ul>
+
+                                </div>
+
+                            </td>
+
+                            <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d178417e1156 ">RAR should be triggered if Gy/IMS session
+                                persists</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1147 ">5</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1150 ">ChangePlan to move from one subscription to two
+                                immediately</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <div class="section" id="id9yz-09126-ug01-pczza-sp1-cb__section_ivd_xzw_pxb"><h2 class="title sectiontitle">Adding/removing subscriptions without replacing another</h2>
+            
+            <p class="p">While using the Change Plan API, by default, one subscription must be deleted to add
+                another. However, using advanced options, you can add or delete subscriptions
+                without a replacement, as follows:</p>
+
+            <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-cb__ul_mxw_x2d_qxb">
+                <li class="li">For a <var class="keyword varname">changePlanDataList</var> element with a non-null
+                        <var class="keyword varname">newBundleName</var> and a null
+                    <var class="keyword varname">oldBundleName</var>, processing of
+                        <var class="keyword varname">changePlanDataList</var> element results in adding a new
+                    subscription based on the <var class="keyword varname">newBundleName</var> without removing an
+                    existing subscription.</li>
+
+                <li class="li">For a <var class="keyword varname">changePlanDataList</var> element with a non-null
+                        <var class="keyword varname">oldBundleName</var> and a null
+                    <var class="keyword varname">newBundleName</var>, processing of
+                        <var class="keyword varname">changePlanDataList</var> element results in deleting an
+                    existing subscription based on the <var class="keyword varname">oldBundleName</var> without
+                    adding a new subscription.</li>
+
+            </ul>
+
+            <p class="p">Refer to the SM application preference <strong class="ph b">Change Plan Type</strong> in the <em class="ph i">Global
+                    Configuration Guide</em> for details.</p>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="id9yz-09126-ug01-pczza-sp1-cb__table_h4w_51x_pxb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Examples for Device subscriptions</span></caption><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d178417e1323">Request</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d178417e1326">Result</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1323 ">
+                                <pre class="pre codeblock" id="id9yz-09126-ug01-pczza-sp1-cb__codeblock_ltr_x1x_pxb"><code>{
+  "entityType": "DEVICE",
+  "entityID": "10003000242029665123952190",
+  "changePlanDataList": [
+    {
+      "oldBundleName": "TDUNL4GMM4GET",
+      "newBundleName": "DDUNL4G5GBYUULTRA1",
+      "changePlanOption": "IMMEDIATE"
+    },
+    {
+      "oldBundleName": "TDUNL5GBOLTMM4GET",
+      "newBundleName": "",
+      "changePlanOption": "IMMEDIATE"
+    }
+  ]
+}</code></pre>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1326 ">Previous subscriptions to the <var class="keyword varname">TDUNL4GMM4GET</var>
+                                and <var class="keyword varname">TDUNL5GBOLTMM4GET</var> bundles are removed and a
+                                new subscription to the <var class="keyword varname">DDUNL4G5GBYUULTRA1</var> bundle
+                                is added for the device.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1323 ">
+                                <pre class="pre codeblock" id="id9yz-09126-ug01-pczza-sp1-cb__codeblock_r35_4bx_pxb"><code>{
+  "entityType": "DEVICE",
+  "entityID": "10003000242029665123952190",
+  "changePlanDataList": [
+    {
+      "oldBundleName": "DDUNL4G5GBYUULTRA1",
+      "newBundleName": "TDUNL4GMM4GET",
+      "changePlanOption": "IMMEDIATE"
+    },
+    {
+      "oldBundleName": "",
+      "newBundleName": "TDUNL5GBOLTMM4GET",
+      "changePlanOption": "IMMEDIATE"
+    }
+  ]
+}</code></pre>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1326 ">Previous subscription to the
+                                    <var class="keyword varname">DDUNL4G5GBYUULTRA1</var> bundle is removed and new
+                                subscriptions to the <var class="keyword varname">TDUNL4GMM4GET</var> and
+                                    <var class="keyword varname">TDUNL5GBOLTMM4GET</var> bundles are added for the
+                                device.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1323 ">
+                                <pre class="pre codeblock" id="id9yz-09126-ug01-pczza-sp1-cb__codeblock_hfc_xb2_qxb"><code>{
+  "entityType": "DEVICE",
+  "entityID": "10003000242029665123952190",
+  "changePlanDataList": [
+    {
+      "oldBundleName": "DDUNL4G5GBYUULTRA1",
+      "newBundleName": "TDUNL4GMM4GET",
+      "changePlanOption": "NEXT_BILL_CYCLE"
+    },
+    {
+      "oldBundleName": "",
+      "newBundleName": "TDUNL5GBOLTMM4GET",
+      "changePlanOption": "IMMEDIATE"
+    }
+  ]
+}</code></pre>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1326 ">
+                                <p class="p">The request is successful. <var class="keyword varname">DDUNL4G5GBYUULTRA1</var>
+                                    is removed from next bill cycle.
+                                        <var class="keyword varname">TDUNL4GMM4GET</var> becomes active from next
+                                    bill cycle. <var class="keyword varname">TDUNL5GBOLTMM4GET</var> is added
+                                    immediately. </p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1323 ">
+                                <pre class="pre codeblock" id="id9yz-09126-ug01-pczza-sp1-cb__codeblock_vyb_zb2_qxb"><code>{
+  "entityType": "DEVICE",
+  "entityID": "10003000242029665123952190",
+  "changePlanDataList": [
+    {
+      "oldBundleName": "DDUNL4G5GBYUULTRA1",
+      "newBundleName": "",
+      "changePlanOption": "IMMEDIATE_MINUS_USED"
+    },
+    {
+      "oldBundleName": "",
+      "newBundleName": "TDUNL5GBOLTMM4GET",
+      "changePlanOption": "IMMEDIATE"
+    }
+  ]
+}</code></pre>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1326 ">If the changePlanOption is
+                                    <var class="keyword varname">IMMEDIATE_MINUS_USED</var> or
+                                    <var class="keyword varname">IMMEDIATE_BACKDATED</var>, it is changed to
+                                    <var class="keyword varname">IMMEDIATE</var>.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1323 ">If no subscriptions attached to device</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1326 ">Exception will be thrown</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1323 ">
+                                <pre class="pre codeblock" id="id9yz-09126-ug01-pczza-sp1-cb__codeblock_kqw_dc2_qxb"><code>{
+  "entityType": "DEVICE",
+  "entityID": "D1",
+  "changePlanDataList": [
+    {
+      "oldBundleName": "",
+      "newBundleName": "B4",
+      "changePlanOption": "IMMEDIATE"
+    }
+  ],
+  "id": "D1"
+}</code></pre>
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d178417e1326 ">
+                                <p class="p">B4 bundle is attached only when at least one subscription is
+                                    already attached to the device.</p>
+
+                                <p class="p">Account is taken from the subscription attached to the device and
+                                    is used to attach the B4 bundle.</p>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <div class="note" id="id9yz-09126-ug01-pczza-sp1-cb__note_a1m_yc2_qxb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The scenarios described in the table work for group as
+                well.</div>
+
+            <div class="note" id="id9yz-09126-ug01-pczza-sp1-cb__note_gcn_jgd_qxb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-cb__ul_xsr_lfd_qxb">
+                    <li class="li">The API supports one or more <var class="keyword varname">changePlanDataList</var> elements
+                        in a single ChangePlan API call that has a null
+                            <var class="keyword varname">oldBundleName</var> or a null
+                            <var class="keyword varname">newBundleName</var>.</li>
+
+                    <li class="li">If there is only one <var class="keyword varname">changePlanDataList</var> with either
+                            <var class="keyword varname">newBundleName</var> or <var class="keyword varname">oldBundleName</var> as
+                        null, then it is treated as a valid API request, which either adds or
+                        deletes the subscription. However, it is not recommended to use this API for
+                        only adding or deleting a subscription.</li>
+
+                    <li class="li">Change_bundle EDR is generated by excluding either the
+                            <var class="keyword varname">oldBundleInfo</var> recordProperty (where a second
+                        subscription is being added) or the <var class="keyword varname">newBundleInfo</var>
+                        recordProperty (a second subscription is being removed).</li>
+
+                    <li class="li">If <var class="keyword varname">changePlanDataList</var> element has a null
+                            <var class="keyword varname">oldBundleName</var> or null
+                            <var class="keyword varname">newBundleName</var>, set the
+                            <var class="keyword varname">changePlanOption</var> enum to
+                        <var class="keyword varname">IMMEDIATE</var>. However, if
+                            <var class="keyword varname">IMMEDIATE_BACKDATED</var>, or
+                            <var class="keyword varname">IMMEDIATE_MINUS_USED</var> options are used, the behavior
+                        is same as that of <var class="keyword varname">IMMEDIATE</var>. </li>
+
+                    <li class="li">The feature does not work when <var class="keyword varname">changePlanOption</var> enum is
+                        set to <var class="keyword varname">NEXT_BILL_CYCLE</var> or <var class="keyword varname">CANCEL</var> and
+                        returns an error. However, this scenario will be enhanced in future
+                        depending on the customer use cases.</li>
+
+                    <li class="li">
+                        <p class="p">There may be some CDR tags that appear when both
+                                <var class="keyword varname">oldBundleName</var> and
+                                <var class="keyword varname">newBundleName</var> are present (for example,
+                                <var class="keyword varname">carryOverFlag</var>). If only one of the entry is given
+                                (<var class="keyword varname">oldBundleName</var> or
+                                <var class="keyword varname">newBundleName</var>), those tags do not appear (for
+                            example, <var class="keyword varname">carryOverFlag</var> tag does not appear for only
+                            addition or removal). Also if <var class="keyword varname">IMMEDIATE_BACKDATED</var>, or
+                                <var class="keyword varname">IMMEDIATE_MINUS_USED</var> options are used, the
+                                <var class="keyword varname">changeType</var> tag has value
+                                <var class="keyword varname">IMMEDIATE</var> in EDR.</p>
+
+                    </li>
+
+                    <li class="li">This functionality is not available through GUI.</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

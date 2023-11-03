@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Usage Control" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e154143" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Usage Control</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e154143">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Usage Control</h1>
+<div class="body conbody">
+  <p class="p">Usage Control (UC) is a network operator service that allows the user to subscribe on a
+      per-device basis. It is controlled by a parent account and the subscription applies to the
+      child device.</p>
+
+  <p class="p">The usage control subscription allows the following functionalities:</p>
+
+  <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e154143__ul_bf3_lnn_gqb">
+   <li class="li">
+    <p class="p">Number of restrictions (for calls and messages only) through global and individual barred and
+     allowed lists.</p>
+
+    <div class="p">
+     <div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e154143__note_mqj_tgx_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Allowed list overrides the allowed time of day and usage limit
+      restrictions.</div>
+
+    </div>
+
+   </li>
+
+   <li class="li">
+    <p class="p">Time of day restrictions on the usage of data, voice, messages, and eCommerce during periods,
+          days, or within a day.</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">Maximum usage (per traffic type and per billing period). The usage limit is based on traffic
+     units (not based on related monetary amount), except for eCommerce traffic where traffic units
+     are actual monetary amounts.</p>
+
+   </li>
+
+  </ul>
+
+  <p class="p">The globally defined allowed and barred lists allow the operator to bar the traffic (in
+   case of barred lists) or skip UC controls (in case of allowed lists). Some globally defined
+   traffic types, such as rating groups and APN combinations are excluded from the UC even when
+   usage counting may still be applied.</p>
+
+  <p class="p">During an emergency period, all UC controls are bypassed for specific traffic types configured
+   by the operator or user.</p>
+
+  <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> In case of call forwarding, an allowed list or barred list check is performed during the
+   call.</div>
+
+<div class="section"><h2 class="title sectiontitle">Configuration</h2>
+      <p class="p">Log into the new GUI, navigate to <span class="ph uicontrol">Charging → ☰ → Charging Management → Usage
+          Control</span>. To define a new usage control, select <span class="ph uicontrol">LOGICS</span>
+        and click <img class="image" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_h3r_nbx_2qb" src="../images/hybrid_gui/new_button.png" height="54" width="104" /> to add the basic details as described in the given
+        table:</p>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Basic Details</strong></p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters for usage control</span></caption><colgroup><col style="width:21.291208791208792%" /><col style="width:39.972527472527474%" /><col style="width:13.736263736263735%" /><col style="width:25%" /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d68467e111">Parameter</th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d68467e114">Description</th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d68467e117">Options</th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d68467e120">Mandatory/Optional</th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">Applicability Condition</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">This parameter indicates a rule condition expression evaluated to determine
+                  whether the usage control service is applicable.</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">-</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Optional</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d68467e111 d68467e114 d68467e117 d68467e120 ">
+                  
+                  <img class="image" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_wzh_bts_jyb" src="../images/img9yz-09126-ug01-pczza-sp1-uc_applicability_condition_default.png" height="153" width="270" />
+                </td>
+
+              </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">Allowed Numbers</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">This parameter indicates the list of numbers to be added in the UC service allowed
+                  list. It is typically left empty, as usually set at subscription level.<p class="p">Click
+                      <strong class="ph b">+</strong> to add a row, and enter a number. </p>
+<p class="p">Click <img class="image" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_awb_vts_jyb" src="../images/hybrid_gui/delete_record.gif" height="10" width="7" /> to delete a row.</p>
+</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">String</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Optional</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">Barred Numbers</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">This parameter indicates the list of numbers to be added in the UC service barred
+                  list. It is typically left empty, as usually set at subscription level.<p class="p">Click
+                      <strong class="ph b">+</strong> to add a row, and enter a number. </p>
+<p class="p">Click <img class="image" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_cml_wts_jyb" src="../images/hybrid_gui/delete_record.gif" height="10" width="7" /> to delete a row.</p>
+</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">String</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Optional</td>
+
+       </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d68467e111 d68467e114 d68467e117 d68467e120 "><span class="ph uicontrol">Usage Limit</span></td>
+
+              </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 "> Usage Limit Type </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">This parameter indicates the type of traffic, that operators wants to
+                  be controlled by subscriber, for usage limit or time or day features. The
+                  following usage limit types can be selected:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e154143__ul_zgq_35s_jyb">
+                    <li class="li">Data</li>
+
+                    <li class="li">Voice</li>
+
+                    <li class="li">Message</li>
+
+                    <li class="li">E-commerce</li>
+
+                  </ul>
+</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">Checkbox</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Optional</td>
+
+       </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">Applicability Condition</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">This parameter indicates a rule condition expression evaluated to determine
+                  whether the usage limit is applicable.</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">-</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Optional</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">Usage Limit</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">This parameter defines the usage limit for usage control limit. It is
+                  typically set after subscription.</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 "> </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Mandatory</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">Unit</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">This parameter defines the unit of the usage limit.</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">Select a value from the drop-down list.</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Mandatory</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">Threshold profile</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">
+                  <p class="p">This parameter indicates the list of thresholds to be applied during a usage
+                    limit execution. It includes notification thresholds and hard-stop
+                    thresholds.</p>
+
+                  <div class="p">
+                    <div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e154143__note_k3g_rgx_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Generally, the thresholds included in this list
+                      consist of percentage type and absolute-from-end thresholds.</div>
+
+                  </div>
+
+                </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">String</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Optional</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">Overage Limit</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">The overage limit is used to track usage once the usage limit is consumed. It
+                  is applicable only if usage limit is defined.</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">BigDecimal</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Optional</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">Overage Threshold Profile Group IDs</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">This parameter indicates the names of threshold profile groups applicable for
+                  overage usages.</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">List&lt;String&gt;</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Optional</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d68467e111 d68467e114 d68467e117 d68467e120 "><span class="ph uicontrol">Reference Counter</span></td>
+
+              </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">Select Counter</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">
+         <p class="p">This parameter is used for usage limit feature, in case operator wishes that
+          subscriber can change the limit of an existing charging service counter (reference
+          counter).</p>
+
+         <p class="p">If left empty, then a UC dedicated counter is self-created for usage limit feature.</p>
+
+                  <p class="p">If this is filled, then <strong class="ph b">Counter Name</strong> and <strong class="ph b">Referenced counter IDs</strong>
+                    fields are disabled.</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">Select the required counter from the drop-down list.</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Optional</td>
+
+       </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">Counter Name</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 "><p class="p">Use this parameter to apply a limit on the combined usage for multiple
+                    Counters (for example, data usage for 4G and 5G counters). That is, a single
+                    combined usage control limit applies on usage for multiple reference
+                    counters.</p>
+This field defines the self-counter ID for usage control limit. For
+                  multi-reference self-counters, this field is sent in request along with the list
+                  provided in <strong class="ph b">Referenced counter IDs</strong>. </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">String</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Optional<p class="p">Mandatory if <span class="ph uicontrol">Referenced counter IDs</span> is
+                    filled.</p>
+</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">Referenced counter IDs</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">This field contains the name of reference counters. These counter values are
+                  accumulated to calculate the value of multi-reference self-counter.</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">List&lt;String&gt;</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Optional<p class="p">Mandatory if <span class="ph uicontrol">Counter Name</span> is
+                  filled.</p>
+</td>
+
+              </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d68467e111 d68467e114 d68467e117 d68467e120 "> Click <span class="ph uicontrol">TIME OF THE DAY</span> to
+                  configure the blocked usage time for a specific day in the week.<div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e154143__fig_if5_2xs_jyb">
+                    <img class="image imagecenter break" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_q1c_jxs_jyb" height="192" src="../images/time_of_the_day.PNG" width="480" />
+                  </div>
+<p class="p">Blocked usage time can be configured for all days at once or only for
+                    specific days of the week.</p>
+<p class="p">The blocked usage time has a start time and end
+                    time.</p>
+</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">Start time</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">
+         <p class="p">This parameter defines the start time of the week.</p>
+
+                  <p class="p">Format: <code class="ph codeph">HH:MM:SS</code></p>
+
+         <p class="p">It is typically set after subscription.</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">Integer</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Optional</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">End time</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">
+         <p class="p">This parameter defines the end time of the week. It should be greater than the start
+                    time.</p>
+
+                  <p class="p">Format: <code class="ph codeph">HH:MM:SS</code></p>
+
+         <p class="p">It is typically set after subscription.</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">Integer</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Optional</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d68467e111 d68467e114 d68467e117 d68467e120 "> Click <strong class="ph b">+</strong> to add another blocked usage time
+                  interval with start time and end time. <p class="p">Click <img class="image" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_yrd_mys_jyb" src="../images/hybrid_gui/delete_record.gif" height="10" width="7" /> to delete an interval defined for a specific
+                  day.</p>
+</td>
+
+       </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" colspan="4" style="vertical-align:top;" headers="d68467e111 d68467e114 d68467e117 d68467e120 "><span class="ph uicontrol">Logic Details</span></td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">Name</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">
+                  <p class="p">This parameter indicates a unique name of the UC service.</p>
+
+                </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">String</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Mandatory</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e111 ">Priority</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e114 ">
+                  <div class="p">This parameter indicates the priority of the usage control service. Higher the
+                    number, lower is the priority of the usage control service.<div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e154143__note_wsg_zys_jyb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Ensure that the value of this parameter is greater than
+                      zero.</div>
+</div>
+
+                  <p class="p">Valid range: 1 to 2147483647</p>
+
+                </td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e117 ">Integer</td>
+
+                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e120 ">Optional</td>
+
+              </tr>
+
+      </tbody>
+</table>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Examples</h2>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 1</strong></p>
+
+<p class="p">For reference counter:</p>
+<ol class="ol">
+<li class="li">
+<p class="p">Counter (reference) from base bundle of charging service is consumed.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Usage limit overrides the base usage limit of the reference counter.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Threshold associated with the reference counter triggers the actions based on the soft-stop or the hard-stop (as configured).</p>
+
+</li>
+
+</ol>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 2</strong></p>
+
+<p class="p">For self-counter:</p>
+<ol class="ol">
+<li class="li">
+<p class="p">Counter created by usage control is consumed.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Usage limit is the limit of the self-counter.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Threshold associated with the self-counter triggers the action based on the soft-stop or the hard-stop (as configured).</p>
+
+</li>
+
+</ol>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Actions associated with usage control</h2>
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:33.003300330033%" /><col style="width:66.996699669967%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d68467e634">
+        <p class="p">Action</p>
+
+      </th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d68467e640">
+        <p class="p">Description</p>
+
+      </th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e634 ">Create</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e640 ">Creates a usage control entity in the database by providing details for parameters,
+        such as <span class="ph uicontrol">Name</span>, <span class="ph uicontrol">Priority</span>, and <span class="ph uicontrol">Allowed
+         List</span>.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e634 ">Read</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e640 ">Displays the usage control entity in the database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e634 ">Update</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e640 ">Updates the usage control entity in the database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e634 ">Delete</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d68467e640 ">Deletes a usage control entity from database.</td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> These actions are valid for internal purposes only and cannot be accessed using the SM
+    GUI.</div>
+
+</div>
+
+  <div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e154143__section_snk_pv4_w5b"><h2 class="title sectiontitle">Announcement and notification for Call Message Block (CMB) and Usage Control (UC)</h2>
+   
+   <p class="p">This feature allows you to configure announcements or notifications to be sent to the
+    subscriber for both Usage Control (UC) and Call Message Block (CMB) in the following cases:</p>
+
+   <div class="sectiondiv"><strong class="ph b">Call Message Block (CMB)</strong><p class="p">MT voice calls: Operators can configure this
+     feature to not receive announcements and notifications on MT voice call from the barred
+     numbers.</p>
+<p class="p">MT SMS: Operators can configure this feature to not receive notifications on MT
+     SMS call from the barred numbers.</p>
+</div>
+   <div class="sectiondiv"><strong class="ph b">Usage Control (UC)</strong><div class="p">Operators can configure to deny the call in the following
+      cases:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e154143__ul_os4_2z4_w5b">
+      <li class="li">Barred by block list.</li>
+
+      <li class="li">Hard-stop limit reached.</li>
+
+      <li class="li">Barred due to Time of Day (TOD).</li>
+
+     </ul>
+</div>
+<div class="p">Operators can configure the call to be disconnected in the following cases:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e154143__ul_rs4_2z4_w5b">
+      <li class="li">Hard-stop limit reached.</li>
+
+      <li class="li">Barred due to Time of Day (TOD).</li>
+
+     </ul>
+</div>
+</div>
+   <div class="p">The <em class="ph i">ThresholdTriggerType_RESERVATION</em> action should be configured in threshold if the
+    operator wants to send the notification in the following cases:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e154143__ul_s1r_c5q_w5b">
+     <li class="li">RSU is greater than the threshold delta.</li>
+
+     <li class="li">Threshold is already crossed and a direct debit call is initiated again.</li>
+
+    </ul>
+However, if the operator does not want to receive notification or announcement when
+    threshold is crossed during call, then it is not recommended to configure the
+     <em class="ph i">ThresholdTriggerType_RESERVATION</em> action in threshold.<div class="note" id="id9yz-09126-ug01-pczza-sp1-d1e154143__note_tvx_f5q_w5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+     <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e154143__ul_rhb_g5q_w5b">
+      <li class="li">Announcement for SMS/MMS calls should not be configured in <em class="ph i">GY_PRE_PROCESSING</em> and
+        <em class="ph i">UC_PROCESSING</em> triggers.</li>
+
+      <li class="li">Announcement is also supported for VSA AVPs.</li>
+
+     </ul>
+
+    </div>
+</div>
+
+  </div>
+
+    <div class="section" id="id9yz-09126-ug01-pczza-sp1-d1e154143__section_stn_3kq_w5b"><h2 class="title sectiontitle">Use cases</h2>
+      
+      <div class="sectiondiv"><strong class="ph b">Use case 1: Verify that SMS_MO call is rejected when Hard-stop limit is reached
+          on usage limit when <em class="ph i">Notification-Reject</em> action is
+            configured.</strong><div class="p"><strong class="ph b">Configuration</strong>:<ol class="ol" id="id9yz-09126-ug01-pczza-sp1-d1e154143__ol_v13_tkq_w5b">
+            <li class="li">Create a Threshold of ABS type (value of 100 units) with <em class="ph i">Notification-Reject</em>
+                action.<div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e154143__fig_bkd_ksq_w5b">
+                <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_s4h_msq_w5b" height="192" src="../images/uc1_tpg.PNG" width="576" />
+              </div>
+</li>
+
+            <li class="li">Create a subscription counter of <em class="ph i">UNIT</em> type.<div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e154143__fig_gnw_msq_w5b">
+                <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_cgr_nsq_w5b" height="192" src="../images/uc1_subscription_counter.PNG" width="576" />
+              </div>
+</li>
+
+            <li class="li">Create a multi-bundle counter of <em class="ph i">UNIT</em> type.<div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e154143__fig_w5w_nsq_w5b">
+                <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_onn_4sq_w5b" height="192" src="../images/uc1_multi_service_counter.PNG" width="576" />
+              </div>
+</li>
+
+            <li class="li">Create a <em class="ph i">Charging Logic</em> with the subscription counter and multi-bundle
+              counter. The <em class="ph i">Charging Logic</em> has no charge.<div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e154143__fig_qjk_tsq_w5b">
+                <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_jwf_5sq_w5b" height="192" src="../images/uc1_cs.PNG" width="480" />
+              </div>
+</li>
+
+            <li class="li">Create <em class="ph i">Usage Control</em> of <em class="ph i">UNIT</em> Type with usage limit of 300.The <em class="ph i">Usage
+                Control</em> has a reference multi-bundle counter. Attach the created TPG to the
+                <em class="ph i">Usage Control</em>. <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e154143__fig_e4v_5sq_w5b">
+                <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_qlb_zsq_w5b" height="288" src="../images/uc1_usage_control.PNG" width="384" />
+              </div>
+</li>
+
+            <li class="li">Create bundle with the created <em class="ph i">Usage Control</em> and <em class="ph i">Charging Logic</em>. <div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e154143__fig_pjd_btq_w5b">
+                <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_rrs_btq_w5b" height="192" src="../images/uc1_service.PNG" width="576" />
+              </div>
+</li>
+
+            <li class="li">Configure the notification template.</li>
+
+          </ol>
+</div>
+<div class="p"><strong class="ph b">Execution</strong>:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e154143__ul_vyl_tlq_w5b">
+            <li class="li">Execute the SMS-IEC RSU = 100. <p class="p">Result: Threshold is reached and notification is
+                sent.</p>
+</li>
+
+            <li class="li">Execute another SMS-IEC RSU = 100. <p class="p">Result: Call is rejected with an error code
+                  <var class="keyword varname">4012</var> for Hard-stop on usage limit and a notification is sent.
+              </p>
+</li>
+
+          </ul>
+</div>
+<div class="p">Device overview before SMS IEC:<div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e154143__fig_h5h_ptq_w5b">
+            <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_cn1_qtq_w5b" height="192" src="../images/uc1_device_overview_before.PNG" width="576" />
+            <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_o15_qtq_w5b" height="96" src="../images/uc1_device_overview_before2.PNG" width="576" />
+          </div>
+</div>
+<div class="p">Device overview after SMS IEC, RSU = 100<div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e154143__fig_bwj_ttq_w5b">
+            <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_lwb_5tq_w5b" height="96" src="../images/uc1_device_overview_after1.PNG" width="576" />
+            <img class="image break" id="id9yz-09126-ug01-pczza-sp1-d1e154143__image_wzw_5tq_w5b" height="96" src="../images/uc1_device_overview_after2.PNG" width="576" />
+          </div>
+</div>
+</div>
+      <div class="sectiondiv"><strong class="ph b">Use case 2: Verify that IMS_MO call is rejected when called number is present
+          in the barred list, and announcement and notification are
+            sent.</strong><div class="p"><strong class="ph b">Configuration</strong>:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e154143__ul_chc_3mq_w5b">
+            <li class="li">Configure the rule for barring in <em class="ph i">IMS_CALL_ESTABLISHMENT</em>.</li>
+
+            <li class="li">Create a custom data named <em class="ph i">BARREDLIST</em>.</li>
+
+            <li class="li">Create a subscription counter of <em class="ph i">TIME</em> type.</li>
+
+            <li class="li">Create a <em class="ph i">Charging Logic</em> having no charge and the created subscription
+              counter.</li>
+
+            <li class="li">Create a bundle with the <em class="ph i">Charging Logic</em>.</li>
+
+            <li class="li">Create a device and subscribe to the bundle. Add the <em class="ph i">BARREDLIST</em> custom data
+              to it.</li>
+
+            <li class="li">Configure the notification template.</li>
+
+          </ul>
+</div>
+<div class="p"><strong class="ph b">Execution</strong>:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e154143__ul_m4p_qmq_w5b">
+            <li class="li">Execute the IMS-I with barred number present in called party address.<p class="p">Result: Call
+                is rejected as the called number is present in the barred list. Notification and
+                announcement are sent.</p>
+</li>
+
+          </ul>
+</div>
+</div>
+      <div class="sectiondiv"><strong class="ph b">Use case 3: Verify that SMS call is rejected when the called number is present
+          in the barred list in Usage Control, and a notification is
+            sent.</strong><div class="p"><strong class="ph b">Configuration</strong>:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e154143__ul_znk_cnq_w5b">
+            <li class="li">Configure the rule for <em class="ph i">Usage Control</em> barring in <em class="ph i">UC_PROCESSING</em>
+              trigger.</li>
+
+            <li class="li">Create a multi-bundle counter of <em class="ph i">UNIT</em> type.</li>
+
+            <li class="li">Create a <em class="ph i">Charging Logic</em> having no charge and the created multi-bundle
+              counter.</li>
+
+            <li class="li">Create a <em class="ph i">Usage Control</em> of <em class="ph i">UNIT</em> type with the barred number
+              configured.</li>
+
+            <li class="li">Create a bundle with the created <em class="ph i">Usage Control</em> and <em class="ph i">Charging
+              Logic</em>.</li>
+
+            <li class="li">Configure the notification template.</li>
+
+          </ul>
+</div>
+<div class="p"><strong class="ph b">Execution</strong>:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e154143__ul_flj_nnq_w5b">
+            <li class="li">Execute the SMS-IEC MO with barred number.<p class="p">Result: Call is rejected as the called
+                number is present in the barred list of <em class="ph i">Usage Control</em>. A notification is
+                sent.</p>
+</li>
+
+          </ul>
+</div>
+</div>
+    </div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

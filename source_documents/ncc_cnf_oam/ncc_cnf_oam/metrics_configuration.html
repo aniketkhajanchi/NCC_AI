@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Metrics configuration with NCC Telemetry package" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="metrics_configuration" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Metrics configuration with NCC Telemetry package</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="metrics_configuration">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Metrics configuration with <span class="ph">NCC</span> Telemetry package</h1>
+<div class="body conbody">
+        <div class="section" id="metrics_configuration__section_zpj_phx_llb"><h2 class="title sectiontitle">Overview</h2>
+            
+            <p class="p">The <span class="ph">NCC</span> metrics system can be configured to meet the
+                needs of a given deployment, including which labels are muted, the
+                collection/gathering interval, and various other parameters.</p>
+
+        </div>
+
+        
+        
+        <div class="section" id="metrics_configuration__section_frw_sxy_llb"><h2 class="title sectiontitle">Getting started with Metrics Viewer technology</h2>
+            
+            <p class="p">Before you try to use Metrics Viewer technology, ensure the parameter keys for the
+                Metrics Viewer software have been configured.</p>
+
+            <p class="p">To work in the Metrics Viewer GUI from NCC, users must be created. As the admin user
+                of the Metrics Viewer technology:</p>
+
+            <p class="p">Log in to the Metrics Viewer GUI by using the URL configured on helm installation of
+                the Metrics Viewer container. For more information regarding helm deployment of the
+                Metrics Viewer container, see the <cite class="cite">Installation and Upgrade Guide</cite>.</p>
+
+            <p class="p">In an <span class="ph">NCC</span> system that is configured for remote
+                authentication, each user logs in with their own personal user name and
+                password.</p>
+
+            <p class="p">In addition, a default admin user name may be used.</p>
+
+            <p class="p">When the admin user logs in for the first time, they will be asked to change their
+                password. Nokia strongly encourages the adherence to the Metrics Viewer technology
+                best practices and to change the default administrator password. The Metrics Viewer
+                GUI is available after a successful deployment at the user configurable Metrics
+                Viewer GUI URL.</p>
+
+            <p class="p">The data source must have been configured correctly before creating one's first
+                dashboard. The data source may be configured at this URL:
+                    <code class="ph codeph">https://&lt;metric_viewer_gui_url&gt;/datasources</code>.</p>
+
+            <div class="p">The data source should be set to Prometheus and Port 9090. Perform these steps to
+                configure the Metrics Viewer datasource with port 9090:<ol class="ol" id="metrics_configuration__ol_jxq_lft_mlb">
+                    <li class="li">Log in to the Metrics Viewer GUI at: <ol class="ol" type="a" id="metrics_configuration__ol_rml_wfg_4yb">
+                            <li class="li">
+                                <p class="p">https://&lt;FQDN&gt;/grafana-btel if <span class="ph">NCC</span> Telemetry is installed separately.</p>
+
+                                <p class="p">https://&lt;FQDN&gt;/grafana-ig if <span class="ph">NCC</span>
+                                    Telemetry is integrated with an IG system.</p>
+
+                                <p class="p">https://&lt;FQDN&gt;/grafana-me if <span class="ph">NCC</span>
+                                    Telemetry is integrated with an ME subsystem.</p>
+
+                                <p class="p">https://&lt;FQDN&gt;/grafana-sm if <span class="ph">NCC</span>
+                                    Telemetry is integrated with an SM system.</p>
+
+                            </li>
+
+                        </ol>
+</li>
+
+                    <li class="li">In the <span class="ph uicontrol">Configuration tab</span>, select <span class="ph uicontrol">Data
+                            Sources</span> and then select <span class="ph uicontrol">Prometheus
+                            Datasource</span>.</li>
+
+                    <li class="li">Update the <span class="ph uicontrol">HTTP URL</span> field with port 9090.</li>
+
+                    <li class="li">Save the configuration, using the <span class="ph uicontrol">Save &amp; Test</span>
+                        button.</li>
+
+                </ol>
+</div>
+
+            <div class="p">Perform these steps to create and update a dashboard: <ol class="ol">
+                    <li class="li">Click on <span class="ph uicontrol">Create your first dashboard</span> from the
+                            <span class="ph uicontrol">Home</span> screen.</li>
+
+                    <li class="li">Click on <span class="ph uicontrol">Add visualization option</span>.</li>
+
+                    <li class="li">Select the <span class="ph uicontrol">Code</span> option in the query panel.</li>
+
+                    <li class="li">Add the desired metric in the <span class="ph uicontrol">Metrics browser</span> field
+                        (for example: node_cpu).</li>
+
+                    <li class="li">Click on the <span class="ph uicontrol">Run queries</span> button to see the data in
+                        the panel.</li>
+
+                    <li class="li">Enter a title for the panel in the <span class="ph uicontrol">Panel Options</span> on
+                        the right and click <span class="ph uicontrol">Save</span>. <p class="p">The new dashboard
+                            appears in the <span class="ph uicontrol">Dashboards</span> list.</p>
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> There is
+                            no auto save available in the Metrics Viewer. If the service restarts or
+                            a timeout occurs, all unsaved changes are lost.</div>
+</li>
+
+                    <li class="li">Select the <span class="ph uicontrol">Add &gt; Visualization</span> option to add
+                        additional panels to the dashboard.</li>
+
+                    <li class="li">Drag and drop to rearrange the panels.</li>
+
+                    <li class="li">Click <span class="ph uicontrol">Save</span>.</li>
+
+                    <li class="li">Click <span class="ph uicontrol">Apply</span>.<p class="p">The additional panel appears on the
+                            dashboard.</p>
+</li>
+
+                </ol>
+</div>
+
+            <p class="p">For more information on creating dashboards, see <a class="xref" href="https://grafana.com/" target="_blank" rel="noopener noreferrer">https://grafana.com/</a>.</p>
+
+            <div class="p">Perform these steps to export a dashboard:<ol class="ol" id="metrics_configuration__ol_xt4_cgs_nyb">
+                    <li class="li">Open the dashbaord you want to export from the
+                            <span class="ph uicontrol">Dashboards</span> list.</li>
+
+                    <li class="li">Click on the <span class="ph uicontrol">Export</span> tab.</li>
+
+                    <li class="li">Click on the share option next to the dashboard name.</li>
+
+                    <li class="li">Select <span class="ph uicontrol">Export for sharing externally</span>.</li>
+
+                    <li class="li">Click <span class="ph uicontrol">Save to file</span>.<p class="p">A JSON file is created.
+                        </p>
+</li>
+
+                </ol>
+</div>
+
+            <div class="p">Perform these steps to import an exported dashboard: <ol class="ol">
+                    <li class="li">Select <span class="ph uicontrol">New&gt;Import</span> from the
+                            <span class="ph uicontrol">Dashboards</span> page.</li>
+
+                    <li class="li">Upload the exported JSON file from your local machine.</li>
+
+                    <li class="li">Select <span class="ph uicontrol">prometheus</span> as the datasource.</li>
+
+                    <li class="li">Click on <span class="ph uicontrol">Import</span>.<p class="p">The new dashboard appears in the
+                            dashboards list.</p>
+</li>
+
+                </ol>
+</div>
+
+            <div class="p">Perform these steps to delete a dashboard: <ol class="ol">
+                    <li class="li">[Option 1] Select the checkbox next to the dashboard you want to delete from
+                        the <span class="ph uicontrol">Dashbaords</span> list.</li>
+
+                    <li class="li">Click on the <span class="ph uicontrol">Delete</span> button.</li>
+
+                    <li class="li">Click on the <span class="ph uicontrol">Delete</span> button in the confirmation
+                        window.</li>
+
+                    <li class="li">[Option 2] Open the dashboard you want to delete.</li>
+
+                    <li class="li">Click on the <span class="ph uicontrol">Settings</span> icon on the top right.</li>
+
+                    <li class="li">Click on the <span class="ph uicontrol">Delete Dashboard</span> button.</li>
+
+                    <li class="li">Click <span class="ph uicontrol">Delete</span> in the confirmation window.</li>
+
+                </ol>
+</div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle"><span class="ph">NCC</span> Monitoring Dashboard</h2>
+            
+            <p class="p">The <span class="ph">NCC</span> Monitoring Dashboard enables you to see the
+                default basic metrics such as CPU, memory, and Diameter KPIs in a single
+                pre-configured dashboard with multiple query panels. The Metrics Viewer chart must
+                be installed in the <span class="ph">NCC</span> Telemetry component for the
+                dashboard to appear.</p>
+
+            <p class="p">In case the default queries need to be modified then you must save a copy of the
+                dashboard and customize it. This dashboard can also be exported and imported on
+                previous releases, if required.</p>
+
+            <p class="p">To access the dashboard, log into the Metrics Viewer with the admin username
+                credentials that were provided in the <span class="ph filepath">Inputs.xlsx</span> spreadsheet
+                in the <span class="ph uicontrol">Common &gt; BTEL</span> section and select
+                    <span class="ph uicontrol">Dashboards</span> from the left navigation.</p>
+
+            <p class="p">By default, this dashboard displays metrics for the last 24 hrs in local browser
+                time. The metrics display time can be configured to UTC or any other time zone as
+                per user configuration. Metrics are grouped into multiple panels, the details of
+                which can be checked by clicking on the respective drop down of each panel. </p>
+
+            <p class="p">The values in these panels are color coded according to the thresholds that are
+                defined in them. Thresholds are seen while editing each panel in the panel options.
+                You can change the thresholds as per their own criteria.</p>
+
+            <div class="p">This is a list of the panels: <ul class="ul" id="metrics_configuration__ul_gfs_rzr_nyb">
+                    <li class="li">Diameter 4G Metrics</li>
+
+                    <li class="li">5G HTTP Metrics</li>
+
+                    <li class="li">NCC Overload</li>
+
+                    <li class="li">CDR Metrics</li>
+
+                    <li class="li">HTTP Metrics</li>
+
+                    <li class="li">Notification Metrics</li>
+
+                    <li class="li">Pod Wise CPU Usage</li>
+
+                    <li class="li">Total Subscribers</li>
+
+                    <li class="li">Detailed Graph Metrics</li>
+
+                </ul>
+</div>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Collapsed rows is the default display mode on the Metrics Viewer dashboard. It is
+                recommended to open each row on the dashboard one at a time. Take care when
+                refreshing the dashboard page with expanded rows as this might have an impact on the
+                resource utilization of the Prometheus node.</div>
+
+        </div>
+
+        <div class="section" id="metrics_configuration__section_ihh_wft_mlb"><h2 class="title sectiontitle">Muting selected labels</h2>
+            
+            <p class="p">In some network environments, recording detailed information for all labels results
+                in a very large volume of data and metrics combinations, which may be too much for
+                the engineering of the system or for the northbound OSS systems to consume as they
+                retrieve measurement files from <span class="ph">NCC</span>. To address this,
+                    <span class="ph">NCC</span> supports a capability for "muting" selected
+                measurements labels. When a label is muted, its value is recorded as "NA" (not
+                available). In this case, there is only a single value for that label, and thus,
+                reducing the combinatorics that may be contributing to a very large volume of
+                measurement data.</p>
+
+            <div class="p">Application metric labels can be muted or un-muted by using the application
+                preferences that are listed in this table. The measurements tables in later sections
+                specify which labels can be muted for a given measurement.<table cellpadding="4" cellspacing="0" summary="" id="metrics_configuration__table_n5p_yft_mlb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Muting metric labels</span></caption><colgroup><col style="width:40%" /><col style="width:20%" /><col style="width:20%" /><col style="width:20%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d68696e442">Application Preference Name</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d68696e445">Type</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d68696e448">Metric Name</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d68696e451">Default Value</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e442 ">Mute Diameter metric labels (true/false)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e445 ">Boolean</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e448 ">Diameter</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e451 ">true</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e442 ">Mute HTTP_3GPP metric labels (true/false)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e445 ">Boolean</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e448 ">http_3gpp</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e451 ">true</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e442 ">Mute HTTP metric labels (true/false)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e445 ">Boolean</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e448 ">HTTP</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e451 ">true</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e442 ">Mute LDAP metric labels (true/false)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e445 ">Boolean</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e448 ">LDAP</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e451 ">false</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e442 ">Mute Rating metric labels (true/false)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e445 ">Boolean</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e448 ">Rating</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e451 ">true</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e442 ">Mute Site Routing metric labels</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e445 ">Boolean</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e448 ">Site Routing</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d68696e451 ">true</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+</div>
+
+        </div>
+
+        <div class="section" id="metrics_configuration__section_jp2_dht_mlb"><h2 class="title sectiontitle">Alarms when measurements cross a threshold</h2>
+            
+            <p class="p">NCC can be configured to generate alarms when a pre-configured metric exceeds a
+                configured threshold. Standard metrics alarms are created from Prometheus
+                alerts.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Overage functionality" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e198784" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Overage functionality</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e198784">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Overage functionality</h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">The overage is a limit applied on the main account balance and it is the negative limit on the same.</p>
+
+<p class="p">For example, after consuming 500 MB of volume bucket or 500 SMS, a user has 100 United States dollars as the main balance and an overage of 200 United States dollars. This means that after 500 MB of volume consumption, a user can use the main balance at the rate of 5 United States dollars per MB. Since the overage limit is 200 United States dollars, the user can use up to 300 United States dollars (100 United States dollars + 200 United States dollars). If the user is a prepaid subscriber, then the user needs to recharge after using 300 United States dollars. The overage amount of 200 United States dollars is recovered from the next recharge.</p>
+
+<p class="p">Operators can set a limit on the overage value allowed on the main balance of the account by configuring the <em class="ph i">overageLimit</em> while creating the account entity. This field is set to a value that allows the desired overage limit on the main balance of the account. This functionality is applicable for all call types, such as Immediate Event Charging (IEC), Event Charging with Unit Reservation (ECUR), and Session Charging with Unit Reservation (SCUR).</p>
+
+<p class="p">The default overage limit value is <var class="keyword varname">-9999999999</var>.</p>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example</strong></p>
+
+<p class="p">Consider the following example,</p>
+
+<p class="p">Bob is associated with a mobile device and makes a data call. His account is not restricted to zero and can go into negative balance.</p>
+
+<div class="fig fignone" id="id9yz-09126-ug01-pczza-sp1-d1e198784__id_overagelimit"><span class="figcap"><span class="fig--title-label">Figure: </span>Scenario for limit on overage</span>
+                    
+                    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-overagelimit_default.png" />
+                </div>
+
+</div>
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

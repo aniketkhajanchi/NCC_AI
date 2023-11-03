@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Variable preference order" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="variable_preference_order" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Variable preference order</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="variable_preference_order">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Variable preference order</h1>
+<div class="body conbody">
+        <p class="p">It is expected to define only the required variables and keep the remaining variable
+            values as <code class="ph codeph">None</code>. But if the user fills all the values, the following
+            order should be honored:</p>
+
+        <ol class="ol" id="variable_preference_order__ol_lvn_54d_jpb">
+            <li class="li"><code class="ph codeph">helm-chart-dir</code> and <code class="ph codeph">cnf-namespace</code> over
+                    <code class="ph codeph">sdc</code> configuration files for either IG or Distributed setup,
+                that is, if <code class="ph codeph">helm-chart-dir</code>, <code class="ph codeph">cnf-namespace</code>, and
+                    <code class="ph codeph">sdc</code> files are all present, then DAG will be generated for
+                SPS-CNF considering values for <code class="ph codeph">helm-chart-dir</code> and
+                    <code class="ph codeph">cnf-namespace</code>.</li>
+
+            <li class="li"><code class="ph codeph">igsdc</code> over <code class="ph codeph">mesdc</code> or <code class="ph codeph">smsdc</code>: If
+                either of <code class="ph codeph">medsc</code> or <code class="ph codeph">smsdc</code> is configured, and also
+                    <code class="ph codeph">igsdc</code> is configured, then DAG will be generated for IG
+                SPS-VNF.</li>
+
+            <li class="li"><code class="ph codeph">mesdc</code> and <code class="ph codeph">smsdc</code> over <code class="ph codeph">igsdc</code>: If
+                both <code class="ph codeph">mesdc</code> and <code class="ph codeph">smsdc</code> are configured along with
+                    <code class="ph codeph">igsdc</code>, then DAG will be generated for Distributed SPS-VNF.</li>
+
+            <li class="li"><code class="ph codeph">vnf</code> files will only be considered for DAG generation if
+                    <code class="ph codeph">sdc</code> files are configured.</li>
+
+            <li class="li">To receive e-mail, all e-mail variables need to be configured.</li>
+
+        </ol>
+
+    </div>
+<div class="footer"><hr /><p>DevOps Guide • P556766-DN1000055058-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Example 2: Implementing slice reduction for an AV bucket" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="section_wps_2zk_r4b" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Example 2: Implementing slice reduction for an AV bucket</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="section_wps_2zk_r4b">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Example 2: Implementing slice reduction for an AV bucket</h1>
+<div class="body">
+                
+                <p class="p">The following example describes how slice reduction feature helps to calculate
+                    the minimum slice size for an AV bucket.</p>
+
+                <p class="p">
+                    <strong class="ph b">Preconditions:</strong>
+                </p>
+
+                <ol class="ol" id="section_wps_2zk_r4b__ol_xps_2zk_r4b">
+                    <li class="li">
+                        <p class="p">Consider a device D1 attached to a subscription S1 with a bundle B1.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Bundle B1 contains two charging services CS1 and CS2:</p>
+
+                        <ul class="ul" id="section_wps_2zk_r4b__ul_yps_2zk_r4b">
+                            <li class="li">
+                                <p class="p">CS1 contains a volume bucket B1 (100 bytes) and B2 (100 bytes).
+                                    B1 contains a threshold T1 at 40 bytes with a
+                                        <samp class="ph systemoutput">Absolute from start with stop</samp>
+                                    action.</p>
+
+                            </li>
+
+                            <li class="li">
+                                <p class="p">CS2 contains a time bucket B3 (500 seconds).</p>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">An AV bucket with CS1 and CS2 is attached to the device D1.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">An aggregate view contains balance of buckets B1 and B2 with threshold
+                            action (T2) set as <samp class="ph systemoutput">Absolute from start</samp>.</p>
+
+                        <p class="p">AV initial = 200 bytes</p>
+
+                        <p class="p">AV current = 200 bytes</p>
+
+                        <p class="p">AV unused = 200 bytes</p>
+
+                    </li>
+
+                </ol>
+
+                <p class="p">
+                    <strong class="ph b">Post-conditions:</strong>
+                </p>
+
+                <ul class="ul" id="section_wps_2zk_r4b__ul_zps_2zk_r4b">
+                    <li class="li">
+                        <p class="p">An initial reserve request arrives with RSU set as 20 bytes from B1.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The slice reduction feature is executed, which calculates dynamic RSU as
+                            10 bytes considered B1 and AV bucket.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The allocation factor is set as 100% and minimum slice size as 10
+                            bytes.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The reservation is done from B1 and AV current value is also updated
+                            according to the reserved value.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">A commit request is received from B1 for 40 bytes.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">The commit request from B1 is initiated, balance is updated and threshold
+                            is evaluated.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Update the AV current value and unused value based on committed
+                            value.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Evaluate AV thresholds. Threshold T2 is crossed.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Handover commit. Update B1 balance and evaluate its thresholds and set
+                            action. Threshold T1 is crossed.</p>
+
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Update AV balance and evaluate its thresholds and set action.</p>
+
+                    </li>
+
+                </ul>
+
+            </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

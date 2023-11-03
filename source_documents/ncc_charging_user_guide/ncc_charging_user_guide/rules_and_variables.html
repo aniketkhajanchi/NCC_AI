@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Rules and variables" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="rules_and_variables" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Rules and variables</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="rules_and_variables">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Rules and variables</h1>
+<div class="body conbody">
+        <p class="p">Rule System Version (RSV) acts as a container that holds rule groups and rule variables
+            in NCC. Operators can customize NCC behavior using rules. </p>
+
+        <p class="p">To view and manage the RSVs, in the new GUI go to <span class="ph uicontrol">Charging</span> → ☰ →
+                <span class="ph uicontrol">Catalog Rules</span> → <span class="ph uicontrol">Rules and
+            Variables</span>.</p>
+
+        <p class="p">Three types of RSVs can be configured using the following buttons:</p>
+
+        <div class="fig fignone" id="rules_and_variables__fig_mmm_qz1_x5b">
+            <img class="image break" id="rules_and_variables__image_t2f_rz1_x5b" src="../images/rsv_type.png" />
+        </div>
+
+        <ul class="ul" id="rules_and_variables__ul_x4q_kz1_x5b">
+            <li class="li">CHARGING: See section<a class="xref" href="call_controller_rules.html">Charging rules</a> for more information
+                about the rules related to charging. </li>
+
+            <li class="li">RECHARGE: For rules related to Recharge microservice, see section <em class="ph i">Recharge
+                    rules</em> in the <em class="ph i">Recharge User Guide</em>. </li>
+
+            <li class="li">LIFECYCLE: See section<a class="xref" href="call_controller_rules.html">Charging rules</a> for more information
+                about the rules related to charging.</li>
+
+        </ul>
+
+        <p class="p">A default RSV is available for each application. Click <span class="ph uicontrol">+NEW</span> to
+            create a new RSV and provide the name and description. The new RSV is created as Draft.
+            You can change the state to Release and Active. The Active, In testing, Previously
+            active, Scheduled RSVs are displayed under the Active heading. Inactive RSVs are
+            displayed as a list on the bottom of the screen. There can be multiple RSVs in each
+            state. Refer to <a class="xref" href="#rules_and_variables__section_xbx_my1_x5b">RSV states</a> for more
+            details.</p>
+
+        <div class="fig fignone" id="rules_and_variables__fig_rcq_xdb_x5b">
+            <a href="../images/rsv_main.png" class="image"><img class="image break scalefit" id="rules_and_variables__image_oby_ydb_x5b" src="../images/rsv_main.png" /></a>
+        </div>
+
+        <div class="section" id="rules_and_variables__section_e4t_5y1_x5b"><h2 class="title sectiontitle">RSVs in MNO/MVNO</h2>
+            
+            <p class="p">The MNO/MVNOs create, manage, and use their own exclusive set of RSVs (that is, they
+                can view and manage only their own RSVs). All of them have a default RSV. When a new
+                MVNO is created, it also gets a default RSV. In addition to the default RSV, the
+                MNO/MVNOs can create additional RSVs. They can have multiple active RSVs, each with
+                different start dates. However, for each MVNO, at any point of time, only one RSV is
+                effective. If there is no other active RSV available for an MVNO, then the default
+                RSV is used. If the appropriate RSV cannot be identified for an MVNO due to any
+                reason, then the active RSV of the MNO is used for the MVNO.</p>
+
+        </div>
+
+        <div class="section" id="rules_and_variables__section_xbx_my1_x5b"><h2 class="title sectiontitle">RSV states</h2>
+            
+            <p class="p">Each RSV, whether it is imported or created, can exist in one of the following
+                states:</p>
+
+            <ul class="ul">
+                <li class="li">Draft: A version of the RSV that can be modified. When a RSV is created, it
+                    remains in this state.</li>
+
+                <li class="li">Released: A version that is completely configured and saved. The release version
+                    is usually one that has been demoted from active but is available to become the
+                    Active version again if needed. Changes are not allowed; you clone it and make
+                    it a draft version.</li>
+
+                <li class="li">Active: A read-only RSV that is active and ready for use starting from the
+                    configured start date. There can be multiple active RSVs. However, there is only
+                    one running RSV at any given time. The remaining active RSVs remain dormant and
+                    become the running RSV on their respective start dates. However, if an RSV has
+                        <var class="keyword varname">Start time = Since start</var>, then it reverts to
+                        <var class="keyword varname">Released</var> state once a new one starts running.</li>
+
+                <li class="li">In testing: The RSV is in this state if it is published for test devices.</li>
+
+                <li class="li">Scheduled: If <strong class="ph b">Schedule activation</strong> is selected for an RSV and a
+                        <strong class="ph b">Validity start</strong> is provided, then it becomes Active on that date and
+                    time. The RSV remains in Scheduled state before being Active.</li>
+
+                <li class="li">Previously active: An RSV that is still active but not effective.</li>
+
+            </ul>
+
+            <p class="p">You can filter the RSVs by RSV state using the check boxes provided above the list
+                area. </p>
+
+        </div>
+
+        <div class="section" id="rules_and_variables__section_vsm_hpb_x5b"><h2 class="title sectiontitle">RSV actions</h2>
+            
+            <table cellpadding="4" cellspacing="0" summary="" id="rules_and_variables__table_r1v_ljd_zsb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Actions for RSV</span></caption><colgroup><col style="width:13.22620519159456%" /><col style="width:12.360939431396787%" /><col style="width:74.41285537700864%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d402749e170">Icon</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d402749e173">Action</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d402749e176">Description</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d402749e170 d402749e173 d402749e176 ">Actions available at the top-right
+                                corner of the page.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e170 "><img class="image" id="rules_and_variables__image_nn5_mtb_x5b" src="../images/icon_new.png" height="33" width="65" /></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e173 ">New</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e176 ">Create a new RSV.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e170 "><img class="image" id="rules_and_variables__image_k1q_ssb_x5b" src="../images/icon_import.png" /></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e173 ">Import</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e176 ">Import an RSV JSON file. You cannot change the name of the file
+                                you are importing in this release. <div class="p">
+                                    <div class="note" id="rules_and_variables__note_cb4_s4j_z5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> RSV export/import is supported only
+                                        for the same NCC version. That is, RSV JSON exported from a
+                                        different NCC version cannot be imported.</div>
+
+                                </div>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" colspan="3" style="vertical-align:top;" headers="d402749e170 d402749e173 d402749e176 ">Actions available in the RSV row on
+                                mouse hover.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e170 "><img class="image" id="rules_and_variables__image_grw_xzd_zsb" src="../images/edit_button_default.png" /></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e173 ">Edit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e176 ">Available when the RSV is in a Draft state. If the RSV is in a
+                                Release state, you can revert it to Draft if it has not been
+                                distributed to an ME.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e170 "><img class="image" id="rules_and_variables__image_t4q_h12_zsb" src="../images/duplicate.PNG" /></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e173 ">Duplicate</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e176 ">Duplicate is supported using the Duplicate button that appears in
+                                the RSV table when you hover the cursor over a line item in the
+                                table. You cannot change the name of the file you are cloning in
+                                this release.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e170 "><img class="image" id="rules_and_variables__image_qsf_xpb_x5b" src="../images/icon_export.png" /></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e173 ">Export</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e176 ">Export the RSV as a JSON file. <div class="note" id="rules_and_variables__note_kph_3jw_w5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If an
+                                    RSV is more than 5MB in size, it is not possible to perform an
+                                    export of the RSV using a Chrome browser. This is a limitation
+                                    of the browser. Nokia suggests that you use a Mozilla Firefox
+                                    for an operation of this magnitude. To do so, you must change
+                                    the default setting in Mozilla Firefox, as follows:<ol class="ol" id="rules_and_variables__ul_lph_3jw_w5b">
+                                        <li class="li">Navigate to “about:config” in the Firefox address
+                                            bar.</li>
+
+                                        <li class="li">Search for “dom.storage.default_quota”, which is set to
+                                            5120 by default.</li>
+
+                                        <li class="li">Set the value to 7000 (to export an RSV of 7MB) or an
+                                            appropriate size that is higher to be able to export the
+                                            RSV.</li>
+
+                                    </ol>
+</div>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e170 "><img class="image" id="rules_and_variables__image_sbq_3qb_x5b" src="../images/icon_release.png" /></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e173 ">Release</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e176 ">This action releases a Draft RSV to the selected MEs. After this
+                                action is complete, the state of the RSV changes to
+                                    <var class="keyword varname">Released</var>. Refer to <a class="xref" href="#rules_and_variables__section_w2c_25b_x5b">Releasing an RSV</a> for
+                                details.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e170 "><img class="image" id="rules_and_variables__image_q4j_qqb_x5b" src="../images/icon_activate.png" /></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e173 ">Activate</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e176 ">
+                                <p class="p">After you have released the RSV, you can activate it for use.
+                                    Refer to <a class="xref" href="#rules_and_variables__section_i3j_yyb_x5b">Activating an RSV and defining a start time</a>
+                                    for details.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e170 ">
+                                <img class="image" id="rules_and_variables__image_b5j_1fw_4xb" src="../images/icon_deactivate.png" />
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e173 ">Deactivate</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e176 ">Deactivate an Active RSV. Its status becomes Inactive. The
+                                Default RSV becomes the new Active RSV.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e170 "><img class="image" id="rules_and_variables__image_b2n_mqb_x5b" src="../images/icon_del.png" /></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e173 ">Delete</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e176 ">Available when the RSV is in a Draft state. If the RSV is in a
+                                Release state, you can revert it to Draft if it has not been
+                                distributed to an ME.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e170 "><img class="image" id="rules_and_variables__image_fls_xqb_x5b" src="../images/icon_details.png" /></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e173 ">Details</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e176 ">View details of the RSV.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e170 "><img class="image" id="rules_and_variables__image_vwl_dq1_zsb" src="../images/nodes1.PNG" />
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e173 ">More</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d402749e176 ">Explore more options.</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <div class="section" id="rules_and_variables__section_w2c_25b_x5b"><h2 class="title sectiontitle">Releasing an RSV</h2>
+            
+            <ol class="ol" id="rules_and_variables__ol_g1w_hyb_x5b">
+                <li class="li">To release an RSV that is in Draft state, click <img class="image" id="rules_and_variables__image_ymc_fyb_x5b" src="../images/nodes1.PNG" /> → <img class="image" id="rules_and_variables__image_xny_fyb_x5b" src="../images/icon_release.png" />. The following
+                    screen appears.<div class="fig fignone" id="rules_and_variables__fig_c2q_3yb_x5b">
+                        <img class="image break" id="rules_and_variables__image_dn3_kvb_x5b" src="../images/release_rsv.png" height="363" width="753" />
+                    </div>
+</li>
+
+                <li class="li">Select the Managed Elements to which the RSV should be released.</li>
+
+                <li class="li">Click <strong class="ph b">PROVISION</strong>.</li>
+
+                <li class="li">Click <strong class="ph b">CONTINUE</strong> to further Activate the RSV.</li>
+
+            </ol>
+
+        </div>
+
+        <div class="section" id="rules_and_variables__section_i3j_yyb_x5b"><h2 class="title sectiontitle">Activating an RSV and defining a start time</h2>
+            
+            <ol class="ol" id="rules_and_variables__ol_ntn_czb_x5b">
+                <li class="li">To Activate a RSV that is in Released state, click <img class="image" id="rules_and_variables__image_x4x_fzb_x5b" src="../images/icon_activate.png" />. The following
+                    screen appears.<div class="fig fignone" id="rules_and_variables__fig_ifv_kzb_x5b">
+                        <img class="image break" id="rules_and_variables__image_m2h_lzb_x5b" src="../images/activate_rsv.png" height="399" width="745" />
+                    </div>
+</li>
+
+                <li class="li">Select the Managed Elements in which this RSV should be activated.</li>
+
+                <li class="li">In the <strong class="ph b">Activate to</strong> drop-down list, select from the following options:<ul class="ul" id="rules_and_variables__ol_spn_zzb_x5b">
+                        <li class="li">All subscribers: The RSV is activated for all subscribers.</li>
+
+                        <li class="li">Test devices: The RSV is activated only for test devices.</li>
+
+                    </ul>
+</li>
+
+                <li class="li">In the <strong class="ph b">Activation time</strong> drop-down list, select from the following
+                        options:<ul class="ul" id="rules_and_variables__ul_uhs_j1c_x5b">
+                        <li class="li">Activate now: The RSV becomes activated immediately.</li>
+
+                        <li class="li">Replace default: When the RSV is released and activated, its start date
+                            becomes same as the start date of the first default RSV of the MNO/MVNO.
+                            In such case the default RSV moves to released state. An RSV created
+                            with this option reverts to released state when another RSV becomes the
+                            primary.</li>
+
+                        <li class="li">Schedule activation: If this option is selected, a <strong class="ph b">Validity start</strong>
+                            field appears. Provide a start date and time at which the RSV should
+                            become active. The RSV remains in Scheduled state before being
+                            Active.</li>
+
+                    </ul>
+</li>
+
+                <li class="li">Select the <strong class="ph b">I understand that activating is a service affecting operation.</strong>
+                    check box to acknowledge the content.</li>
+
+                <li class="li">Click <strong class="ph b">ACTIVATE</strong>. The status <strong class="ph b">ACTIVE</strong> is displayed in the screen. In
+                    the main screen, the RSV moves to the Active area.</li>
+
+            </ol>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

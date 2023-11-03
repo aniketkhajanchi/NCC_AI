@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Restore cmdb database" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="restore_cmdb_database" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Restore cmdb database</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="restore_cmdb_database">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Restore cmdb database</h1>
+<div class="body conbody">
+    <p class="p">Perform the following steps to get a cmdb backup from an healthy SM and restore it on the
+      failing SM, let's say SM4:</p>
+
+    <pre class="pre codeblock"><code>## When using the following example commands, make sure to use pod names/container names as appropriate.
+
+## Take a ckey-cmdb backup from an healthy SM, for example on SM1, by running the following command:
+kubectl -n $NAMESPACE exec ckey-cmdb-mariadb-0 --container mariadb -- bash -c '/usr/bin/mariadb_db_backup --backup --file /mariadb/backup/dc1-backup.tgz'
+
+## On SM1 then copy the tgz file from the mariadb pod to the control node:
+kubectl -n $NAMESPACE cp ckey-cmdb-mariadb-0:/mariadb/backup/dc1-backup.tgz ./dc1-backup.tgz --container mariadb
+
+## On SM4, disable maxscale replication:
+kubectl -n $NAMESPACE exec ckey-cmdb-maxscale-0 --container maxscale -- bash -c '/usr/bin/maxscale_adm --disable --stop-slave'
+kubectl -n $NAMESPACE exec ckey-cmdb-maxscale-0 --container maxscale -- bash -c '/usr/lib/maxscale/maxscale_lib.py --maxscale-service=stop'
+
+## Move the tgz file from the control node of SM1 to the control node of SM4, then copy it from the control node of SM4 to each mariadb pod in SM4:
+kubectl -n $NAMESPACE  cp dc1-backup.tgz ckey-cmdb-mariadb-0:/mariadb/backup/ --container mariadb
+
+## Repeat the copy command above for all other mariadb pods on SM4
+
+## Now restore the backup, on each mariadb pod of SM4:
+kubectl -n $NAMESPACE exec ckey-cmdb-mariadb-0 --container mariadb -- bash -c '/usr/bin/mariadb_db_backup --restore --file /mariadb/backup/dc1-backup.tgz '
+
+## Repeat the restore command above for all other mariadb pods on SM4
+
+## Re-enable maxscale replication on SM4: 
+kubectl -n $NAMESPACE exec ckey-cmdb-maxscale-0 --container maxscale -- bash -c '/usr/lib/maxscale/maxscale_lib.py --maxscale-service=start'
+kubectl -n $NAMESPACE exec ckey-cmdb-maxscale-0 --container maxscale -- bash -c '/usr/bin/maxscale_adm --enable '</code></pre>
+  </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

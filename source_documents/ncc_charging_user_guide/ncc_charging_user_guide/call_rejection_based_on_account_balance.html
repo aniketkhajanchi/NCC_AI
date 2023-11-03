@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Call rejection based on account balance" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="call_rejection_based_on_account_balance" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Call rejection based on account balance</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="call_rejection_based_on_account_balance">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Call rejection based on account balance</h1>
+<div class="body conbody">
+        <p class="p">During a session, if BOU fee or step fee is not deducted due to insufficient balance in
+            the main account, then the NCC charging logic moves to the next available service and
+            allows the session to continue. This functionality is supported by
+                <em class="ph i">Notification-stop</em> action. If <em class="ph i">Notification-stop</em> is configured in the
+            Threshold rules, and the main account balance is less than BOU fee or step fee, then the
+            session moves to the next available service.</p>
+
+        <p class="p">The functionality to reject the session when the main account balance is less than the
+            BOU fee or step fee, instead of moving to the next available service, can also be
+            configured. This functionality is supported by <em class="ph i">Notification-Reject</em> action in
+            Threshold rules.</p>
+
+        <div class="p">If this functionality is configured, and BOU fee or step fee cannot be deducted due to
+            insufficient balance in the main account, then regardless of the availability of other
+            services, the session is rejected with the error code 4012.<div class="note" id="call_rejection_based_on_account_balance__note_q5b_3zm_h5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If BOU fee or step fee is not deducted during the ongoing session, or start of the
+                session, then the session is rejected with error code <em class="ph i">4012</em> under the MSCC
+                that is applicable for the session.</div>
+</div>
+
+        <div class="section" id="call_rejection_based_on_account_balance__section_wzk_jzm_h5b"><h2 class="title sectiontitle">Configuration</h2>
+            
+            <p class="p"><em class="ph i">Notification-Reject</em> action should be configured in Threshold rules to reject
+                the session with an error code 4012 when the main account balance is less than BOU
+                fee or step fee.</p>
+
+        </div>
+
+        <div class="section" id="call_rejection_based_on_account_balance__section_jcs_fzm_h5b"><h2 class="title sectiontitle">Use Cases  </h2>
+            
+            <div class="sectiondiv"><strong class="ph b">Use case 1: BOU is in initial state and applicable for the session.
+                    Account balance is insufficient to fund the BOU Activation Fee.</strong><ol class="ol" id="call_rejection_based_on_account_balance__ol_kcs_fzm_h5b">
+                    <li class="li">BOU fee is defined, and BOU is in initial state.</li>
+
+                    <li class="li">The default tariff plan <em class="ph i">DefaultTariffPlan_CS</em> is attached to the
+                        subscriber.</li>
+
+                    <li class="li">Activation is defined as <em class="ph i">ON_USE</em>, and <em class="ph i">ON_SESSION</em> BOU is
+                        activated.</li>
+
+                    <li class="li"><em class="ph i">Notification-Reject</em> action is configured in Threshold rules.</li>
+
+                    <li class="li">BOU activation fee is 1 Euro, and the main account balance is 0.5 Euro.</li>
+
+                    <li class="li">A session is executed to deduct BOU activation fee for BOU reservation.</li>
+
+                    <li class="li">BOU has higher priority, and main balance is less than BOU activation fee.
+                        Hence, the call is rejected with the error code <var class="keyword varname">4012</var>
+                        under the applicable MSCC.</li>
+
+                </ol>
+</div>
+            <div class="sectiondiv"><strong class="ph b">Use case 2: Service with step fee is applicable for the session. Account
+                    balance is insufficient to deduct the step fee.</strong><ol class="ol" id="call_rejection_based_on_account_balance__ol_lcs_fzm_h5b">
+                    <li class="li">Step fee is defined in Tiered Allowance.</li>
+
+                    <li class="li">The default tariff plan <em class="ph i">DefaultTariffPlan_CS</em> is attached to the
+                        subscriber.</li>
+
+                    <li class="li">Step fee is 10 Euro, and the main account balance is 9 Euro.</li>
+
+                    <li class="li"><em class="ph i">Notification-Reject</em> action is configured in Threshold rules.</li>
+
+                    <li class="li">A session is executed to deduct the step fee.</li>
+
+                    <li class="li">The main account balance is less than step fee. Hence, the call is rejected
+                        with the error code <var class="keyword varname">4012</var> under the applicable MSCC.</li>
+
+                </ol>
+</div>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

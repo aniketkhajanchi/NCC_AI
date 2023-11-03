@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="updateDeltaDevice and updateDeltaGroup APIs" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e215261" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>updateDeltaDevice and updateDeltaGroup APIs</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e215261">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">updateDeltaDevice and updateDeltaGroup APIs</h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">The <em class="ph i">updateDeltaDevice</em> and <em class="ph i">updateDeltaGroup</em> APIs allow operators to modify the delta information of a Device and Group. If multiple devices are attached to a Group, then all the Device details are not needed to update the Group.</p>
+
+<p class="p">For example, consider that a Group has 10 devices attached to it. Operator wants to remove a single <var class="keyword varname">Device6</var>, then only the details of <var class="keyword varname">Device6</var> must be sent in the request to remove it. The details of other 9 devices linked are not needed in the request.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Only the root level variables and list objects are considered for delta updates. Delta update of fields within nested object is not considered and entire object gets updated.</div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">API operations</h2>
+<p class="p">Operators can perform the following operations using the <em class="ph i">updateGroup</em> API:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Subscribe a new bundle</p>
+
+</li>
+
+<li class="li">
+<p class="p">Subscribe multiple bundles</p>
+
+</li>
+
+<li class="li">
+<p class="p">Remove a bundle </p>
+
+</li>
+
+<li class="li">
+<p class="p">Remove multiple subscriptions using one request </p>
+
+</li>
+
+<li class="li">
+<p class="p">Add a device</p>
+
+</li>
+
+<li class="li">
+<p class="p">Add multiple devices </p>
+
+</li>
+
+<li class="li">
+<p class="p">Update a notification profile</p>
+
+</li>
+
+</ul>
+
+<p class="p">Operators can perform the following operations using the <em class="ph i">updateDevice</em> API:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Add a new IMSI</p>
+
+</li>
+
+<li class="li">
+<p class="p">Add a new MSISDN</p>
+
+</li>
+
+<li class="li">
+<p class="p">Remove an existing MSISDN</p>
+
+</li>
+
+<li class="li">
+<p class="p">Update a notification profile</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Examples</h2>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 1: Delta Device update to add or modify a single variable</strong></p>
+
+<p class="p">Operators can send the following API request to modify the delta information of a Device. The <span class="ph uicontrol">subAction</span> parameter defines the action to perform. The following request adds a notification profile named <span class="ph uicontrol">Notification1</span> to the Device <span class="ph uicontrol">Device1</span> if a notification profile does not exist for <span class="ph uicontrol">Device1</span>. Otherwise, the API request replaces the existing value of notification profile for <span class="ph uicontrol">Device1</span>.</p>
+
+<p class="p">https://&lt;SM_IP&gt;:8443/services/ServiceManager/subscriber/deltaUpdate/Device?subAction=modify</p>
+
+<p class="p">
+<strong class="ph b">Request:</strong>
+</p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>{
+			"id":Device1",
+			"notificationProfile":"Notification1"
+}</code></pre>
+</div>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 2: Delta Device update to modify a collection variable</strong></p>
+
+<p class="p">The API request performs the following actions:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Removes the existing groups from <span class="ph uicontrol">Device1</span>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Adds <span class="ph uicontrol">Group2</span> to <span class="ph uicontrol">Device1</span>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Adds a notification profile named <span class="ph uicontrol">Notification2</span> to <span class="ph uicontrol">Device1</span> if a notification profile does not exist. Otherwise, the API request replaces the existing value of notification profile for <span class="ph uicontrol">Device1</span>.</p>
+
+</li>
+
+</ul>
+
+<p class="p">https://&lt;SM_IP&gt;:8443/services/ServiceManager/subscriber/deltaUpdate/Device?subAction=modify</p>
+
+<p class="p">
+<strong class="ph b">Request:</strong>
+</p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>{
+			"id":Device1",
+			"groups":["Group2"]
+			"notificationProfile":"Notification2"
+}</code></pre>
+</div>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 3: Delta Device update to add a collection variable</strong></p>
+
+<p class="p">The API request adds the identity value to <span class="ph uicontrol">Device1</span>. That is, the API appends the defined identity value to the existing device identities list if this identity value is not already added.</p>
+
+<p class="p">https://&lt;SM_IP&gt;:8443/services/ServiceManager/subscriber/deltaUpdate/Device?subAction=add</p>
+
+<p class="p">
+<strong class="ph b">Request:</strong>
+</p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>{
+			"id":Device1",
+			"identities":[
+				{
+					"identityType:"E164",
+					"value:"12345678"
+				}]
+			"notificationProfile":"Notification3"
+}</code></pre>
+</div>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 4: Delta Device update to remove a collection variable</strong></p>
+
+<p class="p">The API request removes the already added subscription from <span class="ph uicontrol">Device1</span> whose subscription id is provided in the request. </p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> To update a value of collection element, it is recommended to first remove and then add it. To update a collection with only one element, you can send the entire object with subAction=modify.</div>
+
+<p class="p">https://&lt;SM_IP&gt;:8443/services/ServiceManager/subscriber/deltaUpdate/Device?subAction=remove</p>
+
+<p class="p">
+<strong class="ph b">Request:</strong>
+</p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>{
+			"id":Device1",
+			"subscriptions":[{id":"e29591f1-1530-48b0-9cfb-cac06e6a5908"}]
+			"identities":[
+				{
+					"identityType:"E164",
+					"value:"12345678"
+				}]
+}</code></pre>
+</div>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 5: Delta Group update to modify a single variable</strong></p>
+
+<p class="p">Adds a notification profile named <span class="ph uicontrol">Notification5</span> to the Group named <span class="ph uicontrol">Group1</span> if a notification profile does not exist. Otherwise, the API request replaces the existing value of notification profile for <span class="ph uicontrol">Group1</span>.</p>
+
+<p class="p">https://&lt;SM_IP&gt;:8443/services/ServiceManager/subscriber/deltaUpdate/Group?subAction=modify</p>
+
+<p class="p">
+<strong class="ph b">Request:</strong>
+</p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>{
+			"id":Group1",
+			"notificationProfile":"Notification5"
+}</code></pre>
+</div>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 5: Delta Group update to remove a collection variable</strong></p>
+
+<p class="p">The API request removes the already added aggregate view named <span class="ph uicontrol">GrpAV</span> from <span class="ph uicontrol">Group1</span>.</p>
+
+<p class="p">https://&lt;SM_IP&gt;:8443/services/ServiceManager/subscriber/deltaUpdate/Group?subAction=remove</p>
+
+<p class="p">
+<strong class="ph b">Request:</strong>
+</p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>{
+			"id":Group1",
+			"aggregateViewIdList":["GrpAV"]
+}</code></pre>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

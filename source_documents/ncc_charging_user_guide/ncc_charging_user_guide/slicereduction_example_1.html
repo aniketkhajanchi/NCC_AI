@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Example 1: Slice reduction with account thresholds" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="exe" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Example 1: Slice reduction with account thresholds</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="exe">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Example 1: Slice reduction with account thresholds</h1>
+<div class="body">
+        <p class="p">The following example shows how the final slice reduction value is calculated.</p>
+
+        <p class="p"><strong class="ph b">Preconditions:</strong></p>
+
+        <p class="p">Perform the following steps:</p>
+
+        <ol class="ol" id="exe__ol_asl_dzk_r4b">
+            <li class="li">
+                <p class="p">Create a quota management (slicing profile) with <span class="ph uicontrol">Slice
+                        Allocation Factor</span> = <var class="keyword varname">70</var> and <span class="ph uicontrol">MIN
+                        Slice Size</span> = <var class="keyword varname">30</var>.</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">Create an account <em class="ph i">A1</em> with main account balance set as
+                        <var class="keyword varname">100</var> and overage limit = <var class="keyword varname">0</var>.</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">Create a threshold profile group <var class="keyword varname">TPG1</var> with threshold profile
+                    set to <var class="keyword varname">ABSOLUTE_FROM_ZERO</var> for threshold <em class="ph i">Th1</em> =
+                        <var class="keyword varname">30</var>.</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">The threshold <em class="ph i">Th1</em> rule is set with the following <em class="ph i">Notification
+                        Action</em> and <em class="ph i">Notification Variable</em>:</p>
+<img class="image" id="exe__image_bsl_dzk_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-slicing_configuration_example_default.png" height="131" width="592" />
+                <img class="image" id="exe__image_csl_dzk_r4b" src="../images/img9yz-09126-ug01-pczza-sp1-threshold_configuration_example_default.png" height="123" width="683" />
+            </li>
+
+            <li class="li">
+                <p class="p">Associate the threshold profile group <em class="ph i">TPG1</em> with the account <em class="ph i">A1</em>.</p>
+
+            </li>
+
+        </ol>
+
+        <p class="p">
+            <strong class="ph b">Post-conditions:</strong>
+        </p>
+
+        <p class="p">The final slice reduction is calculated as:</p>
+
+        <ul class="ul" id="exe__ul_dsl_dzk_r4b">
+            <li class="li">
+                <p class="p">Main account balance = <var class="keyword varname">100</var>
+                </p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">Upcoming threshold value = <var class="keyword varname">30</var>
+                </p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">Delta value = main account balance - upcoming threshold value =
+                        <var class="keyword varname">100</var> - <var class="keyword varname">30</var> = <var class="keyword varname">70</var>
+                </p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">SAF slice size = Delta value * SAF = <var class="keyword varname">70</var> *
+                        <var class="keyword varname">0.7</var> = <var class="keyword varname">49</var>
+                </p>
+
+            </li>
+
+        </ul>
+
+        <p class="p">Therefore, the final slice reduction value is <var class="keyword varname">49</var> for the above
+            example.</p>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

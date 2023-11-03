@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Log related REST API calls" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="log_related_rest_api_calls" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Log related REST API calls</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="log_related_rest_api_calls">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Log related REST API calls</h1>
+<div class="body conbody">
+        <div class="section" id="log_related_rest_api_calls__section_f4c_hjb_54b"><h2 class="title sectiontitle">Get the operation log list</h2>
+            
+            <p class="p">PATH: <code class="ph codeph">api/operationlog</code></p>
+
+            <p class="p">METHOD: <code class="ph codeph">POST</code></p>
+
+            <p class="p"><strong class="ph b">Example:</strong></p>
+
+            <pre class="pre codeblock"><code>POST
+https://xxx.xxx.xxx.xxx/cctf/api/operationlog
+request body:
+{
+  "pageNum": 1,
+  "pageSize": 10,
+  "key": []
+}
+
+response body:
+{
+  "res": 0,
+  "resMsg": "Data Response Succeeds",
+  "obj": {
+    "pageNum": 1,
+    "pageSize": 10,
+    "data": [
+      {
+        "id": 24,
+        "name": "admin",
+        "datetime": "2020-10-16T08:01:30.714798Z",
+        "operation": "execute test case: {'user': 1, 'lab': 1, 'testGroup': 'FUNCTIONAL', 'mergeFlag': False, 'testId': 'eaf08684-0f4a-11eb-9dd1-baba5a967e1d,eaf08a3a-0f4a-11eb-9dd1-baba5a967e1d,eaf08e40-0f4a-11eb-9dd1-baba5a967e1d'}",
+        "status": "success",
+        "detail": "Test cases are runing..."
+      },
+      {
+        "id": 23,
+        "name": "admin",
+        "datetime": "2020-10-16T07:45:08.550379Z",
+        "operation": "delete lab: {'id': '5'}",
+        "status": "success",
+        "detail": "Deleted Successfully"
+      },
+      {
+        "id": 22,
+        "name": "admin",
+        "datetime": "2020-10-16T07:42:47.107654Z",
+        "operation": "upload parameter file: &lt;QueryDict: {'myfile': [&lt;InMemoryUploadedFile: parameters.json (application/json)&gt;]}&gt;",
+        "status": "success",
+        "detail": "Upload parameter file successfully"
+      },
+      {
+        "id": 21,
+        "name": "admin",
+        "datetime": "2020-10-16T07:39:42.341998Z",
+        "operation": "save parameter file: {'json': {'simulators': [{'image_url': None, 'number_of_instances': 1, 'simulator_name': 'SIPp'}, {'image_url': None, 'number_of_instances': 1, 'simulator_name': 'IPSL'}], 'sut_parameters': {'access_point': '255.1.1.1', 'paraX': 123, 'paraY': 456, 'paraZ': 789, 'platform_info': [{'access_point': '255.1.1.2'}, {'ssh_key': 'private SSH Key'}, {'user_name': 'user name to log on server'}, {'user_password': 'passsword to log on server'}], 'ssh_key': 'private SSH Key', 'user_name': 'user name to log on server', 'user_password': 'passsword to log on server'}, 'test_package_info': {'platform_name': 'BCMT', 'platform_ver': '1.0', 'product_name': 'XXXX', 'product_ver': '1.0', 'runTime_OS_name': 'redhat', 'runTime_OS_ver': '1.0', 'testPackage_name': 'XXXX', 'testPackage_ver': '1.0', 'test_tool_arg': '-e AAA', 'test_tool_name': 'robot', 'test_tool_ver': '1.0'}, 'tp_parameters': {'para1': 123, 'para2': 456, 'paraN': 789}}}",
+        "status": "success",
+        "detail": "Data Response Succeeds"
+      },
+      {
+        "id": 20,
+        "name": "admin",
+        "datetime": "2020-10-16T07:25:47.166059Z",
+        "operation": "create lab: {'lab': {'name': 'robot', 'user': 1, 'ip': '127.0.0.1', 'product': '1', 'status': 'inprogress', 'ndapSutId': '0'}, 'package': {'name': 'robot', 'url': 'http://csfci.ih.lucent.com/~dickc/cctfTPs/demoRobotDashA.tgz', 'dockerimage': 'csf-docker-candidates.repo.lab.pl.alcatel-lucent.com/robot:1.0.0-20201014', 'lab': 5, 'tfflag': 'radish'}, 'registry': {'docker_server': '', 'username': '', 'password': ''}}",
+        "status": "success",
+        "detail": "Analysising the test package, please wait..."
+      }
+    ],
+    "totalPage": 1
+  }
+}</code></pre>
+        </div>
+
+        <div class="section" id="log_related_rest_api_calls__section_vbb_kjb_54b"><h2 class="title sectiontitle">Delete operation log by log ID</h2>
+            
+            <p class="p">PATH: <code class="ph codeph">api/operationlog?id={job ID}</code></p>
+
+            <p class="p">METHOD: <code class="ph codeph">DELETE</code></p>
+
+            <p class="p"><strong class="ph b">Example:</strong></p>
+
+            <pre class="pre codeblock"><code>DELETE
+https://xxx.xxx.xxx.xxx/cctf/api/operationlog?id=18
+response body:
+{
+  "res": 0,
+  "resMsg": "Deleted Successfully",
+  "obj": ""
+}</code></pre>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>DevOps Guide • P556766-DN1000055058-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

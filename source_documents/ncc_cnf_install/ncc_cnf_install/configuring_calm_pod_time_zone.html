@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="task" />
+<meta name="DC.title" content="Configuring Alarm Service pod time zone" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="configuring_calm_pod_time_zone" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Configuring Alarm Service pod time zone</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="configuring_calm_pod_time_zone">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Configuring Alarm Service pod time zone</h1>
+<div class="body taskbody">
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div>
+            <p class="p">This procedure provides instructions on how to configure the time zone for a Alarm
+                Service pod by using a custom YAML file that is used to override the default Helm
+                values.</p>
+
+        </div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">Create a custom YAML (<span class="ph filepath">timezone_calm.yaml</span>) file in the
+                        <span class="ph filepath">input-generator/overrides</span> directory.</span>
+                <div class="itemgroup info">Sample content: <pre class="pre codeblock language-yml"><code>calm:
+  global:
+    timeZone:
+      timeZoneEnv: 'America/Chicago'</code></pre></div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Open the <span class="ph filepath">Inputs.xlsx</span> spreadsheet.</span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Select the worksheet that corresponds to the namespace you want to
+                    update.</span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Verify the <span class="ph uicontrol">Enabled</span> value is set to <code class="ph codeph">true</code>
+                    in the <span class="ph uicontrol">BTEL</span> section.</span>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Enter the override file name (<span class="ph filepath">timezone_calm.yaml</span>) in the
+                        <span class="ph uicontrol">Input &gt; Overrides &gt; Value</span> field of the
+                        <span class="ph uicontrol">BTEL</span> section.</span>
+                <div class="itemgroup info">
+                    <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The <span class="ph uicontrol">Overrides</span> value is merged left to right, so
+                        right takes priority</div>
+
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Update the Helm chart to apply the override.</span>
+            </li>
+</ol>
+
+    </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

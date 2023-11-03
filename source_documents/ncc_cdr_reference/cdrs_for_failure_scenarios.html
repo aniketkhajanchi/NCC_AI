@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="CDRs for failure scenarios" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="cdrs_for_failure_scenarios" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>CDRs for failure scenarios</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="cdrs_for_failure_scenarios">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">CDRs for failure scenarios</h1>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_c1h_4ct_4xb"><h2 class="title topictitle2" id="ariaid-title2">Partial failure</h2>
+<div class="body conbody">
+            <p class="p">Partial failures are related to failure at the <strong class="ph b">MSCC level</strong>. The reasons for
+                partial failures include invalid MSCCs.</p>
+
+            <div class="section" id="concept_c1h_4ct_4xb__section_ldl_qct_4xb"><h3 class="title sectiontitle">Sample CDRs</h3>
+                
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">CDR Generated per MSCC = false</strong></p>
+
+                    <div class="p">
+            <pre class="pre codeblock" id="concept_c1h_4ct_4xb__codeblock_hcz_blt_4xb"><code>--------------------------------------
+CDR length:                       4839
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                                    Tag                                                  Data
+RecordType                              0                                      NCHFChargingRecord
+prevMeName                              1                                                     ME1
+aprTransaction                          1                                                       0
+generationTimestamp                     1                                     25/05/2023 11:18:39
+sessionId                               1         N40-hostME-0e165a90-d4ef-4239-98e4-735dda558b62
+serviceContextId                        1                                       5G_32251@3gpp.org
+requestType                             1                                          UPDATE_REQUEST
+sessionSequenceNumber                   1                                                       1
+sessionStartTime                        1                                     25/05/2023 11:18:33
+dayOfWeek                               1                                                Thursday
+originHost                              1                                           hostME.realm4
+deviceId                                1                                                      d1
+deviceName                              1                                                      d1
+deviceState                             1                                                  Active
+devicePartitionId                       1                                                       1
+deviceSiteId                            1                                                       4
+causeForRecClosing                      1                                                       0
+accountId                               1                                                account1
+accountName                             1                                                account1
+timeZoneId                              1                                                     UTC
+resultCode                              1                                                     200
+recordOpeningTime                       1                                     25/05/2023 11:18:33
+recordClosureTime                       1                                     25/05/2023 11:18:38
+duration                                1                                                       5
+recordSequenceNumber                    1                                                       1
+recordId                                1     20230525111838_069dffcb-1039-4ecf-8dfa-9494ad11f1dc
+meHostName                              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                                   
+nccVersion                              1                                             SPS_23_5_R1
+RecordTimestamp                         1                                     25/05/2023 11:18:39
+  RecordProperty                        0                           pDUSessionChargingInformation
+  pDUSessionChargingID                  1                                                28794788
+  userIdentifier                        1                                         msisdn-11111111
+  pDUSessionId                          1                                                     231
+  pDUType                               1                                                       1
+  sSCMode                               1                                                       1
+  sUPIPLMNIdentifier                    1                                                  130010
+  rATType                               1                                                      51
+  chargingCharacteristics               1                                                    0200
+  chChSelectionMode                     1                                                       0
+  dataNetworkNameIdentifier             1                                               nokia.com
+  sUPIunauthenticatedFlag               1                                                       0
+  userRoamerInOut                       1                                                       1
+    RecordProperty                      0                                       userEquipmentInfo
+    subscriberEquipmentNumberType       1                                                       0
+    subscriberEquipmentNumberData       1                                              3131313131
+    RecordProperty                      0                                  networkSliceInstanceID
+    sST                                 1                                                       1
+    sD                                  1                                                  AFB148
+    RecordProperty                      0                                              pDUAddress
+    pDUIPv4Address                      1                                           10.196.163.43
+    iPV4dynamicAddressFlag              1                                                       1
+  RecordProperty                        0                            nFunctionConsumerInformation
+  nodeFunctionality                     1                                                       1
+  networkFunctionName                   1                                                SMF-Auto
+  networkFunctionPLMNIdentifier         1                                                  130010
+  RecordProperty                        0                                              listOfMscc
+    RecordProperty                      0                                                    mscc
+    ratingGroup                         1                                                    3000
+    recordEventResult                   1                                                     238
+    resultCode                          1                                           RATING_FAILED
+    localSequenceNumber                 1                                                       1
+    timeUsage                           1                                                       0
+      RecordProperty                    0                                      usedUnitContainers
+        RecordProperty                  0                                       usedUnitContainer
+        time                            1                                                      30
+        triggerTimeStamp                1                                     25/05/2023 11:18:38
+        ratingIndicator                 1                                                   false
+        localSequenceNumber             1                                                       2
+        quotaManagementIndicator        1                                         ONLINE_CHARGING
+        totalVolumeConsumed             1                                                       0
+        usedUnitType                    1                                                    TVOL
+        totalTimeConsumed               1                                                      30
+        usedUnitType                    1                                                    TIME
+          RecordProperty                0                                 pduContainerInformation
+          timeOfFirstUsage              1                                     25/05/2023 11:18:38
+          timeOfLastUsage               1                                     25/05/2023 11:18:38
+          rATType                       1                                                      51
+            RecordProperty              0                                          qoSInformation
+            fiveQi                      1                                                       5
+              RecordProperty            0                                                     aRP
+              priorityLevel             1                                                       9
+              preemptionCapability      1                                                       1
+              preemptionVulnerability   1                                                       1
+          RecordProperty                0                                                triggers
+            RecordProperty              0                                                 trigger
+            sMFTrigger                  1                                                     404
+    RecordProperty                      0                                                    mscc
+    ratingGroup                         1                                                    3300
+    recordEventType                     1                                           NCHF_CHARGING
+    uPFID                               1                                                   UPF-2
+    firstDataStart                      1                                     25/05/2023 11:18:33
+    grantedUnits                        1                                                      10
+    usageType                           1                                                    TVOL
+    validityTime                        1                                                     360
+    resultCode                          1                                                 SUCCESS
+    recordEventResult                   1                                                      00
+    localSequenceNumber                 1                                                       0
+    timeUsage                           1                                                       0
+      RecordProperty                    0                                               counterID
+        RecordProperty                  0                                               counterID
+        counterID                       1                                                 counter
+        counterUnitType                 1                                                    Byte
+        alignGranularity                1                                                    TRUE
+        counterValueBefore              1                                                       0
+        counterValueAfter               1                                                      10
+        counterType                     1                                            SUBSCRIPTION
+      RecordProperty                    0                                              deviceInfo
+        RecordProperty                  0                                        subscriptionInfo
+        subscriptionId                  1                    efe80f8a-320d-4abe-bb7f-83dea5243cf3
+        subscriptionState               1                                                  Active
+        bundleName                      1                                             bundle-TTC1
+        bundleActivationType            1                                                  NORMAL
+        accountID                       1                                                account1
+        accountName                     1                                                account1
+        subscriptionStartDateTime       1                                     25/05/2023 11:17:44
+        subscriptionEndDateTime         1                                     25/05/2023 11:19:14
+          RecordProperty                0                                     chargingServiceInfo
+          chargingServiceName           1                                                 ch-TTC1
+          chargingServiceType           1                                                  VOLUME
+          chargingServicePriority       1                                                       5
+          chargingServiceCategory       1                                         DefaultCategory
+            RecordProperty              0                                              bucketInfo
+            bucketName                  1                                    allowance limit-TTC1
+            bucketUnitType              1                                                    Byte
+            bucketKindOfUnit            1                                                  VOLUME
+            bucketBalanceBefore         1                                                    1000
+            bucketBalanceAfter          1                                                     990
+            carryOverBucket             1                                                   false
+            bucketCommitedUnits         1                                                      10
+            bucketReservedUnits         1                                                      10
+            secondaryCostCommitted      1                                                    0.00
+            tariffID                    1                                   ch-TTC1_ChargingRules
+            totalVolumeCharged          1                                                      10
+            roundedVolumeCharged        1                                                      10
+            deltaVolume                 1                                                       0
+          RecordProperty                0                                             counterInfo
+          counterName                   1                                                 counter
+          counterKey                    1                    af5005c6-d75a-4f43-9ef3-cb0a748e396f
+          counterType                   1                                            SUBSCRIPTION
+          counterUnitType               1                                                    Byte
+          counterKindOfUnit             1                                                  VOLUME
+          alignGranularity              1                                                    TRUE
+          counterValueBefore            1                                                       0
+          counterValueAfter             1                                                      10
+          chargingServicePriority       1                                                       5
+      RecordProperty                    0                                      usedUnitContainers
+        RecordProperty                  0                                       usedUnitContainer
+        triggerTimeStamp                1                                     25/05/2023 11:18:38
+        ratingIndicator                 1                                                    true
+        localSequenceNumber             1                                                       2
+        quotaManagementIndicator        1                                         ONLINE_CHARGING
+        totalVolumeConsumed             1                                                      10
+        usedUnitType                    1                                                    TVOL
+          RecordProperty                0                                 pduContainerInformation
+          timeOfFirstUsage              1                                     25/05/2023 11:18:38
+          timeOfLastUsage               1                                     25/05/2023 11:18:38
+          rATType                       1                                                      51
+            RecordProperty              0                                          qoSInformation
+            fiveQi                      1                                                       5
+              RecordProperty            0                                                     aRP
+              priorityLevel             1                                                       9
+              preemptionCapability      1                                                       1
+              preemptionVulnerability   1                                                       1
+          RecordProperty                0                                                triggers
+            RecordProperty              0                                                 trigger
+            sMFTrigger                  1                                                     404
+  RecordProperty                        0                                    listOfSubscriptionID
+    RecordProperty                      0                                          subscriptionId
+    subscriptionIdType                  1                                                       1
+    subscriptionIdData                  1                                                11111111
+    RecordProperty                      0                                          subscriptionId
+    subscriptionIdType                  1                                                       0
+    subscriptionIdData                  1                                                11111111
+  RecordProperty                        0                                          lifeCycleState
+  accountLifeCycleState                 1                                                  Active
+  deviceLifeCycleState                  1                                                  Active
+    RecordProperty                      0                                   subscriptionLifeCycle
+    subscriptionState                   1                                                  Active
+</code></pre>
+          </div>
+
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">CDR Generated per MSCC = true</strong></p>
+
+                    <pre class="pre codeblock" id="concept_c1h_4ct_4xb__codeblock_chj_myv_4xb"><code>--------------------------------------
+CDR length:                       2659
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                                    Tag                                                  Data
+RecordType                              0                                      NCHFChargingRecord
+prevMeName                              1                                                     ME1
+recordId                                1     20230525111344_3fde53d5-baa4-4c5f-b313-486bd5e4223c
+aprTransaction                          1                                                       0
+generationTimestamp                     1                                     25/05/2023 11:13:44
+sessionId                               1         N40-hostME-9c2f6f2e-34bd-4ed9-971e-3d77fc5e02fd
+serviceContextId                        1                                       5G_32251@3gpp.org
+requestType                             1                                          UPDATE_REQUEST
+sessionSequenceNumber                   1                                                       1
+sessionStartTime                        1                                     25/05/2023 11:13:34
+dayOfWeek                               1                                                Thursday
+originHost                              1                                           hostME.realm4
+deviceId                                1                                                      d1
+deviceName                              1                                                      d1
+deviceState                             1                                                  Active
+devicePartitionId                       1                                                       1
+deviceSiteId                            1                                                       4
+causeForRecClosing                      1                                                       0
+accountId                               1                                                account1
+accountName                             1                                                account1
+timeZoneId                              1                                                     UTC
+resultCode                              1                                                     200
+recordOpeningTime                       1                                     25/05/2023 11:13:34
+recordClosureTime                       1                                     25/05/2023 11:13:44
+duration                                1                                                      10
+recordSequenceNumber                    1                                                       1
+meHostName                              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                                  
+nccVersion                              1                                             SPS_23_5_R1
+RecordTimestamp                         1                                     25/05/2023 11:13:44
+  RecordProperty                        0                           pDUSessionChargingInformation
+  pDUSessionChargingID                  1                                                28794788
+  userIdentifier                        1                                         msisdn-11111111
+  pDUSessionId                          1                                                     231
+  pDUType                               1                                                       1
+  sSCMode                               1                                                       1
+  sUPIPLMNIdentifier                    1                                                  130010
+  rATType                               1                                                      51
+  chargingCharacteristics               1                                                    0200
+  chChSelectionMode                     1                                                       0
+  dataNetworkNameIdentifier             1                                               nokia.com
+  sUPIunauthenticatedFlag               1                                                       0
+  userRoamerInOut                       1                                                       1
+    RecordProperty                      0                                       userEquipmentInfo
+    subscriberEquipmentNumberType       1                                                       0
+    subscriberEquipmentNumberData       1                                              3131313131
+    RecordProperty                      0                                  networkSliceInstanceID
+    sST                                 1                                                       1
+    sD                                  1                                                  AFB148
+    RecordProperty                      0                                              pDUAddress
+    pDUIPv4Address                      1                                           10.196.163.43
+    iPV4dynamicAddressFlag              1                                                       1
+  RecordProperty                        0                            nFunctionConsumerInformation
+  nodeFunctionality                     1                                                       1
+  networkFunctionName                   1                                                SMF-Auto
+  networkFunctionPLMNIdentifier         1                                                  130010
+  RecordProperty                        0                                    listOfSubscriptionID
+    RecordProperty                      0                                          subscriptionId
+    subscriptionIdType                  1                                                       1
+    subscriptionIdData                  1                                                11111111
+    RecordProperty                      0                                          subscriptionId
+    subscriptionIdType                  1                                                       0
+    subscriptionIdData                  1                                                11111111
+  RecordProperty                        0                                          lifeCycleState
+  accountLifeCycleState                 1                                                  Active
+  deviceLifeCycleState                  1                                                  Active
+    RecordProperty                      0                                   subscriptionLifeCycle
+    subscriptionState                   1                                                  Active
+  RecordProperty                        0                                              listOfMscc
+    RecordProperty                      0                                                    mscc
+    ratingGroup                         1                                                    3000
+    recordEventResult                   1                                                     238
+    resultCode                          1                                           RATING_FAILED
+    localSequenceNumber                 1                                                       1
+    timeUsage                           1                                                       0
+      RecordProperty                    0                                      usedUnitContainers
+        RecordProperty                  0                                       usedUnitContainer
+        time                            1                                                      30
+        triggerTimeStamp                1                                     25/05/2023 11:13:44
+        ratingIndicator                 1                                                   false
+        localSequenceNumber             1                                                       2
+        quotaManagementIndicator        1                                         ONLINE_CHARGING
+        totalVolumeConsumed             1                                                       0
+        usedUnitType                    1                                                    TVOL
+        totalTimeConsumed               1                                                      30
+        usedUnitType                    1                                                    TIME
+          RecordProperty                0                                 pduContainerInformation
+          timeOfFirstUsage              1                                     25/05/2023 11:13:44
+          timeOfLastUsage               1                                     25/05/2023 11:13:44
+          rATType                       1                                                      51
+            RecordProperty              0                                          qoSInformation
+            fiveQi                      1                                                       5
+              RecordProperty            0                                                     aRP
+              priorityLevel             1                                                       9
+              preemptionCapability      1                                                       1
+              preemptionVulnerability   1                                                       1
+          RecordProperty                0                                                triggers
+            RecordProperty              0                                                 trigger
+            sMFTrigger                  1                                                     404
+</code></pre>
+                </div>
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_b31_pct_4xb"><h2 class="title topictitle2" id="ariaid-title3">Complete failure</h2>
+<div class="body conbody">
+            <div class="p">Complete failures can be related to failure at the root level. A complete failure
+                occurs before the MSCCs are identified. The reasons for complete failures include
+                the following:<ul class="ul" id="concept_b31_pct_4xb__ul_mlw_ddt_4xb">
+                    <li class="li">Invalid CCR mandatory parameters.</li>
+
+                    <li class="li">Session does not exist.</li>
+
+                </ul>
+</div>
+
+            <div class="section" id="concept_b31_pct_4xb__section_dww_qct_4xb"><h3 class="title sectiontitle">Sample CDRs</h3>
+                
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">CDR Generated per MSCC = false</strong></p>
+
+                    <div class="p">
+            <pre class="pre codeblock" id="concept_b31_pct_4xb__codeblock_v13_clt_4xb"><code>--------------------------------------
+CDR length:                       1729
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                                Tag                                                  Data
+RecordType                          0                                      NCHFChargingRecord
+prevMeName                          1                                                     ME1
+aprTransaction                      1                                                       0
+generationTimestamp                 1                                     25/05/2023 11:19:48
+sessionId                           1         N40-hostME-0e165a90-d4ef-4239-98e4-735dda558b62
+serviceContextId                    1                                       5G_32251@3gpp.org
+requestType                         1                                          UPDATE_REQUEST
+sessionSequenceNumber               1                                                       1
+sessionStartTime                    1                                     25/05/2023 11:18:33
+dayOfWeek                           1                                                Thursday
+originHost                          1                                           hostME.realm4
+deviceId                            1                                                      d1
+deviceName                          1                                                      d1
+deviceState                         1                                                  Active
+devicePartitionId                   1                                                       1
+deviceSiteId                        1                                                       4
+changeCondition                     1                                                       1
+resultCode                          1                                                     400
+errorCause                          1                                  MANDATORY_IE_INCORRECT
+recordOpeningTime                   1                                     25/05/2023 11:19:36
+recordClosureTime                   1                                     25/05/2023 11:19:48
+duration                            1                                                      12
+recordSequenceNumber                1                                                       3
+recordId                            1     20230525111948_eafd4e27-41a3-414d-9d4e-c8ab9ace5339
+meHostName                          1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                                  
+nccVersion                          1                                             SPS_23_5_R1
+RecordTimestamp                     1                                     25/05/2023 11:19:48
+  RecordProperty                    0                           pDUSessionChargingInformation
+  pDUSessionChargingID              1                                                28794788
+  userIdentifier                    1                                         msisdn-11111111
+  pDUSessionId                      1                                                     231
+  pDUType                           1                                                       1
+  sSCMode                           1                                                       1
+  sUPIPLMNIdentifier                1                                                  130010
+  rATType                           1                                                      51
+  chargingCharacteristics           1                                                    0200
+  chChSelectionMode                 1                                                       0
+  dataNetworkNameIdentifier         1                                               nokia.com
+  sUPIunauthenticatedFlag           1                                                       0
+  userRoamerInOut                   1                                                       1
+    RecordProperty                  0                                       userEquipmentInfo
+    subscriberEquipmentNumberType   1                                                       0
+    subscriberEquipmentNumberData   1                                              3131313131
+    RecordProperty                  0                                  networkSliceInstanceID
+    sST                             1                                                       1
+    sD                              1                                                  AFB148
+    RecordProperty                  0                                              pDUAddress
+    pDUIPv4Address                  1                                           10.196.163.43
+    iPV4dynamicAddressFlag          1                                                       1
+  RecordProperty                    0                            nFunctionConsumerInformation
+  nodeFunctionality                 1                                                       1
+  networkFunctionName               1                                                SMF-Auto
+  networkFunctionPLMNIdentifier     1                                                  130010
+  RecordProperty                    0                                    listOfSubscriptionID
+    RecordProperty                  0                                          subscriptionId
+    subscriptionIdType              1                                                       1
+    subscriptionIdData              1                                                11111111
+    RecordProperty                  0                                          subscriptionId
+    subscriptionIdType              1                                                       0
+    subscriptionIdData              1                                                11111111
+</code></pre>
+          </div>
+
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">CDR Generated per MSCC = true</strong></p>
+
+                    <pre class="pre codeblock" id="concept_b31_pct_4xb__codeblock_chv_3yv_4xb"><code>--------------------------------------
+CDR length:                       1729
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                                Tag                                                  Data
+RecordType                          0                                      NCHFChargingRecord
+prevMeName                          1                                                     ME1
+aprTransaction                      1                                                       0
+generationTimestamp                 1                                     25/05/2023 11:15:16
+sessionId                           1         N40-hostME-9c2f6f2e-34bd-4ed9-971e-3d77fc5e02fd
+serviceContextId                    1                                       5G_32251@3gpp.org
+requestType                         1                                          UPDATE_REQUEST
+sessionSequenceNumber               1                                                       1
+sessionStartTime                    1                                     25/05/2023 11:13:34
+dayOfWeek                           1                                                Thursday
+originHost                          1                                           hostME.realm4
+deviceId                            1                                                      d1
+deviceName                          1                                                      d1
+deviceState                         1                                                  Active
+devicePartitionId                   1                                                       1
+deviceSiteId                        1                                                       4
+changeCondition                     1                                                       1
+resultCode                          1                                                     400
+errorCause                          1                                  MANDATORY_IE_INCORRECT
+recordOpeningTime                   1                                     25/05/2023 11:14:56
+recordClosureTime                   1                                     25/05/2023 11:15:16
+duration                            1                                                      20
+recordSequenceNumber                1                                                       7
+recordId                            1     20230525111516_b6b7dbaa-1512-492c-b871-3238ad81cda0
+meHostName                          1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                                   
+nccVersion                          1                                             SPS_23_5_R1
+RecordTimestamp                     1                                     25/05/2023 11:15:16
+  RecordProperty                    0                           pDUSessionChargingInformation
+  pDUSessionChargingID              1                                                28794788
+  userIdentifier                    1                                         msisdn-11111111
+  pDUSessionId                      1                                                     231
+  pDUType                           1                                                       1
+  sSCMode                           1                                                       1
+  sUPIPLMNIdentifier                1                                                  130010
+  rATType                           1                                                      51
+  chargingCharacteristics           1                                                    0200
+  chChSelectionMode                 1                                                       0
+  dataNetworkNameIdentifier         1                                               nokia.com
+  sUPIunauthenticatedFlag           1                                                       0
+  userRoamerInOut                   1                                                       1
+    RecordProperty                  0                                       userEquipmentInfo
+    subscriberEquipmentNumberType   1                                                       0
+    subscriberEquipmentNumberData   1                                              3131313131
+    RecordProperty                  0                                  networkSliceInstanceID
+    sST                             1                                                       1
+    sD                              1                                                  AFB148
+    RecordProperty                  0                                              pDUAddress
+    pDUIPv4Address                  1                                           10.196.163.43
+    iPV4dynamicAddressFlag          1                                                       1
+  RecordProperty                    0                            nFunctionConsumerInformation
+  nodeFunctionality                 1                                                       1
+  networkFunctionName               1                                                SMF-Auto
+  networkFunctionPLMNIdentifier     1                                                  130010
+  RecordProperty                    0                                    listOfSubscriptionID
+    RecordProperty                  0                                          subscriptionId
+    subscriptionIdType              1                                                       1
+    subscriptionIdData              1                                                11111111
+    RecordProperty                  0                                          subscriptionId
+    subscriptionIdType              1                                                       0
+    subscriptionIdData              1                                                11111111
+</code></pre>
+                </div>
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

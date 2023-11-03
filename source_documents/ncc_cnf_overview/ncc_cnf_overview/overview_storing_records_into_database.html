@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Storing records into database" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="SPS_CDR_Streams_Stream_Overview_storing_records_into_database" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Storing records into database</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="SPS_CDR_Streams_Stream_Overview_storing_records_into_database">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Storing records into database</h1>
+<div class="body conbody">
+                
+                <p class="p">CG Kafka Collector Node stores the incoming records into the database for further
+                    processing. When the node stores a record into the database, it also sets the
+                    session timeout for that record. Once it has stored a set number of records, or
+                    a set time period has elapsed without that number of records being received, it
+                    marks a batch as complete, and the batch is ready to be processed by the
+                    Business logic stream. The storing is performed in two steps. After storing the
+                    records is done, commit to Kafka is performed, and if successful, a batch queue
+                    notification is created for the Business logic stream about the newly saved
+                    records.</p>
+
+                <p class="p">If saving to database fails, CG Kafka Collector Node retries a few times. If unsuccessful,
+                    an error is raised and the node is put into failed state. The polled records are
+                    not committed to Kafka and they will be reprocessed at a later stage.</p>
+
+                <p class="p">If saving to database is successful, but commit to Kafka fails after a few
+                    attempts, CG Kafka Collector Node removes the records from the database and raises an
+                    error. The polled records are not committed to Kafka and they will be
+                    reprocessed at a later stage. Because the batch queue notification was not yet
+                    done, the removal of the records from database does not affect processing in the
+                    Business logic stream.</p>
+
+            </div>
+<div class="footer"><hr /><p>Overview Guide • P556766-DN1000054925-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

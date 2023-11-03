@@ -1,0 +1,2492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Prorate bundle functionality" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-pf" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Prorate bundle functionality</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-pf">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Prorate bundle functionality </h1>
+<div class="body conbody">
+<div class="section">
+<p class="p">The prorate bundle functionality allows operators to prorate the value of a service
+    (bundle) or subscription under the following scenarios:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">When a new service (bundle) or subscription is added to a device or group using the <em class="ph i">Change
+       Bundle</em> option, <em class="ph i">Subscribe Bundle</em> API, or <samp class="ph systemoutput">Add
+       Subscription</samp> action in the lifecycle. The subscription can be added in the
+      midway of the billing cycle. For example, 15th day of the billing cycle.</p>
+
+</li>
+
+<li class="li">
+<p class="p">When a new device or group is added with a subscription.</p>
+
+</li>
+
+<li class="li">
+<p class="p">When a billing cycle is updated.</p>
+
+</li>
+
+    <li class="li">When a subscription is modified using the <em class="ph i">Template</em> API.<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-pf__ul_jgl_tjc_vpb">
+      <li class="li">
+       <p class="p">For daily subscriptions, the prorating is done based on the number of hours.</p>
+
+      </li>
+
+      <li class="li">
+       <p class="p">For weekly and monthly subscriptions, the prorating is done based on the number of
+        days.</p>
+
+      </li>
+
+     </ul>
+<p class="p">During calculation, rounding off is not done but calculation precision is considered,
+      and time is measured in milliseconds.</p>
+</li>
+
+</ul>
+
+<p class="p">The buckets and counters, which have a periodic lifecycle, are reset by their periodicity. The
+    allowance limit (buckets) and counters without any periodic cycle are driven by the periodicity
+    of subscription. The prorating for buckets and counters with periodic cycle and without any
+    periodic lifecycle must be done in the same way. The prorating preference is picked from the
+    bundle, but the period for prorating is determined from the periodicity of the resources.</p>
+
+   <p class="p">The thresholds are reset based on the prorated function instead of the initial values. Also,
+    the percentage-based notification for that month is based on the percentage of prorated value
+    instead of the actual value. At the end of the prorated month, when the Billing Cycle Reset
+    (BCR) happens, the subscription returns to its normal value and notifications use this value for
+    further action.</p>
+
+<p class="p">After applying the prorated values to a service (bundle with a counter) before the next billing
+    cycle, NCC sends notification based on the following conditions:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">If usage limit is applied, then prorated usage limit (instead of usage limit) is applied to the counter.</p>
+
+<p class="p">After the billing cycle, the usage limit of the counter is used.</p>
+
+</li>
+
+</ul>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The overage limit in a counter is not prorated.</div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Configuring prorating functionality</h2>
+<p class="p">To configure the prorating functionality, define the values for the following fields in the bundle entity:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">
+<em class="ph i">Bundle fee / Overidden bundle fee</em>
+</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<em class="ph i">Fee Reference for Prorate</em>
+</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<em class="ph i">Bucket Prorate Mode</em>
+</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<em class="ph i">Counter Prorate Mode</em>
+</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<em class="ph i">Bundle fee on billing cycle date update</em>
+</p>
+
+</li>
+
+</ul>
+
+<p class="p">For information on the values of the above fields, login to the SM GUI, navigate to <span class="ph uicontrol">Charging &amp; Policy Configuration</span> &gt; <span class="ph uicontrol">Charging</span> and select <span class="ph uicontrol">Bundles</span>. See the <a class="xref" href="bundles.html">Services (Bundles)</a> for bundle prorating related parameters.</p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Additional information</h2>
+<p class="p">Following are the points to note for the prorating functionality:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">At the time of bundle renewal, refund of fee is done based on the remaining period of bill cycle. It is not done based on the remaining balance of bucket or counter.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The prorating functionality is not applicable to carry over bucket.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the buckets are prorated, then the threshold based on percentage is executed on the prorated values.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the buckets are prorated, then the threshold based on <span class="ph uicontrol">Absolute From Start</span> is executed  when configured absolute value is reached. Prorated bucket values have no impact on the threshold based on <span class="ph uicontrol">Absolute From Start</span> and <span class="ph uicontrol">Absolute From End</span>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The prorating function is supported for <var class="keyword varname">Charge fee action</var> defined in initial state of periodic lifecycle of a subscription when immediate prorating of charge fees on activation is applicable. For future activation of subscription, the <var class="keyword varname">Charge fee action</var> can be defined in any other state of periodic lifecycle.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Prorating for counter of the bundle signifies only subscription counter.</p>
+
+<div class="p">
+      <div class="note" id="id9yz-09126-ug01-pczza-sp1-pf__note_qch_3hx_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> A device counter or group counter and device group counters are
+       excluded from this.</div>
+
+     </div>
+
+</li>
+
+<li class="li">
+<p class="p">If the <var class="keyword varname">Charge fee action</var> is applied multiple times in the initial state, then the fee is prorated each time. It is recommended to have a configuration of <var class="keyword varname">Charge fee action</var> at zero timer at initial state.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Defining the overage value in a counter is not supported.</p>
+
+</li>
+
+<li class="li">
+<p class="p">It is recommended not to apply prorate feature to hours/minutes/seconds type of subscription. </p>
+
+</li>
+
+<li class="li">
+<p class="p">Prorating is done for threshold with <samp class="ph systemoutput">Notification-Stop</samp> action. If
+      threshold is applied on counter, then to stop prorate of counter, the counter prorate value in
+      bundle definition must be set to <var class="keyword varname">None</var>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">The periodic lifecycle for a subscription must contain the <samp class="ph systemoutput">Reset Period</samp> action and either of <samp class="ph systemoutput">Renew Subscription</samp> action or <samp class="ph systemoutput">Reset Subscription</samp> action. The <samp class="ph systemoutput">Reset Period</samp> action is configured after the <samp class="ph systemoutput">Renew Subscription</samp> action or <samp class="ph systemoutput">Reset Subscription</samp> action. If not configured, then fees deducted or resources reset is not in sync with the end time. </p>
+
+</li>
+
+<li class="li">
+<p class="p">If you need the current value of counter in threshold notification parameters, then use <var class="keyword varname">Counter-Current-Value</var> instead of <var class="keyword varname">Threshold-Current-Absolute-Value</var>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">For a valid lifecycle for an account, the <samp class="ph systemoutput">Reset Period</samp> action must be in actions to create start time and end time of account or subscription.</p>
+
+</li>
+
+<li class="li">
+<p class="p">For a valid lifecycle for a subscription, the <samp class="ph systemoutput">Reset Period</samp> action must be in actions to create start time and end time of subscription.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Either the <var class="keyword varname">Bundle fee/ Overidden fee</var> or <var class="keyword varname">Charge fee action</var> is prorated based on the value of the <em class="ph i">Fee Reference for Prorate</em> value inside the bundle definition. Note that the fee deducted through the <samp class="ph systemoutput">Add Subscription</samp> action is also prorated when the respective flags are set as true.</p>
+
+</li>
+
+<li class="li">
+<p class="p">NCC considers the timezone ID of the account for subscription when the prorating fee is charged,
+      the subscription purchase fee is refunded, the prorated bucket or counter value is calculated,
+      or the billing cycle date is modified.</p>
+
+</li>
+
+<li class="li">
+<p class="p">When the <em class="ph i">DayOfMonth</em> is greater than the end of month (number of days in a month), the prorate feature may not work as expected. For example, consider that <em class="ph i">DayOfMonth</em> is 31, subscription subscribed on 1st of Feb, end of month is 28. In monthly subscription, the end date is 28th Feb.</p>
+
+</li>
+
+</ul>
+
+</div>
+
+  <div class="section" id="id9yz-09126-ug01-pczza-sp1-pf__section_lgq_yck_vsb"><h2 class="title sectiontitle">Prorating bucket/counter values using Override APIs</h2>
+   
+   <div class="p">Previously, proration of new bucket/counter values was not supported from Override APIs.
+    Currently, NCC supports proration of both bucket and counter. The values to prorate are
+    Allowance limit, Metering limit, Custom counter. The <strong class="ph b">prorateNeeded</strong> in Override API
+    indicates if the values should be prorated or not. If the <strong class="ph b">prorateNeeded</strong>=true, then the
+    values are prorated if the proration flag for activation is enabled on the bundle. If the
+     <strong class="ph b">prorateNeeded</strong>=false, then the values are not prorated regardless of whether the
+    proration flag for activation is enabled or not on the bundle. The <strong class="ph b">prorateNeeded</strong> is
+    available in the following Override APIs:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-pf__ul_jh1_c5t_vsb">
+     <li class="li">/subscriber/update/BucketInstance</li>
+
+     <li class="li">/subscriber/update/Subscription</li>
+
+     <li class="li">/subscriber/update/EntityCounterInstance</li>
+
+    </ul>
+</div>
+
+  </div>
+
+  <div class="section" id="id9yz-09126-ug01-pczza-sp1-pf__section_wzt_q5t_vsb"><h2 class="title sectiontitle">Preventing prorating of Tiered allowance</h2>
+   
+   <div class="p">Previously, the tiered allowance was supported for the following prorating scenarios:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-pf__ul_lzy_t5t_vsb">
+     <li class="li">Subscription activation/cancellation</li>
+
+     <li class="li">Versioning update</li>
+
+     <li class="li">Override APIs</li>
+
+    </ul>
+</div>
+
+   <p class="p">Currently, the tiered allowance is excluded for prorating in the preceding scenarios. </p>
+
+  </div>
+
+  <div class="section" id="id9yz-09126-ug01-pczza-sp1-pf__section_pkx_3wt_vsb"><h2 class="title sectiontitle">Prorating component on subscription cancelation </h2>
+   
+   <p class="p">When a subscription is canceled, that is, entity lifecycle is moved to final state, all of its
+    bucket and counter instances of subscription scope are prorated if configured in the proration
+    profile.</p>
+
+   <img class="image imagecenter break" id="id9yz-09126-ug01-pczza-sp1-pf__image_x2g_xwt_vsb" src="../images/proration.png" height="232" width="565" />
+   <p class="p">The calculation for prorating works the same way as removing a component. In this case, the
+    event date is the cancelation date.  See <a class="xref" href="new_topics/versioning_logics.html#concept_ncw_mxt_4wb">Proration</a> for more details. If the
+    subscription has previously expired components, they are not prorated. If a bucket instance has
+    an incremental or decremental override value, then the delta amount is not prorated. For
+    example, the initial value from the definition is 10 GB and it has an incremental delta value of
+    5 GB. In this case, only 10 GB is prorated.</p>
+
+  </div>
+
+<div class="section"><h2 class="title sectiontitle">Prorating when a subscription is added in an account or subscription
+    lifecycle</h2>
+   <p class="p">A subscription can be added using the <samp class="ph systemoutput">Add Subscription</samp> action of
+    an account or subscription lifecycle using SM GUI or REST API. If a device takes a subscription
+    in the midway of a billing cycle, then the values of the following fields are prorated based on
+    the configurations in the bundle definition:</p>
+<ul class="ul">
+    <li class="li">
+     <p class="p">
+      <em class="ph i">Bundle Fee</em>
+     </p>
+
+    </li>
+
+    <li class="li">
+     <p class="p">
+      <em class="ph i">Bucket Initial Value</em>
+     </p>
+
+    </li>
+
+    <li class="li">
+     <p class="p">
+      <em class="ph i">Bucket Current Value</em>
+     </p>
+
+    </li>
+
+   </ul>
+
+   <p class="p">The prorating values for bundle is calculated based on the following formula:</p>
+
+   <samp class="ph systemoutput"> Prorating Bundle Fee = Bundle Fee * ((Next Renewal Day - Bundle Applicable Day) /
+    Current Bill Cycle Days) Prorating Bucket Initial Value = Bucket Initial Value * ((Next Renewal
+    Day - Bundle Applicable Day) / Current Bill Cycle Days) Prorating Bucket Current Value = Bucket
+    Current Value * ((Next Renewal Day - Bundle Applicable Day) / Current Bill Cycle
+    Days)</samp>
+   <p class="p">where:</p>
+<ul class="ul">
+    <li class="li">
+     <p class="p">
+      <em class="ph i">Next Renewal Time</em>: This can either be the subscription end time or in case, the
+      subscription does not have its own periodic lifecycle, then it refers to the account end
+      time.</p>
+
+    </li>
+
+    <li class="li">
+     <p class="p">
+      <em class="ph i">Bundle Applicable Time</em>: This value depends upon the bundle <em class="ph i">Prorate Granularity</em>
+      value as, which may be <var class="keyword varname">Default</var>, <var class="keyword varname">Hours</var>, or
+       <var class="keyword varname">Days</var>.</p>
+
+    </li>
+
+   </ul>
+
+   <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The preceding behavior is also applicable to the case when a new device or group is
+    added.</div>
+
+   <p class="p">The following list provides information on the formula used to calculate the billing cycle
+    days.</p>
+<ul class="ul">
+    <li class="li">
+     <p class="p">The following formula is used to calculate the current billing days irrespective of whether
+      a bundle has its own billing cycle or not.</p>
+
+     <p class="p">
+      <kbd class="ph userinput">Current billing days = End time - Periodicity</kbd>
+     </p>
+
+    </li>
+
+    <li class="li">
+     <p class="p">When a bundle has its own billing cycle, then the <kbd class="ph userinput">Current billing cycle days =
+       Subscription End time - Periodicity</kbd>
+     </p>
+
+    </li>
+
+    <li class="li">
+     <p class="p">When a bundle does not have its own billing cycle date, then the <kbd class="ph userinput">Current billing
+       cycle days = Account End time - Periodicity</kbd>
+     </p>
+
+    </li>
+
+   </ul>
+
+   <div class="p">The following table shows the total duration when the bundle does not have its own billing
+    cycle and is prorated based on account billing cycle. The periodicity is 1 month.<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d340235e587">
+         <p class="p">Account Start Date</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d340235e593">
+         <p class="p">Account End Date</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d340235e599">
+         <p class="p">Day of Month in Account Billing Info</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d340235e605">
+         <p class="p">Subscription Purchased Date</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d340235e611">
+         <p class="p">Current billing cycle days</p>
+
+         <p class="p">(Account end date - Periodicity)</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e587 "> 29th May</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e593 "> 29th June</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e599 "> 29</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e605 "> 20th June</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e611 "> 31 days</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e587 "> 29th May</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e593 "> 10th June</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e599 "> 10</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e605 "> 5th June</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e611 "> 31 days</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e587 "> 29th May</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e593 "> 30th May</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e599 "> 30</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e605 "> 29th May</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e611 "> 30  days</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e587 "> 15th June</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e593 "> 15th July</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e599 "> 15</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e605 "> 20th June</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e611 "> 30 days</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e587 "> 15th July</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e593 "> 15th August</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e599 "> 15</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e605 "> 17th July</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e611 "> 31 days</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e587 "> 24th February</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e593 "> 24th March</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e599 "> 24</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e605 "> 26th February</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e611 "> 28/29 days</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e587 "> 24th February</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e593 "> 24th March</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e599 "> 24</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e605 "> 12th March</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e611 "> 28/29 days</td>
+
+       </tr>
+
+      </tbody>
+</table>
+</div>
+
+   <div class="p">The following table shows the total duration when the bundle has its own lifecycle and is
+    prorated based on its own billing cycle. The periodicity is 1 month. <table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d340235e775">
+         <p class="p">Subscription Start Date</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d340235e781">
+         <p class="p">Subscription End Date</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d340235e787">
+         <p class="p">Day of Month in Bundle Billing Info</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d340235e793">
+         <p class="p">Subscription Purchased Date</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d340235e799">
+         <p class="p">Current billing cycle days</p>
+
+         <p class="p">(Subscription End time - Periodicity)</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e775 "> 29th May</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e781 "> 29th June</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e787 "> 29</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e793 "> 27th May</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e799 "> 31 days</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e775 "> 29th May</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e781 "> 10th June</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e787 "> 10</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e793 "> 5th June</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e799 "> 31 days</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e775 "> 29th May</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e781 "> 30th May</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e787 "> 30</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e793 "> 29th May</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e799 "> 30 days</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e775 "> 15th June</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e781 "> 15th July</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e787 "> 15</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e793 "> 15th June</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e799 "> 30 days</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e775 "> 15th June</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e781 "> 15th July</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e787 "> 15</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e793 "> 12th July</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e799 "> 30 days</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e775 "> 24th February</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e781 "> 24th March</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e787 "> 24</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e793 "> 24th February</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e799 "> 28/29 days</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e775 "> 24th February</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e781 "> 24th March</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e787 "> 24</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e793 "> 12th March</td>
+
+        <td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d340235e799 "> 28/29 days</td>
+
+       </tr>
+
+      </tbody>
+</table>
+</div>
+
+  </div>
+
+<div class="section"><h2 class="title sectiontitle">Prorating when a subscription is renewed in an account lifecycle</h2>
+<p class="p">A subscription can be renewed using either of the following actions through SM GUI or REST API:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">
+<samp class="ph systemoutput">Renew Subscription</samp> action for an account</p>
+
+</li>
+
+<li class="li">
+<p class="p">
+<samp class="ph systemoutput">Reset Subscription</samp> action or <samp class="ph systemoutput">Reset Period</samp> action for a subscription lifecycle</p>
+
+</li>
+
+</ul>
+
+<p class="p">The prorating behavior is explained using the following examples:</p>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 1</strong></p>
+
+<p class="p">
+<strong class="ph b">Provisioning:</strong>
+</p>
+
+<p class="p">Consider that an account has an entity lifecycle <kbd class="ph userinput">DefaultAccountLifecycle</kbd> and a periodic lifecycle with periodic length of 30 days using the <samp class="ph systemoutput">Renew Subscription</samp> action. A subscription has a subscription lifecycle <kbd class="ph userinput">SubscriptionEntityLifeCycle</kbd> and a periodic lifecycle with periodic length of 30 days using the <samp class="ph systemoutput">Renew Subscription</samp> action, <samp class="ph systemoutput">Reset Period</samp> action, and <em class="ph i">Subscription Billing Info</em> set as null or <var class="keyword varname">Not Present</var>.</p>
+
+<p class="p">The time related information for account and subscription is as follows:</p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>Account
+Start Time   October 5, 2018 10:35 AM
+End Time 		 November 4, 2018 4:00 AM
+
+Subscription
+Creation Time 	October 15, 2018 10:33:51.020 AM 
+Start Time 		Monday, October 15, 2018 10:33:51.490 AM
+End Time 			Wednesday, November 14, 2018 4:00:00 AM</code></pre>
+</div>
+
+<p class="p">
+<strong class="ph b">Result:</strong>
+</p>
+
+<p class="p">The end time of subscription crosses the end time of account. In this case, the bundle fees is deducted without prorating. It gets deducted again on November 4, 2018. Therefore, the bundle fees is charged twice for the period of November 4, 2018 to November 14, 2018. To prevent the fees getting deducted from account for <samp class="ph systemoutput">Renew Subscription</samp> action, specify the billing information for subscription.</p>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 2</strong></p>
+
+<p class="p">Consider that an account has an entity lifecycle named <kbd class="ph userinput">DefaultAccountLifecycle</kbd> and a periodic lifecycle with period length of 1 month and the day of month set as 23. A subscription has a <kbd class="ph userinput">SubscriptionEntityLifeCycle</kbd> and a periodic lifecycle with periodic length of 1 month with <samp class="ph systemoutput">Renew Subscription</samp> action and <samp class="ph systemoutput">Reset Period</samp> action.</p>
+
+<p class="p">The time related information for account and subscription is as follows:</p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>Account
+Start Time   October 24, 2018 1:30 PM
+End Time 		 November 23, 2018 12:00 AM
+
+Subscription
+Creation Time 	October 24, 2018 02:30:00 PM 
+Start Time 		October 24, 2018 02:30:00 PM
+End Time 			November 23, 2018 02:00:00 PM   
+Actual End Time: As per 1 month calculation: November 23, 2018 02:30:00 PM </code></pre>
+</div>
+
+<p class="p">The end time is 30 minutes less than the calculated actual end time.</p>
+
+<p class="p">Following calculation shows the actual billable hours:</p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>Start Time: 24th October 02:30:00 PM (in milliseconds: 1540391400000)
+End Time: 23rd November 02:00:00 PM (in milliseconds: 1542981600000)
+Duration in milliseconds = 1542981600000 - 1540391400000 = 2590200000.
+Converting the value in hours: 2590200000 / 60*60*1000 = 719.5 hours. 
+</code></pre>
+</div>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The value (time) is used as it is without rounding off but with calculation precision as per configuration.</div>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>Prorate factor = 719.5/744</code></pre>
+</div>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 3</strong></p>
+
+<p class="p">Consider that an account has an entity lifecycle named <kbd class="ph userinput">DefaultAccountLifecycle</kbd> and a periodic lifecycle with period length of 1 month and day of month set as 24. A subscription has a <kbd class="ph userinput">SubscriptionEntityLifeCycle</kbd> and does not have its own periodic lifecycle.</p>
+
+<p class="p">The time related information for account and subscription is as follows: </p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>Account
+Start Time November 23, 2018 1:30 PM 
+End Time December 24, 2018 12:00 AM
+
+Subscription Creation Time December 5, 2018 02:30:00 PM
+Start Time December 5, 2018 02:30:00 PM 
+End Time December 23, 2018 02:00:00 PM
+Actual End Time: As per 30 days calculation: December 23, 2018 02:30:00 PM</code></pre>
+</div>
+
+<p class="p">The end time is 30 minutes less than the calculated actual end time. </p>
+
+<p class="p">Following calculation shows the actual billable hours:</p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>Start Time: 24th November 02:30:00 PM (in milliseconds: 1540391400000)
+End Time: 23rd December 02:00:00 PM (in milliseconds: 1542981600000)
+Duration in milliseconds = 1542981600000 - 1540391400000 = 2590200000
+Converting the value in hours: 2590200000 / 60*60*1000 = 719.5 hours.</code></pre>
+</div>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The value (time) is used as it is without rounding off but with calculation precision as per configuration.</div>
+
+<p class="p">In this case, since the bundle does not have its own lifecycle, the total duration is 30 days. It is account end time - periodicity = 30 days = 720 </p>
+
+<div class="fig fignone">
+<pre class="pre codeblock"><code>Prorate factor = 719.5/720</code></pre>
+</div>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Prorating for a Subscribe Bundle or Remove Bundle API</h2>
+<p class="p">In case of the <em class="ph i">Subscriber Bundle</em> or <em class="ph i">Remove Bundle</em> API, if the bundle fee is greater
+    than zero, then the <em class="ph i">Bundle fee / Overidden bundle fee</em> and <em class="ph i">Fee Reference for
+     Prorate</em> defined in the bundle are checked to confirm whether prorating fee must be applied
+    to a bundle. If there are buckets and counters in the bundle, then NCC checks their prorating
+    modes and takes actions accordingly.</p>
+
+<p class="p">The following figure shows the prorating fields in the SM GUI.</p>
+
+<div class="fig fignone"><span class="figcap"><span class="fig--title-label">Figure: </span>Prorating</span>
+    
+    
+    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bundle_prorate_snapshot_default.png" />
+   </div>
+
+<div class="p">The following table provides information on different actions taken based on the value set for
+    the Bundle fee / Overidden bundle fee parameter.<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Bundle fee / Overridden bundle fee</span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e1188">
+         <p class="p">Bundle fee / Overridden bundle fee</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e1194">
+         <p class="p">Action </p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1188 ">None</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1194 ">No prorating fee for the bundle.</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1188 ">Subscription Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1194 ">
+         <p class="p">NCC prorates the bundle fee according to the exact available day of the current bill
+          cycle using the given formula:</p>
+
+         <samp class="ph systemoutput">Prorating Bundle Fee = Bundle Fee * ((Next Renewal Day - Bundle Applicable
+          Day) / Current Bill Cycle Days)</samp>
+       </td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1188 ">Subscription End</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1194 ">
+         <p class="p">NCC refunds the bundle fee according to the days left in the bill cycle using the given
+          formula:</p>
+
+         <samp class="ph systemoutput">Refund Bundle Fee = Bundle Fee * ((Next Renewal Day - Bundle Applicable Day
+          -1) / Current Bill Cycle Days)</samp>
+         <div class="p">
+          <div class="note" id="id9yz-09126-ug01-pczza-sp1-pf__note_l4x_ghx_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> (-1) in the formula is to exclude the current day from the
+           remaining days. </div>
+
+         </div>
+</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1188 ">Both</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1194 "><p class="p">When the subscription is taken or removed, NCC prorates the bundle fee accordingly
+          using the given formula:</p>
+
+         <samp class="ph systemoutput">Prorating Bundle Fee = Bundle Fee * ((Next Renewal Day - Bundle Applicable
+          Day) / Current Bill Cycle Days)</samp>
+        </td>
+
+       </tr>
+
+      </tbody>
+</table>
+</div>
+
+<div class="p">The following table provides information on different actions taken based on the value set for
+    the Bucket Prorate Mode parameter.<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Bucket Prorate Mode</span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e1282">
+         <p class="p">Bucket Prorate Mode</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e1288">
+         <p class="p">Action </p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1282 ">None</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1288 ">No prorating for the bucket value.</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1282 ">Subscription Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1288 ">
+         <p class="p">NCC prorates the bucket value according to the exact available day of the current bill
+          cycle using the given formula:</p>
+
+         <samp class="ph systemoutput">Prorating Bucket Value = Bucket Initial Value * ((Next Renewal Day - Bundle
+          Applicable Day) / Current Bill Cycle Days)</samp>
+         <p class="p">Note that the prorating bucket value is used as bucket initial value temporarily in the
+          current bill cycle. In the next bill cycle, the defined bucket initial value is used.</p>
+
+       </td>
+
+       </tr>
+
+      </tbody>
+</table>
+</div>
+
+<div class="p">The following table provides information on different actions taken based on the value set for
+    the Counter Prorate Mode parameter.<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Counter Prorate Mode</span></caption><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e1346">
+         <p class="p">Counter Prorate Mode</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e1352">
+         <p class="p">Action </p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1346 ">None</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1352 ">No prorating for the counter value.</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1346 ">Subscription Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1352 ">
+         <p class="p">NCC checks the counter prorating limit value according to the exact available day of
+          current bill cycle of counter limit value using the following formula:</p>
+
+         <samp class="ph systemoutput">Prorating Bucket Value = Bucket Initial Value * ((Next Renewal Day - Bundle
+          Applicable Day) / Current Bill Cycle Days)</samp>
+         <p class="p">If a limit is defined for the counter or usage limit, then the following formula is used
+          for prorating limit value calculation using the following formula:</p>
+
+         <samp class="ph systemoutput">Prorating Limit Value = usage limit * ((Next Reset Day - Bundle Applicable
+          Day) / Current Bill Cycle Days)</samp>
+         <p class="p">The prorating limit value is used as counter limit value temporarily in the current bill
+          cycle.</p>
+
+         <div class="p">
+          <div class="note" id="id9yz-09126-ug01-pczza-sp1-pf__note_nml_ghx_p5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If overage value is defined for a counter, then it is not
+           prorated.</div>
+
+         </div>
+
+        </td>
+
+       </tr>
+
+      </tbody>
+</table>
+</div>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Prorating bundle fee based on the prorated fee selection</h2>
+<p class="p">The following figure shows the <em class="ph i">Fee Reference for Prorate</em> option available in the SM GUI
+    and based on its selection, NCC performs the prorating function.</p>
+
+<div class="fig fignone">
+    
+    <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bundle_prorate_snapshot1_default.png" />
+   </div>
+
+<p class="p">If the <em class="ph i">Bundle fee / Overidden bundle fee</em> is not set as <var class="keyword varname">None</var> and the <em class="ph i">Fee Reference for Prorate</em> is set as <var class="keyword varname">Bundle fee / Overridden fee</var>, then the prorating is applied as follows:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Prorating is taken care when a new device or group is added with subscription.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Prorating is taken care when a new subscription is attached to a device or group.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Prorating is taken care when a new subscription is added to a device or group using the <samp class="ph systemoutput">Add Subscription</samp> action in lifecycle.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Prorating is taken care when a subscription has its own bill cycle.</p>
+
+</li>
+
+</ul>
+
+<p class="p">If the <var class="keyword varname">Charge fee action</var> is triggered inside any other state apart from
+    initial state of periodic lifecycle of a subscription, then NCC checks for
+     <var class="keyword varname">Charge fee action</var> in the <em class="ph i">Fee Reference for Prorate</em> and a valid future
+    activation date for charge fee prorate as applicable.</p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Prorating bundle fee based on billing cycle modification</h2>
+<p class="p">When the <samp class="ph systemoutput">Renew Subscription</samp> action is triggered, NCC checks
+    prorating since there may be an update in the billing cycle date. If the billing cycle
+    information (<em class="ph i">Day of Month</em> or <em class="ph i">Day of Week</em>) is changed for an account or
+    subscription, then NCC checks the following:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Whether subscriptions are attached to an account whose billing cycle information is changed.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Whether subscription under the device is directly attached to an account.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Whether devices in the group are attached to an account.</p>
+
+</li>
+
+</ul>
+
+<div class="p">If the Bundle fee on billing cycle date update prorating mode is not set as None, then NCC
+    prorates the bundle fee and bucket or counter values as follows:<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e1528">
+         <p class="p">Prorate mode</p>
+
+        </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e1534">
+         <p class="p">Action</p>
+
+        </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1528 ">Prorate</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1534 ">NCC prorates based on controlling parameters in the bundle definition. For <em class="ph i">Bundle
+          fee / Overridden bundle fee</em>, prorate is done as long as it is not
+          <var class="keyword varname">None</var>. The <em class="ph i">Fee Reference for Prorate</em> parameter is not considered
+         in this case.</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1528 ">Force Prorate</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1534 ">NCC prorates without considering the values of controlling parameters in the bundle
+         definition.</td>
+
+       </tr>
+
+      </tbody>
+</table>
+</div>
+
+<p class="p">When the BCR happens in the old billing cycle end date, if prorating is needed, then the
+     <samp class="ph systemoutput">Prorated Value = original full value * (new bill cycle end date - old bill cycle
+     end date) / current bill cycle days</samp>. For the bundle fee, the prorated bundle fee
+    is charged to the account. For bucket value, the prorated value is added to the current value of
+    bucket. The counter limit is also prorated. If the new bill cycle end date equals the old bill
+    cycle end date, then there is no prorating.</p>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The bill cycle end date is the latest end date based on day of month and current date.
+    </div>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example</strong></p>
+
+<p class="p">
+<strong class="ph b">Provisioning:</strong>
+</p>
+<ol class="ol">
+<li class="li">
+<p class="p">Create a subscription on the first of the month and billing cycle is set as first of every month. The subscription has a monthly lifecycle and the billing cycle associated with the subscription is updated.</p>
+
+</li>
+
+<li class="li">
+<p class="p">A bundle has a prorating configuration of <em class="ph i">Bundle fee / Overidden bundle fee</em>, <em class="ph i">Bucket Prorate Mode</em> set as <var class="keyword varname">Subscription Start</var>, and <em class="ph i">Bundle fee on billing cycle date update</em> set as <var class="keyword varname">Prorate</var>.</p>
+
+</li>
+
+</ol>
+
+<p class="p">
+<strong class="ph b">Result:</strong>
+</p>
+
+<p class="p">In the next billing cycle, prorating of renewal fee, bundle fee, or bundle fee and bucket initial value or bucket current value is done.</p>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Prorating when end time of a subscription is modified</h2>
+<div class="p">If the end time of a subscription is updated, then NCC prorates the associated bundle parameters.
+    If the end time is changed using the REST API, then no prorating is done. <div class="note" id="id9yz-09126-ug01-pczza-sp1-pf__note_dyf_gdr_jsb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+     <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-pf__ul_eyf_gdr_jsb">
+      <li class="li">
+       <p class="p">If the end time of the subscription is increase by <em class="ph i">x</em> number of days, then prorating
+        does not charge extra for those <em class="ph i">x</em> number of days. Subscriber gets those <em class="ph i">x</em>
+        number of days without any cost.</p>
+
+      </li>
+
+      <li class="li">
+       <p class="p">If the end time of the subscription is decreased by <em class="ph i">x</em> number of days, then
+        prorating does not refund for those <em class="ph i">x</em> number of days. Subscriber gets charged twice
+        for those <em class="ph i">x</em> number of days in case of renewal of periodic cycle.</p>
+
+      </li>
+
+     </ul>
+
+    </div>
+</div>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 1: Manually updating the subscription end time</strong></p>
+
+<p class="p">
+<strong class="ph b">Provisioning:</strong>
+</p>
+<ol class="ol">
+<li class="li">
+<p class="p">Set the <em class="ph i">Subscription Start Time</em> as <var class="keyword varname">01/11/2018</var>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Set the <em class="ph i">Subscription End Time</em> as <var class="keyword varname">01/12/2018</var>.</p>
+
+</li>
+
+</ol>
+
+<p class="p">
+<strong class="ph b">Result:</strong>
+</p>
+
+<p class="p">On 15/11/2018, the billing information is changed as <em class="ph i">Day of Month</em> set as <var class="keyword varname">15</var>.</p>
+
+<p class="p">During BCR on 01/12/2018, next billing cycle starts from 01/12/2018 and lasts till 15/12/2018.</p>
+
+<p class="p">During the next billing cycle, prorating happens depending on the flags. The current billing cycle days is 30 in this case, that is, 01/12/2018 - Monthly periodicity.</p>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example 2: Updating subscription end time using REST API</strong></p>
+
+<p class="p">
+<strong class="ph b">Provisioning:</strong>
+</p>
+<ol class="ol">
+<li class="li">
+<p class="p">Set the <em class="ph i">Subscription Start Time</em> as <var class="keyword varname">01/11/2018</var>.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Set the <em class="ph i">Subscription End Time</em> as <var class="keyword varname">01/12/2018</var>.</p>
+
+</li>
+
+</ol>
+
+<p class="p">
+<strong class="ph b">Result:</strong>
+</p>
+
+<p class="p">If you change the end time from 01/12/2018 to 04/12/2018 using the <em class="ph i">updateTime</em> REST API, then subscriber is not charged for days between 04/12/2018 to 01/12/2018.</p>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Prorating when a bundle is modified using Change Bundle option</h2>
+<p class="p">When a bundle is modified using the REST API or SM GUI, NCC prorates associated bundle
+    parameters.</p>
+
+<p class="p">For example, a bundle has a periodic lifecycle of one month and the <em class="ph i">Change Bundle</em> option is used to modify it using the <em class="ph i">Immediately with prorating</em> mode. The API has a prorating configuration for <em class="ph i">Bundle fee / Overidden bundle fee</em> and <em class="ph i">Bucket Prorate Mode</em>. The end time is calculated less than the expected renewal time, which means the subscription is available for 15 days of the current billing cycle. In this case, the <em class="ph i">Bundle fee / Overidden bundle fee</em> and associated bucket initial and current values are prorated.</p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Prorating when a bundle is customized using the Template API</h2>
+<p class="p">If the bucket initial and current values are updated using the <em class="ph i">Template</em> API
+     (<em class="ph i">update/BucketInstance</em>), then NCC prorates the associated bundle parameters.</p>
+
+<p class="p">For example, a subscription is created on first of month and billing cycle is first of every month. Subscription has a monthly lifecycle, the bucket initial value is updated in permanent mode, and subscription billing cycle is updated. Bundle has prorating configuration of <em class="ph i">Bundle fee / Overidden bundle fee</em>, <em class="ph i">Bucket Prorate Mode</em> and <em class="ph i">Bundle fee on billing cycle date update</em>. In the next billing cycle, bucket initial and current value are prorated with updated initial values. If change in initial value is temporary, then the bucket initial and current value are prorated with values retrieved from the bundle definition.</p>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Prorating when a subscription is scheduled for a future date using the activation date</h2>
+<p class="p">A subscription can be scheduled for a future date by setting the activation date. For example, subscription is taken on 5th day of the billing cycle and activated on 10th day of the billing cycle.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e1863">
+        <p class="p">If...</p>
+
+      </th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e1869">
+        <p class="p">Then...</p>
+
+      </th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1863 ">The <em class="ph i">Bundle fee / Overidden bundle fee</em> is not set as <var class="keyword varname">None</var>,
+        and</td>
+
+       <td class="entry cellrowborder" rowspan="2" style="vertical-align:top;" headers="d340235e1869 ">
+        <p class="p">NCC checks whether the <em class="ph i">Fee Reference for Prorate</em> is set to <var class="keyword varname">Charge fee
+          action</var>.</p>
+
+        <p class="p">If yes, then NCC prorates the charge fee when the current date or activated date is not
+         equal to the billing cycle date.</p>
+
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e1863 ">The <var class="keyword varname">Charge fee action</var> is triggered from any state and subscription
+        has a future activate date,</td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Example</strong></p>
+
+<p class="p">
+<strong class="ph b">Provisioning:</strong>
+</p>
+
+<p class="p">A device purchases a subscription and fee reference is set to <var class="keyword varname">Charge fee action</var> and subscription has a future activation.</p>
+
+<p class="p">
+<strong class="ph b">Result:</strong>
+</p>
+
+<p class="p">A device subscribes a subscription with future activation, which is prorated based on the end date of an account. The account balance is 3000. For this case, let us consider that the prorating is done based on the selections made as shown in the following figure:</p>
+
+<div class="fig fignone">
+     
+     <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bundle_example_image1_default.png" />
+    </div>
+
+<p class="p">In the lifecycle, a bundle subscription lifecycle is defined with <var class="keyword varname">Charge fee action</var> set to <var class="keyword varname">1000</var> as shown in the following figure:</p>
+
+<div class="fig fignone">
+     
+     <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bundle_example_image2_default.png" />
+    </div>
+
+<p class="p">Configuring subscription with a future activation date as shown in the following figure:</p>
+
+<div class="fig fignone">
+     
+     <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-bundle_example_image3_default.png" />
+    </div>
+
+<p class="p">The following figure shows the prorated charge fee deduction and the value of buckets after prorating is applied:</p>
+
+<div class="fig fignone">
+     
+     <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-prorating_new_image_default.png" />
+    </div>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Examples</h2>
+<p class="p">Assume the following conditions for the examples listed in this section:</p>
+<ul class="ul">
+<li class="li">
+<p class="p">Lifecycle of subscription or account is properly configured.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If the periodicity of a lifecycle is defined in days, weeks, or months, then NCC affects the end
+      time of subscription at the time of subscription.</p>
+
+</li>
+
+<li class="li">
+<p class="p">If subscription is deleted before the expected end time, then NCC gives the refund based on
+      duration difference.</p>
+
+</li>
+
+</ul>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Case 1: When a bundle attached to a device does not have a billing lifecycle</strong></p>
+
+<p class="p">
+<strong class="ph b">Provisioning:</strong>
+</p>
+
+<p class="p">The following table has details about the bundle with prorate field values:</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:7.501875468867215%" /><col style="width:7.501875468867215%" /><col style="width:7.726931732933233%" /><col style="width:14.103525881470363%" /><col style="width:9.302325581395348%" /><col style="width:11.10277569392348%" /><col style="width:13.203300825206298%" /><col style="width:11.027756939234807%" /><col style="width:11.027756939234807%" /><col style="width:7.501875468867215%" /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2055">
+         <p class="p">Bundle name</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2061">
+         <p class="p">Fee</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2067">
+         <p class="p">Charge Fee</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2073">
+         <p class="p">Bucket/Counter</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2079">
+         <p class="p">Initial value</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2086">
+         <p class="p">Bundle fee / Overridden bundle fee</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2092">
+         <p class="p">Fee reference for prorate</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2098">
+         <p class="p">Bucket Prorate Mode</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2104">
+         <p class="p">Counter Prorate Mode</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2110">
+         <p class="p">Bundle fee on billing cycle date update</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2055 ">BD1</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2061 ">10 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2067 ">20 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2073 ">
+         <p class="p">Bucket1</p>
+
+         <p class="p">Counter1</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2079 ">
+         <p class="p">2 GB</p>
+
+         <p class="p">5 GB</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2086 ">Both</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2092 ">Bundle fee/Overridden fee</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2098 ">Subscription Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2104 ">Subscription Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2110 ">None</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2055 ">BD2</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2061 ">20 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2067 ">30 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2073 ">Bucket2</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2079 ">4 GB</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2086 ">Subscription Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2092 ">Charge Fee action</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2098 ">None</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2104 ">None</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2110 ">Prorate</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2055 ">BD3</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2061 ">10 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2067 ">30 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2073 ">Bucket1</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2079 ">2 GB</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2086 ">Subscription End</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2092 ">Bundle fee/Overridden fee</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2098 ">Subscription Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2104 ">None</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2110 ">Force Prorate</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2055 ">BD4</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2061 ">10 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2067 ">30 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2073 ">Bucket2</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2079 ">4 GB</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2086 ">Subscription Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2092 ">Charge Fee action</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2098 ">Subscription Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2104 ">None</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2110 ">Prorate</td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+<p class="p">
+<strong class="ph b">Result:</strong>
+</p>
+
+<p class="p">This example shows the case where the account has a billing lifecycle of one month and bundle does not have billing lifecycle. The account start date is 15th April and account end date is 15th May. A subscription is purchased on 29th April. The following table shows the prorated values.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2301">
+         <p class="p">Action</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2307">
+         <p class="p">Fee</p>
+
+         <p class="p">(Bundle fee)</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2316">
+         <p class="p">Charge Fee</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2322">
+         <p class="p">Bucket current value</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2328">
+         <p class="p">Counter prorating limit</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2301 ">Device is attached to BD1</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2307 ">
+         <p class="p">5 USD </p>
+
+         <p class="p">Fee = 10*(15/30)</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2316 ">20 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2322 ">
+         <p class="p">Bucket 1 = 1 GB</p>
+
+         <p class="p">Value = 2GB*(15/30)</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2328 ">2.5 GB</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2301 ">Device is attached to BD2</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2307 ">20 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2316 ">
+         <p class="p">15 USD</p>
+
+         <p class="p">Fee = 30*(15/30)</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2322 ">Bucket 2 = 4 GB</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2328 ">-</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2301 ">Device is attached to BD3</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2307 ">10 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2316 ">30 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2322 ">
+         <p class="p">Bucket 1 = 1 GB</p>
+
+         <p class="p">Value = 2GB*(15/30)</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2328 ">-</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2301 ">Device is attached to BD4</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2307 ">10 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2316 ">
+         <p class="p">15 USD</p>
+
+         <p class="p">Fee = 30*(15/30)</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2322 ">Bucket 2 = 2 GB = 4 GB*(15/30)</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2328 ">-</td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Case 2: When a bundle attached to a device has a billing lifecycle</strong></p>
+
+<p class="p">
+<strong class="ph b">Provisioning:</strong>
+</p>
+
+<p class="p">The following table has details about the bundle with prorate field values:</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /><col /><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2488">
+         <p class="p">Bundle name</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2494">
+         <p class="p">Fee</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2500">
+         <p class="p">Charge Fee</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2506">
+         <p class="p">Bucket/Counter</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2512">
+         <p class="p">Initial value</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2519">
+         <p class="p">Bundle fee / Overridden bundle fee</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2525">
+         <p class="p">Fee reference for prorate</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2531">
+         <p class="p">Bucket Prorate Mode</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2537">
+         <p class="p">Counter Prorate Mode</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2543">
+         <p class="p">Bundle fee on billing cycle date update</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2488 ">BD1</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2494 ">10 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2500 ">20 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2506 ">
+         <p class="p">Bucket1</p>
+
+         <p class="p">Counter1</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2512 ">
+         <p class="p">2 GB</p>
+
+         <p class="p">5 GB</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2519 ">Both</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2525 ">Bundle fee/Overridden fee</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2531 ">Subscription Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2537 ">Subscription Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2543 ">None</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2488 ">BD2</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2494 ">20 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2500 ">30 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2506 ">Bucket2</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2512 ">4 GB</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2519 ">Subscription Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2525 ">Charge Fee action</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2531 ">None</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2537 ">None</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2543 ">Prorate</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2488 ">BD3</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2494 ">10 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2500 ">30 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2506 ">Bucket1</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2512 ">2 GB</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2519 ">Subscription End</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2525 ">Bundle fee/Overridden fee</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2531 ">Subscription Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2537 ">None</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2543 ">Force Prorate</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2488 ">BD4</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2494 ">10 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2500 ">30 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2506 ">Bucket2</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2512 ">4 GB</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2519 ">Subscription Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2525 ">Charge Fee action</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2531 ">Subscription Start</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2537 ">None</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2543 ">Prorate</td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+<p class="p">
+<span class="ph uicontrol">Result:</span>
+</p>
+
+<p class="p">This example shows the case where the bundle has a monthly billing cycle. A subscription is purchased on 15th May and subscription end date is 15th June. The following table shows the prorated values.</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2734">
+         <p class="p">Action</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2740">
+         <p class="p">Fee</p>
+
+         <p class="p">(Bundle fee)</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2749">
+         <p class="p">Charge Fee</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2755">
+         <p class="p">Bucket current value</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e2761">
+         <p class="p">Counter prorating limit</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2734 ">Device is attached to BD1</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2740 ">
+         <p class="p">5 USD </p>
+
+         <p class="p">Fee = 10*(15/31)</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2749 ">20 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2755 ">
+         <p class="p">Bucket 1 = 1 GB</p>
+
+         <p class="p">Value = 2GB*(15/31)</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2761 ">2.5 GB</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2734 ">Device is attached to BD2</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2740 ">20 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2749 ">
+         <p class="p">15 USD</p>
+
+         <p class="p">Fee = 30*(15/31)</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2755 ">Bucket 2 = 4 GB</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2761 ">-</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2734 ">Device is attached to BD3</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2740 ">10 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2749 ">30 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2755 ">
+         <p class="p">Bucket 1 = 1 GB</p>
+
+         <p class="p">Value = 2GB*(15/31)</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2761 ">-</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2734 ">Device is attached to BD4</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2740 ">10 USD</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2749 ">
+         <p class="p">15 USD</p>
+
+         <p class="p">Fee = 30*(15/31)</p>
+
+       </td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2755 ">Bucket 2 = 2 GB = 4 GB*(15/31)</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e2761 ">-</td>
+
+       </tr>
+
+      </tbody>
+</table>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Case 3: When a device purchases a subscription and fee reference is set to Bundle fee or overridden fee</strong></p>
+
+<p class="p">
+<strong class="ph b">Provisioning:</strong>
+</p>
+<ol class="ol">
+<li class="li">
+<p class="p">Subscribe an iPhone device to a subscription, which is prorated based on the end date of an account.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Configure the account balance is 2000 United States dollars.</p>
+
+</li>
+
+<li class="li"><p class="p">For this case, let us consider that the prorating is done based on the selections made as
+       shown in the following figure:</p>
+
+      
+      <img class="image" src="../images/img9yz-09126-ug01-pczza-sp1-prorating_case1_1_default.png" height="213" width="530" />
+     </li>
+
+<li class="li"><p class="p">In the <em class="ph i">Charging Service</em>, two buckets with 100 GB and 100 Money type are defined as
+       shown in the following figure:</p>
+
+      
+      <img class="image" src="../images/img9yz-09126-ug01-pczza-sp1-prorating_case1_2_default.png" height="201" width="493" />
+     </li>
+
+</ol>
+
+<p class="p">
+<strong class="ph b">Result:</strong>
+</p>
+
+<p class="p">The following figure shows the value of buckets after prorating is applied.</p>
+
+<div class="fig fignone">
+     
+     <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-prorating_case_1_3_default.png" height="171" width="529" />
+    </div>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Case 4: When a device purchases a subscription and fee reference is set to Charge fee action</strong></p>
+
+<p class="p">
+<strong class="ph b">Provisioning:</strong>
+</p>
+<ol class="ol">
+<li class="li">
+<p class="p">Subscribe an iPhone device to a subscription, which is prorated based on the end date of an account.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Configure the account balance is 3000 United States dollars.</p>
+
+</li>
+
+<li class="li"><p class="p">For this case, let us consider that the prorating is done based on the selections made as
+       shown in the following figure:</p>
+
+      
+      <img class="image" src="../images/img9yz-09126-ug01-pczza-sp1-prorating_case2_1_default.png" height="201" width="471" />
+     </li>
+
+<li class="li"><p class="p">In the <em class="ph i">Charging Service</em>, two buckets with 100 GB and 100 Money type are defined as
+       shown in the following figure:</p>
+
+      
+      <img class="image" src="../images/img9yz-09126-ug01-pczza-sp1-prorating_case2_3_default.png" height="194" width="475" />
+     </li>
+
+<li class="li"><p class="p">In the lifecycle, a bundle subscription lifecycle is defined with <var class="keyword varname">Charge fee
+        action</var> set to <var class="keyword varname">2000</var> as shown in the following figure:</p>
+
+      
+      <img class="image" src="../images/img9yz-09126-ug01-pczza-sp1-prorating_case2_2_default.png" height="323" width="518" />
+     </li>
+
+</ol>
+
+<p class="p">
+<strong class="ph b">Result:</strong>
+</p>
+
+<p class="p">The following figure shows the value of buckets after prorating is applied.</p>
+
+<div class="fig fignone">
+     
+     <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-prorating_case2_4_default.png" height="173" width="529" />
+    </div>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Case 5: Prorating threshold for notifications</strong></p>
+
+<p class="p">
+<strong class="ph b">Provisioning:</strong>
+</p>
+<ol class="ol">
+<li class="li">
+<p class="p">Configure a monthly data plan with a bundle of 1 GB and threshold notifications set at 50%, 75%, and 100% usage of the data bundle.</p>
+
+</li>
+
+<li class="li">
+<p class="p">Add a device in the midway of a billing cycle (15th day of bill cycle) of a 30 day month.</p>
+
+</li>
+
+</ol>
+
+<p class="p">
+<strong class="ph b">Result:</strong>
+</p>
+
+<p class="p">For the first month, device is allotted a subscription of 500 MB and notifications are sent on consumption of 250 MB, 375 MB and 500 MB of data bundle. After the BCR, the subscription values are reset to the value of 1 GB bundle, and notifications are sent at 500 MB, 750 MB, and 1 GB of data usage.</p>
+
+<div class="fig fignone">
+     
+     <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-prorating_example_default.png" />
+    </div>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Providing granularity to prorating</h2>
+   <p class="p">In addition to the existing prorating behavior wherein we consider the difference of exact
+    current time and end time to calculate prorating values for service (bundle), allowance limit
+    (bucket), and thresholds. The <span class="ph uicontrol">Prorate Granularity</span> parameter provides
+    flexibility to round-off the prorate fees and other values to <var class="keyword varname">Days</var> and
+     <var class="keyword varname">Hours</var>.</p>
+
+   <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> It is recommended to not select granularity less than a lifecycle timer unit. For example, if
+     granularity is <var class="keyword varname">DAYS</var>, then the lifecycle unit must be set as
+      <var class="keyword varname">Days</var> and not <var class="keyword varname">Hours</var>.</div>
+
+   <p class="p">The prorating values for bundle is calculated based on the following formula:</p>
+
+   <samp class="ph systemoutput">Prorating Bundle Fee = Bundle Fee * ((Next Renewal Time - Bundle Applicable Time) /
+    Current Bill Cycle Days)</samp>
+   <samp class="ph systemoutput">Prorating Bucket Initial Value = Bucket Initial Value * ((Next Renewal Time -
+    Bundle Applicable Time) / Current Bill Cycle Days)</samp>
+   <samp class="ph systemoutput">Prorating Bucket Current Value = Bucket Current Value * ((Next Renewal Time -
+    Bundle Applicable Time) / Current Bill Cycle Days)</samp>
+   <p class="p">where:</p>
+<ul class="ul">
+    <li class="li">
+     <p class="p">
+      <em class="ph i">Next Renewal Time:</em> This can be either subscription end time or in case, subscription
+      does not have its own periodic life cycle, then account end time is considered.</p>
+
+    </li>
+
+    <li class="li">
+     <p class="p">
+      <em class="ph i">Bundle Applicable Time:</em> This value depends on bundle prorate granularity value as:</p>
+
+     <ul class="ul">
+      <li class="li">
+       <p class="p">
+        <var class="keyword varname">DEFAULT</var>: Current time is considered as <em class="ph i">Bundle Applicable Time</em>.</p>
+
+      </li>
+
+      <li class="li">
+       <p class="p">
+        <var class="keyword varname">HOURS</var>: Rounded to current hour of the day. For example, if current time
+        is <samp class="ph systemoutput">06 March 2020 17:45:45:237</samp> and prorate granularity is
+         <var class="keyword varname">HOUR</var>, then <em class="ph i">Bundle Applicable Time</em> becomes <samp class="ph systemoutput">06 March
+         2020 17:00:00:000</samp>.</p>
+
+      </li>
+
+      <li class="li">
+       <p class="p">
+        <var class="keyword varname">DAYS</var>: Rounded to current day start time or if life cycle is account and
+        “hour of the day” is present in billing information, then <em class="ph i">Bundle Applicable Time</em> is
+        rounded to that “hour of the day” time of current or previous day. For example, if
+        subscription does not have its own periodic life cycle and account has periodic lifecycle
+        with below details:</p>
+
+       <p class="p">Periodic lifecycle with <em class="ph i">timer Units</em> set as <var class="keyword varname">Month</var> and <em class="ph i">timer
+         value</em> set as <var class="keyword varname">1</var>.</p>
+
+      </li>
+
+     </ul>
+
+     <p class="p">Assume that current time is <samp class="ph systemoutput">06 March 2020 17:45:45:000</samp>.</p>
+
+     <ol class="ol">
+      <li class="li">
+       <p class="p">
+        <strong class="ph b">Case 1:</strong> Billing information is set as:</p>
+
+       <p class="p">
+        <em class="ph i">hourOfDay</em> set as <var class="keyword varname">5</var>
+       </p>
+
+       <p class="p">
+        <em class="ph i">DayOfMonth</em> set as <var class="keyword varname">18</var>
+       </p>
+
+       <p class="p">If end time is <samp class="ph systemoutput">18 March 2020 5:00:00:000</samp> and prorate
+        granularity is <var class="keyword varname">DAYS</var>, then <em class="ph i">Bundle Applicable Time</em> becomes
+         <samp class="ph systemoutput">18 March 2020 05:00:00:000</samp>.</p>
+
+      </li>
+
+      <li class="li">
+       <p class="p">
+        <strong class="ph b">Case 2:</strong> Billing information is set as:</p>
+
+       <p class="p">
+        <em class="ph i">hourOfDay</em> set as <var class="keyword varname">19</var>
+       </p>
+
+       <p class="p">
+        <em class="ph i">DayOfMonth</em> set as <var class="keyword varname">18</var>
+       </p>
+
+       <p class="p">If end time is <samp class="ph systemoutput">18 March 2020 19:00:00:000</samp> and prorate
+        granularity is <var class="keyword varname">DAYS</var>, then <em class="ph i">Bundle Applicable Time</em> becomes
+         <samp class="ph systemoutput">05 March 2020 19:00:00:000</samp>.</p>
+
+      </li>
+
+      <li class="li">
+       <p class="p">
+        <strong class="ph b">Case 3:</strong> Billing information is set as:</p>
+
+       <p class="p">
+        <em class="ph i">DayOfMonth</em> set as <var class="keyword varname">18</var>
+       </p>
+
+       <p class="p">If end time is <samp class="ph systemoutput">18 March 2020 00:00:00:000</samp> and prorate
+        granularity is <var class="keyword varname">DAYS</var>, then <em class="ph i">Bundle Applicable Time</em> becomes
+         <samp class="ph systemoutput">06 March 2020 00:00:00:000</samp>.</p>
+
+      </li>
+
+     </ol>
+
+    </li>
+
+    <li class="li">
+     <p class="p">
+      <samp class="ph systemoutput">Current Bill Cycle Days = End time – Periodicity</samp>
+     </p>
+
+     <p class="p">wherein periodicity is lifecycle period length (timer value * timer units).</p>
+
+     <p class="p">For example, if end time is set as <samp class="ph systemoutput">06 March 2020 00:00:00</samp>,
+      timer value is <var class="keyword varname">1</var>, and timer units is <var class="keyword varname">Month</var>, then time
+      becomes <samp class="ph systemoutput">06 Feb 2020 00:00:00</samp>. Therefore, current billing cycle is
+       <var class="keyword varname">28 days</var> as it lies in February month.</p>
+
+    </li>
+
+   </ul>
+
+   <p class="p">Similarly, if counter prorate mode is available with subscription start, then the formula
+    is:</p>
+
+   <samp class="ph systemoutput">Prorating Limit Value = Cap Value/Max Limit * ((Next Reset Time - Bundle Applicable
+    Time) / Current Bill Cycle Time)</samp>
+   <p class="p">If billing cycle information gets modified, then the formula is:</p>
+
+   <samp class="ph systemoutput">Prorated Value = original full value * (new bill cycle end time - old bill cycle
+    end time) / current bill cycle time</samp>
+   <div class="p">The following table shows the total duration when the bundle has bucket of type VOLUME and
+    initial value as 10000 and does not have its own billing cycle and is prorated based on account
+    billing cycle. The periodicity is 1 month, current time is 05:30 PM and rounding mode is
+     CEILING.<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /><col /><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3376">
+         <p class="p">Account Start Time</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3382">
+         <p class="p">Hour of the day in Account Billing Info</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3388">
+         <p class="p">Day of the Month in Account Billing Info</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3394">
+         <p class="p">Account End Time</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3400">
+         <p class="p">Subscription Purchased Date or Current Date</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3407">
+         <p class="p">Current billing cycle days (Account end time - Periodicity)</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3413">
+         <p class="p">Bundle Applicable Time when Prorate Granularity</p>
+
+         <p class="p">(In DAYS)</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3422">
+         <p class="p">Bundle Applicable Time when Prorate Granularity</p>
+
+         <p class="p">(In HOURS)</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3431">
+         <p class="p">Prorated Bucket initial value when prorate bucket multiplier factor is 0.</p>
+
+         <p class="p">Granularity in HOUR/DAYS</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3440">
+         <p class="p">Prorated Bucket initial value when prorate bucket multiplier factor is 2048.</p>
+
+         <p class="p">Granularity in HOUR/DAYS</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3376 ">29th Dec</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3382 ">NA</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3388 ">29</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3394 ">29th Jan,00:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3400 ">20th Jan</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3407 ">31 days</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3413 ">20th Jan,00:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3422 ">20th Jan,17:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3431 ">2674/2903</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3440 ">4096/4096</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3376 ">15th Dec</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3382 ">20</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3388 ">15</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3394 ">15th Jan,20:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3400 ">7th Jan</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3407 ">31 days</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3413 ">6th Jan,20:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3422 ">7th Jan,17:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3431 ">2620/2903</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3440 ">4096/4096</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3376 ">24th Feb</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3382 ">15</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3388 ">24</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3394 ">24th Mar,15:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3400 ">12th Mar</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3407 ">29 days</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3413 ">12th Mar,15:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3422 ">12th Mar,17:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3431 ">4109/4137</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3440 ">4096/4096</td>
+
+       </tr>
+
+      </tbody>
+</table>
+</div>
+<div class="p">The following table shows the total duration when the bundle has bucket of type
+    VOLUME and initial value as 10000 and is prorated based on its own billing cycle. The
+    periodicity is 1 month, current time is 05:30 PM and rounding mode is CEILING.<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /><col /><col /><col /><col /><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3589">
+         <p class="p">Subscription Start Time</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3595">
+         <p class="p">Hour of the day in Subscription Billing Info</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3601">
+         <p class="p">Day of the Month in Subscription Billing Info</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3607">
+         <p class="p">Subscription End Time</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3613">
+         <p class="p">Current Date</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3620">
+         <p class="p">Current billing cycle days (Subscription end time - Periodicity)</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3626">
+         <p class="p">Bundle Applicable Time when Prorate Granularity</p>
+
+         <p class="p">(In DAYS)</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3635">
+         <p class="p">Bundle Applicable Time when Prorate Granularity</p>
+
+         <p class="p">(In HOURS)</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3644">
+         <p class="p">Prorated Bucket initial value when prorate bucket multiplier factor is 0.</p>
+
+         <p class="p">Granularity in HOUR/DAYS</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d340235e3653">
+         <p class="p">Prorated Bucket initial value when prorate bucket multiplier factor is 1024.</p>
+
+         <p class="p">Granularity in HOUR/DAYS</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3589 ">29th Dec</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3595 ">NA</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3601 ">29</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3607 ">29th Jan,00:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3613 ">20th Jan</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3620 ">31 days</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3626 ">20th Jan,00:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3635 ">20th Jan,17:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3644 ">2674/2903</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3653 ">3072/3072</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3589 ">15th Dec</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3595 ">20</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3601 ">15</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3607 ">15th Jan,00:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3613 ">7th Jan</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3620 ">31 days</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3626 ">7th Jan,00:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3635 ">7th Jan,17:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3644 ">2352/2580</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3653 ">3072/3072</td>
+
+       </tr>
+
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3589 ">24th Feb</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3595 ">15</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3601 ">24</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3607 ">24th Mar,00:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3613 ">12th Mar</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3620 ">29 days</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3626 ">12th Mar,00:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3635 ">12th Mar,17:00</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3644 ">3894/4138</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d340235e3653 ">4096/4096</td>
+
+       </tr>
+
+      </tbody>
+</table>
+</div>
+
+   <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+    <ul class="ul">
+     <li class="li">
+      <p class="p">If bucket initial or current value is less than the bucket prorate factor, then the bucket
+       is assigned to initial or current value.</p>
+
+     </li>
+
+     <li class="li">
+      <p class="p">Prorated counter cap value is greater than what we have expected. This is due to existing
+       implementation where it round-off the prorate factor.</p>
+
+      <p class="p">For example, consider a scenario where account has monthly life cycle with hour of the day
+       as 8:00 PM and day of the month is 12. let us assume that today is 12th March and time is
+       6:40 PM and we subscribe bundle with prorate granularity as
+       <samp class="ph systemoutput">DAYS</samp>, bucket volume as <var class="keyword varname">1000 bytes</var> and counter
+       with cap value as <var class="keyword varname">500 bytes</var>. The prorate factor obtained is
+        <var class="keyword varname">0.03449</var>. Therefore, bucket initial or current value is approximately
+        <var class="keyword varname">35 bytes</var>. For counter cap value, prorate factor
+        <var class="keyword varname">0.03449</var> is rounded-off further to <var class="keyword varname">0.04</var>. Therefore,
+       counter cap value obtained is <var class="keyword varname">20 bytes</var>.</p>
+
+     </li>
+
+    </ul>
+
+   </div>
+
+  </div>
+
+  <div class="section" id="id9yz-09126-ug01-pczza-sp1-pf__section_f4q_cdg_w5b"><h2 class="title sectiontitle">Rounding off the prorated values</h2>
+   
+   <p class="p">NCC provides the provision to round off the prorated bucket values. <span class="ph uicontrol">Rounding of
+     Bucket Values</span> parameter in the proration profile allows you to configure the
+    rounding mechanism to be applicable for rounding off the prorated bucket values. </p>
+
+   <div class="p"><span class="ph uicontrol">Rounding of Bucket Values</span> parameter can take the following values:<ul class="ul" id="id9yz-09126-ug01-pczza-sp1-pf__ul_ucm_jzf_w5b">
+     <li class="li">Rounding down: The value is rounded off to the nearest larger value. For example: If the
+      value after proration is 22.7 MB, then after rounding down, the value is 22 MB. The value
+      after decimal point is rounded down.</li>
+
+     <li class="li">Rounding up: The value is rounded off to the nearest smaller value. For example: If the
+      value after proration is 22.4 MB, then after rounding up, the value is 23 MB. The value after
+      decimal point is rounded up.</li>
+
+     <li class="li">Rounding to nearest value: The value is rounded off to the nearest value. For example: If
+      the value after proration is 22.4 MB, then after rounding to the nearest value, the value is
+      22 MB. Similarly, if the value is 22.7 MB, then it is rounded off to 23 MB.</li>
+
+     <li class="li">Default NCC rounding: If this value is selected, then default rounding mechanism is used to
+      round off the prorated values.</li>
+
+    </ul>
+</div>
+
+  </div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

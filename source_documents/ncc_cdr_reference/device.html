@@ -1,0 +1,1537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Device" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="d1e46882" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Device</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="d1e46882">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Device</h1>
+<div class="topic concept nested1" aria-labelledby="ariaid-title2" id="concept_l5t_knw_xqb"><h2 class="title topictitle2" id="ariaid-title2">EDR tags</h2>
+<div class="body conbody">
+            <table cellpadding="4" cellspacing="0" summary="" id="concept_l5t_knw_xqb__table_cnw_fhz_zqb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:22.371364653243845%" /><col style="width:54.80984340044742%" /><col style="width:22.81879194630872%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d15847e42">Tag</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d15847e45">Description</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d15847e48">Example</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">deviceId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">This attribute indicates the device ID associated with the
+                                entity. If the application preference <em class="ph i">AutoGen SPR Ids</em> is set
+                                to <var class="keyword varname">true</var> then this tag contains the value of
+                                    <var class="keyword varname">deviceName</var>.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">Device121189</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">deviceDbId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">The device identifier stored in database. This tag appears only
+                                if the application preference <em class="ph i">AutoGen SPR Ids</em> is set to
+                                true.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">fe170c66-a66e-4570-b579-820055b11561</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">deviceName</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">The device name stored in the database.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">Device121189</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">deviceIdentityType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">
+                                <div class="p">This tag indicates the Device ID type.<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> There can be multiple
+                                        deviceIdentityType and deviceIdentityValue tag sets. This
+                                        indicates multiple Subscriber IDs in the created
+                                        Device.</div>
+</div>
+
+                                <p class="p">Valid values: 0 (e164), 1 (iMSI), 2 (sIP-URI), 3 (nAI), 4
+                                    (uSER-PRIVATE), 100 (eXTERNAL-ID), 101 (dEVICE-ID), 102 (sUPI),
+                                    103 (gPSI)</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">0</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">deviceIdentityValue</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Value of the device identifier.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">1211890000102</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">deviceCreationTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Time at which the Device was created.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">06/11/2020 10:51:33</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">deviceOwner</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">The owner of the device.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">Device121189</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">timeZone</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Specifies the Device time zone.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 "> </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">customDataAdded</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Indicates the new custom data attributes added in Create/Update
+                                Device request.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">[CustomGroup1]</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">customDataDeleted</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Custom data attributes removed in Update/Delete Device
+                                request.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">[DeviceCustom1, DeviceCustom2]</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">CustomDataName_ExpiryTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Indicates the expiry time of the custom data in the format
+                                    <code class="ph codeph">dd/mm/yyyy hh:mm:ss</code>.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">12/09/2026 02:54:39</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">customDataExpiryTimeUpdated</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">The list of custom data names for which the update operation has
+                                been executed for expiry time.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">[CD2_Device, CD1_Device]</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">old_CustomDataName_ExpiryTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">
+                                <p class="p">Indicates the old expiry time of the custom data when expiry time
+                                    is updated.</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">12/09/2026 02:54:39</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">deviceLastUpdateTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Time at which the Device was last modified. </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">04/03/2021 12:06:04.</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">groupID</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">This attribute indicates the ID of the group associated with the
+                                entity.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">Grp1</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">subscriptionId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Indicates the ID of the subscription entity.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">e3c808bd-9593-4a98-805d-e72754e307c8</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">renewResetStatus</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Flag to indicate if subscription is renewed/reset via lifecycle
+                                action.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">false</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">bundleChangeCarryOver</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Stores carryover information for change bundle.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">false</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">subscriptionIndex</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Indicates whether Device first (0) or Group First (-1).</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">0</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">notificationProfile</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Notification profile attached to the device.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">defaultNotificationProfile</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">deviceType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">
+                                <p class="p">The value for deviceType can be one of the following:</p>
+
+                                <ul class="ul" id="concept_l5t_knw_xqb__ul_zq5_k1z_1rb">
+                                    <li class="li">NORMAL: The Device is present in NCC database.</li>
+
+                                    <li class="li">TEMPLATE: The Device was not in the NCC or LDAP  databases,
+                                        but a template was available. (Reserved for future
+                                        use.)</li>
+
+                                    <li class="li">UNKNOWN: The Device was not present in the NCC or LDAP
+                                        database, and a template is also not configured. (Reserved
+                                        for future use.)</li>
+
+                                </ul>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">NORMAL</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">syOCSEnabled</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Indicates if the syOCSEnabled feature is configured in the
+                                Device. It contains Boolean value.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">true</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">allowOverage</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Indicates whether overage feature is enabled. It contains Boolean
+                                value.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">true</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">pwdEncrypted</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Flag to indicate whether the stored password is
+                                encrypted.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">false</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">categoryList</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Indicates the Category List configured for the Device.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">[DefaultCategory]</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">offLineTimeStamp</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Indicates the Device offline time (last termination
+                                time).</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">0</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">language</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Language of the Device entity.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 "> </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">new_E164</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">This tag appears only if the application preference <em class="ph i">EDR
+                                    Enhancement Enabled</em> is set to DEVICE_UPDATE.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">1234567891</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">E164</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Indicates the Device MSISDN in Check Balance EDR.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">1234567892</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">homeSite</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Indicates the ID of the home site on which the entity is
+                                homed.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">6</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">partition</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Indicates the partition in which the entity is created.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">6</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">localSite</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Indicates the ID of the local site from which the entity is
+                                created.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">6</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">subscriberTracingId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">If subscriber tracing is enabled for a Device, then this tag is
+                                added and it contains the Device ID.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">D1</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">subscriberTracing</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Indicates whether subscriber tracing is enabled.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">true</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">deviceIdentityInfo</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">
+                                <p class="p">This is available when <em class="ph i">Add 5G Device Identities in EDR/CDR</em>
+                                    is set to 1.</p>
+
+                                <p class="p">This parameter takes precedence over <em class="ph i">Include Final Usage In
+                                        BCR EDRs</em> flag. When both the flags are enabled, Device
+                                    IDs are saved in <var class="keyword varname">deviceIdentityInfo</var> domain
+                                    instead of <var class="keyword varname">listOfSubscriptionID</var> domain. </p>
+
+                                <p class="p">Valid values: 0 (disabled), 1</p>
+
+                            </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">0</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">subscriptionInfo</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Contains child tags for subscription information.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">RecordProperty</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">↘subscriptionId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">The associated subscription ID. </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">f27bdaf6-0093-4315-88d9-441ff47465e5</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">↘periodLifeCycleState</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">State of the PERIOD lifecycle of the entity for which the
+                                lifecycle is triggered.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 "> Start</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">↘entityLifeCycleState</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">State of the ENTITY lifecycle of the entity for which the
+                                lifecycle is triggered.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">Active</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">↘activationTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Indicates the time at which this subscription is activated. If
+                                not provided in input request, it contains the current
+                                timestamp.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">05/12/2022 18:35:22 </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">↘alternateId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">This attribute indicates the unique ID of the subscription. This
+                                ID is assigned when the subscription is created.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">Device_Promo</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">↘bundleInfo</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Contains child tags for bundle information.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">RecordProperty</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">↘↘bundleActivationType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">This attribute indicate the activation type of the bundle
+                                referred to by subscription. It can be either of following: NORMAL,
+                                ON_SESSION, AUTO_INSTALL</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 "> NORMAL</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">↘↘bundleVersion</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">This attribute indicates the bundle version, if versioning is
+                                enabled.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">0 </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">↘↘bundleName </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">This tag specifies the Bundle name purchased by
+                                Subscriber.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 "> FP_Device</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">↘↘bucketInfo</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Contains child tags for bucket information.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">RecordProperty</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">↘↘↘bucketName</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Specifies the name of Bucket.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">DB1</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">↘↘↘bucketUnitType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Specifies the Unit Type of Bucket (Bytes, KB, MB, Minutes, etc.).
+                                It is defined as per customer and Type conversion defined by the
+                                operator. </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">KByte </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">↘↘↘bucketBalanceBefore</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Specifies the current value of Bucket before request received
+                                from the network to charge the requested units. Bucket values are
+                                shown in base units which are seconds for Time, bytes for
+                                    Volume.<p class="p">For maximum value, refer to <a class="xref" href="max_value_note.html">Max value for Bucket and Counters</a>.</p>
+</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">1073741824 </td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e42 ">↘↘↘bucketKindOfUnit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e45 ">Specifies the Type of Bucket. It can be Unit/ Volume/Money/Time
+                                which are system defined.</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e48 ">VOLUME</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title3" id="concept_ubx_gnw_xqb"><h2 class="title topictitle2" id="ariaid-title3">Applicability of EDR tags</h2>
+<div class="body conbody">
+            <table cellpadding="4" cellspacing="0" summary="" id="concept_ubx_gnw_xqb__table_gpr_f2c_qqb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Applicability of EDR tags - Device</span></caption><colgroup><col style="width:45.141065830721%" /><col style="width:18.652037617554857%" /><col style="width:20.532915360501566%" /><col style="width:15.67398119122257%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d15847e759">EDR Tag</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d15847e762">Create</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d15847e765">Update</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d15847e768">Delete</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">deviceId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">deviceDbId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">entityLifeCycleName</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">entityLifeCycleState</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">deviceIdentityType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">deviceIdentityValue</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">deviceCreationTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">deviceLastUpdateTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">CustomDataName_ExpiryTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">customDataExpiryTimeUpdated</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">old_CustomDataName_ExpiryTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">groupID</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">subscriptionId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">renewResetStatus</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">bundleChangeCarryOver</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">subscriptionIndex</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">notificationProfile</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">deviceType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">syOCSEnabled</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">allowOverage</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">pwdEncrypted</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">categoryList</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">offLineTimeStamp</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">language</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">new_E164</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">E164</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">IMSI</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">NAI</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">SIP_URI</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">PRIVATE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">EXTERNALID</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">homeSite</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">partition</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">localSite</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">No</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">subscriberTracingId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">subscriberTracing</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">deviceIdentityInfo</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">deviceIdentityType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">deviceIdentityValue</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">Yes</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">subscriptionInfo</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">↘subscriptionId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">↘periodLifeCycleState</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">↘entityLifeCycleState</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">↘activationTime</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">↘alternateId</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">↘bundleInfo</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">↘↘bundleActivationType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">↘↘bundleVersion</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">↘↘bundleName </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">↘↘bucketInfo</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">↘↘↘bucketName</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">↘↘↘bucketUnitType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">↘↘↘bucketBalanceBefore</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e759 ">↘↘↘bucketKindOfUnit</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e762 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e765 ">No</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e768 ">Yes</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title4" id="concept_og4_dnw_xqb"><h2 class="title topictitle2" id="ariaid-title4">Associated EDRs</h2>
+<div class="body conbody">
+            <p class="p">When EDRs are generated for an action on an entity, some associated EDRs may also be
+                generated depending on the parameters configured in the entity. The following table
+                describes the associated EDRs for actions performed on Device.</p>
+
+            <div class="section">
+                <table cellpadding="4" cellspacing="0" summary="" id="concept_og4_dnw_xqb__table_cjw_gkc_qqb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Associated EDRs for Device</span></caption><colgroup><col style="width:14.903129657228018%" /><col style="width:62.74217585692996%" /><col style="width:22.35469448584203%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d15847e1625">Action</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d15847e1628">Associated EDR</th>
+
+                                <th class="entry cellrowborder" style="vertical-align:top;" id="d15847e1631">Reference</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" rowspan="7" style="vertical-align:top;" headers="d15847e1625 ">Create Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">create_device (PROVISIONING_RECORD)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 "><a class="xref" href="#concept_ubx_gnw_xqb">Applicability of EDR tags</a></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">create_subscription (PROVISIONING_RECORD)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 ">See column <strong class="ph b">Create</strong> in table Table<a class="xref" href="subscription.html">Subscription</a></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">Create_subscription (LIFECYCLE_RECORD)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 ">See <strong class="ph b">Created via lifecycle</strong> in <a class="xref" href="applicability_of_tags_lc.html">Applicability of tags - Lifecycle</a></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">adjustBalance (for subscription fee)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 "><a class="xref" href="adjust_balance.html">adjustBalance</a></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">ResetPeriodAction (for Subscription Lifecycle) (Lifecycle
+                                    Record)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 ">See <strong class="ph b">Reset</strong> in <a class="xref" href="applicability_of_tags_lc.html">Applicability of tags - Lifecycle</a></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">update_device (add subscription to Device)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 ">See <strong class="ph b">Subscription is Added</strong> in <a class="xref" href="applicability_of_tags_lc.html">Applicability of tags - Lifecycle</a></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">addAVsToDevice</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 "><a class="xref" href="addavtodevice.html">addAVtoDevice</a></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" rowspan="4" style="vertical-align:top;" headers="d15847e1625 ">Update Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">update_device (PROVISIONING_RECORD)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 "><a class="xref" href="#concept_ubx_gnw_xqb">Applicability of EDR tags</a></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">adjustBalance (PROVISIONING_RECORD)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 "><a class="xref" href="adjust_balance.html">adjustBalance</a></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">create_subscription (LIFECYCLE_RECORD)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 "><a class="xref" href="applicability_of_tags_lc.html">Applicability of tags - Lifecycle</a></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">create_subscription (PROVISIONING_RECORD)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 "><a class="xref" href="subscription.html">Subscription</a></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" rowspan="5" style="vertical-align:top;" headers="d15847e1625 ">Delete Device</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">update_device (PROVISIONING_RECORD)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 "><a class="xref" href="#concept_ubx_gnw_xqb">Applicability of EDR tags</a></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">deleteAVInstWhileDeletingDevice (PROVISIONING_RECORD)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 ">-</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">delete_subscription (PROVISIONING_RECORD)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 "><a class="xref" href="subscription.html">Subscription</a></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">deletedSubscription (LIFECYCLE_RECORD)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 "><a class="xref" href="applicability_of_tags_lc.html">Applicability of tags - Lifecycle</a></td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1628 ">delete_device (PROVISIONING_RECORD)</td>
+
+                                <td class="entry cellrowborder" style="vertical-align:top;" headers="d15847e1631 "><a class="xref" href="#concept_ubx_gnw_xqb">Applicability of EDR tags</a></td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+        </div>
+</div>
+<div class="topic concept nested1" aria-labelledby="ariaid-title5" id="concept_cvj_lbb_f3b"><h2 class="title topictitle2" id="ariaid-title5">EDR examples</h2>
+<div class="body conbody">
+            <div class="section" id="concept_cvj_lbb_f3b__section_yxz_kbb_f3b">
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Create</strong></p>
+
+                    <pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       986
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                    Tag                                                   Data
+RecordType              0                                      PROVISIONING_RECORD
+invokedBy               1                                               webService
+invokedMethod           1                                            create_device
+deviceId                1                                               TestDevice
+deviceName              1                                               TestDevice
+deviceIdentityType      1                                                     E164
+deviceIdentityValue     1                                             909203027308
+deviceCreationTime      1                                      13/04/2023 10:34:05
+customDataAdded         1                                             [CD1_Device]
+subscriptionIndex       1                                                        0
+deviceType              1                                                   NORMAL
+syOCSEnabled            1                                                    false
+allowOverage            1                                                     true
+pwdEncrypted            1                                                    false
+canaryMode              1                                                     NONE
+categoryList            1                                        [DefaultCategory]
+daylightSavings         1                                                    false
+offLineTimeStamp        1                                                        0
+entityLifeCycleName     1                                   DefaultDeviceLifeCycle
+entityLifeCycleState    1                                                   Active
+CD1_Device              1                                            myCustomValue
+CD1_Device_ExpiryTime   1                                      12/09/2026 02:54:39
+homeSite                1                                                        4
+partition               1                                                        1
+localSite               1                                                        4
+result                  1                                                  SUCCESS
+correlationID           1     X-CorrelationId:f68f0d24-6b74-4b6a-8b01-d209804967b1
+generationTimestamp     1                                      13/04/2023 10:34:05
+meHostName              1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                               
+nccVersion              1                                              SPS_23_5_R1
+recordId                1      20230413050405_52d2a612-da0e-4f31-8385-5b465bb001c7
+RecordTimestamp         1                                      13/04/2023 10:34:05
+</code></pre>
+                </div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Update 1</strong></p>
+
+                    <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       1097
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                          Tag                                                   Data
+RecordType                    0                                      PROVISIONING_RECORD
+invokedBy                     1                                               webService
+invokedMethod                 1                                            update_device
+customDataExpiryTimeUpdated   1                                 [CD2_Device, CD1_Device]
+deviceId                      1                                               TestDevice
+deviceName                    1                                               TestDevice
+deviceCreationTime            1                                      13/04/2023 10:34:05
+deviceLastUpdateTime          1                                      13/04/2023 10:37:24
+customDataAdded               1                                             [CD2_Device]
+subscriptionIndex             1                                                        0
+deviceType                    1                                                   NORMAL
+syOCSEnabled                  1                                                    false
+allowOverage                  1                                                     true
+pwdEncrypted                  1                                                    false
+canaryMode                    1                                                     NONE
+categoryList                  1                                        [DefaultCategory]
+offLineTimeStamp              1                                                        0
+entityLifeCycleName           1                                   DefaultDeviceLifeCycle
+entityLifeCycleState          1                                                   Active
+E164                          1                                             909203027308
+CD2_Device                    1                                            myCustomValue
+CD1_Device                    1                                            myCustomValue
+CD2_Device_ExpiryTime         1                                      12/09/2026 02:54:39
+old_CD1_Device_ExpiryTime     1                                      12/09/2026 02:54:39
+CD1_Device_ExpiryTime         1                                      12/09/2026 03:04:39
+result                        1                                                  SUCCESS
+correlationID                 1     X-CorrelationId:55f4e63d-e457-4eeb-bafe-2120303fe71e
+generationTimestamp           1                                      13/04/2023 10:37:24
+meHostName                    1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                               
+nccVersion                    1                                              SPS_23_5_R1
+recordId                      1      20230413050724_2d5a4cce-054c-4974-a4e6-e15b07b7d513
+RecordTimestamp               1                                      13/04/2023 10:37:24
+</code></pre>
+                </div>
+                <div class="sectiondiv"><strong class="ph b">Update 2</strong><p class="p">The following CDR is generated when the application
+                        preference <em class="ph i">EDR Enhancement Enabled</em> is set to
+                            <var class="keyword varname">DEVICE_UPDATE</var>. The <var class="keyword varname">new_</var> tags
+                        appear in this
+                    scenario.</p>
+<pre class="pre codeblock"><code>-------------------------------------
+CDR length:                       667
+Release ID | Version ID:          7|2
+Data record format | TS number:   1|7
+Release identifier extension:       0
+Name                   Tag                     Data
+RecordType             0        PROVISIONING_RECORD
+invokedBy              1                 webService
+invokedMethod          1              update_device
+deviceId               1                   Device-1
+deviceCreationTime     1        09/03/2021 17:21:21
+deviceLastUpdateTime   1        09/03/2021 17:26:42
+subscriptionIndex      1                          0
+deviceType             1                     NORMAL
+syOCSEnabled           1                      false
+allowOverage           1                       true
+pwdEncrypted           1                      false
+categoryList           1          [DefaultCategory]
+offLineTimeStamp       1                          0
+entityLifeCycleName    1     DefaultDeviceLifeCycle
+entityLifeCycleState   1                     Active
+new_IMSI               1                 1234567892
+new_E164               1                 1234567891
+old_E164               1                 1234567889
+E164                   1                 1234567890
+result                 1                    SUCCESS
+generationTimestamp    1        09/03/2021 17:26:42
+meHostName             1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                  
+nccVersion             1                SPS_21_3_R1
+RecordTimestamp        1        09/03/2021 17:26:42</code></pre></div>
+                <div class="sectiondiv">
+                    <p class="p"><strong class="ph b">Delete</strong></p>
+
+                    <pre class="pre codeblock"><code>--------------------------------------
+CDR length:                       1974
+Release ID | Version ID:           7|2
+Data record format | TS number:    1|7
+Release identifier extension:        0
+Name                        Tag                                                   Data
+RecordType                  0                                      PROVISIONING_RECORD
+invokedBy                   1                                               webService
+invokedMethod               1                                            delete_device
+deviceId                    1                                              Device_1267
+deviceName                  1                                              Device_1267
+deviceIdentityType          1                                                     IMSI
+deviceIdentityValue         1                                           41036000126755
+deviceIdentityType          1                                                     E164
+deviceIdentityValue         1                                               4000126755
+deviceCreationTime          1                                      05/12/2022 18:35:21
+deviceLastUpdateTime        1                                      05/12/2022 18:35:49
+subscriptionIndex           1                                                       -1
+deviceType                  1                                                   NORMAL
+syOCSEnabled                1                                                    false
+allowOverage                1                                                    false
+pwdEncrypted                1                                                     true
+canaryMode                  1                                                     NONE
+categoryList                1                                        [DefaultCategory]
+offLineTimeStamp            1                                                        0
+entityLifeCycleName         1                                   DefaultDeviceLifeCycle
+entityLifeCycleState        1                                                   Active
+result                      1                                                  SUCCESS
+correlationID               1     X-CorrelationId:92e1d273-5ff3-498e-9c49-ab626f7f6291
+generationTimestamp         1                                      05/12/2022 18:35:51
+meHostName                  1  naperil95vzwcchf-y-nk-ig-000-ig-charging-7cbf4fdd78-j6ccr                                              
+nccVersion                  1                                              SPS_23_0_R1
+recordId                    1      20221205130551_a546cfd0-b83e-4aa5-9d89-d8987c55ff28
+RecordTimestamp             1                                      05/12/2022 18:35:51
+  RecordProperty            0                                         subscriptionInfo
+  subscriptionId            1                     f27bdaf6-0093-4315-88d9-441ff47465e5
+  periodLifeCycleState      1                                                    Start
+  entityLifeCycleState      1                                                   Active
+  typeOfSubscription        1                                                   DEVICE
+  activationTime            1                                      05/12/2022 18:35:22
+  alternateId               1                                             Device_Promo
+    RecordProperty          0                                               bundleInfo
+    bundleActivationType    1                                                   NORMAL
+    bundleVersion           1                                                        0
+    bundleName              1                                                FP_Device
+      RecordProperty        0                                               bucketInfo
+      bucketName            1                                                      DB1
+      bucketUnitType        1                                                    KByte
+      bucketBalanceBefore   1                                               1073741824
+      bucketKindOfUnit      1                                                   VOLUME
+      RecordProperty        0                                               bucketInfo
+      bucketName            1                                                      DB2
+      bucketUnitType        1                                                    KByte
+      bucketBalanceBefore   1                                                 52428800
+      bucketKindOfUnit      1                                                   VOLUME
+      RecordProperty        0                                               bucketInfo
+      bucketName            1                                                      SB1
+      bucketUnitType        1                                                     Unit
+      bucketBalanceBefore   1                                                       50
+      bucketKindOfUnit      1                                                     UNIT
+      RecordProperty        0                                               bucketInfo
+      bucketName            1                                                      SB2
+      bucketUnitType        1                                                     Unit
+      bucketBalanceBefore   1                                                      100
+      bucketKindOfUnit      1                                                     UNIT
+      RecordProperty        0                                               bucketInfo
+      bucketName            1                                                      VB1
+      bucketUnitType        1                                                   Minute
+      bucketBalanceBefore   1                                                    30000
+      bucketKindOfUnit      1                                                     TIME
+      RecordProperty        0                                               bucketInfo
+      bucketName            1                                                      VB2
+      bucketUnitType        1                                                   Minute
+      bucketBalanceBefore   1                                                    60000
+      bucketKindOfUnit      1                                                     TIME</code></pre>
+                </div>
+            </div>
+
+        </div>
+</div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

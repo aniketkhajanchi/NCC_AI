@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Updating subscription custom data" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="subscription_custom_data_support" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Updating subscription custom data</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="subscription_custom_data_support">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Updating subscription custom data</h1>
+<div class="body conbody">
+        <p class="p">This feature provides the functionality to create service (bundle) custom data. Custom
+            data is supported at both service level and subscription level. When a new subscription
+            is created for a device or group, the custom data can be customized using template API.
+            If custom data is not defined in the API, then the default values defined at the time of
+            creating the service are considered. The <em class="ph i">update/Subscription</em> API can be used to
+            update the custom data for the existing subscriptions.</p>
+
+        <p class="p">Service (Bundle) custom data can be updated through versioning.</p>
+
+        <p class="p">Custom data is an optional parameter.</p>
+
+        <div class="section" id="subscription_custom_data_support__section_d42_d31_g5b"><h2 class="title sectiontitle">Configuration</h2>
+            
+            <div class="p">The subscription custom data can be accessed in rules. The triggers in which
+                subscription custom data is available are as follows:<ul class="ul" id="subscription_custom_data_support__ul_lk3_wkw_g5b">
+                    <li class="li"><em class="ph i">CHARGING LOGIC APPLICABILITY</em> and <em class="ph i">TARIFF</em></li>
+
+                    <li class="li"><em class="ph i">THRESHOLD</em></li>
+
+                    <li class="li"><em class="ph i">RATING_POST_PROCESSING</em></li>
+
+                    <li class="li"><em class="ph i">RESOURCE_POST_PROCESSING</em></li>
+
+                    <li class="li"><em class="ph i">CALL_RULE_VARIABLES</em></li>
+
+                    <li class="li"><em class="ph i">BUNDLE</em></li>
+
+                </ul>
+</div>
+
+            <div class="p">
+                <div class="note" id="subscription_custom_data_support__note_pyg_2fw_g5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                    <ul class="ul" id="subscription_custom_data_support__ul_c1j_2fw_g5b">
+                        <li class="li"><em class="ph i">RATING_POST_PROCESSING</em> trigger is supported only when the
+                            application preference <em class="ph i">Dynamic Notification Custom Flag</em> is
+                            enabled.</li>
+
+                        <li class="li"><em class="ph i">THRESHOLD</em> trigger does not support Aggregate View (AV)
+                            functionality.</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <p class="p">The subscription custom data is available as a notification variable so that it can
+                be sent in the notification content.</p>
+
+            <p class="p">The following actions in <em class="ph i">RESOURCE_POST_PROCESSING</em>,
+                    <em class="ph i">RATING_POST_PROCESSING</em>, <em class="ph i">TARIFF</em> and <em class="ph i">THRESHOLD</em> triggers are
+                configured to update custom data for a subscription entity:</p>
+
+            <div class="p"><em class="ph i">Custom-Data-Add</em>, <em class="ph i">Custom-Data-Add-Immediate</em>, <em class="ph i">Custom-Data-Remove</em>,
+                and <em class="ph i">Custom-Data-Remove-Immediate</em>.<div class="fig fignone" id="subscription_custom_data_support__fig_y33_cj1_g5b">
+                    <img class="image break" id="subscription_custom_data_support__image_a5w_2j1_g5b" height="192" src="../images/custom_data_update2.PNG" width="576" />
+                </div>
+</div>
+
+            <div class="p"><em class="ph i">Add-CDR</em> action generates the subscription custom data for every subscription
+                used during the call. Subscription custom data is generated at the subscription
+                level in CDR. <div class="note" id="subscription_custom_data_support__note_rlt_3gw_g5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> It is recommended to use the
+                        <em class="ph i">Add-CDR</em> action in <em class="ph i">RESOURCE_POST_PROCESSING</em> and
+                        <em class="ph i">THRESHOLD</em> triggers with <em class="ph i">SERVICE_LEVEL</em> for bucket, counter,
+                        <em class="ph i">No-Charge</em>, or main account balance as this trigger is evaluated after
+                    committing each resource that is used during the call.</div>
+<div class="fig fignone" id="subscription_custom_data_support__fig_ohj_cj1_g5b">
+                    <img class="image break" id="subscription_custom_data_support__image_plv_fj1_g5b" height="192" src="../images/custom_data_update3.PNG" width="384" />
+                </div>
+</div>
+
+            <div class="sectiondiv"><strong class="ph b">Additional information</strong><ul class="ul" id="subscription_custom_data_support__ul_wlz_1k1_g5b">
+                    <li class="li">The <em class="ph i">Call-Result.Add-CDR</em> functionality on threshold is considered only
+                        for COMMIT scenarios and not on reservation for threshold or other rule
+                        sets.</li>
+
+                    <li class="li">This feature supports only the following consumption resources:<ul class="ul" id="subscription_custom_data_support__ul_uv1_dk1_g5b">
+                            <li class="li">Bucket</li>
+
+                            <li class="li">Counter (<em class="ph i">Device</em>, <em class="ph i">Device- Group</em>, <em class="ph i">Group</em>, or
+                                    <em class="ph i">Subscription</em> type)</li>
+
+                            <li class="li">Main account balance</li>
+
+                            <li class="li"><em class="ph i">No-Charge</em> (with applicable rule variables)</li>
+
+                        </ul>
+</li>
+
+                    <li class="li">If multiple <em class="ph i">Call-Result.Add-CDR</em> actions are configured with the same
+                        tag name, and the action parameter is configured as <em class="ph i">OVERRIDE</em>, then
+                        only the last tag and value pair is logged in the CDR.</li>
+
+                    <li class="li">
+                        <div class="p">Upgrade use case (upgrading to NCC version 22.7 or higher with
+                            subscription custom data support):<ul class="ul" id="subscription_custom_data_support__ul_exf_zbz_h5b">
+                                <li class="li">Before the upgrade, the bundles and subscriptions of
+                                    device/group have no service/subscription custom data.</li>
+
+                                <li class="li">After the upgrade, the bundles and subscriptions can have
+                                    service/subscription custom data.</li>
+
+                            </ul>
+</div>
+
+                        <div class="p">There are two ways to support the upgrade case, which are as follows<ul class="ul" id="subscription_custom_data_support__ul_kn1_mf5_h5b">
+                                <li class="li">Define new bundle version (Immediately or NEXT_BCR) to define
+                                    service level custom data with a default value.<p class="p">After the new
+                                        call or next BCR, the existing subscription has subscription
+                                        level custom data with the default value.</p>
+</li>
+
+                                <li class="li">Add the subscription level custom data through
+                                    update/Subcription API for an existing subscription.<div class="note" id="subscription_custom_data_support__note_hpw_hb5_h5b"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Previously, if new call/BCR or
+                                        update/Subscription API is received to add new custom data,
+                                        and queried through getdata/device or getdata/group, then
+                                        subscription level custom data does not exist. Currently,
+                                        after new call/BCR or update/Subscription API, and a query
+                                        through getdata/device or getdata/group, the subscription
+                                        level custom data appears.</div>
+</li>
+
+                            </ul>
+</div>
+
+                    </li>
+
+                </ul>
+</div>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

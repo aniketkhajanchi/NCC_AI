@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Pre-installation tasks" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="Bookmark4" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Pre-installation tasks</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="Bookmark4">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Pre-installation tasks</h1>
+<div class="body conbody">
+                <p class="p"><span class="ph">NCC</span> assumes that much of the base AWS infrastructure is already installed and
+                        does not provide automation for some pre-installation tasks.</p>
+
+                <p class="p">These items must already be present.</p>
+
+                <ul class="ul">
+                        <li class="li">An AWS account with credentials</li>
+
+                        <li class="li">A Virtual Private Cloud (VPC) with at least two subnets available for
+                                EKS to use. The two subnets must be in two different availability
+                                zones. Note that <span class="ph">NCC</span> only uses a single availability zone when
+                                deploying.</li>
+
+                        <li class="li">In case multiple sites are being set up, each should have its own
+                                availability zone with two subnets and be within the same VPC
+                                network.</li>
+
+                        <li class="li"><span class="ph">NCC</span> container images loaded into a registry. This can be either the AWS
+                                service Elastic Container Registry (ECR) or some other container
+                                image registry. <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> <span class="ph">NCC</span> provides a script as part of the
+                                        input-generator to help upload container images to ECR. This
+                                        is described later.</div>
+
+                        </li>
+
+                        <li class="li">The private subnet within the VPC must have internet connectivity, so
+                                that the EKS APIs can be reached during setup.</li>
+
+                        <li class="li">An elastic IP address. This is used to have a fixed target for the <span class="ph">NCC</span>
+                                application.</li>
+
+                        <li class="li">An FQDN registered with a DNS server associating a DNS name with the
+                                elastic IP address. This FQDN and the elastic IP address identifier
+                                are then used in the input-generator.</li>
+
+                </ul>
+
+        </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

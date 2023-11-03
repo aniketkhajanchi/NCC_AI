@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="NCC Backup and Recovery" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="ncc_backup_and_restore" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>NCC Backup and Recovery</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="ncc_backup_and_restore">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1"><span class="ph">NCC</span> Backup and Recovery</h1>
+<div class="body conbody">
+        <div class="p">These instructions assume <span class="ph">NCC</span> is installed with <span class="ph">NCC</span> Backup and Recovery enabled. For more
+            information, see the <cite class="cite">Installing <span class="ph">NCC</span> in a Kubernetes environment</cite> section of
+            the <cite class="cite">Installation and Upgrade Guide</cite>.<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> NCC Backup and Recovery master rest
+                API calls must be called from the admincli container.</div>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Kubectl commands must be executed from a control node. Kubectl commands may not be
+                executed from the admincli container.</div>
+</div>
+
+        <p class="p">For both backup and restore operations, set these variables.</p>
+
+        <pre class="pre codeblock"><code>CBUR_MASTER_NAMESPACE=&lt;cbur_master_namespace&gt;
+NAMESPACE=&lt;namespace&gt;
+RELEASENAME=&lt;releasename&gt;</code></pre>
+        <div class="p">Where:<ul class="ul" id="ncc_backup_and_restore__ul_l4b_gmx_bnb">
+                <li class="li"><code class="ph codeph">CBUR_MASTER_NAMESPACE</code> is the <span class="ph">NCC</span> Backup and Recovery master
+                    namespace. For Openshift deployments, the app namespace
+                        <code class="ph codeph">NAMESPACE</code> must be the same as
+                        <code class="ph codeph">CBUR_MASTER_NAMESPACE</code> or backup and restore will fail.</li>
+
+                <li class="li"><code class="ph codeph">NAMESPACE</code> is the app namespace of the application to be backed
+                    up or restored.</li>
+
+                <li class="li"><code class="ph codeph">RELEASENAME</code> is the name of the release.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="p">For example:
+            <pre class="pre codeblock"><code>CBUR_MASTER_NAMESPACE=sps-btel-ig   #For Openshift, the app namspace MUST be the same as cbur-master namespace, or backup and restore will fail
+NAMESPACE=sps-btel-ig
+RELEASENAME=admincli</code></pre>
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Backup admincli (Aerospike data)</h2>
+            <ol class="ol" id="ncc_backup_and_restore__ol_gtt_pmx_bnb">
+                <li class="li">
+                    <p class="p">Initiate the backup procedure by running the following command on the
+                        admincli pod.</p>
+
+                    <pre class="pre codeblock"><code>curl -v --header 'Accept: application/json' -X POST http://cbur-master-cbur.$CBUR_MASTER_NAMESPACE.svc.cluster.local:80/v2/helm/release/backup/$NAMESPACE/$RELEASENAME?helm_version=3</code></pre>
+                </li>
+
+                <li class="li">
+                    <p class="p">By default, the <span class="ph">NCC</span> Backup and Recovery master is installed with Celery/Redis
+                        to support asynchronous functions. Rest API calls return a
+                            <code class="ph codeph">taskId</code> which can be used to query the status of the
+                        request with another Rest API call, such as this command which is run on the
+                        admincli pod.</p>
+
+                    <pre class="pre codeblock"><code>curl -v --header 'Accept: application/json' -X GET http://cbur-master-cbur.$CBUR_MASTER_NAMESPACE.svc.cluster.local:80/v2/task/7b59914d-f521-41552b81b-765a45f85a42</code></pre>
+                </li>
+
+            </ol>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Restore admincli (Aerospike data)</h2>
+            
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Restoration must only be performed in a maintenance window, or otherwise when all
+                traffic has been diverted from the site at which restoration will occur. Several
+                containers will be stopped and restarted during the restore process, which will
+                cause errors if precautions are not taken.</div>
+
+            <div class="p">
+                <ol class="ol" id="ncc_backup_and_restore__ol_hwh_m3y_bnb">
+                    <li class="li">
+                        <p class="p">Initiate the restore procedure by running this command on the admincli
+                            pod.</p>
+
+                        <pre class="pre codeblock"><code>curl -vkL --header 'Content-Type: application/x-www-form-urlencoded' --header 'Accept: application/json' -X POST -d 'backup_id=&amp;volume=&amp;object_type=&amp;object_name=' http://cbur-master-cbur.$CBUR_MASTER_NAMESPACE.svc.cluster.local:80/v2/helm/release/restore/$NAMESPACE/$RELEASENAME?helm_version=3</code></pre>
+                    </li>
+
+                    <li class="li">
+                        <p class="p">By default, the <span class="ph">NCC</span> Backup and Recovery master is installed with
+                            Celery/Redis to support asynchronous functions. Rest API calls will
+                            return a <code class="ph codeph">taskId</code> which can be used to query the status
+                            of the request with another Rest API call, such as this command which is
+                            run on the admincli pod.</p>
+
+                        <pre class="pre codeblock"><code>curl -v --header 'Accept: application/json' -X GET http://cbur-master-cbur.$CBUR_MASTER_NAMESPACE.svc.cluster.local:80/v2/task/7b59914d-f521-41552b81b-765a45f85a42</code></pre>
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Since the containers must be stopped before launching the
+                                <code class="ph codeph">db-restore</code> script on the admincli pod, <span class="ph">NCC</span> Backup and Recovery copies the latest
+                            backup from the <span class="ph">NCC</span> Backup and Recovery
+                            master to the <code class="ph codeph">/opt/SPS_*/data/db-backup/</code> directory
+                            (volume mount) of admincli pod. This command, which must be run on a
+                            control node and not on the admincli pod, may be used to check that the
+                            latest backup has been restored on the admincli pod.</p>
+
+                        <pre class="pre codeblock"><code>kubectl -n $NAMESPACE exec &lt;admincli pod name&gt; – ls -lRh /opt/SPS_*/data/db-backup/</code></pre>
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Scale down the deployments before launching the
+                                <code class="ph codeph">db-restore</code> script by running this command on a
+                            control node.</p>
+
+                        <pre class="pre codeblock"><code>kubectl scale --replicas=0 deployment -l scaleForDbRestore=true -n $NAMESPACE</code></pre>
+                    </li>
+
+                    <li class="li">
+                        <p class="p">For pods that are not using the Horizontal Pod Autoscaler, the number of
+                            replicas must be determined before scaling down. This must be done to
+                            correctly scale up once the database restore is complete. Determine the
+                            number of replicas by running this command on a control node.</p>
+
+                        <pre class="pre codeblock"><code>CM_REPLICAS=$( kubectl get statefulset &lt;centralmanagement statefulset name&gt; -n $NAMESPACE -o jsonpath="{.status.replicas}")</code></pre>
+                    </li>
+
+                    <li class="li">Run this command on a control node to find the number of IOHD
+                        replicas.<pre class="pre codeblock"><code>IOHD_REPLICAS=$( kubectl get statefulset &lt;iohd statefulset name&gt; -n $NAMESPACE -o jsonpath="{.status.replicas}")</code></pre></li>
+
+                    <li class="li">
+                        <p class="p">Ensure that the values found in the previous steps of this procedure have
+                            been saved correctly.</p>
+
+                        <pre class="pre codeblock"><code>echo $CM_REPLICAS
+echo $IOHD_REPLICAS</code></pre>
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Scale down the containers by running this command on a command node.</p>
+
+                        <pre class="pre codeblock"><code>kubectl scale --replicas=0 statefulset -l scaleForDbRestore=true -n $NAMESPACE</code></pre>
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Manually launch <code class="ph codeph">db-restore</code> on the admincli pod. Access
+                            the admincli pod by running this command on a control node.</p>
+
+                        <pre class="pre codeblock"><code>kubectl exec -it -n $NAMESPACE &lt;admincli pod name&gt;  -- /bin/bash</code></pre>
+                        <div class="p">In the admincli pod, launch <code class="ph codeph">db-restore</code> with this
+                                command.<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This command is run on the admincli pod.</div>
+</div>
+
+                        <pre class="pre codeblock"><code>/opt/tpa/bin/db-restore -f -d /opt/tpa/data/db-backup</code></pre>
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Once the <code class="ph codeph">db-restore</code> has completed, exit from the
+                            admincli pod and scale up the pods that were scaled down in previous
+                            steps. Run this command on a control node.</p>
+
+                        <pre class="pre codeblock"><code>kubectl scale --replicas=1 deployment -l scaleForDbRestore=true -n $NAMESPACE
+kubectl scale --replicas=$CM_REPLICAS statefulset  &lt;centralmanagement statefulset name&gt; -n $NAMESPACE</code></pre>
+                    </li>
+
+                    <li class="li">
+                        <p class="p">Run this command on a control node to scale up IOHD replicas.</p>
+
+                        <pre class="pre codeblock"><code>kubectl scale --replicas=$IOHD_REPLICAS statefulset  &lt;iohd statefulset name&gt; -n $NAMESPACE</code></pre>
+                    </li>
+
+                </ol>
+
+            </div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Backup Service Discovery component</h2>
+            
+            <div class="p">
+                <ol class="ol">
+                    <li class="li">
+                        <p class="p">Initiate the backup procedure by running this command on the admincli
+                            container or any other container which provides curl support.</p>
+
+                        <pre class="pre codeblock"><code>curl -v --header 'Accept: application/json' -X POST http://cbur-master-cbur.$CBUR_MASTER_NAMESPACE.svc.cluster.local:80/v2/helm/release/backup/$NAMESPACE/$RELEASENAME?helm_version=3</code></pre>
+                    </li>
+
+                    <li class="li">
+                        <p class="p">By default, the <span class="ph">NCC</span> Backup and Recovery master is installed with
+                            Celery/Redis to support asynchronous functions. Rest API calls will
+                            return a <code class="ph codeph">taskId</code> which may be used to query the status
+                            of the request with another Rest API call, such as this command which is
+                            run on the admincli container.</p>
+
+                        <pre class="pre codeblock"><code>curl -v --header 'Accept: application/json' -X GET http://cbur-master-cbur.$CBUR_MASTER_NAMESPACE.svc.cluster.local:80/v2/task/7b59914d-f521-41552b81b-765a45f85a42</code></pre>
+                    </li>
+
+                </ol>
+
+            </div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Restore Service Discovery component</h2>
+            
+            <ol class="ol">
+                <li class="li">Initiate the restore procedure by running this command on the admincli
+                    container, or from the <span class="ph">NCC</span> Telemetry pod.
+                    <pre class="pre codeblock"><code>curl -vkL --header 'Accept: application/json' -X POST --header 'Content-Type: application/x-www-form-urlencoded' -d 'backup_id=&amp;volume=object_type=&amp;object_name=' http://cbur-master-cbur.$CBUR_MASTER_NAMESPACE.svc.cluster.local:80/v2/helm/release/restore/$NAMESPACE/$RELEASENAME?helm_version=3</code></pre>
+                </li>
+
+                <li class="li">By default, Backup and Recovery master is installed with Celery/Redis to support asynchronous
+                    functions, so the Rest API calls return a taskId which can be used to query the
+                    status of the request with another Rest API call:
+                    <pre class="pre codeblock"><code>curl -v --header 'Accept: application/json' -X GET http://cbur-master-cbur.$CBUR_MASTER_NAMESPACE.svc.cluster.local:80/v2/task/7b59914d-f521-41552b81b-765a45f85a42</code></pre>
+                </li>
+
+                <li class="li">After the Backup and Recovery restore task completes successfully, in order for the Service
+                    Discovery component pods to reset their cache and restore the latest data, the
+                    Service Discovery component pods must be restarted. This is done by scaling down
+                    the number of pods to 0 and then scaling them back to the original number. These
+                    are some example commands for a rolling restart of the Service Discovery
+                    component pods: <pre class="pre codeblock"><code>CSDC_REPLICAS=$( kubectl get statefulset $RELEASENAME-csdc -n $NAMESPACE -o jsonpath="{.status.replicas}")</code></pre>
+                    <pre class="pre codeblock"><code>kubectl scale --replicas=0 statefulset $RELEASENAME-csdc -n $NAMESPACE</code></pre>
+                    <p class="p">Once the pods are all terminated, run this command:</p>
+
+                    <pre class="pre codeblock"><code>kubectl scale --replicas=$CSDC_REPLICAS statefulset  $RELEASENAME-csdc -n $NAMESPACE</code></pre></li>
+
+            </ol>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

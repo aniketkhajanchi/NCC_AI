@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="SS7 to NCC: SOAP/REST integration" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="ss7_to_ncc_soap_rest_integration" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>SS7 to NCC: SOAP/REST integration</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="ss7_to_ncc_soap_rest_integration">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">SS7 to <span class="ph">NCC</span>: SOAP/REST integration</h1>
+<div class="body conbody">
+        <p class="p">Notification messages come from <span class="ph">NCC</span> to APIGW through FEP
+            SOAP. For other features, <span class="ph">NCC</span>-SS7 sends requests to <span class="ph">NCC</span> through FEP-SOAP. For successful calls, you must
+            complete these basic configurations for the USSDGW and APIGW services. You can edit the
+            configurations via the OSP UI or the SS7 Manager GUI. Details are found in the <cite class="cite">NCC
+                SS7 User Guide</cite>.</p>
+
+        <div class="section"><h2 class="title sectiontitle">APIGW Service Configuration object</h2>
+            
+            <p class="p">Provide the primary or secondary URL and their respective port to trigger NCC<span class="ph">NCC</span>. Provide the USSDGW Sep Group name that is used to
+                link to other USSDGW SEPs. The Sep Group can be created in the sepgroup object of
+                the pfmconfig service.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">APIGW USSD response code object</h2>
+            
+            <p class="p">This object is used to relay the HTTP code towards <span class="ph">NCC</span>.
+                For Balance Query and other features (except Notification), select the request name
+                from the drop down list. Configure messages code for each HTTP response code. The
+                message code is sent to USSDGW with HTTP code.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">USSDGW Global Configuration object</h2>
+            
+            <p class="p">Select <span class="ph uicontrol">IMSI</span> or <span class="ph uicontrol">MSISDN</span> from the Global
+                Config object based on which HLR is picked to send messages towards HLR.</p>
+
+            <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> The <span class="ph uicontrol">Search Prefix</span> value is used for notifications.</div>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">USSDGW Communication Entity object</h2>
+            
+            <p class="p">Create all of the entities with which the USSDGW service interacts. To communicate
+                with the APIGW service, create an entity for APIGW and provide its Sep Group name.
+                All of the entries are preconfigured for communication purposes.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">USSDGW Service Configuration object</h2>
+            
+            <p class="p">Configure the service-side Global Title SCP address to communicate with any external
+                node.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">USSDGW Retailer object</h2>
+            
+            <p class="p">Configure the Retailer options for Balance Query, Bundle Balance Query, and language
+                update type calls. For <span class="ph">NCC</span>, the retailer name value
+                should be <code class="ph codeph">Default</code>.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">USSDGW Language object</h2>
+            
+            <p class="p">An instance of this object is preconfigured for messages sent towards the HLR.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">USSDGW Message Component object</h2>
+            
+            <p class="p">Create the message text for Balance Query, Bundle Balance query, and language update.
+                The object is preconfigured with default text.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">USSDGW Message Composer object</h2>
+            
+            <p class="p">Create messages by using the fixed components from the Message Component object and
+                variable components from this object to format a complete message. This object is
+                preconfigured to compose the message with a combination of fixed and variable
+                text.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">USSDGW Application object</h2>
+            
+            <p class="p">For direct access calls, configure the USSD access code for Balance Query, Bundle
+                Balance query, and language update.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">USSDGW Menu Tree object</h2>
+            
+            <p class="p">For menu-based calls or composite menu calls, create menu objects for specific USSD
+                codes.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

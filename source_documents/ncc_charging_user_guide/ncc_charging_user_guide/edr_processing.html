@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="EDR_PROCESSING source context" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="edr_processing" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>EDR_PROCESSING source context</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="edr_processing">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">EDR_PROCESSING source context</h1>
+<div class="body conbody">
+        <div class="p">
+            <table cellpadding="4" cellspacing="0" summary="" id="edr_processing__table_vvw_kph_gsb" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>EDR_PROCESSING source context</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d55506e44">Attribute name</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d55506e47">Trigger</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d55506e50">Description</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e44 ">Get-Entity</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e47 ">EDR_PROCESSING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e50 ">This attribute is used to call entities to be able to fetch
+                                details about the entity and populate the information.<div class="p">Exanple:
+                                        <code class="ph codeph">EDR_PROCESSING.Get-Entity-Type (
+                                        EntityType_SPR_DEVICE ) = BooleanEnum_TRUE /
+                                        EDR_PROCESSING.Get-Entity-Type ( EntityType_SPR_ACCOUNT ) =
+                                        BooleanEnum_TRUE</code><div class="note" id="edr_processing__note_qct_vnp_gwb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> This
+                                        rule attribute is used to control execution of
+                                            <em class="ph i">SPR_ACCOUNT</em> and <em class="ph i">SPR_DEVICE</em> service
+                                        context. It is not executed by default for all provisioning
+                                        and lifecycle event. When any of this attributes are used
+                                        then either <em class="ph i">SPR_DEVICE</em> or <em class="ph i">SPR_ACCOUNT</em> related
+                                        information are fetched and when both attributes are used
+                                        then both <em class="ph i">SPR_DEVICE</em> and <em class="ph i">SPR_ACCOUNT</em> related
+                                        information are fetched. If not defined, then the account
+                                        and device information is not fetched and populated in the
+                                            EDRs.<p class="p">For provisioning scenario related to account,
+                                                <em class="ph i">EntityType_SPR_DEVICE</em> fetches device
+                                            information from the first subscription assigned to
+                                            device and associated to account and for provisioning
+                                            scenario related to device,
+                                                <em class="ph i">EntityType_SPR_ACCOUNT</em> fetches account
+                                            information associated to the first subscription of the
+                                            device.</p>
+</div>
+</div>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e44 ">RECORD_TYPE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e47 ">EDR_PROCESSING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e50 "><p class="p">This attribute is used for RecordType tag in
+                                    EDR.</p>
+<strong class="ph b">Example:</strong>
+                                <code class="ph codeph">EDR_PROCESSING.RECORD_TYPE ( "PROVISIONING_RECORD" ) =
+                                    true</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e44 ">invokedMethod</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e47 ">EDR_PROCESSING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e50 "><p class="p">This attribute is used for invokedMethod tag in
+                                    EDR.</p>
+<strong class="ph b">Example:</strong>
+                                <code class="ph codeph">EDR_PROCESSING.invokedMethod ( "update_device" ) =
+                                    true</code><code class="ph codeph">EDR_PROCESSING.invokedMethod (
+                                    "loan_opt_in" ) = true</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e44 ">invokedBy</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e47 ">EDR_PROCESSING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e50 "><p class="p">This attribute is used for invokedBy tag in
+                                    EDR.</p>
+<strong class="ph b">Example:</strong>
+                                <code class="ph codeph">EDR_PROCESSING.invokedBy ( "AddEDRAction" ) =
+                                true</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e44 ">triggeredEntityType</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e47 ">EDR_PROCESSING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e50 "><p class="p">This attribute is used for triggeredEntityType tag in
+                                    EDR.</p>
+<strong class="ph b">Example:</strong>
+                                <code class="ph codeph">EDR_PROCESSING.triggeredEntityType ( "Subscription" ) =
+                                    true</code></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e44 ">transitionName</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e47 ">EDR_PROCESSING</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e50 ">This attribute indicates the name of the transition occurred in
+                                the triggered lifecycle.<p class="p"><strong class="ph b">Example:</strong>
+                                    <code class="ph codeph">EDR_PROCESSING.transitionName( "BucketExpired" ) =
+                                        true</code></p>
+<p class="p"><code class="ph codeph">EDR_PROCESSING.transitionName("SubscriptionDeleted")
+                                        = true</code></p>
+</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+        </div>
+
+        <table cellpadding="4" cellspacing="0" summary="" id="edr_processing__table_e2x_s5d_4xb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>EDR Enhancements for Lifecycle and Provisioning Records</span></caption><colgroup><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d55506e219">RECORD_TYPE</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d55506e222">invokedMethod/invokedBy</th>
+
+                        <th class="entry cellrowborder" style="vertical-align:top;" id="d55506e225">Value</th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">PROVISIONING_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedMethod</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">update_subscription</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">PROVISIONING_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedMethod</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">Custom EDR</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">PROVISIONING_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedMethod</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">renameProfile</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">PROVISIONING_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedMethod</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">adjustBalance</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">PROVISIONING_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedMethod</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">deleteProfile</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">PROVISIONING_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedMethod</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">addSubscription</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">PROVISIONING_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedMethod</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">delete_subscription</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">LIFECYCLE_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedBy</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">AUDIT (SubscriptionDeleted)</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">LIFECYCLE_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedBy</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">AddEDRAction</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">LIFECYCLE_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedBy</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">RenewSubscriptionAction</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">LIFECYCLE_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedBy</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">ResetPeriodAction</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">PROVISIONING_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedMethod</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">update_account</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">LIFECYCLE_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedBy</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">EmptySubscriptionAction</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">LIFECYCLE_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedBy</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">ChargeFeeAction</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">PROVISIONING_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedMethod</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">update_device</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">LIFECYCLE_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedBy</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">ResetAccountAction</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">PROVISIONING_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedMethod</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">updateSubscription</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">PROVISIONING_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedMethod</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">loan_opt_in</td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e219 ">LIFECYCLE_RECORD</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e222 ">invokedBy</td>
+
+                        <td class="entry cellrowborder" style="vertical-align:top;" headers="d55506e225 ">CancelAndResetPeriodAction</td>
+
+                    </tr>
+
+                </tbody>
+</table>
+
+        <div class="section" id="edr_processing__section_m3b_xpw_3wb"><h2 class="title sectiontitle">Example</h2>
+            
+            <div class="p">A profile is created with Device, Postpaid Account, user and subscription. Configure
+                Add-EDR rule into EDR-Processing trigger to include the tags for <em class="ph i">SPR_ACCOUNT</em>
+                as follows:<pre class="pre codeblock" id="edr_processing__codeblock_d1n_cqw_3wb"><code>if
+EDR_PROCESSING.Get-Entity-Type ( EntityType_SPR_DEVICE ) = BooleanEnum_TRUE and EDR_PROCESSING.Get-Entity-Type ( EntityType_SPR_ACCOUNT ) = BooleanEnum_TRUE and
+EDR_PROCESSING.RECORD_TYPE ( "PROVISIONING_RECORD" ) = true and
+EDR_PROCESSING.invokedMethod ( "update_device" ) = true
+then
+CALL_RESULT.Add-EDR ( "accountBalanceBefore", SPR_ACCOUNT.Available-Balance ) and CALL_RESULT.Add-EDR ( "accountBalanceAfter", SPR_ACCOUNT.Available-Balance ) and
+CALL_RESULT.Add-EDR ( "accountStateBefore", SPR_ACCOUNT.Previous-Entity-LifeCycle_State and CALL_RESULT.Add-EDR ( "accountPLCStateBefore", SPR_ACCOUNT.Previous-Period-Lifecycle_State ) and CALL_RESULT.Add-EDR ( "entityLifecycleState", SPR_ACCOUNT.Entity-LifeCycle_State ) and CALL_RESULT.Add-EDR ( "periodLifecycleState", SPR_ACCOUNT.Period-Lifecycle_State )</code></pre></div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

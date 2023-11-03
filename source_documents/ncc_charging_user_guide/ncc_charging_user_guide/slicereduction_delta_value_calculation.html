@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Delta value calculation for counters" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="section_e1j_r1l_r4b" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Delta value calculation for counters</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="section_e1j_r1l_r4b">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Delta value calculation for counters</h1>
+<div class="body">
+            
+            <p class="p">Following is the delta value calculation logic using thresholds of all applicable
+                counters during a call:</p>
+
+            <ol class="ol" id="section_e1j_r1l_r4b__ol_o5q_s1l_r4b">
+                <li class="li">
+                    <p class="p">To calculate the counter delta value, examine each threshold profile group
+                        attached to the counter. The thresholds are fetched from each threshold
+                        profile group and evaluated against the current usage (committed quantity +
+                        reserved quantity).</p>
+
+                    <div class="p">
+                    <div class="note" id="section_e1j_r1l_r4b__note_bbd_zjg_ktb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> If the <span class="ph uicontrol">Ignore Reserved Quota</span>
+                        is set as <var class="keyword varname">Counter</var> in a quota management (slicing
+                        profile) and <em class="ph i">No-Charge</em> billing is done, then the reserved quantity
+                        for delta calculation is ignored.</div>
+
+                </div>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Consider both recurring and non-recurring thresholds.</p>
+
+                </li>
+
+                <li class="li">
+                    <p class="p">Consider the <em class="ph i">Threshold Profile Type</em>, such as <var class="keyword varname">Absolute from
+                            Start</var> and <var class="keyword varname">Percentage</var> as per the following
+                        conditions:</p>
+
+                    <ul class="ul" id="section_e1j_r1l_r4b__ul_p5q_s1l_r4b">
+                        <li class="li">
+                            <p class="p">If the usage limit is not defined in a counter, then the delta is
+                                calculated only from absolute thresholds and the delta value
+                                calculated as per the upcoming threshold is returned. If the
+                                difference between upcoming threshold and current value is negative,
+                                then the value returned is zero.</p>
+
+                        </li>
+
+                        <li class="li">
+                            <p class="p">If the usage limit is defined in a counter, then delta calculation
+                                also considers percentage thresholds and overage thresholds (if
+                                available) as explained further:</p>
+
+                            <ol class="ol" type="a" id="section_e1j_r1l_r4b__ol_zcc_t1l_r4b">
+                                <li class="li">
+                                    <p class="p">First, calculate delta from usage thresholds considering both
+                                        percentage and absolute thresholds.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">While processing the usage thresholds, if the difference
+                                        between the upcoming threshold and current usage value is
+                                        negative, then zero value is assigned to delta and control
+                                        is returned as no further processing of overage threshold is
+                                        required, which becomes the case of minimum slice
+                                        allocation.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">If there are no upcoming usage thresholds, which means delta
+                                        from usage threshold is <var class="keyword varname">-1</var>, then process
+                                        the overage thresholds for delta calculation.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">If a delta value greater than <var class="keyword varname">0</var> is
+                                        returned from usage thresholds, then iterate the overage
+                                        thresholds as well.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">For delta calculation from overage thresholds, first
+                                        calculate delta value from current overage block thresholds.
+                                        The current overage block is calculated based on counter
+                                        current value.</p>
+
+                                    <p class="p">As explained in point (b) to (d), we can have delta values as
+                                            <var class="keyword varname">0</var>, <var class="keyword varname">-1</var>, or greater
+                                        than <var class="keyword varname">0</var>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">If there is no upcoming threshold in current overage block,
+                                        which means delta is <var class="keyword varname">-1</var>, then calculate
+                                        delta from the next overage block. For example: If <em class="ph i">Usage
+                                            Limit</em> = <var class="keyword varname">100 Bytes</var> and <em class="ph i">Overage
+                                            Limit</em> = <var class="keyword varname">20 Bytes</var> with <em class="ph i">Overage
+                                            Threshold</em> at <var class="keyword varname">10 Bytes</var>. Now,
+                                        counter value = <var class="keyword varname">111 Bytes</var>, which refers
+                                        to the first overage block and there is no upcoming
+                                        threshold in overage block 1 as overage threshold as 10
+                                        Bytes is crossed. So, the upcoming threshold is at 10 Bytes
+                                        of overage block 2 (that is reached at counter value 130).
+                                        Delta is calculated as <var class="keyword varname">19</var>.</p>
+
+                                </li>
+
+                                <li class="li">
+                                    <p class="p">Compare the delta from usage block and overage block, and
+                                        return the minimum value as counter delta.</p>
+
+                                </li>
+
+                            </ol>
+
+                        </li>
+
+                    </ul>
+
+                </li>
+
+            </ol>
+
+        </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

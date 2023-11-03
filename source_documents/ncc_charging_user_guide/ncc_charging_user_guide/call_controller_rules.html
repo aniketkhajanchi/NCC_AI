@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Charging rules" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e30016" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Charging rules</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e30016">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Charging rules</h1>
+<div class="body conbody">
+<p class="p">This chapter describes rule contexts and attributes used between call controller and the rating engine. Rules are logical expressions constructed as if-then statements established by the user to reflect the unique business needs.</p>
+
+        <p class="p">NCC supports rule authoring for all <em class="ph i">PS-Information</em> attributes defined in 3GPP TS
+            32.299 (Diameter charging applications) and 32.251 Release 11 (Packet Switched (PS)
+            domain charging).</p>
+
+        <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> None of the <em class="ph i">PS-Information</em> attributes are supported as result context
+            attributes.</div>
+
+        <div class="note caution"><div class="cautiontitle"><img src="../../web/css/../images/caution.svg" title="caution-icon" class="noteicon" />CAUTION:</div> When a rule is created, modified, removed, or loaded, it takes a
+            minimum of 30 seconds to load the RSV. For any action that updates the rules (for
+            example, a TPG value is updated from 10 to 20, an action is updated, or a Tariff Rule
+            action is modified), the changes take effect after ~30 seconds. Operators must wait for
+            this time interval (30 seconds), to consider the change for feature
+            implementation/execution.</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

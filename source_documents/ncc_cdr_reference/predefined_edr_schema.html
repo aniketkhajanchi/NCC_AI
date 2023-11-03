@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Predefined ASN.1 schema" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="predefined_edr_schema" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Predefined ASN.1 schema</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="predefined_edr_schema">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Predefined ASN.1 schema</h1>
+<div class="body conbody">
+        <p class="p">By default all CDRs and EDRs are generated following the generic CDR schema. There is
+			also a possibility to use a more descriptive schema for some of the EDRs. Currently the
+			predefined ASN.1 schema covers the CHF records as well as the following Lifecycle EDRs,
+			Ecommerce EDRs: </p>
+
+        <p class="p">Lifecycle EDRs:</p>
+
+        <ul class="ul" id="predefined_edr_schema__ul_awc_zsq_1nb">
+            <li class="li">renewAccountRecord</li>
+
+            <li class="li">renewSubscriptionRecord</li>
+
+            <li class="li">resetAccountRecord</li>
+
+            <li class="li">resetSubscriptionRecord</li>
+
+        </ul>
+
+        <p class="p">eCommerce EDRs:</p>
+
+        <ul class="ul" id="predefined_edr_schema__ul_al2_ctq_1nb">
+            <li class="li">checkBalanceRecord</li>
+
+            <li class="li">debitAmountRecord</li>
+
+            <li class="li">getUCBalanceRecord</li>
+
+        </ul>
+
+		<div class="section" id="predefined_edr_schema__section_r1v_p4s_t4b"><h2 class="title sectiontitle">Enabling predefined ASN.1 schema</h2>
+			
+			<p class="p">The predefined ASN.1 schema can be enabled in the CDR module during deployment, by
+				modifying the CG Mapper Node parameter configuration in the Business logic
+				stream:</p>
+
+			<ul class="ul" id="predefined_edr_schema__ul_jhy_qks_t4b">
+				<li class="li">setting node parameter <code class="ph codeph">EDRMappingEnabled</code> to
+						<code class="ph codeph">yes</code>  enables the mapping of EDRs covered by the schema</li>
+
+				<li class="li">setting node parameter <code class="ph codeph">CHFMappingEnabled</code> to
+						<code class="ph codeph">yes</code> enables the mapping of CHF records.</li>
+
+			</ul>
+
+			<p class="p">See <a class="xref" href="mapping_details_for_edrs_in_predefined_schema.html#mapping_details_for_edrs_in_predefined_schema">Mapping details for EDRs in predefined ASN.1 schema</a>for details about mapping of these EDRs from generic CDR schema to the predefined
+				ASN.1 schema.</p>
+
+			<p class="p">See <a class="xref" href="mapping_details_for_chf_records.html#mapping_details_for_chf_records">Mapping details for CHF records in predefined ASN.1 schema</a>for details about the mapping of CHF records.</p>
+
+		</div>
+
+		<div class="section" id="predefined_edr_schema__section_scc_nms_t4b"><h2 class="title sectiontitle">Handling of error CDRs</h2>
+			
+			<p class="p">If a record is rejected for CHF and mapped as a generic CDR, CG Mapper Node parameter
+					<code class="ph codeph">resultCode</code> defines how the record is handled: </p>
+
+			<ul class="ul" id="predefined_edr_schema__ul_l45_gns_t4b">
+				<li class="li">If the "resultCode" tag in the record has value 201, the record is converted into a CHF
+					record.</li>
+
+				<li class="li">If the "resultCode" tag has any other value, it is handled as a generic error CDR.</li>
+
+			</ul>
+
+		</div>
+
+        <div class="section" id="predefined_edr_schema__section_fpc_4tq_1nb"><h2 class="title sectiontitle">ASN.1 schema</h2>
+            
+      <pre class="pre codeblock"><code>GenericRecordTypes DEFINITIONS IMPLICIT TAGS ::= BEGIN
+
+SPSRecord  ::= CHOICE
+{
+  renewAccountRecord      [0] RenewAccountRecord,
+  renewSubscriptionRecord    [1] RenewSubscriptionRecord,
+  resetAccountRecord      [2] ResetAccountRecord,
+  resetSubscriptionRecord    [3] ResetSubscriptionRecord,
+  checkBalanceRecord      [4] CheckBalanceRecord,
+  debitAmountRecord      [5] DebitAmountRecord,
+  getUCBalanceRecord      [6] GetUCBalanceRecord,
+  chargingFunctionRecord      [200] ChargingRecord,
+  genericRecord GenericRecord
+}
+
+
+------------------------------------------------------------------------------
+--
+-- SPS GENERIC EDR RECORD
+--
+------------------------------------------------------------------------------
+
+RenewAccountRecord  ::= SET
+{
+  recordType          [0] EDRRecordType,
+  result            [1] Result OPTIONAL,
+  reason            [2] UTF8String OPTIONAL,
+  invokedBy          [3] InvokedBy OPTIONAL,
+  triggeredEntityType      [4] TriggeredEntityType OPTIONAL,
+  triggeredEntityId      [5] UTF8String OPTIONAL,
+  transitionName        [6] UTF8String OPTIONAL,
+  transitionStartState      [7] UTF8String OPTIONAL,
+  periodicLifeCycleName    [8] UTF8String OPTIONAL,
+  entityLifeCycleName      [9] UTF8String OPTIONAL,
+  triggeredBy          [10] TriggeredBy OPTIONAL,
+  recordTimeStamp        [11] TimeStamp OPTIONAL,    -- UTC designation
+  accountType          [33] AccountType OPTIONAL,
+  balanceBefore      [35] REAL OPTIONAL,
+  accountBalance      [36] REAL OPTIONAL,
+  subscrptRenewByAccntRenewal  [46] SEQUENCE OF SubscrptRenewByAccntRenewal OPTIONAL,
+  triggerTime         [63] TimeStamp OPTIONAL,    -- UTC designation
+  timeZone          [64] UTF8String OPTIONAL,
+  entityLifeCycleState    [65] UTF8String OPTIONAL
+}
+
+RenewSubscriptionRecord  ::= SET
+{
+  recordType          [0] EDRRecordType,
+  result            [1] Result OPTIONAL,
+  reason            [2] UTF8String OPTIONAL,
+  invokedBy          [3] InvokedBy OPTIONAL,
+  triggeredEntityType      [4] TriggeredEntityType OPTIONAL,
+  triggeredEntityId      [5] UTF8String OPTIONAL,
+  transitionName        [6] UTF8String OPTIONAL,
+  transitionStartState      [7] UTF8String OPTIONAL,
+  periodicLifeCycleName    [8] UTF8String OPTIONAL,
+  entityLifeCycleName      [9] UTF8String OPTIONAL,
+  triggeredBy          [10] TriggeredBy OPTIONAL,
+  recordTimeStamp        [11] TimeStamp OPTIONAL,    -- UTC designation
+  bundleName          [12] UTF8String OPTIONAL,
+  bundleActivationType      [13] BundleActivationType OPTIONAL,
+  accountId          [14] UTF8String OPTIONAL,
+  fee              [15] REAL OPTIONAL,      -- FYI, REAL defines decimal vals
+  taxationId        [16] UTF8String OPTIONAL,
+  totalTaxAmount      [17] REAL OPTIONAL,
+  maxRenewals          [18] MaxRenewals OPTIONAL,
+  remainingRenewals      [19] RemainingRenewals OPTIONAL,
+  subscriptOnlyRenewFee    [20] REAL OPTIONAL,
+  subscriptRenewFeeSrc      [21] SubscriptRenewFeeSrc OPTIONAL,
+  subscriptRenewMode      [22] SubscriptRenewMode OPTIONAL,
+  deviceId          [23] UTF8String OPTIONAL,
+  groupId            [24] UTF8String OPTIONAL,
+  bucketInfo          [32] SEQUENCE OF BucketInfo OPTIONAL,
+  accountType          [33] AccountType OPTIONAL,
+  balanceBefore      [35] REAL OPTIONAL,
+  accountBalance      [36] REAL OPTIONAL,
+  counterInfo          [37] SEQUENCE OF CounterInfo OPTIONAL,
+  subscriptionId        [38] SEQUENCE OF UTF8String OPTIONAL,
+  deviceIdentityInfo      [50] SEQUENCE OF DeviceIdentityInfo OPTIONAL,
+  discountInfo        [62] SEQUENCE OF DiscountInfo OPTIONAL,
+  triggerTime         [63] TimeStamp OPTIONAL,    -- UTC designation
+  timeZone          [64] UTF8String OPTIONAL,
+  entityLifeCycleState    [65] UTF8String OPTIONAL,
+  accountELCState       [66] UTF8String OPTIONAL,
+  accountPLCState       [67] UTF8String OPTIONAL,
+  billCycleStartTime      [68] TimeStamp OPTIONAL,    -- UTC designation
+  billCycleStopTime     [69] TimeStamp OPTIONAL,    -- UTC designation
+  customDataList        [70] SEQUENCE OF CustomDataList OPTIONAL
+}
+
+ResetAccountRecord  ::= SET
+{
+  recordType          [0] EDRRecordType,
+  result            [1] Result OPTIONAL,
+  reason            [2] UTF8String OPTIONAL,
+  invokedBy          [3] InvokedBy OPTIONAL,
+  triggeredEntityType      [4] TriggeredEntityType OPTIONAL,
+  triggeredEntityId      [5] UTF8String OPTIONAL,
+  transitionName        [6] UTF8String OPTIONAL,
+  transitionStartState      [7] UTF8String OPTIONAL,
+  periodicLifeCycleName    [8] UTF8String OPTIONAL,
+  entityLifeCycleName      [9] UTF8String OPTIONAL,
+  triggeredBy          [10] TriggeredBy OPTIONAL,
+  recordTimeStamp        [11] TimeStamp OPTIONAL,    -- UTC designation
+  accountType          [33] AccountType OPTIONAL,
+  resetValue          [34] REAL OPTIONAL,
+  balanceBefore      [35] REAL OPTIONAL,
+  accountBalance      [36] REAL OPTIONAL,
+  triggerTime         [63] TimeStamp OPTIONAL,    -- UTC designation
+  timeZone          [64] UTF8String OPTIONAL,
+  entityLifeCycleState    [65] UTF8String OPTIONAL,
+  billCycleStartTime      [68] TimeStamp OPTIONAL,    -- UTC designation
+  billCycleStopTime     [69] TimeStamp OPTIONAL     -- UTC designation
+}
+
+ResetSubscriptionRecord  ::= SET
+{
+  recordType          [0] EDRRecordType,
+  result            [1] Result OPTIONAL,
+  reason            [2] UTF8String OPTIONAL,
+  invokedBy          [3] InvokedBy OPTIONAL,
+  triggeredEntityType      [4] TriggeredEntityType OPTIONAL,
+  triggeredEntityId      [5] UTF8String OPTIONAL,
+  transitionName        [6] UTF8String OPTIONAL,
+  transitionStartState      [7] UTF8String OPTIONAL,
+  periodicLifeCycleName    [8] UTF8String OPTIONAL,
+  entityLifeCycleName      [9] UTF8String OPTIONAL,
+  triggeredBy          [10] TriggeredBy OPTIONAL,
+  recordTimeStamp        [11] TimeStamp OPTIONAL,    -- UTC designation
+  bundleName          [12] UTF8String OPTIONAL,
+  bundleActivationType      [13] BundleActivationType OPTIONAL,
+  accountId          [14] UTF8String OPTIONAL,
+  deviceId            [23] UTF8String OPTIONAL,
+  groupId            [24] UTF8String OPTIONAL,
+  bucketInfo          [32] SEQUENCE OF BucketInfo OPTIONAL,
+  accountType         [33] AccountType OPTIONAL,
+  counterInfo          [37] SEQUENCE OF CounterInfo OPTIONAL,
+  deviceIdentityInfo      [50] SEQUENCE OF DeviceIdentityInfo OPTIONAL,
+  triggerTime         [63] TimeStamp OPTIONAL,    -- UTC designation
+  timeZone          [64] UTF8String OPTIONAL,
+  entityLifeCycleState    [65] UTF8String OPTIONAL,
+  accountELCState       [66] UTF8String OPTIONAL,
+  accountPLCState       [67] UTF8String OPTIONAL,
+  billCycleStartTime      [68] TimeStamp OPTIONAL,    -- UTC designation
+  billCycleStopTime     [69] TimeStamp OPTIONAL,    -- UTC designation
+  customDataList        [70] SEQUENCE OF CustomDataList OPTIONAL
+}
+
+CheckBalanceRecord  ::= SET
+{
+  recordType          [0] EDRRecordType,
+  result            [1] Result OPTIONAL,
+  reason            [2] UTF8String OPTIONAL,
+  triggeredBy          [10] TriggeredBy OPTIONAL,
+  recordTimeStamp        [11] TimeStamp OPTIONAL,    -- UTC designation
+  accountId          [14] UTF8String OPTIONAL,
+  transactionId        [47] UTF8String OPTIONAL,
+  eventTimeStamp        [48] TimeStamp OPTIONAL,     -- UTC designation
+  balanceAmount        [49] REAL OPTIONAL,
+  deviceIdentityInfo      [50] SEQUENCE OF DeviceIdentityInfo OPTIONAL,
+  listOfMSCC          [51] SEQUENCE OF MSCC OPTIONAL
+}
+
+DebitAmountRecord  ::= SET
+{
+  recordType          [0] EDRRecordType,
+  result            [1] Result OPTIONAL,
+  reason            [2] UTF8String OPTIONAL,
+  invokedBy          [3] InvokedBy OPTIONAL,
+  triggeredEntityId      [5] UTF8String OPTIONAL,
+  recordTimeStamp        [11] TimeStamp OPTIONAL,    -- UTC designation
+  deviceId          [23] UTF8String OPTIONAL,
+  transactionId        [47] UTF8String OPTIONAL,
+  eventTimeStamp        [48] TimeStamp OPTIONAL,    -- UTC designation
+  balanceAmount        [49] REAL OPTIONAL,
+  deviceIdentityInfo      [50] SEQUENCE OF DeviceIdentityInfo OPTIONAL,
+  ratingAnswer        [52] UTF8String OPTIONAL,
+  sellerId          [53] UTF8String OPTIONAL,
+  trafficType         [54] UTF8String OPTIONAL,
+  currency          [55] UTF8String OPTIONAL,
+  debitType          [56] TransactionType OPTIONAL,
+  debitAmount          [57] REAL OPTIONAL,
+  supplementalInfo      [58] SEQUENCE OF UTF8String OPTIONAL,
+  subscriptionInfo      [59] SEQUENCE OF SubscriptionInfo OPTIONAL
+}
+
+GetUCBalanceRecord  ::= SET
+{
+  recordType          [0] EDRRecordType,
+  result            [1] Result OPTIONAL,
+  reason            [2] UTF8String OPTIONAL,
+  invokedBy          [3] InvokedBy OPTIONAL,
+  triggeredEntityId      [5] UTF8String OPTIONAL,
+  recordTimeStamp        [11] TimeStamp OPTIONAL,    -- UTC designation
+  deviceId          [23] UTF8String OPTIONAL,
+  transactionId        [47] UTF8String OPTIONAL,
+  eventTimeStamp        [48] TimeStamp OPTIONAL,    -- UTC designation
+  balanceAmount        [49] REAL OPTIONAL,
+  deviceIdentityInfo      [50] SEQUENCE OF DeviceIdentityInfo OPTIONAL,
+  ratingAnswer        [52] UTF8String OPTIONAL,
+  sellerId          [53] UTF8String OPTIONAL,
+  trafficType         [54] UTF8String OPTIONAL,
+  currency          [55] UTF8String OPTIONAL,
+  supplementalInfo      [58] SEQUENCE OF UTF8String OPTIONAL,
+  subscriptionInfo      [59] SEQUENCE OF SubscriptionInfo OPTIONAL,
+  requestedBundleId      [60] UTF8String OPTIONAL,
+  distanceToUsageLimit    [61] REAL OPTIONAL
+}
+
+EDRRecordType  ::= INTEGER
+{
+  lifeCycle        (0),
+  lifeCycleNotification  (1),
+  provisioning        (2),
+  eCommerce        (3)
+}
+
+Result  ::= ENUMERATED
+{
+  success    (0),
+  failure    (1)
+}
+
+InvokedBy  ::= ENUMERATED
+{
+  renewSubscription  (0),
+  webServices    (1),
+  addSubscription  (2),
+  resetSubscription  (3),
+  deleteSubscription  (4),
+  deleteEntity    (5),
+  chargeFee    (6),
+  emptySubscription  (7),
+  resetPeriod    (8),
+  resetAccount    (9)
+}
+
+TriggeredEntityType  ::= ENUMERATED
+{
+  subscription  (0),
+  account    (1),
+  device    (2)
+}
+
+TriggeredBy  ::= ENUMERATED
+{
+  aPI    (0),
+  event    (1),
+  audit    (2),
+  diameter  (3),
+  onCall  (4) 
+}
+--
+-- diameter (3) is for future use
+--
+
+BundleActivationType  ::= ENUMERATED
+{
+  normal    (0),
+  onSession  (1)
+}
+
+MaxRenewals    ::= CHOICE
+{
+  maxRenewalsValue       [0] INTEGER,
+  maxRenewalsUnlimited   [1] NULL
+}
+
+RemainingRenewals  ::= CHOICE
+{
+  remainingRenewalsValue       [0] INTEGER,
+  remainingRenewalsUnlimited   [1] NULL
+}
+
+SubscriptRenewFeeSrc  ::= ENUMERATED
+{
+  renewalFee    (0),
+  bundleFee    (1),
+  feeOverride    (2)
+}
+
+SubscriptRenewMode  ::= ENUMERATED
+{
+  none    (0),
+  all    (1),
+  resetOnly  (2),
+  billingOnly  (3)
+}
+
+SourceType  ::= ENUMERATED
+{
+  account    (0),
+  bundle    (1),
+  device    (2),
+  group   (3)
+}
+
+BucketInfo  ::= SEQUENCE
+{
+  bucketName      [0] UTF8String OPTIONAL,
+  kindOfUnit      [1] KindOfUnit OPTIONAL,  -- Attribute shared with CounterInfo
+  unitType        [2] UTF8String OPTIONAL,
+  bucketBalBefore    [3] REAL OPTIONAL,
+  bucketBalAfter    [4] REAL OPTIONAL,
+  carryOverBucket    [5] BOOLEAN OPTIONAL,
+  carryOverTRVal    [6] REAL OPTIONAL,
+  stepInfo        [7] StepInfo OPTIONAL
+}
+
+KindOfUnit  ::= ENUMERATED
+{
+  volume    (0),
+  money    (1),
+  time    (2),
+  unit    (3)
+}
+
+StepInfo  ::= SEQUENCE
+{
+  prevStepUpTime  [0] TimeStamp OPTIONAL,      -- UTC designation
+  curStepUpTime  [1] TimeStamp OPTIONAL,      -- UTC designation
+  currentStep    [2] INTEGER OPTIONAL,
+  previousStep    [3] INTEGER OPTIONAL
+}
+
+AccountType    ::= ENUMERATED
+{
+  prePaid    (0),
+  postPaid  (1)
+}
+
+CounterInfo    ::= SEQUENCE
+{
+  counterName      [0] UTF8String OPTIONAL,
+  counterKey      [1] UTF8String OPTIONAL,
+  counterType      [2] CounterType OPTIONAL,
+  kindOfUnit      [3] KindOfUnit OPTIONAL,  -- Attribute shared with BucketInfo
+  unitType        [4] UTF8String OPTIONAL,
+  counterValueBefore  [5] REAL OPTIONAL,
+  counterValueAfter  [6] REAL OPTIONAL,
+  counterUsageLimit  [7] REAL OPTIONAL,
+  counterScope    [8] CounterScope OPTIONAL
+}
+
+CounterType    ::= ENUMERATED
+{
+  usage    (0),
+  cost    (1),
+  call    (2)
+}
+
+SubscrptRenewByAccntRenewal  ::= SEQUENCE
+{
+  subscriptionId      [0] SEQUENCE OF UTF8String OPTIONAL,
+  entityLifeCycleName    [1] UTF8String OPTIONAL,
+  bundleName         [2] UTF8String OPTIONAL,
+  bundleActivationType    [3] BundleActivationType OPTIONAL,
+  maxRenewals        [4] MaxRenewals OPTIONAL,
+  remainingRenewals    [5] RemainingRenewals OPTIONAL,
+  subscriptRenewMode    [6] SubscriptRenewMode OPTIONAL,
+  fee            [7] REAL OPTIONAL,
+  subscriptRenewFeeSrc    [8] SubscriptRenewFeeSrc OPTIONAL,
+  subscriptOnlyRenewFee  [9] REAL OPTIONAL,
+  taxationId        [10] UTF8String OPTIONAL,
+  totalTaxAmount      [11] REAL OPTIONAL,
+  deviceId          [12] UTF8String OPTIONAL,
+  groupId          [13] UTF8String OPTIONAL,
+  result          [14] Result OPTIONAL,
+  reason          [15] UTF8String OPTIONAL,
+  bucketInfo        [16] SEQUENCE OF BucketInfo OPTIONAL,
+  counterInfo        [17] SEQUENCE OF CounterInfo OPTIONAL,
+  discountInfo      [18] SEQUENCE OF DiscountInfo OPTIONAL,
+  entityLifeCycleState  [19] UTF8String OPTIONAL,
+  billCycleStartTime    [20] TimeStamp OPTIONAL,    -- UTC designation
+  billCycleStopTime   [21] TimeStamp OPTIONAL,    -- UTC designation
+  deviceIdentityInfo    [22] SEQUENCE OF DeviceIdentityInfo OPTIONAL,
+  customDataList      [23] SEQUENCE OF CustomDataList OPTIONAL
+}
+
+DeviceIdentityInfo  ::= SET
+{
+  deviceIdentityType    [0]  DeviceIdentityType,
+  deviceIdentityValue    [1]  UTF8String
+}
+
+DeviceIdentityType  ::= ENUMERATED
+{
+  e164      (0),
+  iMSI      (1),
+  sIP-URI      (2),
+  nAI        (3),
+  uSER-PRIVATE  (4),
+  eXTERNAL-ID     (100),
+  dEVICE-ID (101),
+  sUPI    (102),
+  gPSI    (103)
+}
+
+MSCC  ::= SEQUENCE
+{
+  merchantId      [0] MerchantId OPTIONAL,
+  serviceType      [1] ServiceType OPTIONAL,
+  intlIndicator    [2] BOOLEAN OPTIONAL,
+  recipientNumber  [3] UTF8String OPTIONAL,
+  originatorNumber  [4] UTF8String OPTIONAL,
+  result        [5] Result OPTIONAL,
+  reason        [6] UTF8String OPTIONAL
+}
+
+MerchantId    ::= ENUMERATED
+{
+  smsall    (0),
+  mmsall    (1),
+  others    (100)
+}
+
+ServiceType    ::= ENUMERATED
+{
+  mobileOrig  (0),
+  mobileTerm  (1),
+  others    (100)
+}
+
+TransactionType    ::= ENUMERATED
+{
+  debit    (0),
+  others    (100)
+}
+
+SubscriptionInfo  ::= SEQUENCE
+{
+  subscriptionId        [0] SEQUENCE OF UTF8String OPTIONAL,
+  accountId          [1] UTF8String OPTIONAL,
+  entityLifeCycleName      [2] UTF8String OPTIONAL,
+  bundleName          [3] UTF8String OPTIONAL,
+  fee              [4] REAL OPTIONAL,      -- FYI, REAL defines decimal vals
+  creationTime        [5] TimeStamp OPTIONAL,   -- UTC designation
+  chargingServiceInfo      [6] SEQUENCE OF ChargingServiceInfo OPTIONAL,
+  uCServiceInfo       [7] UCServiceInfo OPTIONAL
+}
+
+ChargingServiceInfo  ::= SEQUENCE
+{
+  counterInfo    [0] SEQUENCE OF CounterInfo OPTIONAL,
+  chargingServiceName    [1] UTF8String OPTIONAL
+}
+
+DiscountInfo  ::= SEQUENCE
+{
+  discountName    [0] UTF8String OPTIONAL,
+  discountInstanceId  [1] UTF8String OPTIONAL,
+  renewalFeeBefore  [2] REAL OPTIONAL,
+  renewalFeeAfter    [3] REAL OPTIONAL,
+  discountType    [4] DiscountType OPTIONAL,
+  discountValue    [5] REAL OPTIONAL,
+  startDateTime    [6] TimeStamp OPTIONAL,   -- UTC designation
+  endDateTime      [7] TimeStamp OPTIONAL     -- UTC designation
+}
+
+DiscountType  ::= ENUMERATED
+{
+  none    (0),
+  percentage  (1),
+  absolute  (2)
+}
+
+CounterScope  ::= ENUMERATED
+{
+  all   (0),
+  self    (1),
+  hierarchy (2),
+  multiBundle (3),
+  subscription  (4)
+}
+
+UCServiceInfo  ::= SEQUENCE
+{
+  uCServiceName   [0] UTF8String OPTIONAL,
+  uCServicePriority [1] INTEGER OPTIONAL,
+  uCLimitInfo     [2] UCLimitInfo OPTIONAL
+}
+
+UCLimitInfo  ::= SEQUENCE
+{
+  referenceCounterId  [0] UTF8String OPTIONAL,
+  usageLimit      [1] REAL OPTIONAL,
+  counterInfo     [2] CounterInfo OPTIONAL
+}
+
+CustomDataList  ::= SEQUENCE
+{
+  sourceType    [0] SourceType OPTIONAL,
+  customDataInfo  [1] SEQUENCE OF CustomDataInfo OPTIONAL
+}
+
+CustomDataInfo  ::= SEQUENCE
+{
+  customDataName    [0] UTF8String OPTIONAL,
+  customDataValue   [1] UTF8String OPTIONAL
+}
+
+
+------------------------------------------------------------------------------
+--
+--  General Data Types
+--
+------------------------------------------------------------------------------
+
+TBCD-STRING ::= OCTET STRING
+  -- This type (Telephony Binary Coded Decimal String) is used to
+  -- represent several digits from 0 through 9, *, #, a, b, c, two
+  -- digits per octet, each digit encoded 0000 to 1001 (0 to 9),
+  -- 1010 (*), 1011 (#), 1100 (a), 1101 (b) or 1110 (c); 1111 used
+  -- as filler when there is an odd number of digits.
+
+  -- bits 8765 of octet n encoding digit 2n
+  -- bits 4321 of octet n encoding digit 2(n-1) +1
+
+AddressString ::= OCTET STRING (SIZE (1..maxAddressLength))
+  -- This type is used to represent a number for addressing
+  -- purposes. It is composed of
+  --  a)  one octet for nature of address, and numbering plan
+  --    indicator.
+  --  b)  digits of an address encoded as TBCD-String.
+
+  -- a)  The first octet includes a one bit extension indicator, a
+  --    3 bits nature of address indicator and a 4 bits numbering
+  --    plan indicator, encoded as follows:
+
+  -- bit 8: 1  (no extension)
+
+  -- bits 765: nature of address indicator
+  --  000  unknown
+  --  001  international number
+  --  010  national significant number
+  --  011  network specific number
+  --  100  subscriber number
+  --  101  reserved
+  --  110  abbreviated number
+  --  111  reserved for extension
+
+  -- bits 4321: numbering plan indicator
+  --  0000  unknown
+  --  0001  ISDN/Telephony Numbering Plan (Rec CCITT E.164)
+  --  0010  spare
+  --  0011  data numbering plan (CCITT Rec X.121)
+  --  0100  telex numbering plan (CCITT Rec F.69)
+  --  0101  spare
+  --  0110  land mobile numbering plan (CCITT Rec E.212)
+  --  0111  spare
+  --  1000  national numbering plan
+  --  1001  private numbering plan
+  --  1111  reserved for extension
+
+  --  all other values are reserved.
+
+  -- b)  The following octets representing digits of an address
+  --    encoded as a TBCD-STRING.
+
+maxAddressLength  INTEGER ::= 20
+
+ISDN-AddressString ::= AddressString (SIZE (1..maxISDN-AddressLength))
+  -- This type is used to represent ISDN numbers.
+
+maxISDN-AddressLength  INTEGER ::= 9
+
+IMSI ::= TBCD-STRING (SIZE (3..8))
+  -- digits of MCC, MNC, MSIN are concatenated in this order.
+
+IMEI ::= TBCD-STRING (SIZE (8))
+  --  Refers to International Mobile Station Equipment Identity
+  --  and Software Version Number (SVN) defined in TS 3GPP TS 23.003.
+  --  If the SVN is not present the last octet shall contain the
+  --  digit 0 and a filler.
+  --  If present the SVN shall be included in the last octet.
+
+MSISDN          ::= ISDN-AddressString
+  --
+  -- See TS 23.003
+  --
+
+END
+</code></pre>
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

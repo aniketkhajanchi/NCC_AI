@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="TPA_repairKeyGen" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="Repair_key_generator" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>TPA_repairKeyGen</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="Repair_key_generator">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">TPA_repairKeyGen</h1>
+<div class="body conbody">
+        <div class="section"><h2 class="title sectiontitle">Description</h2>
+            
+            <p class="p">The TPA_repairKeyGen tool is used to repair the <code class="ph codeph">KeyGenerators</code> data
+                set of the primary database partition in an ME subsystem during the disaster
+                recovery process. The <code class="ph codeph">KeyGenerators</code> data set is a set defined in
+                the <code class="ph codeph">dsclocal</code> namespace that stores the highest sequence generated
+                against the set name. <span class="ph">NCC</span> uses the sequence stored in
+                the <code class="ph codeph">KeyGenerators</code> data set to generate unique club ids. <span class="ph">NCC</span> increments the sequence in multiples of 10, rather
+                than incrementing by 1 every time. </p>
+
+            <p class="p">The tool fetches the set names from the <code class="ph codeph">KeyGenerators</code> data set. For
+                each set, the tool scans all clubbed records of that set to determine the highest
+                key value currently used and based on that highest key, writes the next available
+                key into the <code class="ph codeph">KeyGenerators</code> data set. It will update the
+                    <code class="ph codeph">KeyGenerators</code> data set for a particular partition, only if the
+                highest key value used in that partition is less than that of the value available in
+                the <code class="ph codeph">KeyGenerators</code> data set for that partition. For example, if the
+                tool finds the highest key value used for the partition
+                    <code class="ph codeph">InfrequentlyChangingData52</code> is 22148 and the value available in
+                the <code class="ph codeph">KeyGenerators</code> data set is 22150, it will not update the
+                    <code class="ph codeph">KeyGenerators</code> data set. </p>
+
+            <p class="p">The tool always updates the <code class="ph codeph">KeyGenerators</code> data set after rounding up
+                the highest key value used to the next multiple of ten. For example, if the tool
+                finds the highest key value used is 22148, it will update the
+                    <code class="ph codeph">KeyGenerators</code> data set with the value 22150. </p>
+
+            <p class="p">The tool always starts from the beginning and displays statistical information
+                (number of records processed per set) every five seconds. There is no option to
+                pause/resume a previous tool invocation. For example, if the tool is interrupted for
+                any reason, the next run of the tool will start from the beginning.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">KeyGenerators guidelines</h2>
+            
+            <p class="p">The tool runs on the admincli pod and is only used during the disaster recovery
+                process.</p>
+
+            <p class="p">On the admincli pod, only one instance of the tool can be run at a time and the tool
+                will not start if a similar tool (for example, db-backup or db-restore) is currently
+                running.</p>
+
+            <p class="p">The tool only does <code class="ph codeph">KeyGenerators</code> repairs for those sets that exist
+                in the <code class="ph codeph">KeyGenerators</code> data set. The <code class="ph codeph">KeyGenerators</code>
+                must be already populated with the correct set names. If the tool finds that the
+                    <code class="ph codeph">KeyGenerators</code> is empty, the tool stops running with the
+                message: <code class="ph codeph">No set found to process</code>.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Syntax</h2>
+            
+            <div class="p">
+                <pre class="pre codeblock"><code>TPA_repairKeyGen</code></pre>
+            </div>
+
+            <p class="p">The tool does not have options and asks for a confirmation before proceeding with the
+                recovery task. Choose <code class="ph codeph">y</code>.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">Example Output</h2>
+            
+            <div class="p">The command output is similar to this
+                example:<pre class="pre codeblock"><code>*******Repair KeyGenerator tool starts.**********
+Set the current site's Id to: 1
+
+No set found to process.
+
+It took 3 seconds to complete this task ...</code></pre>
+            </div>
+
+            <div class="p">
+                <table cellpadding="4" cellspacing="0" summary="" id="Repair_key_generator__table_t1k_hbw_mnb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Output Explanation</span></caption><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                            <tr class="row">
+                                <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d28297e166">Line</th>
+
+                                <th class="entry cellrowborder" style="text-align:left;vertical-align:top;" id="d28297e169">Description</th>
+
+                            </tr>
+
+                        </thead>
+<tbody class="tbody">
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d28297e166 "><code class="ph codeph">*******Repair KeyGenerator tool
+                                        starts.**********</code></td>
+
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d28297e169 ">Header for Repair Key Generator</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d28297e166 "><code class="ph codeph">Set the current site's Id to: 1</code></td>
+
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d28297e169 ">Displays the system ID</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d28297e166 "><code class="ph codeph">No set found to process.</code></td>
+
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d28297e169 ">Displays the status</td>
+
+                            </tr>
+
+                            <tr class="row">
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d28297e166 "><code class="ph codeph">It took 3 seconds to complete this task
+                                    ...</code></td>
+
+                                <td class="entry cellrowborder" style="text-align:left;vertical-align:top;" headers="d28297e169 ">Amount of time to complete the task</td>
+
+                            </tr>
+
+                        </tbody>
+</table>
+
+            </div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="NCC to SS7: SOAP/REST integration" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="ncc_to_ss7_soap_rest_integration" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>NCC to SS7: SOAP/REST integration</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="ncc_to_ss7_soap_rest_integration">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1"><span class="ph">NCC</span> to SS7: SOAP/REST integration</h1>
+<div class="body conbody">
+        <p class="p">The SS7 service can be configured to act as the server and <span class="ph">NCC</span> the client to send notification messages to HLR. For successful calls, you must
+            complete these basic configurations for the USSDGW and APIGW services. The USSDGW
+            service is used to receive notification message from APIGW and send the message to HLR.
+            All of the HLR configuration is done at the USSDGW service. You can edit the
+            configurations via the OSP UI or the SS7 Manager GUI. Details are found in the <cite class="cite">NCC
+                SS7 User Guide</cite>.</p>
+
+        <div class="section"><h2 class="title sectiontitle">APIGW USSD response code object</h2>
+            
+            <p class="p">This object is used to relay the HTTP code towards <span class="ph">NCC</span>.
+                For the Notification feature, select the <span class="ph uicontrol">Request Name</span> from
+                drop down list. Configure messages for each HTTP response code that is sent to <span class="ph">NCC</span>.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">USSDGW USSD notification configuration object</h2>
+            
+            <p class="p">Configure all of the information about HLR based on the specific prefix (for example,
+                HLR Global Title and HLR Primary Point Code). This instance is picked up while
+                sending the messages.</p>
+
+        </div>
+
+        <div class="section"><h2 class="title sectiontitle">USSDGW MAP response mapping object</h2>
+            
+            <p class="p">Configure the HTTP codes for all responses that are received from HLR and relayed to
+                    <span class="ph">NCC</span>.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Installation and Upgrade Guide • P556766-DN1000055103-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

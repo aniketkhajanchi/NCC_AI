@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="VT randomization for new data sessions" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="randomize_vt" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>VT randomization for new data sessions</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="randomize_vt">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">VT randomization for new data sessions</h1>
+<div class="body conbody">
+        <p class="p">In certain cases, a burst of new data session requests may get triggered within a short
+            interval in the network. In such cases, randomizing the VT values returned to the
+            network can make the subsequent update transactions triggered by VT expiration to spread
+            over a longer interval reducing the size of subsequent burst if transactions are
+            received at CHF. The VT randomization feature provides VT randomization for new sessions
+            managed on the CHF-Router when it provides the Assume positive treatment for an
+            NCHF_ConvergedCharging_create request. This is similar to the capability provided
+            previously on the OCS Drouter. If this feature is turned on, then the NCC logic
+            randomizes the VT for new data sessions irrespective of whether there is a burst of new
+            session requests or not. </p>
+
+        <div class="section" id="randomize_vt__section_ery_1cq_5qb"><h2 class="title sectiontitle">Configuration</h2>
+            
+            <p class="p">To enable the VT randomization feature, configure the <strong class="ph b">Interval For VT Adjustment
+                    (seconds)</strong> application preference. This application preference generates a
+                random number for VT adjustment. When a non-zero value is configured, the final
+                VT=VT - Random [0...value of this parameter]. The default value is 0.</p>
+
+        </div>
+
+        <div class="section" id="randomize_vt__section_jxh_wbq_5qb"><h2 class="title sectiontitle">VT calculation</h2>
+            
+            <p class="p">For the 4G and 5G data calls, when the initial message is received with <strong class="ph b">Interval
+                    For VT Adjustment (seconds)</strong> configured to a non-zero value and no timed
+                events such as subscription activation, subscription expiration, TOD start/end time
+                are applicable for this data session, the VT is adjusted as VT in quota management
+                profile (slicing profile) - Random [0..value of <strong class="ph b">Interval For VT Adjustment
+                    (seconds)</strong>]. If the value of <strong class="ph b">Interval For VT Adjustment (seconds)</strong> is
+                equal to or greater than VT in quota management (slicing profile), the VT is
+                adjusted to VT in Slicing Profile-Random[0..(VT in Slicing Profile - 1)]. </p>
+
+            <p class="p">For 5G Assume Positive treatment handled by CHF-Router, the <em class="ph i">VT = VT from
+                    "APConfigurationForPeerGroup" - Random[0..value of  <strong class="ph b">Interval For VT
+                        Adjustment (seconds)</strong>] </em>.</p>
+
+            <p class="p">If the value of <strong class="ph b">Interval For VT Adjustment (seconds)</strong> is 0 or this parameter is
+                not configured, then the base logic is used. That is, VtFactor is obtained from
+                "APConfigurationForPeerGroup".</p>
+
+            <p class="p">However, if the value of <strong class="ph b">Interval For VT Adjustment (seconds)</strong> is equal to or
+                greater than VT from "APConfigurationForPeerGroup", the VT is adjusted to <em class="ph i">VT from
+                    "APConfigurationForPeerGroup" - Random[0..(VT from
+                    "APConfigurationForPeerGroup"-1)]</em>.</p>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

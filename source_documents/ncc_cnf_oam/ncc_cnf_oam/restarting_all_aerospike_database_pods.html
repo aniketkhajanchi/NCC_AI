@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="task" />
+<meta name="DC.title" content="Restarting all Aerospike database pods" />
+<meta name="DC.relation" scheme="URI" content="db_roster.html" />
+<meta name="DC.relation" scheme="URI" content="disaster_recovery.html" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="restarting_all_aerospike_database_pods" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Restarting all Aerospike database pods</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="restarting_all_aerospike_database_pods">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Restarting all Aerospike database pods</h1>
+<div class="body taskbody">
+        <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div>
+            <div class="p">When all Aerospike database pods are down and are then started back up, special
+                action is required. This is due to the strict nature of the Aerospike strong
+                consistency feature which ensures data integrity. When all database pods are down,
+                some or all of the 4096 Aerospike data partitions may be marked dead. If this
+                happens, those partitions must be manually revived and then the cluster must be
+                re-formed. <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Run these commands via kubectl to the admincli pod, once there is
+                    at least one Aerospike pod running. The commands fail if all Aerosopoike pods
+                    are down.</div>
+</div>
+
+        </div>
+
+        <div class="tasklabel"><h2 class="sectiontitle tasklabel"></h2></div><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">Run this command to check if there are any dead partitions:</span>
+                <div class="itemgroup info">
+                    <pre class="pre codeblock"><code>db-roster</code></pre>
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Run this command to revive any namespace(s) that contain dead partitions:</span>
+                <div class="itemgroup info"><pre class="pre codeblock"><code>manage revive ns &lt;namespace_name&gt;</code></pre>
+                    <p class="p">Repeat this step until there are no more dead partitions reported in the
+                            <code class="ph codeph">db-roster</code> tool.</p>
+</div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">Run this command to re-create the cluster:</span>
+                <div class="itemgroup info"><pre class="pre codeblock"><code>manage recluster</code></pre></div>
+            </li>
+</ol>
+
+        <div class="section postreq"><div class="tasklabel"><h2 class="sectiontitle tasklabel">What to do next</h2></div>If the nodes have been down for more than six hours, you must perform a disaster
+            recovery procedure. An alarm is generated when disaster recovery is required. The
+                <code class="ph codeph">db-roster</code> tool also shows whether a disaster recovery is required,
+            as the state is shown as DOWN_DRR.</div>
+
+    </div>
+<div class="related-links related-links-title">More on this topic</div><div class="related-links">
+<div class="linklist relinfo"><ul class="linklist">
+<li class="linklist"><a class="link" href="db_roster.html">db-roster</a></li>
+<li class="linklist"><a class="link" href="disaster_recovery.html">Disaster recovery (DR)</a></li></ul></div>
+</div><div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

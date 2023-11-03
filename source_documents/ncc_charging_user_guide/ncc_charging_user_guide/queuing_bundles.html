@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Queuing bundles" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="queuing_bundles" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Queuing bundles</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="queuing_bundles">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Queuing bundles</h1>
+<div class="body conbody">
+        <p class="p">As per the current NCC logic, a bundle attached to a Device can have multiple number of
+            instances. When a bundle is attached to a Device, its instance (subscription) is created
+            in Active state by default. This may be different if a bundle's lifecycle is modified to
+            have a different behavior such as Future Activation Date. The bundle instances are used
+            based on their priority defined at charging service level. Hence, the resources with
+            higher priority are used first. </p>
+
+        <p class="p">With the queuing bundles feature, operators can define a queue structure for bundle
+            instances. The instances in a queue follow the queue property, that is, the first bundle
+            instance in the queue will be used first. Once this instance is used up, then the next
+            instance in the queue is used with validity starting from its first usage. </p>
+
+        <p class="p">When the queued bundle is attached to a Device, the first subscription will be active and
+            rest will be in inactive state per queue. This depends on the configuration of lifecycle
+            attached to the bundle.</p>
+
+        <p class="p">The bundle instances queue has the following properties:</p>
+
+        <ul class="ul" id="queuing_bundles__ul_rq2_xnb_v4b">
+            <li class="li">The instances can belong to different bundles.</li>
+
+            <li class="li">The instances can have different priorities.</li>
+
+            <li class="li">The instances can only be non-renewable. That is, do not add a bundle instance
+                having BCR into the queue. </li>
+
+            <li class="li">The instances are queued in the order of their creation time.</li>
+
+            <li class="li">The number of instances in the queue can be controlled by configuration.</li>
+
+            <li class="li">Only the active instance has a validity period.</li>
+
+            <li class="li">Only the same type of bundle instances are allowed in the queue. For each instance,
+                the bundle structure and definition are same other than the allowance (bucket size
+                and validity period).</li>
+
+        </ul>
+
+        <p class="p">Note the following important points:</p>
+
+        <ul class="ul" id="queuing_bundles__ul_xfj_x4b_v4b">
+            <li class="li">Operators must define the same queue id for same bundle types. </li>
+
+            <li class="li">Queuing bundle is supported for Device only.</li>
+
+            <li class="li">Queuing bundle must be non-periodic/non-renewable.</li>
+
+            <li class="li">Do not change the queuing definition of a bundle. If queue id is changed, then it
+                may have adverse effect.</li>
+
+            <li class="li">Composite bundles are not considered for queuing bundle feature. Here, composite
+                indicates bundle having resources of different type such as bundle with voice and
+                data resources. </li>
+
+            <li class="li">Bundle On Use (BOU) bundles are not considered for queuing bundle feature.</li>
+
+            <li class="li">Change Plan is not applicable for queuing bundle feature.</li>
+
+            <li class="li">The bundle in the queue cannot have a step bucket.</li>
+
+            <li class="li">One queued bundle will have one bucket. If more than one bucket is needed, then the
+                exhaustion criteria can be configured through threshold rules. </li>
+
+        </ul>
+
+        
+        
+        
+        
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

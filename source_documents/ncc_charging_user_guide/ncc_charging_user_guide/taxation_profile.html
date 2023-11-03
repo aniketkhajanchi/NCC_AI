@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Taxation (Taxation Profile)" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="id9yz-09126-ug01-pczza-sp1-d1e170418" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Taxation (Taxation Profile)</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="id9yz-09126-ug01-pczza-sp1-d1e170418">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Taxation (Taxation Profile) </h1>
+<div class="body conbody">
+  <p class="p">The <span class="ph uicontrol">Taxation</span> entity includes multiple percentage tax rates and
+   applicability conditions. The tax is applicable only to a monetary type of allowance limit
+   (bucket) and rate is mandatory for the taxation applied to a monetary resource. If the taxation
+   reference is not provided in the charging service tariff rule, then the taxation cannot be
+   applied. The taxation information cannot be retrieved from a bundle or account.</p>
+
+  <p class="p">Nokia recommends not to change the tax or rate in between calls or for an ongoing session.</p>
+
+  <p class="p">The taxation can be attached to a service (bundle), account, tiered allowance, rate or
+   lifecycle to implement the tax. However, taxation is not applicable for refund cases. The CDR
+   tags generated for taxation are applicable on committed and reserved values.</p>
+
+  <p class="p">The taxation can also be defined for the following lifecycle actions when the fee is used:</p>
+
+  <ul class="ul" id="id9yz-09126-ug01-pczza-sp1-d1e170418__ul_fdg_zmn_gqb">
+   <li class="li">
+    <p class="p">
+     <samp class="ph systemoutput">Charge Fee Action</samp>: If the taxation reference is not given within
+     the lifecycle, which means the taxation profile is not given within the <samp class="ph systemoutput">Charge
+      Fee Action</samp>, then no tax is applied.</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">
+     <samp class="ph systemoutput">Add Subscription Action</samp>: If the taxation reference is not given
+     within the lifecycle, which means the taxation profile is not given in the <samp class="ph systemoutput">Add
+      Subscription Action</samp>, then the tax related information is retrieved from bundle
+     or account.</p>
+
+   </li>
+
+   <li class="li">
+    <p class="p">
+     <samp class="ph systemoutput">Renew Subscription Action</samp>: If the taxation reference is not given
+     within the lifecycle, which means the taxation profile is not given in the <samp class="ph systemoutput">Renew
+      Subscription Action</samp>, then the tax related information is retrieved from bundle
+     or account.</p>
+
+   </li>
+
+  </ul>
+
+  <div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> NCC charging uses the CEIL rounding method only for taxed amount.</div>
+
+<div class="section"><h2 class="title sectiontitle">Configuration</h2>
+<p class="p">Log into the SM GUI, navigate to <span class="ph uicontrol">Charging → ☰ Catalog Rules → Taxation </span>.
+    To add a new taxation profile, click <strong class="ph b">CREATE PROFILE</strong> to add basic details as described in
+    the given table:</p>
+
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Parameters for taxation</span></caption><colgroup><col /><col /><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d191106e118">Parameter</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d191106e121">Description</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d191106e124">Options</th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d191106e127">Mandatory/Optional</th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e118 ">ID</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e121 ">This parameter indicates the tax rate Id.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e124 ">String</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e127 ">
+        <p class="p">Mandatory</p>
+
+        <p class="p">At least one tax rate must be defined</p>
+
+      </td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e118 ">Rate (%)</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e121 ">This parameter indicates the tax percentage. The range is 0 - 100%.</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e124 ">Integer</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e127 ">
+        <p class="p">Mandatory</p>
+
+        <p class="p">At least one tax rate must be defined</p>
+
+      </td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Configuring rule expressions</h2>
+<p class="p">The rule expressions can be configured using roaming, zoning, call type so on to the special
+    taxation Id to determine whether the taxation is applicable or not. If the criteria check of the
+    taxation matches, then while reserving the amount from account or monetary bucket for the call,
+    NCC uses the tax rate percentage (if exists). The <code class="ph codeph">Taxation fee = committed fee * tax
+     rating percent</code>. If there are multiple tax rate percentages, then the summary of all
+    the tax rates are taken as taxation fee, that is, <code class="ph codeph">Taxation fee = committed fee * per tax
+     rating percent</code>. The committed fee plus the total taxation fee is charged to the
+    account or monetary bucket.</p>
+
+<p class="p">CEIL rounding method is used for taxed amount. CEIL takes the number and rounds it to the nearest integer value above its current value. For example, the ceiling of 2.31 is 3.</p>
+
+<p class="p">
+    <span class="ph uicontrol">Example:</span>
+   </p>
+
+<div class="p">The following table provides details on the parameter values considered for the example.<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col /><col /></colgroup><thead class="thead" style="text-align:left;">
+       <tr class="row">
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d191106e217">
+         <p class="p">Taxation ID</p>
+
+       </th>
+
+        <th class="entry cellrowborder" style="vertical-align:top;" id="d191106e223">
+         <p class="p">Tax rate percentage</p>
+
+       </th>
+
+       </tr>
+
+      </thead>
+<tbody class="tbody">
+       <tr class="row">
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e217 ">Tax1</td>
+
+        <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e223 ">10%</td>
+
+       </tr>
+
+      </tbody>
+</table>
+</div>
+
+<p class="p">The account balance is 200 USD attached to an iPhone device. </p>
+
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Case 1: Lifecycle actions</strong></p>
+
+<p class="p">The account balance is 200 USD. In the lifecycle <samp class="ph systemoutput">Charge Fee Action</samp>, the taxation Id <em class="ph i">Tax1</em> is attached with fee 100 USD. After execution of this action, the account balance is 90 and 110 is deducted.</p>
+
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Case 2: Tax applied to main balance</strong></p>
+
+<p class="p">You can define the tariff in the charging service to apply tax to the main balance as follows. In
+     this example, <em class="ph i">Tax1</em> is the tax defined in the taxation profile and note that the
+      <kbd class="ph userinput">Main Balance</kbd> is hard-coded.</p>
+
+</div>
+   <div class="sectiondiv"><span class="ph uicontrol">Example:</span><p class="p">To configure the tax amount as included in cost,
+     provide <var class="keyword varname">TaxType_INCLUDED_TO_COST</var> in Tax-Selection (as shown below).</p>
+<div class="p">
+     <a href="../images/chargingrules_tax_selection.png" class="image"><img class="image break scalefit" id="id9yz-09126-ug01-pczza-sp1-d1e170418__image_whs_mkc_rwb" src="../images/chargingrules_tax_selection.png" /></a>
+    </div>
+<p class="p">If 2nd parameter is not provided or provided as <var class="keyword varname">TaxType_ON_TOP_OF_COST</var>
+     in Tax-Selection, tax is applied over and above the cost.</p>
+</div>
+<div class="sectiondiv">
+<p class="p"><strong class="ph b">Case 3: Sample tariff with taxation</strong></p>
+
+<p class="p">The following figure shows a sample tariff rule with tax to be applied to the SMS call defined in a charging service.</p>
+
+<div class="fig fignone">
+     
+     <img class="image break" src="../images/img9yz-09126-ug01-pczza-sp1-taxation_tariff_default.png" />
+    </div>
+
+</div>
+</div>
+
+<div class="section"><h2 class="title sectiontitle">Actions associated with taxation</h2>
+<table cellpadding="4" cellspacing="0" summary="" class="table" width="100%" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table: </span>Actions associated with taxation</span></caption><colgroup><col style="width:31.948881789137378%" /><col style="width:68.05111821086261%" /></colgroup><thead class="thead" style="text-align:left;">
+      <tr class="row">
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d191106e334">
+        <p class="p">Action</p>
+
+      </th>
+
+       <th class="entry cellrowborder" style="vertical-align:top;" id="d191106e340">
+        <p class="p">Description</p>
+
+      </th>
+
+      </tr>
+
+     </thead>
+<tbody class="tbody">
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e334 ">Create</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e340 ">Used to create the taxation in database by providing the mandatory and optional
+        parameters.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e334 ">Read</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e340 ">Used to display the taxation record per the data retrieved from database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e334 ">Update</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e340 ">Used to update a taxation record in database.</td>
+
+      </tr>
+
+      <tr class="row">
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e334 ">Delete</td>
+
+       <td class="entry cellrowborder" style="vertical-align:top;" headers="d191106e340 ">Used to delete a particular taxation record from database.</td>
+
+      </tr>
+
+     </tbody>
+</table>
+
+<div class="note"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> These actions are valid for internal purposes only and cannot be accessed using the SM GUI. </div>
+
+</div>
+
+</div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

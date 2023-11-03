@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Removing queued subscription" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="section_d2c_1fh_z4b" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Removing queued subscription</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="section_d2c_1fh_z4b">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Removing queued subscription</h1>
+<div class="body">
+            
+            <div class="p">Whenever a delete subscription is executed, NCC checks if the subscription is a
+                queued subscription. If it is not a queued subscription, then there is no change in
+                the existing behavior. If it is a queued subscription, NCC performs the following
+                logic. <ul class="ul" id="section_d2c_1fh_z4b__ul_bs5_g3h_z4b">
+                    <li class="li"><strong class="ph b">Queued subscription removal application preference</strong>: Deletion of queue
+                        can happen either from start of the queue or from end of queue. This can be
+                        configured using the <strong class="ph b">Queued Subscription Removal</strong> application
+                        preference that has two possible values - <strong class="ph b">FROM_END</strong> (default value),
+                            <strong class="ph b">FROM_START</strong>. <ul class="ul" id="section_d2c_1fh_z4b__ul_owt_3kh_z4b">
+                            <li class="li"><strong class="ph b">FROM_END</strong>: If the <strong class="ph b">Queued Subscription Removal</strong> is
+                                    <strong class="ph b">FROM_END</strong> and index of subscription (that you want to
+                                delete) is equal to the size of list, it means this is last element
+                                in list, then its allowed to be deleted. Otherwise, NCC checks if
+                                subscription (index+1) is in final state, then subscription is
+                                alllowed to be deleted, else NCC throws an exception named
+                                    <strong class="ph b">OperationFailedException</strong>. </li>
+
+                            <li class="li"><strong class="ph b">FROM_START</strong>: If the <strong class="ph b">Queued Subscription Removal</strong> is
+                                    <strong class="ph b">FROM_START</strong> and index of subscription (that you want to
+                                delete) is equal to 0, it means this is the first element in list,
+                                then its allowed to be deleted. Otherwise, if index is greater than
+                                1, then NCC checks if subscription (at index 1) is in final state,
+                                then subscription is allowed to be deleted, else NCC throws an
+                                exception named <strong class="ph b">OperationFailedException</strong>.</li>
+
+                        </ul>
+</li>
+
+                    <li class="li"><strong class="ph b">Removal order</strong>: If multiple subscriptions are removed by Bundle ID,
+                        Delete profile API and DeleteSubscription Action, then create an order based
+                        on Queued Subscription Removal Identifier. <ul class="ul" id="section_d2c_1fh_z4b__ul_yg4_2mh_z4b">
+                            <li class="li">If the <strong class="ph b">Queued Subscription Removal</strong> identifier is
+                                    <strong class="ph b">FROM_START</strong>. It loops from 0th index to n-1 index.</li>
+
+                            <li class="li">If the <strong class="ph b">Queued Subscription Removal</strong> identifier is
+                                    <strong class="ph b">FROM_END</strong>. It loops from n-1 index to 0th index.</li>
+
+                        </ul>
+</li>
+
+                </ul>
+The removal logic impacts the following APIs. </div>
+
+            <table cellpadding="4" cellspacing="0" summary="" id="section_d2c_1fh_z4b__table_xm3_kmh_z4b" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:21.73144876325088%" /><col style="width:24.02826855123675%" /><col style="width:17.6678445229682%" /><col style="width:36.57243816254417%" /></colgroup><thead class="thead" style="text-align:left;">
+                        <tr class="row">
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d193374e116">API</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d193374e119">Description</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d193374e122">HTTP Method</th>
+
+                            <th class="entry cellrowborder" style="vertical-align:top;" id="d193374e125">path for REST</th>
+
+                        </tr>
+
+                    </thead>
+<tbody class="tbody">
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e116 ">DeleteSubscription</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e119 ">Used to remove/delete subscription from Device</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e122 ">DELETE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e125 ">/services/ServiceManager/subscriber/delete/Subscription</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e116 ">DeltaUpdate</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e119 ">Used to update Device details that subscription added or removed
+                                using this</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e122 ">PUT</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e125 ">/services/ServiceManager/subscriber/deltaUpdate/Device</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e116 ">UpdateDevice</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e119 ">Used to update Device details that subscription added or removed
+                                using this</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e122 ">PUT</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e125 ">/services/ServiceManager/subscriber/update/Device</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e116 ">Patch API for update device</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e119 ">
+                                <p class="p">Patch API for updating device details: with op:replace/remove
+                                </p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e122 ">PATCH</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e125 ">/services/ServiceManager/subscriber/patch</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e116 ">Delete Profile</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e119 ">
+                                <p class="p">Delete profile for Entity Type: Account/Device</p>
+
+                                <p class="p">operation=DELETE/DELETE_ALL/UNLINK</p>
+
+                           </td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e122 ">DELETE</td>
+
+                            <td class="entry cellrowborder" style="vertical-align:top;" headers="d193374e125 ">/services/ServiceManager/subscriber/delete/Profile</td>
+
+                        </tr>
+
+                    </tbody>
+</table>
+
+            <p class="p">Following is the impact on <strong class="ph b">Delete Subscription Action</strong>:</p>
+
+            <ul class="ul" id="section_d2c_1fh_z4b__ul_lvg_wj4_z4b">
+                <li class="li"><strong class="ph b">Account</strong>: There is no change in Account entity for <strong class="ph b">Delete Subscription
+                        Action</strong> as this is not applicable to queuing bundle.</li>
+
+                <li class="li">The condition for barred subscription is replaced by initial barred for all
+                    types of subscription removal logic using either API or <strong class="ph b">Delete Subscription
+                        Action</strong>. </li>
+
+            </ul>
+
+        </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

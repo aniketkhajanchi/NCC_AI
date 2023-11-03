@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Important points" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="important_points_loan" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Important points</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="important_points_loan">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Important points</h1>
+<div class="body conbody">
+        <ul class="ul" id="important_points_loan__ul_xw4_rlh_zsb">
+            <li class="li">Loan Amount configured in Loan should be greater than 0.</li>
+
+            <li class="li">Loan is applicable only for monetary balance.</li>
+
+            <li class="li">Only one loan can be granted to an account at a time.</li>
+
+            <li class="li">If Account Loan State is <var class="keyword varname">OPT-IN</var>, no further loan can be granted
+                to Account.</li>
+
+            <li class="li">If Account Loan State is <var class="keyword varname">OPT-OUT</var>, but the account has a loan
+                instance (as main balance of account was insufficient to pay remaining debt during
+                OPT-OUT), no further loan can be granted to the Account.</li>
+
+            <li class="li">During OPT-IN, EDRs of adjustBalance are also generated along with loan operation
+                EDRs.</li>
+
+            <li class="li">
+                <p class="p">Operator must configure the following:</p>
+
+                <ul class="ul" id="important_points_loan__ul_czl_zsx_zsb">
+                    <li class="li">TPG with rules to have low balance notification at
+                        opt-in/opt-out/initial
+                    </li>
+
+                    <li class="li">TPG with <var class="keyword varname">Loan Balance Usage</var> =
+                        <var class="keyword varname">TRUE</var>.</li>
+
+                </ul>
+
+            </li>
+
+            <li class="li">Existing TPG needs to be modification for Account Main Balance Notification to have
+                flexibility based on loan instances (through rule conditions) to get different types
+                of notification or to get loan instances variables in notifications.</li>
+
+            <li class="li">Account Custom Data is not mandatory for eligibility of availing loan.</li>
+
+            <li class="li">Loan is not applicable for Groups.</li>
+
+            <li class="li">Creation and updation of loan definition can be done by native APIs/GUI. (These are
+                not supported using TMF APIs.)</li>
+
+            <li class="li">If the main balance is not sufficient to grant the activation fee, then main balance
+                is reduced to zero and loan is granted.</li>
+
+            <li class="li">Loan to grant a Bundle (as Loan) is not allowed.
+                </li>
+
+            <li class="li">
+                <p class="p">CustomData for eligibility/ineligibility is not mandatory for this feature.
+                    However, it is described here to provide configuration for the operators who
+                    want to use CustomData in Account for other Loan states.</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">NCC supports only three loan states: Initial → Opt-In → Opt-out.</p>
+
+            </li>
+
+            <li class="li">
+                <p class="p">If an operator has a requirement to update the CustomData of the Account, that
+                    should be done by the existing NCC API. NCC does not update it automatically as
+                    part of loan feature.</p>
+
+            </li>
+
+            <li class="li">It is recommended to have Overage Limit as 0 in account.</li>
+
+        </ul>
+
+    </div>
+<div class="footer"><hr /><p>Charging User Guide • P556766-DN1000054947-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

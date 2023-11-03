@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Helm upgrade to put the recovered system back in service" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="helm_upgrade_to_put_the_recovered_site_back_in_service" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Helm upgrade to put the recovered system back in service</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="helm_upgrade_to_put_the_recovered_site_back_in_service">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Helm upgrade to put the recovered system back in service</h1>
+<div class="body conbody">
+                <p class="p">Once all of the data is recovered, generate new overrides using the same
+                        input-generator, but this time specifying <span class="keyword parmname">Deployment
+                                Type</span> as <code class="ph codeph">in-service upgrade</code> and
+                                <span class="ph uicontrol">Enable XDR traffic</span> as
+                        <code class="ph codeph">true</code>.</p>
+
+                <p class="p">This step creates the Kubernetes objects that are needed by the system to
+                        communicate and replicate data.</p>
+
+                <p class="p">Perform the Helm upgrade and when it is completed verify the status of the
+                        replication for:</p>
+
+                <ul class="ul">
+                        <li class="li">Web SSO data, as described in <a class="xref" href="verify_cmdb_replication.html">Verify MariaDB replication</a>. </li>
+
+                        <li class="li">Aerospike data, as described in <a class="xref" href="verify_that_xdr_replication_status_is_current.html">Verify that XDR replication status is current</a>.
+                                The XDR replication between the recovered system and the other
+                                systems should take care of updating the data on the recovered
+                                system to the current state. This might take a while, but eventually
+                                the replication should synch-up. If this does not happen, there is
+                                the option to perform the procedure described in <a class="xref" href="aerospike_data_recovery1.html">Aerospike data recovery</a>, to manually perform
+                                a recover from an healthy system to the recovered system.</li>
+
+                </ul>
+
+                <p class="p">You should also verify the SM configuration as suggested in <a class="xref" href="verifyupdate_sm_configuration.html">Verify/update SM configuration</a> and the status of CGF
+                        (DR) dr-ui pods, as explained in <a class="xref" href="verify_status_of_cgf_data_refinery_dr-ui_pods.html">Verify the status of CGF (DR) dr-ui pods</a>.</p>
+
+        </div>
+<div class="footer"><hr /><p>Operations, Administration, and Maintenance Guide • P556766-DN1000055092-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

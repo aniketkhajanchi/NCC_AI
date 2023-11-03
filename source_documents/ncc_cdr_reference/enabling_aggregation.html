@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="concept" />
+<meta name="DC.title" content="Enabling CDR aggregation" />
+<meta name="prodname" content="Nokia Converged Charging" />
+<meta name="version" content="Release 23.8" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="enabling_aggregation" />
+<link rel="stylesheet" type="text/css" href="../../web/css/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/styles.min.css" />
+<link rel="stylesheet" type="text/css" href="../../web/css/common-extended.css" /><title>Enabling CDR aggregation</title>
+<script src="../web/js/nswtc.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+<script src="../../web/css/../js/script.min.js" language="javascript" type="text/javascript">/*(◎_◎;)*/</script>
+</head>
+<body id="enabling_aggregation">
+<div class="header"><div id="feedback-link-placeholder" class="feedback-link"></div><hr /></div><h1 class="title topictitle1" id="ariaid-title1">Enabling CDR aggregation</h1>
+<div class="body conbody">
+        <div class="section" id="enabling_aggregation__section_ol2_pjk_vrb"><h2 class="title sectiontitle">Application preference</h2>
+            
+            <p class="p">To enable aggregation, set the ME application preference <em class="ph i">CDR Generated per
+                    MSCC</em> to <var class="keyword varname">true</var>. </p>
+
+            <p class="p">For more information, see <a class="xref" href="cdr_gy_session_overview.html">CDRs for Gy session</a> and <em class="ph i">Global
+                    Configuration Guide</em>.</p>
+
+        </div>
+
+        <div class="section" id="enabling_aggregation__section_s4j_pjk_vrb"><h2 class="title sectiontitle">Configuring aggregation node parameters in CDR streams</h2>
+            
+            <p class="p">For aggregation to take place, set the following node parameter values:</p>
+
+            <div class="p"><ul class="ul" id="enabling_aggregation__ul_lcn_lkk_vrb">
+                    <li class="li">for CG Kafka Collector Node (Kafka input stream)<ul class="ul" id="enabling_aggregation__ul_kqq_g3k_vrb">
+                            <li class="li"><code class="ph codeph">PassThrogh</code>: <code class="ph codeph">no</code> (hidden)</li>
+
+                            <li class="li"><code class="ph codeph">SequenceNumberFields</code>:
+                                    <code class="ph codeph">recordSequenceNumber</code></li>
+
+                            <li class="li"><code class="ph codeph">SessionTimeout</code>: To keep a session ongoing in Redis,
+                                set this node parameter to a value greater than the validity time in
+                                the NCC side.</li>
+
+                            <li class="li"><code class="ph codeph">SessionIdFields</code>: <code class="ph codeph">sessionId</code></li>
+
+                            <li class="li"><code class="ph codeph">ChargingRecordTypes</code>:
+                                    <code class="ph codeph">OCSChargingRecord</code></li>
+
+                            <li class="li"><code class="ph codeph">EventRecordTypes</code>:
+                                    <code class="ph codeph">PROVISIONING_RECORD,RechargeRecord</code></li>
+
+                        </ul>
+</li>
+
+                    <li class="li">for CG Mapper Node (Business logic stream)<ul class="ul" id="enabling_aggregation__ul_a45_52g_rsb">
+                            <li class="li">
+                                <code class="ph codeph">AggregationEnabled</code>: <code class="ph codeph">yes</code></li>
+
+                            <li class="li"><code class="ph codeph">AggregationTimeOut</code>: This parameter defines the
+                                number of seconds that a session is kept in the database after a
+                                termination record is received. If this time passes since receiving
+                                any termination record, the session is considered complete, and the
+                                collected information is sent out as aggregated outputs. Set the
+                                value as required by your system.</li>
+
+                            <li class="li"><code class="ph codeph">SessionTimeout</code>: Set this node parameter to the same
+                                value that is used in CG Kafka Collector Node.</li>
+
+                            <li class="li"><code class="ph codeph">RecordSequenceNumberValidation</code>: (hidden)<ul class="ul" id="enabling_aggregation__ul_blx_rdc_pwb">
+                                    <li class="li">Set to <var class="keyword varname">yes</var> if getting partial outputs
+                                        ordered by recordSequenceNumber is required</li>
+
+                                    <li class="li">Set to <var class="keyword varname">no</var> if ordering is NOT
+                                        required</li>
+
+                                </ul>
+</li>
+
+                            <li class="li"><code class="ph codeph">CustomPartialCheckerClass</code>:
+                                    <code class="ph codeph">com.nokia.mc.node.cg.sps.SPSPartialChecker</code>
+                                (hidden)</li>
+
+                            <li class="li"><code class="ph codeph">GeneratePartialFromStart</code>: yes (hidden)<div class="note" id="enabling_aggregation__note_xwn_twf_wtb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> Make sure that (hidden)
+                                    node parameter <code class="ph codeph">CustomRecordFieldExtractorClass</code>
+                                    is set to empty.</div>
+</li>
+
+                        </ul>
+</li>
+
+                    <li class="li">
+                        <p class="p">Logic for aggregation tags can be controlled using the following
+                            parameters:</p>
+
+                        <ul class="ul" id="enabling_aggregation__ul_cs3_b1j_gvb">
+                            <li class="li"><code class="ph codeph">AccumulatedFields</code>: This parameter defines the list
+                                of fields that are accumulated during aggregation.</li>
+
+                            <li class="li"><code class="ph codeph">FirstOccurrenceFields</code>: This parameter defines list
+                                of fields that are generated from the first occurrence.</li>
+
+                        </ul>
+
+                        <div class="note" id="enabling_aggregation__note_kfy_21j_gvb"><div class="notetitle"><img src="../../web/css/../images/note.svg" title="note-icon" class="noteicon" />Note:</div> 
+                            <ul class="ul" id="enabling_aggregation__ul_qhs_f1j_gvb">
+                                <li class="li">Fields should be added to either
+                                        <code class="ph codeph">AccumulatedFields</code> or
+                                        <code class="ph codeph">FirstOccurrenceFields</code>. If any field is
+                                    added to both, it is generated from the last occurrence and a
+                                    warning is raised on the mapper stream.</li>
+
+                                <li class="li">Any field that is not part of those configurations, is generated
+                                    from the last occurrence.</li>
+
+                            </ul>
+
+                        </div>
+
+                    </li>
+
+                </ul>
+Rounding up is disabled by default, but it can be enabled by setting CG Mapper
+                Node node parameter <code class="ph codeph">RoundingEnabled</code> to <code class="ph codeph">yes</code>. If
+                rounding is enabled, the number of digits to be rounded can be configured with node
+                parameter <code class="ph codeph">RoundingDigits</code>, which has a default value of
+                    <code class="ph codeph">5</code>.</div>
+
+        </div>
+
+    </div>
+<div class="footer"><hr /><p>CDR/EDR Reference • P556766-DN1000055014-R23.8 • 1 • <a href="../home.html">Cover</a> • ©2023 Nokia. Nokia Confidential Information • Use subject to agreed restrictions on disclosure and use.</p></div></body>
+</html>

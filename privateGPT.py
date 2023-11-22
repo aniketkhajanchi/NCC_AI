@@ -55,7 +55,8 @@ def main():
 
         # Get the answer from the chain
         start = time.time()
-        res = qa(query)
+        query2="in reference to nokia converged charging "+query
+        res = qa(query2)
         answer, docs = res['result'], [] if args.hide_source else res['source_documents']
         end = time.time()
 
@@ -66,9 +67,9 @@ def main():
         print(answer)
 
         # Print the relevant sources used for the answer
-        for document in docs:
-            print("\n> " + document.metadata["source"] + ":")
-            print(document.page_content)
+        # for document in docs:
+        #     print("\n> " + document.metadata["source"] + ":")
+        #     print(document.page_content)
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='privateGPT: Ask questions to your documents without an internet connection, '

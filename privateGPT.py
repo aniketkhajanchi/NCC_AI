@@ -9,6 +9,7 @@ import chromadb
 import os
 import argparse
 import time
+from flask import Flask, request, jsonify
 
 if not load_dotenv():
     print("Could not load .env file or it is empty. Please check if it exists and is readable.")
@@ -16,7 +17,6 @@ if not load_dotenv():
 
 embeddings_model_name = os.environ.get("EMBEDDINGS_MODEL_NAME")
 persist_directory = os.environ.get('PERSIST_DIRECTORY')
-
 model_type = os.environ.get('MODEL_TYPE')
 model_path = os.environ.get('MODEL_PATH')
 model_n_ctx = os.environ.get('MODEL_N_CTX')
@@ -25,7 +25,11 @@ target_source_chunks = int(os.environ.get('TARGET_SOURCE_CHUNKS',4))
 
 from constants import CHROMA_SETTINGS
 
+app = Flask(__name__)
+qa = None
+
 def main():
+    global qa
     # Parse the command line arguments
     args = parse_arguments()
     embeddings = HuggingFaceEmbeddings(model_name=embeddings_model_name)
@@ -37,7 +41,7 @@ def main():
     # Prepare the LLM
     match model_type:
         case "LlamaCpp":
-            llm = LlamaCpp(model_path=model_path, max_tokens=model_n_ctx, n_batch=model_n_batch, callbacks=callbacks, verbose=False)
+            llm = LlamaCpp(model_path=model_path, max_tokens=model_n_ctx, n_batch=model_n_batch, callbacks=callbacks, verbose=False,n_ctx=2048,n_threads=8)
         case "GPT4All":
             llm = GPT4All(model=model_path, max_tokens=model_n_ctx, backend='gptj', n_batch=model_n_batch, callbacks=callbacks, verbose=False,n_threads=8)
         case _default:
@@ -45,31 +49,35 @@ def main():
             raise Exception(f"Model type {model_type} is not supported. Please choose one of the following: LlamaCpp, GPT4All")
 
     qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever, return_source_documents= not args.hide_source)
-    # Interactive questions and answers
-    while True:
-        query = input("\nEnter a query: ")
-        if query == "exit":
-            break
-        if query.strip() == "":
-            continue
 
-        # Get the answer from the chain
-        start = time.time()
-        query2="in reference to nokia converged charging "+query
-        res = qa(query2)
-        answer, docs = res['result'], [] if args.hide_source else res['source_documents']
-        end = time.time()
 
-        # Print the result
-        print("\n\n> Question:")
-        print(query)
-        print(f"\n> Answer (took {round(end - start, 2)} s.):")
-        print(answer)
 
-        # Print the relevant sources used for the answer
-        # for document in docs:
-        #     print("\n> " + document.metadata["source"] + ":")
-        #     print(document.page_content)
+@app.route('/ask', methods=['POST'])
+def ask_question():
+    args = parse_arguments()
+    if not request.is_json:
+        return jsonify({"error": "Invalid request format"}), 400
+
+    data = request.json
+    if 'question' not in data:
+        return jsonify({"error": "Missing 'question' parameter"}), 400
+
+    question = data['question']
+    # Get the answer from the chain
+    start = time.time()
+    res = qa(question)
+    answer, docs = res['result'], [] if args.hide_source else res['source_documents']
+    end = time.time()
+    time_taken=end-start
+
+    # Print the result
+    print("\n\n> Question:")
+    print(question)
+    print(f"\n> Answer (took {round(time_taken, 2)} s.):")
+    print(answer)
+
+    return jsonify({"answer": answer,"time_taken":round(time_taken,2)})
+
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='privateGPT: Ask questions to your documents without an internet connection, '
@@ -86,3 +94,4 @@ def parse_arguments():
 
 if __name__ == "__main__":
     main()
+    app.run(port=5001)  # Chose a port that is not conflicting with Streamlit

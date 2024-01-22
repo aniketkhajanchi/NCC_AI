@@ -70,12 +70,6 @@ def ask_question():
     end = time.time()
     time_taken=end-start
 
-    # Print the result
-    print("\n\n> Question:")
-    print(question)
-    print(f"\n> Answer (took {round(time_taken, 2)} s.):")
-    print(answer)
-
     return jsonify({"answer": answer,"time_taken":round(time_taken,2)})
 
 

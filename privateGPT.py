@@ -41,7 +41,7 @@ def main():
     # Prepare the LLM
     match model_type:
         case "LlamaCpp":
-            llm = LlamaCpp(model_path=model_path, max_tokens=model_n_ctx, n_batch=model_n_batch, callbacks=callbacks, verbose=False,n_ctx=2048,n_threads=8)
+            llm = LlamaCpp(model_path=model_path, max_tokens=model_n_ctx, n_batch=model_n_batch, callbacks=callbacks, verbose=True,n_ctx=2048,n_threads=16)
         case "GPT4All":
             llm = GPT4All(model=model_path, max_tokens=model_n_ctx, backend='gptj', n_batch=model_n_batch, callbacks=callbacks, verbose=False,n_threads=8)
         case _default:
@@ -68,9 +68,15 @@ def ask_question():
     res = qa(question)
     answer, docs = res['result'], [] if args.hide_source else res['source_documents']
     end = time.time()
+    source_documents=[]
+    page_content=[]
     time_taken=end-start
+    for document in docs:
+        source_documents.append(document.metadata["source"])
+        page_content.append(document.page_content)
 
-    return jsonify({"answer": answer,"time_taken":round(time_taken,2)})
+
+    return jsonify({"answer": answer,"time_taken":round(time_taken,2),"source_documents":source_documents,"page_content":page_content})
 
 
 def parse_arguments():

@@ -12,33 +12,41 @@ def copy_to_clipboard():
 def displayResult():
         st.write(f"Answer ({st.session_state.time_taken}s):")
         st.write(st.session_state.result)
+            # Use a persistent "Copy" button
+        if st.button("Copy to Clipboard") and st.session_state.result:
+            copy_to_clipboard()
+        with st.expander("Reference Documents "):
+             for docs in st.session_state.source_documents:
+                  st.write(docs)
 
 def makeUI():
+    st.set_page_config(page_title="NCC-AI")
+    st.header("NCC-AI👨‍💻")
     if "result" not in st.session_state:
         st.session_state.result=None
     if "time_taken" not in st.session_state:
         st.session_state.time_taken=None
-    st.set_page_config(page_title="NCC-AI")
-    st.header("NCC-AI")
+    if "source_documents" not in st.session_state:
+         st.session_state.source_documents=None
+    if "page_content" not in st.session_state:
+         st.session_state.page_content=None
     query=st.text_input("Ask a question...")
     
     if st.button("Submit"):
         with st.spinner("Generating..."):
             response = requests.post("http://localhost:5001/ask", json={"question": "In reference to Nokia Converged Charging "+query})
         if response.status_code == 200:
-            result = response.json()["answer"]
-            time_taken=response.json()["time_taken"]
-            st.session_state.result=result
-            st.session_state.time_taken=time_taken
+            st.session_state.result = response.json()["answer"]
+            st.session_state.time_taken=response.json()["time_taken"]
+            st.session_state.source_documents=response.json()["source_documents"]
+            st.session_state.page_content=response.json()["page_content"]
         else:
             st.write("Error:", response.json()["error"])
     
+
+    
     if st.session_state.result:
         displayResult()
-
-    # Use a persistent "Copy" button
-    if st.button("Copy to Clipboard") and st.session_state.result:
-        copy_to_clipboard()
 
 
 if __name__ == "__main__":

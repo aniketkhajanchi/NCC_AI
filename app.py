@@ -18,6 +18,13 @@ def displayResult():
         with st.expander("Reference Documents "):
              for docs in st.session_state.source_documents:
                   st.write(docs)
+        if st.button("Click to Save"):
+             save_answers()
+def save_answers():
+    filename = f"QA_Pairs.txt"
+    with open(filename, 'a', encoding='utf-8') as file:
+        file.write(f"Question: {st.session_state.query}\n")
+        file.write(f"Answer: {st.session_state.result}\n\n\n")
 
 def makeUI():
     st.set_page_config(page_title="NCC-AI")
@@ -30,7 +37,10 @@ def makeUI():
          st.session_state.source_documents=None
     if "page_content" not in st.session_state:
          st.session_state.page_content=None
+    if "query" not in st.session_state:
+         st.session_state.query=None
     query=st.text_input("Ask a question...")
+    st.session_state.query=query
     
     if st.button("Submit"):
         with st.spinner("Generating..."):

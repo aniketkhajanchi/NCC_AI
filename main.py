@@ -4,7 +4,7 @@ from langchain.chains import RetrievalQA
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.vectorstores import Chroma
-from langchain.llms import GPT4All, LlamaCpp
+from langchain.llms import LlamaCpp
 import chromadb
 import os
 
@@ -33,11 +33,9 @@ def main():
     match model_type:
         case "LlamaCpp":
             llm = LlamaCpp(model_path=model_path, max_tokens=model_n_ctx, n_batch=model_n_batch, callbacks=callbacks, verbose=True,n_ctx=2048,n_threads=8,n_gpu_layers=41,temperature=0.2)
-        case "GPT4All":
-            llm = GPT4All(model=model_path, max_tokens=model_n_ctx, backend='gptj', n_batch=model_n_batch, callbacks=callbacks, verbose=True,n_threads=8,n_gpu_layers=33)
         case _default:
             # raise exception if model_type is not supported
-            raise Exception(f"Model type {model_type} is not supported. Please choose one of the following: LlamaCpp, GPT4All")
+            raise Exception(f"Model type {model_type} is not supported. Please choose LlamaCpp")
 
     qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever, return_source_documents= True)
     return qa

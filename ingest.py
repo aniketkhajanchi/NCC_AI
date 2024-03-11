@@ -37,8 +37,8 @@ from chromadb.api.segment import API
 persist_directory = os.environ.get('PERSIST_DIRECTORY')
 source_directory = os.environ.get('SOURCE_DIRECTORY', 'source_documents')
 embeddings_model_name = os.environ.get('EMBEDDINGS_MODEL_NAME')
-chunk_size = 500
-chunk_overlap = 50
+chunk_size = 2000
+chunk_overlap = 200
 
 
 # Custom document loaders
@@ -102,9 +102,6 @@ def load_documents(source_dir: str, ignored_files: List[str] = []) -> List[Docum
         all_files.extend(
             glob.glob(os.path.join(source_dir, f"**/*{ext.lower()}"), recursive=True)
         )
-        # all_files.extend(
-        #     glob.glob(os.path.join(source_dir, f"**/*{ext.upper()}"), recursive=True)
-        # )
     filtered_files = [file_path for file_path in all_files if file_path not in ignored_files]
 
     with Pool(processes=os.cpu_count()) as pool:
